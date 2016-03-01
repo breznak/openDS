@@ -844,7 +844,7 @@ public class PanelCenter
         maritimeLatitudeText.setText("Breite: " + df3.format(car.getGeoPosition().getX()) + " N");
         
         // OpenDS-Maritime - longitude
-        maritimeLongitudeText.setText("Länge: " + df3.format(car.getGeoPosition().getY()) + " O");
+        maritimeLongitudeText.setText("Lange: " + df3.format(car.getGeoPosition().getY()) + " O");
         
         // OpenDS-Maritime - scenario
         maritimeScenarioText.setText("Szenario: " + SimulationBasics.getDrivingTask().getFileName().replace(".xml", ""));
