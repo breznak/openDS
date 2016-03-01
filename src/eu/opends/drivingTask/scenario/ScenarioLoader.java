@@ -28,7 +28,8 @@ import javax.xml.xpath.XPathConstants;
 
 import org.w3c.dom.NodeList;
 
-import com.jme3.math.Matrix4f;
+import Jama.Matrix;
+
 import com.jme3.math.Quaternion;
 import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
@@ -74,8 +75,8 @@ public class ScenarioLoader
 	private Map<String, LaneLimit> laneList = new HashMap<String, LaneLimit>();
 	private List<Intersection> intersectionList = new ArrayList<Intersection>();
 	private List<TrafficLight> globalTrafficLightList = new ArrayList<TrafficLight>();
-	private Matrix4f modelToGeoMatrix;
-	private Matrix4f geoToModelMatrix;
+	private Matrix modelToGeoMatrix;
+	private Matrix geoToModelMatrix;
 	
 	
 	public enum CarProperty
@@ -330,20 +331,20 @@ public class ScenarioLoader
 	private void extractConversionMatrices()
 	{
 		String modelToGeoPath = "/scenario:scenario/scenario:coordinateConversion/scenario:modelToGeo";
-		modelToGeoMatrix = dtData.getMatrix4f(Layer.SCENARIO, modelToGeoPath);
+		modelToGeoMatrix = dtData.getMatrix(Layer.SCENARIO, modelToGeoPath);
 		
 		String geoToModelPath = "/scenario:scenario/scenario:coordinateConversion/scenario:geoToModel";
-		geoToModelMatrix = dtData.getMatrix4f(Layer.SCENARIO, geoToModelPath);
+		geoToModelMatrix = dtData.getMatrix(Layer.SCENARIO, geoToModelPath);
 	}
 	
 	
-	public Matrix4f getModelToGeoMatrix()
+	public Matrix getModelToGeoMatrix()
 	{
 		return modelToGeoMatrix;
 	}
 	
 	
-	public Matrix4f getGeoToModelMatrix()
+	public Matrix getGeoToModelMatrix()
 	{
 		return geoToModelMatrix;
 	}

@@ -48,8 +48,10 @@ import eu.opends.drivingTask.DrivingTask;
 import eu.opends.drivingTask.settings.SettingsLoader.Setting;
 import eu.opends.effects.EffectCenter;
 import eu.opends.environment.TrafficLightCenter;
+import eu.opends.eyetracker.EyetrackerCenter;
 import eu.opends.input.KeyBindingCenter;
 import eu.opends.knowledgeBase.KnowledgeBase;
+import eu.opends.multiDriver.MultiDriverClient;
 import eu.opends.niftyGui.DrivingTaskSelectionGUIController;
 import eu.opends.reactionCenter.ReactionCenter;
 import eu.opends.settingsController.SettingsControllerServer;
@@ -119,6 +121,12 @@ public class Simulator extends SimulationBasics
 	public static CANClient getCanClient() 
 	{
 		return canClient;
+	}
+	
+	private MultiDriverClient multiDriverClient;
+	public MultiDriverClient getMultiDriverClient() 
+	{
+		return multiDriverClient;
 	}
 	
 	private TriggerCenter triggerCenter = new TriggerCenter(this);
@@ -193,6 +201,12 @@ public class Simulator extends SimulationBasics
 	public SettingsControllerServer getSettingsControllerServer()
 	{
 		return settingsControllerServer;
+	}	
+	
+	private EyetrackerCenter eyetrackerCenter;
+	public EyetrackerCenter getEyetrackerCenter()
+	{
+		return eyetrackerCenter;
 	}	
 	
 	private static String outputFolder;
@@ -280,10 +294,18 @@ public class Simulator extends SimulationBasics
 		//physicalTraffic.start(); //TODO
 		
 		// open TCP connection to KAPcom (knowledge component) [affects the driver name, see below]
-		//KnowledgeBase.KB.setConnect(true);
-		KnowledgeBase.KB.setCulture("en-US");
-		KnowledgeBase.KB.Initialize(this, "127.0.0.1", 55432);
-		KnowledgeBase.KB.start();
+		if(settingsLoader.getSetting(Setting.KnowledgeManager_enableConnection, SimulationDefaults.KnowledgeManager_enableConnection))
+		{
+			String ip = settingsLoader.getSetting(Setting.KnowledgeManager_ip, SimulationDefaults.KnowledgeManager_ip);
+			if(ip == null || ip.isEmpty())
+				ip = "127.0.0.1";
+			int port = settingsLoader.getSetting(Setting.KnowledgeManager_port, SimulationDefaults.KnowledgeManager_port);
+					
+			//KnowledgeBase.KB.setConnect(true);
+			KnowledgeBase.KB.setCulture("en-US");
+			KnowledgeBase.KB.Initialize(this, ip, port);
+			KnowledgeBase.KB.start();
+		}
 		
 		// sync driver name with KAPcom. May provide suggestion for driver name if NULL.
 		//driverName = KnowledgeBase.User().initUserName(driverName);  
@@ -318,7 +340,13 @@ public class Simulator extends SimulationBasics
 			canClient = new CANClient(this);
 			canClient.start();
 		}
-
+		
+		if(settingsLoader.getSetting(Setting.MultiDriver_enableConnection, SimulationDefaults.MultiDriver_enableConnection))
+		{
+			multiDriverClient = new MultiDriverClient(this, driverName);
+			multiDriverClient.start();
+		}
+		
 		drivingTaskLogger = new DrivingTaskLogger(outputFolder, driverName, drivingTask.getFileName());
 		
 		SpeedControlCenter.init(this);
@@ -371,9 +399,14 @@ public class Simulator extends SimulationBasics
         	stateManager.attach(new VideoRecorderAppState(videoFile));
         }
         
+		if(settingsLoader.getSetting(Setting.Eyetracker_enableConnection, SimulationDefaults.Eyetracker_enableConnection))
+		{
+			eyetrackerCenter = new EyetrackerCenter(this);
+		}
+		
 		initializationFinished = true;
     }
-
+    
     
 	private void initDrivingTaskLayers()
 	{
@@ -425,6 +458,9 @@ public class Simulator extends SimulationBasics
 			// send car data via TCP to CAN-bus
 			if(canClient != null)
 				canClient.sendCarData();
+				
+			if(multiDriverClient != null)
+				multiDriverClient.update();
 			
 			if(!isPause())
 				car.update(tpf);
@@ -445,6 +481,9 @@ public class Simulator extends SimulationBasics
 			
 			threeVehiclePlatoonTask.update(tpf);
 			
+			if(cameraFlight != null)
+				cameraFlight.update();
+			
 			reactionCenter.update();
 			
 			// update effects
@@ -456,6 +495,9 @@ public class Simulator extends SimulationBasics
 				instructionScreenGUI.showDialog(instructionScreenID);
 				instructionScreenID = null;
 			}
+			
+			if(eyetrackerCenter != null)
+				eyetrackerCenter.update();
     	}
     }
 
@@ -515,6 +557,9 @@ public class Simulator extends SimulationBasics
 			
 			if(canClient != null)
 				canClient.requestStop();
+				
+			if(multiDriverClient != null)
+				multiDriverClient.close();
 			
 			trafficLightCenter.close();
 			
@@ -532,6 +577,9 @@ public class Simulator extends SimulationBasics
 			
 			if(settingsControllerServer != null)
 				settingsControllerServer.close();
+			
+			if(eyetrackerCenter != null)
+				eyetrackerCenter.close();
 			
 			//initDrivingTaskSelectionGUI();
 		}

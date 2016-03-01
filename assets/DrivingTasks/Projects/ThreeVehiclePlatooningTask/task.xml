@@ -7,13 +7,20 @@
         <leadingCar id="car1" minDistance="20" maxDistance="50" />
         <followerCar id="car2" minDistance="5" maxDistance="15" />
         <laneOffset x="2.204541" />
-        <brakeLight minDuration="2500" />
-        <turnSignal duration="2500" />
+        <brakeLight minDuration="2500" resetOnReaction="true" />
+        <turnSignal duration="2500" resetOnReaction="true" />
+        <speedReduction targetSpeedRegular="50" targetSpeedEmergency="0" minSpeed="20"
+                duration="5000" minTimeAllConditionsMet="1000" resetOnReaction="false" />
         <maxReactionTime>5000</maxReactionTime>
         <deviationTolerance>
             <longitudinal lowerBound="20" upperBound="35" />
             <lateral lowerBound="-2" upperBound="3"/>
         </deviationTolerance>
+        <distanceText>
+            <hideAtPosition z="6750" />
+            <scale>3</scale>
+            <position top="3000" left="4090" />
+        </distanceText>
         <logging>
             <startPosition z="6800" />
             <endPosition z="5000" shutDownWhenReached="false"/>

@@ -17,6 +17,30 @@
 		<port>3110</port>
 	</SIMTD>
 	
+	<eyetracker>
+		<enableConnection>true</enableConnection>
+		<port>2010</port>
+		<smoothingFactor>10</smoothingFactor>
+		<crossHairs>
+			<show>true</show>
+			<color>White</color>
+			<scalingFactor>2</scalingFactor>
+		</crossHairs>
+		<gazeSphere>
+			<show>true</show>
+			<color>Red</color>
+		</gazeSphere>
+		<highlightObjects>
+			<mode>All</mode>
+			<color>Orange</color>
+		</highlightObjects>
+		<warningFrame>
+			<show>true</show>
+			<threshold>3000</threshold>
+			<flashingInterval>500</flashingInterval>
+		</warningFrame>
+	</eyetracker>
+	
     <settingsControllerServer>
         <startServer>false</startServer>
         <port>1234</port>

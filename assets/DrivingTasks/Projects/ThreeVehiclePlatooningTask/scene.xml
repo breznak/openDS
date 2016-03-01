@@ -36,7 +36,7 @@
 				</vector>
 			</translation>
 		</model>
-		<model id="driverCar" key="Models/Cars/drivingCars/CarGreen/Car.scene">
+		<model id="driverCar" key="Models/Cars/drivingCars/Ferrari/Car.scene">
 			<mass>800</mass>
 			<visible>true</visible>
 			<collisionShape>meshShape</collisionShape>
@@ -68,7 +68,7 @@
 		
 		<!-- !!! Bremsboxen !!! -->
 		
-			<model id="BrakeLightTrigger1" key="" ref="box">
+			<model id="BrakeTrigger1" key="" ref="box">
 			<mass>0</mass>
 
 			<material>
@@ -104,11 +104,11 @@
 				<vector jtype="java_lang_Float" size="3">
 					<entry>2.204541</entry>
 					<entry>-3.35273057</entry>
-					<entry>5700</entry>
+					<entry>6700</entry>
 				</vector>
 			</translation>
 		</model>
-			<model id="BrakeLightTrigger2" key="" ref="box">
+			<model id="BrakeTrigger2" key="" ref="box">
 			<mass>0</mass>
 
 			<material>
@@ -144,11 +144,11 @@
 				<vector jtype="java_lang_Float" size="3">
 					<entry>2.204541</entry>
 					<entry>-3.35273057</entry>
-					<entry>5400</entry>
+					<entry>6500</entry>
 				</vector>
 			</translation>
 		</model>
-		 <model id="BrakeLightTrigger3" key="" ref="box">
+		 <model id="BrakeTrigger3" key="" ref="box">
 			<mass>0</mass>
 
 			<material>
@@ -184,7 +184,7 @@
 				<vector jtype="java_lang_Float" size="3">
 					<entry>2.204541</entry>
 					<entry>-3.35273057</entry>
-					<entry>5200</entry>
+					<entry>6300</entry>
 				</vector>
 			</translation>
 		</model>
@@ -227,7 +227,7 @@
 				<vector jtype="java_lang_Float" size="3">
 					<entry>2.204541</entry>
 					<entry>-3.35273057</entry>
-					<entry>6300</entry>
+					<entry>6600</entry>
 				</vector>
 			</translation>
 		</model>
@@ -267,7 +267,7 @@
 				<vector jtype="java_lang_Float" size="3">
 					<entry>2.204541</entry>
 					<entry>-3.35273057</entry>
-					<entry>5600</entry>
+					<entry>6400</entry>
 				</vector>
 			</translation>
 		</model>
@@ -307,7 +307,7 @@
 				<vector jtype="java_lang_Float" size="3">
 					<entry>2.204541</entry>
 					<entry>-3.35273057</entry>
-					<entry>5100</entry>
+					<entry>6200</entry>
 				</vector>
 			</translation>
 		</model>
@@ -337,7 +337,7 @@
 				<vector jtype="java_lang_Float" size="3">
 					<entry>8</entry>
 					<entry>1</entry>
-					<entry>6900</entry>
+					<entry>6750</entry>
 				</vector>
 			</translation>
 		</model>
@@ -378,7 +378,7 @@
 				<vector jtype="java_lang_Float" size="3">
 					<entry>9.95</entry>
 					<entry>0</entry>
-					<entry>6900</entry>
+					<entry>6750</entry>
 				</vector>
 			</translation>
 		</model>
@@ -419,7 +419,7 @@
 				<vector jtype="java_lang_Float" size="3">
 					<entry>6.05</entry>
 					<entry>0</entry>
-					<entry>6900</entry>
+					<entry>6750</entry>
 				</vector>
 			</translation>
 		</model>
@@ -449,7 +449,7 @@
 				<vector jtype="java_lang_Float" size="3">
 					<entry>8</entry>
 					<entry>1.5</entry>
-					<entry>5000</entry>
+					<entry>6000</entry>
 				</vector>
 			</translation>
 		</model>
@@ -490,7 +490,7 @@
 				<vector jtype="java_lang_Float" size="3">
 					<entry>9.95</entry>
 					<entry>0</entry>
-					<entry>5000</entry>
+					<entry>6000</entry>
 				</vector>
 			</translation>
 		</model>
@@ -531,7 +531,7 @@
 				<vector jtype="java_lang_Float" size="3">
 					<entry>6.05</entry>
 					<entry>0</entry>
-					<entry>5000</entry>
+					<entry>6000</entry>
 				</vector>
 			</translation>
 		</model>

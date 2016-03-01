@@ -49,9 +49,10 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import Jama.Matrix;
+
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.FastMath;
-import com.jme3.math.Matrix4f;
 import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 
@@ -300,9 +301,9 @@ public class DrivingTaskDataQuery
 	}
 	
 	
-	public Matrix4f getMatrix4f(Layer layer, String path)
+	public Matrix getMatrix(Layer layer, String path)
 	{
-		Matrix4f matrix = new Matrix4f();
+		Matrix matrix = new Matrix(4,4);
 		
 		try {
 
@@ -310,8 +311,8 @@ public class DrivingTaskDataQuery
 			{
 				for (int k=0; k<=3; k++)
 				{
-					Float value = getValue(layer, path + "/" + layer + ":matrix/" 
-							+ layer + ":m"+i+""+k, Float.class);
+					Double value = getValue(layer, path + "/" + layer + ":matrix/" 
+							+ layer + ":m"+i+""+k, Double.class);
 					matrix.set(i, k, value);
 				}
 			}

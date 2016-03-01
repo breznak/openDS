@@ -36,6 +36,7 @@ import eu.opends.basics.SimulationBasics;
 import eu.opends.car.Car;
 import eu.opends.environment.TrafficLightCenter.TriggerType;
 import eu.opends.main.Simulator;
+import eu.opends.tools.Util;
 
 
 /**
@@ -87,7 +88,11 @@ public class TriggerCenter
 
 		String tempSpatialName;
 
+		//-----------------------
 		List<Spatial> tempList = sim.getTriggerNode().getChildren();
+		//List<Spatial> tempList = Util.getAllSpatials(sim.getTriggerNode());
+		//-----------------------
+		
 		for (Iterator<Spatial> it = tempList.iterator(); it.hasNext();) 
 		{
 			tempSpatial = it.next();

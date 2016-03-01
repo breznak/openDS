@@ -92,7 +92,7 @@ final public class KnowledgeBase extends Thread
 		this.sim = sim;
 		
 		if (connect) {
-			System.out.println("Connecting to KAPcom knowledge base...");
+			System.out.println("Connecting to KAPcom knowledge base on host '" + host + "' (port: " + port + ")");
 			client = new NetClient("OpenDS");
 			try {
 				client.connect(host, port);
@@ -190,7 +190,19 @@ final public class KnowledgeBase extends Thread
 			else
 				// for char, String and all others types different from types above
 				valueObject = new PropertyValue(propertyValue);
-
+			
+			// create path with sub folders (if not existing)
+			String parent = "";
+			for(String folder : path.split("/"))
+			{
+				if(!folder.isEmpty())
+				{
+					KB.getClient().sendGetInstanceByShortID(parent, folder, true, propertyType);
+					parent += "/" + folder;
+				}			
+			}
+			
+			// write value to property of given path
 			KB.getClient().sendSetProperty(path, propertyName, valueObject, true);
 
 		} catch (Exception e) {

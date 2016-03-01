@@ -99,33 +99,63 @@ public class Util
         }
         return null;
     }
+    
+    
+    public static String getPath(Spatial spatial) 
+    {
+        if (spatial != null) 
+        	return getPath(spatial.getParent()) + "/" + spatial.getName();                
+        else
+        	return "";
+    }
 
 
-    private static List<Geometry> resultList = new ArrayList<Geometry>();
+    private static List<Geometry> resultListGeometries = new ArrayList<Geometry>();
     
 	private static void collectGeometries(Spatial spatial) 
 	{
         if (spatial instanceof Node) 
         {
-            Node node = (Node) spatial;
-            for (int i = 0; i < node.getQuantity(); i++) 
-            {
-                Spatial child = node.getChild(i);
+            for (Spatial child: ((Node) spatial).getChildren()) 
                 collectGeometries(child);
-            }
         } 
         else if (spatial instanceof Geometry) 
         {
-        	resultList.add((Geometry) spatial);
+        	resultListGeometries.add((Geometry) spatial);
         }
 	}
 	
 	public static List<Geometry> getAllGeometries(Spatial spatial)
 	{
-		resultList.clear();
+		resultListGeometries.clear();
 		collectGeometries(spatial);
-		return resultList;
+		return resultListGeometries;
 	}
+	
+	
+	/*
+	//---------------------------------------------
+    private static List<Spatial> resultListSpatials = new ArrayList<Spatial>();
+    
+	private static void collectSpatials(Spatial spatial) 
+	{
+		resultListSpatials.add(spatial);
+		
+        if (spatial instanceof Node) 
+        {
+            for (Spatial child: ((Node) spatial).getChildren()) 
+                collectSpatials(child);
+        }
+	}
+	
+	public static List<Spatial> getAllSpatials(Spatial spatial) 
+	{
+		resultListSpatials.clear();
+		collectSpatials(spatial);
+		return resultListSpatials;
+	}
+	//---------------------------------------------
+	*/
 	
 	
 	public static void setFaceCullMode(Spatial spatial, FaceCullMode mode)
@@ -207,5 +237,6 @@ public class Util
 			return false;
 		}
 	}
+
     
 }

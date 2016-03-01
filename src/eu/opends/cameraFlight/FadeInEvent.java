@@ -45,7 +45,7 @@ public class FadeInEvent extends AbstractCinematicEvent
 		{
 			fade.setValue(0);
 			fade.fadeIn();
-			doneOnce = true;
+			//doneOnce = true;
 		}
 	}
 	

@@ -1,4 +1,5 @@
 /*
+
 *  This file is part of OpenDS (Open Source Driving Simulator).
 *  Copyright (C) 2014 Rafael Math
 *
@@ -103,11 +104,18 @@ public class SettingsLoader
 		ExternalVisualization_updateRate("settings:externalVisualization/settings:updateRate"),
 		ExternalVisualization_scalingFactor("settings:externalVisualization/settings:scalingFactor"),
 		ExternalVisualization_sendPosOriAsOneString("settings:externalVisualization/settings:sendPosOriAsOneString"),
+		KnowledgeManager_enableConnection("settings:knowledgeManager/settings:enableConnection"),
+		KnowledgeManager_ip("settings:knowledgeManager/settings:ip"),
+		KnowledgeManager_port("settings:knowledgeManager/settings:port"),
 		CANInterface_enableConnection("settings:CANInterface/settings:enableConnection"),
 		CANInterface_ip("settings:CANInterface/settings:ip"),
 		CANInterface_port("settings:CANInterface/settings:port"),
 		CANInterface_updateRate("settings:CANInterface/settings:updateRate"),
 		CANInterface_maxSteeringAngle("settings:CANInterface/settings:maxSteeringAngle"),
+		MultiDriver_enableConnection("settings:multiDriver/settings:enableConnection"),
+		MultiDriver_ip("settings:multiDriver/settings:ip"),
+		MultiDriver_port("settings:multiDriver/settings:port"),
+		MultiDriver_updateRate("settings:multiDriver/settings:updateRate"),
 		VsimrtiServer_startServer("settings:vsimrtiServer/settings:startServer"),
 		VsimrtiServer_port("settings:vsimrtiServer/settings:port"),
 		SettingsControllerServer_startServer("settings:settingsControllerServer/settings:startServer"),
@@ -128,7 +136,22 @@ public class SettingsLoader
 		Joystick_pedalSensitivityFactor("settings:controllers/settings:joystick/settings:pedalSensitivityFactor"),
 		Mouse_scrollSensitivityFactor("settings:controllers/settings:mouse/settings:scrollSensitivityFactor"),
 		Mouse_minScrollZoom("settings:controllers/settings:mouse/settings:minScrollZoom"),
-		Mouse_maxScrollZoom("settings:controllers/settings:mouse/settings:maxScrollZoom");
+		Mouse_maxScrollZoom("settings:controllers/settings:mouse/settings:maxScrollZoom"), 
+		Eyetracker_enableConnection("settings:eyetracker/settings:enableConnection"),
+		Eyetracker_port("settings:eyetracker/settings:port"),
+		Eyetracker_smoothingFactor("settings:eyetracker/settings:smoothingFactor"),
+		Eyetracker_crossHairs_show("settings:eyetracker/settings:crossHairs/settings:show"),
+		Eyetracker_crossHairs_color("settings:eyetracker/settings:crossHairs/settings:color"),
+		Eyetracker_crossHairs_scalingFactor("settings:eyetracker/settings:crossHairs/settings:scalingFactor"),
+		Eyetracker_gazeSphere_show("settings:eyetracker/settings:gazeSphere/settings:show"),
+		Eyetracker_gazeSphere_color("settings:eyetracker/settings:gazeSphere/settings:color"),
+		Eyetracker_highlightObjects_mode("settings:eyetracker/settings:highlightObjects/settings:mode"),
+		Eyetracker_highlightObjects_color("settings:eyetracker/settings:highlightObjects/settings:color"),
+		Eyetracker_warningFrame_show("settings:eyetracker/settings:warningFrame/settings:show"),
+		Eyetracker_warningFrame_threshold("settings:eyetracker/settings:warningFrame/settings:threshold"),
+		Eyetracker_warningFrame_flashingInterval("settings:eyetracker/settings:warningFrame/settings:flashingInterval");
+		
+		
 		
 		private String path;
 		

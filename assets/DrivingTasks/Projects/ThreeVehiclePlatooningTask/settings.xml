@@ -16,6 +16,13 @@
 		<showAnalogIndicators>true</showAnalogIndicators>
 		<showDigitalIndicators>false</showDigitalIndicators>
 		<showFuelConsumption>false</showFuelConsumption>
+		<!-- 
+		<analogIndicators>
+			<bottom>100</bottom>
+			<left>100</left>
+			<scale>0.5</scale>
+		</analogIndicators>
+		 -->
 	</general>
 	
 	<SIMTD>
@@ -43,7 +50,12 @@
 		<updateRate>20</updateRate>
 		<maxSteeringAngle>180</maxSteeringAngle>
 	</CANInterface>
-	
+	<!-- 
+	<settingsControllerServer>
+        <startServer>true</startServer>
+        <port>1234</port>
+    </settingsControllerServer>
+	 -->
 	<vsimrtiServer>
 		<startServer>false</startServer>
 		<port>1122</port>

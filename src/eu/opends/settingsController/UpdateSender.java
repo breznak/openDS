@@ -19,7 +19,7 @@ public class UpdateSender extends Thread {
 			try {
 				Thread.sleep(connectionHandler.getUpdateInterval());
 			} catch (InterruptedException e) {
-				e.printStackTrace();
+				this.interrupt();//e.printStackTrace();
 			}
 		}
 	}

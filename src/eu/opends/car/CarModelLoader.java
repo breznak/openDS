@@ -132,6 +132,9 @@ public class CarModelLoader
         // setup position and direction of head lights
         setupHeadLight(sim, properties);
         
+        // setup reference points
+        setupReferencePoints();
+        
         // get chassis geometry and corresponding node
         Geometry chassis = Util.findGeom(carNode, "Chassis");
         //chassis.getMaterial().setColor("GlowColor", ColorRGBA.Orange);
@@ -311,6 +314,26 @@ public class CarModelLoader
 		rightTargetNode.attachChild(rightLightTarget);
 		rightTargetNode.setCullHint(showHeadLightDebugBoxes);
 		carNode.attachChild(rightTargetNode);
+	}
+	
+	
+	private void setupReferencePoints()
+	{
+		Node leftPoint = new Node("leftPoint");
+		leftPoint.setLocalTranslation(-1, 1, 0);
+		carNode.attachChild(leftPoint);
+		
+		Node rightPoint = new Node("rightPoint");
+		rightPoint.setLocalTranslation(1, 1, 0);
+		carNode.attachChild(rightPoint);
+		
+		Node frontPoint = new Node("frontPoint");
+		frontPoint.setLocalTranslation(0, 1, -2);
+		carNode.attachChild(frontPoint);
+		
+		Node backPoint = new Node("backPoint");
+		backPoint.setLocalTranslation(0, 1, 2);
+		carNode.attachChild(backPoint);
 	}
 	
 	

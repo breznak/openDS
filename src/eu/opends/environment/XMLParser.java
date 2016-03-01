@@ -31,6 +31,7 @@ import eu.opends.car.Car;
 import eu.opends.environment.TrafficLight.*;
 import eu.opends.environment.TrafficLightException.InvalidStateCharacterException;
 import eu.opends.main.Simulator;
+import eu.opends.multiDriver.MultiDriverClient;
 import eu.opends.tools.PanelCenter;
 
 
@@ -459,5 +460,88 @@ public class XMLParser
 		}
 	}
 
-
+	
+	public void evalMultiDriverInstruction(Simulator sim, MultiDriverClient client)
+	{
+		// on "registered" --> set ID
+		// on "update" --> perform changes
+		// on "unregistered" --> call method requestStop()
+		
+		if(!errorOccured)
+		{		
+			// example multi driver instructions:
+			//<multiDriver>
+			//	<registered id="1" />
+			//</multiDriver>
+			//
+			//<multiDriver>
+			//	<update>
+			//		<add id="1" modelPath="test/subfolder/model.scene" driverName="test driver" />
+			//		<change id="5" pos="1;2;3" rot="1;2;3;4" heading="358.4" wheel="1;2" />
+			//		<remove id="13">
+			//	<update>
+			//</multiDriver>
+			//
+			//<multiDriver>
+			//	<unregistered id="1" />
+			//</multiDriver>
+			
+			NodeList nodeLst = doc.getElementsByTagName("multiDriver");
+			for(int i=0; i<nodeLst.getLength(); i++)
+			{
+				Node currentNode = nodeLst.item(i);
+				
+				NodeList registeredList = ((Element) currentNode).getElementsByTagName("registered");
+				for(int j=0; j<registeredList.getLength(); j++)
+				{
+					Element currentRegistered = (Element) registeredList.item(j);
+					client.setID(currentRegistered.getAttribute("id"));
+				}
+				
+				NodeList updateList = ((Element) currentNode).getElementsByTagName("update");
+				for(int j=0; j<updateList.getLength(); j++)
+				{
+					Element currentUpdate = (Element) updateList.item(j);
+					
+					NodeList addList = currentUpdate.getElementsByTagName("add");
+					for(int k=0; k<addList.getLength(); k++)
+					{
+						Element currentAdd = (Element) addList.item(k);
+						String vehicleID = currentAdd.getAttribute("id");
+						String modelPath = currentAdd.getAttribute("modelPath");
+						String driverName = currentAdd.getAttribute("driverName");
+						client.addVehicle(vehicleID, modelPath, driverName);
+					}
+					
+					NodeList changeList = currentUpdate.getElementsByTagName("change");
+					for(int k=0; k<changeList.getLength(); k++)
+					{
+						Element currentChange = (Element) changeList.item(k);
+						String vehicleID = currentChange.getAttribute("id");
+						String position = currentChange.getAttribute("pos");
+						String rotation = currentChange.getAttribute("rot");
+						String heading = currentChange.getAttribute("heading");
+						String wheel = currentChange.getAttribute("wheel");
+						client.changeVehicle(vehicleID, position, rotation, heading, wheel);
+					}
+					
+					NodeList removeList = currentUpdate.getElementsByTagName("remove");
+					for(int k=0; k<removeList.getLength(); k++)
+					{
+						Element currentRemove = (Element) removeList.item(k);
+						String vehicleID = currentRemove.getAttribute("id");
+						client.removeVehicle(vehicleID);
+					}
+				}
+				
+				NodeList unregisteredList = ((Element) currentNode).getElementsByTagName("unregistered");
+				for(int j=0; j<unregisteredList.getLength(); j++)
+				{
+					Element currentUnregistered = (Element) unregisteredList.item(j);
+					client.requestStop(currentUnregistered.getAttribute("id"));
+				}
+			}
+		}		
+	}
+	
 }

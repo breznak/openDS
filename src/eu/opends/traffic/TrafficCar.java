@@ -31,6 +31,7 @@ import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial.CullHint;
 import com.jme3.scene.shape.Box;
+import com.jme3.scene.shape.Sphere;
 
 import eu.opends.car.Car;
 import eu.opends.car.LightTexturesContainer.TurnSignalState;
@@ -87,6 +88,20 @@ public class TrafficCar extends Car
 		init();
 		
 		setupReferencePoints();
+		
+		/*
+		//---------------------------------
+		// add bounding sphere to a traffic car which can be hit by the user-controlled car
+		Sphere sphere = new Sphere(20, 20, 2.5f);
+		Geometry boundingSphere = new Geometry(name + "_boundingSphere", sphere);
+		Material boundingSphereMaterial = new Material(sim.getAssetManager(), "Common/MatDefs/Misc/Unshaded.j3md");
+		boundingSphereMaterial.setColor("Color", ColorRGBA.Yellow);
+		boundingSphere.setMaterial(boundingSphereMaterial);
+		//boundingSphere.setCullHint(CullHint.Always);
+		carNode.attachChild(boundingSphere);
+		sim.getTriggerNode().attachChild(carNode);
+		//---------------------------------
+		*/
 		
 		followBox = new FollowBox(sim, this, trafficCarData.getFollowBoxSettings());
 	}

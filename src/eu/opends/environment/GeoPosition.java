@@ -18,10 +18,12 @@
 
 package eu.opends.environment;
 
-import com.jme3.math.Matrix4f;
+import Jama.Matrix;
+
 import com.jme3.math.Vector3f;
 
 import eu.opends.basics.SimulationBasics;
+import eu.opends.tools.Vector3d;
 
 
 /**
@@ -39,31 +41,31 @@ public class GeoPosition
 	 * @return
 	 * 			conversion matrix model --> geo
 	 */
-	private static Matrix4f getModelToGeoMatrix()
+	private static Matrix getModelToGeoMatrix()
 	{
 		// load matrix from scenario.xml
-		Matrix4f modelToGeoMatrix = SimulationBasics.getDrivingTask().getScenarioLoader().getModelToGeoMatrix();
-		
+		Matrix modelToGeoMatrix = SimulationBasics.getDrivingTask().getScenarioLoader().getModelToGeoMatrix();
+
 		if(modelToGeoMatrix == null)
 		{
 			// default conversion matrix
-			modelToGeoMatrix = new Matrix4f();
-			modelToGeoMatrix.m00 = (float) -1.78355088340735E-07;
-			modelToGeoMatrix.m01 = (float) -5.43081511229155E-06;
-			modelToGeoMatrix.m02 = (float) 0;
-			modelToGeoMatrix.m03 = (float) 49.2358655481218;
-			modelToGeoMatrix.m10 = (float) 9.00234704847944E-06;
-			modelToGeoMatrix.m11 = (float) -3.80856478467656E-07;
-			modelToGeoMatrix.m12 = (float) 0;
-			modelToGeoMatrix.m13 = (float) 7.0048602281113;
-			modelToGeoMatrix.m20 = (float) 0;
-			modelToGeoMatrix.m21 = (float) 0;
-			modelToGeoMatrix.m22 = (float) 1;
-			modelToGeoMatrix.m23 = (float) 0;
-			modelToGeoMatrix.m30 = (float) 0;
-			modelToGeoMatrix.m31 = (float) 0;
-			modelToGeoMatrix.m32 = (float) 0;
-			modelToGeoMatrix.m33 = (float) 1;
+			modelToGeoMatrix = new Matrix(4,4);
+			modelToGeoMatrix.set(0, 0, -1.78355088340735E-07);
+			modelToGeoMatrix.set(0, 1, -5.43081511229155E-06);
+			modelToGeoMatrix.set(0, 2, 0);
+			modelToGeoMatrix.set(0, 3, 49.2358655481218);
+			modelToGeoMatrix.set(1, 0, 9.00234704847944E-06);
+			modelToGeoMatrix.set(1, 1, -3.80856478467656E-07);
+			modelToGeoMatrix.set(1, 2, 0);
+			modelToGeoMatrix.set(1, 3, 7.0048602281113);
+			modelToGeoMatrix.set(2, 0, 0);
+			modelToGeoMatrix.set(2, 1, 0);
+			modelToGeoMatrix.set(2, 2, 1);
+			modelToGeoMatrix.set(2, 3, 0);
+			modelToGeoMatrix.set(3, 0, 0);
+			modelToGeoMatrix.set(3, 1, 0);
+			modelToGeoMatrix.set(3, 2, 0);
+			modelToGeoMatrix.set(3, 3, 1);
 		}
 
 		return modelToGeoMatrix;
@@ -77,31 +79,31 @@ public class GeoPosition
 	 * @return
 	 * 			conversion matrix geo --> model
 	 */
-	private static Matrix4f getGeoToModelMatrix()
+	private static Matrix getGeoToModelMatrix()
 	{
 		// load matrix from scenario.xml
-		Matrix4f geoToModelMatrix = SimulationBasics.getDrivingTask().getScenarioLoader().getGeoToModelMatrix();
-		
+		Matrix geoToModelMatrix = SimulationBasics.getDrivingTask().getScenarioLoader().getGeoToModelMatrix();
+
 		if(geoToModelMatrix == null)
 		{
 			// default conversion matrix
-			geoToModelMatrix = new Matrix4f();
-			geoToModelMatrix.m00 = (float) -7779.24751811492;
-			geoToModelMatrix.m01 = (float) 110928.019797943;
-			geoToModelMatrix.m02 = (float) 0;
-			geoToModelMatrix.m03 = (float) -394017.289198288;
-			geoToModelMatrix.m10 = (float) -183878.941001237;
-			geoToModelMatrix.m11 = (float) -3643.0216019961;
-			geoToModelMatrix.m12 = (float) 0;
-			geoToModelMatrix.m13 = (float) 9078957.67339789;
-			geoToModelMatrix.m20 = (float) 0;
-			geoToModelMatrix.m21 = (float) 0;
-			geoToModelMatrix.m22 = (float) 1;
-			geoToModelMatrix.m23 = (float) 0;
-			geoToModelMatrix.m30 = (float) 0;
-			geoToModelMatrix.m31 = (float) 0;
-			geoToModelMatrix.m32 = (float) 0;
-			geoToModelMatrix.m33 = (float) 1;
+			geoToModelMatrix = new Matrix(4,4);
+			geoToModelMatrix.set(0, 0, -7779.24751811492);
+			geoToModelMatrix.set(0, 1, 110928.019797943);
+			geoToModelMatrix.set(0, 2, 0);
+			geoToModelMatrix.set(0, 3, -394017.289198288);
+			geoToModelMatrix.set(1, 0, -183878.941001237);
+			geoToModelMatrix.set(1, 1, -3643.0216019961);
+			geoToModelMatrix.set(1, 2, 0);
+			geoToModelMatrix.set(1, 3, 9078957.67339789);
+			geoToModelMatrix.set(2, 0, 0);
+			geoToModelMatrix.set(2, 1, 0);
+			geoToModelMatrix.set(2, 2, 1);
+			geoToModelMatrix.set(2, 3, 0);
+			geoToModelMatrix.set(3, 0, 0);
+			geoToModelMatrix.set(3, 1, 0);
+			geoToModelMatrix.set(3, 2, 0);
+			geoToModelMatrix.set(3, 3, 1);
 		}
 		
 		return geoToModelMatrix;
@@ -118,28 +120,28 @@ public class GeoPosition
 	 * @return
 	 * 			Position as vector (latitude,longitude,altitude) in the real world.
 	 */
-	public static Vector3f modelToGeo(Vector3f modelPosition)
+	public static Vector3d modelToGeo(Vector3f modelPosition)
 	{
 		// model coordinates to convert
-		Matrix4f modelCoordinates = new Matrix4f();
-		modelCoordinates.m00 = modelPosition.getX(); // latitude (e.g. -964.2952f)
-		modelCoordinates.m10 = modelPosition.getZ(); // longitude (e.g. -28.074038f)
-		modelCoordinates.m20 = modelPosition.getY(); // altitude (e.g. 20f)
-		modelCoordinates.m30 = 1f;
+		Matrix modelCoordinates = new Matrix(4,1);
+		modelCoordinates.set(0, 0, modelPosition.getX()); // latitude (e.g. -964.2952f)
+		modelCoordinates.set(1, 0, modelPosition.getZ()); // longitude (e.g. -28.074038f)
+		modelCoordinates.set(2, 0, modelPosition.getY()); // altitude (e.g. 20f)
+		modelCoordinates.set(3, 0, 1);
 		
 		// compute geo coordinates
-		Matrix4f geoCoordinates = getModelToGeoMatrix().mult(modelCoordinates);
+		Matrix geoCoordinates = getModelToGeoMatrix().times(modelCoordinates);
 		
 		// geo coordinates
-		float latitude = geoCoordinates.m00;    // latitude (e.g. 49.238415f)
-		float longitude = geoCoordinates.m10;   // longitude (e.g. 7.007393f)
-		float altitude = geoCoordinates.m20;    // altitude (e.g. 213.04912f)
+		double latitude = geoCoordinates.get(0, 0);    // latitude (e.g. 49.238415f)
+		double longitude = geoCoordinates.get(1, 0);   // longitude (e.g. 7.007393f)
+		double altitude = geoCoordinates.get(2, 0);    // altitude (e.g. 213.04912f)
 		
 		//System.out.println(geoCoordinates);
 		
-		return new Vector3f(latitude,longitude,altitude); 
-	}
-	
+		return new Vector3d(latitude,longitude,altitude);
+	}   
+    
 	
 	/**
 	 * Transforms a position from geo space to the corresponding position 
@@ -151,22 +153,22 @@ public class GeoPosition
 	 * @return
 	 * 			Position as vector (x,y,z) in the "Stadtmitte am Fluss" model.
 	 */
-	public static Vector3f geoToModel(Vector3f geoPosition)
+	public static Vector3f geoToModel(Vector3d geoPosition)
 	{
 		// geo coordinates to convert
-		Matrix4f geoCoordinates = new Matrix4f();
-		geoCoordinates.m00 = geoPosition.getX(); // latitude (e.g. 49.238415f)
-		geoCoordinates.m10 = geoPosition.getY(); // longitude (e.g. 7.007393f)
-		geoCoordinates.m20 = geoPosition.getZ(); // altitude (e.g. 213.04912f)
-		geoCoordinates.m30 = 1f;
+		Matrix geoCoordinates = new Matrix(4,1);
+		geoCoordinates.set(0, 0, geoPosition.getX()); // latitude (e.g. 49.238415f)
+		geoCoordinates.set(1, 0, geoPosition.getY()); // longitude (e.g. 7.007393f)
+		geoCoordinates.set(2, 0, geoPosition.getZ()); // altitude (e.g. 213.04912f)
+		geoCoordinates.set(3, 0, 1);
 		
 		// compute model coordinates
-		Matrix4f modelCoordinates = getGeoToModelMatrix().mult(geoCoordinates);
+		Matrix modelCoordinates = getGeoToModelMatrix().times(geoCoordinates);
 		
 		// model coordinates
-		float latitude = modelCoordinates.m00;    // latitude (e.g. -964.2952f)
-		float longitude = modelCoordinates.m10;   // longitude (e.g. -28.074038f)
-		float altitude = modelCoordinates.m20;    // altitude (e.g. 20f)
+		float latitude = (float) modelCoordinates.get(0, 0);    // latitude (e.g. -964.2952f)
+		float longitude = (float) modelCoordinates.get(1, 0);   // longitude (e.g. -28.074038f)
+		float altitude = (float) modelCoordinates.get(2, 0);    // altitude (e.g. 20f)
 		
 		//System.out.println(modelCoordinates);
 		

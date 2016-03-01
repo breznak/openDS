@@ -58,47 +58,80 @@ public class SettingsControllerServer extends Thread
 		try {
             serverSocket = new ServerSocket(port);
         } catch (IOException e) {
-            System.err.println("Could not listen on port:"+port);
+            System.err.println("SettingsControllerServer: could not listen on port:"+port);
             return;
         }
           
-        System.out.println("settingsController Server started at port "+port);
+        System.out.println("SettingsControllerServer started at port "+port);
              
         while(!isInterrupted()){        	
 			try {
-				clientSocket = serverSocket.accept();	//blocking			
-    	      	out = clientSocket.getOutputStream();
-    		  	in = new DataInputStream(clientSocket.getInputStream());
-    		  	ConnectionHandler con = new ConnectionHandler(sim, out, in);
-    		  	connections.add(con);
-    		  	con.start();    		  	
-			} 
-			catch (IOException e) {				
-				System.err.println("Can't open connection.");
+					clientSocket = serverSocket.accept();	//blocking		
+					clientSocket.setSoTimeout(100);
+	    	      	out = clientSocket.getOutputStream();
+	    		  	in = new DataInputStream(clientSocket.getInputStream());
+	    		  	ConnectionHandler con = new ConnectionHandler(sim, out, in);
+	    		  	connections.add(con);
+	    		  	con.start();
+			} catch (Exception e) {				
+				//e.printStackTrace();
 			}
 	    }
         
-        System.out.println("Server closed.");		
+        System.out.println("SettingsControllerServer closed.");		
 	}	
 	
+/*
+	public void close()
+	{	
+		if(connected && clientSocket != null)
+		{
+			  try {
+			    clientSocket.close();
+			  } catch (IOException e) {
+			    e.printStackTrace();
+			  }
+		}
 
-	public void close(){		
-		if(connected){
+		if(serverSocket != null)
+		{
+			  try {
+			    serverSocket.close();
+			  } catch (IOException e) { 
+			    e.printStackTrace();
+			  }
+		}
+
+		interrupt();
+	}	
+*/
+	public void close()
+	{
+		interrupt();
+
+		for(ConnectionHandler con : connections)
+		{
+			con.interrupt();
+		}
+
+		if(connected)
+		{
 			try {
-		        clientSocket.close();			
+				if(clientSocket != null)
+					clientSocket.close();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
-		
+
 		try {
-			serverSocket.close();
+			if(serverSocket != null)
+				serverSocket.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		interrupt();
-	}	
-        
+
+
+	}
         
 }

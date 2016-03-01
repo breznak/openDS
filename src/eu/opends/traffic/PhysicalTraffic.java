@@ -29,7 +29,7 @@ import eu.opends.main.Simulator;
 public class PhysicalTraffic extends Thread
 {
 	private static ArrayList<TrafficCarData> vehicleDataList = new ArrayList<TrafficCarData>();
-    private ArrayList<TrafficCar> vehicleList = new ArrayList<TrafficCar>();
+    private static ArrayList<TrafficCar> vehicleList = new ArrayList<TrafficCar>();
 	private boolean isRunning = true;
 	private int updateIntervalMsec = 20;
 	private long lastUpdate = 0;
@@ -50,7 +50,13 @@ public class PhysicalTraffic extends Thread
     	return vehicleDataList;
     }
 
+    
+	public static ArrayList<TrafficCar> getVehicleList() 
+	{
+		return vehicleList;		
+	}
 
+	
 	public TrafficCar getTrafficCar(String trafficCarName) 
 	{
 		for(TrafficCar vehicle : vehicleList)
@@ -115,5 +121,6 @@ public class PhysicalTraffic extends Thread
 		for(TrafficCar vehicle : vehicleList)
 			vehicle.close();
 	}
+
 
 }

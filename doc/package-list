@@ -18,6 +18,7 @@ eu.opends.input
 eu.opends.jasperReport
 eu.opends.knowledgeBase
 eu.opends.main
+eu.opends.multiDriver
 eu.opends.niftyGui
 eu.opends.niftyGui.dropDown
 eu.opends.niftyGui.listBox

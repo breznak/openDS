@@ -35,6 +35,7 @@ import eu.opends.environment.GeoPosition;
 import eu.opends.main.Simulator;
 import eu.opends.tools.PanelCenter;
 import eu.opends.tools.SpeedControlCenter;
+import eu.opends.tools.Vector3d;
 
 /**
  * 
@@ -263,7 +264,7 @@ public abstract class Car
 	}
 	
 	
-	public Vector3f getGeoPosition() 
+	public Vector3d getGeoPosition() 
 	{
 		return GeoPosition.modelToGeo(getPosition());
 	}

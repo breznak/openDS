@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.StringReader;
 import java.net.SocketException;
+import java.net.SocketTimeoutException;
 import java.nio.charset.Charset;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -77,20 +78,26 @@ public class ConnectionHandler extends Thread {
 	        	 String messageValue = "";
 	        	 
 	        	 try{
-		        	 while(true){
-		        		 String line = r.readLine();
+	        		 while(!isInterrupted()){
+	        			 
+	        			 try
+	        			 {
+	        				 String line = r.readLine();
 		        		 
-		        		 if(line == null){
-		        			 interrupt();
-		        			 System.out.println("Connection closed by client.");
-		        			 break;
-		        		 }
-		        		 else {
-		        			 messageValue += line;
+	        				 if(line == null){
+	        					 interrupt();
+	        					 System.out.println("Connection closed by client.");
+	        					 break;
+	        				 }
+	        				 else {
+	        					 messageValue += line;
 		        			 
-		        			 if(line.contains("</Message>"))
-		        				 break;
-		        		 }
+	        					 if(line.contains("</Message>"))
+	        						 break;
+	        				 }
+	        		
+	        			 } catch (SocketTimeoutException e) {
+	        			 }
 		        	 }        	
 	        	 }catch(SocketException e){
 	        		 interrupt();

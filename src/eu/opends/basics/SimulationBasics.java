@@ -130,7 +130,7 @@ public class SimulationBasics extends SimpleApplication
     	if(this instanceof Simulator)
     	{
     		CameraFlight camFlight = ((Simulator)this).getCameraFlight();
-    		if(camFlight != null)
+    		if(camFlight != null && !camFlight.isTerminated())
     		{
     			camFlight.play(); // must be set
     		
@@ -294,5 +294,6 @@ public class SimulationBasics extends SimpleApplication
 				numberOfScreens = 1;
 		}
     }
+
 
 }

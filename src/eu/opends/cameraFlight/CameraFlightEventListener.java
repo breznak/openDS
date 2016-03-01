@@ -25,6 +25,7 @@ import com.jme3.post.filters.FadeFilter;
 import eu.opends.basics.SimulationBasics;
 import eu.opends.camera.CameraFactory.CameraMode;
 import eu.opends.main.Simulator;
+import eu.opends.tools.PanelCenter;
 
 /**
  * 
@@ -34,12 +35,14 @@ public class CameraFlightEventListener implements CinematicEventListener
 {
 	private SimulationBasics sim;
 	private FadeFilter fade;
+	private float speedKmPerHour;
 	private CameraMode previousCamMode = CameraMode.EGO;
 	
-	public CameraFlightEventListener(SimulationBasics sim, FadeFilter fade)
+	public CameraFlightEventListener(SimulationBasics sim, FadeFilter fade, float speedKmPerHour)
 	{
 		this.sim = sim;
 		this.fade = fade;
+		this.speedKmPerHour = speedKmPerHour;
 	}
 	
 	
@@ -49,6 +52,11 @@ public class CameraFlightEventListener implements CinematicEventListener
 		
 		// switch camera off (car invisible and no back view mirror)
 		sim.getCameraFactory().setCamMode(CameraMode.OFF);
+		
+        // set speed and RPM indicator
+        PanelCenter.setFixSpeed(speedKmPerHour);
+        PanelCenter.setFixRPM(2500);
+        //PanelCenter.setGearIndicator(3, false);
 	}
 	
 	
@@ -63,7 +71,18 @@ public class CameraFlightEventListener implements CinematicEventListener
 		fade.setValue(1);
 		
 		sim.getCameraFactory().setCamMode(previousCamMode);
-		
+        
+        // reset speed and RPM indicator
+        PanelCenter.setFixSpeed(0);
+        PanelCenter.setFixRPM(0);
+        
+        if(sim instanceof Simulator)
+        {
+        	CameraFlight camFlight = ((Simulator)sim).getCameraFlight();
+        	camFlight.setTerminated(true);
+        }
+        
+        
 		CameraFlightSettings settings = Simulator.getDrivingTask().getScenarioLoader().getCameraFlightSettings();
 		if(settings.isAutomaticStop())
 			sim.stop();

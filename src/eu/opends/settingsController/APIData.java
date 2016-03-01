@@ -19,12 +19,12 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 import com.jme3.math.FastMath;
-import com.jme3.math.Vector3f;
 
 import eu.opends.car.Car;
 import eu.opends.drivingTask.settings.SettingsLoader.Setting;
 import eu.opends.main.SimulationDefaults;
 import eu.opends.main.Simulator;
+import eu.opends.tools.Vector3d;
 
 public class APIData {
 	
@@ -176,18 +176,18 @@ public class APIData {
 		
 		//physicalAttributes
 		else if(var.equals("/root/thisVehicle/physicalAttributes/Properties/latitude")){
-			Vector3f geoPosition = car.getGeoPosition();
-			float latitude = geoPosition.getX();  // N-S position in geo coordinates
+			Vector3d geoPosition = car.getGeoPosition();
+			double latitude = geoPosition.getX();  // N-S position in geo coordinates
 			value = String.valueOf(latitude);
 		}
 		else if(var.equals("/root/thisVehicle/physicalAttributes/Properties/longitude")){
-			Vector3f geoPosition = car.getGeoPosition();
-			float longitude = geoPosition.getY(); // W-E position in geo coordinates
+			Vector3d geoPosition = car.getGeoPosition();
+			double longitude = geoPosition.getY(); // W-E position in geo coordinates
 			value = String.valueOf(longitude);		
 		}
 		else if(var.equals("/root/thisVehicle/physicalAttributes/Properties/altitude")){
-			Vector3f geoPosition = car.getGeoPosition();
-			float altitude = geoPosition.getZ();  // meters above sea level
+			Vector3d geoPosition = car.getGeoPosition();
+			double altitude = geoPosition.getZ();  // meters above sea level
 			value = String.valueOf(altitude);
 		}
 		else if(var.equals("/root/thisVehicle/physicalAttributes/Properties/orientation")){

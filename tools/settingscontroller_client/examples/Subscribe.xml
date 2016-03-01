@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+  <Event Name="Subscribe">/root/thisVehicle/physicalAttributes/Properties/latitude</Event>
+  <Event Name="Subscribe">/root/thisVehicle/interior</Event>
+</Message>

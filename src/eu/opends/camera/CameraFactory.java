@@ -325,6 +325,7 @@ public abstract class CameraFactory
 		topViewVerticalDistance = settingsLoader.getSetting(Setting.General_topView_verticalDistance, 200f);
 		topViewcarOffset = settingsLoader.getSetting(Setting.General_topView_carOffset, 40f);
 		
+		/*
 		if(sim.getNumberOfScreens() > 1)
 		{
 			left = 0.15f;
@@ -332,6 +333,7 @@ public abstract class CameraFactory
 			bottom = 0.78f;
 			top = 0.98f;
 		}
+		*/
 		
 		topViewFrame = createMirrorFrame("topViewFrame",left,right,bottom,top);
 		sim.getGuiNode().attachChild(topViewFrame);

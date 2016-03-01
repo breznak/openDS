@@ -61,9 +61,9 @@
 				<parameter name="trafficLightID" value="TrafficLight.00_00" />
 			</action>
 		</activity>
-		<activity id="setBrakeLightStimulus">
+		<activity id="setBrakeStimulus">
 			 <action id="setTVPTStimulus" delay="0" repeat="0">
-                <parameter name="stimulusID" value="brakeLight" />
+                <parameter name="stimulusID" value="emergencyBrake" />
 			</action>
 		</activity>
 		<activity id="setTurnSignalStimulus">
@@ -77,28 +77,28 @@
 		<trigger id="collideWithResetBox" priority="1">
 			
 			<activities>
-				<activity ref="setBrakeLightStimulus"/>
+				<activity ref="setBrakeStimulus"/>
 			</activities>
 						
-			<condition>collideWith:BrakeLightTrigger1</condition>
+			<condition>collideWith:BrakeTrigger1</condition>
 
 		</trigger>
 		<trigger id="collideWithResetBox" priority="1">
 			
 			<activities>
-				<activity ref="setBrakeLightStimulus"/>
+				<activity ref="setBrakeStimulus"/>
 			</activities>
 						
-			<condition>collideWith:BrakeLightTrigger2</condition>
+			<condition>collideWith:BrakeTrigger2</condition>
 
 		</trigger>
 		<trigger id="collideWithResetBox" priority="1">
 			
 			<activities>
-				<activity ref="setBrakeLightStimulus"/>
+				<activity ref="setBrakeStimulus"/>
 			</activities>
 						
-			<condition>collideWith:BrakeLightTrigger3</condition>
+			<condition>collideWith:BrakeTrigger3</condition>
 
 		</trigger>
 		<trigger id="collideWithResetBox" priority="1">

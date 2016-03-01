@@ -131,7 +131,7 @@ public class KeyBindingCenter
     
 
 	private void assignSimulatorKeys(Simulator simulator) 
-	{		
+	{
 		// ACTION
 		InputListener simulatorActionListener = new SimulatorActionListener(simulator);
 		for(KeyMapping keyMapping : KeyMapping.getSimulatorActionKeyMappingList())

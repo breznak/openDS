@@ -60,7 +60,7 @@ public class EffectCenter
 		isSnowing = (weatherSettings.getSnowingPercentage() > 0);
 		isRaining = (weatherSettings.getRainingPercentage() > 0);
 		isFog = (weatherSettings.getFogPercentage() > 0);
-		isBloom = false;
+		isBloom = true;
 		isShadow = true;
 		
 		if(isSnowing)

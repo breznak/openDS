@@ -34,6 +34,13 @@
 		<maxSteeringAngle>180</maxSteeringAngle>
 	</CANInterface>
 	
+	<multiDriver>
+		<enableConnection>true</enableConnection>
+		<ip>127.0.0.1</ip>
+		<port>4510</port>
+		<updateRate>20</updateRate>
+	</multiDriver>
+	
 	<vsimrtiServer>
 		<startServer>false</startServer>
 		<port>1122</port>

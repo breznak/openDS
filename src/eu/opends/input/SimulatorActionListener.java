@@ -446,7 +446,7 @@ public class SimulatorActionListener implements ActionListener
 			if (value)
 			{
 				if(sim.getCameraFlight() != null)
-					sim.getCameraFlight().toggle();
+					sim.getCameraFlight().toggleStop();
 				
 				sim.getSteeringTask().start();
 			}

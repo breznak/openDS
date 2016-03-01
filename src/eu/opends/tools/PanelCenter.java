@@ -50,12 +50,14 @@ public class PanelCenter
 {
 	private static SimulationBasics sim;
 
-	private static Picture speedometer, RPMgauge, logo, hood;
+	private static Picture speedometer, RPMgauge, logo, hood, warningFrame;
 	private static Node RPMIndicator, speedIndicator;
 	private static BitmapText reverseText, neutralText, manualText, driveText, currentGearText, odometerText;	
 	private static BitmapText speedText, mileageText, markerText, storeText, deviationText, engineSpeedText, gearText;
 	private static BitmapText fuelConsumptionPer100KmText, fuelConsumptionPerHourText, totalFuelConsumptionText;
 	private static Node analogIndicators = new Node("AnalogIndicators");
+	private static boolean showWarningFrame = false;
+	private static int flashingInterval = 500;
 	
 	// message box
 	private static MessageBoxGUI messageBoxGUI;
@@ -151,6 +153,14 @@ public class PanelCenter
         hood.setHeight(height);
         hood.setPosition(0, 0);
         guiNode.attachChild(hood);
+
+        warningFrame = new Picture("warningFrame");
+        warningFrame.setImage(sim.getAssetManager(), "Textures/Misc/warningFrame.png", true);
+        warningFrame.setWidth(sim.getSettings().getWidth());
+        warningFrame.setHeight(sim.getSettings().getHeight());
+        warningFrame.setPosition(0, 0);
+        warningFrame.setCullHint(CullHint.Always);
+        guiNode.attachChild(warningFrame);
         
         RPMgauge = new Picture("RPMgauge");
         RPMgauge.setImage(sim.getAssetManager(), "Textures/Gauges/RPMgauge.png", true);
@@ -428,6 +438,10 @@ public class PanelCenter
 	}
 	
 
+	private static long lastTime = 0;
+	private static boolean frameVisible = false;
+	
+	
 	public static void update() 
 	{
 		Car car = ((Simulator)sim).getCar();
@@ -455,6 +469,20 @@ public class PanelCenter
 			
 			resolutionHasChanged = false;
 		}
+		
+		if(showWarningFrame)
+		{
+			long currentTime = System.currentTimeMillis();
+			if(currentTime - lastTime > flashingInterval)
+			{
+				lastTime = currentTime;
+
+				frameVisible = !frameVisible;
+				warningFrame.setCullHint(frameVisible ? CullHint.Dynamic : CullHint.Always);
+			}
+		}
+		else 
+			warningFrame.setCullHint(CullHint.Always);
 	}
 	
 	
@@ -642,6 +670,20 @@ public class PanelCenter
 		// round total fuel consumption per 100 Km to 3 decimal places
 		DecimalFormat f = new DecimalFormat("#0.000");
 		totalFuelConsumptionText.setText(f.format(totalFuelConsumption) + " L");
+	}
+
+	
+	public static void showWarningFrame(boolean showWarningFrame) 
+	{
+		PanelCenter.showWarningFrame = showWarningFrame;
+		PanelCenter.flashingInterval = 500;
+	}
+	
+
+	public static void showWarningFrame(boolean showWarningFrame, int flashingInterval) 
+	{
+		PanelCenter.showWarningFrame = showWarningFrame;
+		PanelCenter.flashingInterval = flashingInterval;
 	}
 	
 }

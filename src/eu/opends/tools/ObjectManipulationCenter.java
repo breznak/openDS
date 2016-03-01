@@ -43,7 +43,7 @@ public class ObjectManipulationCenter
 	}
 	
 	
-	public void setGeoPosition(String objectID, Vector3f geoPosition)
+	public void setGeoPosition(String objectID, Vector3d geoPosition)
 	{
 		Vector3f modelPosition = GeoPosition.geoToModel(geoPosition);
 		setPosition(objectID, modelPosition);

@@ -41,11 +41,34 @@ public class SimulationDefaults
 	public static float Lightning_scalingFactor = 1.0f;
 	public static boolean sendPosOriAsOneString = false;
 	
+	public static Boolean KnowledgeManager_enableConnection = true;
+	public static String KnowledgeManager_ip = "127.0.0.1";
+	public static Integer KnowledgeManager_port = 55432;
+	
 	public static boolean CANInterface_enableConnection = false;
 	public static String CANInterface_ip = "192.168.0.2";
 	public static int CANInterface_port = 5678;
 	public static int CANInterface_updateRate = 20;
 	public static float CANInterface_maxSteeringAngle = 270;
+	
+	public static boolean MultiDriver_enableConnection = false;
+	public static String MultiDriver_ip = "127.0.0.1";
+	public static int MultiDriver_port = 1234;
+	public static int MultiDriver_updateRate = 20;
+	
+	public static boolean Eyetracker_enableConnection = false;
+	public static int Eyetracker_port = 2010;
+	public static int Eyetracker_smoothingFactor = 10;
+	public static boolean Eyetracker_crossHairs_show = false;
+	public static String Eyetracker_crossHairs_color = "White";
+	public static float Eyetracker_crossHairs_scalingFactor = 2;
+	public static boolean Eyetracker_gazeSphere_show = false;
+	public static String Eyetracker_gazeSphere_color = "Red";
+	public static String Eyetracker_highlightObjects_mode = "None";
+	public static String Eyetracker_highlightObjects_color = "Orange";
+	public static boolean Eyetracker_warningFrame_show = false;
+	public static int Eyetracker_warningFrame_threshold = 3000;
+	public static int Eyetracker_warningFrame_flashingInterval = 500;
 	
 	public static boolean vsimrtiServer_startServer = false;
 	public static int vsimrtiServer_port = 1234;
@@ -76,4 +99,5 @@ public class SimulationDefaults
 	public static Vector3f initialCarPosition = new Vector3f(-36,0,0);
 	public static Quaternion initialCarRotation = new Quaternion(0, 0, 0, 1);
 	public static String skyTexture = "Textures/Sky/Bright/mountain.dds";
+
 }

@@ -37,8 +37,8 @@ import com.jme3.renderer.ViewPort;
 import com.jme3.scene.CameraNode;
 import com.jme3.scene.Node;
 
+import eu.opends.camera.CameraFactory.CameraMode;
 import eu.opends.main.Simulator;
-import eu.opends.tools.PanelCenter;
 
 
 /**
@@ -56,11 +56,13 @@ public class CameraFlight
 	private MotionEvent cameraMotionTrack;
 	private CameraNode mainCamNode;
 	private float speedKmPerHour = 50f;
+	private boolean isTerminated = true;
+	private CameraFlightSettings settings;
 	
 	
     public CameraFlight(Simulator sim) throws NotEnoughWaypointsException
     {
-    	CameraFlightSettings settings = Simulator.getDrivingTask().getScenarioLoader().getCameraFlightSettings();
+    	settings = Simulator.getDrivingTask().getScenarioLoader().getCameraFlightSettings();
     	
     	this.sim = sim;
     	this.cam = sim.getCamera();
@@ -82,17 +84,12 @@ public class CameraFlight
         	float distanceMeters = path.getLength();
             float speed = speedKmPerHour / 3.6f;
             float duration = distanceMeters / speed;
-        	
-            // set speed and RPM indicator
-            PanelCenter.setFixSpeed(speedKmPerHour);
-            PanelCenter.setFixRPM(2500);
-            //PanelCenter.setGearIndicator(3, false);
             
             cinematic = new Cinematic(sim.getSceneNode(), duration);
-            sim.getStateManager().attach(cinematic);            
+            sim.getStateManager().attach(cinematic);
             
             MotionEvent cameraMotionTrack = createCameraMotion(path, duration);
-        	cinematic.addCinematicEvent(1, cameraMotionTrack);
+        	cinematic.addCinematicEvent(0, cameraMotionTrack);
         	cinematic.activateCamera(0, "aroundCam");
 
         	// fade in and out
@@ -100,11 +97,14 @@ public class CameraFlight
 	        cinematic.addCinematicEvent(duration - 1, new FadeOutEvent(fade));
 
 	        // listener for play, pause and stop events
-	        cinematic.addListener(new CameraFlightEventListener(sim, fade));
+	        cinematic.addListener(new CameraFlightEventListener(sim, fade, speedKmPerHour));
 	        
-	        // play camera flight automatically after starting simulator
-	        if(settings.isAutomaticStart())
-	        	cinematic.play();
+	        //TODO (uncomment)
+			// set camera to ego mode (does not work with ConTRe Task)
+			//sim.getCameraFactory().setCamMode(CameraMode.EGO);
+			
+	        //if(settings.isAutomaticStart())
+	        //	play();
         } 
         else
         {
@@ -113,22 +113,56 @@ public class CameraFlight
     }
     
     
-	public void toggle()
+    private int counter = 0;
+	public void update()
+	{
+		// play need some "reaction" time of at least 1 frame
+        if(settings.isAutomaticStart() && counter == 1)
+        	play();
+
+        counter++;
+	}
+	
+    
+	public void toggleStop()
 	{
 		if(cinematic != null)
 		{
 			if (cinematic.getPlayState() == PlayState.Playing)
-	            cinematic.pause();
+	            stop();
 	        else
-	            cinematic.play();
+	            play();
 		}
 	}
 	
+	
+	public void togglePause()
+	{
+		if(cinematic != null)
+		{
+			if (cinematic.getPlayState() == PlayState.Playing)
+	            pause();
+	        else
+	            play();
+		}
+	}
+	
+	
+	public void stop()
+	{
+		if(cinematic != null)
+	        cinematic.stop();
+		
+		isTerminated = true;
+	}
 
+	
 	public void pause()
 	{
 		if(cinematic != null)
 	        cinematic.pause();
+		
+		isTerminated = false;
 	}
 	
 	
@@ -136,6 +170,20 @@ public class CameraFlight
 	{
 		if(cinematic != null)
 	        cinematic.play();
+		
+		isTerminated = false;
+	}
+	
+	
+	public boolean isTerminated() 
+	{
+		return isTerminated ;
+	}
+	
+	
+	public void setTerminated(boolean terminated) 
+	{
+		isTerminated = terminated;		
 	}
 	
     
@@ -153,11 +201,12 @@ public class CameraFlight
 	{
 		MotionPath motionPath = new MotionPath();
 
-		motionPath.setCycle(false);
+		motionPath.setCycle(false); 
 		
         for(Vector3f wayPoint : wayPoints)
         	motionPath.addWayPoint(wayPoint);
         
+        //TODO (comment)
         motionPath.setPathSplineType(Spline.SplineType.Linear); // --> default: CatmullRom
 
         motionPath.addListener(new MotionPathListenerImpl(sim));
@@ -211,5 +260,6 @@ public class CameraFlight
 		if(mainCamNode != null)
 			mainCamNode.setLocalTranslation(lateralCamPos, 0, 0);
 	}
+
 
 }

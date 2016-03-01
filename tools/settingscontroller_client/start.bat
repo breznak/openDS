@@ -1,0 +1,1 @@
+java -jar settingscontroller_client.jar

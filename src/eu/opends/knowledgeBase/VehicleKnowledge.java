@@ -30,6 +30,7 @@ import eu.opends.drivingTask.settings.SettingsLoader.Setting;
 import eu.opends.main.DriveAnalyzer;
 import eu.opends.main.SimulationDefaults;
 import eu.opends.main.Simulator;
+import eu.opends.tools.Vector3d;
 
 /**
  * 
@@ -69,8 +70,8 @@ public class VehicleKnowledge
 	
 	private float oldOrientation = 0;
 	private float oldRotation = 0;
-	private float oldAltitude = 0;
-	private float oldRise = 0;
+	private double oldAltitude = 0;
+	private double oldRise = 0;
 	private float oldSpeed = 0;
 	private long oldTime = 0;
 	void sendCarData(Car car) throws KAPcomException
@@ -93,10 +94,10 @@ public class VehicleKnowledge
 		long time = System.currentTimeMillis();  // in milliseconds
 		float timeDiff = ((float) (time - oldTime)) / 1000f; // in seconds
 
-		Vector3f geoPosition = car.getGeoPosition();
-		float latitude = geoPosition.getX();  // N-S position in geo coordinates
-		float longitude = geoPosition.getY(); // W-E position in geo coordinates
-		float altitude = geoPosition.getZ();  // meters above sea level
+		Vector3d geoPosition = car.getGeoPosition();
+		double latitude = geoPosition.getX();  // N-S position in geo coordinates
+		double longitude = geoPosition.getY(); // W-E position in geo coordinates
+		double altitude = geoPosition.getZ();  // meters above sea level
 		
 		float orientation = car.getHeadingDegree();  // 0..360 degree
 		
@@ -110,9 +111,9 @@ public class VehicleKnowledge
 		
 		float speed = FastMath.abs(car.getCarControl().getCurrentVehicleSpeedKmHour());  // in Km/h
 		
-		float rise = (altitude - oldAltitude)/timeDiff; // in m/s
+		double rise = (altitude - oldAltitude)/timeDiff; // in m/s
 		
-		float verticalAcceleration = (rise - oldRise)/timeDiff;  // in m/s^2
+		double verticalAcceleration = (rise - oldRise)/timeDiff;  // in m/s^2
 		
 		float acceleration = ((speed - oldSpeed)/3.6f)/timeDiff; // in m/s^2
 		
@@ -234,9 +235,9 @@ public class VehicleKnowledge
 		
 		float speed = FastMath.abs(currentDataUnit.getSpeed());  // in Km/h
 		
-		float rise = (altitude - oldAltitude)/timeDiff; // in m/s
+		double rise = (altitude - oldAltitude)/timeDiff; // in m/s
 		
-		float verticalAcceleration = (rise - oldRise)/timeDiff;  // in m/s^2
+		double verticalAcceleration = (rise - oldRise)/timeDiff;  // in m/s^2
 		
 		float acceleration = ((speed - oldSpeed)/3.6f)/timeDiff; // in m/s^2
 		
