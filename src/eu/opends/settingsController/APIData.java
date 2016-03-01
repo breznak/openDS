@@ -147,11 +147,11 @@ public class APIData {
 		
 		//interior
 		if(var.equals("/root/thisVehicle/interior/cockpit/pedals/gasPedal/Properties/pressedState")){
-			float gasPedalPress = car.getGasPedalPressIntensity(); // in %
+			float gasPedalPress = car.getAcceleratorPedalIntensity(); // in %
 			value = String.valueOf(gasPedalPress);
 		}
 		else if(var.equals("/root/thisVehicle/interior/cockpit/pedals/brakePedal/Properties/pressedState")){
-			float brakePedalPress = car.getBrakePedalPressIntensity(); // in %	
+			float brakePedalPress = car.getBrakePedalIntensity(); // in %	
 			value = String.valueOf(brakePedalPress);
 		}
 		else if(var.equals("/root/thisVehicle/interior/cockpit/steeringWheel/Properties/steerAngle")){

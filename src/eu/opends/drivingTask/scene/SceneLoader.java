@@ -64,6 +64,7 @@ import eu.opends.car.ResetPosition;
 import eu.opends.drivingTask.DrivingTaskDataQuery;
 import eu.opends.drivingTask.DrivingTaskDataQuery.Layer;
 import eu.opends.tools.Util;
+import eu.opends.visualization.MovieData;
 
 /**
  * 
@@ -195,6 +196,57 @@ public class SceneLoader
 		}
 		
 		return audioNodeList;		
+	}
+	
+	
+	public TreeMap<String, MovieData> getMoviesMap() 
+	{
+		TreeMap<String,MovieData> movieMap = new TreeMap<String,MovieData>();
+		
+		try {
+			
+			NodeList movieNodes = (NodeList) dtData.xPathQuery(Layer.SCENE, 
+					"/scene:scene/scene:movies/scene:movie", XPathConstants.NODESET);
+
+			for (int k = 1; k <= movieNodes.getLength(); k++) 
+			{
+				Node currentNode = movieNodes.item(k-1);
+				
+				// get ID of movie node
+				String movieNodeID = currentNode.getAttributes().getNamedItem("id").getNodeValue();
+				
+				// get URL of movie node
+				String movieNodeURL = currentNode.getAttributes().getNamedItem("key").getNodeValue();
+			
+				if((movieNodeURL != null) && (!movieNodeURL.equals("")))
+				{
+					// width
+					Integer width = dtData.getValue(Layer.SCENE,
+							"/scene:scene/scene:movies/scene:movie["+k+"]/scene:width", Integer.class);
+					if(width == null)
+						width = sim.getSettings().getWidth();
+					
+					// height
+					Integer height = dtData.getValue(Layer.SCENE,
+							"/scene:scene/scene:movies/scene:movie["+k+"]/scene:height", Integer.class);
+					if(height == null)
+						height = sim.getSettings().getHeight();
+					
+					// zoomingFactor
+					Float zoomingFactor = dtData.getValue(Layer.SCENE,
+							"/scene:scene/scene:movies/scene:movie["+k+"]/scene:zoomingFactor", Float.class);
+					if(zoomingFactor == null)
+						zoomingFactor = 2.0f;
+					
+					movieMap.put(movieNodeID, new MovieData(movieNodeURL, width, height, zoomingFactor));
+				}
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return movieMap;
 	}
 	
 	
@@ -1111,4 +1163,5 @@ public class SceneLoader
 	{
 		return pointMap;
 	}
+
 }

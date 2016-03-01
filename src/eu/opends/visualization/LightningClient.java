@@ -208,6 +208,9 @@ public class LightningClient
  	 * <code>ltupdate .remotemotionsensor -trafficlightmodesIn {"red_left" "green_up" "red_right"}</code><br>
  	 * and<br>
  	 * <code>ltupdate .remotemotionsensor -switchtrafficlightsIn 1</code>
+ 	 * 
+	 * @param instructionString
+	 * 				String containing traffic light data to be sent to Lightning
 	 */
 	public synchronized void sendTrafficLightData(String instructionString)
 	{

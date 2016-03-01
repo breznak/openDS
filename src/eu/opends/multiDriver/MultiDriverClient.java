@@ -67,6 +67,9 @@ public class MultiDriverClient extends Thread
 	 * 
 	 * @param sim
 	 * 			The simulator
+	 * 
+	 * @param driverName
+	 * 			Name of the driver
 	 */
 	public MultiDriverClient(Simulator sim, String driverName)
     {
@@ -230,6 +233,9 @@ public class MultiDriverClient extends Thread
 	
 	/**
 	 * Requests the connection to close after the current loop
+	 * 
+	 * @param id
+	 * 			Vehicle ID
 	 */
 	public synchronized void requestStop(String id) 
 	{

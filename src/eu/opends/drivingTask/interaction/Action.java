@@ -35,19 +35,29 @@ import java.lang.annotation.Target;
 @Target({ElementType.METHOD})
 public @interface Action 
 {
-
     /**
      * Name used to identify this action inside a driving task.
+     * 
+     * @return
+     * 			name of the action
      */
     String name() default "";
 
+    
     /**
-     * Description to the action.
+     * Description of the action.
+     * 
+     * @return
+     * 			description of the action
      */
     String description() default "No description available.";
 
+    
     /**
      * The driving task layer this action belongs to.
+     * 
+     * @return
+     * 			layer of the action
      */
     DrivingTaskDataQuery.Layer layer();
 
@@ -56,5 +66,4 @@ public @interface Action
     float defaultDelay() default 0;
     
     Parameter[] param();
-
 }

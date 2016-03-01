@@ -96,7 +96,17 @@ public class KeyMapping
 	public static KeyMapping RAIN_DEC5 = new KeyMapping("rain_dec5", "decrease rain intensity by 5 %", new String[] {"KEY_F9"});
 	public static KeyMapping FOG_INC5 = new KeyMapping("fog_inc5", "increase fog intensity by 5 %", new String[] {"KEY_F8"});
 	public static KeyMapping FOG_DEC5 = new KeyMapping("fog_dec5", "decrease fog intensity by 5 %", new String[] {"KEY_F7"});
-	
+	public static KeyMapping TIMESTAMP = new KeyMapping("timestamp", "output timestamp", new String[] {"KEY_F7"});
+	public static KeyMapping GEAR1 = new KeyMapping("gear1", "select 1st gear", new String[] {"BUTTON_8"});
+	public static KeyMapping GEAR2 = new KeyMapping("gear2", "select 2nd gear", new String[] {"BUTTON_9"});
+	public static KeyMapping GEAR3 = new KeyMapping("gear3", "select 3rd gear", new String[] {"BUTTON_10"});
+	public static KeyMapping GEAR4 = new KeyMapping("gear4", "select 4th gear", new String[] {"BUTTON_11"});
+	public static KeyMapping GEAR5 = new KeyMapping("gear5", "select 5th gear", new String[] {"BUTTON_12"});
+	public static KeyMapping GEAR6 = new KeyMapping("gear6", "select 6th gear", new String[] {"BUTTON_13"});
+	public static KeyMapping GEARR = new KeyMapping("gearR", "select reverse gear", new String[] {"BUTTON_14"});
+	public static KeyMapping INC_CAM_ANGLE = new KeyMapping("inc_cam_angle", "increase angle between adjacent cameras", new String[] {});
+	public static KeyMapping DEC_CAM_ANGLE = new KeyMapping("dec_cam_angle", "decrease angle between adjacent cameras", new String[] {});
+	public static KeyMapping TOGLE_DISTANCEBAR = new KeyMapping("toggle_distancebar", "toggle visibility of distance bar", new String[] {"KEY_B"});
 	
 	// analyzer keys
 	public static KeyMapping GOTO_NEXT_DATAPOINT = new KeyMapping("goto_next_datapoint", "next data point", new String[] {"KEY_UP"});
@@ -190,7 +200,18 @@ public class KeyMapping
 		keyMappingList.add(KeyMapping.FOG_INC5);
 		keyMappingList.add(KeyMapping.FOG_DEC5);
 		keyMappingList.add(KeyMapping.SET_MARKER);
-		
+		keyMappingList.add(KeyMapping.TIMESTAMP);
+		keyMappingList.add(KeyMapping.GEAR1);
+		keyMappingList.add(KeyMapping.GEAR2);
+		keyMappingList.add(KeyMapping.GEAR3);
+		keyMappingList.add(KeyMapping.GEAR4);
+		keyMappingList.add(KeyMapping.GEAR5);
+		keyMappingList.add(KeyMapping.GEAR6);
+		keyMappingList.add(KeyMapping.GEARR);
+		keyMappingList.add(KeyMapping.INC_CAM_ANGLE);
+		keyMappingList.add(KeyMapping.DEC_CAM_ANGLE);
+		keyMappingList.add(KeyMapping.TOGLE_DISTANCEBAR);
+
 		SimulationBasics.getDrivingTask().getSettingsLoader().lookUpKeyMappings(keyMappingList);
 		
 		return keyMappingList;

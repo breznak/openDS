@@ -120,20 +120,20 @@ public class BrakeReactionTimer extends ReactionTimer
 		if(timerIsActive)
 		{
 			// monitor whether brake pedal has been pressed
-			hasPressedBrakepedal = (hasPressedBrakepedal || (sim.getCar().getBrakePedalPressIntensity() > 0));
+			hasPressedBrakepedal = (hasPressedBrakepedal || (sim.getCar().getBrakePedalIntensity() > 0));
 			
 			long currentTime = System.currentTimeMillis();
 			
 			if(hasChangedLanes())
 				trialLogger.setAdditional_reaction(1);
 			
-			if(sim.getCar().getGasPedalPressIntensity() == 0)
+			if(sim.getCar().getAcceleratorPedalIntensity() == 0)
 				trialLogger.setBrakeRT_noGas((int)(currentTime - startTime));
 			
-			if(sim.getCar().getBrakePedalPressIntensity() > 0)
+			if(sim.getCar().getBrakePedalIntensity() > 0)
 				trialLogger.setBrakeRT_StartBrake((int)(currentTime - startTime));
 			
-			if(sim.getCar().getBrakePedalPressIntensity() >= 0.8f)
+			if(sim.getCar().getBrakePedalIntensity() >= 0.8f)
 				trialLogger.setBrakeRT_80pcBrake((int)(currentTime - startTime));
 			
 			if(timeExceeded() || distanceExceeded())

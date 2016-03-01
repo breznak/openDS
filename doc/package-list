@@ -23,8 +23,6 @@ eu.opends.multiDriver
 eu.opends.niftyGui
 eu.opends.niftyGui.dropDown
 eu.opends.niftyGui.listBox
-eu.opends.oculusRift
-eu.opends.oculusRift.post
 eu.opends.reactionCenter
 eu.opends.settingsController
 eu.opends.taskDescription.tvpTask

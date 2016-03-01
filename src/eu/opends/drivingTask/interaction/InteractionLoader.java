@@ -33,6 +33,7 @@ import org.w3c.dom.NodeList;
 
 import com.jme3.input.InputManager;
 import com.jme3.input.KeyInput;
+import com.jme3.input.controls.JoyButtonTrigger;
 import com.jme3.input.controls.KeyTrigger;
 
 import eu.opends.basics.SimulationBasics;
@@ -305,6 +306,46 @@ public class InteractionLoader
 				} catch (Exception e) {
 					System.err.println("Invalid key '" + key + "' for trigger '" + triggerName + "'");
 				}
+			}
+			else if(triggerDescription.getCondition().startsWith("pressButton:"))
+			{
+				// trigger name
+				String triggerName = triggerDescription.getName();
+					
+				// trigger key
+				String[] array = triggerDescription.getCondition().split(":");
+				String button = array[1].toUpperCase();
+				
+				try {
+					
+					if(button.startsWith("BUTTON_"))
+						button.replace("BUTTON_", "");
+					
+					int buttonNumber = Integer.parseInt(button);
+					
+					// trigger action
+					List<TriggerAction> triggerActionList = getTriggerActionList(triggerDescription);
+						
+					if(!triggerActionList.isEmpty())
+					{
+						InputManager inputManager = sim.getInputManager();
+						inputManager.addMapping(triggerName, new JoyButtonTrigger(0,buttonNumber));
+						inputManager.addListener(new KeyActionListener(triggerActionList, triggerName), triggerName);
+					}
+				
+				} catch (Exception e) {
+					System.err.println("Invalid button '" + button + "' for trigger '" + triggerName + "'");
+				}
+			}
+			else if(triggerDescription.getCondition().startsWith("remote:"))
+			{
+				String[] array = triggerDescription.getCondition().split(":");
+				String objectName = array[1];
+				
+				List<TriggerAction> triggerActionList = getTriggerActionList(triggerDescription);
+				
+				if(!triggerActionList.isEmpty())
+					SimulationBasics.getRemoteTriggerActionListMap().put(objectName, triggerActionList);
 			}
 		}
 	}

@@ -26,6 +26,7 @@ import com.jme3.font.BitmapText;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.FastMath;
 import com.jme3.math.Quaternion;
+import com.jme3.math.Vector3f;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial.CullHint;
 import com.jme3.ui.Picture;
@@ -34,6 +35,11 @@ import eu.opends.basics.SimulationBasics;
 
 public class DistanceBar 
 {
+	public enum Pivot {
+		BOTTOM, CENTER, TOP
+	}
+
+
 	// default extent, position and rotation
 	private ArrayList<DistanceBarSegment> segmentsList = new ArrayList<DistanceBarSegment>();
 	private float distanceBarWidth = 20;
@@ -63,6 +69,7 @@ public class DistanceBar
 	private Node distanceBarNode;
 	private Picture indicator;
 	private BitmapText distanceText;
+	private SimulationBasics sim = null;
 	
 	
 	public DistanceBar(ArrayList<DistanceBarSegment> segmentsList, 
@@ -80,6 +87,8 @@ public class DistanceBar
 	
 	public void init(SimulationBasics sim)
 	{
+		this.sim = sim;
+		
 		distanceBarNode = new Node("distanceBar");
 		//ArrayList<DistanceBarSegment> segmentsList = initSegments();		
 				
@@ -147,10 +156,54 @@ public class DistanceBar
 		
 		// set rotation
 		Quaternion quaternion = (new Quaternion()).fromAngles(0, 0, - distanceBarRotation * FastMath.DEG_TO_RAD);
-		distanceBarNode.setLocalRotation(quaternion);
+		distanceBarNode.setLocalRotation(quaternion);	
 	}
+	
 
 
+	public void remove()
+	{
+		if(sim != null)
+			sim.getGuiNode().detachChild(distanceBarNode);
+	}
+	
+	
+	ArrayList<Node> dynamicNodeList = new ArrayList<Node>();
+	public void addIcon(String path, float width, float height, Vector3f translation, 
+			float rotation, float scale, boolean dynamic, Pivot pivotPosition)
+	{
+		Picture icon = new Picture("icon");
+		icon.setImage(sim.getAssetManager(), path, true);
+		
+		// scale Picture
+		icon.setWidth(width);
+		icon.setHeight(height);
+		
+		// center picture in topIconNode
+		if(pivotPosition == Pivot.BOTTOM)
+			icon.setPosition(-width/2.0f,0);
+		else if(pivotPosition == Pivot.TOP)
+			icon.setPosition(-width/2.0f,-height);
+		else
+			icon.setPosition(-width/2.0f,-height/2.0f);
+		
+		Node iconNode = new Node("iconNode");
+		iconNode.attachChild(icon);
+		
+		iconNode.setLocalTranslation(translation);
+		
+		Quaternion qq = (new Quaternion()).fromAngles(0, 0, rotation * FastMath.DEG_TO_RAD);
+		iconNode.setLocalRotation(qq);
+		
+		iconNode.setLocalScale(scale);
+		
+		if(dynamic)
+			dynamicNodeList.add(iconNode);
+		
+        distanceBarNode.attachChild(iconNode);
+	}
+	
+	
 	public void setDistance(float distance)
 	{
 		// convert distance to pixel (subtract distance offset)
@@ -164,6 +217,12 @@ public class DistanceBar
 		
 		// set position of indicator
         indicator.setPosition(0 - indicatorLeftOffset, distance_px - indicatorBottomOffset);
+        
+        for(Node dynamicNode : dynamicNodeList)
+        {
+        	float x = dynamicNode.getLocalTranslation().getX();
+        	dynamicNode.setLocalTranslation(x, distance_px, 0);
+        }
         
         // set text of distance bitmap text
         DecimalFormat decimalFormat = new DecimalFormat("0.0");
@@ -179,6 +238,12 @@ public class DistanceBar
 		distanceBarNode.setCullHint(hint);
 	}
 
+	
+	public void setCullHintIndicator(CullHint hint)
+	{
+		indicator.setCullHint(hint);
+	}
+	
 	
 	private float distanceToPixel(float distance)
 	{

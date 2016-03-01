@@ -83,6 +83,9 @@ public class InstructionScreenGUI
 	
 	/**
 	 * Shows the instruction screen.
+	 * 
+	 * @param layerID
+	 * 			ID of layer to show
 	 */
 	public void showDialog(String layerID)
 	{
@@ -116,6 +119,9 @@ public class InstructionScreenGUI
 
 	/**
 	 * Initializes the instruction screen.
+	 * 
+	 * @param layerID
+	 * 			ID of layer to initialize
 	 */
 	private void initInstructionScreenGUI(String layerID)
 	{		

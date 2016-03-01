@@ -1,3 +1,1 @@
-TrafficLight_;Models/TrafficLight/trafficlight.scene;1,-1.5,-5;0,0,0;1,1,1;
-RoadworksSign_;Models/RoadWorksSign/RoadWorksSign.scene;1,-0.5,-5;0,0,0;0.02,0.02,0.02;
-WayPoint_;null;0,0,-5;0,0,0;0.4,0.4,0.4;
+WayPoint_;null;0,0,0;0,0,0;0.4,0.4,0.4;

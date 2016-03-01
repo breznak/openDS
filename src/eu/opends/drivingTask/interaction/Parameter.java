@@ -31,25 +31,41 @@ import java.lang.annotation.Target;
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.PARAMETER})
-public @interface Parameter {
+public @interface Parameter 
+{
 
     /**
      * Name used to identify this parameter inside an action.
-     */
+     * 
+	 * @return
+	 * 		Name of parameter
+	 */
     String name() default "";
 
+    
     /**
      * Parameter's data type.
+     * 
+     * @return
+	 * 		Type of parameter
      */
     String type() default "";
     
+    
     /**
      * Default value.
+     * 
+     * @return
+	 * 		Default value of parameter
      */
     String defaultValue() default "";
 
+    
     /**
      * Description of the parameter.
+     * 
+     * @return
+	 * 		Description of parameter
      */
     String description() default "No description available.";
 }

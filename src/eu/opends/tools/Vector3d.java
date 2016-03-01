@@ -259,6 +259,8 @@ public final class Vector3d implements Savable, Cloneable, java.io.Serializable 
      *            the value to multiply this vector by.
      * @param add
      *            the value to add
+     * @return
+     *            resulting vector
      */
     public Vector3d scaleAdd(double scalar, Vector3d add) {
         x = x * scalar + add.x;
@@ -278,6 +280,8 @@ public final class Vector3d implements Savable, Cloneable, java.io.Serializable 
      *            the value to multiply the scalar by
      * @param add
      *            the value to add
+     * @return
+     *            resulting vector
      */
     public Vector3d scaleAdd(double scalar, Vector3d mult, Vector3d add) {
         this.x = mult.x * scalar + add.x;
@@ -540,9 +544,13 @@ public final class Vector3d implements Savable, Cloneable, java.io.Serializable 
      * calls.
      *
      * @param x
+     * 			x value
      * @param y
+     * 			y value
      * @param z
-     * @return this
+     * 			z value
+     * @return 
+     * 			resulting vector
      */
     public Vector3d multLocal(double x, double y, double z) {
         this.x *= x;
@@ -806,7 +814,10 @@ public final class Vector3d implements Savable, Cloneable, java.io.Serializable 
      * <code>maxLocal</code> computes the maximum value for each 
      * component in this and <code>other</code> vector. The result is stored
      * in this vector.
-     * @param other 
+     * @param other
+     * 			other vector
+     * @return
+     * 			resulting vector
      */
     public Vector3d maxLocal(Vector3d other){
         x = other.x > x ? other.x : x;
@@ -820,6 +831,9 @@ public final class Vector3d implements Savable, Cloneable, java.io.Serializable 
      * component in this and <code>other</code> vector. The result is stored
      * in this vector.
      * @param other
+     * 			other vector
+     * @return
+     * 			resulting vector
      */
     public Vector3d minLocal(Vector3d other){
         x = other.x < x ? other.x : x;
@@ -830,6 +844,8 @@ public final class Vector3d implements Savable, Cloneable, java.io.Serializable 
 
     /**
      * <code>zero</code> resets this vector's data to zero internally.
+     * @return
+     * 			resulting vector
      */
     public Vector3d zero() {
         x = y = z = 0;
@@ -855,6 +871,8 @@ public final class Vector3d implements Savable, Cloneable, java.io.Serializable 
      * @param finalVec The final vector to interpolate towards
      * @param changeAmnt An amount between 0.0 - 1.0 representing a precentage
      *  change from this towards finalVec
+     * @return
+     * 			resulting vector
      */
     public Vector3d interpolateLocal(Vector3d finalVec, double changeAmnt) {
         this.x=(1-changeAmnt)*this.x + changeAmnt*finalVec.x;
@@ -870,6 +888,8 @@ public final class Vector3d implements Savable, Cloneable, java.io.Serializable 
      * @param finalVec The final vector to interpolate towards
      * @param changeAmnt An amount between 0.0 - 1.0 representing a precentage
      *  change from beginVec towards finalVec
+     * @return
+     * 			resulting vector
      */
     public Vector3d interpolateLocal(Vector3d beginVec,Vector3d finalVec, double changeAmnt) {
         this.x=(1-changeAmnt)*beginVec.x + changeAmnt*finalVec.x;
@@ -1041,6 +1061,7 @@ public final class Vector3d implements Savable, Cloneable, java.io.Serializable 
     
     /**
      * @param index
+     * 			which field index in this vector to get.
      * @return x value if index == 0, y value if index == 1 or z value if index ==
      *         2
      * @throws IllegalArgumentException

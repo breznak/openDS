@@ -46,6 +46,7 @@ public class RemoveFromReportListThread extends Thread
 	 */
     public RemoveFromReportListThread(String triggerID, int duration) 
     {
+    	super("RemoveFromReportListThread");
     	this.triggerID = triggerID;
         this.duration = duration;
     }

@@ -19,13 +19,11 @@
 package eu.opends.input;
 
 import com.jme3.input.controls.ActionListener;
-//import com.jme3.math.Vector3f;
 
 import eu.opends.audio.AudioCenter;
 import eu.opends.camera.CameraFactory;
 import eu.opends.camera.CameraFactory.MirrorMode;
 import eu.opends.canbus.CANClient;
-import eu.opends.car.Car;
 import eu.opends.car.SteeringCar;
 import eu.opends.car.LightTexturesContainer.TurnSignalState;
 import eu.opends.effects.EffectCenter;
@@ -33,6 +31,7 @@ import eu.opends.main.Simulator;
 import eu.opends.niftyGui.MessageBoxGUI;
 import eu.opends.tools.PanelCenter;
 import eu.opends.tools.Util;
+import eu.opends.trigger.TriggerCenter;
 
 /**
  * 
@@ -352,19 +351,29 @@ public class SimulatorActionListener implements ActionListener
 		else if (binding.equals(KeyMapping.RESET_CAR_POS3.getID())) 
 		{
 			if (value)
+			{
 				car.setToResetPosition(2);
+				TriggerCenter.performRemoteTriggerAction("resume");
+			}
+			
 		}
 		
 		else if (binding.equals(KeyMapping.RESET_CAR_POS4.getID())) 
 		{
 			if (value)
+			{
 				car.setToResetPosition(3);
+				TriggerCenter.performRemoteTriggerAction("speed");
+			}
 		}
 		
 		else if (binding.equals(KeyMapping.RESET_CAR_POS5.getID())) 
 		{
 			if (value)
+			{
 				car.setToResetPosition(4);
+				TriggerCenter.performRemoteTriggerAction("shutDown");
+			}
 		}
 		
 		else if (binding.equals(KeyMapping.RESET_CAR_POS6.getID())) 
@@ -636,6 +645,88 @@ public class SimulatorActionListener implements ActionListener
 				EffectCenter.setFogPercentage(percentage);
 			}
 		}
-	}
+		
+		else if (binding.equals(KeyMapping.TIMESTAMP.getID())) 
+		{
+			if (value)
+			{
+				System.err.println(System.currentTimeMillis());
+			}
+		}
 
+		
+		else if (binding.equals(KeyMapping.GEARR.getID())) 
+		{
+			if(value)
+				car.getTransmission().setGear(-1, false, true);
+			else
+				car.getTransmission().setGear(0, false, true);
+		}
+		
+		else if (binding.equals(KeyMapping.GEAR1.getID())) 
+		{
+			if(value)
+				car.getTransmission().setGear(1, false, true);
+			else
+				car.getTransmission().setGear(0, false, true);
+		}
+		
+		else if (binding.equals(KeyMapping.GEAR2.getID())) 
+		{
+			if(value)
+				car.getTransmission().setGear(2, false, true);
+			else
+				car.getTransmission().setGear(0, false, true);
+		}
+		
+		else if (binding.equals(KeyMapping.GEAR3.getID())) 
+		{
+			if(value)
+				car.getTransmission().setGear(3, false, true);
+			else
+				car.getTransmission().setGear(0, false, true);
+		}
+		
+		else if (binding.equals(KeyMapping.GEAR4.getID())) 
+		{
+			if(value)
+				car.getTransmission().setGear(4, false, true);
+			else
+				car.getTransmission().setGear(0, false, true);
+		}
+
+		else if (binding.equals(KeyMapping.GEAR5.getID())) 
+		{
+			if(value)
+				car.getTransmission().setGear(5, false, true);
+			else
+				car.getTransmission().setGear(0, false, true);
+		}
+		
+		else if (binding.equals(KeyMapping.GEAR6.getID())) 
+		{
+			if(value)
+				car.getTransmission().setGear(6, false, true);
+			else
+				car.getTransmission().setGear(0, false, true);
+		}
+		
+		else if (binding.equals(KeyMapping.INC_CAM_ANGLE.getID())) 
+		{
+			if(value)
+				sim.getCameraFactory().setAngleBetweenAdjacentCameras(sim.getCameraFactory().getAngleBetweenAdjacentCameras()+1);
+		}
+		
+		else if (binding.equals(KeyMapping.DEC_CAM_ANGLE.getID())) 
+		{
+			if(value)
+				sim.getCameraFactory().setAngleBetweenAdjacentCameras(sim.getCameraFactory().getAngleBetweenAdjacentCameras()-1);
+		}
+		
+		else if (binding.equals(KeyMapping.TOGLE_DISTANCEBAR.getID())) 
+		{
+			if(value)
+				sim.getMotorwayTask().setVisibilityDistanceBar(!sim.getMotorwayTask().getVisibilityDistanceBar());
+		}
+	}
 }

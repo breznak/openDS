@@ -203,6 +203,12 @@ public class AnalyzerFileSelectionGUIController implements ScreenController
 	
 	/**
 	 * When the selection of the ListBox changes this method is called.
+	 * 
+	 * @param id
+	 * 			ID of analyzerFileListbox
+	 * 
+	 * @param event
+	 * 			ListBoxSelectionChangedEvent
 	 */
 	@NiftyEventSubscriber(id = "analyzerFileListbox")
 	public void onMyListBoxSelectionChanged(final String id,
@@ -219,6 +225,12 @@ public class AnalyzerFileSelectionGUIController implements ScreenController
 	
 	/**
 	 * When the selection of the ListBox changes this method is called.
+	 * 
+	 * @param id
+	 * 			ID of analyzerFileTextfield
+	 * 
+	 * @param event
+	 * 			TextFieldChangedEvent
 	 */
 	@NiftyEventSubscriber(id = "analyzerFileTextfield")
 	public void onanalyzerFileTextfieldChanged(final String id, final TextFieldChangedEvent event)

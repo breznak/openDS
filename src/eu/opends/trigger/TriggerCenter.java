@@ -188,8 +188,8 @@ public class TriggerCenter
 		
 		for (Spatial trigger : triggerList) 
 		{	
-			// TODO: caution! trigger center may be farther away than 10 meters when hitting
-			if(trigger.getWorldTranslation().distance(car.getCarNode().getWorldTranslation()) < 10)
+			// TODO: caution! trigger center may be farther away than 1000 meters when hitting
+			if(trigger.getWorldTranslation().distance(car.getCarNode().getWorldTranslation()) < 1000)
 			{
 				resultCollision.clear();
 				String triggerName = trigger.getName();
@@ -203,7 +203,7 @@ public class TriggerCenter
 				if(resultCollision.size() > 0)
 				{
 					if(SimulationBasics.getTriggerActionListMap().containsKey(triggerName))
-						TriggerCenter.performTriggerAction(triggerName, car);
+						TriggerCenter.performTriggerAction(triggerName);
 				}
 			}
 		}
@@ -327,11 +327,8 @@ public class TriggerCenter
 	 * 
 	 * @param triggerID
 	 * 			name of the trigger (needed to look up action)
-	 * 
-	 * @param car
-	 * 			user-controlled car of simulator 
 	 */
-	public static void performTriggerAction(String triggerID, Car car) 
+	public static void performTriggerAction(String triggerID) 
 	{
 		if(!triggerReportList.contains(triggerID))
 		{
@@ -357,6 +354,26 @@ public class TriggerCenter
 		}
 	}
 	
+	
+	/**
+	 * Reports a remote trigger event and performs the specified
+	 * action (e.g. send a text to the screen)
+	 * 
+	 * @param triggerID
+	 * 			name of the trigger (needed to look up action) 
+	 */
+	public static void performRemoteTriggerAction(String triggerID)
+	{
+		if(SimulationBasics.getRemoteTriggerActionListMap().containsKey(triggerID))
+		{
+			System.err.println("Remote trigger hit: " + triggerID);
+		
+			List<TriggerAction> triggerActionList = SimulationBasics.getRemoteTriggerActionListMap().get(triggerID);
+			for(TriggerAction triggerAction : triggerActionList)
+				triggerAction.performAction();
+		}
+	}
+
 	
 	/**
 	 * Every time a trigger is reported it will be added to trigger report 

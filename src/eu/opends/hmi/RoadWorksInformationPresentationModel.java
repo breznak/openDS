@@ -18,18 +18,10 @@
 
 package eu.opends.hmi;
 
-import java.io.File;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.HashMap;
-
-import org.jdom.Document;
-import org.jdom.input.SAXBuilder;
 
 import com.jme3.math.Vector3f;
 
-import eu.opends.car.Car;
-import eu.opends.tools.SpeedControlCenter;
+import eu.opends.car.Car;;
 
 
 /**
@@ -42,19 +34,9 @@ import eu.opends.tools.SpeedControlCenter;
 public class RoadWorksInformationPresentationModel extends PresentationModel 
 {
 	private Vector3f roadWorksStartPosition;
-	private int appId;
-	private int currentPrioritisation;
 	private boolean reachedRoadWorksStartPosition;
 	private float previousDistanceToStart;
-	private int lengthOfRoadWorks;
-	private int speedLimit;
-	private Document roadWorksGeometry;
-	private String detailedInfo;
-	private Calendar beginOfConstructionWorks;
-	private Calendar endOfConstructionWorks;
-	
-	
-	private static final int F_122_ROADWORKS_INFORMATION_SYSTEM = 1;
+
 	
 	/**
 	 * Initializes a construction site presentation model by setting the positions of the 
@@ -64,93 +46,33 @@ public class RoadWorksInformationPresentationModel extends PresentationModel
 	 * @param car
 	 * 			Car heading towards the construction site
 	 * 
+	 * @param roadWorksStartPosition
+	 *  		Position where of the construction site begins
+	 *  
 	 * @param roadWorksEndPosition
-	 * 			Position of the end of the construction site
-	 * 
-	 * @param geometryFile 
-	 * 			Path of geometry file
+	 * 			Position where the construction site ends
 	 */
 	public RoadWorksInformationPresentationModel(Car car, Vector3f roadWorksStartPosition, 
-			Vector3f roadWorksEndPosition, String geometryFile)
+			Vector3f roadWorksEndPosition)
 	{
 		// fixed parameters
 		this.car = car;
 		this.targetPosition = roadWorksEndPosition;
 		this.roadWorksStartPosition = roadWorksStartPosition;
-		this.minimumDistance = 10;
-		this.appId = F_122_ROADWORKS_INFORMATION_SYSTEM;
-		this.reachedRoadWorksStartPosition = false;
-		this.previousDistanceToStart = Float.MAX_VALUE;
-		
-		// individual parameters
-		// TODO: set these parameters for each road works instance
-		this.currentPrioritisation = 65;
-		this.lengthOfRoadWorks = 700;//5250;
-		this.speedLimit = 80;
-		this.roadWorksGeometry = getGeometry(geometryFile);
-		this.detailedInfo = "Caution road works";
-		this.beginOfConstructionWorks = new GregorianCalendar(2010,Calendar.DECEMBER,10,8,15,0);
-		this.endOfConstructionWorks = new GregorianCalendar(2010,Calendar.DECEMBER,30,16,0,0);
 	}
 	
 	
 	/**
-	 * Creates a road works presentation task on the SIM-TD HMI GUI. This
+	 * Creates a road works presentation task on the HMI GUI. This
 	 * data will only be sent to the HMI bundle once.
 	 * 
 	 * @return
-	 * 			Presentation ID. If an error occurred, a negative value will be returned.
+	 * 			0
 	 */
 	@Override
 	public long createPresentation()
 	{
-		HashMap<String, Object> parameters = new HashMap<String, Object>();
-		int reaminingSeconds = (int) ((lengthOfRoadWorks * 3.6f)/speedLimit);
-		
-		// parameters according to "presentationModel.xml"
-		parameters.put("timeStart", System.currentTimeMillis() + 5500);
-		parameters.put("timeEnd", System.currentTimeMillis() + (long) getTimeToTarget(targetPosition));
-		parameters.put("currentPrioritisation", currentPrioritisation);
-	
-		// parameters according to "F122_model.xml"
-		parameters.put("distanceToRoadworks", getRoundedDistanceToTarget(roadWorksStartPosition));
-		parameters.put("presentationType", 0);
-		parameters.put("lengthOfRoadworks", lengthOfRoadWorks);
-		parameters.put("speedLimit", speedLimit);
-		parameters.put("roadworksGeometry", roadWorksGeometry);
-		parameters.put("detailedInfo", detailedInfo);
-		parameters.put("beginOfConstructionWorks", beginOfConstructionWorks);
-		parameters.put("endOfConstructionWorks", endOfConstructionWorks);
-		parameters.put("egoPosition", 0);
-		parameters.put("timeRemaining", reaminingSeconds);
-
-		// send parameters to HMI bundle
-		// TODO return controller.createPresentationTask(1, appId, parameters);
 		return 0;
-	}
-	
-	
-	/**
-	 * Loads the road works geometry from the given XML-file
-	 * 
-	 * @return
-	 * 			
-	 */
-	private Document getGeometry(String filename) 
-	{
-		File xmlfile = new File(filename);
-		Document doc = null;
-		
-		try {
-			
-			 SAXBuilder parser = new SAXBuilder();
-			 doc = parser.build(xmlfile);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return doc;
 	}
 
 
@@ -162,37 +84,6 @@ public class RoadWorksInformationPresentationModel extends PresentationModel
 	@Override
 	public void updatePresentation(long presentationID) 
 	{
-		HashMap<String, Object> parameters = new HashMap<String, Object>();
-		int distanceToRoadWorksStart = getRoundedDistanceToTarget(roadWorksStartPosition);
-		long timeToRoadWorksEnd = (long) getTimeToTarget(targetPosition);
-		int remainingSeconds = (int)(timeToRoadWorksEnd/1000);
-		
-		// parameters according to "presentationModel.xml"
-		parameters.put("timeEnd", System.currentTimeMillis() + timeToRoadWorksEnd);
-		
-		speedLimit = SpeedControlCenter.getUpcomingSpeedlimit();
-		parameters.put("speedLimit", speedLimit);
-		
-		// parameters according to "F122_model.xml"
-		if(!reachedRoadWorks())
-		{
-			// car has not yet reached road works
-			parameters.put("distanceToRoadworks", distanceToRoadWorksStart);
-			parameters.put("presentationType", 0);
-			parameters.put("egoPosition", 0);
-			//parameters.put("timeRemaining",  remainingSeconds);
-		}
-		else
-		{
-			// car has reached road works
-			parameters.put("distanceToRoadworks", 0);
-			parameters.put("presentationType", 1);
-			parameters.put("egoPosition", distanceToRoadWorksStart);
-			parameters.put("timeRemaining",  remainingSeconds);
-		}
-		
-		// send parameters to HMI bundle
-		// TODO controller.update(presentationID, parameters);
 	}
 
 	

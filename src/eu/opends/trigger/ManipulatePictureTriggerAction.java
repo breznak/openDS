@@ -47,8 +47,20 @@ public class ManipulatePictureTriggerAction extends TriggerAction
 	 * Creates a new ManipulatePicture trigger action instance, providing maximum
 	 * number of repetitions and the picture to manipulate. 
 	 * 
+	 * @param sim
+	 * 			Simulator
+	 * 
+	 * @param delay
+	 * 			Amount of seconds (float) to wait before the TriggerAction will be executed.
+	 * 
 	 * @param maxRepeat
 	 * 			Maximum number how often the trigger can be hit.
+	 * 
+	 * @param pictureID
+	 * 			ID of the picture to manipulate.
+	 * 
+	 * @param isVisible
+	 * 			Visibility of the picture to manipulate.
 	 */
 	public ManipulatePictureTriggerAction(SimulationBasics sim, float delay, int maxRepeat, 
 			String pictureID, boolean isVisible) 

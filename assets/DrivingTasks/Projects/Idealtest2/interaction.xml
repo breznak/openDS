@@ -104,6 +104,27 @@
                 <parameter name="speed" value="20" />
             </action>
         </activity>
+        
+        <activity id="parallelPort16">
+            <action id="sendNumberToParallelPort" delay="0" repeat="0">
+                <parameter name="number" value="16" />
+                <parameter name="duration" value="100" />
+            </action>
+        </activity>
+        
+        <activity id="parallelPort4">
+            <action id="sendNumberToParallelPort" delay="0" repeat="0">
+                <parameter name="number" value="4" />
+                <parameter name="duration" value="2000" />
+            </action>
+        </activity>
+        
+        <activity id="parallelPort128">
+            <action id="sendNumberToParallelPort" delay="0" repeat="0">
+                <parameter name="number" value="128" />
+                <parameter name="duration" value="1000" />
+            </action>
+        </activity>
 	</activities>
 	
 	<triggers>
@@ -288,6 +309,59 @@
 			<condition>pressKey:9</condition>
 		</trigger>
 
+
+		<trigger id="localDangerWarning01" priority="2">
+			<activities>
+				<activity id="localDangerWarningActivity01">
+					<action id="startPresentationTask" delay="0" repeat="0">
+						<parameter name="type" value="localDangerWarning/trafficSignInformation/28200" />
+						<parameter name="targetPositionX" value="-50" />
+						<parameter name="targetPositionY" value="1" />
+						<parameter name="targetPositionZ" value="-51" />
+					</action>
+				</activity>
+				<!-- 
+				<activity ref="parallelPort16" />
+				-->
+			</activities>	
+			<condition>collideWith:trigger01</condition>
+		</trigger>
+		
+		<trigger id="localDangerWarning02" priority="2">
+			<activities>
+				<activity id="localDangerWarningActivity02">
+					<action id="startPresentationTask" delay="0" repeat="0">
+						<parameter name="type" value="localDangerWarning/obstacleWarning/animals" />
+						<parameter name="targetPositionX" value="100" />
+						<parameter name="targetPositionY" value="1" />
+						<parameter name="targetPositionZ" value="-51" />
+					</action>
+				</activity>
+				<!-- 
+				<activity ref="parallelPort4" />
+				-->
+			</activities>	
+			<condition>collideWith:trigger02</condition>
+		</trigger>
+		
+		<trigger id="localDangerWarning03" priority="2">
+			<activities>
+			
+				<activity id="localDangerWarningActivity03">
+					<action id="startPresentationTask" delay="0" repeat="0">
+						<parameter name="type" value="localDangerWarning/roadWorksIn" />
+						<parameter name="targetPositionX" value="250" />
+						<parameter name="targetPositionY" value="1" />
+						<parameter name="targetPositionZ" value="-51" />
+					</action>
+				</activity>
+				<!-- 
+				<activity ref="parallelPort128" />
+				-->
+			</activities>	
+			<condition>collideWith:trigger03</condition>
+		</trigger>
+		
 	</triggers>
 	
 </interaction>

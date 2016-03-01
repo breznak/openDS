@@ -26,14 +26,20 @@ import java.util.Map;
 
 import javax.xml.xpath.XPathConstants;
 
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import Jama.Matrix;
 
+import com.jme3.light.AmbientLight;
+import com.jme3.material.Material;
+import com.jme3.math.ColorRGBA;
 import com.jme3.math.FastMath;
 import com.jme3.math.Quaternion;
 import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
+import com.jme3.renderer.queue.RenderQueue.ShadowMode;
+import com.jme3.scene.Geometry;
 
 import eu.opends.basics.MapObject;
 import eu.opends.basics.SimulationBasics;
@@ -52,7 +58,9 @@ import eu.opends.environment.TrafficLight.TrafficLightDirection;
 import eu.opends.environment.TrafficLight.TrafficLightState;
 import eu.opends.main.DriveAnalyzer;
 import eu.opends.main.Simulator;
+import eu.opends.tools.Util;
 import eu.opends.traffic.FollowBoxSettings;
+import eu.opends.traffic.PedestrianData;
 import eu.opends.traffic.PhysicalTraffic;
 import eu.opends.traffic.TrafficCarData;
 import eu.opends.traffic.Waypoint;
@@ -479,6 +487,8 @@ public class ScenarioLoader
 	 * Looks up the node "startPosition" for the initial location 
 	 * of the car at the beginning of the simulation.
 	 * 
+	 * @return
+	 * 			Initial position of the car at the beginning of the simulation
 	 */
 	public Vector3f getStartLocation() 
 	{
@@ -490,6 +500,8 @@ public class ScenarioLoader
 	 * Looks up the node "startPosition" for the initial rotation 
 	 * of the car at the beginning of the simulation.
 	 * 
+	 * @return
+	 * 			Initial rotation of the car at the beginning of the simulation
 	 */
 	public Quaternion getStartRotation() 
 	{
@@ -519,6 +531,18 @@ public class ScenarioLoader
 	 * Looks up the sub node (specified in parameter name) of the given element node
 	 * and writes the data to the global variable with the same name. If this was 
 	 * successful, the global variable "isSet_&lt;name&gt;" will be set to true.
+	 * 
+	 * @param <T>
+	 * 			Type of property to look up.
+	 * 
+	 * @param carProperty
+	 * 			Property to look up.
+	 * 
+	 * @param defaultValue
+	 * 			Default value (will be returned if no valid property could be found).
+	 * 
+	 * @return
+	 * 			Value of the property.
 	 */
 	public <T> T getCarProperty(CarProperty carProperty, T defaultValue)
 	{
@@ -542,51 +566,151 @@ public class ScenarioLoader
 	private void extractTraffic()
 	{
 		try {
-			NodeList pointNodes = (NodeList) dtData.xPathQuery(Layer.SCENARIO, 
+			NodeList vehicleNodes = (NodeList) dtData.xPathQuery(Layer.SCENARIO, 
 					"/scenario:scenario/scenario:traffic/scenario:vehicle", XPathConstants.NODESET);
 
-			for (int k = 1; k <= pointNodes.getLength(); k++) 
+			for (int k = 1; k <= vehicleNodes.getLength(); k++) 
 			{
-				String name = dtData.getValue(Layer.SCENARIO, 
-						"/scenario:scenario/scenario:traffic/scenario:vehicle["+k+"]/@id", String.class);
+				Node currentNode = vehicleNodes.item(k-1);
+					
+				//String name = dtData.getValue(Layer.SCENARIO, 
+				//		"/scenario:scenario/scenario:traffic/scenario:vehicle["+k+"]/@id", String.class);
+				String name = currentNode.getAttributes().getNamedItem("id").getNodeValue();
 				
-				Float mass = dtData.getValue(Layer.SCENARIO, 
-						"/scenario:scenario/scenario:traffic/scenario:vehicle["+k+"]/scenario:mass", Float.class);
+				NodeList childnodes = currentNode.getChildNodes();
+				
+				Float mass = null;
+				Float acceleration = null;
+				Float decelerationBrake = null;
+				Float decelerationFreeWheel = null;
+				Boolean engineOn = null;
+				String modelPath = null;
+				ArrayList<Waypoint> wayPoints = new ArrayList<Waypoint>();
+				Float curveTension = null;
+				Float maxDistance = null;
+				Boolean pathIsCycle = null;
+				Boolean pathIsVisible = null;
+				String startWayPoint = null;
+				
+				for (int j = 1; j <= childnodes.getLength(); j++) 
+				{
+					Node currentChild = childnodes.item(j-1);
+					
+					//Float mass = dtData.getValue(Layer.SCENARIO, 
+					//		"/scenario:scenario/scenario:traffic/scenario:vehicle["+k+"]/scenario:mass", Float.class);
+					if(currentChild.getNodeName().equals("mass"))
+					{
+						mass = Float.parseFloat(currentChild.getTextContent());
+					}
+					
+					//Float acceleration = dtData.getValue(Layer.SCENARIO, 
+					//		"/scenario:scenario/scenario:traffic/scenario:vehicle["+k+"]/scenario:acceleration", Float.class);
+					else if(currentChild.getNodeName().equals("acceleration"))
+					{
+						acceleration = Float.parseFloat(currentChild.getTextContent());
+					}
+					
+					//Float decelerationBrake = dtData.getValue(Layer.SCENARIO, 
+					//		"/scenario:scenario/scenario:traffic/scenario:vehicle["+k+"]/scenario:decelerationBrake", Float.class);
+					else if(currentChild.getNodeName().equals("decelerationBrake"))
+					{
+						decelerationBrake = Float.parseFloat(currentChild.getTextContent());
+					}
+					
+					//Float decelerationFreeWheel = dtData.getValue(Layer.SCENARIO, 
+					//		"/scenario:scenario/scenario:traffic/scenario:vehicle["+k+"]/scenario:decelerationFreeWheel", Float.class);
+					else if(currentChild.getNodeName().equals("decelerationFreeWheel"))
+					{
+						decelerationFreeWheel = Float.parseFloat(currentChild.getTextContent());
+					}
+					
+					//Boolean engineOn = dtData.getValue(Layer.SCENARIO, 
+					//		"/scenario:scenario/scenario:traffic/scenario:vehicle["+k+"]/scenario:engineOn", Boolean.class);
+					else if(currentChild.getNodeName().equals("engineOn"))
+					{
+						engineOn = Boolean.parseBoolean(currentChild.getTextContent());
+					}
+					
+					//String modelPath = dtData.getValue(Layer.SCENARIO, 
+					//		"/scenario:scenario/scenario:traffic/scenario:vehicle["+k+"]/scenario:modelPath", String.class);
+					else if(currentChild.getNodeName().equals("modelPath"))
+					{
+						modelPath = currentChild.getTextContent();
+					}	
+					
+					else if(currentChild.getNodeName().equals("wayPoints"))
+					{
+						//wayPoints = extractWayPoints(
+						//	"/scenario:scenario/scenario:traffic/scenario:vehicle["+k+"]/scenario:wayPoints/scenario:wayPoint");
+						wayPoints = extractWayPoints(currentChild);
+					}
+					
+					//Float curveTension = dtData.getValue(Layer.SCENARIO, 
+					//		"/scenario:scenario/scenario:traffic/scenario:vehicle["+k+"]/scenario:curveTension", Float.class);
+					else if(currentChild.getNodeName().equals("curveTension"))
+					{
+						curveTension = Float.parseFloat(currentChild.getTextContent());
+					}
+					
+					//Float maxDistance = dtData.getValue(Layer.SCENARIO, 
+					//		"/scenario:scenario/scenario:traffic/scenario:vehicle["+k+"]/scenario:maxDistanceFromPath", Float.class);
+					else if(currentChild.getNodeName().equals("maxDistanceFromPath"))
+					{
+						maxDistance = Float.parseFloat(currentChild.getTextContent());
+					}
+					
+					//Boolean pathIsCycle = dtData.getValue(Layer.SCENARIO, 
+					//		"/scenario:scenario/scenario:traffic/scenario:vehicle["+k+"]/scenario:pathIsCycle", Boolean.class);
+					else if(currentChild.getNodeName().equals("pathIsCycle"))
+					{
+						pathIsCycle = Boolean.parseBoolean(currentChild.getTextContent());
+					}
+					
+					//Boolean pathIsVisible = dtData.getValue(Layer.SCENARIO, 
+					//		"/scenario:scenario/scenario:traffic/scenario:vehicle["+k+"]/scenario:pathIsVisible", Boolean.class);
+					else if(currentChild.getNodeName().equals("pathIsVisible"))
+					{
+						pathIsVisible = Boolean.parseBoolean(currentChild.getTextContent());
+					}
+					
+					//String startWayPoint = dtData.getValue(Layer.SCENARIO, 
+					//		"/scenario:scenario/scenario:traffic/scenario:vehicle["+k+"]/scenario:startWayPoint", String.class);
+					else if(currentChild.getNodeName().equals("startWayPoint"))
+					{
+						startWayPoint = currentChild.getTextContent();
+					}	
+				}
 
-				Float acceleration = dtData.getValue(Layer.SCENARIO, 
-						"/scenario:scenario/scenario:traffic/scenario:vehicle["+k+"]/scenario:acceleration", Float.class);
+				if(mass == null)
+					mass = 0f;
 				
-				Float decelerationBrake = dtData.getValue(Layer.SCENARIO, 
-						"/scenario:scenario/scenario:traffic/scenario:vehicle["+k+"]/scenario:decelerationBrake", Float.class);
+				if(acceleration == null)
+					acceleration = 3.3f;
 				
-				Float decelerationFreeWheel = dtData.getValue(Layer.SCENARIO, 
-						"/scenario:scenario/scenario:traffic/scenario:vehicle["+k+"]/scenario:decelerationFreeWheel", Float.class);
+				if(decelerationBrake == null)
+					decelerationBrake = 8.7f;
 				
-				Boolean engineOn = dtData.getValue(Layer.SCENARIO, 
-						"/scenario:scenario/scenario:traffic/scenario:vehicle["+k+"]/scenario:engineOn", Boolean.class);
+				if(decelerationFreeWheel == null)
+					decelerationFreeWheel = 2.0f;
 				
-				String modelPath = dtData.getValue(Layer.SCENARIO, 
-						"/scenario:scenario/scenario:traffic/scenario:vehicle["+k+"]/scenario:modelPath", String.class);
+				if(engineOn == null)
+					engineOn = true;
 				
-				ArrayList<Waypoint> wayPoints = extractWayPoints(
-						"/scenario:scenario/scenario:traffic/scenario:vehicle["+k+"]/scenario:wayPoints/scenario:wayPoint");
+				if(curveTension == null)
+					curveTension = 0.05f;
 				
-				Float curveTension = dtData.getValue(Layer.SCENARIO, 
-						"/scenario:scenario/scenario:traffic/scenario:vehicle["+k+"]/scenario:curveTension", Float.class);
+				if(maxDistance == null)
+					maxDistance = 10.0f;
 				
-				Float maxDistance = dtData.getValue(Layer.SCENARIO, 
-						"/scenario:scenario/scenario:traffic/scenario:vehicle["+k+"]/scenario:maxDistanceFromPath", Float.class);
-		
-				Boolean pathIsCycle = dtData.getValue(Layer.SCENARIO, 
-						"/scenario:scenario/scenario:traffic/scenario:vehicle["+k+"]/scenario:pathIsCycle", Boolean.class);
+				if(pathIsCycle == null)
+					pathIsCycle = false;
 				
-				Boolean pathIsVisible = dtData.getValue(Layer.SCENARIO, 
-						"/scenario:scenario/scenario:traffic/scenario:vehicle["+k+"]/scenario:pathIsVisible", Boolean.class);
+				if(pathIsVisible == null)
+					pathIsVisible = false;
 				
-				String startWayPoint = dtData.getValue(Layer.SCENARIO, 
-						"/scenario:scenario/scenario:traffic/scenario:vehicle["+k+"]/scenario:startWayPoint", String.class);
+				if(startWayPoint == null)
+					startWayPoint = "WayPoint_1";
 
-				
 				TrafficCarData trafficCarData = new TrafficCarData(name, mass, acceleration, decelerationBrake, 
 						decelerationFreeWheel, engineOn, modelPath, new FollowBoxSettings(wayPoints, maxDistance, 
 						curveTension, pathIsCycle, pathIsVisible, startWayPoint));
@@ -597,9 +721,295 @@ public class ScenarioLoader
 			e.printStackTrace();
 		}
 		
+		
+		
+		try {
+			NodeList pedestrianNodes = (NodeList) dtData.xPathQuery(Layer.SCENARIO, 
+					"/scenario:scenario/scenario:traffic/scenario:pedestrian", XPathConstants.NODESET);
+
+			for (int k = 1; k <= pedestrianNodes.getLength(); k++) 
+			{
+				Node currentNode = pedestrianNodes.item(k-1);
+					
+				//String name = dtData.getValue(Layer.SCENARIO, 
+				//		"/scenario:scenario/scenario:traffic/scenario:pedestrian["+k+"]/@id", String.class);
+				String name = currentNode.getAttributes().getNamedItem("id").getNodeValue();
+				
+				NodeList childnodes = currentNode.getChildNodes();
+				
+				Float mass = null;
+				String animationStand = null;
+				String animationWalk = null;
+				Float scale = null;
+				String modelPath = null;
+				ArrayList<Waypoint> wayPoints = new ArrayList<Waypoint>();
+				Float curveTension = null;
+				Float maxDistance = null;
+				Boolean pathIsCycle = null;
+				Boolean pathIsVisible = null;
+				String startWayPoint = null;
+				
+				for (int j = 1; j <= childnodes.getLength(); j++) 
+				{
+					Node currentChild = childnodes.item(j-1);
+					
+					//Float mass = dtData.getValue(Layer.SCENARIO, 
+					//		"/scenario:scenario/scenario:traffic/scenario:pedestrian["+k+"]/scenario:mass", Float.class);
+					if(currentChild.getNodeName().equals("mass"))
+					{
+						mass = Float.parseFloat(currentChild.getTextContent());
+					}
+					
+					//String animationStand = dtData.getValue(Layer.SCENARIO, 
+					//		"/scenario:scenario/scenario:traffic/scenario:pedestrian["+k+"]/scenario:animationStand", String.class);
+					else if(currentChild.getNodeName().equals("animationStand"))
+					{
+						animationStand = currentChild.getTextContent();
+					}
+					
+					//String animationWalk = dtData.getValue(Layer.SCENARIO, 
+					//		"/scenario:scenario/scenario:traffic/scenario:pedestrian["+k+"]/scenario:animationWalk", String.class);
+					else if(currentChild.getNodeName().equals("animationWalk"))
+					{
+						animationWalk = currentChild.getTextContent();
+					}
+					
+					//Float scale = dtData.getValue(Layer.SCENARIO, 
+					//		"/scenario:scenario/scenario:traffic/scenario:pedestrian["+k+"]/scenario:scale", Float.class);
+					else if(currentChild.getNodeName().equals("scale"))
+					{
+						scale = Float.parseFloat(currentChild.getTextContent());
+					}
+
+					//String modelPath = dtData.getValue(Layer.SCENARIO, 
+					//		"/scenario:scenario/scenario:traffic/scenario:pedestrian["+k+"]/scenario:modelPath", String.class);
+					else if(currentChild.getNodeName().equals("modelPath"))
+					{
+						modelPath = currentChild.getTextContent();
+					}	
+					
+					else if(currentChild.getNodeName().equals("wayPoints"))
+					{
+						//wayPoints = extractWayPoints(
+						//	"/scenario:scenario/scenario:traffic/scenario:pedestrian["+k+"]/scenario:wayPoints/scenario:wayPoint");
+						wayPoints = extractWayPoints(currentChild);
+					}
+					
+					//Float curveTension = dtData.getValue(Layer.SCENARIO, 
+					//		"/scenario:scenario/scenario:traffic/scenario:pedestrian["+k+"]/scenario:curveTension", Float.class);
+					else if(currentChild.getNodeName().equals("curveTension"))
+					{
+						curveTension = Float.parseFloat(currentChild.getTextContent());
+					}
+					
+					//Float maxDistance = dtData.getValue(Layer.SCENARIO, 
+					//		"/scenario:scenario/scenario:traffic/scenario:pedestrian["+k+"]/scenario:maxDistanceFromPath", Float.class);
+					else if(currentChild.getNodeName().equals("maxDistanceFromPath"))
+					{
+						maxDistance = Float.parseFloat(currentChild.getTextContent());
+					}
+					
+					//Boolean pathIsCycle = dtData.getValue(Layer.SCENARIO, 
+					//		"/scenario:scenario/scenario:traffic/scenario:pedestrian["+k+"]/scenario:pathIsCycle", Boolean.class);
+					else if(currentChild.getNodeName().equals("pathIsCycle"))
+					{
+						pathIsCycle = Boolean.parseBoolean(currentChild.getTextContent());
+					}
+					
+					//Boolean pathIsVisible = dtData.getValue(Layer.SCENARIO, 
+					//		"/scenario:scenario/scenario:traffic/scenario:pedestrian["+k+"]/scenario:pathIsVisible", Boolean.class);
+					else if(currentChild.getNodeName().equals("pathIsVisible"))
+					{
+						pathIsVisible = Boolean.parseBoolean(currentChild.getTextContent());
+					}
+					
+					//String startWayPoint = dtData.getValue(Layer.SCENARIO, 
+					//		"/scenario:scenario/scenario:traffic/scenario:pedestrian["+k+"]/scenario:startWayPoint", String.class);
+					else if(currentChild.getNodeName().equals("startWayPoint"))
+					{
+						startWayPoint = currentChild.getTextContent();
+					}	
+				}
+
+				if(mass == null)
+					mass = 50f;
+				
+				if(animationStand == null)
+					animationStand = "Stand";
+				
+				if(animationWalk == null)
+					animationWalk = "Walk";
+				
+				if(scale == null)
+					scale = 1.0f;
+				
+				if(curveTension == null)
+					curveTension = 0.05f;
+				
+				if(maxDistance == null)
+					maxDistance = 1.1f;
+				
+				if(pathIsCycle == null)
+					pathIsCycle = false;
+				
+				if(pathIsVisible == null)
+					pathIsVisible = false;
+				
+				if(startWayPoint == null)
+					startWayPoint = "WayPoint_1";
+
+				PedestrianData pedestrianData = new PedestrianData(name, mass, animationStand, animationWalk, 
+						scale, modelPath, new FollowBoxSettings(wayPoints, maxDistance, 
+						curveTension, pathIsCycle, pathIsVisible, startWayPoint));
+				PhysicalTraffic.getPedestrianDataList().add(pedestrianData);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 
+	public ArrayList<Waypoint> extractWayPoints(Node wayPointsNode)
+	{
+		ArrayList<Waypoint> wayPoints = new ArrayList<Waypoint>();
+		
+		try {
+			NodeList wayPointNodeList = wayPointsNode.getChildNodes();
+			for (int k = 1; k <= wayPointNodeList.getLength(); k++) 
+			{
+				Node currentWayPointNode = wayPointNodeList.item(k-1);
+			
+				if(currentWayPointNode.getNodeName().equals("wayPoint"))
+				{
+					//String id = getValue(layer, path + "/@id", String.class);
+					String id = null; 
+					if(currentWayPointNode.getAttributes().getNamedItem("id") != null)
+						id = currentWayPointNode.getAttributes().getNamedItem("id").getNodeValue();
+					//System.err.println("id: " + id);
+					
+					NodeList childnodes = currentWayPointNode.getChildNodes();
+					
+					Vector3f translation = null;
+					Float speed = null;
+					String trafficLightID = null;
+					Float headLightIntensity = null;
+					String turnSignal = null;
+					Integer waitingTime = null;
+					
+					for (int j = 1; j <= childnodes.getLength(); j++) 
+					{
+						Node currentChild = childnodes.item(j-1);
+						
+						//translation = getVector3f(layer, path + "/" + translation + ":translation");
+						if(currentChild.getNodeName().equals("translation"))
+						{
+							translation = getTranslation(currentChild);
+						}
+						
+						//Float speed = getValue(layer, path + "/" + layer + ":speed", Float.class);
+						if(currentChild.getNodeName().equals("speed"))
+						{
+							speed = Float.parseFloat(currentChild.getTextContent());
+						}
+	
+						//String trafficLightID = getValue(layer, path + "/" + layer + ":trafficLight", String.class);
+						if(currentChild.getNodeName().equals("trafficLight"))
+						{
+							trafficLightID = currentChild.getTextContent();
+						}
+	
+						//Float headLightIntensity = getValue(layer, path + "/" + layer + ":headLightIntensity", Float.class);
+						if(currentChild.getNodeName().equals("headLightIntensity"))
+						{
+							headLightIntensity = Float.parseFloat(currentChild.getTextContent());
+						}
+	
+						//String turnSignal = getValue(layer, path + "/" + layer + ":turnSignal", String.class);
+						if(currentChild.getNodeName().equals("turnSignal"))
+						{
+							turnSignal = currentChild.getTextContent();
+						}
+						
+						//Integer waitingTime = getValue(layer, path + "/" + layer + ":waitingTime", Integer.class);
+						if(currentChild.getNodeName().equals("waitingTime"))
+						{
+							waitingTime = Integer.parseInt(currentChild.getTextContent());
+						}
+					}
+	
+					
+					//String wayPointRef = dtData.getValue(Layer.SCENARIO, path + "["+k+"]/@ref", String.class);
+					String ref = null;
+					if(currentWayPointNode.getAttributes().getNamedItem("ref") != null)
+						ref = currentWayPointNode.getAttributes().getNamedItem("ref").getNodeValue();
+					//System.err.println("ref: " + ref);
+					
+					Map<String, Vector3f> pointMap = sceneLoader.getPointMap();
+					
+					if((id != null) && (translation != null) && (speed != null))
+					{
+						wayPoints.add(new Waypoint(id, translation, speed, trafficLightID, headLightIntensity, turnSignal, waitingTime));
+					}
+					else if((ref != null) && (pointMap.containsKey(ref)))
+					{
+						translation = pointMap.get(ref);
+						
+						if((translation != null) && (speed != null))
+							wayPoints.add(new Waypoint(ref, translation, speed, trafficLightID, headLightIntensity, turnSignal, waitingTime));
+					}
+					else 
+						throw new Exception("Error in way point list");
+				}
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ArrayList<Waypoint>();
+		}
+		
+		return wayPoints;
+	}
+	
+
+	private Vector3f getTranslation(Node translationNode) 
+	{
+		NodeList vectorNodesList = translationNode.getChildNodes();
+		for (int k = 1; k <= vectorNodesList.getLength(); k++) 
+		{
+			Node currentVectorNode = vectorNodesList.item(k-1);
+			
+			if(currentVectorNode.getNodeName().equals("vector"))
+			{
+				NodeList entryNodesList = currentVectorNode.getChildNodes();
+				
+				Float x = null;
+				Float y = null;
+				Float z = null;
+				
+				if(entryNodesList.getLength() >= 3)
+				{
+					if(entryNodesList.item(0).getNodeName().equals("entry"))
+						x = Float.parseFloat(entryNodesList.item(0).getTextContent());
+					
+					if(entryNodesList.item(1).getNodeName().equals("entry"))
+						y = Float.parseFloat(entryNodesList.item(1).getTextContent());
+					
+					if(entryNodesList.item(2).getNodeName().equals("entry"))
+						z = Float.parseFloat(entryNodesList.item(2).getTextContent());
+				}
+
+				if(x!=null && y!=null && z!=null)
+				{
+					return new Vector3f(x,y,z);
+				}
+			}
+		}
+		
+		return null;
+	}
+
+/*
 	public ArrayList<Waypoint> extractWayPoints(String path)
 	{
 		ArrayList<Waypoint> wayPoints = new ArrayList<Waypoint>();
@@ -646,8 +1056,8 @@ public class ScenarioLoader
 		
 		return wayPoints;
 	}
-
-
+*/	
+	
 	public boolean isAutomaticTransmission(boolean defaultValue) 
 	{
 		Boolean isAutomatic = dtData.getValue(Layer.SCENARIO, 
@@ -741,6 +1151,8 @@ public class ScenarioLoader
 					trafficLightPhaseList.add(new TrafficLightPhase(phaseID, duration, state));					
 				}				
 				
+				if(trafficLightPhaseList.size()==0)
+					trafficLightPhaseList = null;
 				
 				List<TrafficLight> localTrafficLightList = new ArrayList<TrafficLight>();
 				

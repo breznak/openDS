@@ -143,7 +143,7 @@ public class DataWriter
 					Math.round(car.getRotation().getW() * 10000) / 10000.0f,
 					car.getCurrentSpeedKmhRounded(), Math.round(car
 							.getSteeringWheelState() * 100000) / 100000.0f, car
-							.getGasPedalPressIntensity(), car.getBrakePedalPressIntensity(), 
+							.getAcceleratorPedalIntensity(), car.getBrakePedalIntensity(), 
 							car.isEngineOn());
 
 			lastAnalyzerDataSave = curDate;
@@ -152,11 +152,8 @@ public class DataWriter
 	}
 
 	
-	/**
-	 * 
-	 * see eu.opends.analyzer.IAnalyzationDataWriter#write(float,
-	 *      float, float, float, java.util.Date, float, float, boolean, float)
-	 */
+	// see eu.opends.analyzer.IAnalyzationDataWriter#write(float,
+	//      float, float, float, java.util.Date, float, float, boolean, float)
 	public void write(Date curDate, float x, float y, float z, float xRot,
 			float yRot, float zRot, float wRot, float linearSpeed,
 			float steeringWheelState, float gasPedalState, float brakePedalState,
@@ -173,6 +170,9 @@ public class DataWriter
 	/**
 	 * Write data to the data pool. After 50 data sets, the pool is flushed to
 	 * the file.
+	 * 
+	 * @param row
+	 * 			Datarow to write
 	 */
 	public void write(DataUnit row)
 	{

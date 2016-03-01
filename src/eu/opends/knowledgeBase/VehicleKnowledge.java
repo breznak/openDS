@@ -25,7 +25,7 @@ import com.jme3.math.Vector3f;
 import de.dfki.automotive.kapcom.knowledgebase.KAPcomException;
 import de.dfki.automotive.kapcom.knowledgebase.ontology.*;
 import eu.opends.analyzer.DataUnit;
-import eu.opends.car.Car;
+import eu.opends.car.SteeringCar;
 import eu.opends.drivingTask.settings.SettingsLoader.Setting;
 import eu.opends.main.DriveAnalyzer;
 import eu.opends.main.SimulationDefaults;
@@ -74,8 +74,10 @@ public class VehicleKnowledge
 	private double oldRise = 0;
 	private float oldSpeed = 0;
 	private long oldTime = 0;
-	void sendCarData(Car car) throws KAPcomException
+	void sendCarData(Simulator sim) throws KAPcomException
 	{
+		SteeringCar car = sim.getCar();
+		
 		if (vehicle == null) return;
 		
 		/*
@@ -117,8 +119,8 @@ public class VehicleKnowledge
 		
 		float acceleration = ((speed - oldSpeed)/3.6f)/timeDiff; // in m/s^2
 		
-		float gasPedalPress = car.getGasPedalPressIntensity(); // in %
-		float brakePedalPress = car.getBrakePedalPressIntensity(); // in %
+		float gasPedalPress = car.getAcceleratorPedalIntensity(); // in %
+		float brakePedalPress = car.getBrakePedalIntensity(); // in %
 		
 		float maxSteeringAngle = Simulator.getDrivingTask().getSettingsLoader().getSetting(
 				Setting.CANInterface_maxSteeringAngle, SimulationDefaults.CANInterface_maxSteeringAngle);
@@ -180,14 +182,36 @@ public class VehicleKnowledge
 											"<actualAmount>" + fuelLeft + "</actualAmount>" +
 										"</Properties></tank>" +
 									"</fuelType>" +
-								"</fueling>" +
-							"</exterior>" +
+								"</fueling>";
+
+		
+		if(sim.getThreeVehiclePlatoonTask() != null)
+		{
+			Float distanceFromLaneCenter = sim.getThreeVehiclePlatoonTask().getDistanceFromLaneCenter();
+			if(distanceFromLaneCenter != null)
+			{
+				xml +=          "<sensors>" +
+								    "<deviationSensor>" +
+								    	"<Properties><name>deviationSensor #1</name></Properties>" +
+								        "<sensorData>" +
+								            "<Properties>" +
+							            		"<sensorType>Environmental</sensorType>" +	
+							            		"<sensorSubType>Deviation</sensorSubType>" +
+								            	"<distanceX>" + distanceFromLaneCenter + "</distanceX>" +
+								            "</Properties>" +
+								        "</sensorData>" +
+								    "</deviationSensor>" +
+								"</sensors>";
+			}	
+		}
+
+		xml +=              "</exterior>" +
 							"<physicalAttributes><Properties>" +
 								"<latitude>"+latitude+"</latitude>" +
 								"<longitude>"+longitude+"</longitude>" +
 								"<altitude>"+altitude+"</altitude>" +
 								"<orientation>"+orientation+"</orientation>" +
-								"<speed>"+speed+"</speed>" +
+								"<speed>"+ speed +"</speed>" +
 								"<rise>"+rise+"</rise>" +
 								"<accelerationLateral>"+verticalAcceleration+"</accelerationLateral>" +
 								"<rotation>"+rotation+"</rotation>" +

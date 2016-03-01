@@ -49,6 +49,9 @@ public class DrivingTaskLogger
 	 * parameters driver name, driving task file name and type of progress bar will
 	 * be written.
 	 * 
+	 * @param outputFolder
+	 * 			Indicates the folder the log file will be written to. 
+	 * 
 	 * @param driverName
 	 * 			Name of the current driver.
 	 * 
@@ -68,8 +71,10 @@ public class DrivingTaskLogger
 	
 	/**
 	 * Adds a string with time stamp to the output file.
+	 * 
 	 * @param string
 	 * 			String to add.
+	 * 
 	 * @param timestamp
 	 * 			Time stamp for output line.
 	 */

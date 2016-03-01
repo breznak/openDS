@@ -20,8 +20,15 @@
 package eu.opends.main;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.LinkOption;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.LinkedList;
 import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
@@ -30,7 +37,7 @@ import com.jme3.app.state.VideoRecorderAppState;
 import com.jme3.input.Joystick;
 import com.jme3.math.Vector3f;
 import com.jme3.niftygui.NiftyJmeDisplay;
-import com.jme3.system.AppSettings;
+import com.sun.javafx.application.PlatformImpl;
 
 import de.lessvoid.nifty.Nifty;
 import eu.opends.analyzer.DrivingTaskLogger;
@@ -50,6 +57,7 @@ import eu.opends.effects.EffectCenter;
 import eu.opends.environment.TrafficLightCenter;
 import eu.opends.eyetracker.EyetrackerCenter;
 import eu.opends.hmi.HMICenter;
+import eu.opends.input.ForceFeedbackJoystickController;
 import eu.opends.input.KeyBindingCenter;
 import eu.opends.knowledgeBase.KnowledgeBase;
 import eu.opends.multiDriver.MultiDriverClient;
@@ -58,6 +66,7 @@ import eu.opends.oculusRift.OculusRift;
 import eu.opends.reactionCenter.ReactionCenter;
 import eu.opends.settingsController.SettingsControllerServer;
 import eu.opends.taskDescription.contreTask.SteeringTask;
+import eu.opends.taskDescription.tvpTask.MotorwayTask;
 import eu.opends.taskDescription.tvpTask.ThreeVehiclePlatoonTask;
 import eu.opends.tools.CollisionListener;
 import eu.opends.tools.ObjectManipulationCenter;
@@ -67,6 +76,7 @@ import eu.opends.tools.Util;
 import eu.opends.traffic.PhysicalTraffic;
 import eu.opends.trigger.TriggerCenter;
 import eu.opends.visualization.LightningClient;
+import eu.opends.visualization.MoviePlayer;
 
 /**
  * 
@@ -174,6 +184,18 @@ public class Simulator extends SimulationBasics
 		return threeVehiclePlatoonTask;
 	}
 	
+	private MotorwayTask motorwayTask;
+	public MotorwayTask getMotorwayTask()
+	{
+		return motorwayTask;
+	}
+	
+	private MoviePlayer moviePlayer;
+	public MoviePlayer getMoviePlayer()
+	{
+		return moviePlayer;
+	}
+	
 	private ReactionCenter reactionCenter;
 	public ReactionCenter getReactionCenter()
 	{
@@ -208,7 +230,8 @@ public class Simulator extends SimulationBasics
 	public EyetrackerCenter getEyetrackerCenter()
 	{
 		return eyetrackerCenter;
-	}	
+	}
+	
 	
 	private static String outputFolder;
 	public static String getOutputFolder()
@@ -223,6 +246,14 @@ public class Simulator extends SimulationBasics
 		return oculusRift;
 	}
 	*/
+	
+	private ForceFeedbackJoystickController joystickSpringController;
+	public ForceFeedbackJoystickController getJoystickSpringController()
+	{
+		return joystickSpringController;
+	}
+
+	
     @Override
     public void simpleInitApp()
     {
@@ -273,7 +304,7 @@ public class Simulator extends SimulationBasics
     	initDrivingTaskLayers();
     	
     	// show stats if set in driving task
-    	showStats(settingsLoader.getSetting(Setting.General_showStats, false));  	
+    	showStats(settingsLoader.getSetting(Setting.General_showStats, false));
     	
     	// check Oculus Rift mode: auto, enabled, disabled
     	String oculusAttachedString = settingsLoader.getSetting(Setting.OculusRift_isAttached, 
@@ -346,8 +377,6 @@ public class Simulator extends SimulationBasics
 		// init HMICenter
 		HMICenter.init(this);
 
-		HMICenter.sendDataToHmi(settingsLoader.getSetting(Setting.SIMTD_sendDataToHmi, SimulationDefaults.sendDataToHmi));
-
 
 		// open TCP connection to Lightning
 		if(settingsLoader.getSetting(Setting.ExternalVisualization_enableConnection, SimulationDefaults.Lightning_enableConnection))
@@ -389,6 +418,10 @@ public class Simulator extends SimulationBasics
 		
 		threeVehiclePlatoonTask = new ThreeVehiclePlatoonTask(this, driverName);
 		
+		motorwayTask = new MotorwayTask(this);
+		
+		moviePlayer = new MoviePlayer(this);
+		
 		// start effect center
 		effectCenter = new EffectCenter(this);
 		
@@ -425,10 +458,12 @@ public class Simulator extends SimulationBasics
 			eyetrackerCenter = new EyetrackerCenter(this);
 		}
 		
+		joystickSpringController = new ForceFeedbackJoystickController(this);
+		
 		initializationFinished = true;
     }
-    
-    
+
+	
 	private void initDrivingTaskLayers()
 	{
 		String drivingTaskFileName = SimulationDefaults.drivingTaskFileName;
@@ -445,8 +480,9 @@ public class Simulator extends SimulationBasics
 	/**
 	 * That method is going to be executed, when the dataWriter is
 	 * <code>null</code> and the S-key is pressed.
+	 * 
 	 * @param trackNumber 
-	 *
+	 *			Number of track (will be written to the log file).
 	 */
 	public void initializeDataWriter(int trackNumber) 
 	{
@@ -489,7 +525,7 @@ public class Simulator extends SimulationBasics
 				car.update(tpf);
 			
 			// TODO start thread in init-method to update traffic
-			physicalTraffic.update(); 
+			physicalTraffic.update(tpf); 
 			
 			SpeedControlCenter.update();
 			
@@ -503,6 +539,10 @@ public class Simulator extends SimulationBasics
 				//getCameraFlight().play();
 			
 			threeVehiclePlatoonTask.update(tpf);
+			
+			motorwayTask.update(tpf);
+			
+			moviePlayer.update(tpf);
 			
 			if(cameraFlight != null)
 				cameraFlight.update();
@@ -521,13 +561,15 @@ public class Simulator extends SimulationBasics
 			
 			if(eyetrackerCenter != null)
 				eyetrackerCenter.update();
-			
+
     		if(frameCounter == 5)
     		{
     			if(settingsLoader.getSetting(Setting.General_pauseAfterStartup, SimulationDefaults.General_pauseAfterStartup))
     				setPause(true);
     		}
     		frameCounter++;
+    		
+    		joystickSpringController.update(tpf);
     	}
     }
 
@@ -597,6 +639,8 @@ public class Simulator extends SimulationBasics
 			
 			threeVehiclePlatoonTask.close();
 			
+			moviePlayer.stop();
+			
 			reactionCenter.close();
 			
 			HMICenter.close();
@@ -613,11 +657,14 @@ public class Simulator extends SimulationBasics
 			if(eyetrackerCenter != null)
 				eyetrackerCenter.close();
 			
+			joystickSpringController.close();
 			//initDrivingTaskSelectionGUI();
 		}
 
 		super.destroy();
 		logger.info("finished destroy()");
+		
+		PlatformImpl.exit();
 		//System.exit(0);
     }
 	
@@ -626,6 +673,25 @@ public class Simulator extends SimulationBasics
     {    
     	try
     	{
+    		// copy native files of force feedback joystick driver
+    		boolean isWindows = System.getProperty("os.name").toLowerCase().indexOf("win") >= 0;
+    		if(isWindows)
+    		{
+    			boolean is64Bit = System.getProperty("sun.arch.data.model").equalsIgnoreCase("64");
+    			if(is64Bit)
+    			{
+    				copyFile("lib/ffjoystick/native/win64/ffjoystick.dll", "ffjoystick.dll");
+    				copyFile("lib/ffjoystick/native/win64/SDL.dll", "SDL.dll");
+    			}
+    			else
+    			{
+    				copyFile("lib/ffjoystick/native/win32/ffjoystick.dll", "ffjoystick.dll");
+    				copyFile("lib/ffjoystick/native/win32/SDL.dll", "SDL.dll");
+    			}
+    		}
+    	    
+    		 
+    		
     		// load logger configuration file
     		PropertyConfigurator.configure("assets/JasperReports/log4j/log4j.properties");
     		
@@ -642,8 +708,28 @@ public class Simulator extends SimulationBasics
     		// only show severe jme3-logs
     		java.util.logging.Logger.getLogger("").setLevel(java.util.logging.Level.SEVERE);
     		
+    		PlatformImpl.startup(() -> {});
+    		
 	    	Simulator sim = new Simulator();
+    		
+	    	StartPropertiesReader startPropertiesReader = new StartPropertiesReader();
 
+			sim.setSettings(startPropertiesReader.getSettings(sim));
+
+			// show/hide settings screen
+			sim.setShowSettings(startPropertiesReader.showSettingsScreen());
+			
+			if(!startPropertiesReader.getDrivingTaskPath().isEmpty() &&
+					DrivingTask.isValidDrivingTask(new File(startPropertiesReader.getDrivingTaskPath())))
+    		{
+    			SimulationDefaults.drivingTaskFileName = startPropertiesReader.getDrivingTaskPath();
+    			sim.drivingTaskGiven = true;
+    		}
+			
+			if(!startPropertiesReader.getDriverName().isEmpty())
+				SimulationDefaults.driverName = startPropertiesReader.getDriverName();
+			
+			
 	    	if(args.length >= 1)
 	    	{
 	    		if(DrivingTask.isValidDrivingTask(new File(args[0])))
@@ -658,28 +744,8 @@ public class Simulator extends SimulationBasics
 	    		SimulationDefaults.driverName = args[1];
 	    	}
 			
-	    	AppSettings settings = new AppSettings(false);
-	        settings.setUseJoysticks(true);
-	        settings.setSettingsDialogImage("OpenDS.png");
-	        settings.setTitle("OpenDS");
-	        
-	        // set splash screen parameters
-	        /*
-	        settings.setFullscreen(false);
-	        settings.setResolution(1280, 720);
-	        settings.setSamples(4);
-	        settings.setBitsPerPixel(24);
-	        settings.setVSync(false);
-	        settings.setFrequency(60);
-	        */
-	        
-			sim.setSettings(settings);
-
-			// TODO show/hide splash screen
-			//sim.setShowSettings(false);
-			
-			sim.setPauseOnLostFocus(false);
-			
+	    	sim.setPauseOnLostFocus(false);
+	    	
 			sim.start();
     	}
     	catch(Exception e1)
@@ -687,4 +753,23 @@ public class Simulator extends SimulationBasics
     		logger.fatal("Could not run main method:", e1);
     	}
     }
+
+    
+	private static void copyFile(String sourceString, String targetString) 
+	{
+		try {
+			
+			Path source = Paths.get(sourceString);
+			Path target = Paths.get(targetString);
+			
+			if(Files.exists(source, LinkOption.NOFOLLOW_LINKS))
+				Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
+			else
+				System.err.println("ERROR: '" + sourceString + "' does not exist.");
+		
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+	}
 }

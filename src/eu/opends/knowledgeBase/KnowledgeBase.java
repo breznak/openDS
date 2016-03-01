@@ -61,12 +61,18 @@ final public class KnowledgeBase extends Thread
 	/**
 	 * Sets whether the knowledge base tries to connect to a KAPcom server running on the local machine and default port.
 	 * If false, then the knowledge is initialized with off-line defaults.
+	 * 
+	 * @param value
+	 * 			If false, then the knowledge is initialized with off-line defaults.
 	 */
 	public void setConnect(boolean value) {connect = value;}
 	public boolean getConnect() {return connect;}
 
 	/**
 	 * If set to true, it is silently ignored if KAPcom is not available, and the off-line model is used instead.
+	 * 
+	 * @param value
+	 * 			If set to true, it is silently ignored if KAPcom is not available, and the off-line model is used instead.
 	 */
 	public void setFallback(boolean value) {fallback = value;}
 	public boolean getFallback() {return fallback;}
@@ -74,18 +80,32 @@ final public class KnowledgeBase extends Thread
 	/**
 	 * Sets the language for all knowledge management related functions. Use <b>de-DE</b> for German and <b>en-US</b> for English. 
 	 * The default is German.
+	 * 
+	 * @param value
+	 * 			Set language.
 	 */
 	public void setCulture(String value) {culture = value;}
 	public String getCulture() {return culture;}
 	
 	/**
 	 * Sets the interval (in milliseconds) in which position (and other) is sent to KAPcom for use by other services. 0 to disable.
+	 * @param value
+	 * 			Set interval.
 	 */
 	public void setOutgoingUpdateIntervalMillis(int value) {outgoingUpdateIntervalMsec = value;}
 	public int getOutgoingUpdateIntervalMillis() {return outgoingUpdateIntervalMsec;}
 
 	/**
 	 * Initializes the knowledge store. This might establish a connection to KAPcom.
+	 * 
+	 * @param sim
+	 * 			Simulator.
+	 * 
+	 * @param host
+	 * 			IP of host machine.
+	 * 
+	 * @param port
+	 * 			Port used for connection.
 	 */
 	public void Initialize(SimulationBasics sim, String host, int port)
 	{
@@ -127,6 +147,9 @@ final public class KnowledgeBase extends Thread
 	
 	/**
 	 * Returns whether KAPcom access is currently enabled. It does not test the actual connectivity.
+	 * 
+	 * @return
+	 * 			True, if KAPcom access is currently enabled.
 	 */
 	public boolean isConnected()
 	{
@@ -226,7 +249,7 @@ final public class KnowledgeBase extends Thread
 				lastOutgoingUpdate = System.currentTimeMillis();
 				try{
 					if(sim instanceof Simulator)
-						getVehicle().sendCarData(((Simulator)sim).getCar());
+						getVehicle().sendCarData(((Simulator)sim));
 					else if(sim instanceof DriveAnalyzer)
 						getVehicle().sendAnalyzerData(((DriveAnalyzer)sim).getCurrentDataUnit());
 				} catch (Exception ex) {

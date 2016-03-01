@@ -45,6 +45,7 @@ public class TurnSignalThread extends Thread
 	
 	public TurnSignalThread(LightTexturesContainer lightTexturesContainer, Simulator sim, Car car)
 	{
+		super("TurnSignalThread");
 		this.lightTexturesContainer = lightTexturesContainer;
 		this.sim = sim;
 		this.car = car;

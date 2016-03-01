@@ -49,7 +49,7 @@ import eu.opends.tools.Util;
  * 
  * @author Rafael Math
  */
-public class TrafficCar extends Car
+public class TrafficCar extends Car implements TrafficObject
 {
 	private String name;
 	private FollowBox followBox;
@@ -165,7 +165,8 @@ public class TrafficCar extends Car
 	}
 	
 	
-	public void update(ArrayList<TrafficCar> vehicleList) 
+	@Override
+	public void update(float tpf, ArrayList<TrafficObject> vehicleList) 
 	{
 		if(!sim.isPause())
 		{
@@ -296,7 +297,7 @@ public class TrafficCar extends Car
 	}
 
 	
-	private void updateSpeed(ArrayList<TrafficCar> vehicleList) 
+	private void updateSpeed(ArrayList<TrafficObject> vehicleList) 
 	{
 		float targetSpeed = getTargetSpeed();
 		
@@ -401,14 +402,14 @@ public class TrafficCar extends Car
 	}
 
 
-	private boolean obstaclesInTheWay(ArrayList<TrafficCar> vehicleList)
+	private boolean obstaclesInTheWay(ArrayList<TrafficObject> vehicleList)
 	{
 		// check distance from driving car
 		if(obstacleTooClose(sim.getCar().getPosition()))
 			return true;
 
 		// check distance from other traffic (except oneself)
-		for(TrafficCar vehicle : vehicleList)
+		for(TrafficObject vehicle : vehicleList)
 		{
 			if(!vehicle.getName().equals(name))		
 				if(obstacleTooClose(vehicle.getPosition()))
@@ -417,7 +418,7 @@ public class TrafficCar extends Car
 		
 		// check if red traffic light ahead
 		Waypoint nextWayPoint = followBox.getNextWayPoint();
-		if(hasRedTrafficLight(nextWayPoint))
+		if(TrafficLightCenter.hasRedTrafficLight(nextWayPoint))
 			if(obstacleTooClose(nextWayPoint.getPosition()))
 				return true;
 		
@@ -473,27 +474,6 @@ public class TrafficCar extends Car
 		return false;
 	}
 
-	
-	private boolean hasRedTrafficLight(Waypoint wayPoint)
-	{
-		if(wayPoint != null)
-		{
-			String trafficLightID = wayPoint.getTrafficLightID();
-			
-			TrafficLight trafficLight = TrafficLightCenter.getTrafficLightByName(trafficLightID);
-
-			if(trafficLight != null &&
-				 (
-					trafficLight.getState() == TrafficLightState.RED ||
-					trafficLight.getState() == TrafficLightState.YELLOW ||
-					trafficLight.getState() == TrafficLightState.YELLOWRED
-				 )
-			  )
-				return true;
-		}
-		return false;
-	}
-
 
 	private void updateLightState() 
 	{
@@ -527,6 +507,5 @@ public class TrafficCar extends Car
 	{
 		overwriteSpeed = speed;
 	}
-
 
 }

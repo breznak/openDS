@@ -43,7 +43,7 @@ import eu.opends.main.Simulator;
 public class FollowBox 
 {
 	private Simulator sim;
-	private TrafficCar vehicle;
+	private TrafficObject trafficObject;
 	private FollowBoxSettings settings;
 	private List<Waypoint> waypointList;
 	private float maxDistance;
@@ -57,10 +57,10 @@ public class FollowBox
 	private boolean waitForNextUpdate = true;
 
 	
-	public FollowBox(Simulator sim, final TrafficCar vehicle, FollowBoxSettings settings)
+	public FollowBox(Simulator sim, final TrafficObject trafficObject, FollowBoxSettings settings)
 	{
 		this.sim = sim;
-		this.vehicle = vehicle;
+		this.trafficObject = trafficObject;
 		this.settings = settings;
 		
 		waypointList = settings.getWayPoints();
@@ -94,7 +94,7 @@ public class FollowBox
             	// if last way point reached
                 if (motionPath.getNbWayPoints() == wayPointIndex + 1) 
                 {
-                	// reset vehicle to first way point if not cyclic
+                	// reset traffic object to first way point if not cyclic
                 	if(!motionPath.isCycle())
                 	{
                 		setToWayPoint(0);
@@ -134,12 +134,12 @@ public class FollowBox
 	}
 
 	int counter = 0;
-	public void update(Vector3f vehiclePos)
+	public void update(Vector3f trafficObjectPos)
 	{
-		// pause movement of follower box if vehicle's distance
+		// pause movement of follower box if traffic object's distance
 		// has exceeded maximum
 		/*
-		if(maxDistanceExceeded(vehiclePos) || sim.isPause())
+		if(maxDistanceExceeded(trafficObjectPos) || sim.isPause())
 			//motionControl.setSpeed(0f);
 			motionControl.pause();
 		else
@@ -156,9 +156,9 @@ public class FollowBox
 		else
 		{
 			float minDistance = 1.0f;
-			float currentDistance = getCurrentDistance(vehiclePos);
+			float currentDistance = getCurrentDistance(trafficObjectPos);
 			
-			//if(vehicle.getName().equals("car1"))
+			//if(trafficObject.getName().equals("car1"))
 			//	System.err.println(currentDistance);
 			
 			// set limits
@@ -170,10 +170,10 @@ public class FollowBox
 			motionControl.setSpeed(factor);
 		}
 		
-		// if new WP to set vehicle available, wait for NEXT update and set
+		// if new WP to set traffic object available, wait for NEXT update and set
 		if(isTargetWayPointAvailable && (waitForNextUpdate = !waitForNextUpdate))
 		{
-			// set vehicle to new position
+			// set traffic object to new position
 	        performWayPointChange(targetWayPointIndex);
 	        isTargetWayPointAvailable = false;
 		}
@@ -187,11 +187,14 @@ public class FollowBox
 		int currentWayPointIndex = motionControl.getCurrentWayPoint() % waypointList.size();
 		if(currentWayPointIndex != previousWayPointIndex)
 		{
+			if(waitAtWP(currentWayPointIndex))
+				return;
+				
         	// set speed limit for next way point
         	float speed = waypointList.get(currentWayPointIndex).getSpeed();
         	setSpeed(speed);
         	
-        	// if last WP reached and path not cyclic --> reset vehicle to first WP
+        	// if last WP reached and path not cyclic --> reset traffic object to first WP
             if (currentWayPointIndex == 0 && !motionPath.isCycle())
             	performWayPointChange(0);
             
@@ -202,6 +205,55 @@ public class FollowBox
 	}
 
 	
+	boolean isSetWaitTimer = false;
+	long waitTimer = 0;
+	private boolean waitAtWP(int currentWayPointIndex)
+	{
+		// get waiting time at upcoming way point (if available)
+		Integer waitingTime = waypointList.get(currentWayPointIndex).getWaitingTime();
+		
+		if(waitingTime == null || waitingTime <= 0)
+		{
+			// no (or invalid waiting time) --> do not wait
+			return false;
+		}
+		else
+		{
+			// valid waiting time available
+			if(!isSetWaitTimer)
+			{
+				// waiting timer not yet set --> set timer to current time stamp and wait
+				waitTimer = System.currentTimeMillis();
+				isSetWaitTimer = true;
+				
+				motionControl.pause();
+				//System.err.println("WAIT");
+				
+				return true;
+			}
+			else
+			{
+				// waiting timer already set --> check if elapsed
+				if(System.currentTimeMillis()-waitTimer > waitingTime)
+				{
+					// waiting timer elapsed --> stop waiting and resume motion
+					motionControl.play();
+					//System.err.println("RESUME");
+					
+					isSetWaitTimer = false;
+					
+					return false;
+				}
+				else 
+				{
+					// waiting timer not elapsed --> wait
+					return true;
+				}
+			}
+		}
+	}
+
+
 	public void setToWayPoint(int index)
 	{
 		if(0 <= index && index < waypointList.size())
@@ -225,14 +277,14 @@ public class FollowBox
         
         //System.err.println("SET: dist " + traveledDistance + ", time: " + traveledTime + ", index: " + index);
 		
-		// set position to vehicle
+		// set position to traffic object
 		Vector3f position = waypointList.get(index).getPosition();
-		vehicle.setPosition(position);
+		trafficObject.setPosition(position);
 		
-		// set heading to vehicle
+		// set heading to traffic object
 		float heading = getHeadingAtWP(index);
 		Quaternion quaternion = new Quaternion().fromAngles(0, heading, 0);
-		vehicle.setRotation(quaternion);
+		trafficObject.setRotation(quaternion);
 	}
 	
 	
@@ -419,26 +471,26 @@ public class FollowBox
     }
     
 
-	private float getCurrentDistance(Vector3f vehiclePos) 
+	private float getCurrentDistance(Vector3f trafficObjectPos) 
 	{
 		// get box's position on xz-plane (ignore y component)
 		Vector3f followBoxPosition = getPosition();
 		followBoxPosition.setY(0);
 		
-		// get vehicle's position on xz-plane (ignore y component)
-		Vector3f vehiclePosition = vehiclePos;
-		vehiclePosition.setY(0);
+		// get traffic object's position on xz-plane (ignore y component)
+		Vector3f trafficObjectPosition = trafficObjectPos;
+		trafficObjectPosition.setY(0);
 		
-		// distance between box and vehicle
-		float currentDistance = followBoxPosition.distance(vehiclePosition);
+		// distance between box and trafficObject
+		float currentDistance = followBoxPosition.distance(trafficObjectPosition);
 		return currentDistance;
 	}
 	
 	
     /*
-	private boolean maxDistanceExceeded(Vector3f vehiclePos) 
+	private boolean maxDistanceExceeded(Vector3f trafficObjectPos) 
 	{
-		float currentDistance = getCurrentDistance(vehiclePos);
+		float currentDistance = getCurrentDistance(trafficObjectPos);
 		
 		// report whether maximum distance is exceeded 
 		return currentDistance > maxDistance;
@@ -468,7 +520,7 @@ public class FollowBox
 			float targetSpeedInKmh = nextWP.getSpeed();
 			float targetSpeed = targetSpeedInKmh / 3.6f;
 			
-			// if speed at the next WP is lower than at the current WP --> brake vehicle
+			// if speed at the next WP is lower than at the current WP --> brake traffic object
 			if(targetSpeed < currentSpeed)
 			{
 				// % of traveled distance between current and next way point
@@ -487,9 +539,9 @@ public class FollowBox
 				// speed difference in m/s between current WP's speed and next WP's speed
 				float speedDifference = currentSpeed - targetSpeed;
 				
-				// compute the distance in front of the next WP at what the vehicle has to start 
+				// compute the distance in front of the next WP at what the traffic object has to start 
 				// braking with 50% brake force in order to reach the next WP's (lower) speed in time.
-				float deceleration50Percent = 50f * vehicle.getMaxBrakeForce()/vehicle.getMass();
+				float deceleration50Percent = 50f * trafficObject.getMaxBrakeForce()/trafficObject.getMass();
 				
 				// time in seconds needed for braking process
 				float time = speedDifference / deceleration50Percent;
@@ -514,11 +566,11 @@ public class FollowBox
 					reducedSpeedInKmh = reducedSpeed * 3.6f;
 					
 					/*
-					if(vehicle.getName().equals("car1"))
+					if(trafficObject.getName().equals("car1"))
 					{
-						float vehicleSpeedInKmh = vehicle.getLinearSpeedInKmh();
+						float trafficObjectSpeedInKmh = trafficObject.getLinearSpeedInKmh();
 						System.out.println(curentWP.getName() + " : " + speedPercentage + " : " + 
-								reducedSpeedInKmh + " : " + vehicleSpeedInKmh + " : " + targetSpeedInKmh);
+								reducedSpeedInKmh + " : " + trafficObjectSpeedInKmh + " : " + targetSpeedInKmh);
 					}
 					*/
 				}

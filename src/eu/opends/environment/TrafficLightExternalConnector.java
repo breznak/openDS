@@ -50,7 +50,7 @@ public class TrafficLightExternalConnector extends Thread
 	 */
 	public TrafficLightExternalConnector(Simulator sim, int port, int packetsize)
 	{
-		super();
+		super("TrafficLightExternalConnectorThread");
 		this.sim = sim;
 		stoprequested = false;
 

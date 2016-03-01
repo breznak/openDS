@@ -38,6 +38,12 @@ public class SendMessageTriggerAction extends TriggerAction
 	 * Creates a new SendMessage trigger action instance, providing message 
 	 * text and duration.
 	 * 
+	 * @param delay
+	 * 			Amount of seconds (float) to wait before the TriggerAction will be executed.
+	 * 
+	 * @param maxRepeat
+	 * 			Maximum number how often the trigger can be hit (0 = infinite).
+	 * 
 	 * @param message
 	 * 			Message text which will be displayed on trigger collision.
 	 * 

@@ -59,7 +59,25 @@ public class JasperReport
 
     
     /**
-     * Constructor, that creates database connection and prepared statement for fast query execution
+     * Constructor, that creates database connection and prepared statement for fast query execution.
+     * 
+     * @param reportTemplate
+     * 			Path of report template file.
+     * 
+     * @param url
+     * 			URL of database.
+     * 
+     * @param user
+     * 			User name for database access.
+     * 
+     * @param pass
+     * 			Password for database access.
+     * 
+     * @param table
+     * 			Database table.
+     * 
+     * @param useAdditionalTable
+     * 			If true, additional table will be created.
      */
     public JasperReport(String reportTemplate, String url, String user, String pass, String table,
     		boolean useAdditionalTable) 

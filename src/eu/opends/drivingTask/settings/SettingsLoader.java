@@ -66,7 +66,6 @@ public class SettingsLoader
 		General_rightMirror_verticalAngle("settings:general/settings:rightMirror/settings:verticalAngle"),
 		General_numberOfScreens("settings:general/settings:numberOfScreens"),
 		General_angleBetweenAdjacentCameras("settings:general/settings:angleBetweenAdjacentCameras"),
-		General_frameOfView("settings:general/settings:frameOfView"),
 		General_frustumNear("settings:general/settings:frustumNear"),
 		General_frustumFar("settings:general/settings:frustumFar"),
 		General_showStats("settings:general/settings:showStats"),
@@ -91,16 +90,14 @@ public class SettingsLoader
 		General_topView_verticalDistance("settings:general/settings:topView/settings:verticalDistance"),
 		General_topView_carOffset("settings:general/settings:topView/settings:carOffset"),
 		General_captureVideo("settings:general/settings:captureVideo"),
+		General_cameraMode("settings:general/settings:cameraMode"),
 		Analyzer_fileName("settings:analyzer/settings:fileName"),
 		Analyzer_suppressPDFPopup("settings:analyzer/settings:suppressPDFPopup"), 
 		ObjectLocator_enable("settings:objectLocator/settings:enable"),
 		ObjectLocator_fileName("settings:objectLocator/settings:fileName"),
-		SIMTD_sendDataToHmi("settings:SIMTD/settings:sendDataToHmi"),
-		SIMTD_startGui("settings:SIMTD/settings:startGui"),
-		SIMTD_hmiNativePath("settings:SIMTD/settings:hmiNativePath"),
-		SIMTD_hmiNativeExecutable("settings:SIMTD/settings:hmiNativeExecutable"),
-		SIMTD_ip("settings:SIMTD/settings:ip"),
-		SIMTD_port("settings:SIMTD/settings:port"),
+		HMI_enableConnection("settings:HMI/settings:enableConnection"),
+		HMI_ip("settings:HMI/settings:ip"),
+		HMI_port("settings:HMI/settings:port"),
 		ExternalVisualization_enableConnection("settings:externalVisualization/settings:enableConnection"),
 		ExternalVisualization_ip("settings:externalVisualization/settings:ip"),
 		ExternalVisualization_port("settings:externalVisualization/settings:port"),
@@ -133,13 +130,29 @@ public class SettingsLoader
 		ReactionMeasurement_groupBlue("settings:reactionMeasurement/settings:groupBlue"),
 		ReactionMeasurement_groupMagenta("settings:reactionMeasurement/settings:groupMagenta"),
 		Joystick_dumpJoystickList("settings:controllers/settings:joystick/settings:dumpJoystickList"),
-		Joystick_controllerID("settings:controllers/settings:joystick/settings:controllerID"),
-		Joystick_steeringAxis("settings:controllers/settings:joystick/settings:steeringAxis"),
-		Joystick_invertSteeringAxis("settings:controllers/settings:joystick/settings:invertSteeringAxis"),
-		Joystick_pedalAxis("settings:controllers/settings:joystick/settings:pedalAxis"),
-		Joystick_invertPedalAxis("settings:controllers/settings:joystick/settings:invertPedalAxis"),
-		Joystick_steeringSensitivityFactor("settings:controllers/settings:joystick/settings:steeringSensitivityFactor"),
-		Joystick_pedalSensitivityFactor("settings:controllers/settings:joystick/settings:pedalSensitivityFactor"),
+		Joystick_steeringControllerID("settings:controllers/settings:joystick/settings:steering/@controllerID"),
+		Joystick_steeringAxis("settings:controllers/settings:joystick/settings:steering/@axisID"),
+		Joystick_invertSteeringAxis("settings:controllers/settings:joystick/settings:steering/@invert"),
+		Joystick_steeringSensitivityFactor("settings:controllers/settings:joystick/settings:steering/@sensitivity"),
+		Joystick_combinedPedalsControllerID("settings:controllers/settings:joystick/settings:combinedPedals/@controllerID"),
+		Joystick_combinedPedalsAxis("settings:controllers/settings:joystick/settings:combinedPedals/@axisID"),
+		Joystick_invertCombinedPedalsAxis("settings:controllers/settings:joystick/settings:combinedPedals/@invert"),
+		Joystick_combinedPedalsSensitivityFactor("settings:controllers/settings:joystick/settings:combinedPedals/@sensitivity"),
+		Joystick_acceleratorControllerID("settings:controllers/settings:joystick/settings:accelerator/@controllerID"),
+		Joystick_acceleratorAxis("settings:controllers/settings:joystick/settings:accelerator/@axisID"),
+		Joystick_invertAcceleratorAxis("settings:controllers/settings:joystick/settings:accelerator/@invert"),
+		Joystick_acceleratorSensitivityFactor("settings:controllers/settings:joystick/settings:accelerator/@sensitivity"),
+		Joystick_brakeControllerID("settings:controllers/settings:joystick/settings:brake/@controllerID"),
+		Joystick_brakeAxis("settings:controllers/settings:joystick/settings:brake/@axisID"),
+		Joystick_invertBrakeAxis("settings:controllers/settings:joystick/settings:brake/@invert"),
+		Joystick_brakeSensitivityFactor("settings:controllers/settings:joystick/settings:brake/@sensitivity"),
+		Joystick_clutchControllerID("settings:controllers/settings:joystick/settings:clutch/@controllerID"),
+		Joystick_clutchAxis("settings:controllers/settings:joystick/settings:clutch/@axisID"),
+		Joystick_invertClutchAxis("settings:controllers/settings:joystick/settings:clutch/@invert"),
+		Joystick_clutchSensitivityFactor("settings:controllers/settings:joystick/settings:clutch/@sensitivity"),
+		Joystick_enableForceFeedback("settings:controllers/settings:joystick/settings:enableForceFeedback"),
+		Joystick_springForce("settings:controllers/settings:joystick/settings:springForce"),
+		Joystick_damperForce("settings:controllers/settings:joystick/settings:damperForce"),
 		Mouse_scrollSensitivityFactor("settings:controllers/settings:mouse/settings:scrollSensitivityFactor"),
 		Mouse_minScrollZoom("settings:controllers/settings:mouse/settings:minScrollZoom"),
 		Mouse_maxScrollZoom("settings:controllers/settings:mouse/settings:maxScrollZoom"), 
@@ -331,6 +344,17 @@ public class SettingsLoader
 	 * and writes the data to the global variable with the same name. If this was 
 	 * successful, the global variable "isSet_&lt;name&gt;" will be set to true. 
 	 * 
+	 * @param <T>
+	 * 			Type of property to look up.
+	 * 
+	 * @param setting
+	 * 			Property to look up.
+	 * 
+	 * @param defaultValue
+	 * 			Default value (will be returned if no valid property could be found).
+	 * 
+	 * @return
+	 * 			Value of the property.
 	 */
 	public <T> T getSetting(Setting setting, T defaultValue)
 	{		

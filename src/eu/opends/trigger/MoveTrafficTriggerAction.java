@@ -21,7 +21,7 @@ package eu.opends.trigger;
 import eu.opends.basics.SimulationBasics;
 import eu.opends.main.Simulator;
 import eu.opends.traffic.PhysicalTraffic;
-import eu.opends.traffic.TrafficCar;
+import eu.opends.traffic.TrafficObject;
 
 
 /**
@@ -34,7 +34,7 @@ import eu.opends.traffic.TrafficCar;
 public class MoveTrafficTriggerAction extends TriggerAction 
 {
 	private SimulationBasics sim;
-	private String trafficCarName;
+	private String trafficObjectName;
 	private String wayPointID;
 	
 	
@@ -42,26 +42,32 @@ public class MoveTrafficTriggerAction extends TriggerAction
 	 * Creates a new MoveTraffic trigger action instance, providing traffic 
 	 * object's name and way point's ID.
 	 * 
+	 * @param sim
+	 * 			Simulator
+	 * 
+	 * @param delay
+	 * 			Amount of seconds (float) to wait before the TriggerAction will be executed.
+	 * 
 	 * @param maxRepeat
 	 * 			Number of maximum recurrences
 	 * 
-	 * @param trafficCarName
+	 * @param trafficObjectName
 	 * 			Name of the traffic object to move.
 	 * 
 	 * @param wayPointID
 	 * 			ID of the way point to move the traffic object to.
 	 */
-	public MoveTrafficTriggerAction(SimulationBasics sim, float delay, int maxRepeat, String trafficCarName, String wayPointID) 
+	public MoveTrafficTriggerAction(SimulationBasics sim, float delay, int maxRepeat, String trafficObjectName, String wayPointID) 
 	{
 		super(delay, maxRepeat);
 		this.sim = sim;
-		this.trafficCarName = trafficCarName;
+		this.trafficObjectName = trafficObjectName;
 		this.wayPointID = wayPointID;
 	}
 
 	
 	/**
-	 * Moves the given traffic participant to the given way point
+	 * Moves the given traffic object to the given way point
 	 */
 	@Override
 	protected void execute() 
@@ -71,10 +77,10 @@ public class MoveTrafficTriggerAction extends TriggerAction
 			if(sim instanceof Simulator)
 			{
 				PhysicalTraffic physicalTraffic = ((Simulator)sim).getPhysicalTraffic();
-				TrafficCar vehicle = physicalTraffic.getTrafficCar(trafficCarName);
+				TrafficObject trafficObject = physicalTraffic.getTrafficObject(trafficObjectName);
 				
-				if(vehicle != null)
-					vehicle.setToWayPoint(wayPointID);
+				if(trafficObject != null)
+					trafficObject.setToWayPoint(wayPointID);
 				
 				updateCounter();
 			}

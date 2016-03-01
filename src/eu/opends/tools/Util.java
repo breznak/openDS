@@ -31,6 +31,7 @@ import com.jme3.math.Vector3f;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
+import com.jme3.scene.Spatial.CullHint;
 
 /**
  * 
@@ -172,6 +173,13 @@ public class Util
     	for(Geometry geometry : geometryList)
     		geometry.getMaterial().getAdditionalRenderState().setWireframe(enable);
 	}
+	
+	public static void setCullHint(Spatial spatial, CullHint cullHint)
+	{
+		List<Geometry> geometryList = getAllGeometries(spatial);
+    	for(Geometry geometry : geometryList)
+    		geometry.setCullHint(cullHint);
+	}
     
 	public static void open(String fileName)
 	{  	  
@@ -215,6 +223,9 @@ public class Util
 
 	/**
 	 * Makes the given directory if it not yet exists.
+	 *
+	 * @param directory
+	 * 			Directory to make.
 	 */
 	public static void makeDirectory(String directory) 
 	{

@@ -29,7 +29,8 @@ import eu.opends.main.Simulator;
 public class PhysicalTraffic extends Thread
 {
 	private static ArrayList<TrafficCarData> vehicleDataList = new ArrayList<TrafficCarData>();
-    private static ArrayList<TrafficCar> vehicleList = new ArrayList<TrafficCar>();
+	private static ArrayList<PedestrianData> pedestrianDataList = new ArrayList<PedestrianData>();
+    private static ArrayList<TrafficObject> trafficObjectList = new ArrayList<TrafficObject>();
 	private boolean isRunning = true;
 	private int updateIntervalMsec = 20;
 	private long lastUpdate = 0;
@@ -39,8 +40,14 @@ public class PhysicalTraffic extends Thread
 	{
 		for(TrafficCarData vehicleData : vehicleDataList)
 		{
-			// build and add traffic car
-			vehicleList.add(new TrafficCar(sim, vehicleData));
+			// build and add traffic cars
+			trafficObjectList.add(new TrafficCar(sim, vehicleData));
+		}
+
+		for(PedestrianData pedestrianData : pedestrianDataList)
+		{
+			// build and add pedestrians
+			trafficObjectList.add(new Pedestrian(sim, pedestrianData));
 		}
 	}
 	
@@ -49,33 +56,39 @@ public class PhysicalTraffic extends Thread
     {
     	return vehicleDataList;
     }
+    
+    
+    public static ArrayList<PedestrianData> getPedestrianDataList()
+    {
+    	return pedestrianDataList;
+    }
 
     
-	public static ArrayList<TrafficCar> getVehicleList() 
+	public static ArrayList<TrafficObject> getTrafficObjectList() 
 	{
-		return vehicleList;		
+		return trafficObjectList;		
 	}
 
 	
-	public TrafficCar getTrafficCar(String trafficCarName) 
+	public TrafficObject getTrafficObject(String trafficObjectName) 
 	{
-		for(TrafficCar vehicle : vehicleList)
+		for(TrafficObject trafficObject : trafficObjectList)
 		{
-			if(vehicle.getName().equals(trafficCarName))
-				return vehicle;
+			if(trafficObject.getName().equals(trafficObjectName))
+				return trafficObject;
 		}
 		
 		return null;
 	}
 	
 	
-	public void run()
+	public void run(float tpf)
 	{
-		if(vehicleList.size() >= 1)
+		if(trafficObjectList.size() >= 1)
 		{
 			/*
-			for(TrafficCar vehicle : vehicleList)
-				vehicle.showInfo();
+			for(TrafficObject trafficObject : trafficObjectList)
+				trafficObject.showInfo();
 			*/
 			
 			while (isRunning) 
@@ -86,9 +99,9 @@ public class PhysicalTraffic extends Thread
 				{
 					lastUpdate = System.currentTimeMillis();
 					
-					// update every vehicle
-					for(TrafficCar vehicle : vehicleList)
-						vehicle.update(vehicleList);
+					// update every traffic object
+					for(TrafficObject trafficObject : trafficObjectList)
+						trafficObject.update(tpf, trafficObjectList);
 				}
 				else
 				{
@@ -106,10 +119,10 @@ public class PhysicalTraffic extends Thread
 	
 	
 	// TODO use thread instead
-	public void update()
+	public void update(float tpf)
 	{
-		for(TrafficCar vehicle : vehicleList)
-			vehicle.update(vehicleList);	
+		for(TrafficObject trafficObject : trafficObjectList)
+			trafficObject.update(tpf, trafficObjectList);	
 	}
 
 
@@ -117,9 +130,10 @@ public class PhysicalTraffic extends Thread
 	{
 		isRunning = false;
 		
-		// close all traffic cars
-		for(TrafficCar vehicle : vehicleList)
-			vehicle.close();
+		// close all traffic objects
+		for(TrafficObject trafficObject : trafficObjectList)
+			if(trafficObject instanceof TrafficCar)
+				((TrafficCar) trafficObject).close();
 	}
 
 

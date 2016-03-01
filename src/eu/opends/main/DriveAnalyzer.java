@@ -477,6 +477,7 @@ public class DriveAnalyzer extends SimulationBasics
 	 * specifies which of the neighbors in the data-point list should be taken.
 	 * 
 	 * @param direction
+	 * 			Specifies which of the neighbors (1 or -1) in the data-point list should be taken.
 	 */
 	public void moveFocus(int direction) 
 	{

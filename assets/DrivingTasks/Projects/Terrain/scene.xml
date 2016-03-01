@@ -39,7 +39,7 @@
             
             <shadowMode>Off</shadowMode>
         </model>
-		
+		 
 		<model id="driverCar" key="Models/Cars/drivingCars/CitroenC4/Car.j3o">
 			<mass>800</mass>
 			<visible>true</visible>
@@ -70,7 +70,7 @@
 			</translation>
 	
 		</model>
-
+		
 	</models>
 
     <geometries>

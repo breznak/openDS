@@ -32,10 +32,6 @@ public class SimulationDefaults
 	
 	public static Boolean General_pauseAfterStartup = false;
 	
-	// currently for Microsoft Windows users only
-	public static boolean startSimTdHmiGui = false;
-	public static boolean sendDataToHmi = false;
-	
 	public static boolean Lightning_enableConnection = false;
 	public static String Lightning_ip = "192.168.0.1";
 	public static int Lightning_port = 1234;

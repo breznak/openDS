@@ -65,6 +65,8 @@ public abstract class Car
     protected float steeringInfluenceByCrosswind = 0;
     protected float acceleratorPedalIntensity;
     protected float brakePedalIntensity;
+    protected float clutchPedalIntensity;
+    protected float traction = 0.0f;
     protected int resetPositionCounter;
     protected Vector3f previousPosition;
     private float distanceOfCurrentFrame = 0;
@@ -421,25 +423,24 @@ public abstract class Car
 	 * @param intensity
 	 *            -1 for full ahead and 1 for full backwards
 	 */
-	// will be called, whenever UP or DOWN arrow key is pressed
 	public void setAcceleratorPedalIntensity(float intensity) 
 	{
 		acceleratorPedalIntensity = intensity;
 	}
 
 	
-	public float getGasPedalPressIntensity() 
+	public float getAcceleratorPedalIntensity() 
 	{
 		return Math.abs(acceleratorPedalIntensity);
 	}
 
 
 	/**
-	 * Brake
+	 * Brake pedal
+	 * 
 	 * @param intensity
 	 *            1 for full brake, 0 no brake at all
 	 */
-	// will be called, whenever SPACE key is pressed
 	public void setBrakePedalIntensity(float intensity) 
 	{
 		brakePedalIntensity = intensity;
@@ -447,12 +448,49 @@ public abstract class Car
 	}
 	
 	
-	public float getBrakePedalPressIntensity() 
+	public float getBrakePedalIntensity() 
 	{
 		return brakePedalIntensity;
 	}
 
+	
+	/**
+	 * Clutch pedal
+	 * 
+	 * @param intensity
+	 *            1 for fully pressed, 0 for fully released clutch pedal
+	 */
+	public void setClutchPedalIntensity(float intensity)
+	{		
+		clutchPedalIntensity = intensity;
+	}
+	
+	
+	public float getClutchPedalIntensity() 
+	{
+		return clutchPedalIntensity;
+	}
 
+	
+	float previousClutchPedalIntensity = 0;
+	public float getTraction() 
+	{
+		if(clutchPedalIntensity < 0.4f && isEngineOn())
+		{
+			if(FastMath.abs(previousClutchPedalIntensity-clutchPedalIntensity) < 0.05f)
+				traction = Math.min(1.0f, traction + 0.0005f);
+			else
+				traction = (0.4f - clutchPedalIntensity)*2.5f;
+		}
+		else
+			traction = 0;
+		
+		previousClutchPedalIntensity = clutchPedalIntensity;
+		
+		return traction;
+	}
+	
+	
 	/**
 	 * Free wheel
 	 */

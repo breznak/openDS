@@ -44,6 +44,9 @@ public class DeviationComputer
 	
 	/**
 	 * Creates a new deviation computer
+	 * 
+	 * @param wayPoints
+	 * 			list of way points
 	 */
 	public DeviationComputer(ArrayList<Vector3f> wayPoints)
 	{
@@ -75,7 +78,10 @@ public class DeviationComputer
 
 	
 	/**
-	 * This method returns all ideal lines that could be found to the waypoints
+	 * This method returns all ideal lines
+	 * 
+	 * @return
+	 * 			list of all ideal lines
 	*/	
 	public ArrayList<IdealLine> getIdealLines()
 	{

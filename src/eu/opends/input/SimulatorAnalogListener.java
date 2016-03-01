@@ -30,18 +30,26 @@ import eu.opends.main.Simulator;
 public class SimulatorAnalogListener implements AnalogListener 
 {
 	private Simulator simulator;
-	private float steeringFactor;
-	private float pedalFactor;
+	private float steeringSensitivityFactor;
+	private float combinedPedalsSensitivityFactor;
+	private float acceleratorSensitivityFactor;
+	private float brakeSensitivityFactor;
+	private float clutchSensitivityFactor;
+	
 	
 	public SimulatorAnalogListener(Simulator simulator) 
 	{
 		this.simulator = simulator;
 		simulator.getInputManager().setAxisDeadZone(0);
 		
-		steeringFactor = Simulator.getSettingsLoader().getSetting(Setting.Joystick_steeringSensitivityFactor, 1.0f);
-		pedalFactor = Simulator.getSettingsLoader().getSetting(Setting.Joystick_pedalSensitivityFactor, 1.0f);
+		steeringSensitivityFactor = Simulator.getSettingsLoader().getSetting(Setting.Joystick_steeringSensitivityFactor, 1.0f);
+		combinedPedalsSensitivityFactor = Simulator.getSettingsLoader().getSetting(Setting.Joystick_combinedPedalsSensitivityFactor, 1.0f);
+		acceleratorSensitivityFactor = Simulator.getSettingsLoader().getSetting(Setting.Joystick_acceleratorSensitivityFactor, 1.0f);
+		brakeSensitivityFactor = Simulator.getSettingsLoader().getSetting(Setting.Joystick_brakeSensitivityFactor, 1.0f);
+		clutchSensitivityFactor = Simulator.getSettingsLoader().getSetting(Setting.Joystick_clutchSensitivityFactor, 1.0f);
 	}
 
+	
 	@Override
 	public void onAnalog(String binding, float value, float tpf) 
 	{
@@ -51,9 +59,10 @@ public class SimulatorAnalogListener implements AnalogListener
 		// haptic technology: stop rumbling
 		//simulator.getInputManager().getJoysticks()[0].rumble(0.0f);
 		
-		if (binding.equals("Joy Left")) 
+		
+		if (binding.equals("SteeringWheelLeft")) 
 		{
-			float steeringValue =  (value*steeringFactor)/tpf;
+			float steeringValue =  (value*steeringSensitivityFactor)/tpf;
 			
 			//System.out.println("left: " + Math.round(steeringValue*100000)/1000f);
 
@@ -65,11 +74,11 @@ public class SimulatorAnalogListener implements AnalogListener
 			else*/
 				simulator.getCar().steer(steeringValue/2.3f);
 				//System.out.println("left: " + Math.round((steeringValue/2.3f)*100000)/1000f);
-		} 
+		}
 		
-		else if (binding.equals("Joy Right")) 
+		else if (binding.equals("SteeringWheelRight")) 
 		{
-			float steeringValue = (-value*steeringFactor)/tpf;
+			float steeringValue = (-value*steeringSensitivityFactor)/tpf;
 			
 			//System.out.println("right: " + Math.round(steeringValue*100000)/1000f);
 
@@ -83,9 +92,14 @@ public class SimulatorAnalogListener implements AnalogListener
 				//System.out.println("right: " + Math.round((steeringValue/2.3f)*100000)/1000f);
 		} 
 		
-		else if (binding.equals("Joy Down")) 
+		else if (binding.equals("Accelerator") || binding.equals("CombinedPedalsAccelerator"))
 		{
-			float accelerationValue = (-value*pedalFactor)/tpf;
+			float accelerationValue = -value/tpf;
+			
+			if(binding.equals("Accelerator"))
+				accelerationValue *= acceleratorSensitivityFactor;
+			else
+				accelerationValue *= combinedPedalsSensitivityFactor;
 			
 			//System.out.println("acc: " + Math.round(accelerationValue*100000)/1000f);
 			
@@ -101,11 +115,16 @@ public class SimulatorAnalogListener implements AnalogListener
 				simulator.getCar().setAcceleratorPedalIntensity(accelerationValue);
 			
 			simulator.getThreeVehiclePlatoonTask().reportAcceleratorIntensity(Math.abs(accelerationValue));
-		} 
+		}
 		
-		else if (binding.equals("Joy Up")) 
+		else if (binding.equals("Brake") || binding.equals("CombinedPedalsBrake"))
 		{
-			float brakeValue = (value*pedalFactor)/tpf;
+			float brakeValue = value/tpf;
+			
+			if(binding.equals("Brake"))
+				brakeValue *= brakeSensitivityFactor;
+			else
+				brakeValue *= combinedPedalsSensitivityFactor;
 			
 			//System.out.println("brk: " + Math.round(brakeValue*100000)/1000f);
 			
@@ -120,7 +139,19 @@ public class SimulatorAnalogListener implements AnalogListener
 				simulator.getCar().disableCruiseControlByBrake();
 				simulator.getCar().setBrakePedalIntensity(brakeValue);
 				simulator.getThreeVehiclePlatoonTask().reportBrakeIntensity(brakeValue);
-			} 
+			}
+		}
+		
+		else if (binding.equals("Clutch"))
+		{
+			float clutchValue = (value*clutchSensitivityFactor)/tpf;
+			
+			if(Math.abs(clutchValue) <= 0.05f)
+				clutchValue = 0;
+			
+			//System.out.println("clutch: " + Math.round(clutchValue*100000)/1000f);
+			
+			simulator.getCar().setClutchPedalIntensity(clutchValue);
 		}
 	}
 

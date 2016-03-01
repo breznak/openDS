@@ -13,55 +13,118 @@ This list can be considered as static declaration where unique identifiers have 
             	<xs:documentation>This element contains two matrices for converting model coordinates into geo coordinates and vice versa. NOT AVAILABLE YET.</xs:documentation>
             </xs:annotation>
             <xs:all>
-            	<xs:element minOccurs="0" maxOccurs="1" name="sounds" type="sounds" >
+            	<xs:element minOccurs="0" maxOccurs="1" name="sounds"
+            		type="sounds">
             		<xs:annotation>
-            			<xs:documentation>This element contains a list of sound files which will be available for playing at runtime. Assignment of a unique identifier allows referencing from interaction description.</xs:documentation>
-            		</xs:annotation></xs:element>
-            	<xs:element name="pictures" type="pictures" maxOccurs="1" minOccurs="0">
-                    <xs:annotation>
-                    	<xs:documentation>This element contains a list of image files which will be available for display at runtime. Assignment of a unique identifier allows referencing from interaction description.</xs:documentation>
-                    </xs:annotation>
+            			<xs:documentation>
+            				This element contains a list of sound files
+            				which will be available for playing at
+            				runtime. Assignment of a unique identifier
+            				allows referencing from interaction
+            				description.
+            			</xs:documentation>
+            		</xs:annotation>
             	</xs:element>
-            	<xs:element minOccurs="0" maxOccurs="1" name="models" type="models" >
+            	<xs:element name="movies" type="movies" maxOccurs="1"
+            		minOccurs="0">
+            	</xs:element>
+            	<xs:element name="pictures" type="pictures"
+            		maxOccurs="1" minOccurs="0">
             		<xs:annotation>
-            			<xs:documentation>This element contains a list of model files which will be available as road objects at runtime. Assignment of a unique identifier allows referencing from sceneario and interaction description.</xs:documentation>
-            		</xs:annotation></xs:element>
-            	<xs:element name="geometries" type="geometries" maxOccurs="1" minOccurs="0">
-                    <xs:annotation>
-                    	<xs:documentation>This element contains a list of geometries which can be used to construct simple models without shape defining files. Assignment of a unique identifier allows referencing from the models element and scenario description.</xs:documentation>
-                    </xs:annotation>
+            			<xs:documentation>
+            				This element contains a list of image files
+            				which will be available for display at
+            				runtime. Assignment of a unique identifier
+            				allows referencing from interaction
+            				description.
+            			</xs:documentation>
+            		</xs:annotation>
+            	</xs:element>
+            	<xs:element minOccurs="0" maxOccurs="1" name="models"
+            		type="models">
+            		<xs:annotation>
+            			<xs:documentation>
+            				This element contains a list of model files
+            				which will be available as road objects at
+            				runtime. Assignment of a unique identifier
+            				allows referencing from sceneario and
+            				interaction description.
+            			</xs:documentation>
+            		</xs:annotation>
+            	</xs:element>
+            	<xs:element name="geometries" type="geometries"
+            		maxOccurs="1" minOccurs="0">
+            		<xs:annotation>
+            			<xs:documentation>
+            				This element contains a list of geometries
+            				which can be used to construct simple models
+            				without shape defining files. Assignment of
+            				a unique identifier allows referencing from
+            				the models element and scenario description.
+            			</xs:documentation>
+            		</xs:annotation>
             	</xs:element>
 
-            	<xs:element name="resetPoints" type="points" maxOccurs="1" minOccurs="0">
-                    <xs:annotation>
-                    	<xs:documentation>This element contains a list of reset points which will be available at runtime. Assignment of a unique identifier allows referencing from interaction description.</xs:documentation>
-                    </xs:annotation>
-            	</xs:element>
-            	<xs:element minOccurs="0" maxOccurs="1" name="gravity" type="xs:float" >
+            	<xs:element name="resetPoints" type="points"
+            		maxOccurs="1" minOccurs="0">
             		<xs:annotation>
-            			<xs:documentation>Gravity value which will be applied for physics computation.</xs:documentation>
-            		</xs:annotation></xs:element>
-            	<xs:element minOccurs="0" maxOccurs="1" name="time" type="xs:time" >
-            		<xs:annotation>
-            			<xs:documentation>Time at start of simulation. NOT AVAILABLE YET</xs:documentation>
-            		</xs:annotation></xs:element>
-            	<xs:element minOccurs="0" maxOccurs="1" name="date" type="xs:date" >
-            		<xs:annotation>
-            			<xs:documentation>Date at start of simulation. NOT AVAILABLE YET</xs:documentation>
-            		</xs:annotation></xs:element>
-
-
-
-
-            	<xs:element name="lights" type="lights" maxOccurs="1" minOccurs="0">
-                    <xs:annotation>
-                    	<xs:documentation>This element contains a list of light sources which will be available at runtime.</xs:documentation>
-                    </xs:annotation>
+            			<xs:documentation>
+            				This element contains a list of reset points
+            				which will be available at runtime.
+            				Assignment of a unique identifier allows
+            				referencing from interaction description.
+            			</xs:documentation>
+            		</xs:annotation>
             	</xs:element>
-            	<xs:element name="skyTexture" type="xs:string" maxOccurs="1" minOccurs="0">
+
+            	<xs:element minOccurs="0" maxOccurs="1" name="gravity"
+            		type="xs:float">
             		<xs:annotation>
-            			<xs:documentation>Texture path of syk box used in simulation</xs:documentation>
-            		</xs:annotation></xs:element>
+            			<xs:documentation>
+            				Gravity value which will be applied for
+            				physics computation.
+            			</xs:documentation>
+            		</xs:annotation>
+            	</xs:element>
+            	<xs:element minOccurs="0" maxOccurs="1" name="time"
+            		type="xs:time">
+            		<xs:annotation>
+            			<xs:documentation>
+            				Time at start of simulation. NOT AVAILABLE
+            				YET
+            			</xs:documentation>
+            		</xs:annotation>
+            	</xs:element>
+            	<xs:element minOccurs="0" maxOccurs="1" name="date"
+            		type="xs:date">
+            		<xs:annotation>
+            			<xs:documentation>
+            				Date at start of simulation. NOT AVAILABLE
+            				YET
+            			</xs:documentation>
+            		</xs:annotation>
+            	</xs:element>
+
+
+
+
+            	<xs:element name="lights" type="lights" maxOccurs="1"
+            		minOccurs="0">
+            		<xs:annotation>
+            			<xs:documentation>
+            				This element contains a list of light
+            				sources which will be available at runtime.
+            			</xs:documentation>
+            		</xs:annotation>
+            	</xs:element>
+            	<xs:element name="skyTexture" type="xs:string"
+            		maxOccurs="1" minOccurs="0">
+            		<xs:annotation>
+            			<xs:documentation>
+            				Texture path of syk box used in simulation
+            			</xs:documentation>
+            		</xs:annotation>
+            	</xs:element>
             </xs:all>
 
 
@@ -718,5 +781,29 @@ This list can be considered as static declaration where unique identifiers have 
     	<xs:sequence>
     		<xs:element name="vector" type="array" maxOccurs="1" minOccurs="1"></xs:element>
     	</xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="movies">
+    	<xs:sequence>
+    		<xs:element name="movie" type="movie" maxOccurs="unbounded"
+    			minOccurs="0">
+    		</xs:element>
+    	</xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="movie">
+    	<xs:all>
+    		<xs:element name="width" type="xs:int" maxOccurs="1"
+    			minOccurs="0">
+    		</xs:element>
+    		<xs:element name="height" type="xs:int" maxOccurs="1"
+    			minOccurs="0">
+    		</xs:element>
+    		<xs:element name="zoomingFactor" type="xs:float"
+    			maxOccurs="1" minOccurs="0">
+    		</xs:element>
+    	</xs:all>
+    	<xs:attribute name="id" type="xs:string"></xs:attribute>
+    	<xs:attribute name="key" type="xs:string"></xs:attribute>
     </xs:complexType>
 </xs:schema>

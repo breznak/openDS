@@ -18,7 +18,10 @@
 
 package eu.opends.hmi;
 
+import java.net.InetSocketAddress;
+
 import eu.opends.car.Car;
+import eu.opends.drivingTask.settings.SettingsLoader.Setting;
 import eu.opends.environment.TrafficLight;
 import eu.opends.main.Simulator;
 import eu.opends.trigger.TriggerCenter;
@@ -26,7 +29,7 @@ import eu.opends.trigger.TriggerCenter;
 
 /**
  * This class reports collisions with triggers placed in the 
- * model to the SIM-TD HMI.
+ * model to the HMI.
  * 
  * @author Rafael Math
  */
@@ -34,7 +37,7 @@ public class HMICenter
 {	
 	private static Simulator sim;
 	private static boolean sendDataToHMI = false;
-	
+	private static HMIWebSocketServer server;
 	
 	/**
 	 * Initializes the HMICenter by setting the simulator field to the current simulator instance.
@@ -45,22 +48,25 @@ public class HMICenter
 	public static void init(Simulator simulator)
 	{
 		sim = simulator;
+
+		sendDataToHMI = Simulator.getDrivingTask().getSettingsLoader().getSetting(Setting.HMI_enableConnection, false);
+		
+		if(sendDataToHMI)
+		{
+			String ip = Simulator.getDrivingTask().getSettingsLoader().getSetting(Setting.HMI_ip, "localhost");
+			int port = Simulator.getDrivingTask().getSettingsLoader().getSetting(Setting.HMI_port, 2111);
+			
+			InetSocketAddress address = new InetSocketAddress(ip, port);
+			server = new HMIWebSocketServer(address);
+		}
 	}
 	
 	
-	/**
-	 * Sets the flag "sendDataToHMI" to the given value. If sendDataToHMI is 
-	 * true, SIM-TD data will be sent to the HMI whenever a trigger was hit.
-	 * 
-	 * @param sendData
-	 * 			Determines whether data is sent to the SIM-TD HMI
-	 */
-	public static void sendDataToHmi(boolean sendData)
+	public static HMIWebSocketServer getHMIWebSocketServer()
 	{
-		sendDataToHMI = sendData;
+		return server;
 	}
-	
-	
+		
 	
 	/**
 	 * Reports the collision of the car with a traffic light trigger 
@@ -83,8 +89,8 @@ public class HMICenter
 			TriggerCenter.triggerReportList.add(triggerName);
 		
 			// create new presentation model
-			TrafficLightPresentationModel presentationModel = new TrafficLightPresentationModel(sim, car,trafficLight);
-			
+			TrafficLightPresentationModel presentationModel = new TrafficLightPresentationModel(sim, car, trafficLight);
+
 			// create presentation
 			long presentationID = presentationModel.createPresentation();
 			
@@ -177,7 +183,19 @@ public class HMICenter
 
 	public static void close() 
 	{
+		try {
+			if(server != null)
+				server.stop();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
+
+	public static void sendMsg(String message) 
+	{
+		if(server != null)
+			server.sendMsg(message);		
 	}
 
 }

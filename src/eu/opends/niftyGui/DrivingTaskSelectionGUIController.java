@@ -70,7 +70,6 @@ public class DrivingTaskSelectionGUIController implements ScreenController
 	@Override
     public void bind(Nifty nifty, Screen screen)
 	{
-
 		if(sim.getSettings().getWidth() >= 2400)
 		{
 			SizeValue sv = new SizeValue("20%");
@@ -221,6 +220,12 @@ public class DrivingTaskSelectionGUIController implements ScreenController
 	
 	/**
 	 * When the selection of the ListBox changes this method is called.
+	 * 
+	 * @param id
+	 * 			ID of drivingTaskListbox
+	 * 
+	 * @param event
+	 * 			ListBoxSelectionChangedEvent
 	 */
 	@NiftyEventSubscriber(id = "drivingTaskListbox")
 	public void onMyListBoxSelectionChanged(final String id,
@@ -237,6 +242,12 @@ public class DrivingTaskSelectionGUIController implements ScreenController
 	
 	/**
 	 * When the selection of the ListBox changes this method is called.
+	 * 
+	 * @param id
+	 * 			ID of drivingTaskTextfield
+	 * 
+	 * @param event
+	 * 			TextFieldChangedEvent
 	 */
 	@NiftyEventSubscriber(id = "drivingTaskTextfield")
 	public void ondrivingTaskTextfieldChanged(final String id, final TextFieldChangedEvent event)

@@ -254,9 +254,10 @@ public class DrivingTaskDataQuery
 		String trafficLightID = getValue(layer, path + "/" + layer + ":trafficLight", String.class);
 		Float headLightIntensity = getValue(layer, path + "/" + layer + ":headLightIntensity", Float.class);
 		String turnSignal = getValue(layer, path + "/" + layer + ":turnSignal", String.class);
+		Integer waitingTime = getValue(layer, path + "/" + layer + ":waitingTime", Integer.class);
 
 		if((id != null) && (translation != null) && (speed != null))
-			return new Waypoint(id, translation, speed, trafficLightID, headLightIntensity, turnSignal);
+			return new Waypoint(id, translation, speed, trafficLightID, headLightIntensity, turnSignal, waitingTime);
 		
 		return null;
 	}
@@ -557,6 +558,9 @@ public class DrivingTaskDataQuery
 	 * 
 	 * @param element
 	 * 			Element which contains an invalid value.
+	 * 
+	 * @param fileName
+	 * 			File where the error occurred
 	 */
 	public void reportInvalidValueError(String element, String fileName) 
 	{

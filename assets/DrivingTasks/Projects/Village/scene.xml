@@ -35,7 +35,7 @@
 				</vector>
 			</translation>
 		</model>
-		<model id="driverCar" key="Models/Cars/drivingCars/AudiS6/Car.j3o">
+		<model id="driverCar" key="Models/Cars/drivingCars/Ferrari/Car.scene">
 			<mass>800</mass>
 			<visible>true</visible>
 			<collisionShape>meshShape</collisionShape>
@@ -51,16 +51,16 @@
 			<rotation quaternion="false">
 				<vector jtype="java_lang_Float" size="3">
 					<entry>0</entry>
-					<entry>300</entry>
+					<entry>0</entry>
 					<entry>0</entry>
 				</vector>
 			</rotation>
 	
 			<translation>
 				<vector jtype="java_lang_Float" size="3">
-					<entry>-250.33698</entry>
-					<entry>4</entry>
-					<entry>272.0944</entry>
+					<entry>-269.45538</entry>
+					<entry>2</entry>
+					<entry>202.66821</entry>
 				</vector>
 			</translation>
 	
@@ -94,6 +94,11 @@
 				</vector>
 			</translation>
 		</model>
+		
+		<model id="TrafficLight_1" key="Models/TrafficLight/trafficlight.scene" ref=""><mass>0</mass><visible>true</visible><collisionShape>meshShape</collisionShape><scale><vector jtype="java_lang_Float" size="3"><entry>0.7</entry><entry>0.7</entry><entry>0.7</entry></vector></scale><rotation quaternion="false"><vector jtype="java_lang_Float" size="3"><entry>0</entry><entry>3.098126</entry><entry>0</entry></vector></rotation><translation><vector jtype="java_lang_Float" size="3"><entry>-267.61935</entry><entry>-0.6849897</entry><entry>189.70506</entry></vector></translation></model>
+		<model id="TrafficLight_2" key="Models/TrafficLight/trafficlight.scene" ref=""><mass>0</mass><visible>true</visible><collisionShape>meshShape</collisionShape><scale><vector jtype="java_lang_Float" size="3"><entry>0.7</entry><entry>0.7</entry><entry>0.7</entry></vector></scale><rotation quaternion="false"><vector jtype="java_lang_Float" size="3"><entry>0</entry><entry>87.08894</entry><entry>0</entry></vector></rotation><translation><vector jtype="java_lang_Float" size="3"><entry>-266.3965</entry><entry>-0.8088537</entry><entry>181.70226</entry></vector></translation></model>
+		<model id="TrafficLight_3" key="Models/TrafficLight/trafficlight.scene" ref=""><mass>0</mass><visible>true</visible><collisionShape>meshShape</collisionShape><scale><vector jtype="java_lang_Float" size="3"><entry>0.7</entry><entry>0.7</entry><entry>0.7</entry></vector></scale><rotation quaternion="false"><vector jtype="java_lang_Float" size="3"><entry>0</entry><entry>174.3398</entry><entry>0</entry></vector></rotation><translation><vector jtype="java_lang_Float" size="3"><entry>-274.26633</entry><entry>-0.7812933</entry><entry>179.93124</entry></vector></translation></model>
+
 	</models>
     
     <gravity>9.81</gravity>

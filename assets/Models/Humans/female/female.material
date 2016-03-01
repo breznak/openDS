@@ -1,0 +1,590 @@
+
+material _missing_material_
+{
+    receive_shadows off
+    technique
+    {
+        pass
+        {
+            ambient 0.1 0.1 0.1 1.0
+            diffuse 0.8 0.0 0.0 1.0
+            specular 0.5 0.5 0.5 1.0 12.5
+            emissive 0.3 0.3 0.3 1.0
+        }
+    }
+}
+
+// female:tongue01:tongue01Material genrated by blender2ogre 0.6.0
+
+material female:tongue01:tongue01Material 
+{
+    receive_shadows on 
+
+    technique
+    {
+        pass female:tongue01:tongue01Material
+        {
+            ambient 1.0 1.0 1.0 0.0
+            diffuse 1.0 1.0 1.0 0.0
+            specular 0.031369999051094055 0.031369999051094055 0.031369999051094055 0.0 25.0
+            emissive 0.0 0.0 0.0 0.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+            texture_unit 
+            {
+                texture tongue01_diffuse.png
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op alpha_blend
+            }
+        }
+    }
+}
+// female:Teeth_Base:teethMaterial genrated by blender2ogre 0.6.0
+
+material female:Teeth_Base:teethMaterial 
+{
+    receive_shadows on 
+
+    technique
+    {
+        pass female:Teeth_Base:teethMaterial
+        {
+            ambient 0.6399999856948853 0.6399999856948853 0.6399999856948853 0.0
+            diffuse 0.6399999856948853 0.6399999856948853 0.6399999856948853 0.0
+            specular 0.8549000024795532 0.8549000024795532 0.8549000024795532 0.0 102.25
+            emissive 0.0 0.0 0.0 0.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+            texture_unit 
+            {
+                texture teeth.png
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op alpha_blend
+            }
+        }
+    }
+}
+// female:Eyelashes01:bodyMaterial genrated by blender2ogre 0.6.0
+
+material female:Eyelashes01:bodyMaterial 
+{
+    receive_shadows on 
+
+    technique
+    {
+        pass female:Eyelashes01:bodyMaterial
+        {
+            ambient 1.0 1.0 1.0 0.0
+            diffuse 1.0 1.0 1.0 0.0
+            specular 0.0 0.0 0.0 0.0 64.0
+            emissive 0.0 0.0 0.0 0.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+            texture_unit 
+            {
+                texture eyelashes01.png
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op alpha_blend
+            }
+        }
+    }
+}
+// female:Eyebrow008:eyebrow011 genrated by blender2ogre 0.6.0
+
+material female:Eyebrow008:eyebrow011 
+{
+    receive_shadows on 
+
+    technique
+    {
+        pass female:Eyebrow008:eyebrow011
+        {
+            ambient 1.0 1.0 1.0 0.0
+            diffuse 1.0 1.0 1.0 0.0
+            specular 0.0 0.0 0.0 0.0 64.0
+            emissive 0.0 0.0 0.0 0.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+            texture_unit 
+            {
+                texture eyebrow011.png
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op alpha_blend
+            }
+        }
+    }
+}
+// female:Low-Poly:Eye_brown genrated by blender2ogre 0.6.0
+
+material female:Low-Poly:Eye_brown 
+{
+    receive_shadows on 
+
+    technique
+    {
+        pass female:Low-Poly:Eye_brown
+        {
+            ambient 1.0 1.0 1.0 0.0
+            diffuse 1.0 1.0 1.0 0.0
+            specular 1.0 1.0 1.0 0.0 127.75
+            emissive 0.0 0.0 0.0 0.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+            texture_unit 
+            {
+                texture brown_eye.png
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op alpha_blend
+            }
+        }
+    }
+}
+// female:fhair01:female01Material genrated by blender2ogre 0.6.0
+
+material female:fhair01:female01Material 
+{
+    receive_shadows on 
+
+    technique
+    {
+        pass female:fhair01:female01Material
+        {
+            ambient 1.0 1.0 1.0 0.0
+            diffuse 1.0 1.0 1.0 0.0
+            specular 0.20000000298023224 0.20000000298023224 0.20000000298023224 0.0 64.0
+            emissive 0.0 0.0 0.0 0.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+            texture_unit 
+            {
+                texture diffuse_black.png
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op alpha_blend
+            }
+            texture_unit 
+            {
+                texture normals.png
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op modulate
+            }
+        }
+    }
+}
+// female:tshirt02:tshirt02Material genrated by blender2ogre 0.6.0
+
+material female:tshirt02:tshirt02Material 
+{
+    receive_shadows on 
+
+    technique
+    {
+        pass female:tshirt02:tshirt02Material
+        {
+            ambient 1.0 1.0 1.0 0.0
+            diffuse 1.0 1.0 1.0 0.0
+            specular 0.031369999051094055 0.031369999051094055 0.031369999051094055 0.0 25.0
+            emissive 0.0 0.0 0.0 0.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+            texture_unit 
+            {
+                texture tshirt02_texture.png
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op alpha_blend
+            }
+            texture_unit 
+            {
+                texture tshirt02_normals.png
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op modulate
+            }
+        }
+    }
+}
+// female:jeans01:short01Material genrated by blender2ogre 0.6.0
+
+material female:jeans01:short01Material 
+{
+    receive_shadows on 
+
+    technique
+    {
+        pass female:jeans01:short01Material
+        {
+            ambient 1.0 1.0 1.0 0.0
+            diffuse 1.0 1.0 1.0 0.0
+            specular 0.5 0.5 0.5 0.0 64.0
+            emissive 0.0 0.0 0.0 0.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+            texture_unit 
+            {
+                texture jeans01_black_diffuse.png
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op alpha_blend
+            }
+            texture_unit 
+            {
+                texture jeans01_normals.png
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op modulate
+            }
+        }
+    }
+}
+// female:Skin genrated by blender2ogre 0.6.0
+
+material female:Skin 
+{
+    receive_shadows on 
+
+    technique
+    {
+        pass female:Skin
+        {
+            ambient 1.0 1.0 1.0 0.0
+            diffuse 1.0 1.0 1.0 0.0
+            specular 0.06274999678134918 0.05098000168800354 0.05098000168800354 0.0 64.0
+            emissive 0.0 0.0 0.0 0.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+            texture_unit 
+            {
+                texture young_lightskinned_female_diffuse.png
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op alpha_blend
+            }
+        }
+    }
+}
+// female:Invisio genrated by blender2ogre 0.6.0
+
+material female:Invisio 
+{
+    receive_shadows off 
+
+    technique
+    {
+        pass female:Invisio
+        {
+            ambient 1.0 1.0 1.0 0.0
+            diffuse 0.800000011920929 0.800000011920929 0.800000011920929 0.0
+            specular 0.5 0.5 0.5 0.0 12.5
+            emissive 1.0 1.0 1.0 1.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+        }
+    }
+}
+// female:Red genrated by blender2ogre 0.6.0
+
+material female:Red 
+{
+    receive_shadows off 
+
+    technique
+    {
+        pass female:Red
+        {
+            ambient 1.0 0.0 0.0 0.0
+            diffuse 0.800000011920929 0.0 0.0 0.0
+            specular 0.5 0.5 0.5 0.0 12.5
+            emissive 1.0 0.0 0.0 1.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+        }
+    }
+}
+// female:Green genrated by blender2ogre 0.6.0
+
+material female:Green 
+{
+    receive_shadows off 
+
+    technique
+    {
+        pass female:Green
+        {
+            ambient 0.0 1.0 0.0 0.0
+            diffuse 0.0 0.800000011920929 0.0 0.0
+            specular 0.5 0.5 0.5 0.0 12.5
+            emissive 0.0 1.0 0.0 1.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+        }
+    }
+}
+// female:Blue genrated by blender2ogre 0.6.0
+
+material female:Blue 
+{
+    receive_shadows off 
+
+    technique
+    {
+        pass female:Blue
+        {
+            ambient 0.0 0.0 1.0 0.0
+            diffuse 0.0 0.0 0.800000011920929 0.0
+            specular 0.5 0.5 0.5 0.0 12.5
+            emissive 0.0 0.0 1.0 1.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+        }
+    }
+}
+// female:Yellow genrated by blender2ogre 0.6.0
+
+material female:Yellow 
+{
+    receive_shadows off 
+
+    technique
+    {
+        pass female:Yellow
+        {
+            ambient 1.0 1.0 0.0 0.0
+            diffuse 0.800000011920929 0.800000011920929 0.0 0.0
+            specular 0.5 0.5 0.5 0.0 12.5
+            emissive 1.0 1.0 0.0 1.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+        }
+    }
+}

@@ -6,7 +6,7 @@
         <environment>
         	<weather>
                 <snowingPercentage>100</snowingPercentage>
-        		<rainingPercentage>0</rainingPercentage>
+        		<rainingPercentage>-1</rainingPercentage>
         		<fogPercentage>50</fogPercentage>
         	</weather>
         </environment>
@@ -58,6 +58,33 @@
         </traffic>
         
         <road>
+        	<intersection id="Intersection1" mode="trigger">
+        		<phases>
+					<phase id="01" duration="1000" state="xrr"/>
+					<phase id="02" duration="3000" state="grr"/>
+					<phase id="03" duration="1000" state="yrr"/>
+					<phase id="04" duration="1000" state="rxr"/>
+					<phase id="05" duration="3000" state="rgr"/>
+					<phase id="06" duration="1000" state="ryr"/>
+					<phase id="07" duration="1000" state="rrx"/>
+					<phase id="08" duration="3000" state="rrg"/>
+					<phase id="09" duration="1000" state="rry"/>
+				</phases>
+				<trafficLights>
+	        		<trafficLight id="TrafficLight_1" phasePosition="1">
+						<direction>right</direction>
+						<requiresRed>TrafficLight_2,TrafficLight_3</requiresRed>
+	        		</trafficLight>
+	        		<trafficLight id="TrafficLight_2" phasePosition="2">
+						<direction>right</direction>
+						<requiresRed>TrafficLight_1,TrafficLight_3</requiresRed>
+	        		</trafficLight>
+	        		<trafficLight id="TrafficLight_3" phasePosition="3">
+						<direction>left</direction>
+						<requiresRed>TrafficLight_1,TrafficLight_2</requiresRed>
+	        		</trafficLight>
+        		</trafficLights>
+        	</intersection>
         </road>
         
 </scenario>

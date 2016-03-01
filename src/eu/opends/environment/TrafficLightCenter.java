@@ -28,6 +28,7 @@ import eu.opends.environment.TrafficLight.*;
 import eu.opends.environment.TrafficLightException.NoInternalProgramException;
 import eu.opends.hmi.HMICenter;
 import eu.opends.main.Simulator;
+import eu.opends.traffic.Waypoint;
 import eu.opends.visualization.*;
 
 /**
@@ -102,8 +103,8 @@ public class TrafficLightCenter
 		}	
 		
 		// start trafficLight-thread
-		trafficLightExternalConnector = new TrafficLightExternalConnector(sim,2001,2048);
-		trafficLightExternalConnector.start();
+		//trafficLightExternalConnector = new TrafficLightExternalConnector(sim,2001,2048);
+		//trafficLightExternalConnector.start();
 	}
 	
 	
@@ -131,6 +132,9 @@ public class TrafficLightCenter
 	 * 
 	 * @param trafficLightName
 	 * 			Name of traffic light requested to switch to green
+	 * 
+	 * @param type
+	 * 			Type of trigger (REQUEST or PHASE)
 	 */
 	public void reportCollision(String trafficLightName, TriggerType type)
 	{
@@ -192,7 +196,7 @@ public class TrafficLightCenter
 	
 	/**
 	 * Switches to next traffic light mode. If last one was reached, continue 
-	 * with first. Order: TRIGGER --> PROGRAM --> EXTERNAL --> BLINKING --> OFF
+	 * with first. Order: TRIGGER --&gt; PROGRAM --&gt; EXTERNAL --&gt; BLINKING --&gt; OFF
 	 */
 	public void toggleMode()
 	{
@@ -315,7 +319,7 @@ public class TrafficLightCenter
 	 * @return
 	 * 			Internal program for given traffic light
 	 * 
-	 * @throws Exception 
+	 * @throws NoInternalProgramException 
 	 * 			If no matching internal program could be found
 	 */
 	public TrafficLightInternalProgram getInternalProgram(TrafficLight trafficLight) 
@@ -387,7 +391,29 @@ public class TrafficLightCenter
 		for(TrafficLightInternalProgram tlip : trafficLightProgramList)
 			tlip.requestStop();
 		
-		trafficLightExternalConnector.requestStop();
+		if(trafficLightExternalConnector != null)
+			trafficLightExternalConnector.requestStop();
+	}
+
+
+	public static boolean hasRedTrafficLight(Waypoint wayPoint)
+	{
+		if(wayPoint != null)
+		{
+			String trafficLightID = wayPoint.getTrafficLightID();
+			
+			TrafficLight trafficLight = getTrafficLightByName(trafficLightID);
+
+			if(trafficLight != null &&
+				 (
+					trafficLight.getState() == TrafficLightState.RED ||
+					trafficLight.getState() == TrafficLightState.YELLOW ||
+					trafficLight.getState() == TrafficLightState.YELLOWRED
+				 )
+			  )
+				return true;
+		}
+		return false;
 	}
 	
 }

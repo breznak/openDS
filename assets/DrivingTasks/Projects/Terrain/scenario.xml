@@ -58,6 +58,63 @@
         </driver>
         
         <traffic>
+        	<pedestrian id="pedestrian01">
+        		<modelPath>Models/Humans/female/female.scene</modelPath>
+				<mass>5</mass>
+				<animationStand>Stand</animationStand>
+				<animationWalk>WalkBaked</animationWalk>
+				<scale>0.9</scale>
+				<maxDistanceFromPath>1.1</maxDistanceFromPath>
+				<curveTension>0.1</curveTension>
+				<pathIsCycle>true</pathIsCycle>
+				<pathIsVisible>true</pathIsVisible>
+				<startWayPoint>WayPoint_1</startWayPoint>
+				<wayPoints>
+					<wayPoint id="WayPoint_1"><translation><vector jtype="java_lang_Float" size="3"><entry>229</entry><entry>137</entry><entry>34</entry></vector></translation><speed>4</speed></wayPoint>
+					<wayPoint id="WayPoint_2"><translation><vector jtype="java_lang_Float" size="3"><entry>239</entry><entry>137</entry><entry>34</entry></vector></translation><speed>4</speed></wayPoint>
+					<wayPoint id="WayPoint_3"><translation><vector jtype="java_lang_Float" size="3"><entry>239</entry><entry>137</entry><entry>44</entry></vector></translation><speed>4</speed><waitingTime>5000</waitingTime></wayPoint>
+					<wayPoint id="WayPoint_4"><translation><vector jtype="java_lang_Float" size="3"><entry>229</entry><entry>137</entry><entry>44</entry></vector></translation><speed>4</speed></wayPoint>
+				</wayPoints>
+        	</pedestrian>
+        	<!-- 
+        	<pedestrian id="pedestrian02">
+        		<modelPath>Models/Humans/male/male.scene</modelPath>
+				<mass>5</mass>
+				<animationStand>Stand</animationStand>
+				<animationWalk>WalkBaked</animationWalk>
+				<scale>0.9</scale>
+				<maxDistanceFromPath>1.1</maxDistanceFromPath>
+				<curveTension>0.1</curveTension>
+				<pathIsCycle>true</pathIsCycle>
+				<pathIsVisible>true</pathIsVisible>
+				<startWayPoint>WayPoint_5</startWayPoint>
+				<wayPoints>
+					<wayPoint id="WayPoint_5"><translation><vector jtype="java_lang_Float" size="3"><entry>239</entry><entry>137</entry><entry>34</entry></vector></translation><speed>10</speed></wayPoint>
+					<wayPoint id="WayPoint_6"><translation><vector jtype="java_lang_Float" size="3"><entry>249</entry><entry>137</entry><entry>34</entry></vector></translation><speed>5</speed></wayPoint>
+					<wayPoint id="WayPoint_7"><translation><vector jtype="java_lang_Float" size="3"><entry>249</entry><entry>137</entry><entry>44</entry></vector></translation><speed>10</speed></wayPoint>
+					<wayPoint id="WayPoint_8"><translation><vector jtype="java_lang_Float" size="3"><entry>239</entry><entry>137</entry><entry>44</entry></vector></translation><speed>5</speed></wayPoint>
+				</wayPoints>
+        	</pedestrian>
+        	-->
+        	<vehicle id="car1">
+				<modelPath>Models/Cars/drivingCars/bmw1/Car.j3o</modelPath>
+				<mass>800</mass>
+				<acceleration>3.3</acceleration>
+				<decelerationBrake>8.7</decelerationBrake>
+				<decelerationFreeWheel>2.0</decelerationFreeWheel>
+				<engineOn>true</engineOn>
+				<maxDistanceFromPath>3.0</maxDistanceFromPath>
+				<curveTension>0.05</curveTension>
+				<pathIsCycle>true</pathIsCycle>
+				<pathIsVisible>true</pathIsVisible>
+				<startWayPoint>WayPoint_5</startWayPoint>
+				<wayPoints>
+					<wayPoint id="WayPoint_5"><translation><vector jtype="java_lang_Float" size="3"><entry>239</entry><entry>137</entry><entry>34</entry></vector></translation><speed>10</speed></wayPoint>
+					<wayPoint id="WayPoint_6"><translation><vector jtype="java_lang_Float" size="3"><entry>249</entry><entry>137</entry><entry>34</entry></vector></translation><speed>5</speed></wayPoint>
+					<wayPoint id="WayPoint_7"><translation><vector jtype="java_lang_Float" size="3"><entry>249</entry><entry>137</entry><entry>44</entry></vector></translation><speed>10</speed></wayPoint>
+					<wayPoint id="WayPoint_8"><translation><vector jtype="java_lang_Float" size="3"><entry>239</entry><entry>137</entry><entry>44</entry></vector></translation><speed>5</speed></wayPoint>
+				</wayPoints>
+        	</vehicle>
         </traffic>
         
         <road>

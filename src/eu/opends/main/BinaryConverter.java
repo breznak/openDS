@@ -49,7 +49,7 @@ public class BinaryConverter extends SimpleApplication
 
     public void simpleInitApp() 
     {
-    	String path = "Scenes/bigCity/city.scene";
+    	String path = "Scenes/Countryside2/Countryside2Post.scene";
     	
     	assetManager.registerLocator("assets", FileLocator.class);
         

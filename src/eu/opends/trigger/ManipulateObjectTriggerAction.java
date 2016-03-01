@@ -59,8 +59,14 @@ public class ManipulateObjectTriggerAction extends TriggerAction
 	 * Creates a new ManipulateObject trigger action instance, providing maximum
 	 * number of repetitions and the object to manipulate. 
 	 * 
+	 * @param sim
+	 * 			Simulator
+	 * 
+	 * @param delay
+	 * 			Amount of seconds (float) to wait before the TriggerAction will be executed.
+	 * 
 	 * @param maxRepeat
-	 * 			Maximum number how often the trigger can be hit.
+	 * 			Maximum number how often the trigger can be hit (0 = infinite).
 	 * 
 	 * @param objectID
 	 * 			ID of the object to manipulate.

@@ -36,21 +36,29 @@ import eu.opends.trigger.ManipulatePictureTriggerAction;
 import eu.opends.trigger.MoveTrafficTriggerAction;
 import eu.opends.trigger.OpenInstructionsScreenTriggerAction;
 import eu.opends.trigger.PauseTriggerAction;
+import eu.opends.trigger.PlayMovieAction;
+import eu.opends.trigger.PlayNextMovieAction;
 import eu.opends.trigger.PlaySoundAction;
 import eu.opends.trigger.PresentationTaskAction;
 import eu.opends.trigger.ReportSpeedTriggerAction;
 import eu.opends.trigger.ReportTrafficLightTriggerAction;
 import eu.opends.trigger.RequestGreenTrafficLightAction;
 import eu.opends.trigger.ResetCarToResetPointAction;
+import eu.opends.trigger.ResumeTriggerAction;
 import eu.opends.trigger.SendMessageTriggerAction;
+import eu.opends.trigger.SendNumberToParallelPortTriggerAction;
 import eu.opends.trigger.SetCrosswindTriggerAction;
+import eu.opends.trigger.SetMotorwayTaskStimulusTriggerAction;
 import eu.opends.trigger.SetSpeedLimitAction;
 import eu.opends.trigger.SetTVPTStimulusTriggerAction;
 import eu.opends.trigger.SetupBrakeReactionTimerTriggerAction;
+import eu.opends.trigger.SetupContreTaskTriggerAction;
 import eu.opends.trigger.SetupLaneChangeReactionTimerTriggerAction;
 import eu.opends.trigger.SetupKeyReactionTimerTriggerAction;
+import eu.opends.trigger.ShutDownSimulationTriggerAction;
 import eu.opends.trigger.StartReactionMeasurementTriggerAction;
 import eu.opends.trigger.StartRecordingTriggerAction;
+import eu.opends.trigger.StopMovieAction;
 import eu.opends.trigger.StopRecordingTriggerAction;
 import eu.opends.trigger.TriggerAction;
 import eu.opends.trigger.WriteToKnowledgeBaseTriggerAction;
@@ -101,6 +109,46 @@ public class InteractionMethods
 		}
 	}
 	
+	
+	@Action(
+			name = "sendNumberToParallelPort", 
+			layer = Layer.INTERACTION, 
+			description = "Sends a number to the parallel port for the given amount of milliseconds",
+			defaultDelay = 0,
+			defaultRepeat = 0,
+			param = {@Parameter(name="number", type="Integer", defaultValue="0", 
+								description="Number to send to the parallel port"),
+					 @Parameter(name="duration", type="Integer", defaultValue="100", 
+							 	description="Amount of milliseconds until 0 will be sent")
+					}
+		)
+		public TriggerAction sendNumberToParallelPort(SimulationBasics sim, float delay, int repeat, Properties parameterList)
+		{
+			String parameter = "";
+			try {
+
+				// read number to send
+				parameter = "number";
+				String numberString = parameterList.getProperty(parameter);
+				if(numberString == null)
+					numberString = setDefault("sendNumberToParallelPort", parameter, "0");
+				int number = Integer.parseInt(numberString);
+					
+				// read duration
+				parameter = "duration";
+				String durationString = parameterList.getProperty(parameter);
+				if(durationString == null)
+					durationString = setDefault("sendNumberToParallelPort", parameter, "100");
+				int duration = Integer.parseInt(durationString);
+				
+				return new SendNumberToParallelPortTriggerAction(delay, repeat, number, duration);
+				
+			} catch (Exception e) {
+
+				reportError("sendNumberToParallelPort", parameter);
+				return null;
+			}
+		}
 	
 	
 	@Action(
@@ -340,7 +388,36 @@ public class InteractionMethods
 		}
 	}
 	
+
+	@Action(
+			name = "resumeSimulation", 
+			layer = Layer.INTERACTION, 
+			description = "Resumes the simulation after pause",
+			defaultDelay = 0,
+			defaultRepeat = 0,
+			param = {}
+		)
+	public TriggerAction resumeSimulation(SimulationBasics sim, float delay, int repeat, Properties parameterList)
+	{
+		// create ResumeTriggerAction
+		return new ResumeTriggerAction(sim, delay, repeat);
+	}
 	
+	
+	@Action(
+			name = "shutDownSimulation", 
+			layer = Layer.INTERACTION, 
+			description = "Shut down simulation",
+			defaultDelay = 0,
+			defaultRepeat = 0,
+			param = {}
+		)
+	public TriggerAction shutDownSimulation(SimulationBasics sim, float delay, int repeat, Properties parameterList)
+	{
+		// create ShutDownSimulationTriggerAction
+		return new ShutDownSimulationTriggerAction((Simulator)sim, delay, repeat);
+	}
+
 
 	@Action(
 			name = "startRecording", 
@@ -394,9 +471,20 @@ public class InteractionMethods
 	 * Creates a ResetCar trigger action by parsing the node list for the name
 	 * of the reset point to place the car when the trigger was hit.
 	 * 
+	 * @param sim
+	 * 			Simulator.
+	 * 
+	 * @param delay
+	 * 			Amount of seconds (float) to wait before the TriggerAction will be executed.
+	 * 
+	 * @param repeat
+	 * 			Number of maximum repetitions (0 = infinite).
+	 * 
+	 * @param parameterList
+	 * 			List of additional parameters.
+	 * 
 	 * @return
-	 * 			ResetCar trigger action with the name of the reset point to 
-	 * 			move the car to.
+	 * 			ResetCar trigger action with the name of the reset point to move the car to.
 	 */
 	@Action(
 			name = "resetCar",
@@ -434,6 +522,17 @@ public class InteractionMethods
 	 * Creates a MoveTraffic trigger action list by parsing the node list for the name
 	 * of the traffic object to move and the ID of the target way point.
 	 * 
+	 * @param sim
+	 * 			Simulator.
+	 * 
+	 * @param delay
+	 * 			Amount of seconds (float) to wait before the TriggerAction will be executed.
+	 * 
+	 * @param repeat
+	 * 			Number of maximum repetitions (0 = infinite).
+	 * 
+	 * @param parameterList
+	 * 			List of additional parameters.
 	 * 
 	 * @return
 	 * 			MoveTraffic trigger action list with name of the traffic object(s) and ID 
@@ -485,12 +584,24 @@ public class InteractionMethods
 	 * presentation models. As soon as the trigger is hit, the presentation task
 	 * will be displayed in the HMI GUI.
 	 * 
+	 * @param sim
+	 * 			Simulator.
+	 * 
+	 * @param delay
+	 * 			Amount of seconds (float) to wait before the TriggerAction will be executed.
+	 * 
+	 * @param repeat
+	 * 			Number of maximum repetitions (0 = infinite).
+	 * 
+	 * @param parameterList
+	 * 			List of additional parameters.
+	 * 
 	 * @return
 	 * 			PresentationTask trigger action with the presentation model.
 	 */
 	public TriggerAction startPresentationTask(SimulationBasics sim, float delay, int repeat, Properties parameterList)
 	{
-		String parameter = "presentationTaskType";
+		String parameter = "type";
 		
 		try {
 			
@@ -502,21 +613,21 @@ public class InteractionMethods
 			PresentationModel presentationModel = null;
 			
 			// check for roadWorksInformation presentation task
-			if(presentationTaskType.equalsIgnoreCase("roadWorksInformation"))
+			if(presentationTaskType.startsWith("roadWorksInformation"))
 			{
 				// extract roadWorksInformation presentation task
 				presentationModel = extractRoadWorksInformation(parameterList);
 			}
 			
 			// check for localDangerWarning presentation task
-			if(presentationTaskType.equalsIgnoreCase("localDangerWarning"))
+			if(presentationTaskType.startsWith("localDangerWarning"))
 			{
 				// extract localDangerWarning presentation task
-				presentationModel = extractLocalDangerWarning(parameterList);
+				presentationModel = extractLocalDangerWarning(parameterList, presentationTaskType);
 			}
 			
 			// create PresentationTaskAction
-			return new PresentationTaskAction(delay, repeat,presentationModel,(Simulator)sim);
+			return new PresentationTaskAction(delay, repeat, presentationModel, (Simulator)sim);
 			
 		} catch (Exception e) {
 	
@@ -525,13 +636,13 @@ public class InteractionMethods
 		}
 	}
 	
+	
 	/**
 	 * Extracts the parameters of the RoadWorksInformation presentation model from 
 	 * the given node list.
 	 * 
-	 * @param roadWorksInformationList
-	 * 			Node list containing parameters for the RoadWorksInformation presentation 
-	 * 			model.
+	 * @param parameterList
+	 * 			Parameters for the RoadWorksInformation presentation model.
 	 * 
 	 * @return
 	 * 			RoadWorksInformation presentation model with the given parameters.
@@ -540,7 +651,6 @@ public class InteractionMethods
 	{
 		Vector3f startPosition = new Vector3f(0,0,0);
 		Vector3f endPosition = new Vector3f(0,0,0);
-		String geometryFile = "";
 		String parameter = "";
 		
 		try {
@@ -567,17 +677,10 @@ public class InteractionMethods
 				endPosition = new Vector3f(endPositionValues[0], endPositionValues[1], endPositionValues[2]);
 			else
 				throw new Exception();
-			
-			
-			// extract geometry file
-			parameter = "geometryFile";
-			String geometryFile_String = parameterList.getProperty(parameter);
-			if(geometryFile_String != null)
-				geometryFile = geometryFile_String;
 
 			
 			// Car will be set after it has been created in class "PresentationTaskAction"
-			return new RoadWorksInformationPresentationModel(null, startPosition, endPosition, geometryFile);
+			return new RoadWorksInformationPresentationModel(null, startPosition, endPosition);
 			
 		} catch (Exception e) {
 			
@@ -592,16 +695,18 @@ public class InteractionMethods
 
 	/**
 	 * Extracts the parameters of the LocalDangerWarning presentation model from 
-	 * the given node list.
+	 * the given parameter list.
 	 * 
-	 * @param localDangerWarningList
-	 * 			Node list containing parameters for the LocalDangerWarning presentation 
-	 * 			model.
+	 * @param parameterList
+	 * 			List containing parameters for the LocalDangerWarning presentation model.
+	 * 
+	 * @param presentationTaskType
+	 * 			Subtype of LocalDangerWarning presentation model to present. 
 	 * 
 	 * @return
 	 * 			LocalDangerWarning presentation model with the given parameters.
 	 */
-	private PresentationModel extractLocalDangerWarning(Properties parameterList) 
+	private PresentationModel extractLocalDangerWarning(Properties parameterList, String presentationTaskType) 
 	{
 		Vector3f targetPosition = new Vector3f(0,0,0);
 		String parameter = "";
@@ -619,19 +724,8 @@ public class InteractionMethods
 			else
 				throw new Exception();
 			
-			
-			// extract name of local danger warning
-			parameter = "localDangerWarningName";
-			String localDangerWarningName = parameterList.getProperty(parameter);
-			if(localDangerWarningName == null)
-				throw new Exception();
-			
-			// extract start timing mode. Note that this is not the same as the "delay", since it depends on the distance and is updated.
-			String displayDurationMillisStr = parameterList.getProperty("displayDurationMillis", "0");
-			int displayDurationMillis = Integer.parseInt(displayDurationMillisStr);
-			
 			// Car will be set after it has been created in class "PresentationTaskAction"
-			return new LocalDangerWarningPresentationModel(null, targetPosition, localDangerWarningName, displayDurationMillis);
+			return new LocalDangerWarningPresentationModel(null, targetPosition, presentationTaskType);
 			
 		} catch (Exception e) {
 			
@@ -648,6 +742,18 @@ public class InteractionMethods
 	 * Creates a SetSpeedLimit trigger action by parsing the given node list. This
 	 * trigger sets the global variable "currentSpeedLimit" (e.g. used by the 
 	 * simulator's speed indicator) to the given value.
+	 * 
+	 * @param sim
+	 * 			Simulator.
+	 * 
+	 * @param delay
+	 * 			Amount of seconds (float) to wait before the TriggerAction will be executed.
+	 * 
+	 * @param repeat
+	 * 			Number of maximum repetitions (0 = infinite).
+	 * 
+	 * @param parameterList
+	 * 			List of additional parameters.
 	 * 
 	 * @return
 	 * 			SetSpeedLimit trigger action with the given speed limit value.
@@ -690,6 +796,19 @@ public class InteractionMethods
 	 * Creates a SetSpeedLimit trigger action by parsing the given node list. This
 	 * trigger sets the global variable "upcomingSpeedLimit" (e.g. used by the 
 	 * RoadWorksInformation presentation model) to the given value.
+	 * 
+	 * @param sim
+	 * 			Simulator.
+	 * 
+	 * @param delay
+	 * 			Amount of seconds (float) to wait before the TriggerAction will be executed.
+	 * 
+	 * @param repeat
+	 * 			Number of maximum repetitions (0 = infinite).
+	 * 
+	 * @param parameterList
+	 * 			List of additional parameters.
+	 * 
 	 * @return
 	 * 			SetSpeedLimit trigger action with the given speed limit value.
 	 */
@@ -732,6 +851,18 @@ public class InteractionMethods
 	 * Creates a GetTimeUntilBrake trigger action by parsing the given node list. 
 	 * Time from hitting the trigger until the driver brakes will be recorded.
 	 * 
+	 * @param sim
+	 * 			Simulator.
+	 * 
+	 * @param delay
+	 * 			Amount of seconds (float) to wait before the TriggerAction will be executed.
+	 * 
+	 * @param repeat
+	 * 			Number of maximum repetitions (0 = infinite).
+	 * 
+	 * @param parameterList
+	 * 			List of additional parameters.
+	 * 
 	 * @return
 	 * 			GetTimeUntilBrake trigger action.
 	 */
@@ -771,6 +902,18 @@ public class InteractionMethods
 	/**
 	 * Creates a GetTimeUntilSpeedChange trigger action by parsing the given node list. 
 	 * Time from hitting the trigger until the car reached the given speed change.
+	 * 
+	 * @param sim
+	 * 			Simulator.
+	 * 
+	 * @param delay
+	 * 			Amount of seconds (float) to wait before the TriggerAction will be executed.
+	 * 
+	 * @param repeat
+	 * 			Number of maximum repetitions (0 = infinite).
+	 * 
+	 * @param parameterList
+	 * 			List of additional parameters.
 	 * 
 	 * @return
 	 * 			GetTimeUntilSpeedChange trigger action.
@@ -815,6 +958,24 @@ public class InteractionMethods
 	}
 	
 	
+	/**
+	 * Plays the given sound file.
+	 * 
+	 * @param sim
+	 * 			Simulator.
+	 * 
+	 * @param delay
+	 * 			Amount of seconds (float) to wait before the TriggerAction will be executed.
+	 * 
+	 * @param repeat
+	 * 			Number of maximum repetitions (0 = infinite).
+	 * 
+	 * @param parameterList
+	 * 			List of additional parameters.
+	 * 
+	 * @return
+	 * 			PlaySound trigger action.
+	 */
 	@Action(
 			name = "playSound",
 			layer = Layer.SCENE,
@@ -831,7 +992,7 @@ public class InteractionMethods
 		
 		try {
 			
-			// extract name of local danger warning
+			// extract ID of sound
 			parameter = "soundID";
 			String soundID = parameterList.getProperty(parameter);
 			if(soundID == null)
@@ -848,6 +1009,143 @@ public class InteractionMethods
 	}
 	
 	
+	/**
+	 * Plays the given movie file.
+	 * 
+	 * @param sim
+	 * 			Simulator.
+	 * 
+	 * @param delay
+	 * 			Amount of seconds (float) to wait before the TriggerAction will be executed.
+	 * 
+	 * @param repeat
+	 * 			Number of maximum repetitions (0 = infinite).
+	 * 
+	 * @param parameterList
+	 * 			List of additional parameters.
+	 * 
+	 * @return
+	 * 			PlayMovie trigger action.
+	 */
+	@Action(
+			name = "playMovie", 
+			layer = Layer.SCENE, 
+			description = "Plays a movie file specified in the scene layer",
+			defaultDelay = 0,
+			defaultRepeat = 0,
+			param = {@Parameter(name="movieID", type="String", defaultValue="movie01", 
+					description="ID of movie file to play")
+		}
+		)
+	public TriggerAction playMovie(SimulationBasics sim, float delay, int repeat, Properties parameterList)
+	{
+		String parameter = "";
+		
+		try {
+			
+			// extract ID of movie
+			parameter = "movieID";
+			String movieID = parameterList.getProperty(parameter);
+			if(movieID == null)
+				throw new Exception();
+
+			// create PlayMovieAction
+			return new PlayMovieAction((Simulator)sim, delay, repeat, movieID);
+			
+		} catch (Exception e) {
+			
+			reportError("playMovie", parameter);
+			return null;
+		}
+	}
+	
+	
+	/**
+	 * Plays the next movie file.
+	 * 
+	 * @param sim
+	 * 			Simulator.
+	 * 
+	 * @param delay
+	 * 			Amount of seconds (float) to wait before the TriggerAction will be executed.
+	 * 
+	 * @param repeat
+	 * 			Number of maximum repetitions (0 = infinite).
+	 * 
+	 * @param parameterList
+	 * 			List of additional parameters.
+	 * 
+	 * @return
+	 * 			PlayNextMovie trigger action.
+	 */
+	@Action(
+			name = "playNextMovie", 
+			layer = Layer.SCENE, 
+			description = "Plays the next movie file specified in the scene layer",
+			defaultDelay = 0,
+			defaultRepeat = 0,
+			param = {}
+		)
+	public TriggerAction playNextMovie(SimulationBasics sim, float delay, int repeat, Properties parameterList)
+	{	
+		// create PlayNextMovieAction
+		return new PlayNextMovieAction((Simulator)sim, delay, repeat);
+	}
+	
+	
+	/**
+	 * Stop playing the current movie file.
+	 * 
+	 * @param sim
+	 * 			Simulator.
+	 * 
+	 * @param delay
+	 * 			Amount of seconds (float) to wait before the TriggerAction will be executed.
+	 * 
+	 * @param repeat
+	 * 			Number of maximum repetitions (0 = infinite).
+	 * 
+	 * @param parameterList
+	 * 			List of additional parameters.
+	 * 
+	 * @return
+	 * 			StopMovie trigger action.
+	 */
+	@Action(
+			name = "stopMovie", 
+			layer = Layer.SCENE, 
+			description = "Stops movie playback",
+			defaultDelay = 0,
+			defaultRepeat = 0,
+			param = {}
+		)
+	public TriggerAction stopMovie(SimulationBasics sim, float delay, int repeat, Properties parameterList)
+	{
+			
+			// create StopMovieAction
+			return new StopMovieAction((Simulator)sim, delay, repeat);
+	}
+	
+	
+	/**
+	 * Requests the given traffic light to turn green. All conflicting traffic lights will
+	 * turn red before.
+	 * 
+	 * @param sim
+	 * 			Simulator.
+	 * 
+	 * @param delay
+	 * 			Amount of seconds (float) to wait before the TriggerAction will be executed.
+	 * 
+	 * @param repeat
+	 * 			Number of maximum repetitions (0 = infinite).
+	 * 
+	 * @param parameterList
+	 * 			List of additional parameters.
+	 * 
+	 * @return
+	 * 			RequestGreenTrafficLight trigger action.
+	 */
 	@Action(
 			name = "requestGreenTrafficLight",
 			layer = Layer.INTERACTION,
@@ -881,6 +1179,24 @@ public class InteractionMethods
 	}
 	
 	
+	/**
+	 * Starts the reaction measurement clock.
+	 * 
+	 * @param sim
+	 * 			Simulator.
+	 * 
+	 * @param delay
+	 * 			Amount of seconds (float) to wait before the TriggerAction will be executed.
+	 * 
+	 * @param repeat
+	 * 			Number of maximum repetitions (0 = infinite).
+	 * 
+	 * @param parameterList
+	 * 			List of additional parameters.
+	 * 
+	 * @return
+	 * 			StartReactionMeasurement trigger action.
+	 */
 	@Action(
 			name = "startReactionMeasurement",
 			layer = Layer.INTERACTION,
@@ -958,6 +1274,24 @@ public class InteractionMethods
 	}
 	
 	
+	/**
+	 * Sets up a key reaction timer.
+	 * 
+	 * @param sim
+	 * 			Simulator.
+	 * 
+	 * @param delay
+	 * 			Amount of seconds (float) to wait before the TriggerAction will be executed.
+	 * 
+	 * @param repeat
+	 * 			Number of maximum repetitions (0 = infinite).
+	 * 
+	 * @param parameterList
+	 * 			List of additional parameters.
+	 * 
+	 * @return
+	 * 			SetupKeyReactionTimer trigger action.
+	 */
 	@Action(
 			name = "setupKeyReactionTimer",
 			layer = Layer.INTERACTION,
@@ -1020,6 +1354,24 @@ public class InteractionMethods
 	}
 	
 	
+	/**
+	 * Sets up a lane change reaction timer.
+	 * 
+	 * @param sim
+	 * 			Simulator.
+	 * 
+	 * @param delay
+	 * 			Amount of seconds (float) to wait before the TriggerAction will be executed.
+	 * 
+	 * @param repeat
+	 * 			Number of maximum repetitions (0 = infinite).
+	 * 
+	 * @param parameterList
+	 * 			List of additional parameters.
+	 * 
+	 * @return
+	 * 			SetupLaneChangeReactionTimer trigger action.
+	 */
 	@Action(
 			name = "setupLaneChangeReactionTimer",
 			layer = Layer.INTERACTION,
@@ -1139,7 +1491,24 @@ public class InteractionMethods
 	}
 
 	
-	
+	/**
+	 * Sets up a brake reaction timer.
+	 * 
+	 * @param sim
+	 * 			Simulator.
+	 * 
+	 * @param delay
+	 * 			Amount of seconds (float) to wait before the TriggerAction will be executed.
+	 * 
+	 * @param repeat
+	 * 			Number of maximum repetitions (0 = infinite).
+	 * 
+	 * @param parameterList
+	 * 			List of additional parameters.
+	 * 
+	 * @return
+	 * 			SetupBrakeReactionTimer trigger action.
+	 */
 	@Action(
 			name = "setupBrakeReactionTimer",
 			layer = Layer.INTERACTION,
@@ -1259,6 +1628,24 @@ public class InteractionMethods
 	}
 	
 	
+	/**
+	 * Writes an entry to the log if given speed exceeded or undershot, resp.
+	 * 
+	 * @param sim
+	 * 			Simulator.
+	 * 
+	 * @param delay
+	 * 			Amount of seconds (float) to wait before the TriggerAction will be executed.
+	 * 
+	 * @param repeat
+	 * 			Number of maximum repetitions (0 = infinite).
+	 * 
+	 * @param parameterList
+	 * 			List of additional parameters.
+	 * 
+	 * @return
+	 * 			ReportSpeed trigger action.
+	 */
 	@Action(
 			name = "reportSpeed",
 			layer = Layer.INTERACTION,
@@ -1311,6 +1698,24 @@ public class InteractionMethods
 	}
 	
 	
+	/**
+	 * Writes an entry to the log if given traffic light is in the given state.
+	 * 
+	 * @param sim
+	 * 			Simulator.
+	 * 
+	 * @param delay
+	 * 			Amount of seconds (float) to wait before the TriggerAction will be executed.
+	 * 
+	 * @param repeat
+	 * 			Number of maximum repetitions (0 = infinite).
+	 * 
+	 * @param parameterList
+	 * 			List of additional parameters.
+	 * 
+	 * @return
+	 * 			ReportTrafficLight trigger action.
+	 */
 	@Action(
 			name = "reportTrafficLight",
 			layer = Layer.INTERACTION,
@@ -1361,6 +1766,24 @@ public class InteractionMethods
 	}
 	
 	
+	/**
+	 * Shows up a screen with instructions
+	 * 
+	 * @param sim
+	 * 			Simulator.
+	 * 
+	 * @param delay
+	 * 			Amount of seconds (float) to wait before the TriggerAction will be executed.
+	 * 
+	 * @param repeat
+	 * 			Number of maximum repetitions (0 = infinite).
+	 * 
+	 * @param parameterList
+	 * 			List of additional parameters.
+	 * 
+	 * @return
+	 * 			OpenInstructionScreen trigger action.
+	 */
 	@Action(
 			name = "openInstructionsScreen", 
 			layer = Layer.INTERACTION, 
@@ -1393,10 +1816,28 @@ public class InteractionMethods
 	}
 	
 	
+	/**
+	 * Applies crosswind to the user-controlled car.
+	 * 
+	 * @param sim
+	 * 			Simulator.
+	 * 
+	 * @param delay
+	 * 			Amount of seconds (float) to wait before the TriggerAction will be executed.
+	 * 
+	 * @param repeat
+	 * 			Number of maximum repetitions (0 = infinite).
+	 * 
+	 * @param parameterList
+	 * 			List of additional parameters.
+	 * 
+	 * @return
+	 * 			SetCrosswind trigger action.
+	 */
 	@Action(
 			name = "setCrosswind", 
 			layer = Layer.INTERACTION, 
-			description = "applies crosswind to the user-controlled car",
+			description = "Applies crosswind to the user-controlled car.",
 			defaultDelay = 0,
 			defaultRepeat = 0,
 			param = {@Parameter(name="direction", type="String", defaultValue="", 
@@ -1443,11 +1884,30 @@ public class InteractionMethods
 	}
 		
 	
+	/**
+	 * Sets one of the following Three-Vehicle-Platoon-Task-stimuli: 'speedReduction', 'emergencyBrake', 
+	 * 'leadingCarTurnSignal', 'followerCarTurnSignal', 'brakeLight', 'loseCargo'.
+	 * 
+	 * @param sim
+	 * 			Simulator.
+	 * 
+	 * @param delay
+	 * 			Amount of seconds (float) to wait before the TriggerAction will be executed.
+	 * 
+	 * @param repeat
+	 * 			Number of maximum repetitions (0 = infinite).
+	 * 
+	 * @param parameterList
+	 * 			List of additional parameters.
+	 * 
+	 * @return
+	 * 			SetTVPTStimulus trigger action.
+	 */
 	@Action(
 			name = "setTVPTStimulus", 
 			layer = Layer.INTERACTION, 
-			description = "sets one of the following Three-Vehicle-Platoon-Test-stimuli: CHMSL (Center High-Mount Stoplight), " +
-					"FVTS (Follow Vehicle Turn Signal), LVD (Lead Vehicle Deceleration)",
+			description = "Sets one of the following Three-Vehicle-Platoon-Task-stimuli: 'speedReduction', " +
+					"'emergencyBrake', 'leadingCarTurnSignal', 'followerCarTurnSignal', 'brakeLight', 'loseCargo'.",
 			defaultDelay = 0,
 			defaultRepeat = 0,
 			param = {@Parameter(name="stimulusID", type="String", defaultValue="", 
@@ -1476,6 +1936,75 @@ public class InteractionMethods
 	}
 	
 	
+	/**
+	 * Sets one of the following  MotorwayTask stimuli: 'enter' (enter motorway), 'exit' (exit motorway)
+	 * 
+	 * @param sim
+	 * 			Simulator.
+	 * 
+	 * @param delay
+	 * 			Amount of seconds (float) to wait before the TriggerAction will be executed.
+	 * 
+	 * @param repeat
+	 * 			Number of maximum repetitions (0 = infinite).
+	 * 
+	 * @param parameterList
+	 * 			List of additional parameters.
+	 * 
+	 * @return
+	 * 			SetMotorwayTaskStimulus trigger action.
+	 */
+	@Action(
+			name = "setMotorwayTaskStimulus", 
+			layer = Layer.INTERACTION, 
+			description = "sets one of the following MotorwayTask stimuli: enter (enter motorway), " +
+					"exit (exit motorway)",
+			defaultDelay = 0,
+			defaultRepeat = 0,
+			param = {@Parameter(name="stimulusID", type="String", defaultValue="", 
+							 	description="Provide an ID of the stimulus to trigger")
+					}
+		)
+	public TriggerAction setMotorwayTaskStimulus(SimulationBasics sim, float delay, int repeat, Properties parameterList)
+	{
+		String parameter = "stimulusID";
+		
+		try {
+			
+			// extract stimulusID
+			String stimulusID = parameterList.getProperty(parameter);
+			if(stimulusID == null)
+				throw new Exception();
+			
+			// create SetMotorwayTaskStimulusTriggerAction
+			return new SetMotorwayTaskStimulusTriggerAction(delay, repeat, (Simulator) sim, stimulusID);
+			
+		} catch (Exception e) {
+	
+			reportError("setMotorwayTaskStimulus", parameter);
+			return null;
+		}
+	}
+	
+	
+	/**
+	 * Inserts/edits a property in the knowledge base
+	 * 
+	 * @param sim
+	 * 			Simulator.
+	 * 
+	 * @param delay
+	 * 			Amount of seconds (float) to wait before the TriggerAction will be executed.
+	 * 
+	 * @param repeat
+	 * 			Number of maximum repetitions (0 = infinite).
+	 * 
+	 * @param parameterList
+	 * 			List of additional parameters.
+	 * 
+	 * @return
+	 * 			WriteToKnowledgeBase trigger action.
+	 */
 	@Action(
 			name = "writeToKnowledgeBase",
 			layer = Layer.INTERACTION,
@@ -1529,6 +2058,57 @@ public class InteractionMethods
 		} catch (Exception e) {
 			
 			reportError("writeToKnowledgeBase", parameter);
+			return null;
+		}
+	}
+	
+	
+	/**
+	 * Manipulate ConTRe task settings
+	 * 
+	 * @param sim
+	 * 			Simulator.
+	 * 
+	 * @param delay
+	 * 			Amount of seconds (float) to wait before the TriggerAction will be executed.
+	 * 
+	 * @param repeat
+	 * 			Number of maximum repetitions (0 = infinite).
+	 * 
+	 * @param parameterList
+	 * 			List of additional parameters.
+	 * 
+	 * @return
+	 * 			SetupContreTask trigger action.
+	 */
+	@Action(
+			name = "setupContreTask", 
+			layer = Layer.INTERACTION, 
+			description = "Manipulate ConTRe task settings",
+			defaultDelay = 0,
+			defaultRepeat = 0,
+			param = {@Parameter(name="targetObjectSpeed", type="Float", defaultValue="0.5", 
+							 	description="Set speed of target object (yellow bar) to this value")
+					}
+		)
+	public TriggerAction setupContreTask(SimulationBasics sim, float delay, int repeat, Properties parameterList)
+	{
+		String parameter = "targetObjectSpeed";
+		
+		try {
+			
+			// read speed of target object
+			String targetObjectSpeedString = parameterList.getProperty(parameter);
+			if(targetObjectSpeedString == null)
+				targetObjectSpeedString = setDefault("setupContreTask", parameter, "0.5");
+			float targetObjectSpeed = Float.parseFloat(targetObjectSpeedString);
+			
+			// create SetupContreTaskTriggerAction
+			return new SetupContreTaskTriggerAction(delay, repeat, (Simulator) sim, targetObjectSpeed);
+			
+		} catch (Exception e) {
+	
+			reportError("setupContreTask", parameter);
 			return null;
 		}
 	}

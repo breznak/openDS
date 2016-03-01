@@ -9,18 +9,19 @@
         <!-- 
         <numberOfScreens>3</numberOfScreens>
         <angleBetweenAdjacentCameras>40</angleBetweenAdjacentCameras>
-        <frameOfView>64</frameOfView>
         -->
 	</general>
 	
-	<SIMTD>
-		<sendDataToHmi>true</sendDataToHmi>
-		<startGui>true</startGui>
-		<hmiNativePath>assets/HMI</hmiNativePath>
-		<hmiNativeExecutable>HMI_GUI.exe</hmiNativeExecutable>
+	<objectLocator>
+		<enable>false</enable>
+		<fileName>trafficObjects.txt</fileName>
+	</objectLocator>
+	
+	<HMI>
+		<enableConnection>true</enableConnection>
 		<ip>127.0.0.1</ip>
-		<port>3110</port>
-	</SIMTD>
+		<port>2111</port>
+	</HMI>
 	
 	<externalVisualization>
 		<enableConnection>false</enableConnection>
@@ -55,13 +56,26 @@
 	
 	<controllers>
 		<joystick>
-			<controllerID>0</controllerID>
-			<steeringAxis>3</steeringAxis>
-			<invertSteeringAxis>false</invertSteeringAxis>
-			<pedalAxis>4</pedalAxis>
-			<invertPedalAxis>false</invertPedalAxis>
-			<steeringSensitivityFactor>1.0</steeringSensitivityFactor>
-			<pedalSensitivityFactor>1.0</pedalSensitivityFactor>
+			<!-- Logitech G27 -->
+			<dumpJoystickList>true</dumpJoystickList>
+			<steering controllerID="0" axisID="3" invert="false" sensitivity="1.0"/>
+			<combinedPedals controllerID="0" axisID="4" invert="false" sensitivity="1.0"/>
+			<accelerator controllerID="0" axisID="6" invert="true" sensitivity="1.0"/>
+			<brake controllerID="0" axisID="5" invert="true" sensitivity="1.0"/>
+			<clutch controllerID="0" axisID="7" invert="true" sensitivity="1.0"/>
+			
+			<enableForceFeedback>false</enableForceFeedback>
+			<springForce>1.0</springForce>
+			<damperForce>1.0</damperForce>
+			
+			<!-- Fanatec
+			<dumpJoystickList>true</dumpJoystickList>
+			<steering controllerID="0" axisID="6" invert="false" sensitivity="1.0"/>
+			<combinedPedals controllerID="0" axisID="3" invert="false" sensitivity="1.0"/>
+			<accelerator controllerID="0" axisID="5" invert="true" sensitivity="1.0"/>
+			<brake controllerID="0" axisID="4" invert="true" sensitivity="1.0"/>
+			<clutch controllerID="0" axisID="9" invert="true" sensitivity="1.0"/>
+			-->
 			<keyAssignments>
 				<keyAssignment function="start_engine" key="BUTTON_1" />
 				<keyAssignment function="stop_engine" key="BUTTON_2" />
@@ -76,7 +90,7 @@
 		<mouse>
 			<!-- only for outside view -->
 			<minScrollZoom>1</minScrollZoom>
-			<maxScrollZoom>40</maxScrollZoom>
+			<maxScrollZoom>400</maxScrollZoom>
 			<scrollSensitivityFactor>5</scrollSensitivityFactor>
 		</mouse>
 	</controllers>

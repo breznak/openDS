@@ -41,27 +41,46 @@ public class DataUnit implements Serializable
 	
 
 	/**
-	 * The default constructor used in simulator.
+	 * @param date
+	 * 			The date, when the data set was taken.
 	 * 
 	 * @param xpos
-	 *            The position of the car on the x axis.
+	 * 			The position of the car on the x axis.
+	 * 
 	 * @param ypos
-	 *            The position of the car on the y axis.
+	 * 			The position of the car on the y axis.
+	 * 
 	 * @param zpos
-	 *            The position of the car on the z axis.
+	 * 			The position of the car on the z axis.
+	 * 
+	 * @param xrot
+	 * 			The rotation of the car (x component of quaternion)
+	 * 
+	 * @param yrot
+	 * 			The rotation of the car (y component of quaternion)
+	 * 
+	 * @param zrot
+	 * 			The rotation of the car (z component of quaternion)
+	 * 
+	 * @param wrot
+	 * 			The rotation of the car (w component of quaternion)
+	 * 
 	 * @param speed
-	 *            The current speed of the car in kilometers per hour.
-	 * @param date
-	 *            The date, when the data set was taken.
+	 * 			The current speed of the car in kilometers per hour.
+	 * 
 	 * @param steeringWheelPos
-	 *            The position of the steering wheel: -1 full left, 0 centered,
-	 *            1 full right.
+	 * 			The position of the steering wheel: -1 full left, 0 centered,
+	 *          1 full right.
+	 *            
 	 * @param gasPedalPos
-	 *            The position of the gas pedal: 0 no acceleration, 1 full acceleration
+	 * 			The position of the gas pedal: 0 no acceleration, 1 full acceleration
+	 * 
 	 * @param brakePedalPos
-	 *            The position of the brake pedal: -1 full break/negative acceleration, 0 no acceleration
+	 * 			The position of the brake pedal: -1 full break/negative acceleration, 0 no acceleration
+	 * 
+	 * @param isEngineOn
+	 * 			Engine state
 	 */
-
 	public DataUnit(Date date, float xpos, float ypos, float zpos,
 			float xrot, float yrot, float zrot, float wrot, float speed,
 			float steeringWheelPos, float gasPedalPos, float brakePedalPos,
@@ -82,23 +101,36 @@ public class DataUnit implements Serializable
 		setEngineOn(isEngineOn);
 	}
 	
-	
+
 	/**
-	 * The default constructor used in analyzer.
+	 * @param date
+	 * 			The date, when the data set was taken.
+	 * 
+	 * @param carPosition
+	 * 			The position of the car
+	 * 			
+	 * @param carRotation
+	 * 			The rotation of the car
 	 * 
 	 * @param speed
-	 *            The current speed of the car in kilometers per hour.
-	 * @param date
-	 *            The date, when the data set was taken.
+	 * 			The current speed of the car in kilometers per hour.
+	 * 
 	 * @param steeringWheelPos
-	 *            The position of the steering wheel: -1 full left, 0 centered,
-	 *            1 full right.
+	 * 			The position of the steering wheel: -1 full left, 0 centered,
+	 *          1 full right.
+	 *          
 	 * @param gasPedalPos
-	 *            The position of the gas pedal: 0 no acceleration, 1 full acceleration
+	 * 			The position of the gas pedal: 0 no acceleration, 1 full acceleration
+	 * 
 	 * @param brakePedalPos
-	 *            The position of the brake pedal: -1 full break/negative acceleration, 0 no acceleration
+	 * 			The position of the brake pedal: -1 full break/negative acceleration, 0 no acceleration
+	 * 
+	 * @param isEngineOn
+	 * 			Engine state
+	 * 
+	 * @param traveledDistance
+	 * 			traveled distance
 	 */
-
 	public DataUnit(Date date, Vector3f carPosition, Quaternion carRotation,
 			float speed, float steeringWheelPos, float gasPedalPos, float brakePedalPos,
 			boolean isEngineOn, float traveledDistance) 

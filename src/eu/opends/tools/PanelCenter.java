@@ -19,7 +19,9 @@
 package eu.opends.tools;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.TreeMap;
+import java.util.Date;
 import java.util.Map.Entry;
 
 import com.jme3.font.BitmapFont;
@@ -35,6 +37,7 @@ import com.jme3.ui.Picture;
 
 import eu.opends.basics.SimulationBasics;
 import eu.opends.car.Car;
+import eu.opends.car.SteeringCar;
 import eu.opends.drivingTask.settings.SettingsLoader;
 import eu.opends.drivingTask.settings.SettingsLoader.Setting;
 import eu.opends.main.DriveAnalyzer;
@@ -66,6 +69,19 @@ public class PanelCenter
 	private static BitmapText riftKmText;
 	private static String riftRpm = "";
 	private static String riftGear = "";
+	
+	// OpenDS-Maritime - digital maritime panel ***EXPERIMENTAL***
+	private static boolean showMaritimePanel = false;
+	private static BitmapText maritimeHeadingText;
+	private static BitmapText maritimeSpeedText;
+	private static BitmapText maritimeDepthText;
+	private static BitmapText maritimeWindText;
+	private static BitmapText maritimeTimeText;
+	private static BitmapText maritimeDistanceText;
+	private static BitmapText maritimeScenarioText;
+	private static BitmapText maritimeLatitudeText;
+	private static BitmapText maritimeLongitudeText;
+	private static long startTime = 0;
 	
 	// message box
 	private static MessageBoxGUI messageBoxGUI;
@@ -515,11 +531,141 @@ public class PanelCenter
         	guiNode.attachChild(riftPanel);
         }
         
+        if (showMaritimePanel)
+        	initMaritimePanel();
         
 		resetPanelPosition(true);
 	}
 	
 	
+	private static void initMaritimePanel()
+	{
+        // OpenDS-Maritime - calc screen center
+        int screenWidth = sim.getSettings().getWidth();
+        int screenHeight = sim.getSettings().getHeight();
+
+        BitmapFont guiFont = sim.getAssetManager().loadFont("Interface/Fonts/Default.fnt");
+        Node guiNode = sim.getGuiNode();
+        
+        // OpenDS-Maritime - default font for line space calculation
+        BitmapText defaultText = new BitmapText(guiFont, false);
+        defaultText.setSize(guiFont.getCharSet().getRenderedSize());
+        defaultText.setLocalScale(1, 1, 1);
+        float defaultLineHeight = defaultText.getLineHeight();
+        
+        float partialWidth = screenWidth / 5.0f;
+        float startX1 = 0;
+        float startX2 = 1 * partialWidth;
+        float startX3 = 2 * partialWidth;
+        float startX4 = 3 * partialWidth;
+        float startX5 = 4 * partialWidth;
+        float startY1 = screenHeight;
+        float startY2 = screenHeight - 0.5f*defaultLineHeight;
+        float startY3 = screenHeight - defaultLineHeight;
+        final float BOX_WIDTH = screenWidth;
+        
+        // OpenDS-Maritime - heading
+        maritimeHeadingText = new BitmapText(guiFont, false);          
+        maritimeHeadingText.setSize(guiFont.getCharSet().getRenderedSize());
+        maritimeHeadingText.setColor(ColorRGBA.White);
+        maritimeHeadingText.setText("");
+        maritimeHeadingText.setLocalScale(1, 1, 1);
+        maritimeHeadingText.setLocalTranslation(startX1, startY1, 0);
+        
+        // OpenDS-Maritime - speed
+        maritimeSpeedText = new BitmapText(guiFont, false);          
+        maritimeSpeedText.setSize(guiFont.getCharSet().getRenderedSize());
+        maritimeSpeedText.setColor(ColorRGBA.White);
+        maritimeSpeedText.setText("");
+        maritimeSpeedText.setLocalScale(1, 1, 1);
+        maritimeSpeedText.setLocalTranslation(startX1, startY3, 0);
+        
+        // OpenDS-Maritime - depth
+        maritimeDepthText = new BitmapText(guiFont, false);          
+        maritimeDepthText.setSize(guiFont.getCharSet().getRenderedSize());
+        maritimeDepthText.setColor(ColorRGBA.White);
+        maritimeDepthText.setText("");
+        maritimeDepthText.setLocalScale(1, 1, 1);
+        maritimeDepthText.setLocalTranslation(startX2, startY1, 0);
+        
+        // OpenDS-Maritime - wind
+        maritimeWindText = new BitmapText(guiFont, false);          
+        maritimeWindText.setSize(guiFont.getCharSet().getRenderedSize());
+        maritimeWindText.setColor(ColorRGBA.White);
+        maritimeWindText.setText("");
+        maritimeWindText.setLocalScale(1, 1, 1);
+        maritimeWindText.setLocalTranslation(startX2, startY3, 0);
+        
+        // OpenDS-Maritime - time
+        maritimeTimeText = new BitmapText(guiFont, false);          
+        maritimeTimeText.setSize(guiFont.getCharSet().getRenderedSize());
+        maritimeTimeText.setColor(ColorRGBA.White);
+        maritimeTimeText.setText("");
+        maritimeTimeText.setLocalScale(1, 1, 1);
+        maritimeTimeText.setLocalTranslation(startX3, startY1, 0);
+        
+        // OpenDS-Maritime - distance
+        maritimeDistanceText = new BitmapText(guiFont, false);          
+        maritimeDistanceText.setSize(guiFont.getCharSet().getRenderedSize());
+        maritimeDistanceText.setColor(ColorRGBA.White);
+        maritimeDistanceText.setText("");
+        maritimeDistanceText.setLocalScale(1, 1, 1);
+        maritimeDistanceText.setLocalTranslation(startX3, startY3, 0);
+        
+        // OpenDS-Maritime - latitude
+        maritimeLatitudeText = new BitmapText(guiFont, false);          
+        maritimeLatitudeText.setSize(guiFont.getCharSet().getRenderedSize());
+        maritimeLatitudeText.setColor(ColorRGBA.White);
+        maritimeLatitudeText.setText("");
+        maritimeLatitudeText.setLocalScale(1, 1, 1);
+        maritimeLatitudeText.setLocalTranslation(startX4, startY1, 0);
+        
+        // OpenDS-Maritime - latitude
+        maritimeLongitudeText = new BitmapText(guiFont, false);          
+        maritimeLongitudeText.setSize(guiFont.getCharSet().getRenderedSize());
+        maritimeLongitudeText.setColor(ColorRGBA.White);
+        maritimeLongitudeText.setText("");
+        maritimeLongitudeText.setLocalScale(1, 1, 1);
+        maritimeLongitudeText.setLocalTranslation(startX4, startY3, 0);
+        
+        // OpenDS-Maritime - scenario
+        maritimeScenarioText = new BitmapText(guiFont, false);          
+        maritimeScenarioText.setSize(guiFont.getCharSet().getRenderedSize());
+        maritimeScenarioText.setColor(ColorRGBA.White);
+        maritimeScenarioText.setText("");
+        maritimeScenarioText.setLocalScale(1, 1, 1);
+        maritimeScenarioText.setLocalTranslation(startX5, startY2, 0);
+           
+        // test box
+        float paddingX = 16;
+        float paddingY = 10;
+        float boxWidth = BOX_WIDTH + paddingX;
+        float boxHeight = defaultLineHeight * 2 + paddingY;
+               
+        Picture panelBackground = new Picture("PanelBackground");
+        panelBackground.setImage(sim.getAssetManager(), "Textures/OculusRift/transparency.png", true);
+        
+        panelBackground.setWidth(boxWidth);
+        panelBackground.setHeight(boxHeight);
+        panelBackground.setPosition(startX1 - paddingX / 2, startY1 - boxHeight + paddingY / 2);
+        
+        
+        // OpenDS-Maritime - attach riftPanel to GuiNode       
+        Node maritimePanel = new Node("maritimePanel");
+        maritimePanel.attachChild(maritimeHeadingText);
+        maritimePanel.attachChild(maritimeSpeedText);
+        maritimePanel.attachChild(maritimeDepthText);
+        maritimePanel.attachChild(maritimeWindText);
+        maritimePanel.attachChild(maritimeTimeText);
+        maritimePanel.attachChild(maritimeDistanceText);
+        maritimePanel.attachChild(maritimeLatitudeText);
+        maritimePanel.attachChild(maritimeLongitudeText);
+        maritimePanel.attachChild(maritimeScenarioText);
+    	guiNode.attachChild(panelBackground);
+    	guiNode.attachChild(maritimePanel);
+	}
+
+
 	public static void resetPanelPosition(boolean isAutomaticTransmission)
 	{
 		int rightmostPos = getRightmostPosition();	
@@ -616,7 +762,7 @@ public class PanelCenter
 	
 	public static void update() 
 	{
-		Car car = ((Simulator)sim).getCar();
+		SteeringCar car = ((Simulator)sim).getCar();
 		
 		updateSpeedText(car);
 		
@@ -658,8 +804,53 @@ public class PanelCenter
 		}
 		else 
 			warningFrame.setCullHint(CullHint.Always);
+		
+		if (showMaritimePanel)
+			updateMaritimePanel(car);
 	}
 	
+	
+	private static void updateMaritimePanel(SteeringCar car) 
+	{
+		if(startTime == 0)
+	    	startTime = System.currentTimeMillis();
+		
+		DecimalFormat df = new DecimalFormat("#0.0");
+		DecimalFormat df2 = new DecimalFormat("#0.00");
+		DecimalFormat df3 = new DecimalFormat("#0.00000");
+		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+		
+        // OpenDS-Maritime - heading
+		maritimeHeadingText.setText("Kurs: " + df.format(car.getHeadingDegree()) + " Grad");
+		
+		// OpenDS-Maritime - speed
+        maritimeSpeedText.setText("Geschw.: " + df.format(car.getCurrentSpeedKmh()/1.852f) + " kn");
+        
+        // OpenDS-Maritime - depth
+        maritimeDepthText.setText("Tiefe: " + df.format(car.getDistanceToRoadSurface()) + " m");
+        
+        // OpenDS-Maritime - wind
+        maritimeWindText.setText("Wind: 0,0 Grad");
+        
+        // OpenDS-Maritime - time
+        long elapsedTime = System.currentTimeMillis() - startTime - 3600000;
+        String elapsedTimeString = sdf.format(new Date(elapsedTime));
+        maritimeTimeText.setText("Zeit: " + elapsedTimeString);
+        
+        // OpenDS-Maritime - distance
+        maritimeDistanceText.setText("Distanz: " + df2.format(car.getMileage()/1852f) + " nm");
+        
+        // OpenDS-Maritime - latitude
+        maritimeLatitudeText.setText("Breite: " + df3.format(car.getGeoPosition().getX()) + " N");
+        
+        // OpenDS-Maritime - longitude
+        maritimeLongitudeText.setText("Länge: " + df3.format(car.getGeoPosition().getY()) + " O");
+        
+        // OpenDS-Maritime - scenario
+        maritimeScenarioText.setText("Szenario: " + SimulationBasics.getDrivingTask().getFileName().replace(".xml", ""));
+		
+	}
+
 	
 	private static void updateMilageText(Car car) 
 	{

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interaction xmlns="http://opends.eu/drivingtask/interaction"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:schemaLocation="http://opends.eu/drivingtask/interaction ../../Schema/interaction.xsd">
+
+
+	<activities>
+		<activity id="startRecord">
+			<action id="startRecording" delay="0" repeat="0">
+				<parameter name="track" value="1" />
+			</action>
+		</activity>
+		
+		<activity id="enterMotorway">
+			<action id="setMotorwayTaskStimulus" delay="0" repeat="0">
+				<parameter name="stimulusID" value="enter" />
+			</action>
+		</activity>
+		
+		<activity id="exitMotorway">
+			<action id="setMotorwayTaskStimulus" delay="0" repeat="0">
+				<parameter name="stimulusID" value="exit" />
+			</action>
+		</activity>
+		
+		<activity id="stopRecord">
+			<action id="stopRecording" delay="0" repeat="0">
+			</action>
+		</activity>
+		
+		<activity id="playMovie01">
+			<action id="playMovie" delay="0" repeat="0">
+				<parameter name="movieID" value="movie01" />
+			</action>
+		</activity>
+		
+		<activity id="playMovie02">
+			<action id="playMovie" delay="0" repeat="0">
+				<parameter name="movieID" value="movie02" />
+			</action>
+		</activity>
+		
+		<activity id="stopMovies">
+			<action id="stopMovie" delay="0" repeat="0">
+			</action>
+		</activity>
+	</activities>
+	
+	
+	<!--TRIGGERS-->
+	
+	<triggers>
+		<trigger id="collideWithStartRecordBox" priority="1">
+            <activities>
+                <activity ref="startRecord"/>
+            </activities>
+            
+            <condition>collideWith:redBoxStartRecording</condition>
+        </trigger>
+        
+        <trigger id="collideWithEnterMotorwayBox" priority="1">
+            <activities>
+                <activity ref="enterMotorway"/>
+            </activities>
+            
+            <condition>collideWith:greenBoxEnterMotorway</condition>
+        </trigger>
+        
+        <trigger id="collideWithExitMotorwayBox" priority="1">
+            <activities>
+                <activity ref="exitMotorway"/>
+            </activities>
+            
+            <condition>collideWith:blueBoxExitMotorway</condition>
+        </trigger>
+        
+        <trigger id="collideWithStopRecordBox" priority="1">
+            <activities>
+                <activity ref="stopRecord"/>
+            </activities>
+            
+            <condition>collideWith:redBoxStopRecording</condition>
+        </trigger>
+        
+        <trigger id="movie01play" priority="1">
+            <activities>
+                <activity ref="playMovie01"/>
+            </activities>
+            
+            <condition>pressKey:5</condition>
+        </trigger>
+        
+        <trigger id="movie02play" priority="1">
+            <activities>
+                <activity ref="playMovie02"/>
+            </activities>
+            
+            <condition>pressKey:6</condition>
+        </trigger>
+        
+        <trigger id="moviesstop" priority="1">
+            <activities>
+                <activity ref="stopMovies"/>
+            </activities>
+            
+            <condition>pressKey:7</condition>
+        </trigger>
+		
+	</triggers>
+	
+</interaction>

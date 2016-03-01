@@ -1,0 +1,61 @@
+OpenDS Change Log
+================
+
+
+OpenDS 3.5 (released November 2015)
+-----------------------------------------
+  * Pedestrian support
+  * HMI bundle *PRO*
+  * Motorway Task
+  * Countyside2 track
+  * Village2 track
+  * Force feedback support *PRO*
+  * Pedal support
+  * Event triggering via Server
+  * Movie player integration
+  * Change weather settings during runtime
+  * Start configuration
+  * Simplified setup of multiple screens
+
+
+ OpenDS 3.0 (released May 2015)
+ -----------------------------------------
+  * Oculus Rift support o Static car interior
+  * Lane Change Test rebuilt *PRO*
+  * Adaptive cruise control (ACC)
+  * Support for AMS Motion Seats through Simphinity
+  * Large city model ("BigCity")
+  * Several new car models
+  * Interface for DATAQ Data Acqisition Devices *PRO*
+  * Three Truck Platoon Task including 70 km long road with hill scenery *PRO*
+  * Visual parking brake indicator
+  * Acoustic and visual turn signal
+  * Automatically switch off turn signal after steering
+  * Snow, rain, and fog can be adjusted during runtime
+  * Fog now available in multi-screen setup
+  * Debugged mouse pointer issue in “ReactionTest” driving task
+  * Extended logging of 3VPT *PRO*
+  * Added cross wind triggers
+  * Database connection for eye-gaze analysis module *PRO*
+
+
+OpenDS 2.5 (released September 2014)
+-----------------------------------------
+  * Eye-tracker integration for scene ray casting: Record which environment entities the user focuses and analyze gaze timings. Universal interface with built-in support for recent Tobii eye-trackers. *PRO*
+  * Multi-driver environment:
+      - connect multiple user-controlled vehicles to the same simulation
+      - feed computer-generated tracks to the simulated environment
+      - Multi-driver server available
+  * Geo-referencing tool available
+  * Improved CityEngine integration (direct export)
+  * Premium model: Eisenbahnstraße (based on a high-polished CityEngine model) *PRO*
+  * Improved Three Vehicle Platoon Task *PRO*
+  * Minor changes:
+      - Introduced trigger node
+      - Top-down view (with position marker)
+      - Hood can be shown
+      - Cruise control
+      - Set outside camera position
+      - Video capturing
+      - Debugged SettingsControllerServer
+      - Debugged camera flight

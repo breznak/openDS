@@ -36,6 +36,7 @@ public class Waypoint
 	private String trafficLightID;
 	private Float headLightIntensity;
 	private String turnSignal;
+	private Integer waitingTime;
 	
 	
 	/**
@@ -58,8 +59,12 @@ public class Waypoint
 	 * 
 	 * @param headLightIntensity
 	 * 			intensity change of head light (if available, else null) 
+	 * 	 
+	 * @param waitingTime
+	 * 			amount of milliseconds to wait at this waypoint (if available, else null) 
 	 */
-	public Waypoint(String name, Vector3f position, float speed, String trafficLightID, Float headLightIntensity, String turnSignal) 
+	public Waypoint(String name, Vector3f position, float speed, String trafficLightID, 
+			Float headLightIntensity, String turnSignal, Integer waitingTime) 
 	{
 		this.name = name;
 		this.speed = speed;
@@ -67,6 +72,7 @@ public class Waypoint
 		this.trafficLightID = trafficLightID;
 		this.headLightIntensity = headLightIntensity;
 		this.turnSignal = turnSignal;
+		this.waitingTime = waitingTime;
 	}
 
 
@@ -140,6 +146,18 @@ public class Waypoint
 	public String getTurnSignal() 
 	{
 		return turnSignal;
+	}
+	
+	
+	/**
+	 * Getter method for the rest time at this way point
+	 * 
+	 * @return
+	 * 			amount of milliseconds to wait at this waypoint
+	 */
+	public Integer getWaitingTime()
+	{
+		return waitingTime;
 	}
 	
 	

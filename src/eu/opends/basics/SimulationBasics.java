@@ -66,6 +66,7 @@ public class SimulationBasics extends SimpleApplication
 	protected static InteractionLoader interactionLoader;
 	protected static SettingsLoader settingsLoader;
 	protected static Map<String,List<TriggerAction>> triggerActionListMap = new HashMap<String,List<TriggerAction>>();
+	protected static Map<String,List<TriggerAction>> remoteTriggerActionListMap = new HashMap<String,List<TriggerAction>>();
 	protected BulletAppState bulletAppState;
 	protected LightFactory lightFactory;
 	protected CameraFactory cameraFactory;
@@ -171,6 +172,12 @@ public class SimulationBasics extends SimpleApplication
 		return triggerActionListMap;
 	}
 
+	
+	public static Map<String,List<TriggerAction>> getRemoteTriggerActionListMap() 
+	{
+		return remoteTriggerActionListMap;
+	}
+	
 	
 	public AppSettings getSettings() 
 	{

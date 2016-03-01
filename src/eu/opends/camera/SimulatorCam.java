@@ -30,6 +30,7 @@ import com.jme3.scene.control.CameraControl;
 import com.jme3.scene.shape.Cylinder;
 
 import eu.opends.car.Car;
+import eu.opends.drivingTask.settings.SettingsLoader.Setting;
 import eu.opends.main.Simulator;
 import eu.opends.tools.PanelCenter;
 import eu.opends.tools.Util;
@@ -50,8 +51,13 @@ public class SimulatorCam extends CameraFactory
 		this.car = car;
 		carNode = car.getCarNode();
 		
-		initCamera(sim, carNode);		
-		setCamMode(CameraMode.EGO);
+		initCamera(sim, carNode);	
+		
+		String cameraModeString = settingsLoader.getSetting(Setting.General_cameraMode, "ego").toUpperCase();
+		if(cameraModeString == null || cameraModeString.isEmpty())
+			cameraModeString = "EGO";
+		CameraMode cameraMode = CameraMode.valueOf(cameraModeString);
+		setCamMode(cameraMode);
 		initMapMarker();
 	}
 

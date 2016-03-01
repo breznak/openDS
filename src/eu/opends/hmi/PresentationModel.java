@@ -42,8 +42,11 @@ public abstract class PresentationModel
 	 * Computes the exact distance between the car and the given target 
 	 * position (sign, obstacle, traffic light, ...) with float precision.
 	 * 
+	 * @param targetPosition
+	 * 			Position of the target.
+	 * 
 	 * @return
-	 * 			Exact distance between car and target in meters
+	 * 			Exact distance between car and target in meters.
 	 */
 	public float getExactDistanceToTarget(Vector3f targetPosition)
 	{
@@ -58,6 +61,9 @@ public abstract class PresentationModel
 	 * Computes the rounded distance between the car and the given target 
 	 * position (sign, obstacle, traffic light, ...) as multiple of 
 	 * precisionFactor.
+	 *
+	 * @param targetPosition
+	 * 			Position of the target.
 	 * 
 	 * @return
 	 * 			Rounded distance between car and target in meters
@@ -76,6 +82,9 @@ public abstract class PresentationModel
 	/**
 	 * Computes the time (in milliseconds) which is needed by the car to arrive at the 
 	 * target position.
+	 * 
+	 * @param targetPosition
+	 * 			Position of the target.
 	 * 
 	 * @return
 	 * 			Time to target in milliseconds
@@ -173,7 +182,7 @@ public abstract class PresentationModel
 
 	
 	/**
-	 * Creates a presentation task on the SIM-TD HMI GUI. The data will only be 
+	 * Creates a presentation task on the HMI GUI. The data will only be 
 	 * sent to the HMI bundle once.
 	 * 
 	 * @return
@@ -184,14 +193,25 @@ public abstract class PresentationModel
 	
 	
 	/**
-	 * Updates a presentation task on the SIM-TD HMI GUI.
+	 * Updates a presentation task on the HMI GUI.
+	 * 
+	 * @param presentationID
+	 * 			ID of presentation task to update.
 	 */
 	public abstract void updatePresentation(long presentationID);
 
 	
 	/**
 	 * Generates a message containing type of warning and distance to the target
+	 * 
+	 * @return
+	 * 			Message containing type of warning and distance to the target.
 	 */
 	public abstract String generateMessage();
+
+
+	public void stop() 
+	{
+	}
 	
 }

@@ -235,7 +235,7 @@ public class LaneChangeReactionTimer extends ReactionTimer
 	
 	private boolean isBraking() 
 	{
-		return (sim.getCar().getBrakePedalPressIntensity() > 0);
+		return (sim.getCar().getBrakePedalIntensity() > 0);
 	}
 	
 	

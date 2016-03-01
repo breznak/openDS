@@ -3,13 +3,19 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="assets/JasperReports/log4j"/>
 	<classpathentry kind="lib" path="assets/Textures/Logo"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
+		<accessrules>
+			<accessrule kind="accessible" pattern="javafx/**"/>
+			<accessrule kind="accessible" pattern="com/sun/javafx/**"/>
+		</accessrules>
+	</classpathentry>
 	<classpathentry kind="lib" path="lib/CarOntology.jar"/>
 	<classpathentry kind="lib" path="lib/com.springsource.org.jaxen-1.1.1.jar"/>
 	<classpathentry kind="lib" path="lib/com.springsource.org.jdom-1.1.0.jar"/>
 	<classpathentry kind="lib" path="lib/commons-codec-1.4.jar"/>
 	<classpathentry kind="lib" path="lib/contre.jar"/>
 	<classpathentry kind="lib" path="lib/eyetracker.jar"/>
+	<classpathentry kind="lib" path="lib/ffjoystick.jar"/>
 	<classpathentry kind="lib" path="lib/j2ee-1.4.jar"/>
 	<classpathentry kind="lib" path="lib/Jama-1.0.3.jar"/>
 	<classpathentry kind="lib" path="lib/jaxdomBundle.jar"/>
@@ -19,6 +25,7 @@
 	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.18-bin.jar"/>
 	<classpathentry kind="lib" path="lib/NetMessageProtocol.jar"/>
 	<classpathentry kind="lib" path="lib/tvpt.jar"/>
+	<classpathentry kind="lib" path="lib/oculus.jar"/>
 	<classpathentry kind="lib" path="lib/jME3/eventbus.jar"/>
 	<classpathentry kind="lib" path="lib/jME3/gluegen-rt.jar"/>
 	<classpathentry kind="lib" path="lib/jME3/j-ogg-oggd.jar"/>
@@ -107,5 +114,7 @@
 	<classpathentry kind="lib" path="lib/jasperreports/xml-apis.jar"/>
 	<classpathentry kind="lib" path="lib/oculusrift/jna-4.1.0.jar"/>
 	<classpathentry kind="lib" path="lib/oculusrift/jovr-0.3.2.2.jar"/>
+	<classpathentry kind="lib" path="lib/java_websocket.jar"/>
+	<classpathentry kind="lib" path="lib/jfx-1.dev.47488-09-06_144536-2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -95,7 +95,7 @@ public class KeyBindingCenter
 	    		//System.err.println(key);
 				try {
 		
-					if(key.startsWith("KEY_") || key.startsWith("BUTTON_"))
+					if(key.startsWith("KEY_") || key.startsWith("BUTTON_") || key.startsWith("JOY_"))
 					{
 						if(key.startsWith("KEY_"))
 						{
@@ -105,11 +105,23 @@ public class KeyBindingCenter
 							inputManager.addMapping(keyMapping.getID(), new KeyTrigger(keyNumber));
 							inputManager.addListener(inputListener, keyMapping.getID());
 						}
-						else
+						else if(key.startsWith("BUTTON_"))
 						{
 							int buttonNumber = Integer.parseInt(key.replace("BUTTON_", ""));
 							inputManager.addMapping(keyMapping.getID(), new JoyButtonTrigger(0,buttonNumber));
 							inputManager.addListener(inputListener, keyMapping.getID());
+						}
+						else
+						{
+							// e.g. JOY_1:BUTTON_2
+							String[] stringArray = key.split(":");
+							if(stringArray.length == 2)
+							{
+								int joyID = Integer.parseInt(stringArray[0].replace("JOY_", ""));
+								int buttonNumber = Integer.parseInt(stringArray[1].replace("BUTTON_", ""));
+								inputManager.addMapping(keyMapping.getID(), new JoyButtonTrigger(joyID,buttonNumber));
+								inputManager.addListener(inputListener, keyMapping.getID());
+							}
 						}
 						
 						if(returnString == null)
@@ -145,21 +157,34 @@ public class KeyBindingCenter
 		
 		// ANALOG (joystick axes)
         SettingsLoader settingsLoader = Simulator.getSettingsLoader();
-        int controllerID = settingsLoader.getSetting(Setting.Joystick_controllerID, 0);
-        int pedalAxis = settingsLoader.getSetting(Setting.Joystick_pedalAxis, 2);
-        boolean invertPedalAxis = settingsLoader.getSetting(Setting.Joystick_invertPedalAxis, false);
+        int steeringControllerID = settingsLoader.getSetting(Setting.Joystick_steeringControllerID, 0);
         int steeringAxis = settingsLoader.getSetting(Setting.Joystick_steeringAxis, 1);
         boolean invertSteeringAxis = settingsLoader.getSetting(Setting.Joystick_invertSteeringAxis, false);
+        int combinedPedalsControllerID = settingsLoader.getSetting(Setting.Joystick_combinedPedalsControllerID, 0);
+        int combinedPedalsAxis = settingsLoader.getSetting(Setting.Joystick_combinedPedalsAxis, 2);
+        boolean invertCombinedPedalsAxis = settingsLoader.getSetting(Setting.Joystick_invertCombinedPedalsAxis, false);
+        int acceleratorControllerID = settingsLoader.getSetting(Setting.Joystick_acceleratorControllerID, 0);
+        int acceleratorAxis = settingsLoader.getSetting(Setting.Joystick_acceleratorAxis, 6);
+        boolean invertAcceleratorAxis = settingsLoader.getSetting(Setting.Joystick_invertAcceleratorAxis, true);
+        int brakeControllerID = settingsLoader.getSetting(Setting.Joystick_brakeControllerID, 0);
+        int brakeAxis = settingsLoader.getSetting(Setting.Joystick_brakeAxis, 5);
+        boolean invertBrakeAxis = settingsLoader.getSetting(Setting.Joystick_invertBrakeAxis, true);
+        int clutchControllerID = settingsLoader.getSetting(Setting.Joystick_clutchControllerID, 0);
+        int clutchAxis = settingsLoader.getSetting(Setting.Joystick_clutchAxis, 7);
+        boolean invertClutchAxis = settingsLoader.getSetting(Setting.Joystick_invertClutchAxis, true);
         boolean dumpJoystickList = settingsLoader.getSetting(Setting.Joystick_dumpJoystickList, false);
         
-        inputManager.addMapping("Joy Up", new JoyAxisTrigger(controllerID, pedalAxis, invertPedalAxis));
-    	inputManager.addMapping("Joy Down", new JoyAxisTrigger(controllerID, pedalAxis, !invertPedalAxis));
-    	inputManager.addMapping("Joy Right", new JoyAxisTrigger(controllerID, steeringAxis, invertSteeringAxis));
-    	inputManager.addMapping("Joy Left", new JoyAxisTrigger(controllerID, steeringAxis, !invertSteeringAxis));
+        inputManager.addMapping("SteeringWheelRight", new JoyAxisTrigger(steeringControllerID, steeringAxis, invertSteeringAxis));
+    	inputManager.addMapping("SteeringWheelLeft", new JoyAxisTrigger(steeringControllerID, steeringAxis, !invertSteeringAxis));
+        inputManager.addMapping("CombinedPedalsBrake", new JoyAxisTrigger(combinedPedalsControllerID, combinedPedalsAxis, invertCombinedPedalsAxis));
+    	inputManager.addMapping("CombinedPedalsAccelerator", new JoyAxisTrigger(combinedPedalsControllerID, combinedPedalsAxis, !invertCombinedPedalsAxis));
+    	inputManager.addMapping("Accelerator", new JoyAxisTrigger(acceleratorControllerID, acceleratorAxis, invertAcceleratorAxis));
+    	inputManager.addMapping("Brake", new JoyAxisTrigger(brakeControllerID, brakeAxis, invertBrakeAxis));
+    	inputManager.addMapping("Clutch", new JoyAxisTrigger(clutchControllerID, clutchAxis, invertClutchAxis));
     	
-        inputManager.addListener(simulatorAnalogListener, "Joy Left", "Joy Right", "Joy Down", "Joy Up");
-        
-        
+        inputManager.addListener(simulatorAnalogListener, "SteeringWheelLeft", "SteeringWheelRight", 
+        		"CombinedPedalsAccelerator", "CombinedPedalsBrake", "Accelerator", "Brake", "Clutch");
+
         if(dumpJoystickList)
         	dumpJoysticks();
 	}
@@ -169,10 +194,12 @@ public class KeyBindingCenter
 	{
         Joystick[] joysticks = inputManager.getJoysticks();
         if (joysticks == null)
-            throw new IllegalStateException("Cannot find any joysticks!");
+        {
+        	System.out.println("Joystick dump: No joysticks available!");
 
-        try {
-        	
+        }
+        else try 
+        {
             PrintWriter out = new PrintWriter(new FileWriter("joystickDump.txt"));
             
             Date timestamp = new Date();

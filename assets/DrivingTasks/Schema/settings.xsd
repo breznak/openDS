@@ -16,7 +16,7 @@ elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns
         	<xs:element name="objectLocator" type="objectLocator"
         		maxOccurs="1" minOccurs="0">
         	</xs:element>
-        	<xs:element name="SIMTD" type="SIMTD" maxOccurs="1"
+        	<xs:element name="HMI" type="HMI" maxOccurs="1"
         		minOccurs="0">
         	</xs:element>
         	<xs:element name="externalVisualization"
@@ -100,11 +100,13 @@ elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns
         	<xs:element name="angleBetweenAdjacentCameras"
         		type="xs:float" maxOccurs="1" minOccurs="0">
         	</xs:element>
-        	<xs:element name="frameOfView" type="xs:float" maxOccurs="1"
+
+        	<xs:element name="frustumNear" type="xs:float" maxOccurs="1"
         		minOccurs="0">
         	</xs:element>
-        	<xs:element name="frustumNear" type="xs:float" maxOccurs="1" minOccurs="0"></xs:element>
-        	<xs:element name="frustumFar" type="xs:float" maxOccurs="1" minOccurs="0"></xs:element>
+        	<xs:element name="frustumFar" type="xs:float" maxOccurs="1"
+        		minOccurs="0">
+        	</xs:element>
         	<xs:element name="rearviewMirror" type="mirror"
         		maxOccurs="1" minOccurs="0">
         	</xs:element>
@@ -124,15 +126,21 @@ elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns
         	<xs:element name="captureVideo" type="xs:string"
         		maxOccurs="1" minOccurs="0">
         	</xs:element>
+        	<xs:element name="cameraMode" maxOccurs="1" minOccurs="0">
+        		<xs:simpleType>
+        			<xs:restriction base="xs:string">
+        				<xs:enumeration value="ego"></xs:enumeration>
+        				<xs:enumeration value="chase"></xs:enumeration>
+        				<xs:enumeration value="static_back"></xs:enumeration>
+        			</xs:restriction>
+        		</xs:simpleType>
+        	</xs:element>
         </xs:all>
     </xs:complexType>
     
-    <xs:complexType name="SIMTD">
+    <xs:complexType name="HMI">
         <xs:all>
-    		<xs:element name="sendDataToHmi" type="xs:boolean" maxOccurs="1" minOccurs="0"></xs:element>
-    		<xs:element name="startGui" type="xs:boolean" maxOccurs="1" minOccurs="0"></xs:element>
-    		<xs:element name="hmiNativePath" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
-    		<xs:element name="hmiNativeExecutable" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
+    		<xs:element name="enableConnection" type="xs:boolean" maxOccurs="1" minOccurs="0"></xs:element>
     		<xs:element name="ip" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
     		<xs:element name="port" type="xs:int" maxOccurs="1" minOccurs="0"></xs:element>
     	</xs:all>
@@ -178,31 +186,46 @@ elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns
 
     <xs:complexType name="joystick">
         <xs:all>
-            <xs:element name="dumpJoystickList" type="xs:boolean" maxOccurs="1" minOccurs="0"></xs:element>
-            <xs:element name="controllerID" type="xs:int" maxOccurs="1"
-                minOccurs="0">
-            </xs:element>
-            <xs:element name="steeringAxis" type="xs:int" maxOccurs="1"
-                minOccurs="0">
-            </xs:element>
-            <xs:element name="invertSteeringAxis" type="xs:boolean"
-                maxOccurs="1" minOccurs="0">
-            </xs:element>
-            <xs:element name="pedalAxis" type="xs:int" maxOccurs="1"
-                minOccurs="0">
-            </xs:element>
-            <xs:element name="invertPedalAxis" type="xs:boolean"
-                maxOccurs="1" minOccurs="0">
-            </xs:element>
-            <xs:element name="steeringSensitivityFactor" type="xs:float"
-                maxOccurs="1" minOccurs="0">
-            </xs:element>
-            <xs:element name="pedalSensitivityFactor" type="xs:float"
-                maxOccurs="1" minOccurs="0">
-            </xs:element>
-            <xs:element name="keyAssignments" type="keyAssignments"
-                maxOccurs="1" minOccurs="0">
-            </xs:element>
+        	<xs:element name="dumpJoystickList" type="xs:boolean"
+        		maxOccurs="1" minOccurs="0">
+        	</xs:element>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        	<xs:element name="steering" type="joyAxis" maxOccurs="1"
+        		minOccurs="0">
+        	</xs:element>
+        	<xs:element name="combinedPedals" type="joyAxis"
+        		maxOccurs="1" minOccurs="0">
+        	</xs:element>
+        	<xs:element name="accelerator" type="joyAxis" maxOccurs="1"
+        		minOccurs="0">
+        	</xs:element>
+        	<xs:element name="brake" type="joyAxis" maxOccurs="1"
+        		minOccurs="0">
+        	</xs:element>
+        	<xs:element name="clutch" type="joyAxis" maxOccurs="1"
+        		minOccurs="0">
+        	</xs:element>
+        	<xs:element name="keyAssignments" type="keyAssignments"
+        		maxOccurs="1" minOccurs="0">
+        	</xs:element>
+        	<xs:element name="enableForceFeedback" type="xs:boolean" maxOccurs="1" minOccurs="0"></xs:element>
+        	<xs:element name="springForce" type="xs:float" maxOccurs="1" minOccurs="0"></xs:element>
+        	<xs:element name="damperForce" type="xs:float" maxOccurs="1" minOccurs="0"></xs:element>
         </xs:all>
 
     </xs:complexType>
@@ -456,5 +479,12 @@ elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns
     		</xs:element>
     		<xs:element name="port" type="xs:int" maxOccurs="1" minOccurs="0"></xs:element>
     	</xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="joyAxis">
+    	<xs:attribute name="controllerID" type="xs:int"></xs:attribute>
+    	<xs:attribute name="axisID" type="xs:int"></xs:attribute>
+    	<xs:attribute name="invert" type="xs:boolean"></xs:attribute>
+    	<xs:attribute name="sensitivity" type="xs:float"></xs:attribute>
     </xs:complexType>
 </xs:schema>

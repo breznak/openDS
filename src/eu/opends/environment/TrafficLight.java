@@ -232,7 +232,8 @@ public class TrafficLight
 			
 			// creates a string containing all current traffic light states
 			// this string will be sent to external programs, i.e. Lightning
-			sim.getTrafficLightCenter().updateGlobalStatesString();
+			if(sim.getTrafficLightCenter() != null)
+				sim.getTrafficLightCenter().updateGlobalStatesString();
 		}
 	}
 	

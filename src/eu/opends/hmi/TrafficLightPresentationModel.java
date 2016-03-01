@@ -18,15 +18,12 @@
 
 package eu.opends.hmi;
 
-import java.util.HashMap;
-import java.util.Map;
 
 import eu.opends.car.Car;
 import eu.opends.environment.TrafficLight;
 import eu.opends.environment.TrafficLightCenter;
 import eu.opends.environment.TrafficLightInternalProgram;
 import eu.opends.environment.TrafficLightException.*;
-import eu.opends.knowledgeBase.KnowledgeBase;
 import eu.opends.main.Simulator;
 
 
@@ -42,7 +39,7 @@ public class TrafficLightPresentationModel extends PresentationModel
 {
 	private Simulator sim;
 	
-	// maximum value for recommended speed to be sent to the SIM-TD HMI GUI
+	// maximum value for recommended speed to be sent to the HMI GUI
 	private static final int maxRecommendedSpeed = 70;
 	
 	// traffic light whose trigger was hit
@@ -70,6 +67,9 @@ public class TrafficLightPresentationModel extends PresentationModel
 	 * Initializes a traffic light phase assistant presentation model by setting the 
 	 * positions of the car and the traffic light, the minimum distance from the 
 	 * traffic light to cancel the presentation and the triggered traffic light.
+	 * 
+	 * @param sim 
+	 * 			Simulator
 	 * 
 	 * @param car
 	 * 			Car heading toward traffic light
@@ -102,9 +102,8 @@ public class TrafficLightPresentationModel extends PresentationModel
 	
 	
 	/**
-	 * Computes the traffic light info value (as specified in the SIM-TD 
-	 * documentation) for the given traffic light and maximum recommended
-	 * speed value. Results and their meaning:<br>
+	 * Computes the traffic light info value for the given traffic light and 
+	 * maximum recommended speed value. Results and their meaning:<br>
 	 * -15 --> traffic light will be red for 15 seconds<br>
 	 *   0 --> traffic light does not exist<br>
 	 *  50 --> recommended speed 50, to pass traffic light when green
@@ -116,7 +115,7 @@ public class TrafficLightPresentationModel extends PresentationModel
 	 * 			Maximum value the recommended speed may have
 	 * 
 	 * @return
-	 * 			SIM-TD traffic light info value
+	 * 			Traffic light info value
 	 */
 	private int getTrafficLightInfo(TrafficLight trafficLight, int maxRecommendedSpeed) 
 	{
@@ -191,29 +190,6 @@ public class TrafficLightPresentationModel extends PresentationModel
 		}
 	}
 	
-	/**
-	 * Returns a TTS string to be spoken when the user approaches the traffic lights.
-	 */
-	private static String getSpokenInfo(int tl0, int tl1, int tl2)
-	{
-		String s;
-		int min = Math.min(tl0, Math.min(tl1, tl2));
-		int max = Math.max(tl0, Math.max(tl1, tl2));
-		if (min > 0 && max > 0) {			
-			s = "$simtd_F222_RecommendedSpeed$";
-		} else if (min < 0 && max < 0) {
-			s = "$simtd_F222_RemainingTime$";
-		} else if (min == 0 && max == 0) {
-			return ""; // werid
-		} else {
-			s = "$simtd_F222_Approaching$";
-		}
-		s = KnowledgeBase.expandString(s);
-		s = s.replace("%speed%", new Integer(max).toString());
-		s = s.replace("%sec%", new Integer(-min).toString());
-		return s;
-	}
-	
 	
 	/**
 	 * Sets previous parameters relevant for updates
@@ -275,7 +251,7 @@ public class TrafficLightPresentationModel extends PresentationModel
 
 	
 	/**
-	 * Creates a traffic light phase assistant presentation task on the SIM-TD HMI GUI. 
+	 * Creates a traffic light phase assistant presentation task on the HMI GUI. 
 	 * This data will only be sent to the HMI bundle once.
 	 * 
 	 * @return
@@ -286,46 +262,16 @@ public class TrafficLightPresentationModel extends PresentationModel
 	{
 		// check if positioning data can be found (external file) for this traffic light
 		if(triggeredTrafficLight.getPositionData() != null)
-		{
-			HashMap<String, Object> parameters = new HashMap<String, Object>();
-			
+		{		
 			// compute parameters
-			int typeOfCrossing = triggeredTrafficLight.getPositionData().getCrossingType();
 			int arrowConfiguration = triggeredTrafficLight.getPositionData().getArrowType();
 			int infoTrafficLight0 = getTrafficLightInfo(trafficLight0, maxRecommendedSpeed);
 			int infoTrafficLight1 = getTrafficLightInfo(trafficLight1, maxRecommendedSpeed);
 			int infoTrafficLight2 = getTrafficLightInfo(trafficLight2, maxRecommendedSpeed);
 			
-			// parameters according to "presentationModel.xml"
-			parameters.put("timeStart", System.currentTimeMillis() + 5500);
-			parameters.put("timeEnd", System.currentTimeMillis() + (long) getTimeToTarget(targetPosition));
-			parameters.put("currentPrioritisation", 0);
-		
-			// parameters according to "F222_model.xml"
-			parameters.put("typeOfCrossing", typeOfCrossing);
-			parameters.put("arrowConfiguration", arrowConfiguration);
-			parameters.put("infoTrafficLight0", infoTrafficLight0);
-			parameters.put("infoTrafficLight1", infoTrafficLight1);
-			parameters.put("infoTrafficLight2", infoTrafficLight2);
-			parameters.put("mostPropableDirection", -1);
-			parameters.put("greenArrow", 0);
-			
-			// additional simTD+ parameters
-/*			
-			if (KnowledgeBase.User().getAdaptForBadSight()) parameters.put("adaptBadSight", 1);
-			if (KnowledgeBase.User().getAdaptAddWarningsSpeech()) {
-				String spokenInfo = getSpokenInfo(infoTrafficLight0, infoTrafficLight1, infoTrafficLight2);
-				parameters.put("ttsMessage", spokenInfo);
-				parameters.put("ttsVoice", KnowledgeBase.User().getAdaptedTtsVoice());
-				parameters.put("ttsSpeed", KnowledgeBase.User().getAdaptedSpeakingRate());
-			}
-*/
 			// send parameters to HMI bundle
-			// TODO return controller.createPresentationTask(0,HMIConstants.F_222_TRAFFIC_LIGHT_PHASE_ASSISTANT, parameters);
-			System.out.println("\nCreate presentation task 'TRAFFIC_LIGHT_PHASE_ASSISTANT'");
-			for(Map.Entry<String, Object> parameter : parameters.entrySet())
-				System.out.println(parameter.getKey() + ": " + parameter.getValue());
-				
+			sendTrafficLightData("start", 10, System.currentTimeMillis(), null, arrowConfiguration, infoTrafficLight0, infoTrafficLight1 , infoTrafficLight2, false);
+System.err.println("START");
 			return 7;
 		}
 		else
@@ -342,22 +288,10 @@ public class TrafficLightPresentationModel extends PresentationModel
 	public void updatePresentation(long presentationID) 
 	{
 		if(presentationID >= 0)
-		{
-			HashMap<String, Object> parameters = new HashMap<String, Object>();
-	
-			// parameters according to "presentationModel.xml"
-			parameters.put("timeEnd", System.currentTimeMillis() + (long) getTimeToTarget(targetPosition));
-			
-			// parameters according to "F222_model.xml"
-			parameters.put("infoTrafficLight0", currentInfoTrafficLight0);
-			parameters.put("infoTrafficLight1", currentInfoTrafficLight1);
-			parameters.put("infoTrafficLight2", currentInfoTrafficLight2);
-			
+		{			
 			// send parameters to HMI bundle
-			// TODO controller.update(presentationID, parameters);
-			System.out.println("\nUpdate presentation task 'TRAFFIC_LIGHT_PHASE_ASSISTANT'");
-			for(Map.Entry<String, Object> parameter : parameters.entrySet())
-				System.out.println(parameter.getKey() + ": " + parameter.getValue());
+			sendTrafficLightData("update", 10, System.currentTimeMillis(), null, null, currentInfoTrafficLight0, currentInfoTrafficLight1 , currentInfoTrafficLight2, false);
+			System.err.println("UPDATE");
 		}
 	}
 
@@ -369,5 +303,87 @@ public class TrafficLightPresentationModel extends PresentationModel
 	public String generateMessage()
 	{
 		return "Traffic light in "+ getRoundedDistanceToTarget(targetPosition) + " m";
+	}
+	
+	
+	private void sendTrafficLightData(String command, Integer priority, Long timestamp, String infoText, Integer arrowConfiguration, 
+			Integer infoTrafficLight1, Integer infoTrafficLight2, Integer infoTrafficLight3, Boolean greenArrow) 
+	{
+		String message = "<presentation>" +
+							"<trafficLightAssistant id=\"trafficLightAssistant\">";
+				
+		if(command != null)
+			message += 			"<command>" + command + "</command>";
+		
+		if(priority != null)
+			message += 			"<priority>" + priority + "</priority>";
+		
+		if(timestamp != null)
+			message += 			"<timestamp>" + timestamp + "</timestamp>";
+		
+		if(infoText != null)
+			message += 			"<infoText>" + infoText + "</infoText>";
+		
+		if(arrowConfiguration != null)
+			message += 			"<crossing>" + getCrossingType(arrowConfiguration) + "</crossing>";
+		
+		if(infoTrafficLight1 != null && infoTrafficLight1 != 0)
+			message += 			"<infoTrafficLight id=\"1\">" + infoTrafficLight1 + "</infoTrafficLight>";
+		
+		if(infoTrafficLight2 != null && infoTrafficLight2 != 0)
+			message += 			"<infoTrafficLight id=\"2\">" + infoTrafficLight2 + "</infoTrafficLight>";
+		
+		if(infoTrafficLight3 != null && infoTrafficLight3 != 0)
+			message += 			"<infoTrafficLight id=\"3\">" + infoTrafficLight3 + "</infoTrafficLight>";
+		
+		if(arrowConfiguration != null)
+		{
+			String[] arrowCrossing = getArrowCrossing(arrowConfiguration);
+			message += 			"<arrowCrossing id=\"1\">" + arrowCrossing[0] + "</arrowCrossing>" +
+								"<arrowCrossing id=\"2\">" + arrowCrossing[1] + "</arrowCrossing>" +
+								"<arrowCrossing id=\"3\">" + arrowCrossing[2] + "</arrowCrossing>";
+		}
+		
+		if(greenArrow != null)
+			message += 			"<greenArrow>" + greenArrow + "</greenArrow>";
+		
+		message +=			"</trafficLightAssistant>" +
+						"</presentation>";	
+						
+		HMICenter.sendMsg(message);
+	}
+	
+		
+	private String[] getArrowCrossing(Integer arrowConfiguration)
+	{
+		switch (arrowConfiguration)
+		{
+			case 3 : return new String[] {"000", "010", "100"};
+			case 4 : return new String[] {"001", "000", "100"};
+			case 5 : return new String[] {"001", "010", "000"};
+			case 9 : return new String[] {"000", "011", "100"};
+			default : return new String[] {"000", "011", "100"};
+		}
+	}
+
+
+	private String getCrossingType(Integer arrowConfiguration) 
+	{
+		switch (arrowConfiguration)
+		{
+			case 3 : return "leftT";
+			case 4 : return "straightT";
+			case 5 : return "rightT";
+			case 9 : return "X";
+			default : return "X";
+		}
+	}
+
+
+	@Override
+	public void stop()
+	{
+		sendTrafficLightData("stop", 10, System.currentTimeMillis(), null, null, null, null , null, false);
+		System.err.println("STOP");
 	}
 }

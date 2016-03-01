@@ -180,6 +180,12 @@ public class KeyMappingGUIController implements ScreenController
 	/**
 	 * When the status of the fullscreenCheckBox changes this method 
 	 * updates all drop down lists.
+	 * 
+	 * @param id
+	 * 			ID of fullscreenCheckBox
+	 * 
+	 * @param event
+	 * 			CheckBoxStateChangedEvent
 	 */
 	@NiftyEventSubscriber(id = "fullscreenCheckBox")
 	public void onFullScreenCheckBoxStateChanged(final String id, final CheckBoxStateChangedEvent event)
@@ -191,6 +197,12 @@ public class KeyMappingGUIController implements ScreenController
 	/**
 	 * When the selection of the resolutionDropDown changes this method 
 	 * updates all drop down lists and stores the new selection.
+	 * 
+	 * @param id
+	 * 			ID of resolutionDropDown
+	 * 
+	 * @param event
+	 * 			DropDownSelectionChangedEvent
 	 */
 	@NiftyEventSubscriber(id = "resolutionDropDown")
 	public void onResolutionDropDownChanged(final String id, final DropDownSelectionChangedEvent<?> event)

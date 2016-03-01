@@ -41,6 +41,9 @@ public class HMIThread extends Thread
 	 * Creates a new HMI update thread that updates a presentation task 
 	 * every time, a parameter has changed (at most 10 times a second).
 	 * 
+	 * @param sim
+	 * 			Simulator
+	 * 
 	 * @param presentationModel
 	 * 			Presentation model containing parameter changes
 	 * 
@@ -53,7 +56,7 @@ public class HMIThread extends Thread
 	 */
 	public HMIThread(SimulationBasics sim, PresentationModel presentationModel, String triggerID, long presentationID) 
 	{
-		super();
+		super("HMIThread");
 		this.sim = sim;
 		this.presentationModel = presentationModel;
 		this.triggerID = triggerID;
@@ -106,7 +109,7 @@ public class HMIThread extends Thread
 		// cancel presentation
 		if(presentationID >= 0)
 		{
-			// TODO controller.cancel(presentationID);
+			presentationModel.stop();
 			System.out.println("\nCancel presentation task");
 		}
 	}

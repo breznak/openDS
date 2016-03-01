@@ -59,17 +59,26 @@ public class TrafficLightInternalProgram extends Thread
 	 * intersectionID and filtering the traffic lights of this intersection 
 	 * from the list of all traffic lights.
 	 * 
+	 * @param sim
+	 * 			Simulator
+	 * 
+	 * @param trafficLightCenter
+	 * 			TrafficLightCenter
+	 * 
 	 * @param intersectionID
 	 * 			ID of the intersection that runs this instance of the traffic 
 	 * 			light program
 	 * 
 	 * @param allTrafficLightsList
 	 * 			List of all traffic lights in the model
+	 * 
+	 * @param intersectionPhasesList
+	 * 			List of all traffic light phases at the given intersection
 	 */
 	public TrafficLightInternalProgram(Simulator sim, TrafficLightCenter trafficLightCenter, String intersectionID, 
 			List<TrafficLight> allTrafficLightsList, LinkedList<TrafficLightPhase> intersectionPhasesList) 
 	{
-		super();
+		super("TrafficLightInternalProgramThread");
 		this.sim = sim;
 		this.trafficLightCenter = trafficLightCenter;
 		this.intersectionID = intersectionID;

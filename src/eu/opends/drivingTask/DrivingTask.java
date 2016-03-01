@@ -81,6 +81,9 @@ public class DrivingTask
 	 * does not contain a valid XML string, a warning message will be 
 	 * returned and the default settings will be applied.
 	 * 
+	 * @param sim
+	 * 			Simulator or Analyzer
+	 * 
 	 * @param xmlfile
 	 * 			XML driving task file to parse
 	 */

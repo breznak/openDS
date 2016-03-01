@@ -18,7 +18,6 @@
 
 package eu.opends.hmi;
 
-import java.util.HashMap;
 
 import eu.opends.car.Car;
 import eu.opends.environment.TrafficLight;
@@ -73,30 +72,17 @@ public class RedTrafficLightPresentationModel extends PresentationModel
 	
 	
 	/**
-	 * Creates a red traffic light presentation task on the SIM-TD HMI GUI. This
+	 * Creates a red traffic light presentation task in the HMI GUI. This
 	 * data will only be sent to the HMI bundle once.
 	 * 
 	 * @return
-	 * 			Presentation ID. If an error occurred, a negative value will be returned.
+	 * 			0
 	 */
 	@Override
 	public long createPresentation() 
 	{
-		HashMap<String, Object> parameters = new HashMap<String, Object>();
-		
-		// parameters according to "presentationModel.xml"
-		parameters.put("timeStart", System.currentTimeMillis() + 5500);
-		parameters.put("timeEnd", System.currentTimeMillis() + (long) getTimeToTarget(targetPosition));
-		parameters.put("currentPrioritisation", 100);
-	
-		// parameters according to "HF22.xml"
-		parameters.put("warningLevel", 1);
-		
-		// parameters according to "F2223_model.xml"
-		parameters.put("gloabalPrioritisation", 100);
-
 		// send parameters to HMI bundle
-		// TODO return controller.createPresentationTask(0, 2223, parameters);
+		sendLocalDangerWarningData("start", 40, System.currentTimeMillis());
 		return 0;
 	}
 	
@@ -108,13 +94,6 @@ public class RedTrafficLightPresentationModel extends PresentationModel
 	@Override
 	public void updatePresentation(long presentationID) 
 	{
-		HashMap<String, Object> parameters = new HashMap<String, Object>();
-
-		// parameters according to "presentationModel.xml"
-		parameters.put("timeEnd", System.currentTimeMillis() + (long) getTimeToTarget(targetPosition));
-		
-		// send parameters to HMI bundle
-		// TODO controller.update(presentationID, parameters);
 	}
 	
 
@@ -125,5 +104,34 @@ public class RedTrafficLightPresentationModel extends PresentationModel
 	public String generateMessage() 
 	{
 		return "Caution: red traffic light in "+ getRoundedDistanceToTarget(targetPosition) + " m";
+	}
+	
+	
+	@Override
+	public void stop()
+	{
+		sendLocalDangerWarningData("stop", 40, System.currentTimeMillis());
+		
+	}
+	
+	
+	private void sendLocalDangerWarningData(String command, Integer priority, Long timestamp) 
+	{
+		String message = "<presentation>" +
+							"<localDangerWarning id=\"redLightWarning\">";
+				
+		if(command != null)
+			message += 			"<command>" + command + "</command>";
+		
+		if(priority != null)
+			message += 			"<priority>" + priority + "</priority>";
+		
+		if(timestamp != null)
+			message += 			"<timestamp>" + timestamp + "</timestamp>";
+	
+		message +=			"</localDangerWarning>" +
+						"</presentation>";	
+						
+		HMICenter.sendMsg(message);
 	}
 }

@@ -48,6 +48,7 @@ public class Transmission
 	
 	private Car car;
 	private int gear;
+	private Integer rememberGearShiftPosition = null;
 	private boolean isAutomaticTransmission;
 	private float selectedTransmission;
 	private float currentRPM = 0;
@@ -68,7 +69,7 @@ public class Transmission
 		minRPM = scenarioLoader.getCarProperty(CarProperty.engine_minRPM, SimulationDefaults.engine_minRPM);
 		maxRPM = scenarioLoader.getCarProperty(CarProperty.engine_maxRPM, SimulationDefaults.engine_maxRPM);
 		
-		setGear(1);
+		setGear(1, isAutomaticTransmission, false);
 	}
 	
 	
@@ -114,6 +115,9 @@ public class Transmission
 	public void setAutomatic(boolean isAutomatic)
 	{
 		isAutomaticTransmission = isAutomatic;
+		
+		if(isAutomatic == false && rememberGearShiftPosition != null)
+			gear = rememberGearShiftPosition;
 	}
 
 	
@@ -127,10 +131,10 @@ public class Transmission
 	{
 		if(gear == 0)
 		{
-			if(car.getGasPedalPressIntensity() > 0)
+			if(car.getAcceleratorPedalIntensity() > 0)
 			{
 				//currentRPM = maxRPM;
-				currentRPM = car.getGasPedalPressIntensity()*maxRPM;
+				currentRPM = car.getAcceleratorPedalIntensity()*maxRPM;
 			}
 			else
 				currentRPM = 0;
@@ -161,21 +165,23 @@ public class Transmission
 	}
 
 
-	public void shiftUp(boolean automatic) 
+	public void shiftUp(boolean isAutomatic) 
 	{
-		isAutomaticTransmission = automatic;
-		setGear(Math.min(numberOfGears,getGear() + 1));
+		setGear(getGear()+1, isAutomatic, false);
 	}
 	
 	
-	public void shiftDown(boolean automatic) 
+	public void shiftDown(boolean isAutomatic) 
 	{
-		isAutomaticTransmission = automatic;
+		int gear;
 		
-		if(isAutomaticTransmission)
-			setGear(Math.max(1,getGear() - 1));
+		// if automatic transmission --> do not shift down to N and R automatically
+		if(isAutomatic)
+			gear = Math.max(1, getGear()-1);
 		else	
-			setGear(Math.max(-1,getGear() - 1));
+			gear = Math.max(-1, getGear()-1);
+		
+		setGear(gear, isAutomatic, false);
 	}
 
 
@@ -191,7 +197,7 @@ public class Transmission
 		if(isAutomaticTransmission)
 		{
 			int bestGear = findBestPowerGear(speedPercentage);
-			setGear(bestGear);
+			setGear(bestGear, isAutomaticTransmission, false);
 		}
 		
 		// apply power model for selected gear
@@ -212,8 +218,13 @@ public class Transmission
 	}
 	
 	
-	private void setGear(int gear)
+	public void setGear(int gear, boolean isAutomatic, boolean rememberGear)
 	{
+		isAutomaticTransmission = isAutomatic;
+		
+		if(rememberGear)
+			rememberGearShiftPosition = gear;
+		
 		this.gear = Math.min(numberOfGears, Math.max(-1,gear));
 		
 		switch (this.gear)

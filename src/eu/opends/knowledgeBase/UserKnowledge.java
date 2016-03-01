@@ -113,25 +113,38 @@ public class UserKnowledge implements PropertyChangedNotificationListener
 
 	/**
 	 * Returns the KAPcom user ID (short name).
+	 * 
+	 * @return
+	 * 			UserID.
 	 */
 	public String getUserID()
 	{
 		return (userID == null ? null : NetClient.getShortId(userID));
 	}
+	
+	
 	/**
 	 * Returns whether this knowledge is currently linked to an actual user in KAPcom.
+	 * 
+	 * @return
+	 * 			True, if knowledge is currently linked to an actual user in KAPcom.
 	 */
 	public boolean isActualUser()
 	{
 		return user != null && userID != null && !"".equals(userID);
 	}
 	
+	
 	/**
 	 * This is used to match the user name stored in KAPcom with the driver name entered in the simulator.
 	 * The driver name in the simulator has precedence. It will be updated in KAPcom, but only if it points to a valid user.
 	 * If the driver name is NULL, the user name from KAPcom is returned, if it is connected and if there is a user.
-	 * @param userPreference The driver name entered by the user, or NULL.
-	 * @return The name that should be configured as new driver name.
+	 * 
+	 * @param userPreference 
+	 * 			The driver name entered by the user, or NULL.
+	 * 
+	 * @return 
+	 * 			The name that should be configured as new driver name.
 	 */
 	public String initUserName(String userPreference)
 	{
@@ -210,13 +223,21 @@ public class UserKnowledge implements PropertyChangedNotificationListener
 	
 	/**
 	 * Returns whether the HMI should adapt for "bad sight", e.g. as a result of age or an explicitly stated visual weakness.
+	 * 
+	 * @return
+	 * 			True, if the HMI should adapt for "bad sight"
 	 */
 	public boolean getAdaptForBadSight()
 	{
 		return getAge() > 65;
 	}
+	
+	
 	/**
 	 * Returns how the speaking rate should be adapted. This should be considered a scaling factor.
+	 * 
+	 * @return
+	 * 			Value denoting how the speaking rate should be adapted.
 	 */
 	public double getAdaptSpeakingRate()
 	{
@@ -224,16 +245,26 @@ public class UserKnowledge implements PropertyChangedNotificationListener
 		double r = linearScaling((double)getAge(), ageMin, ageMax, scaleMin, scaleMax, true);
 		return r;
 	}
+	
+	
 	/**
 	 * Returns the adapted speaking rate which can be directly sent to the SVOX TTS.
+	 * 
+	 * @return
+	 * 			Adapted speaking rate.
 	 */
 	public int getAdaptedSpeakingRate()
 	{
 		return (int)(getAdaptSpeakingRate() * 100.0);
 	}
+	
+	
 	/**
 	 * Returns whether TTS speech should be added to all warnings.
 	 * For demonstration purposes, this is currently enabled manually in the KAPcom.
+	 * 
+	 * @return
+	 * 			True, if TTS speech should be added to all warnings.
 	 */
 	public boolean getAdaptAddWarningsSpeech()
 	{
@@ -248,10 +279,15 @@ public class UserKnowledge implements PropertyChangedNotificationListener
 			return false;
 		}
 	}
+	
+	
 	/**
 	 * Returns how small-scale (milliseconds/seconds range) estimates for reaction time should be adjusted to the current user
 	 * as a result of degraded reactions, e.g. because of age. The returned number can be treated as a scaling factor.
 	 * It is 1 when no adaptation should be performed.
+	 * 
+	 * @return
+	 * 			Scale of estimates.
 	 */
 	public double getAdaptReactionTime()
 	{
@@ -260,22 +296,35 @@ public class UserKnowledge implements PropertyChangedNotificationListener
 		double r = linearScaling((double)getAge(), ageMin, ageMax, scaleMin, scaleMax, true);
 		return r;
 	}
+	
+	
 	/**
 	 * Adapts a display duration for warnings or other messages to the current user. For example, it might increase the time span
 	 * for older drivers.
-	 * @param originalMillis Time duration to be adjusted (in milliseconds)
-	 * @return New duration (in milliseconds)
+	 * 
+	 * @param originalMillis 
+	 * 			Time duration to be adjusted (in milliseconds)
+	 * 
+	 * @return 
+	 * 			New duration (in milliseconds)
 	 */
 	public long getAdaptedDisplayTimeMillis(long originalMillis)
 	{
 		return (long)((double)originalMillis * getAdaptReactionTime());
 	}
+	
+	
 	public int getAdaptedDisplayTimeMillis(int originalMillis)
 	{
 		return (int)getAdaptedDisplayTimeMillis((long)originalMillis);
 	}
+	
+	
 	/**
 	 * Returns the voice to be used for TTS output. This value can be passed directly to the SVOX TTS server.
+	 * 
+	 * @return
+	 * 			The voice to be used for TTS output.
 	 */
 	public String getAdaptedTtsVoice()
 	{

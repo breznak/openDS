@@ -83,7 +83,6 @@ public abstract class CameraFactory
 	private int width;
 	private int height;	
 	private float aspectRatio;
-	private float frameOfView;
 	private float frustumNear;
 	private float frustumFar;
 	
@@ -205,8 +204,10 @@ public abstract class CameraFactory
 	 * Setup all scene cameras.
 	 * 
 	 * @param sim
+	 * 			Simulator or Analyzer
 	 *
 	 * @param targetNode
+	 * 			target node the camera is pointing towards (Analyzer only!)
 	 */
 	public void initCamera(SimulationBasics sim, Node targetNode) 
 	{
@@ -235,8 +236,6 @@ public abstract class CameraFactory
     	this.width = sim.getSettings().getWidth();
     	this.height = sim.getSettings().getHeight();
     	this.aspectRatio = (float)width/(float)height;
-    	this.frameOfView = settingsLoader.getSetting(Setting.General_frameOfView, 30.5f);
-    	//this.frameOfView = 30.5f; //62.5f; //25.63f; //(40*3.0f)/aspectRatio;  //25; //13.2f; //30.5f; // 23.2f; // 40/aspectRatio;
 	    
     	// set initial mirror state
     	String mirrorModeString = settingsLoader.getSetting(Setting.General_mirrorMode, "off");
@@ -276,6 +275,32 @@ public abstract class CameraFactory
 	}
 	
 	
+	public float getAngleBetweenAdjacentCameras()
+	{       
+		return angleBetweenAdjacentCameras;
+	}
+	
+	
+	public void setAngleBetweenAdjacentCameras(float angle)
+	{
+		System.err.println("Angle between adjacent cameras: " + angle);
+		
+		angleBetweenAdjacentCameras = angle;
+		
+		int numberOfScreens = sim.getNumberOfScreens();
+        float width = FastMath.tan(angle * FastMath.DEG_TO_RAD * .5f) * frustumNear;
+        float height = width * numberOfScreens / aspectRatio;
+        
+		for(int i = 0; i< frontCameraNode.getChildren().size(); i++)
+		{
+			Spatial cam_i = frontCameraNode.getChildren().get(i);
+			float localAngle = (((numberOfScreens+1)/2)-(i+1)) * angle;
+			((CameraNode)cam_i).setLocalRotation(new Quaternion().fromAngles(0, (180+localAngle)*FastMath.DEG_TO_RAD, 0));
+			((CameraNode)cam_i).getCamera().setFrustum(frustumNear, frustumFar, -width, width, height, -height);
+		}			
+	}
+	
+	
 	public abstract void setCamMode(CameraMode mode);
 	
 	
@@ -300,7 +325,11 @@ public abstract class CameraFactory
 		else
 			cam_i = new Camera(width, height);
 		
-		cam_i.setFrustumPerspective(frameOfView, aspectRatio/total, frustumNear, frustumFar);
+		// setup frustum according to number and angle of different cameras
+        float width = FastMath.tan(angleBetweenAdjacentCameras * FastMath.DEG_TO_RAD * .5f) * frustumNear;
+        float height = width * total / aspectRatio;
+		cam_i.setFrustum(frustumNear, frustumFar, -width, width, height, -height);
+		cam_i.setParallelProjection(false);
 		cam_i.setViewPort(viewPortLeft, viewPortRight, 0f, 1f);
 
 		// setup camera node and add it to main camera node
@@ -340,7 +369,7 @@ public abstract class CameraFactory
 		centerCamNode.setLocalRotation(new Quaternion().fromAngles(0, 180*FastMath.DEG_TO_RAD, 0));
 		
 		// frustumNear = 0.2f used for internal car environment
-		centerCamNode.getCamera().setFrustumPerspective(frameOfView, aspectRatio, frustumNear, frustumFar);
+		centerCamNode.getCamera().setFrustumPerspective(30.5f, aspectRatio, frustumNear, frustumFar);
 		
 		// OpenDS-Rift
 		if(Simulator.oculusRiftAttached)

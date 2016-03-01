@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+  <Event Name="Unsubscribe">/root/thisVehicle</Event>
+  <Event Name="Subscribe">/root/thisVehicle/physicalAttributes/Properties/orientation</Event>
+  <Event Name="Subscribe">/root/thisVehicle/exterior/fueling/fuelType/tank/Properties/actualAmount</Event>
+  <Event Name="SetUpdateInterval">100</Event>
+  <Event Name="EstablishConnection"/>
+</Message>

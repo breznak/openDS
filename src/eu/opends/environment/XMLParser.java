@@ -141,6 +141,12 @@ public class XMLParser
 	 * Searches the given XML string for CAN-bus instructions like steering 
 	 * wheel angle, status of brake and gas pedal. Settings of the car will
 	 * be adjusted
+	 * 
+	 * @param sim
+	 * 			Simulator
+	 * 
+	 * @param canClient
+	 * 			CAN client class
 	 */
 	public void evalCANInstruction(Simulator sim, CANClient canClient) 
 	{
@@ -473,7 +479,7 @@ public class XMLParser
 	
 	/**
 	 * Transforms SUMO's character representation of states to a value of
-	 * TrafficLightState. E.g.  'r' --> TrafficLightState.RED
+	 * TrafficLightState. E.g.  'r' --&gt; TrafficLightState.RED
 	 * 
 	 * @param stateChar
 	 * 			A SUMO state character
@@ -481,8 +487,8 @@ public class XMLParser
 	 * @return
 	 * 			The corresponding traffic light state representation
 	 * 
-	 * @throws Exception 
-	 * 			Exception will be thrown on invalid character input
+	 * @throws InvalidStateCharacterException 
+	 * 			InvalidStateCharacterException will be thrown on invalid character input
 	 */
 	public static TrafficLightState parseSUMOStateCharacter(char stateChar) throws InvalidStateCharacterException
 	{
@@ -502,7 +508,7 @@ public class XMLParser
 	
 	/**
 	 * Returns character data from XML element.
-	 * E.g. &lt;elem&gt;abc123&lt;/elem&gt;  --> "abc123"
+	 * E.g. &lt;elem&gt;abc123&lt;/elem&gt;  --&gt; "abc123"
 	 * 
 	 * @param elem
 	 * 			XML Element
@@ -528,7 +534,7 @@ public class XMLParser
 	
 	/**
 	 * Transforms the string representation of states to a value of
-	 * TrafficLightState. E.g.  "green" --> TrafficLightState.GREEN
+	 * TrafficLightState. E.g.  "green" --&gt; TrafficLightState.GREEN
 	 * 
 	 * @param stateString
 	 * 			The string representation of the state

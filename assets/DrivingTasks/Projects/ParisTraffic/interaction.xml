@@ -22,9 +22,13 @@
 			</action>
 		</activity>
 		<activity id="moveCar1">
-			<action id="moveTraffic" delay="0" repeat="0">
+			<action id="moveTraffic" delay="0" repeat="4">
 				<parameter name="trafficObjectID" value="car1" />
 				<parameter name="wayPointID" value="WayPoint_6" />
+			</action>
+		</activity>
+		<activity id="resumeSim">
+			<action id="resumeSimulation" delay="0" repeat="0">
 			</action>
 		</activity>
 	</activities>
@@ -49,6 +53,13 @@
 				<activity ref="movePedestrianCrossing_1Back"/>
 			</activities>		
 			<condition>collideWith:greenBox</condition>
+		</trigger>
+		
+		<trigger id="TTLTrigger" priority="1">
+			<activities>
+				<activity ref="resumeSim"/>
+			</activities>		
+			<condition>remote:resume</condition>
 		</trigger>
 	</triggers>
 	
