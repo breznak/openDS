@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2014 Rafael Math
+*  Copyright (C) 2015 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -49,7 +49,7 @@ public class BinaryConverter extends SimpleApplication
 
     public void simpleInitApp() 
     {
-    	String path = "Scenes/Paris2010/Paris2010.scene";
+    	String path = "Scenes/bigCity/city.scene";
     	
     	assetManager.registerLocator("assets", FileLocator.class);
         

@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2014 Rafael Math
+*  Copyright (C) 2015 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -38,7 +38,7 @@ public class RainParticleEmitter extends ParticleEmitter
    
 	public RainParticleEmitter(AssetManager assetManager, float percentage)
 	{
-		super("Emitter", ParticleMesh.Type.Triangle, (int) (50 * percentage));
+		super("Emitter", ParticleMesh.Type.Triangle, 10000 /*(int) (50 * percentage)*/);
 		this.assetManager = assetManager;
 		this.percentage = percentage;
 		setupMaterial();
@@ -50,18 +50,25 @@ public class RainParticleEmitter extends ParticleEmitter
 		Material mat_red = new Material(assetManager, "Common/MatDefs/Misc/Particle.j3md");
 		mat_red.setTexture("Texture", assetManager.loadTexture("Effects/Weather/rain.png"));
 		this.setMaterial(mat_red);
-		this.setParticlesPerSec(20 * percentage);
+		this.setParticlesPerSec(40 * percentage);
 		this.setImagesX(1);
 		this.setImagesY(1); // 1x1 texture animation
-		this.setStartColor(new ColorRGBA(0.9f, 0.9f, 0.9f, 0.6f));
-		this.setEndColor(new ColorRGBA(0.9f, 0.9f, 0.9f, 0.6f));
-		this.setStartSize(0.06f);
-		this.setEndSize(0.06f);
+		this.setStartColor(new ColorRGBA(0.9f, 0.9f, 0.9f, 0.99f));
+		this.setEndColor(new ColorRGBA(0.9f, 0.9f, 0.9f, 0.99f));
+		this.setStartSize(0.10f);
+		this.setEndSize(0.10f);
 		this.setGravity(0,1,0);
 		this.setLowLife(1f);
 		this.setHighLife(2f);
 		this.getParticleInfluencer().setInitialVelocity(new Vector3f(0, -6, 0));
 		this.getParticleInfluencer().setVelocityVariation(0f);
-		this.setShape(new EmitterBoxShape(new Vector3f(-20f,1.5f,-20f),new Vector3f(20f,3.0f,20f)));
+		this.setShape(new EmitterBoxShape(new Vector3f(-20f,3.0f,-20f),new Vector3f(20f,4.5f,20f)));
+	}
+	
+	
+	public void setPercentage(float percentage)
+	{
+		//super.setNumParticles((int) (50 * percentage));
+		this.setParticlesPerSec(40 * percentage);
 	}
 }

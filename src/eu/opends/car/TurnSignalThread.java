@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2014 Rafael Math
+*  Copyright (C) 2015 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -18,8 +18,12 @@
 
 package eu.opends.car;
 
+import eu.opends.audio.AudioCenter;
+import eu.opends.camera.CameraFactory.CameraMode;
 import eu.opends.car.LightTexturesContainer.LightState;
 import eu.opends.car.LightTexturesContainer.TurnSignalState;
+import eu.opends.main.Simulator;
+import eu.opends.tools.PanelCenter;
 
 /**
  * This thread changes the light textures in the given interval in order
@@ -32,14 +36,18 @@ public class TurnSignalThread extends Thread
 	private int lightChangeInterval = 375;
 	private int threadUpdateInterval = 25;
 	private LightTexturesContainer lightTexturesContainer;
+	private Simulator sim;
+	private Car car;
 	private TurnSignalState targetState;
 	private boolean targetStateHasChanged = false;
 	private boolean stopRequested = false;
 	
 	
-	public TurnSignalThread(LightTexturesContainer lightTexturesContainer)
+	public TurnSignalThread(LightTexturesContainer lightTexturesContainer, Simulator sim, Car car)
 	{
 		this.lightTexturesContainer = lightTexturesContainer;
+		this.sim = sim;
+		this.car = car;
 	}
 	
 	
@@ -56,6 +64,12 @@ public class TurnSignalThread extends Thread
 				{
 					currentState = targetState;
 					targetStateHasChanged = false;
+				}
+				
+				if(car instanceof SteeringCar)
+				{
+					// set current state to turn signal arrows
+					applyTurnArrows(currentState);
 				}
 				
 				// set current state to turn signal lights (change textures) if not already set
@@ -79,6 +93,36 @@ public class TurnSignalThread extends Thread
 	}
 	
 	
+	private void applyTurnArrows(TurnSignalState turnSignalState)
+	{
+		boolean leftIsOn = false;
+		boolean rightIsOn = false;
+		
+		switch(turnSignalState)
+		{
+			case LEFT : leftIsOn = true; break;
+			case RIGHT : rightIsOn = true; break;
+			case BOTH : leftIsOn = true; rightIsOn = true; break;
+			default:  break;
+		}
+		
+		PanelCenter.setLeftTurnSignalArrow(leftIsOn);
+		PanelCenter.setRightTurnSignalArrow(rightIsOn);	
+		
+		if(sim.getCameraFactory().getCamMode().equals(CameraMode.EGO))
+		{
+			if(leftIsOn || rightIsOn)
+			{
+				// play turn signal sound
+				AudioCenter.setVolume("turnSignal", 0.25f);
+				AudioCenter.playSound("turnSignal");
+			}
+		}
+		else
+			AudioCenter.setVolume("turnSignal", 0f);
+	}
+
+
 	public synchronized void setTurnSignalState(TurnSignalState targetState)
 	{
 		this.targetState = targetState;

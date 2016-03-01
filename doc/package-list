@@ -14,6 +14,7 @@ eu.opends.drivingTask.task
 eu.opends.effects
 eu.opends.environment
 eu.opends.environment.TrafficLightException
+eu.opends.hmi
 eu.opends.input
 eu.opends.jasperReport
 eu.opends.knowledgeBase
@@ -22,6 +23,8 @@ eu.opends.multiDriver
 eu.opends.niftyGui
 eu.opends.niftyGui.dropDown
 eu.opends.niftyGui.listBox
+eu.opends.oculusRift
+eu.opends.oculusRift.post
 eu.opends.reactionCenter
 eu.opends.settingsController
 eu.opends.taskDescription.tvpTask

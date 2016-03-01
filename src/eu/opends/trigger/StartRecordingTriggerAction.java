@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2014 Rafael Math
+*  Copyright (C) 2015 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -29,12 +29,15 @@ import eu.opends.tools.PanelCenter;
 public class StartRecordingTriggerAction extends TriggerAction 
 {
 	private Simulator sim;
+	private int trackNumber;
 	
 	public StartRecordingTriggerAction(float delay, int maxRepeat, Simulator sim, int trackNumber)
 	{
 		super(delay, maxRepeat);
 		this.sim = sim;
+		this.trackNumber = trackNumber;
 	}
+	
 	
 	@Override
 	protected void execute() 
@@ -42,7 +45,9 @@ public class StartRecordingTriggerAction extends TriggerAction
 		if(!isExceeded())
 		{		
 			if (sim.getMyDataWriter() == null)
-				sim.initializeDataWriter();
+			{
+				sim.initializeDataWriter(trackNumber);
+			}
 			
 			// start recording drive
 			DataWriter dataWriter = sim.getMyDataWriter();

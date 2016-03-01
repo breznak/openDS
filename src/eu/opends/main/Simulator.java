@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2014 Rafael Math
+*  Copyright (C) 2015 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -49,10 +49,12 @@ import eu.opends.drivingTask.settings.SettingsLoader.Setting;
 import eu.opends.effects.EffectCenter;
 import eu.opends.environment.TrafficLightCenter;
 import eu.opends.eyetracker.EyetrackerCenter;
+import eu.opends.hmi.HMICenter;
 import eu.opends.input.KeyBindingCenter;
 import eu.opends.knowledgeBase.KnowledgeBase;
 import eu.opends.multiDriver.MultiDriverClient;
 import eu.opends.niftyGui.DrivingTaskSelectionGUIController;
+import eu.opends.oculusRift.OculusRift;
 import eu.opends.reactionCenter.ReactionCenter;
 import eu.opends.settingsController.SettingsControllerServer;
 import eu.opends.taskDescription.contreTask.SteeringTask;
@@ -75,10 +77,9 @@ public class Simulator extends SimulationBasics
 	private final static Logger logger = Logger.getLogger(Simulator.class);
 
     private Nifty nifty;
+    private int frameCounter = 0;
     private boolean drivingTaskGiven = false;
     private boolean initializationFinished = false;
-    
-    private static String driverName;
     
     private static Float gravityConstant;
 	public static Float getGravityConstant()
@@ -215,7 +216,13 @@ public class Simulator extends SimulationBasics
 		return outputFolder;
 	}
 	
-	
+	public static boolean oculusRiftAttached = false;/*
+    private static OculusRift oculusRift;
+	public static OculusRift getOculusRift()
+	{
+		return oculusRift;
+	}
+	*/
     @Override
     public void simpleInitApp()
     {
@@ -255,9 +262,9 @@ public class Simulator extends SimulationBasics
         flyCam.setEnabled(true);
 	}
 
-    
+
     public void simpleInitDrivingTask(String drivingTaskFileName, String driverName)
-    {
+    {		
     	SimulationDefaults.drivingTaskFileName = drivingTaskFileName;
     	
     	Util.makeDirectory("analyzerData");
@@ -266,16 +273,24 @@ public class Simulator extends SimulationBasics
     	initDrivingTaskLayers();
     	
     	// show stats if set in driving task
-    	showStats(drivingTask.getSettingsLoader().getSetting(Setting.General_showStats, false));  	
+    	showStats(settingsLoader.getSetting(Setting.General_showStats, false));  	
     	
+    	// check Oculus Rift mode: auto, enabled, disabled
+    	String oculusAttachedString = settingsLoader.getSetting(Setting.OculusRift_isAttached, 
+    			SimulationDefaults.OculusRift_isAttached);
+		if(oculusAttachedString.equalsIgnoreCase("enabled"))
+			oculusRiftAttached = true;
+		else if(oculusAttachedString.equalsIgnoreCase("disabled"))
+			oculusRiftAttached = false;
+		
     	// sets up physics, camera, light, shadows and sky
     	super.simpleInitApp();
-    	
+		
     	// set gravity
     	gravityConstant = drivingTask.getSceneLoader().getGravity(SimulationDefaults.gravity);
     	getPhysicsSpace().setGravity(new Vector3f(0, -gravityConstant, 0));	
-    	//getPhysicsSpace().setAccuracy(0.005f);
-    	
+    	getPhysicsSpace().setAccuracy(0.008f); //TODO comment to set accuracy to 0.0166666 ?
+
     	PanelCenter.init(this);
 	
         Joystick[] joysticks = inputManager.getJoysticks();
@@ -313,7 +328,7 @@ public class Simulator extends SimulationBasics
 		if(driverName == null || driverName.isEmpty())
 			driverName = settingsLoader.getSetting(Setting.General_driverName, SimulationDefaults.driverName);
     	SimulationDefaults.driverName = driverName;
-
+		
         // setup key binding
 		keyBindingCenter = new KeyBindingCenter(this);
         
@@ -327,6 +342,12 @@ public class Simulator extends SimulationBasics
 		
 		// init trigger center
 		triggerCenter.setup();
+		
+		// init HMICenter
+		HMICenter.init(this);
+
+		HMICenter.sendDataToHmi(settingsLoader.getSetting(Setting.SIMTD_sendDataToHmi, SimulationDefaults.sendDataToHmi));
+
 
 		// open TCP connection to Lightning
 		if(settingsLoader.getSetting(Setting.ExternalVisualization_enableConnection, SimulationDefaults.Lightning_enableConnection))
@@ -424,11 +445,13 @@ public class Simulator extends SimulationBasics
 	/**
 	 * That method is going to be executed, when the dataWriter is
 	 * <code>null</code> and the S-key is pressed.
+	 * @param trackNumber 
 	 *
 	 */
-	public void initializeDataWriter() 
+	public void initializeDataWriter(int trackNumber) 
 	{
-		dataWriter = new DataWriter(outputFolder, car, driverName, SimulationDefaults.drivingTaskFileName);
+		dataWriter = new DataWriter(outputFolder, car, SimulationDefaults.driverName, 
+				SimulationDefaults.drivingTaskFileName, trackNumber);
 	}
 	
 	
@@ -498,6 +521,13 @@ public class Simulator extends SimulationBasics
 			
 			if(eyetrackerCenter != null)
 				eyetrackerCenter.update();
+			
+    		if(frameCounter == 5)
+    		{
+    			if(settingsLoader.getSetting(Setting.General_pauseAfterStartup, SimulationDefaults.General_pauseAfterStartup))
+    				setPause(true);
+    		}
+    		frameCounter++;
     	}
     }
 
@@ -569,6 +599,8 @@ public class Simulator extends SimulationBasics
 			
 			reactionCenter.close();
 			
+			HMICenter.close();
+			
 			KnowledgeBase.KB.disconnect();
 			
 			car.close();
@@ -604,7 +636,9 @@ public class Simulator extends SimulationBasics
     		logger.error("Sample error message");
     		logger.fatal("Sample fatal message");
     		*/
-    	
+    		
+    		oculusRiftAttached = OculusRift.initialize();
+    		
     		// only show severe jme3-logs
     		java.util.logging.Logger.getLogger("").setLevel(java.util.logging.Level.SEVERE);
     		

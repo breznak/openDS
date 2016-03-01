@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2014 Rafael Math
+*  Copyright (C) 2015 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -52,44 +52,26 @@ public class DataWriter
 	private File outFile;
 	private String newLine = System.getProperty("line.separator");
 	private Date lastAnalyzerDataSave;
-	private String outputFolder;
 	private Car car;
 	private File analyzerDataFile;
 	private boolean dataWriterEnabled = false;
-	private String driverName = "";
 	private Date curDate;
 	private String relativeDrivingTaskPath;
 
 
-	public DataWriter(String outputFolder, Car car, String driverName, String absoluteDrivingTaskPath) 
-	{		
-		this.outputFolder = outputFolder;
+	public DataWriter(String outputFolder, Car car, String driverName, String absoluteDrivingTaskPath, int trackNumber) 
+	{
 		this.car = car;
-		this.driverName = driverName;
 		this.relativeDrivingTaskPath = getRelativePath(absoluteDrivingTaskPath);
-		System.err.println(relativeDrivingTaskPath);
 		
 		Util.makeDirectory(outputFolder);
 
-		analyzerDataFile = new File(outputFolder + "/carData.txt");
+		if(trackNumber >= 0)
+			analyzerDataFile = new File(outputFolder + "/carData_track" + trackNumber + ".txt");
+		else
+			analyzerDataFile = new File(outputFolder + "/carData.txt");
 
-		initWriter();
-	}
-	
-	
-	private String getRelativePath(String absolutePath)
-	{
-		URI baseURI = new File("./").toURI();
-		URI absoluteURI = new File(absolutePath).toURI();
-		URI relativeURI = baseURI.relativize(absoluteURI);
 		
-		return relativeURI.getPath();
-	}
-
-
-	public void initWriter() 
-	{
-
 		if (analyzerDataFile.getAbsolutePath() == null) 
 		{
 			System.err.println("Parameter not accepted at method initWriter.");
@@ -101,7 +83,11 @@ public class DataWriter
 		int i = 2;
 		while(outFile.exists()) 
 		{
-			analyzerDataFile = new File(outputFolder + "/carData(" + i + ").txt");
+			if(trackNumber >= 0)
+				analyzerDataFile = new File(outputFolder + "/carData_track" + trackNumber + "(" + i + ").txt");
+			else
+				analyzerDataFile = new File(outputFolder + "/carData(" + i + ").txt");
+			
 			outFile = new File(analyzerDataFile.getAbsolutePath());
 			i++;
 		}
@@ -123,6 +109,16 @@ public class DataWriter
 		}
 		arrayDataList = new ArrayList<DataUnit>();
 		lastAnalyzerDataSave = new Date();
+	}
+	
+	
+	private String getRelativePath(String absolutePath)
+	{
+		URI baseURI = new File("./").toURI();
+		URI absoluteURI = new File(absolutePath).toURI();
+		URI relativeURI = baseURI.relativize(absoluteURI);
+		
+		return relativeURI.getPath();
 	}
 
 

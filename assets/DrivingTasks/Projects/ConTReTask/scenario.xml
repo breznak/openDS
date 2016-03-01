@@ -5,9 +5,9 @@
         
         <environment>
         	<weather>
-                <snowingPercentage>0</snowingPercentage>
-        		<rainingPercentage>0</rainingPercentage>
-        		<fogPercentage>0</fogPercentage>
+                <snowingPercentage>-1</snowingPercentage>
+        		<rainingPercentage>-1</rainingPercentage>
+        		<fogPercentage>-1</fogPercentage>
         	</weather>
         </environment>
 

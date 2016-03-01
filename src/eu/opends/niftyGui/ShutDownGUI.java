@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2014 Rafael Math
+*  Copyright (C) 2015 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -74,7 +74,7 @@ public class ShutDownGUI
 			sim.getInstructionScreenGUI().hideDialog();
 			initiallyPaused = sim.isPause();
 			sim.setPause(true);
-			sim.getGuiNode().setCullHint(CullHint.Always);
+			//sim.getGuiNode().setCullHint(CullHint.Always);
 			initShutDownGUI();
 			shutDownDialogHidden = false;
 		}
@@ -87,7 +87,7 @@ public class ShutDownGUI
 		{
 			closeShutDownGUI();
 			shutDownDialogHidden = true;
-			sim.getGuiNode().setCullHint(CullHint.Inherit);
+			//sim.getGuiNode().setCullHint(CullHint.Inherit);
 			sim.setPause(initiallyPaused);
 		}
 	}

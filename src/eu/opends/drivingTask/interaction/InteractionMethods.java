@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2014 Rafael Math
+*  Copyright (C) 2015 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -21,9 +21,13 @@ package eu.opends.drivingTask.interaction;
 import java.util.Properties;
 
 import com.jme3.math.FastMath;
+import com.jme3.math.Vector3f;
 
 import eu.opends.basics.SimulationBasics;
 import eu.opends.drivingTask.DrivingTaskDataQuery.Layer;
+import eu.opends.hmi.LocalDangerWarningPresentationModel;
+import eu.opends.hmi.PresentationModel;
+import eu.opends.hmi.RoadWorksInformationPresentationModel;
 import eu.opends.main.Simulator;
 import eu.opends.trigger.GetTimeUntilBrakeAction;
 import eu.opends.trigger.GetTimeUntilSpeedChangeAction;
@@ -33,11 +37,13 @@ import eu.opends.trigger.MoveTrafficTriggerAction;
 import eu.opends.trigger.OpenInstructionsScreenTriggerAction;
 import eu.opends.trigger.PauseTriggerAction;
 import eu.opends.trigger.PlaySoundAction;
+import eu.opends.trigger.PresentationTaskAction;
 import eu.opends.trigger.ReportSpeedTriggerAction;
 import eu.opends.trigger.ReportTrafficLightTriggerAction;
 import eu.opends.trigger.RequestGreenTrafficLightAction;
 import eu.opends.trigger.ResetCarToResetPointAction;
 import eu.opends.trigger.SendMessageTriggerAction;
+import eu.opends.trigger.SetCrosswindTriggerAction;
 import eu.opends.trigger.SetSpeedLimitAction;
 import eu.opends.trigger.SetTVPTStimulusTriggerAction;
 import eu.opends.trigger.SetupBrakeReactionTimerTriggerAction;
@@ -473,6 +479,170 @@ public class InteractionMethods
 		}
 	}
 
+	
+	/**
+	 * Creates a PresentationTask trigger action by parsing the node list for SIM-TD
+	 * presentation models. As soon as the trigger is hit, the presentation task
+	 * will be displayed in the HMI GUI.
+	 * 
+	 * @return
+	 * 			PresentationTask trigger action with the presentation model.
+	 */
+	public TriggerAction startPresentationTask(SimulationBasics sim, float delay, int repeat, Properties parameterList)
+	{
+		String parameter = "presentationTaskType";
+		
+		try {
+			
+			// read type of presentation task
+			String presentationTaskType = parameterList.getProperty(parameter);
+			if(presentationTaskType == null)
+				throw new Exception();
+			
+			PresentationModel presentationModel = null;
+			
+			// check for roadWorksInformation presentation task
+			if(presentationTaskType.equalsIgnoreCase("roadWorksInformation"))
+			{
+				// extract roadWorksInformation presentation task
+				presentationModel = extractRoadWorksInformation(parameterList);
+			}
+			
+			// check for localDangerWarning presentation task
+			if(presentationTaskType.equalsIgnoreCase("localDangerWarning"))
+			{
+				// extract localDangerWarning presentation task
+				presentationModel = extractLocalDangerWarning(parameterList);
+			}
+			
+			// create PresentationTaskAction
+			return new PresentationTaskAction(delay, repeat,presentationModel,(Simulator)sim);
+			
+		} catch (Exception e) {
+	
+			reportError("startPresentationTask", parameter);
+			return null;
+		}
+	}
+	
+	/**
+	 * Extracts the parameters of the RoadWorksInformation presentation model from 
+	 * the given node list.
+	 * 
+	 * @param roadWorksInformationList
+	 * 			Node list containing parameters for the RoadWorksInformation presentation 
+	 * 			model.
+	 * 
+	 * @return
+	 * 			RoadWorksInformation presentation model with the given parameters.
+	 */
+	private PresentationModel extractRoadWorksInformation(Properties parameterList) 
+	{
+		Vector3f startPosition = new Vector3f(0,0,0);
+		Vector3f endPosition = new Vector3f(0,0,0);
+		String geometryFile = "";
+		String parameter = "";
+		
+		try {
+			
+			// extract start position, if available
+			parameter = "startPosition";
+			String[] startPositionKeys = new String[] {"startPositionX", "startPositionY", "startPositionZ"};
+			Float[] startPositionDefaults = new Float[] {0f,0f,0f};
+			Float[] startPositionValues = extractFloatValues(parameterList, startPositionKeys, startPositionDefaults);
+	
+			if(startPositionValues != null)
+				startPosition = new Vector3f(startPositionValues[0], startPositionValues[1], startPositionValues[2]);
+			else
+				throw new Exception();
+			
+			
+			// extract start position, if available
+			parameter = "endPosition";
+			String[] endPositionKeys = new String[] {"endPositionX", "endPositionY", "endPositionZ"};
+			Float[] endPositionDefaults = new Float[] {0f,0f,0f};
+			Float[] endPositionValues = extractFloatValues(parameterList, endPositionKeys, endPositionDefaults);
+	
+			if(endPositionValues != null)
+				endPosition = new Vector3f(endPositionValues[0], endPositionValues[1], endPositionValues[2]);
+			else
+				throw new Exception();
+			
+			
+			// extract geometry file
+			parameter = "geometryFile";
+			String geometryFile_String = parameterList.getProperty(parameter);
+			if(geometryFile_String != null)
+				geometryFile = geometryFile_String;
+
+			
+			// Car will be set after it has been created in class "PresentationTaskAction"
+			return new RoadWorksInformationPresentationModel(null, startPosition, endPosition, geometryFile);
+			
+		} catch (Exception e) {
+			
+			if(e instanceof NotAFloatException)
+				parameter = ((NotAFloatException)e).getVariableName();
+	
+			reportError("startPresentationTask", parameter);
+			return null;
+		}
+	}
+	
+
+	/**
+	 * Extracts the parameters of the LocalDangerWarning presentation model from 
+	 * the given node list.
+	 * 
+	 * @param localDangerWarningList
+	 * 			Node list containing parameters for the LocalDangerWarning presentation 
+	 * 			model.
+	 * 
+	 * @return
+	 * 			LocalDangerWarning presentation model with the given parameters.
+	 */
+	private PresentationModel extractLocalDangerWarning(Properties parameterList) 
+	{
+		Vector3f targetPosition = new Vector3f(0,0,0);
+		String parameter = "";
+		
+		try {
+			
+			// extract start position, if available
+			parameter = "targetPosition";
+			String[] targetPositionKeys = new String[] {"targetPositionX", "targetPositionY", "targetPositionZ"};
+			Float[] targetPositionDefaults = new Float[] {0f,0f,0f};
+			Float[] targetPositionValues = extractFloatValues(parameterList, targetPositionKeys, targetPositionDefaults);
+	
+			if(targetPositionValues != null)
+				targetPosition = new Vector3f(targetPositionValues[0], targetPositionValues[1], targetPositionValues[2]);
+			else
+				throw new Exception();
+			
+			
+			// extract name of local danger warning
+			parameter = "localDangerWarningName";
+			String localDangerWarningName = parameterList.getProperty(parameter);
+			if(localDangerWarningName == null)
+				throw new Exception();
+			
+			// extract start timing mode. Note that this is not the same as the "delay", since it depends on the distance and is updated.
+			String displayDurationMillisStr = parameterList.getProperty("displayDurationMillis", "0");
+			int displayDurationMillis = Integer.parseInt(displayDurationMillisStr);
+			
+			// Car will be set after it has been created in class "PresentationTaskAction"
+			return new LocalDangerWarningPresentationModel(null, targetPosition, localDangerWarningName, displayDurationMillis);
+			
+		} catch (Exception e) {
+			
+			if(e instanceof NotAFloatException)
+				parameter = ((NotAFloatException)e).getVariableName();
+	
+			reportError("startPresentationTask", parameter);
+			return null;
+		}
+	}
+	
 	
 	/**
 	 * Creates a SetSpeedLimit trigger action by parsing the given node list. This
@@ -1222,6 +1392,56 @@ public class InteractionMethods
 		}
 	}
 	
+	
+	@Action(
+			name = "setCrosswind", 
+			layer = Layer.INTERACTION, 
+			description = "applies crosswind to the user-controlled car",
+			defaultDelay = 0,
+			defaultRepeat = 0,
+			param = {@Parameter(name="direction", type="String", defaultValue="", 
+							 	description="direction wind is coming from (left, right)"),
+					 @Parameter(name="force", type="Float", defaultValue="", 
+							 	description="wind force in percent (0.0 .. 1.0)"),
+					 @Parameter(name="duration", type="Integer", defaultValue="", 
+								description="duration of wind event in milliseconds")
+					}
+		)
+	public TriggerAction setCrosswind(SimulationBasics sim, float delay, int repeat, Properties parameterList)
+	{
+		String parameter = "direction";
+		
+		try {
+			
+			// extract direction
+			String direction = parameterList.getProperty(parameter);
+			if(direction == null)
+				throw new Exception();
+			
+			// extract force
+			parameter = "force";
+			String forceString = parameterList.getProperty(parameter);
+			if(forceString == null)
+				throw new Exception();
+			float force = Float.parseFloat(forceString);
+			
+			// extract duration
+			parameter = "duration";
+			String durationString = parameterList.getProperty(parameter);
+			if(durationString == null)
+				throw new Exception();
+			int duration = Integer.parseInt(durationString);
+						
+			// create SetCrosswindTriggerAction
+			return new SetCrosswindTriggerAction(delay, repeat, (Simulator) sim, direction, force, duration);
+			
+		} catch (Exception e) {
+	
+			reportError("setCrosswind", parameter);
+			return null;
+		}
+	}
+		
 	
 	@Action(
 			name = "setTVPTStimulus", 

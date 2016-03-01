@@ -14,7 +14,7 @@
     </sounds>
 
 	<models>
-		<model id="twoLaneRoad" key="Scenes/twoLaneRoad/twoLaneRoad.scene">
+		<model id="twoLaneRoad" key="Scenes/twoLaneRoad/twoLaneRoad.j3o">
 			<mass>0</mass>
 			<visible>true</visible>
 			<collisionShape>meshShape</collisionShape>
@@ -43,7 +43,7 @@
 			</translation>
 			<shadowMode>Off</shadowMode>
 		</model>
-		<model id="driverCar" key="Models/Cars/drivingCars/Ferrari/Car.scene">
+		<model id="driverCar" key="Models/Cars/drivingCars/AudiS6/Car.j3o">
 			<mass>800</mass>
 			<visible>true</visible>
 			<collisionShape>meshShape</collisionShape>

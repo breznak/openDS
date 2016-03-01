@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2014 Rafael Math
+*  Copyright (C) 2015 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -21,13 +21,18 @@ package eu.opends.car;
 import java.io.File;
 
 import com.jme3.bullet.control.VehicleControl;
+import com.jme3.bullet.joints.HingeJoint;
 import com.jme3.light.SpotLight;
+import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.FastMath;
 import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.queue.RenderQueue.ShadowMode;
+import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
+import com.jme3.scene.Spatial.CullHint;
+import com.jme3.scene.shape.Box;
 
 import eu.opends.audio.AudioCenter;
 import eu.opends.car.LightTexturesContainer.TurnSignalState;
@@ -46,15 +51,20 @@ public abstract class Car
 	protected Simulator sim;
 	protected Vector3f initialPosition;
 	protected Quaternion initialRotation;
+	protected Geometry frontGeometry;
+	protected Geometry centerGeometry;
 	
 	protected CarModelLoader carModel;
     protected VehicleControl carControl;
     protected Node carNode;
+    protected VehicleControl trailerControl;
+    protected Node trailerNode;
     protected LightTexturesContainer lightTexturesContainer;
     
     private float steeringWheelState;
-    protected float gasPedalPressIntensity;
-    protected float brakePedalPressIntensity;
+    protected float steeringInfluenceByCrosswind = 0;
+    protected float acceleratorPedalIntensity;
+    protected float brakePedalIntensity;
     protected int resetPositionCounter;
     protected Vector3f previousPosition;
     private float distanceOfCurrentFrame = 0;
@@ -90,7 +100,7 @@ public abstract class Car
 		mileage = 0;
 		
         // load car model
-		carModel = new CarModelLoader(sim, modelPath, mass);
+		carModel = new CarModelLoader(sim, this, modelPath, mass);
 		carControl = carModel.getCarControl();
 		carNode = carModel.getCarNode();
 		carNode.setShadowMode(ShadowMode.Cast);
@@ -100,7 +110,7 @@ public abstract class Car
 		String lightTexturesPath = modelFile.getPath().replace(modelFile.getName(), "lightTextures.xml");
 		
 		// load light textures
-		lightTexturesContainer = new LightTexturesContainer(sim, carNode, lightTexturesPath);
+		lightTexturesContainer = new LightTexturesContainer(sim, this, lightTexturesPath);
 		//lightTexturesContainer.printAllContent();
 		
         // add car node to rendering node
@@ -111,6 +121,11 @@ public abstract class Car
 
 		// setup head light
         setupHeadlight(sim);
+        
+        // add trailer
+        boolean hasTrailer = false;
+        if(hasTrailer)
+        	setupTrailer();
 
         // set initial position and orientation
         setPosition(initialPosition);
@@ -118,8 +133,10 @@ public abstract class Car
 
         // apply continuous braking (simulates friction when free wheeling)
         resetPedals();
+        
+        setupReferencePoints();
     }
-	
+
 	
 	private void setupHeadlight(Simulator sim) 
 	{
@@ -136,6 +153,59 @@ public abstract class Car
         rightHeadLight.setSpotInnerAngle(11*FastMath.DEG_TO_RAD);
         rightHeadLight.setSpotOuterAngle(25*FastMath.DEG_TO_RAD);
         sim.getSceneNode().addLight(rightHeadLight);
+	}
+	
+	
+	private void setupTrailer() 
+	{
+		String trailerModelPath = "Models/Cars/drivingCars/CarRedTrailer/Car.scene";
+		float trailerMass = 100;
+		
+		// load trailer (model and physics)
+		CarModelLoader trailerModelLoader = new CarModelLoader(sim, this, trailerModelPath, trailerMass);
+		trailerControl = trailerModelLoader.getCarControl();
+		sim.getPhysicsSpace().add(trailerControl);
+		trailerNode = trailerModelLoader.getCarNode();
+		sim.getSceneNode().attachChild(trailerNode);
+		
+		// apply joint
+		HingeJoint joint=new HingeJoint(carNode.getControl(VehicleControl.class),
+				trailerNode.getControl(VehicleControl.class),
+		        new Vector3f(0f, 0f, 2f),    // pivot point local to carNode
+		        new Vector3f(0f, 0f, -1.5f), // pivot point local to trailerNode 
+		        Vector3f.UNIT_Y, 			 // DoF Axis of carNode (Y axis)
+		        Vector3f.UNIT_Y);        	 // DoF Axis of trailerNode (Y axis)
+		joint.setCollisionBetweenLinkedBodys(false);
+		joint.setLimit(-FastMath.HALF_PI, FastMath.HALF_PI);	        
+		sim.getPhysicsSpace().add(joint);
+	}
+	
+	
+	private void setupReferencePoints() 
+	{
+		// add node representing position of front box
+		Box frontBox = new Box(0.01f, 0.01f, 0.01f);
+		frontGeometry = new Geometry("frontBox", frontBox);
+        frontGeometry.setLocalTranslation(0, 0, -1);
+		Material frontMaterial = new Material(sim.getAssetManager(), "Common/MatDefs/Misc/Unshaded.j3md");
+		frontMaterial.setColor("Color", ColorRGBA.Red);
+		frontGeometry.setMaterial(frontMaterial);
+		Node frontNode = new Node();
+		frontNode.attachChild(frontGeometry);
+		frontNode.setCullHint(CullHint.Always);
+		getCarNode().attachChild(frontNode);
+		
+		// add node representing position of center box
+		Box centerBox = new Box(0.01f, 0.01f, 0.01f);
+		centerGeometry = new Geometry("centerBox", centerBox);
+		centerGeometry.setLocalTranslation(0, 0, 0);
+		Material centerMaterial = new Material(sim.getAssetManager(), "Common/MatDefs/Misc/Unshaded.j3md");
+		centerMaterial.setColor("Color", ColorRGBA.Green);
+		centerGeometry.setMaterial(centerMaterial);
+		Node centerNode = new Node();
+		centerNode.attachChild(centerGeometry);
+		centerNode.setCullHint(CullHint.Always);
+		getCarNode().attachChild(centerNode);
 	}
 	
 	
@@ -180,18 +250,6 @@ public abstract class Car
 	}
 	
 	
-	public Vector3f getEgoCamPos()
-	{
-		return carModel.getEgoCamPos();
-	}
-	
-	
-	public Vector3f getStaticBackCamPos()
-	{
-		return carModel.getStaticBackCamPos();
-	}
-	
-	
 	public Node getCarNode()
 	{
 		return carNode;
@@ -201,6 +259,12 @@ public abstract class Car
 	public VehicleControl getCarControl()
 	{
 		return carControl;
+	}
+	
+	
+	public CarModelLoader getCarModel()
+	{
+		return carModel;
 	}
 	
 	
@@ -255,6 +319,14 @@ public abstract class Car
 		carControl.setLinearVelocity(Vector3f.ZERO);
 		carControl.setAngularVelocity(Vector3f.ZERO);
 		carControl.resetSuspension();
+		
+		if(trailerControl != null)
+		{
+			trailerControl.setPhysicsLocation(previousPosition);
+			trailerControl.setLinearVelocity(Vector3f.ZERO);
+			trailerControl.setAngularVelocity(Vector3f.ZERO);
+			trailerControl.resetSuspension();
+		}
 	}
 
 	
@@ -323,6 +395,14 @@ public abstract class Car
 		carControl.setLinearVelocity(Vector3f.ZERO);
 		carControl.setAngularVelocity(Vector3f.ZERO);
 		carControl.resetSuspension();
+		
+		if(trailerControl != null)
+		{
+			trailerControl.setPhysicsRotation(rotation);
+			trailerControl.setLinearVelocity(Vector3f.ZERO);
+			trailerControl.setAngularVelocity(Vector3f.ZERO);
+			trailerControl.resetSuspension();
+		}
 	}
 	
 	
@@ -342,15 +422,15 @@ public abstract class Car
 	 *            -1 for full ahead and 1 for full backwards
 	 */
 	// will be called, whenever UP or DOWN arrow key is pressed
-	public void setGasPedalIntensity(float intensity) 
+	public void setAcceleratorPedalIntensity(float intensity) 
 	{
-		gasPedalPressIntensity = intensity;
+		acceleratorPedalIntensity = intensity;
 	}
 
 	
 	public float getGasPedalPressIntensity() 
 	{
-		return Math.abs(gasPedalPressIntensity);
+		return Math.abs(acceleratorPedalIntensity);
 	}
 
 
@@ -360,16 +440,16 @@ public abstract class Car
 	 *            1 for full brake, 0 no brake at all
 	 */
 	// will be called, whenever SPACE key is pressed
-	public void setBrakePedalPressIntensity(float intensity) 
+	public void setBrakePedalIntensity(float intensity) 
 	{
-		brakePedalPressIntensity = intensity;
+		brakePedalIntensity = intensity;
 		SpeedControlCenter.stopBrakeTimer();
 	}
 	
 	
 	public float getBrakePedalPressIntensity() 
 	{
-		return brakePedalPressIntensity;
+		return brakePedalIntensity;
 	}
 
 
@@ -379,8 +459,8 @@ public abstract class Car
 	public void resetPedals()
 	{
 		// reset pedals to initial position
-		gasPedalPressIntensity = 0;
-		brakePedalPressIntensity = 0;
+		acceleratorPedalIntensity = 0;
+		brakePedalIntensity = 0;
 	}
 	
 	
@@ -392,7 +472,7 @@ public abstract class Car
 	 */
 	public void steer(final float direction) 
 	{
-		carControl.steer(direction);
+		carControl.steer(direction + steeringInfluenceByCrosswind);
 		setSteeringWheelState(direction);
 	}
 
@@ -408,13 +488,19 @@ public abstract class Car
 		return steeringWheelState;
 	}
 	
+	
+	public float getSteeringInfluenceByCrosswind() 
+	{
+		return steeringInfluenceByCrosswind;
+	}
+	
 
 	/**
 	 * Unsteer the front wheels
 	 */
 	public void unsteer() 
 	{
-		carControl.steer(0);
+		carControl.steer(steeringInfluenceByCrosswind);
 		setSteeringWheelState(0);
 	}
 
@@ -527,7 +613,7 @@ public abstract class Car
 	}
 	
 	
-	public void setEnginOn(boolean engineOn) 
+	public void setEngineOn(boolean engineOn) 
 	{
 		this.engineOn = engineOn;
 		resetPedals();
@@ -544,9 +630,9 @@ public abstract class Car
 	protected void showEngineStatusMessage(boolean engineOn) 
 	{
 		if(engineOn)
-			PanelCenter.getMessageBox().addMessage("Engin on", 2);
+			PanelCenter.getMessageBox().addMessage("Engine on", 2);
 		else
-			PanelCenter.getMessageBox().addMessage("Engin off. Press 'e' to start.", 0);
+			PanelCenter.getMessageBox().addMessage("Engine off. Press 'e' to start.", 0);
 	}
 
 	

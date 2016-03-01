@@ -7,7 +7,7 @@
         	<weather>
                 <snowingPercentage>100</snowingPercentage>
         		<rainingPercentage>0</rainingPercentage>
-        		<fogPercentage>100</fogPercentage>
+        		<fogPercentage>50</fogPercentage>
         	</weather>
         </environment>
 

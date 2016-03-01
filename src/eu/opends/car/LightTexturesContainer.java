@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2014 Rafael Math
+*  Copyright (C) 2015 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -46,6 +46,7 @@ public class LightTexturesContainer
 	private LightState lightState;
 	private HashMap<LightState,HashMap<Spatial,Material>> lightTexturesContainer;
 	private TurnSignalThread turnSignalThread;
+	private boolean applyTexture = false;
 	
 	
 	public enum LightState
@@ -61,10 +62,10 @@ public class LightTexturesContainer
 	}
 	
 	
-	public LightTexturesContainer(Simulator sim, Node carNode, String lightTexturesPath) 
+	public LightTexturesContainer(Simulator sim, Car car, String lightTexturesPath) 
 	{
 		this.sim = sim;
-		this.carNode = carNode;
+		this.carNode = car.getCarNode();
 		
 		// init light textures container
 		lightTexturesContainer = new HashMap<LightState,HashMap<Spatial,Material>>();
@@ -75,7 +76,7 @@ public class LightTexturesContainer
 		processLightTexturesFile(lightTexturesPath);
 		
 		// init turn signal thread
-		turnSignalThread = new TurnSignalThread(this);
+		turnSignalThread = new TurnSignalThread(this, sim, car);
 		
 		// init light state
 		//lightState = LightState.AllOff;
@@ -156,8 +157,17 @@ public class LightTexturesContainer
 	public void setLightState(LightState lightState)
 	{
 		this.lightState = lightState;
-		
-		applyTexture(lightState);
+		applyTexture = true;
+	}
+	
+	
+	public void update()
+	{
+		if(applyTexture)
+		{
+			applyTexture(lightState);
+			applyTexture = false;
+		}
 	}
 	
 	

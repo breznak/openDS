@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2014 Rafael Math
+*  Copyright (C) 2015 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -32,6 +32,7 @@ import com.jme3.scene.shape.Cylinder;
 import eu.opends.car.Car;
 import eu.opends.main.Simulator;
 import eu.opends.tools.PanelCenter;
+import eu.opends.tools.Util;
 
 /**
  * 
@@ -80,10 +81,10 @@ public class SimulatorCam extends CameraFactory
 				sim.getRootNode().detachChild(mainCameraNode);
 				carNode.attachChild(mainCameraNode);
 				chaseCam.setEnabled(false);
-				setCarVisible(false);
-				((CameraControl) mainCameraNode.getChild("CamNode1").getControl(0)).setEnabled(true);
-				mainCameraNode.setLocalTranslation(car.getEgoCamPos());
-				mainCameraNode.setLocalRotation(new Quaternion().fromAngles(0, 0, 0));
+				setCarVisible(false);// FIXME --> false  // used for oculus rift internal car environment
+				((CameraControl) frontCameraNode.getChild("CamNode1").getControl(0)).setEnabled(true);
+				frontCameraNode.setLocalTranslation(car.getCarModel().getEgoCamPos());
+				frontCameraNode.setLocalRotation(new Quaternion().fromAngles(0, 0, 0));
 				break;
 	
 			case CHASE:
@@ -93,7 +94,7 @@ public class SimulatorCam extends CameraFactory
 				chaseCam.setEnabled(true);
 				chaseCam.setDragToRotate(false);
 				setCarVisible(true);
-				((CameraControl) mainCameraNode.getChild("CamNode1").getControl(0)).setEnabled(false);
+				((CameraControl) frontCameraNode.getChild("CamNode1").getControl(0)).setEnabled(false);
 				break;
 	
 			case TOP:
@@ -103,7 +104,7 @@ public class SimulatorCam extends CameraFactory
 				sim.getRootNode().attachChild(mainCameraNode);
 				chaseCam.setEnabled(false);
 				setCarVisible(true);
-				((CameraControl) mainCameraNode.getChild("CamNode1").getControl(0)).setEnabled(true);
+				((CameraControl) frontCameraNode.getChild("CamNode1").getControl(0)).setEnabled(true);
 				break;
 				
 			case OUTSIDE:
@@ -113,7 +114,7 @@ public class SimulatorCam extends CameraFactory
 				sim.getRootNode().attachChild(mainCameraNode);
 				chaseCam.setEnabled(false);
 				setCarVisible(true);
-				((CameraControl) mainCameraNode.getChild("CamNode1").getControl(0)).setEnabled(true);
+				((CameraControl) frontCameraNode.getChild("CamNode1").getControl(0)).setEnabled(true);
 				break;
 	
 			case STATIC_BACK:
@@ -122,9 +123,9 @@ public class SimulatorCam extends CameraFactory
 				carNode.attachChild(mainCameraNode);
 				chaseCam.setEnabled(false);
 				setCarVisible(true);
-				((CameraControl) mainCameraNode.getChild("CamNode1").getControl(0)).setEnabled(true);
-				mainCameraNode.setLocalTranslation(car.getStaticBackCamPos());
-				mainCameraNode.setLocalRotation(new Quaternion().fromAngles(0, 0, 0));
+				((CameraControl) frontCameraNode.getChild("CamNode1").getControl(0)).setEnabled(true);
+				frontCameraNode.setLocalTranslation(car.getCarModel().getStaticBackCamPos());
+				frontCameraNode.setLocalRotation(new Quaternion().fromAngles(0, 0, 0));
 				break;
 				
 			case OFF:
@@ -213,7 +214,7 @@ public class SimulatorCam extends CameraFactory
 			// camera detached from car node --> update position and rotation separately
 			Vector3f targetPosition = carNode.localToWorld(new Vector3f(0, 0, 0), null);
 			Vector3f camPos = new Vector3f(targetPosition.x, targetPosition.y + 30, targetPosition.z);
-			mainCameraNode.setLocalTranslation(camPos);
+			frontCameraNode.setLocalTranslation(camPos);
 			
 			float upDirection = 0;
 			if(isCarPointingUp)
@@ -222,13 +223,13 @@ public class SimulatorCam extends CameraFactory
 				carNode.getLocalRotation().toAngles(angles);
 				upDirection = angles[1];
 			}
-			mainCameraNode.setLocalRotation(new Quaternion().fromAngles(-FastMath.HALF_PI, upDirection, 0));
+			frontCameraNode.setLocalRotation(new Quaternion().fromAngles(-FastMath.HALF_PI, upDirection, 0));
 		}
 		
 		if(camMode == CameraMode.OUTSIDE)
 		{
 			// camera detached from car node --> update position and rotation separately
-			mainCameraNode.setLocalTranslation(outsideCamPos);
+			frontCameraNode.setLocalTranslation(outsideCamPos);
 
 			Vector3f carPos = carNode.getWorldTranslation();
 
@@ -249,7 +250,7 @@ public class SimulatorCam extends CameraFactory
 	            }
 	        }
 	        up.set(direction).crossLocal(left).normalizeLocal();
-			mainCameraNode.setLocalRotation(new Quaternion().fromAxes(left, up, direction));
+			frontCameraNode.setLocalRotation(new Quaternion().fromAxes(left, up, direction));
 		
 		}
 		
@@ -302,13 +303,33 @@ public class SimulatorCam extends CameraFactory
 	{
 		if(setVisible)
 		{
-			if (carNode.getCullHint() == CullHint.Always)
-				carNode.setCullHint(CullHint.Dynamic);
+			// e.g. outside car
+
+			//carNode.setCullHint(CullHint.Never);
+
+			// show everything except sub-geometries of node interior
+			Node interior = Util.findNode(carNode, "interior");
+			for(Geometry g : Util.getAllGeometries(carNode))
+				if(g.hasAncestor(interior))
+					g.setCullHint(CullHint.Always);  //interior
+				else
+					g.setCullHint(CullHint.Dynamic); //rest (or interior == null)
+					
 		}
 		else
 		{
-			if (carNode.getCullHint() != CullHint.Always)
-				carNode.setCullHint(CullHint.Always);
+			// e.g. inside car
+			
+			//carNode.setCullHint(CullHint.Always);
+
+			// cull everything except sub-geometries of node interior
+			Node interior = Util.findNode(carNode, "interior");
+			for(Geometry g : Util.getAllGeometries(carNode))
+				if(g.hasAncestor(interior))
+					g.setCullHint(CullHint.Dynamic); //interior
+				else
+					g.setCullHint(CullHint.Always);  //rest (or interior == null)
+					
 		}
 		
 		PanelCenter.showHood(!setVisible);

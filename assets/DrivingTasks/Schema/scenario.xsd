@@ -38,7 +38,8 @@ elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns
         <xs:all>
         	<xs:element name="cameraFlight" type="cameraFlight" maxOccurs="1" minOccurs="0">
         	</xs:element>
-        	<xs:element name="idealTrack" type="idealTrack" maxOccurs="1" minOccurs="0">
+        	<xs:element name="idealTracks" type="idealTracks"
+        		maxOccurs="1" minOccurs="0">
         	</xs:element>
         	<xs:element minOccurs="1" maxOccurs="1" name="car" type="car" />
         </xs:all>
@@ -55,6 +56,7 @@ elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns
         	<xs:element name="engine" type="engine" maxOccurs="1"
         		minOccurs="1" />
 
+        	<xs:element name="cruiseControl" type="cruiseControl" maxOccurs="1" minOccurs="0"></xs:element>
         	<xs:element name="transmission" type="transmission"
         		maxOccurs="1" minOccurs="0">
         	</xs:element>
@@ -67,7 +69,9 @@ elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns
         	<xs:element name="brake" type="brake" maxOccurs="1"
         		minOccurs="1" />
 
-        	<xs:element name="light" type="light" maxOccurs="1" minOccurs="0"></xs:element>
+        	<xs:element name="light" type="light" maxOccurs="1"
+        		minOccurs="0">
+        	</xs:element>
         </xs:all>
         <xs:attribute name="id" type="xs:string"/>
         <xs:attribute name="ref" type="xs:string"/>
@@ -84,24 +88,27 @@ elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns
 
     <xs:complexType name="engine">
         <xs:all>
-            <xs:element name="engineOn" type="xs:boolean" maxOccurs="1"
-                minOccurs="0">
-            </xs:element>
-            <xs:element name="minSpeed" type="xs:float" maxOccurs="1"
-                minOccurs="0">
-            </xs:element>
-            <xs:element name="maxSpeed" type="xs:float" maxOccurs="1"
-                minOccurs="0" />
-            <xs:element name="acceleration" type="xs:float"
-                maxOccurs="1" minOccurs="1" />
+        	<xs:element name="engineOn" type="xs:boolean" maxOccurs="1"
+        		minOccurs="0">
+        	</xs:element>
+        	<xs:element name="minSpeed" type="xs:float" maxOccurs="1"
+        		minOccurs="0">
+        	</xs:element>
+        	<xs:element name="maxSpeed" type="xs:float" maxOccurs="1"
+        		minOccurs="0" />
+        	<xs:element name="acceleration" type="xs:float"
+        		maxOccurs="1" minOccurs="0" />
 
-            <xs:element name="minRPM" type="xs:float" maxOccurs="1"
-                minOccurs="0">
-            </xs:element>
-            <xs:element name="maxRPM" type="xs:float" maxOccurs="1"
-                minOccurs="0">
-            </xs:element>
-            <xs:element name="soundIntensity" type="xs:float" maxOccurs="1" minOccurs="0"></xs:element>
+        	<xs:element name="displacement " type="xs:float" maxOccurs="1" minOccurs="0"></xs:element>
+        	<xs:element name="minRPM" type="xs:float" maxOccurs="1"
+        		minOccurs="0">
+        	</xs:element>
+        	<xs:element name="maxRPM" type="xs:float" maxOccurs="1"
+        		minOccurs="0">
+        	</xs:element>
+        	<xs:element name="soundIntensity" type="xs:float"
+        		maxOccurs="1" minOccurs="0">
+        	</xs:element>
         </xs:all>
         <xs:attribute name="profile" type="xs:string"/>
     </xs:complexType>
@@ -369,8 +376,12 @@ elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns
 
     <xs:complexType name="idealTrack">
     	<xs:sequence>
-    		<xs:element name="point" type="point" maxOccurs="unbounded" minOccurs="2"></xs:element>
+    		<xs:element name="point" type="point" maxOccurs="unbounded"
+    			minOccurs="2">
+    		</xs:element>
     	</xs:sequence>
+    	<xs:attribute name="id" type="xs:string"></xs:attribute>
+    	<xs:attribute name="roadWidth" type="xs:float"></xs:attribute>
     </xs:complexType>
 
     <xs:complexType name="point">
@@ -493,5 +504,40 @@ elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns
     	<xs:attribute name="id" type="xs:string"></xs:attribute>
     	<xs:attribute name="duration" type="xs:int"></xs:attribute>
     	<xs:attribute name="state" type="xs:string"></xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="idealTracks">
+    	<xs:sequence>
+    		<xs:element name="idealTrack" type="idealTrack"
+    			maxOccurs="unbounded" minOccurs="1">
+    		</xs:element>
+    	</xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="cruiseControl">
+        <xs:all>
+        	<xs:element name="acc" type="xs:boolean" maxOccurs="1"
+        		minOccurs="0">
+        	</xs:element>
+        	<xs:element name="safetyDistance" type="safetyDistance"
+        		maxOccurs="1" minOccurs="0">
+        	</xs:element>
+        	<xs:element name="emergencyBrakeDistance" type="xs:float"
+        		maxOccurs="1" minOccurs="0">
+        	</xs:element>
+        	<xs:element name="suppressDeactivationByBrake" type="xs:boolean" maxOccurs="1" minOccurs="0"></xs:element>
+        	<xs:element name="initialSpeed" type="xs:float"
+        		maxOccurs="1" minOccurs="0">
+        	</xs:element>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="safetyDistance">
+    	<xs:sequence>
+    		<xs:element name="lateral" type="xs:float" maxOccurs="1"
+    			minOccurs="0">
+    		</xs:element>
+    		<xs:element name="forward" type="xs:float" maxOccurs="1" minOccurs="0"></xs:element>
+    	</xs:sequence>
     </xs:complexType>
 </xs:schema>

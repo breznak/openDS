@@ -14,7 +14,7 @@
     </sounds>
 
 	<models>
-		<model id="idealtest2" key="Scenes/idealtest2/idealtest2.scene">
+		<model id="idealtest2" key="Scenes/idealtest2/idealtest2.j3o">
 			<mass>0</mass>
 			<visible>true</visible>
 			<collisionShape>meshShape</collisionShape>
@@ -42,7 +42,7 @@
 				</vector>
 			</translation>
 		</model>
-		<model id="driverCar" key="Models/Cars/drivingCars/Ferrari/Car.scene">
+		<model id="driverCar" key="Models/Cars/drivingCars/AudiS6/Car.j3o">
 			<mass>800</mass>
 			<visible>true</visible>
 			<collisionShape>meshShape</collisionShape>

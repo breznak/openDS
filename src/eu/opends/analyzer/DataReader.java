@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2014 Rafael Math
+*  Copyright (C) 2015 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -24,6 +24,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 
@@ -45,7 +46,7 @@ public class DataReader
 	private Date fileDate;
 	
 	private Float traveledDistance = 0f;
-	private LinkedList<Vector3f> carPositionList = new LinkedList<Vector3f>();
+	private ArrayList<Vector3f> carPositionList = new ArrayList<Vector3f>();
 	private LinkedList<DataUnit> dataUnitList = new LinkedList<DataUnit>();
 	
 	
@@ -177,7 +178,7 @@ public class DataReader
 	}
 
 	
-	public LinkedList<Vector3f> getCarPositionList()
+	public ArrayList<Vector3f> getCarPositionList()
 	{
 		return carPositionList;
 	}

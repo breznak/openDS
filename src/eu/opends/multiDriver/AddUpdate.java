@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2014 Rafael Math
+*  Copyright (C) 2015 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -52,7 +52,7 @@ public class AddUpdate implements Update
 		try {
 			
 			// load new car with the CarModelLoader
-			CarModelLoader carModel = new CarModelLoader(sim, modelPath, 0);
+			CarModelLoader carModel = new CarModelLoader(sim, null, modelPath, 0);
 			VehicleControl carControl = carModel.getCarControl();
 			Node carNode = carModel.getCarNode();
 			carNode.setName(vehicleID);	

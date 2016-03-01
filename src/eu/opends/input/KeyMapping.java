@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2014 Rafael Math
+*  Copyright (C) 2015 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -47,6 +47,7 @@ public class KeyMapping
 	public static KeyMapping STOP_PAUSE = new KeyMapping("stop_pause", "resume simulation", new String[] {"KEY_I"});
 	public static KeyMapping TOGGLE_TRAFFICLIGHTMODE = new KeyMapping("toggle_trafficlightmode", "change traffic light mode", new String[] {"KEY_A"});
 	public static KeyMapping TOGGLE_RECORD_DATA = new KeyMapping("toggle_record_data", "start/stop recording", new String[] {"KEY_S"});
+	public static KeyMapping SET_MARKER = new KeyMapping("set_marker", "set marker", new String[] {"KEY_S"});
 	public static KeyMapping TOGGLE_TOPVIEW = new KeyMapping("toggle_topview", "top view on/off", new String[] {"KEY_U"});
 	public static KeyMapping TOGGLE_BACKMIRROR = new KeyMapping("toggle_backmirror", "back view mirror", new String[] {"KEY_BACK"});
 	public static KeyMapping SHIFT_UP = new KeyMapping("shift_up", "shift up", new String[] {"KEY_PGUP"});
@@ -73,16 +74,29 @@ public class KeyMapping
 	public static KeyMapping REPORT_LANDMARK = new KeyMapping("report_landmark", "report landmark", new String[] {"KEY_SPACE"});
 	public static KeyMapping TOGGLE_PHYSICS_DEBUG = new KeyMapping("toggle_physics_debug", "toggle physics debug", new String[] {"KEY_F6"});
 	public static KeyMapping CLOSE_INSTRUCTION_SCREEN = new KeyMapping("close_instruction_screen", "close instruction screen", new String[] {/*"KEY_F7"*/"KEY_F5"});
-	public static KeyMapping REPORT_REACTION = new KeyMapping("report_reaction", "report reaction", new String[] {"KEY_G", "BUTTON_7"});
+	public static KeyMapping REPORT_REACTION = new KeyMapping("report_reaction", "report reaction", new String[] {"KEY_G", "BUTTON_8"});
+	public static KeyMapping REPORT_LEADINGCARBRAKELIGHT_REACTION = new KeyMapping("report_LCBL_reaction", "report leading car brake light reaction", new String[] {"BUTTON_4"});
+	public static KeyMapping REPORT_LEADINGCARTURNSIGNAL_REACTION = new KeyMapping("report_LCTS_reaction", "report leading car turn signal reaction", new String[] {"BUTTON_7"});
+	public static KeyMapping REPORT_FOLLOWERCARTURNSIGNAL_REACTION = new KeyMapping("report_FCTS_reaction", "report follower car turn signal reaction", new String[] {"BUTTON_6"});
 	public static KeyMapping OBJECT_ROTATE_LEFT_FAST = new KeyMapping("rotate_object_left_fast", "fast rotate object left", new String[] {"KEY_F7"});
 	public static KeyMapping OBJECT_ROTATE_RIGHT_FAST = new KeyMapping("rotate_object_right_fast", "fast rotate object right", new String[] {"KEY_F8"});
 	public static KeyMapping OBJECT_ROTATE_LEFT = new KeyMapping("rotate_object_left", "rotate object left", new String[] {"KEY_F9"});
 	public static KeyMapping OBJECT_ROTATE_RIGHT = new KeyMapping("rotate_object_right", "rotate object right", new String[] {"KEY_F10"});
 	public static KeyMapping OBJECT_SET = new KeyMapping("set_object", "set object", new String[] {"KEY_F11"});
 	public static KeyMapping OBJECT_TOGGLE = new KeyMapping("toggle_object", "toggle object", new String[] {"KEY_F12"});
+	public static KeyMapping TOGGLE_HANDBRAKE = new KeyMapping("toggle_handbrake", "toggle handbrake", new String[] {"KEY_H"});
 	public static KeyMapping TURN_LEFT = new KeyMapping("turn_left", "flash left turn signal", new String[] {"KEY_J"});
 	public static KeyMapping TURN_RIGHT = new KeyMapping("turn_right", "flash right turn signal", new String[] {"KEY_K"});
 	public static KeyMapping HAZARD_LIGHTS = new KeyMapping("hazard_lights", "flash hazard lights", new String[] {"KEY_F"});
+	public static KeyMapping CC_INC5 = new KeyMapping("cc_inc5", "increase cc speed", new String[] {"KEY_9"});
+	public static KeyMapping CC_DEC5 = new KeyMapping("cc_dec5", "decrease cc speed", new String[] {"KEY_8"});
+	public static KeyMapping SNOW_INC5 = new KeyMapping("snow_inc5", "increase snow intensity by 5 %", new String[] {"KEY_F12"});
+	public static KeyMapping SNOW_DEC5 = new KeyMapping("snow_dec5", "decrease snow intensity by 5 %", new String[] {"KEY_F11"});
+	public static KeyMapping RAIN_INC5 = new KeyMapping("rain_inc5", "increase rain intensity by 5 %", new String[] {"KEY_F10"});
+	public static KeyMapping RAIN_DEC5 = new KeyMapping("rain_dec5", "decrease rain intensity by 5 %", new String[] {"KEY_F9"});
+	public static KeyMapping FOG_INC5 = new KeyMapping("fog_inc5", "increase fog intensity by 5 %", new String[] {"KEY_F8"});
+	public static KeyMapping FOG_DEC5 = new KeyMapping("fog_dec5", "decrease fog intensity by 5 %", new String[] {"KEY_F7"});
+	
 	
 	// analyzer keys
 	public static KeyMapping GOTO_NEXT_DATAPOINT = new KeyMapping("goto_next_datapoint", "next data point", new String[] {"KEY_UP"});
@@ -154,15 +168,28 @@ public class KeyMapping
 		keyMappingList.add(KeyMapping.TOGGLE_PHYSICS_DEBUG);
 		keyMappingList.add(KeyMapping.CLOSE_INSTRUCTION_SCREEN);
 		keyMappingList.add(KeyMapping.REPORT_REACTION);
+		keyMappingList.add(KeyMapping.REPORT_LEADINGCARBRAKELIGHT_REACTION);
+		keyMappingList.add(KeyMapping.REPORT_LEADINGCARTURNSIGNAL_REACTION);
+		keyMappingList.add(KeyMapping.REPORT_FOLLOWERCARTURNSIGNAL_REACTION);
 		keyMappingList.add(KeyMapping.OBJECT_ROTATE_LEFT_FAST);
 		keyMappingList.add(KeyMapping.OBJECT_ROTATE_RIGHT_FAST);
 		keyMappingList.add(KeyMapping.OBJECT_ROTATE_LEFT);
 		keyMappingList.add(KeyMapping.OBJECT_ROTATE_RIGHT);
 		keyMappingList.add(KeyMapping.OBJECT_SET);
 		keyMappingList.add(KeyMapping.OBJECT_TOGGLE);
+		keyMappingList.add(KeyMapping.TOGGLE_HANDBRAKE);
 		keyMappingList.add(KeyMapping.TURN_LEFT);
 		keyMappingList.add(KeyMapping.TURN_RIGHT);
 		keyMappingList.add(KeyMapping.HAZARD_LIGHTS);
+		keyMappingList.add(KeyMapping.CC_INC5);
+		keyMappingList.add(KeyMapping.CC_DEC5);
+		keyMappingList.add(KeyMapping.SNOW_INC5);
+		keyMappingList.add(KeyMapping.SNOW_DEC5);
+		keyMappingList.add(KeyMapping.RAIN_INC5);
+		keyMappingList.add(KeyMapping.RAIN_DEC5);
+		keyMappingList.add(KeyMapping.FOG_INC5);
+		keyMappingList.add(KeyMapping.FOG_DEC5);
+		keyMappingList.add(KeyMapping.SET_MARKER);
 		
 		SimulationBasics.getDrivingTask().getSettingsLoader().lookUpKeyMappings(keyMappingList);
 		

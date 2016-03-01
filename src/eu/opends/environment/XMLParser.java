@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2014 Rafael Math
+*  Copyright (C) 2015 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -27,7 +27,7 @@ import org.w3c.dom.*;
 import org.xml.sax.InputSource;
 
 import eu.opends.canbus.CANClient;
-import eu.opends.car.Car;
+import eu.opends.car.SteeringCar;
 import eu.opends.environment.TrafficLight.*;
 import eu.opends.environment.TrafficLightException.InvalidStateCharacterException;
 import eu.opends.main.Simulator;
@@ -153,7 +153,7 @@ public class XMLParser
 			//<message><action name="button">cs</action></message>
 			//<message><action name="button">return</action></message>
 			
-			Car car = sim.getCar();
+			SteeringCar car = sim.getCar();
 			
 			NodeList nodeLst = doc.getElementsByTagName("message");
 			for(int i=0; i<nodeLst.getLength(); i++)
@@ -191,10 +191,10 @@ public class XMLParser
 							int value = Integer.parseInt(valueString);
 							System.out.println("Gas: " + value);
 							if(value == 0)
-								car.setGasPedalIntensity(0);
+								car.setAcceleratorPedalIntensity(0);
 								//car.releaseAccel();
 							else
-								car.setGasPedalIntensity(-1);
+								car.setAcceleratorPedalIntensity(-1);
 						}
 						
 						// performs "cruise forward"-button
@@ -205,12 +205,12 @@ public class XMLParser
 							value = value*6;
 							if(value <= 0)
 							{
-								car.setGasPedalIntensity(0);
+								car.setAcceleratorPedalIntensity(0);
 								//car.releaseAccel();
 							}
 							else
 							{
-								car.setGasPedalIntensity(Math.max(-value,-1.0f));
+								car.setAcceleratorPedalIntensity(Math.max(-value,-1.0f));
 								sim.getSteeringTask().getPrimaryTask().reportGreenLight();
 							}
 							
@@ -223,10 +223,10 @@ public class XMLParser
 							int value = Integer.parseInt(valueString);
 							System.out.println("Back: " + value);
 							if(value == 0)
-								car.setGasPedalIntensity(0);
+								car.setAcceleratorPedalIntensity(0);
 								//car.releaseAccel();
 							else
-								car.setGasPedalIntensity(1);
+								car.setAcceleratorPedalIntensity(1);
 						}
 						
 						// performs brake pedal
@@ -236,10 +236,10 @@ public class XMLParser
 							System.out.println("Brake: " + value);
 							if(value == 0)
 								//car.setGasPedalIntensity(0);
-								car.setBrakePedalPressIntensity(0);
+								car.setBrakePedalIntensity(0);
 								//car.releaseAccel();
 							else
-								car.setBrakePedalPressIntensity(1); // 1 --> full braking
+								car.setBrakePedalIntensity(1); // 1 --> full braking
 						}
 						
 						// performs brake pedal
@@ -250,16 +250,17 @@ public class XMLParser
 							if(value <= 0)
 							{
 								//car.setGasPedalIntensity(0);
-								car.setBrakePedalPressIntensity(0);
+								car.setBrakePedalIntensity(0);
 								sim.getThreeVehiclePlatoonTask().reportBrakeIntensity(0);
 								//car.releaseAccel();
 							}
 							else
 							{
 								value = Math.min(value,1.0f);
-								car.setBrakePedalPressIntensity(value); // 1 --> full braking
+								car.setBrakePedalIntensity(value); // 1 --> full braking
 								sim.getSteeringTask().getPrimaryTask().reportRedLight();
 								sim.getThreeVehiclePlatoonTask().reportBrakeIntensity(value);
+								car.disableCruiseControlByBrake();
 							}
 						}
 						
@@ -289,6 +290,64 @@ public class XMLParser
 							PanelCenter.getMessageBox().addMessage(valueString,duration);
 						}
 						
+						
+						// channel0 input
+						else if(actionID.equals("channel0"))	
+						{
+							float value = Float.parseFloat(valueString);
+							float percentage = (2f * voltToPercentage(value, 0.0f, 5.04f)) - 1f;
+							//System.out.println("channel0: " + percentage);
+							//System.out.println("steering: " + percentage);
+
+							canClient.setSteeringAngle(percentage);
+							sim.getSteeringTask().setSteeringIntensity(0.02f*percentage);
+						}
+						
+
+						// channel1 input
+						else if(actionID.equals("channel1"))	
+						{
+							float value = Float.parseFloat(valueString);
+							float percentage = voltToPercentage(value, 0.1f, 5.0f);
+							//System.out.println("channel1: " + percentage);
+							//System.out.println(System.currentTimeMillis() + " - accelerate: " + percentage);
+							
+							car.setAcceleratorPedalIntensity(-percentage);
+							sim.getThreeVehiclePlatoonTask().reportAcceleratorIntensity(percentage);
+							
+							if(percentage > 0)
+								sim.getSteeringTask().getPrimaryTask().reportGreenLight();
+						}
+						
+
+						// channel2 input
+						else if(actionID.equals("channel2"))	
+						{
+							float value = Float.parseFloat(valueString);
+							float percentage = voltToPercentage(value, 1.0f, 5.0f);
+							//System.out.println("channel2: " + percentage);
+							//System.out.println("brake: " + percentage);
+
+							car.setBrakePedalIntensity(percentage); // 1 --> full braking
+							sim.getThreeVehiclePlatoonTask().reportBrakeIntensity(percentage);
+							
+							if(percentage > 0)
+							{
+								sim.getSteeringTask().getPrimaryTask().reportRedLight();
+								car.disableCruiseControlByBrake();
+							}
+						}
+
+						
+						// channel3 input
+						else if(actionID.equals("channel3"))	
+						{
+							float value = Float.parseFloat(valueString);
+							float percentage = voltToPercentage(value, 0.2f, 3.7f);
+							//System.out.println("channel3: " + percentage);
+						}
+						
+						
 					} catch(Exception e){
 						e.printStackTrace();
 					}
@@ -299,6 +358,35 @@ public class XMLParser
 	}
 	
 		
+	private float voltToPercentage(float value, float zeroPercent, float hundredPercent) 
+	{
+		if(zeroPercent <= hundredPercent)
+		{
+			if(value <= zeroPercent)
+				return 0;
+			else if (value >= hundredPercent)
+				return 1;
+			else
+			{
+				// zero < value < hundred
+				return (value - zeroPercent) / (hundredPercent - zeroPercent);
+			}
+		}
+		else
+		{
+			if(value <= hundredPercent)
+				return 1;
+			else if (value >= zeroPercent)
+				return 0;
+			else
+			{
+				// hundred < value < zero
+				return (zeroPercent - value) / (zeroPercent - hundredPercent);
+			}
+		}
+	}
+
+
 	/**
 	 * Evaluates a SUMO instruction and sets the model's traffic light states 
 	 * according to the given intersection ID (attribute "id"), the traffic 

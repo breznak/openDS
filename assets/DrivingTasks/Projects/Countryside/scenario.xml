@@ -5,9 +5,9 @@
         
         <environment>
         	<weather>
-                <snowingPercentage>0</snowingPercentage>
-        		<rainingPercentage>0</rainingPercentage>
-        		<fogPercentage>0</fogPercentage>
+                <snowingPercentage>-1</snowingPercentage>
+        		<rainingPercentage>-1</rainingPercentage>
+        		<fogPercentage>-1</fogPercentage>
         	</weather>
         </environment>
 
@@ -56,7 +56,7 @@
         
         <traffic>
 			<vehicle id="car1a">
-				<modelPath>Models/Cars/drivingCars/BlueMitsubishi/Car.scene</modelPath>
+				<modelPath>Models/Cars/drivingCars/bmw1/Car.j3o</modelPath>
 				<mass>800</mass>
 				<acceleration>3.3</acceleration>
 				<decelerationBrake>8.7</decelerationBrake>
@@ -93,7 +93,7 @@
         	</vehicle> 
 			
 			<vehicle id="car1b">
-				<modelPath>Models/Cars/drivingCars/GrayMitsubishi/Car.scene</modelPath>
+				<modelPath>Models/Cars/drivingCars/CitroenC4/Car.j3o</modelPath>
 				<mass>800</mass>
 				<acceleration>3.3</acceleration>
 				<decelerationBrake>8.7</decelerationBrake>
@@ -130,7 +130,7 @@
         	</vehicle> 
 			
 			<vehicle id="car2a">
-				<modelPath>Models/Cars/drivingCars/Bus/Car.scene</modelPath>
+				<modelPath>Models/Cars/drivingCars/GarbageTruck/Car.j3o</modelPath>
 				<mass>800</mass>
 				<acceleration>3.3</acceleration>
 				<decelerationBrake>8.7</decelerationBrake>
@@ -174,7 +174,7 @@
 				</wayPoints>
         	</vehicle>
 			<vehicle id="car2b">
-				<modelPath>Models/Cars/drivingCars/Ferrari/Car.scene</modelPath>
+				<modelPath>Models/Cars/drivingCars/AudiS6/Car.j3o</modelPath>
 				<mass>800</mass>
 				<acceleration>3.3</acceleration>
 				<decelerationBrake>8.7</decelerationBrake>
@@ -218,7 +218,7 @@
 				</wayPoints>
         	</vehicle>
 			<vehicle id="car2c">
-				<modelPath>Models/Cars/drivingCars/CarGreen/Car.scene</modelPath>
+				<modelPath>Models/Cars/drivingCars/JohnDeere6170R/Car.j3o</modelPath>
 				<mass>800</mass>
 				<acceleration>3.3</acceleration>
 				<decelerationBrake>8.7</decelerationBrake>
@@ -262,7 +262,7 @@
 				</wayPoints>
         	</vehicle>
 			<vehicle id="car2d">
-				<modelPath>Models/Cars/drivingCars/Chevy/Car.scene</modelPath>
+				<modelPath>Models/Cars/drivingCars/Polizei/Car.j3o</modelPath>
 				<mass>800</mass>
 				<acceleration>3.3</acceleration>
 				<decelerationBrake>8.7</decelerationBrake>

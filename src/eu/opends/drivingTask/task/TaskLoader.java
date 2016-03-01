@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2014 Rafael Math
+*  Copyright (C) 2015 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -19,6 +19,7 @@
 package eu.opends.drivingTask.task;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -35,6 +36,9 @@ import eu.opends.drivingTask.DrivingTaskDataQuery.Layer;
 import eu.opends.drivingTask.scene.SceneLoader;
 import eu.opends.taskDescription.contreTask.SteeringTaskSettings;
 import eu.opends.taskDescription.tvpTask.TVPTaskSettings;
+import eu.opends.tools.DistanceBar;
+import eu.opends.tools.DistanceBarSegment;
+import eu.opends.tools.DistanceBarSegment.SegmentType;
 
 
 /**
@@ -47,12 +51,14 @@ public class TaskLoader
 	private SceneLoader sceneLoader;
 	private SteeringTaskSettings contreTaskSettings;
 	private TVPTaskSettings tvpTaskSettings;
+	private HashMap<String, DistanceBar> distanceBarMap = new HashMap<String, DistanceBar>();
 	
 
 	public TaskLoader(DrivingTaskDataQuery dtData, DrivingTask drivingTask) 
 	{
 		this.dtData = dtData;
 		this.sceneLoader = drivingTask.getSceneLoader();
+		extractDistanceBars();
 		extractContreTaskSettings();
 		extractTVPTaskSettings();
 	}
@@ -66,6 +72,66 @@ public class TaskLoader
 			return pointMap.get(pointRef);
 		else 
 			return null;
+	}
+	
+	
+	private void extractDistanceBars() 
+	{
+		NodeList distanceBarNodes = (NodeList) dtData.xPathQuery(Layer.TASK, 
+				"/task:task/task:distanceBars/task:distanceBar", XPathConstants.NODESET);
+
+		for (int k = 1; k <= distanceBarNodes.getLength(); k++) 
+		{
+			String distanceBarId = dtData.getValue(Layer.TASK, 
+					"/task:task/task:distanceBars/task:distanceBar["+k+"]/@id", String.class);
+			
+			Float width = dtData.getValue(Layer.TASK, 
+					"/task:task/task:distanceBars/task:distanceBar["+k+"]/task:width", Float.class);
+			
+			Float height = dtData.getValue(Layer.TASK, 
+					"/task:task/task:distanceBars/task:distanceBar["+k+"]/task:height", Float.class);
+			
+			Float left = dtData.getValue(Layer.TASK, 
+					"/task:task/task:distanceBars/task:distanceBar["+k+"]/task:left", Float.class);
+			
+			Float bottom = dtData.getValue(Layer.TASK, 
+					"/task:task/task:distanceBars/task:distanceBar["+k+"]/task:bottom", Float.class);
+			
+			Float rotation = dtData.getValue(Layer.TASK, 
+					"/task:task/task:distanceBars/task:distanceBar["+k+"]/task:rotation", Float.class);
+
+			Boolean showText = dtData.getValue(Layer.TASK, 
+					"/task:task/task:distanceBars/task:distanceBar["+k+"]/task:showText", Boolean.class);
+			
+			
+			NodeList segmentsNodes = (NodeList) dtData.xPathQuery(Layer.TASK, 
+					"/task:task/task:distanceBars/task:distanceBar["+k+"]/task:segments/task:segment", XPathConstants.NODESET);
+
+			ArrayList<DistanceBarSegment> distanceBarSegmentList = new ArrayList<DistanceBarSegment>();
+			for (int l = 1; l <= segmentsNodes.getLength(); l++) 
+			{
+				String name = dtData.getValue(Layer.TASK, 
+						"/task:task/task:distanceBars/task:distanceBar["+k+"]/task:segments/task:segment["+l+"]/@name", String.class);
+				
+				String type = dtData.getValue(Layer.TASK, 
+						"/task:task/task:distanceBars/task:distanceBar["+k+"]/task:segments/task:segment["+l+"]/@type", String.class);
+				SegmentType segmentType = SegmentType.valueOf(type.toUpperCase());
+				
+				Float minValue = dtData.getValue(Layer.TASK, 
+						"/task:task/task:distanceBars/task:distanceBar["+k+"]/task:segments/task:segment["+l+"]/@minValue", Float.class);
+				
+				Float maxValue = dtData.getValue(Layer.TASK, 
+						"/task:task/task:distanceBars/task:distanceBar["+k+"]/task:segments/task:segment["+l+"]/@maxValue", Float.class);
+				
+				distanceBarSegmentList.add(new DistanceBarSegment(name, segmentType, minValue, maxValue));
+			}
+			
+			if(distanceBarId != null)
+			{
+				DistanceBar db = new DistanceBar(distanceBarSegmentList, width, height, left, bottom, rotation, showText);
+				distanceBarMap.put(distanceBarId, db);			
+			}
+		}
 	}
 	
 	
@@ -342,11 +408,17 @@ public class TaskLoader
 					steeringTaskPath + "/task:turnSignal/@resetOnReaction", String.class);
 			Boolean resetTurnSignalOnReaction = resetTurnSignalOnReactionString.equalsIgnoreCase("")?null:Boolean.parseBoolean(resetTurnSignalOnReactionString);
 			
-			Float leadingCarSpeedLimitSpeedReduction = dtData.getValue(Layer.TASK,
-					steeringTaskPath + "/task:speedReduction/@targetSpeedRegular", Float.class);
+			Float leadingCarLowerSpeedLimitSpeedReduction = dtData.getValue(Layer.TASK,
+					steeringTaskPath + "/task:speedReduction/@targetSpeedMinRegular", Float.class);
 			
-			Float leadingCarSpeedLimitEmergencyBrake = dtData.getValue(Layer.TASK,
-					steeringTaskPath + "/task:speedReduction/@targetSpeedEmergency", Float.class);
+			Float leadingCarUpperSpeedLimitSpeedReduction = dtData.getValue(Layer.TASK,
+					steeringTaskPath + "/task:speedReduction/@targetSpeedMaxRegular", Float.class);
+			
+			Float leadingCarLowerSpeedLimitEmergencyBrake = dtData.getValue(Layer.TASK,
+					steeringTaskPath + "/task:speedReduction/@targetSpeedMinEmergency", Float.class);
+			
+			Float leadingCarUpperSpeedLimitEmergencyBrake = dtData.getValue(Layer.TASK,
+					steeringTaskPath + "/task:speedReduction/@targetSpeedMaxEmergency", Float.class);
 			
 			Float minSpeedForSpeedReduction = dtData.getValue(Layer.TASK,
 					steeringTaskPath + "/task:speedReduction/@minSpeed", Float.class);
@@ -379,6 +451,10 @@ public class TaskLoader
 			Float startPositionZ = dtData.getValue(Layer.TASK,
 					steeringTaskPath + "/task:logging/task:startPosition/@z", Float.class);
 			
+			String shutDownAfterXSecondsString = dtData.getValue(Layer.TASK,
+					steeringTaskPath + "/task:logging/task:startPosition/@shutDownAfterXSeconds", String.class);
+			Integer shutDownAfterXSeconds = shutDownAfterXSecondsString.equalsIgnoreCase("")?null:Integer.parseInt(shutDownAfterXSecondsString);
+			
 			Float endPositionZ = dtData.getValue(Layer.TASK,
 					steeringTaskPath + "/task:logging/task:endPosition/@z", Float.class);
 			
@@ -387,22 +463,30 @@ public class TaskLoader
 			Boolean shutDownAtEnd = shutDownAtEndString.equalsIgnoreCase("")?null:Boolean.parseBoolean(shutDownAtEndString);
 			
 			Float hideDistanceTextPositionZ = dtData.getValue(Layer.TASK,
-					steeringTaskPath + "/task:distanceText/task:hideAtPosition/@z", Float.class);
+					steeringTaskPath + "/task:distanceIndicator/task:hideAtPosition/@z", Float.class);
 			
 			Float distanceTextScale = dtData.getValue(Layer.TASK,
-					steeringTaskPath + "/task:distanceText/task:scale", Float.class);
+					steeringTaskPath + "/task:distanceIndicator/task:showText/@scale", Float.class);
 			
 			Integer distanceTextTop = dtData.getValue(Layer.TASK,
-					steeringTaskPath + "/task:distanceText/task:position/@top", Integer.class);
+					steeringTaskPath + "/task:distanceIndicator/task:showText/@top", Integer.class);
 			
 			Integer distanceTextBottom = dtData.getValue(Layer.TASK,
-					steeringTaskPath + "/task:distanceText/task:position/@bottom", Integer.class);
+					steeringTaskPath + "/task:distanceIndicator/task:showText/@bottom", Integer.class);
 			
 			Integer distanceTextLeft = dtData.getValue(Layer.TASK,
-					steeringTaskPath + "/task:distanceText/task:position/@left", Integer.class);
+					steeringTaskPath + "/task:distanceIndicator/task:showText/@left", Integer.class);
 			
 			Integer distanceTextRight = dtData.getValue(Layer.TASK,
-					steeringTaskPath + "/task:distanceText/task:position/@right", Integer.class);
+					steeringTaskPath + "/task:distanceIndicator/task:showText/@right", Integer.class);
+			
+			String longitudinalDistanceBarId = dtData.getValue(Layer.TASK,
+					steeringTaskPath + "/task:distanceIndicator/task:showLongitudinalDistanceBar/@id", String.class);
+			DistanceBar longitudinalDistanceBar = distanceBarMap.get(longitudinalDistanceBarId);
+			
+			String lateralDeviationBarId = dtData.getValue(Layer.TASK,
+					steeringTaskPath + "/task:distanceIndicator/task:showLateralDeviationBar/@id", String.class);         
+			DistanceBar lateralDeviationBar = distanceBarMap.get(lateralDeviationBarId);
 			
 			Integer loggingRate = dtData.getValue(Layer.TASK, 
 					steeringTaskPath + "/task:logging/task:loggingRate", Integer.class);
@@ -447,17 +531,19 @@ public class TaskLoader
 			Boolean additionalTable = dtData.getValue(Layer.TASK, 
 					steeringTaskPath + "/task:logging/task:additionalTable", Boolean.class);
 			
-			tvpTaskSettings = new TVPTaskSettings(leadingCarName, leadingCarSpeedLimitSpeedReduction,
-					leadingCarSpeedLimitEmergencyBrake, minSpeedForSpeedReduction, speedReductionDuration, 
+			
+			tvpTaskSettings = new TVPTaskSettings(leadingCarName, leadingCarLowerSpeedLimitSpeedReduction,
+					leadingCarUpperSpeedLimitSpeedReduction, leadingCarLowerSpeedLimitEmergencyBrake, 
+					leadingCarUpperSpeedLimitEmergencyBrake, minSpeedForSpeedReduction, speedReductionDuration, 
 					minTimeAllConditionsMet, resetBrakeLightOnReaction, resetTurnSignalOnReaction, 
 					resetSpeedReductionOnReaction, minDistanceToLeadingCar, maxDistanceToLeadingCar, 
 					followerCarName, minDistanceToFollowerCar, maxDistanceToFollowerCar, laneOffsetX, 
 					brakeLightMinDuration, turnSignalDuration, maxReactionTime, longitudinalToleranceLowerBound, 
 					longitudinalToleranceUpperBound, lateralToleranceLowerBound, lateralToleranceUpperBound, 
-					startPositionZ, endPositionZ, shutDownAtEnd, hideDistanceTextPositionZ, distanceTextScale, 
-					distanceTextTop, distanceTextBottom, distanceTextLeft, distanceTextRight, loggingRate, 
-					writeToDB, databaseUrl, databaseUser, databasePassword, databaseTable, conditionName, 
-					conditionNumber, reportTemplate, additionalTable);
+					startPositionZ, endPositionZ, shutDownAfterXSeconds, shutDownAtEnd, hideDistanceTextPositionZ, distanceTextScale, 
+					distanceTextTop, distanceTextBottom, distanceTextLeft, distanceTextRight, longitudinalDistanceBar,
+					lateralDeviationBar, loggingRate, writeToDB, databaseUrl, databaseUser, databasePassword, 
+					databaseTable, conditionName, conditionNumber, reportTemplate, additionalTable);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

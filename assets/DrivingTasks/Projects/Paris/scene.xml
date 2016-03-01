@@ -7,7 +7,7 @@
     </sounds>
 		
 	<models>
-		<model id="grassPlane" key="Scenes/grassPlane/Scene.scene">
+		<model id="grassPlane" key="Scenes/grassPlane/Scene.j3o">
 			<mass>0</mass>
 			<visible>true</visible>
 			<collisionShape>meshShape</collisionShape>
@@ -36,7 +36,7 @@
 			</translation>
 		</model>
          
-		<model id="driverCar" key="Models/Cars/drivingCars/Ferrari/Car.scene">
+		<model id="driverCar" key="Models/Cars/drivingCars/CitroenC4/Car.j3o">
 			<mass>800</mass>
 			<visible>true</visible>
 			<collisionShape>meshShape</collisionShape>
@@ -69,7 +69,7 @@
 		</model>
 	
                 
-		<model id="City" key="Scenes/Paris/city.scene">
+		<model id="City" key="Scenes/Paris/city.j3o">
 			<mass>0</mass>
 			<visible>true</visible>
 			<collisionShape>meshShape</collisionShape>

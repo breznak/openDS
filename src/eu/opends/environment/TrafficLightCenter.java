@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2014 Rafael Math
+*  Copyright (C) 2015 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -26,6 +26,7 @@ import java.util.List;
 import eu.opends.drivingTask.scenario.Intersection;
 import eu.opends.environment.TrafficLight.*;
 import eu.opends.environment.TrafficLightException.NoInternalProgramException;
+import eu.opends.hmi.HMICenter;
 import eu.opends.main.Simulator;
 import eu.opends.visualization.*;
 
@@ -141,6 +142,19 @@ public class TrafficLightCenter
 				if(trafficLightInternalProgram.getIntersectionID().equals(trafficLight.getIntersectionID()))
 				{
 					trafficLightInternalProgram.requestGreen(trafficLight);
+					if(trafficLight.getState() == TrafficLightState.RED)
+						HMICenter.reportRedTrafficLightCollision(trafficLight,sim.getCar());
+				}
+			}
+		}
+		else if((mode == TrafficLightMode.PROGRAM) && (type == TriggerType.PHASE))
+		{
+			TrafficLight trafficLight = getTrafficLightByName(trafficLightName);
+			for(TrafficLightInternalProgram trafficLightInternalProgram : trafficLightProgramList)
+			{
+				if(trafficLightInternalProgram.getIntersectionID().equals(trafficLight.getIntersectionID()))
+				{
+					HMICenter.reportTrafficLightCollision(trafficLight,sim.getCar());
 				}
 			}
 		}

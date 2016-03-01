@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2014 Rafael Math
+*  Copyright (C) 2015 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -29,6 +29,7 @@ import com.jme3.post.filters.BloomFilter;
 import com.jme3.post.filters.FogFilter;
 import com.jme3.post.filters.BloomFilter.GlowMode;
 import com.jme3.renderer.ViewPort;
+import com.jme3.shadow.DirectionalLightShadowFilter;
 import com.jme3.shadow.DirectionalLightShadowRenderer;
 import com.jme3.shadow.EdgeFilteringMode;
 
@@ -41,6 +42,13 @@ import eu.opends.main.Simulator;
  */
 public class EffectCenter 
 {
+	private static float snowingPercentage = 0;
+	private static float rainingPercentage = 0;
+	private static float fogPercentage = 0;
+	private static boolean snowingPercentageHasChanged = false;
+	private static boolean rainingPercentageHasChanged = false;
+	private static boolean fogPercentageHasChanged = false;
+	
 	private Simulator sim;
 	private SnowParticleEmitter snowParticleEmitter;
 	private RainParticleEmitter rainParticleEmitter;
@@ -49,6 +57,7 @@ public class EffectCenter
 	private boolean isFog;
 	private boolean isBloom;
 	private boolean isShadow;
+	private ArrayList<FogFilter> fogFilterList = new ArrayList<FogFilter>();
 
 	
 	public EffectCenter(Simulator sim) 
@@ -57,101 +66,193 @@ public class EffectCenter
 		AssetManager assetManager = sim.getAssetManager();
 		
 		WeatherSettings weatherSettings = Simulator.getDrivingTask().getScenarioLoader().getWeatherSettings();
-		isSnowing = (weatherSettings.getSnowingPercentage() > 0);
-		isRaining = (weatherSettings.getRainingPercentage() > 0);
-		isFog = (weatherSettings.getFogPercentage() > 0);
-		isBloom = true;
+		snowingPercentage = Math.max(weatherSettings.getSnowingPercentage(),-1);  // use -1 to suppress construction of SnowParticleEmitter
+		rainingPercentage = Math.max(weatherSettings.getRainingPercentage(),-1);  // use -1 to suppress construction of RainParticleEmitter
+		fogPercentage = Math.max(weatherSettings.getFogPercentage(),-1);          // use -1 to suppress construction of FogFilter
+		isSnowing = (snowingPercentage >= 0);
+		isRaining = (rainingPercentage >= 0);
+		isFog = (fogPercentage >= 0);
+		isBloom = !Simulator.oculusRiftAttached; // switch off bloom filter when Oculus Rift is used
 		isShadow = true;
 		
 		if(isSnowing)
 		{
 			// init snow
-			float percentage = Math.max(weatherSettings.getSnowingPercentage(),0);
-			snowParticleEmitter = new SnowParticleEmitter(assetManager, percentage);
+			snowParticleEmitter = new SnowParticleEmitter(assetManager, snowingPercentage);
 			sim.getSceneNode().attachChild(snowParticleEmitter);
 		}
 		
 		if(isRaining)
 		{
-			// init snow
-			float percentage = Math.max(weatherSettings.getRainingPercentage(),0);
-			rainParticleEmitter = new RainParticleEmitter(assetManager, percentage);
+			// init rain
+			rainParticleEmitter = new RainParticleEmitter(assetManager, rainingPercentage);
 			sim.getSceneNode().attachChild(rainParticleEmitter);
 		}
 		
 		if(isFog || isBloom)
 		{
-		    FilterPostProcessor processor = new FilterPostProcessor(assetManager);
-		    
-	        int numSamples = sim.getContext().getSettings().getSamples();
-	        if( numSamples > 0 )
-	        	processor.setNumSamples(numSamples); 
-	            
-		    if(isFog)
-		    {
-		    	float percentage = Math.max(weatherSettings.getFogPercentage(),0);
-			    FogFilter fog = new FogFilter();
-		        fog.setFogColor(new ColorRGBA(0.9f, 0.9f, 0.9f, 1.0f));
-		        fog.setFogDistance(155);
-		        fog.setFogDensity(2.0f * (percentage/100f));
-		        processor.addFilter(fog);
-		    }
-		    
-		    if(isBloom)
-		    {
-		    	// ensure any object is set to glow, e.g. car chassis:
-		    	// chassis.getMaterial().setColor("GlowColor", ColorRGBA.Orange);
-		    	
-		    	BloomFilter bloom = new BloomFilter(GlowMode.Objects);
-		    	processor.addFilter(bloom);
-		    }
-		    
-	        sim.getViewPort().addProcessor(processor);
+			for(ViewPort viewPort : CameraFactory.getViewPortList())
+			{
+			    FilterPostProcessor processor = new FilterPostProcessor(assetManager);
+			    
+		        int numSamples = sim.getContext().getSettings().getSamples();
+		        if( numSamples > 0 )
+		        	processor.setNumSamples(numSamples); 
+		            
+			    if(isFog)
+			    {
+				    FogFilter fogFilter = new FogFilter();
+			        fogFilter.setFogColor(new ColorRGBA(0.9f, 0.9f, 0.9f, 1.0f));
+			        fogFilter.setFogDistance(155);
+			        fogFilter.setFogDensity(2.0f * (fogPercentage/100f));
+			        fogFilterList.add(fogFilter);
+			        processor.addFilter(fogFilter);
+			    }
+			    
+			    if(isBloom)
+			    {
+			    	// ensure any object is set to glow, e.g. car chassis:
+			    	// chassis.getMaterial().setColor("GlowColor", ColorRGBA.Orange);
+			    	
+			    	BloomFilter bloom = new BloomFilter(GlowMode.Objects);
+			    	processor.addFilter(bloom);
+			    }
+			    
+			    viewPort.addProcessor(processor);
+			}
 		}
 		
 		if(isShadow)
-		{
+		{//TODO
 			DirectionalLight sun = new DirectionalLight();
-			Vector3f sunLightDirection = new Vector3f(0.5f, -1.0f, 0.5f); //TODO get from DT files
+			Vector3f sunLightDirection = new Vector3f(-0.2f, -0.9f, 0.2f); //TODO get from DT files
 			sun.setDirection(sunLightDirection.normalizeLocal());
 			
 			ArrayList<ViewPort> viewPortList = CameraFactory.getViewPortList();
 			
-			int shadowMapSize = 4096;
-			if(viewPortList.size() > 1)
-				shadowMapSize = 1024;
-	    	
-			for(ViewPort viewPort : viewPortList)
+			if(sim.getNumberOfScreens()>1)
 			{
-		    	DirectionalLightShadowRenderer dlsr = new DirectionalLightShadowRenderer(assetManager, shadowMapSize, 1);
-		    	dlsr.setLight(sun);
-		    	dlsr.setEdgeFilteringMode(EdgeFilteringMode.PCFPOISSON);
-		    	viewPort.addProcessor(dlsr);
+				int shadowMapSize = 4096;
+				if(viewPortList.size() > 1)
+					shadowMapSize = 1024;
+		    	
+				for(ViewPort viewPort : viewPortList)
+				{
+			    	DirectionalLightShadowRenderer dlsr = new DirectionalLightShadowRenderer(assetManager, shadowMapSize, 1);
+			    	dlsr.setLight(sun);
+			    	dlsr.setEdgeFilteringMode(EdgeFilteringMode.PCFPOISSON);
+			    	viewPort.addProcessor(dlsr);
+				}
+				
+				shadowMapSize = 1024;
+		    	DirectionalLightShadowRenderer dlsrBack = new DirectionalLightShadowRenderer(assetManager, shadowMapSize, 1);
+		    	dlsrBack.setLight(sun);
+		    	CameraFactory.getBackViewPort().addProcessor(dlsrBack);
+		    	
+		    	DirectionalLightShadowRenderer dlsrLeft = new DirectionalLightShadowRenderer(assetManager, shadowMapSize, 1);
+		    	dlsrLeft.setLight(sun);
+		    	CameraFactory.getLeftBackViewPort().addProcessor(dlsrLeft);
+		    	
+		    	DirectionalLightShadowRenderer dlsrRight = new DirectionalLightShadowRenderer(assetManager, shadowMapSize, 1);
+		    	dlsrRight.setLight(sun);
+		    	CameraFactory.getRightBackViewPort().addProcessor(dlsrRight);
 			}
+			else
+			{
+				// does not work with more than one screen
+				for(ViewPort viewPort : viewPortList)
+				{
+					DirectionalLightShadowFilter dlsf = new DirectionalLightShadowFilter(assetManager, 1024, 3);
+					dlsf.setLight(sun);
+					dlsf.setLambda(1f);
+					dlsf.setShadowIntensity(0.3f);
+					dlsf.setEdgeFilteringMode(EdgeFilteringMode.PCFPOISSON);
+					dlsf.setEnabled(true);
+	
+					FilterPostProcessor fpp = new FilterPostProcessor(assetManager);
+					fpp.addFilter(dlsf);
+					
+					viewPort.addProcessor(fpp);
+				}
+			}
+		}
+	}
+
+
+	public void update(float tpf)
+	{
+		if(isSnowing)
+		{
+			snowParticleEmitter.setLocalTranslation(sim.getCar().getPosition());
 			
-			shadowMapSize = 1024;
-	    	DirectionalLightShadowRenderer dlsrBack = new DirectionalLightShadowRenderer(assetManager, shadowMapSize, 1);
-	    	dlsrBack.setLight(sun);
-	    	CameraFactory.getBackViewPort().addProcessor(dlsrBack);
-	    	
-	    	DirectionalLightShadowRenderer dlsrLeft = new DirectionalLightShadowRenderer(assetManager, shadowMapSize, 1);
-	    	dlsrLeft.setLight(sun);
-	    	CameraFactory.getLeftBackViewPort().addProcessor(dlsrLeft);
-	    	
-	    	DirectionalLightShadowRenderer dlsrRight = new DirectionalLightShadowRenderer(assetManager, shadowMapSize, 1);
-	    	dlsrRight.setLight(sun);
-	    	CameraFactory.getRightBackViewPort().addProcessor(dlsrRight);
+			if(snowingPercentageHasChanged)
+			{
+				snowParticleEmitter.setPercentage(snowingPercentage);
+				System.out.println("snowing intensity: " + snowingPercentage);
+				snowingPercentageHasChanged = false;
+			}
+		}
+		
+		if(isRaining)
+		{
+			rainParticleEmitter.setLocalTranslation(sim.getCar().getPosition());
+			
+			if(rainingPercentageHasChanged)
+			{
+				rainParticleEmitter.setPercentage(rainingPercentage);
+				System.out.println("raining intensity: " + rainingPercentage);
+				rainingPercentageHasChanged = false;
+			}
+		}
+		
+		if(isFog)
+		{
+			if(fogPercentageHasChanged)
+			{
+				for(FogFilter fogFilter : fogFilterList)
+					fogFilter.setFogDensity(2.0f * (fogPercentage/100f));
+				System.out.println("fog intensity: " + fogPercentage);
+				fogPercentageHasChanged = false;
+			}
 		}
 	}
 
 	
-	public void update(float tpf)
+	public static float getSnowingPercentage() 
 	{
-		if(isSnowing)
-			snowParticleEmitter.setLocalTranslation(sim.getCar().getPosition());
-		
-		if(isRaining)
-			rainParticleEmitter.setLocalTranslation(sim.getCar().getPosition());
+		return snowingPercentage;
 	}
 
+
+	public static void setSnowingPercentage(float percentage) 
+	{
+		snowingPercentage = Math.max(percentage, 0);
+		snowingPercentageHasChanged = true;
+	}
+	
+	
+	public static float getRainingPercentage() 
+	{
+		return rainingPercentage;
+	}
+
+
+	public static void setRainingPercentage(float percentage) 
+	{
+		rainingPercentage = Math.max(percentage, 0);
+		rainingPercentageHasChanged = true;
+	}
+
+	
+	public static float getFogPercentage() 
+	{
+		return fogPercentage;
+	}
+
+
+	public static void setFogPercentage(float percentage) 
+	{
+		fogPercentage = Math.max(percentage, 0);
+		fogPercentageHasChanged = true;
+	}
 }

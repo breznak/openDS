@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2014 Rafael Math
+*  Copyright (C) 2015 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -38,7 +38,7 @@ public class SnowParticleEmitter extends ParticleEmitter
 	   
 	public SnowParticleEmitter(AssetManager assetManager, float percentage)
 	{
-		super("Emitter", ParticleMesh.Type.Triangle, (int) (50 * percentage));
+		super("Emitter", ParticleMesh.Type.Triangle, 10000 /*(int) (50 * percentage)*/);
 		this.assetManager = assetManager;
 		this.percentage = percentage;
 		setupMaterial();
@@ -50,7 +50,7 @@ public class SnowParticleEmitter extends ParticleEmitter
 		Material mat_red = new Material(assetManager, "Common/MatDefs/Misc/Particle.j3md");
 		mat_red.setTexture("Texture", assetManager.loadTexture("Effects/Weather/snow.png"));
 		this.setMaterial(mat_red);
-		this.setParticlesPerSec(20 * percentage);
+		this.setParticlesPerSec(40 * percentage);
 		this.setImagesX(2);
 		this.setImagesY(2); // 2x2 texture animation
 		this.setStartColor(new ColorRGBA(1f, 1f, 1f, 0f));
@@ -63,6 +63,13 @@ public class SnowParticleEmitter extends ParticleEmitter
 		this.setRandomAngle(true);
 		this.getParticleInfluencer().setInitialVelocity(new Vector3f(0, 0, 0));
 		this.getParticleInfluencer().setVelocityVariation(1.0f);
-		this.setShape(new EmitterBoxShape(new Vector3f(-20f,0f,-20f),new Vector3f(20f,4.0f,20f)));
+		this.setShape(new EmitterBoxShape(new Vector3f(-20f,0f,-20f),new Vector3f(20f,4.5f,20f)));
+	}
+	
+	
+	public void setPercentage(float percentage)
+	{
+		//super.setNumParticles((int) (50 * percentage));
+		this.setParticlesPerSec(40 * percentage);
 	}
 }

@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2014 Rafael Math
+*  Copyright (C) 2015 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -21,6 +21,7 @@ package eu.opends.main;
 import java.io.File;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.logging.Level;
@@ -45,6 +46,8 @@ import de.lessvoid.nifty.Nifty;
 import eu.opends.analyzer.DataUnit;
 import eu.opends.analyzer.DeviationComputer;
 import eu.opends.analyzer.DataReader;
+import eu.opends.analyzer.IdealLine;
+import eu.opends.analyzer.IdealLine.IdealLineStatus;
 import eu.opends.basics.InternalMapProcessing;
 import eu.opends.basics.SimulationBasics;
 import eu.opends.camera.AnalyzerCam;
@@ -85,20 +88,11 @@ public class DriveAnalyzer extends SimulationBasics
 	private Node target = new Node();
 	private int targetIndex = 0;
 	
-	private float area = 0;
-	private float lengthOfIdealLine = 1;
 	private double totalDistance = 0;
 
 	private BitmapText markerText, speedText, timeText;
 	
-	private float roadWidth = 10.0f;
-	private DeviationComputer devComp = new DeviationComputer(roadWidth);
-	public DeviationComputer getDeviationComputer() 
-	{
-		return devComp;
-	}
-
-	private LinkedList<Vector3f> carPositionList = new LinkedList<Vector3f>();
+	private ArrayList<Vector3f> carPositionList = new ArrayList<Vector3f>();
 	private LinkedList<DataUnit> dataUnitList = new LinkedList<DataUnit>();
 	
 	private DataReader dataReader = new DataReader();
@@ -165,13 +159,14 @@ public class DriveAnalyzer extends SimulationBasics
 	}
 	
 
+	private ArrayList<IdealLine> idealLineList = new ArrayList<IdealLine>();
 	public void simpleInitAnalyzerFile() 
-	{
+	{		 
+		loadDrivingTask();
+		
 		PanelCenter.init(this);
 		
 		loadData();
-		
-		loadDrivingTask();
 		
 		super.simpleInitApp();	
 
@@ -180,16 +175,23 @@ public class DriveAnalyzer extends SimulationBasics
 		// setup key binding
 		keyBindingCenter = new KeyBindingCenter(this);
      
-		//devComp.showAllIdealPoints();
+		DeviationComputer devComp = new DeviationComputer(carPositionList);
 		//devComp.showAllWayPoints();
-		try {
-			area = devComp.getDeviation();
-			lengthOfIdealLine = devComp.getLengthOfIdealLine();
-			System.out.println("Area between ideal line and driven line: " + area);
-			System.out.println("Length of ideal line: " + lengthOfIdealLine);
-			System.out.println("Mean deviation: " + (float)area/lengthOfIdealLine + "\n");
-		} catch (Exception e) {
-			System.out.println(e.getMessage() + "\n");
+		
+		idealLineList = devComp.getIdealLines();
+
+		for(IdealLine idealLine : idealLineList)
+		{
+			if(idealLine.getStatus() != IdealLineStatus.Unavailable)
+			{
+				String id = idealLine.getId();
+				float area = idealLine.getArea();
+				float length = idealLine.getLength();
+				System.out.println("Area between ideal line (" + id + ") and driven line: " + area);
+				System.out.println("Length of ideal line: " + length);
+				System.out.println("Mean deviation: " + (float)area/length);
+				System.out.println("Status: " + idealLine.getStatus() + "\n");
+			}
 		}
 		
 		createText();
@@ -223,11 +225,9 @@ public class DriveAnalyzer extends SimulationBasics
 	{
 		dataReader.initReader(analyzerFilePath, true);
 		dataReader.loadDriveData();
-
+		
 		carPositionList = dataReader.getCarPositionList();
-		for(Vector3f carPos : carPositionList)
-			devComp.addWayPoint(carPos);
-
+		
 		totalDistance = dataReader.getTotalDistance();
 		dataUnitList = dataReader.getDataUnitList();
 		
@@ -324,36 +324,38 @@ public class DriveAnalyzer extends SimulationBasics
 	
 	private void visualizeData() 
 	{
-		if(devComp.getIdealPoints().size() >= 2)
+		for(IdealLine idealLine : idealLineList)
 		{
-			/*
-			 * Visualizing the distance between the car and the ideal line
-			 */
-			Material deviationMaterial = new Material(assetManager,"Common/MatDefs/Misc/Unshaded.j3md");
-			deviationMaterial.setColor("Color", ColorRGBA.Red);
-			
-			Curve deviationLine = new Curve(devComp.getDeviationPoints().toArray(new Vector3f[0]), 1);
-			deviationLine.setMode(Mode.Lines);
-			deviationLine.setLineWidth(4f);
-			Geometry geoDeviationLine = new Geometry("deviationLine", deviationLine);
-			geoDeviationLine.setMaterial(deviationMaterial);
-			sceneNode.attachChild(geoDeviationLine);
-			
-			
-			/*
-			 * Drawing the ideal Line
-			 */
-			Material idealMaterial = new Material(assetManager,"Common/MatDefs/Misc/Unshaded.j3md");
-			idealMaterial.setColor("Color", ColorRGBA.Blue);
-			
-			Curve idealLine = new Curve(devComp.getIdealPoints().toArray(new Vector3f[0]), 1);
-			idealLine.setMode(Mode.Lines);
-			idealLine.setLineWidth(4f);
-			Geometry geoIdealLine = new Geometry("idealLine", idealLine);
-			geoIdealLine.setMaterial(idealMaterial);
-			sceneNode.attachChild(geoIdealLine);
+			if(idealLine.getIdealPoints().size() >= 2)
+			{
+				/*
+				 * Visualizing the distance between the car and the ideal line
+				 */
+				Material deviationMaterial = new Material(assetManager,"Common/MatDefs/Misc/Unshaded.j3md");
+				deviationMaterial.setColor("Color", ColorRGBA.Red);
+				
+				Curve deviationLineCurve = new Curve(idealLine.getDeviationPoints().toArray(new Vector3f[0]), 1);
+				deviationLineCurve.setMode(Mode.Lines);
+				deviationLineCurve.setLineWidth(4f);
+				Geometry geoDeviationLine = new Geometry("deviationLine_" + idealLine.getId(), deviationLineCurve);
+				geoDeviationLine.setMaterial(deviationMaterial);
+				sceneNode.attachChild(geoDeviationLine);
+				
+				
+				/*
+				 * Drawing the ideal Line
+				 */
+				Material idealMaterial = new Material(assetManager,"Common/MatDefs/Misc/Unshaded.j3md");
+				idealMaterial.setColor("Color", ColorRGBA.Blue);
+				
+				Curve idealLineCurve = new Curve(idealLine.getIdealPoints().toArray(new Vector3f[0]), 1);
+				idealLineCurve.setMode(Mode.Lines);
+				idealLineCurve.setLineWidth(4f);
+				Geometry geoIdealLine = new Geometry("idealLine_" + idealLine.getId(), idealLineCurve);
+				geoIdealLine.setMaterial(idealMaterial);
+				sceneNode.attachChild(geoIdealLine);
+			}
 		}
-		
 		
 		/*
 		 * Drawing the driven Line
@@ -544,13 +546,32 @@ public class DriveAnalyzer extends SimulationBasics
 		
 		String timeString = relativeTimeString + absoluteTimeString;
 		
-		String deviationString = "mean deviation: " + decimalFormat.format((float)area/lengthOfIdealLine)
-				+ " m (a: " + decimalFormat.format(area) + " m^3, l: " + decimalFormat.format(lengthOfIdealLine) + " m)";
+		String deviationString = "";
+		for(IdealLine idealLine : idealLineList)
+		{
+			if(idealLine.getStatus() != IdealLineStatus.Unavailable)
+			{
+				String id = idealLine.getId();
+				float area = idealLine.getArea();
+				float length = idealLine.getLength();
+				String status = idealLine.getStatus() == IdealLineStatus.Complete ? "complete" : "incomplete";
+				
+				String textString = " mean deviation '" + id + "': " + decimalFormat.format((float)area/length)
+						+ " m (a: " + decimalFormat.format(area) + " m^3, l: " + decimalFormat.format(length) 
+						+ " m, " + status +	")";
+				
+				String textBuffer = "";
+				for(int i = 80; i>textString.length();i--)
+					textBuffer += " ";
+				
+				deviationString += textString + textBuffer;
+			}
+		}
 		
-		String distanceString = "traveled: " + decimalFormat.format(currentDataUnit.getTraveledDistance()) + " m (total: " + 
+		String distanceString = " traveled: " + decimalFormat.format(currentDataUnit.getTraveledDistance()) + " m (total: " + 
 				decimalFormat.format(totalDistance) + " m)";
 		
-		String steeringWheelString = "steering wheel: " + decimalFormat.format(-100*currentDataUnit.getSteeringWheelPos()) + "%";
+		String steeringWheelString = " steering wheel: " + decimalFormat.format(-100*currentDataUnit.getSteeringWheelPos()) + "%";
 		
 		String acceleratorString = " accelleration: " + decimalFormat.format(100*currentDataUnit.getAcceleratorPedalPos()) + "%";
 		
@@ -565,13 +586,9 @@ public class DriveAnalyzer extends SimulationBasics
 		for(int i = 130; i>distSpeedString.length();i--)
 			distanceBuffer += " ";
 		
-		String deviationBuffer = "";
-		for(int i = 100; i>deviationString.length();i--)
-			deviationBuffer += " ";
-		
 		String total = timeString + timeBuffer +
 				distanceString + speedString + distanceBuffer +
-				deviationString + deviationBuffer + 
+				deviationString +
 				steeringWheelString + acceleratorString + brakeString;
 		
 		

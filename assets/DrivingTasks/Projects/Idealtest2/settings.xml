@@ -14,8 +14,8 @@
 	</general>
 	
 	<SIMTD>
-		<sendDataToHmi>false</sendDataToHmi>
-		<startGui>false</startGui>
+		<sendDataToHmi>true</sendDataToHmi>
+		<startGui>true</startGui>
 		<hmiNativePath>assets/HMI</hmiNativePath>
 		<hmiNativeExecutable>HMI_GUI.exe</hmiNativeExecutable>
 		<ip>127.0.0.1</ip>

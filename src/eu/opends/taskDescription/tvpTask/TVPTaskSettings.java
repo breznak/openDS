@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2014 Rafael Math
+*  Copyright (C) 2015 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU Lesser General Public License as published by
@@ -18,12 +18,16 @@
 
 package eu.opends.taskDescription.tvpTask;
 
+import eu.opends.tools.DistanceBar;
+
 public class TVPTaskSettings 
 {
 	private String leadingCarName;
 	
-	private Float leadingCarSpeedLimitSpeedReduction;
-	private Float leadingCarSpeedLimitEmergencyBrake;
+	private Float leadingCarLowerSpeedLimitSpeedReduction;
+	private Float leadingCarUpperSpeedLimitSpeedReduction;
+	private Float leadingCarLowerSpeedLimitEmergencyBrake;
+	private Float leadingCarUpperSpeedLimitEmergencyBrake;
 	private Float minSpeedForSpeedReduction;
 	private Integer speedReductionDuration;
 	private Integer minTimeAllConditionsMet;
@@ -46,6 +50,7 @@ public class TVPTaskSettings
 	private Float lateralToleranceUpperBound;
 	private Float startPositionZ;
 	private Float endPositionZ;
+	private Integer shutDownAfterXSeconds;
 	private Boolean shutDownAtEnd;
 	
 	private Float hideDistanceTextPositionZ;
@@ -54,6 +59,8 @@ public class TVPTaskSettings
 	private Integer distanceTextBottom;
 	private Integer distanceTextLeft;
 	private Integer distanceTextRight;
+	private DistanceBar longitudinalDistanceBar;
+	private DistanceBar	lateralDeviationBar;
 	
 	private Integer loggingRate;
 	private Boolean writeToDB;
@@ -67,8 +74,9 @@ public class TVPTaskSettings
 	private Boolean additionalTable;
 
 	
-	public TVPTaskSettings(String leadingCarName, Float leadingCarSpeedLimitSpeedReduction,
-			Float leadingCarSpeedLimitEmergencyBrake, Float minSpeedForSpeedReduction, 
+	public TVPTaskSettings(String leadingCarName, Float leadingCarLowerSpeedLimitSpeedReduction,
+			Float leadingCarUpperSpeedLimitSpeedReduction, Float leadingCarLowerSpeedLimitEmergencyBrake, 
+			Float leadingCarUpperSpeedLimitEmergencyBrake, Float minSpeedForSpeedReduction, 
 			Integer speedReductionDuration, Integer minTimeAllConditionsMet, 
 			Boolean resetBrakeLightOnReaction, Boolean resetTurnSignalOnReaction, 
 			Boolean resetSpeedReductionOnReaction, Float minDistanceToLeadingCar, 
@@ -77,17 +85,20 @@ public class TVPTaskSettings
 			Integer brakeLightMinDuration, Integer turnSignalDuration,
 			Integer maxReactionTime, Float longitudinalToleranceLowerBound,
 			Float longitudinalToleranceUpperBound, Float lateralToleranceLowerBound, 
-			Float lateralToleranceUpperBound, Float startPositionZ, Float endPositionZ, 
+			Float lateralToleranceUpperBound, Float startPositionZ, Float endPositionZ, Integer shutDownAfterXSeconds,
 			Boolean shutDownAtEnd, Float hideDistanceTextPositionZ, Float distanceTextScale,
 			Integer distanceTextTop, Integer distanceTextBottom, Integer distanceTextLeft,
-			Integer distanceTextRight, Integer loggingRate, Boolean writeToDB, String databaseUrl,
+			Integer distanceTextRight, DistanceBar longitudinalDistanceBar, 
+			DistanceBar	lateralDeviationBar, Integer loggingRate, Boolean writeToDB, String databaseUrl,
 			String databaseUser, String databasePassword, String databaseTable, 
 			String conditionName, Integer conditionNumber, 	String reportTemplate,
 			Boolean additionalTable) 
 	{
 		this.leadingCarName = leadingCarName;
-		this.leadingCarSpeedLimitSpeedReduction = leadingCarSpeedLimitSpeedReduction;
-		this.leadingCarSpeedLimitEmergencyBrake = leadingCarSpeedLimitEmergencyBrake;
+		this.leadingCarLowerSpeedLimitSpeedReduction = leadingCarLowerSpeedLimitSpeedReduction;
+		this.leadingCarUpperSpeedLimitSpeedReduction = leadingCarUpperSpeedLimitSpeedReduction;
+		this.leadingCarLowerSpeedLimitEmergencyBrake = leadingCarLowerSpeedLimitEmergencyBrake;
+		this.leadingCarUpperSpeedLimitEmergencyBrake = leadingCarUpperSpeedLimitEmergencyBrake;
 		this.minSpeedForSpeedReduction = minSpeedForSpeedReduction;
 		this.speedReductionDuration = speedReductionDuration;
 		this.minTimeAllConditionsMet = minTimeAllConditionsMet;
@@ -109,6 +120,7 @@ public class TVPTaskSettings
 		this.lateralToleranceUpperBound = lateralToleranceUpperBound;
 		this.startPositionZ = startPositionZ;
 		this.endPositionZ = endPositionZ;
+		this.shutDownAfterXSeconds = shutDownAfterXSeconds;
 		this.shutDownAtEnd = shutDownAtEnd;
 		this.hideDistanceTextPositionZ = hideDistanceTextPositionZ;
 		this.distanceTextScale = distanceTextScale;
@@ -116,6 +128,8 @@ public class TVPTaskSettings
 		this.distanceTextBottom = distanceTextBottom;
 		this.distanceTextLeft = distanceTextLeft;
 		this.distanceTextRight = distanceTextRight;
+		this.longitudinalDistanceBar = longitudinalDistanceBar;
+		this.lateralDeviationBar = lateralDeviationBar;
 		this.loggingRate = loggingRate;
 		this.writeToDB = writeToDB;
 		this.databaseUrl = databaseUrl;
@@ -146,37 +160,68 @@ public class TVPTaskSettings
 
 
 	/**
-	 * @return the leadingCarSpeedLimitSpeedReduction
+	 * @return the leadingCarLowerSpeedLimitSpeedReduction
 	 */
-	public Float getLeadingCarSpeedLimitSpeedReduction() {
-		return leadingCarSpeedLimitSpeedReduction;
+	public Float getLeadingCarLowerSpeedLimitSpeedReduction() {
+		return leadingCarLowerSpeedLimitSpeedReduction;
+	}
+	
+	
+	/**
+	 * @return the leadingCarUpperSpeedLimitSpeedReduction
+	 */
+	public Float getLeadingCarUpperSpeedLimitSpeedReduction() {
+		return leadingCarUpperSpeedLimitSpeedReduction;
+	}
+	
+
+	/**
+	 * @param leadingCarLowerSpeedLimitSpeedReduction the leadingCarLowerSpeedLimitSpeedReduction to set
+	 */
+	public void setLeadingCarLowerSpeedLimitSpeedReduction(Float leadingCarLowerSpeedLimitSpeedReduction) {
+		this.leadingCarLowerSpeedLimitSpeedReduction = leadingCarLowerSpeedLimitSpeedReduction;
+	}
+
+	
+	/**
+	 * @param leadingCarUpperSpeedLimitSpeedReduction the leadingCarUpperSpeedLimitSpeedReduction to set
+	 */
+	public void setLeadingCarUpperSpeedLimitSpeedReduction(Float leadingCarUpperSpeedLimitSpeedReduction) {
+		this.leadingCarUpperSpeedLimitSpeedReduction = leadingCarUpperSpeedLimitSpeedReduction;
+	}
+
+	
+	/**
+	 * @return the leadingLowerCarSpeedLimitEmergencyBrake
+	 */
+	public Float getLeadingCarLowerSpeedLimitEmergencyBrake() {
+		return leadingCarLowerSpeedLimitEmergencyBrake;
+	}
+	
+
+	/**
+	 * @return the leadingUpperCarSpeedLimitEmergencyBrake
+	 */
+	public Float getLeadingCarUpperSpeedLimitEmergencyBrake() {
+		return leadingCarUpperSpeedLimitEmergencyBrake;
 	}
 
 
 	/**
-	 * @param leadingCarSpeedLimitSpeedReduction the leadingCarSpeedLimitSpeedReduction to set
+	 * @param leadingCarLowerSpeedLimitEmergencyBrake the leadingCarLowerSpeedLimitEmergencyBrake to set
 	 */
-	public void setLeadingCarSpeedLimitSpeedReduction(
-			Float leadingCarSpeedLimitSpeedReduction) {
-		this.leadingCarSpeedLimitSpeedReduction = leadingCarSpeedLimitSpeedReduction;
+	public void setLeadingCarLowerSpeedLimitEmergencyBrake(Float leadingCarLowerSpeedLimitEmergencyBrake) {
+		this.leadingCarLowerSpeedLimitEmergencyBrake = leadingCarLowerSpeedLimitEmergencyBrake;
 	}
-
-
+	
+	
 	/**
-	 * @return the leadingCarSpeedLimitEmergencyBrake
+	 * @param leadingCarUpperSpeedLimitEmergencyBrake the leadingCarUpperSpeedLimitEmergencyBrake to set
 	 */
-	public Float getLeadingCarSpeedLimitEmergencyBrake() {
-		return leadingCarSpeedLimitEmergencyBrake;
+	public void setLeadingCarUpperSpeedLimitEmergencyBrake(Float leadingCarUpperSpeedLimitEmergencyBrake) {
+		this.leadingCarUpperSpeedLimitEmergencyBrake = leadingCarUpperSpeedLimitEmergencyBrake;
 	}
-
-
-	/**
-	 * @param leadingCarSpeedLimitEmergencyBrake the leadingCarSpeedLimitEmergencyBrake to set
-	 */
-	public void setLeadingCarSpeedLimitEmergencyBrake(
-			Float leadingCarSpeedLimitEmergencyBrake) {
-		this.leadingCarSpeedLimitEmergencyBrake = leadingCarSpeedLimitEmergencyBrake;
-	}
+	
 	
 	/**
 	 * @return the minSpeedForSpeedReduction
@@ -613,7 +658,39 @@ public class TVPTaskSettings
 		this.endPositionZ = endPositionZ;
 	}
 
-
+	
+	/**
+	 * @return the longitudinalDistanceBar
+	 */
+	public DistanceBar getLongitudinalDistanceBar() {
+		return longitudinalDistanceBar;
+	}
+	
+	
+	/**
+	 * @return the lateralDeviationBar
+	 */
+	public DistanceBar getLateralDeviationBar() {
+		return lateralDeviationBar;
+	}
+	
+	
+	/**
+	 * @return the shutDownAfterXSeconds
+	 */
+	public Integer isShutDownAfterXSeconds() {
+		return shutDownAfterXSeconds;
+	}
+	
+	
+	/**
+	 * @param shutDownAfterXSeconds the shutDownAfterXSeconds to set
+	 */
+	public void setShutDownAfterXSeconds(Integer shutDownAfterXSeconds) {
+		this.shutDownAfterXSeconds = shutDownAfterXSeconds;
+	}
+	
+	
 	/**
 	 * @return the shutDownAtEnd
 	 */
@@ -813,9 +890,9 @@ public class TVPTaskSettings
 				+ ", lateralToleranceUpperBound=" + lateralToleranceUpperBound
 				+ ", leadingCarName=" + leadingCarName
 				+ ", leadingCarSpeedLimitEmergencyBrake="
-				+ leadingCarSpeedLimitEmergencyBrake
+				+ leadingCarLowerSpeedLimitEmergencyBrake
 				+ ", leadingCarSpeedLimitSpeedReduction="
-				+ leadingCarSpeedLimitSpeedReduction + ", loggingRate="
+				+ leadingCarLowerSpeedLimitSpeedReduction + ", loggingRate="
 				+ loggingRate + ", longitudinalToleranceLowerBound="
 				+ longitudinalToleranceLowerBound
 				+ ", longitudinalToleranceUpperBound="
@@ -832,6 +909,7 @@ public class TVPTaskSettings
 				+ ", resetSpeedReductionOnReaction="
 				+ resetSpeedReductionOnReaction
 				+ ", resetTurnSignalOnReaction=" + resetTurnSignalOnReaction
+				+ ", shutDownAfterXSeconds=" + shutDownAfterXSeconds 
 				+ ", shutDownAtEnd=" + shutDownAtEnd
 				+ ", speedReductionDuration=" + speedReductionDuration
 				+ ", startPositionZ=" + startPositionZ

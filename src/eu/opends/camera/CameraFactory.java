@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2014 Rafael Math
+*  Copyright (C) 2015 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -22,7 +22,6 @@ package eu.opends.camera;
 import java.util.ArrayList;
 
 import com.jme3.input.ChaseCamera;
-import com.jme3.math.ColorRGBA;
 import com.jme3.math.FastMath;
 import com.jme3.math.Matrix4f;
 import com.jme3.math.Quaternion;
@@ -31,6 +30,7 @@ import com.jme3.renderer.Camera;
 import com.jme3.renderer.ViewPort;
 import com.jme3.scene.CameraNode;
 import com.jme3.scene.Node;
+import com.jme3.scene.Spatial;
 import com.jme3.scene.control.CameraControl.ControlDirection;
 import com.jme3.ui.Picture;
 
@@ -38,6 +38,7 @@ import eu.opends.basics.SimulationBasics;
 import eu.opends.drivingTask.settings.SettingsLoader;
 import eu.opends.drivingTask.settings.SettingsLoader.Setting;
 import eu.opends.main.Simulator;
+import eu.opends.oculusRift.StereoCamAppState;
 
 
 /**
@@ -54,6 +55,7 @@ public abstract class CameraFactory
 	protected ChaseCamera chaseCam;
 	protected CameraNode topViewCamNode;
 	protected CameraNode mainCameraNode = new CameraNode();
+	protected CameraNode frontCameraNode = new CameraNode();
 	
 	protected Node targetNode;
 	protected Camera cam;
@@ -67,7 +69,9 @@ public abstract class CameraFactory
 	protected Picture rightMirrorFrame;
 	protected float topViewVerticalDistance;
 	protected float topViewcarOffset;
-	
+	protected CameraNode centerCamNode;
+		
+		
 	// if false: TOP camera will always show north at the top of the screen
 	// if true: car is pointing to the top of the screen (moving map)
 	protected boolean isCarPointingUp = true;
@@ -80,6 +84,9 @@ public abstract class CameraFactory
 	private int height;	
 	private float aspectRatio;
 	private float frameOfView;
+	private float frustumNear;
+	private float frustumFar;
+	
 	
 	private static ArrayList<ViewPort> viewPortList = new ArrayList<ViewPort>();
 	public static ArrayList<ViewPort> getViewPortList()
@@ -117,6 +124,12 @@ public abstract class CameraFactory
 	public CameraNode getMainCameraNode()
 	{
 		return mainCameraNode;
+	}
+	
+	
+	public CameraNode getCenterCamNode() 
+	{
+		return centerCamNode;
 	}
 	
 	
@@ -177,8 +190,8 @@ public abstract class CameraFactory
 	/**
 	 * Set which mirror is visible or not
 	 * 
-	 * @param showMirror
-	 * 		Boolean indicating visibility of rear view mirror
+	 * @param mode
+	 * 		parameter indicating visibility of rear and side view mirrors
 	 */
 	public void setMirrorMode(MirrorMode mode)
 	{
@@ -202,12 +215,17 @@ public abstract class CameraFactory
 		this.cam = sim.getCamera();
 		this.settingsLoader = SimulationBasics.getSettingsLoader();
 		
+		mainCameraNode.attachChild(frontCameraNode);
+		
 		isCarPointingUp = settingsLoader.getSetting(Setting.General_topView_carPointingUp, true);
 		
 		float outsideCamPosX = settingsLoader.getSetting(Setting.General_outsideCamPosition_x, -558f);
 		float outsideCamPosY = settingsLoader.getSetting(Setting.General_outsideCamPosition_y, 22f);
 		float outsideCamPosZ = settingsLoader.getSetting(Setting.General_outsideCamPosition_z, -668f);
 		outsideCamPos = new Vector3f(outsideCamPosX, outsideCamPosY, outsideCamPosZ);
+		
+		this.frustumNear = settingsLoader.getSetting(Setting.General_frustumNear, 1f);
+		this.frustumFar = settingsLoader.getSetting(Setting.General_frustumFar, 2000f);
 		
 		// only render scene node (child of root node)
 		// as root node contains for instance the map marker
@@ -270,28 +288,33 @@ public abstract class CameraFactory
 	private void setupCamera(int index, int totalInt) 
 	{
 		float total = totalInt;
-		Camera cam = new Camera(width, height);
-		cam.setFrustumPerspective(frameOfView, aspectRatio/total, 1f, 2000);
-		
 		float additionalPixel = 1f/width;
 		float viewPortLeft = (index-1)/total;
 		float viewPortRight = (index)/total + additionalPixel;
-		cam.setViewPort(viewPortLeft, viewPortRight, 0f, 1f);
-		
-		ViewPort viewPort = sim.getRenderManager().createMainView("View"+index, cam);
-		viewPort.attachScene(sim.getSceneNode());
-		viewPort.setBackgroundColor(ColorRGBA.Black);
-
-		viewPortList.add(viewPort);
-		
-		// add camera to main camera node
-		CameraNode camNode = new CameraNode("CamNode"+index, cam);
-		camNode.setControlDir(ControlDirection.SpatialToCamera);
-		mainCameraNode.attachChild(camNode);
-		camNode.setLocalTranslation(new Vector3f(0, 0, 0));
-		
 		float angle = (((totalInt+1)/2)-index) * angleBetweenAdjacentCameras;
+
+		// setup camera
+		Camera cam_i;
+		if(index==1)
+			cam_i = cam;		
+		else
+			cam_i = new Camera(width, height);
+		
+		cam_i.setFrustumPerspective(frameOfView, aspectRatio/total, frustumNear, frustumFar);
+		cam_i.setViewPort(viewPortLeft, viewPortRight, 0f, 1f);
+
+		// setup camera node and add it to main camera node
+		CameraNode camNode = new CameraNode("CamNode"+index, cam_i);
+		camNode.setControlDir(ControlDirection.SpatialToCamera);
+		camNode.setLocalTranslation(new Vector3f(0, 0, 0));
 		camNode.setLocalRotation(new Quaternion().fromAngles(0, (180+angle)*FastMath.DEG_TO_RAD, 0));
+		frontCameraNode.attachChild(camNode);
+		
+		// setup view port
+		ViewPort viewPort = sim.getRenderManager().createMainView("View"+index, cam_i);
+		viewPort.setClearFlags(true, true, true);
+		viewPort.attachScene(sim.getSceneNode());
+		viewPortList.add(viewPort);
 	}
 
 	
@@ -300,12 +323,30 @@ public abstract class CameraFactory
 	 */
 	private void setupCenterCamera() 
 	{
+		// OpenDS-Rift
+		Spatial obs = null;
+		if(Simulator.oculusRiftAttached) 
+		{		
+			obs = sim.getObserver();
+			StereoCamAppState scas = sim.getStereoCamAppState();
+			obs.addControl(scas.getCameraControl());
+		}
+		
 		// add center camera to main camera node
-		CameraNode centerCamNode = new CameraNode("CamNode1", cam);	
+		centerCamNode = new CameraNode("CamNode1", cam);
 		centerCamNode.setControlDir(ControlDirection.SpatialToCamera);
-		mainCameraNode.attachChild(centerCamNode);
+		frontCameraNode.attachChild(centerCamNode);
 		centerCamNode.setLocalTranslation(new Vector3f(0, 0, 0));
 		centerCamNode.setLocalRotation(new Quaternion().fromAngles(0, 180*FastMath.DEG_TO_RAD, 0));
+		
+		// frustumNear = 0.2f used for internal car environment
+		centerCamNode.getCamera().setFrustumPerspective(frameOfView, aspectRatio, frustumNear, frustumFar);
+		
+		// OpenDS-Rift
+		if(Simulator.oculusRiftAttached)
+		{
+			centerCamNode.attachChild(obs);
+		}
 		
 		viewPortList.add(sim.getViewPort());
 	}
@@ -340,7 +381,7 @@ public abstract class CameraFactory
 		
 		float aspect = ((right-left)*width)/((top-bottom)*height);
 		
-		topViewCam.setFrustumPerspective(30.0f, aspect, 1, 2000);
+		topViewCam.setFrustumPerspective(30.0f, aspect, frustumNear, frustumFar);
 		//topViewCam.setFrustum(1, 2000, -20, 20, 20, -20);
 		topViewCam.setViewPort(left, right, bottom, top);
 		//topViewCam.setParallelProjection(true);
@@ -350,6 +391,7 @@ public abstract class CameraFactory
 	    topViewPort.setClearFlags(true, true, true);
 	    topViewPort.attachScene(sim.getRootNode()); // use root node to visualize map marker
 	    topViewPort.setEnabled(false);
+	    viewPortList.add(topViewPort);
 	    
 	    // add top view camera to main camera node
     	topViewCamNode = new CameraNode("topViewCamNode", topViewCam);
@@ -384,7 +426,7 @@ public abstract class CameraFactory
 		
 		float aspect = ((right-left)*width)/((top-bottom)*height);
 		
-		backCam.setFrustumPerspective(30.0f, aspect, 1, 2000);
+		backCam.setFrustumPerspective(30.0f, aspect, frustumNear, frustumFar);
 		backCam.setViewPort(left, right, bottom, top);
 		
 		// inverse back view cam (=> back view mirror)
@@ -397,11 +439,14 @@ public abstract class CameraFactory
 	    backViewPort.setClearFlags(true, true, true);
 	    backViewPort.attachScene(sim.getSceneNode());
 	    backViewPort.setEnabled(false);
+	    viewPortList.add(backViewPort);
 	    
 	    // add back camera to main camera node
     	CameraNode backCamNode = new CameraNode("BackCamNode", backCam);
     	backCamNode.setControlDir(ControlDirection.SpatialToCamera);
     	backCamNode.setLocalRotation(new Quaternion().fromAngles(verticalAngle*FastMath.DEG_TO_RAD, horizontalAngle*FastMath.DEG_TO_RAD, 0));
+		Vector3f centerMirrorPos = ((Simulator)sim).getCar().getCarModel().getCenterMirrorPos();
+		backCamNode.setLocalTranslation(new Vector3f(centerMirrorPos));
     	mainCameraNode.attachChild(backCamNode);
 	}
 	
@@ -425,7 +470,7 @@ public abstract class CameraFactory
 		
 		float aspect = ((right-left)*width)/((top-bottom)*height);
 		
-		leftBackCam.setFrustumPerspective(45.0f, aspect, 1, 2000);
+		leftBackCam.setFrustumPerspective(45.0f, aspect, frustumNear, frustumFar);
 		leftBackCam.setViewPort(left, right, bottom, top);
 		
 		// inverse left back view cam (=> left back view mirror)
@@ -438,13 +483,15 @@ public abstract class CameraFactory
 	    leftBackViewPort.setClearFlags(true, true, true);
 	    leftBackViewPort.attachScene(sim.getSceneNode());
 	    leftBackViewPort.setEnabled(false);	    
+	    viewPortList.add(leftBackViewPort);
 	    
 	    // add left back camera to main camera node
     	CameraNode leftBackCamNode = new CameraNode("LeftBackCamNode", leftBackCam);
     	leftBackCamNode.setControlDir(ControlDirection.SpatialToCamera);
     	
 		leftBackCamNode.setLocalRotation(new Quaternion().fromAngles(verticalAngle*FastMath.DEG_TO_RAD, horizontalAngle*FastMath.DEG_TO_RAD, 0));
-		leftBackCamNode.setLocalTranslation(new Vector3f(-1, 0, -1)); // 1m to the left (x=-1), 1m to the front (z=-1)
+		Vector3f leftMirrorPos = ((Simulator)sim).getCar().getCarModel().getLeftMirrorPos();
+		leftBackCamNode.setLocalTranslation(new Vector3f(leftMirrorPos));
     	mainCameraNode.attachChild(leftBackCamNode);
 	}
 	
@@ -468,7 +515,7 @@ public abstract class CameraFactory
 		
 		float aspect = ((right-left)*width)/((top-bottom)*height);
 		
-		rightBackCam.setFrustumPerspective(45.0f, aspect, 1, 2000);
+		rightBackCam.setFrustumPerspective(45.0f, aspect, frustumNear, frustumFar);
 		rightBackCam.setViewPort(left, right, bottom, top);
 		
 		// inverse right back view cam (=> right back view mirror)
@@ -481,13 +528,15 @@ public abstract class CameraFactory
 	    rightBackViewPort.setClearFlags(true, true, true);
 	    rightBackViewPort.attachScene(sim.getSceneNode());
 	    rightBackViewPort.setEnabled(false);
+	    viewPortList.add(rightBackViewPort);
 	    
 	    // add right back camera to main camera node
     	CameraNode rightBackCamNode = new CameraNode("RightBackCamNode", rightBackCam);
     	rightBackCamNode.setControlDir(ControlDirection.SpatialToCamera);
-    	
+
 		rightBackCamNode.setLocalRotation(new Quaternion().fromAngles(verticalAngle*FastMath.DEG_TO_RAD, horizontalAngle*FastMath.DEG_TO_RAD, 0));
-		rightBackCamNode.setLocalTranslation(new Vector3f(1, 0, -1));  // 1m to the right (x=1), 1m to the front (z=-1)
+		Vector3f rightMirrorPos = ((Simulator)sim).getCar().getCarModel().getRightMirrorPos();
+		rightBackCamNode.setLocalTranslation(new Vector3f(rightMirrorPos));
     	mainCameraNode.attachChild(rightBackCamNode);
 	}
 	

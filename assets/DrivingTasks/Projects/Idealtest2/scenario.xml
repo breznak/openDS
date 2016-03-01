@@ -5,39 +5,40 @@
         
         <environment>
         	<weather>
-                <snowingPercentage>0</snowingPercentage>
-        		<rainingPercentage>0</rainingPercentage>
-        		<fogPercentage>0</fogPercentage>
+                <snowingPercentage>-1</snowingPercentage>
+        		<rainingPercentage>-1</rainingPercentage>
+        		<fogPercentage>-1</fogPercentage>
         	</weather>
         </environment>
 
         <driver>
-        	<idealTrack>
-        		<point ref="IdealPoint.001" />
-				<point ref="IdealPoint.032" />
-				<point ref="IdealPoint.033" />
-				<point ref="IdealPoint.034" />
-				<point ref="IdealPoint.035" />
-				<point ref="IdealPoint.052" />
-				<point ref="IdealPoint.053" />
-				<point ref="IdealPoint.054" />
-				<point ref="IdealPoint.055" />
-				<point ref="IdealPoint.056" />
-				<point ref="IdealPoint.057" />
-				<point ref="IdealPoint.058" />
-				<point ref="IdealPoint.113" />
-				<point ref="IdealPoint.114" />
-				<point ref="IdealPoint.115" />
-				<point ref="IdealPoint.116" />
-				<point ref="IdealPoint.138" />
-				<point ref="IdealPoint.139" />
-				<point ref="IdealPoint.140" />
-				<point ref="IdealPoint.141" />
-				<point ref="IdealPoint.142" />
-				<point ref="IdealPoint.143" />
-				<point ref="IdealPoint.150" />
-        	</idealTrack>
-
+        	<idealTracks>
+        		<idealTrack id="idealTrack01">
+	        		<point ref="IdealPoint.001" />
+					<point ref="IdealPoint.032" />
+					<point ref="IdealPoint.033" />
+					<point ref="IdealPoint.034" />
+					<point ref="IdealPoint.035" />
+					<point ref="IdealPoint.052" />
+					<point ref="IdealPoint.053" />
+					<point ref="IdealPoint.054" />
+					<point ref="IdealPoint.055" />
+					<point ref="IdealPoint.056" />
+					<point ref="IdealPoint.057" />
+					<point ref="IdealPoint.058" />
+					<point ref="IdealPoint.113" />
+					<point ref="IdealPoint.114" />
+					<point ref="IdealPoint.115" />
+					<point ref="IdealPoint.116" />
+					<point ref="IdealPoint.138" />
+					<point ref="IdealPoint.139" />
+					<point ref="IdealPoint.140" />
+					<point ref="IdealPoint.141" />
+					<point ref="IdealPoint.142" />
+					<point ref="IdealPoint.143" />
+					<point ref="IdealPoint.150" />
+	        	</idealTrack>
+			</idealTracks>
         	<car id="" ref="driverCar" profile="">
         		<resetPoints>
         			<resetPoint ref="reset1" />
@@ -86,7 +87,7 @@
         
         <traffic>
         	<vehicle id="car2">
-				<modelPath>Models/Cars/drivingCars/Ferrari/Car.scene</modelPath>
+				<modelPath>Models/Cars/drivingCars/CitroenC4/Car.j3o</modelPath>
 				<mass>800</mass>
 				<acceleration>3.3</acceleration>
 				<decelerationBrake>8.7</decelerationBrake>
@@ -112,7 +113,7 @@
 
 <!--        	
         	<vehicle id="car3">
-				<modelPath>Models/Cars/drivingCars/Ferrari/Car.scene</modelPath>
+				<modelPath>Models/Cars/drivingCars/CitroenC4/Car.j3o</modelPath>
 				<mass>800</mass>
 				<acceleration>3.3</acceleration>
 				<decelerationBrake>8.7</decelerationBrake>
@@ -137,7 +138,7 @@
         	</vehicle>
         	
         	<vehicle id="car4">
-				<modelPath>Models/Cars/drivingCars/Ferrari/Car.scene</modelPath>
+				<modelPath>Models/Cars/drivingCars/CitroenC4/Car.j3o</modelPath>
 				<mass>800</mass>
 				<acceleration>3.3</acceleration>
 				<decelerationBrake>8.7</decelerationBrake>
@@ -162,7 +163,7 @@
         	</vehicle>
         	
         	<vehicle id="car5">
-				<modelPath>Models/Cars/drivingCars/Ferrari/Car.scene</modelPath>
+				<modelPath>Models/Cars/drivingCars/CitroenC4/Car.j3o</modelPath>
 				<mass>800</mass>
 				<acceleration>3.3</acceleration>
 				<decelerationBrake>8.7</decelerationBrake>
@@ -187,7 +188,7 @@
         	</vehicle>
         	
         	<vehicle id="car6">
-				<modelPath>Models/Cars/drivingCars/Ferrari/Car.scene</modelPath>
+				<modelPath>Models/Cars/drivingCars/CitroenC4/Car.j3o</modelPath>
 				<mass>800</mass>
 				<acceleration>3.3</acceleration>
 				<decelerationBrake>8.7</decelerationBrake>

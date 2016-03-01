@@ -8,7 +8,7 @@
     </sounds>
 
 	<models>
-		<model id="twoLaneRoad" key="Scenes/twoLaneRoad2/twoLaneRoad2.scene">
+		<model id="twoLaneRoad" key="Scenes/twoLaneRoad2/twoLaneRoad2.j3o">
 			<mass>0</mass>
 			<visible>true</visible>
 			<collisionShape>meshShape</collisionShape>

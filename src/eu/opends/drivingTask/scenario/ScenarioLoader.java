@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2014 Rafael Math
+*  Copyright (C) 2015 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -30,6 +30,7 @@ import org.w3c.dom.NodeList;
 
 import Jama.Matrix;
 
+import com.jme3.math.FastMath;
 import com.jme3.math.Quaternion;
 import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
@@ -64,6 +65,8 @@ import eu.opends.traffic.Waypoint;
 @SuppressWarnings("unchecked")
 public class ScenarioLoader 
 {
+	private static final float MAX_DISTANCE_BETWEEN_TWO_IDEAL_POINTS = 0.1f;
+	
 	private DrivingTaskDataQuery dtData;
 	private SimulationBasics sim;
 	private SceneLoader sceneLoader;
@@ -73,6 +76,7 @@ public class ScenarioLoader
 	private String driverCarModelPath;
 	private CameraFlightSettings cameraFlightSettings;
 	private Map<String, LaneLimit> laneList = new HashMap<String, LaneLimit>();
+	private Map<String, IdealTrackContainer> idealTrackMap = new HashMap<String, IdealTrackContainer>();
 	private List<Intersection> intersectionList = new ArrayList<Intersection>();
 	private List<TrafficLight> globalTrafficLightList = new ArrayList<TrafficLight>();
 	private Matrix modelToGeoMatrix;
@@ -87,6 +91,7 @@ public class ScenarioLoader
 		engine_minSpeed,
 		engine_maxSpeed,
 		engine_acceleration,
+		engine_displacement,
 		suspension_stiffness, 
 		suspension_compression, 
 		suspension_damping,
@@ -95,12 +100,21 @@ public class ScenarioLoader
 		wheel_frictionSlip, 
 		engine_minRPM,
 		engine_maxRPM,
-		light_intensity;
+		light_intensity, 
+		cruiseControl_acc, 
+		cruiseControl_safetyDistance_lateral,
+		cruiseControl_safetyDistance_forward,
+		cruiseControl_emergencyBrakeDistance, 
+		cruiseControl_suppressDeactivationByBrake,
+		cruiseControl_initialSpeed;
+		
 
 		public String getXPathQuery()
 		{
 			String[] array = this.toString().split("_");
-			if(array.length >= 2)
+			if(array.length >= 3)
+				return "/scenario:scenario/scenario:driver/scenario:car/scenario:"+array[0]+"/scenario:"+array[1]+"/scenario:"+array[2];
+			if(array.length == 2)
 				return "/scenario:scenario/scenario:driver/scenario:car/scenario:"+array[0]+"/scenario:"+array[1];
 			else
 				return "/scenario:scenario/scenario:driver/scenario:car/scenario:"+array[0];
@@ -285,46 +299,136 @@ public class ScenarioLoader
 	
 	
 	private void extractIdealLine()
-	{
-		List<Vector3f> idealPoints = new ArrayList<Vector3f>();
-		
+	{		
 		try {
 			
-			NodeList pointNodes = (NodeList) dtData.xPathQuery(Layer.SCENARIO, 
-					"/scenario:scenario/scenario:driver/scenario:idealTrack/scenario:point", XPathConstants.NODESET);
-
-			for (int k = 1; k <= pointNodes.getLength(); k++) 
-			{
-				Vector3f point = dtData.getVector3f(Layer.SCENARIO, 
-						"/scenario:scenario/scenario:driver/scenario:idealTrack/scenario:point["+k+"]/scenario:translation");
-				
-				String pointRef = dtData.getValue(Layer.SCENARIO, 
-						"/scenario:scenario/scenario:driver/scenario:idealTrack/scenario:point["+k+"]/@ref", String.class);
-
-				Map<String, Vector3f> pointMap = sceneLoader.getPointMap();
-				
-				if(point != null)
-				{
-					idealPoints.add(point);
-				}
-				else if((pointRef != null) && (pointMap.containsKey(pointRef)))
-				{
-					Vector3f translation = pointMap.get(pointRef);
-					idealPoints.add(translation);
-				}
-				else 
-					throw new Exception("Error in ideal point list");
-			}
+			NodeList idealTrackNodes = (NodeList) dtData.xPathQuery(Layer.SCENARIO, 
+					"/scenario:scenario/scenario:driver/scenario:idealTracks/scenario:idealTrack", XPathConstants.NODESET);
 			
-			for(Vector3f idealPoint : idealPoints)
+			for(int i = 1; i <= idealTrackNodes.getLength(); i++)
 			{
-				Vector2f idealPoint2f = new Vector2f(idealPoint.getX(), idealPoint.getZ());
-				((DriveAnalyzer) sim).getDeviationComputer().addIdealPoint(idealPoint2f);
+				String idealTrackID = dtData.getValue(Layer.SCENARIO, 
+						"/scenario:scenario/scenario:driver/scenario:idealTracks/scenario:idealTrack["+i+"]/@id", String.class);
+				
+				Float roadWidth = dtData.getValue(Layer.SCENARIO, 
+						"/scenario:scenario/scenario:driver/scenario:idealTracks/scenario:idealTrack["+i+"]/@roadWidth", Float.class);
+				
+				if(idealTrackID != null)
+				{
+					NodeList pointNodes = (NodeList) dtData.xPathQuery(Layer.SCENARIO, 
+							"/scenario:scenario/scenario:driver/scenario:idealTracks/scenario:idealTrack["+i+"]/scenario:point", XPathConstants.NODESET);
+		
+					List<Vector3f> idealPoint3fList = new ArrayList<Vector3f>();
+					
+					for (int k = 1; k <= pointNodes.getLength(); k++) 
+					{
+						Vector3f point = dtData.getVector3f(Layer.SCENARIO, 
+								"/scenario:scenario/scenario:driver/scenario:idealTracks/scenario:idealTrack["+i+"]/scenario:point["+k+"]/scenario:translation");
+						
+						String pointRef = dtData.getValue(Layer.SCENARIO, 
+								"/scenario:scenario/scenario:driver/scenario:idealTracks/scenario:idealTrack["+i+"]/scenario:point["+k+"]/@ref", String.class);
+		
+						Map<String, Vector3f> pointMap = sceneLoader.getPointMap();
+						
+						if(point != null)
+						{
+							idealPoint3fList.add(point);
+						}
+						else if((pointRef != null) && (pointMap.containsKey(pointRef)))
+						{
+							Vector3f translation = pointMap.get(pointRef);
+							idealPoint3fList.add(translation);
+						}
+						else 
+							throw new Exception("Error in ideal point list");
+					}
+					
+					ArrayList<Vector2f> idealPoint2fList = new ArrayList<Vector2f>();
+					for(Vector3f idealPoint : idealPoint3fList)
+					{
+						Vector2f idealPoint2f = new Vector2f(idealPoint.getX(), idealPoint.getZ());
+						//((DriveAnalyzer) sim).getDeviationComputer().addIdealPoint(idealPoint2f);
+						
+						if(idealPoint2f != null)
+						{
+							// If the distance between two ideal points is too large, add (an) additional 
+							// ideal point(s) between them in order to allow a better approximation
+		
+							// exclude first ideal point which has no predecessor 
+							if(!idealPoint2fList.isEmpty())
+							{
+								// if distance to previous ideal point is too large, add (a) new ideal point(s)
+								Vector2f previousIdealPoint = idealPoint2fList.get(idealPoint2fList.size()-1);
+								while(previousIdealPoint.distance(idealPoint2f) > MAX_DISTANCE_BETWEEN_TWO_IDEAL_POINTS)
+								{
+									previousIdealPoint = createIdealPoint(previousIdealPoint, idealPoint2f);
+									idealPoint2fList.add(previousIdealPoint);
+								}
+							}
+		
+							// add current ideal point to list
+							idealPoint2fList.add(idealPoint2f);
+						}
+					}
+					
+					idealTrackMap.put(idealTrackID, new IdealTrackContainer(roadWidth, idealPoint2fList));
+				}
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	
+	public Map<String, IdealTrackContainer> getIdealTrackMap() 
+	{
+		return idealTrackMap;
+	}
+	
+	
+	/**
+	 * Computes a point on the ideal line between previous and current 
+	 * ideal point with distance "MAX_DISTANCE_BETWEEN_TWO_IDEAL_POINTS"
+	 * from previous ideal point towards current ideal point.
+	 * 
+	 * @param previousIdealPoint
+	 * 			Previous ideal point. The new point will have the distance
+	 * 			specified in "MAX_DISTANCE_BETWEEN_TWO_IDEAL_POINTS" from
+	 * 			this point.
+	 * 
+	 * @param currentIdealPoint
+	 * 			Current ideal point.
+	 * 
+	 * @return
+	 * 			New point on ideal line (between previousIdealPoint and 
+	 * 			currentIdealPoint) with distance MAX_DISTANCE_BETWEEN_TWO_IDEAL_POINTS
+	 * 			from previousIdealPoint.
+	 */
+	private Vector2f createIdealPoint(Vector2f previousIdealPoint,	Vector2f currentIdealPoint)
+	{
+		// difference in x- and y-coordinates between previous and current ideal point
+		float diffX = currentIdealPoint.x - previousIdealPoint.x;
+		float diffY = currentIdealPoint.y - previousIdealPoint.y;
+		
+		// square distance and difference values for lambda computation
+		float distanceSquare = FastMath.sqr(MAX_DISTANCE_BETWEEN_TWO_IDEAL_POINTS);
+		float diffXSquare = FastMath.sqr(diffX);
+		float diffYSquare = FastMath.sqr(diffY);
+		
+		// lambda is the factor (between 0 and 1) indicating the new point's position 
+		// between previous and current ideal point:
+		// lambda = 0   --> new point has same position as previous ideal point
+		// lambda = 0.5 --> new point in the middle between previous and current ideal point
+		// lambda = 1   --> new point has same position as current ideal point
+		float lambda = FastMath.sqrt(distanceSquare/(diffXSquare + diffYSquare));
+		
+		// compute new point's x- and y-coordinates from the previous ideal point's coordinates
+		Vector2f newIdealPoint = new Vector2f();
+		newIdealPoint.x = lambda * diffX + previousIdealPoint.x;
+		newIdealPoint.y = lambda * diffY + previousIdealPoint.y;
+		
+		return newIdealPoint;
 	}
 	
 	
@@ -417,16 +521,20 @@ public class ScenarioLoader
 	 * successful, the global variable "isSet_&lt;name&gt;" will be set to true.
 	 */
 	public <T> T getCarProperty(CarProperty carProperty, T defaultValue)
-	{		
+	{
 		try {
-			
 			Class<T> cast = (Class<T>) defaultValue.getClass();
-			return (T) dtData.getValue(Layer.SCENARIO, carProperty.getXPathQuery(), cast);
+			T returnValue = (T) dtData.getValue(Layer.SCENARIO, carProperty.getXPathQuery(), cast);
+			
+			if(returnValue != null)
+				return returnValue;
+			else
+				return defaultValue;
 			
 		} catch (Exception e2) {
 			dtData.reportInvalidValueError(carProperty.toString(), dtData.getScenarioPath());
 		}
-		
+
 		return (T) defaultValue;
 	}
 	

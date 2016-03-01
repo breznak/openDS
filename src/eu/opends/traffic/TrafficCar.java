@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2014 Rafael Math
+*  Copyright (C) 2015 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -22,16 +22,20 @@ import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
+import com.jme3.asset.TextureKey;
+import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.FastMath;
 import com.jme3.math.Quaternion;
+import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial.CullHint;
 import com.jme3.scene.shape.Box;
 import com.jme3.scene.shape.Sphere;
+import com.jme3.texture.Texture;
 
 import eu.opends.car.Car;
 import eu.opends.car.LightTexturesContainer.TurnSignalState;
@@ -39,6 +43,7 @@ import eu.opends.environment.TrafficLight;
 import eu.opends.environment.TrafficLightCenter;
 import eu.opends.environment.TrafficLight.TrafficLightState;
 import eu.opends.main.Simulator;
+import eu.opends.tools.Util;
 
 /**
  * 
@@ -47,12 +52,13 @@ import eu.opends.main.Simulator;
 public class TrafficCar extends Car
 {
 	private String name;
-	private Geometry frontGeometry;
-	private Geometry centerGeometry;
 	private FollowBox followBox;
-	private float minForwardSafetyDistance = 7;
+	private float minForwardSafetyDistance = 8;
 	private float minLateralSafetyDistance = 2;
+	private boolean useSpeedDependentForwardSafetyDistance = true;
 	private float overwriteSpeed = -1;
+	private Material brickMaterial;
+	private boolean loseCargo = false;
 
 	
 	public TrafficCar(Simulator sim, TrafficCarData trafficCarData)
@@ -86,8 +92,7 @@ public class TrafficCar extends Car
 		modelPath = trafficCarData.getModelPath();
 		
 		init();
-		
-		setupReferencePoints();
+
 		
 		/*
 		//---------------------------------
@@ -104,6 +109,13 @@ public class TrafficCar extends Car
 		*/
 		
 		followBox = new FollowBox(sim, this, trafficCarData.getFollowBoxSettings());
+		
+		// cargo
+		brickMaterial = new Material(sim.getAssetManager(), "Common/MatDefs/Misc/Unshaded.j3md");
+	    TextureKey key = new TextureKey("Textures/Misc/rock.png");
+	    key.setGenerateMips(true);
+	    Texture tex = sim.getAssetManager().loadTexture(key);
+	    brickMaterial.setTexture("ColorMap", tex);
 	}
 	
 	
@@ -113,15 +125,21 @@ public class TrafficCar extends Car
 	}
 	
 	
-	public void setMinForwardSafetyDistance(float distance) 
+	public void setMinForwardSafetyDistance(float distance)
 	{
 		minForwardSafetyDistance = distance;
 	}
 	
 	
-	public void setMinLateralSafetyDistance(float distance) 
+	public void setMinLateralSafetyDistance(float distance)
 	{
 		minLateralSafetyDistance = distance;
+	}
+	
+	
+	public void useSpeedDependentForwardSafetyDistance(boolean use)
+	{
+		useSpeedDependentForwardSafetyDistance = use;
 	}
 	
 	
@@ -139,36 +157,14 @@ public class TrafficCar extends Car
 	{
 		followBox.setToWayPoint(index);
 	}
-	
-	
-	private void setupReferencePoints() 
+
+
+	public void loseCargo()
 	{
-		// add node representing position of front box
-		Box frontBox = new Box(0.01f, 0.01f, 0.01f);
-		frontGeometry = new Geometry("frontBox", frontBox);
-        frontGeometry.setLocalTranslation(0, 0, -1);
-		Material frontMaterial = new Material(sim.getAssetManager(), "Common/MatDefs/Misc/Unshaded.j3md");
-		frontMaterial.setColor("Color", ColorRGBA.Red);
-		frontGeometry.setMaterial(frontMaterial);
-		Node frontNode = new Node();
-		frontNode.attachChild(frontGeometry);
-		frontNode.setCullHint(CullHint.Always);
-		getCarNode().attachChild(frontNode);
-		
-		// add node representing position of center box
-		Box centerBox = new Box(0.01f, 0.01f, 0.01f);
-		centerGeometry = new Geometry("centerBox", centerBox);
-		centerGeometry.setLocalTranslation(0, 0, 0);
-		Material centerMaterial = new Material(sim.getAssetManager(), "Common/MatDefs/Misc/Unshaded.j3md");
-		centerMaterial.setColor("Color", ColorRGBA.Green);
-		centerGeometry.setMaterial(centerMaterial);
-		Node centerNode = new Node();
-		centerNode.attachChild(centerGeometry);
-		centerNode.setCullHint(CullHint.Always);
-		getCarNode().attachChild(centerNode);
+		loseCargo = true;
 	}
-
-
+	
+	
 	public void update(ArrayList<TrafficCar> vehicleList) 
 	{
 		if(!sim.isPause())
@@ -187,9 +183,56 @@ public class TrafficCar extends Car
 		// update movement of follow box according to vehicle's position
 		Vector3f vehicleCenterPos = centerGeometry.getWorldTranslation();
 		followBox.update(vehicleCenterPos);
+		
+		if(loseCargo)
+			dropObjects();
+		
+		lightTexturesContainer.update();
 	}
 	
 	
+	private int brickCounter = 0;
+	private Vector3f previousBrickPos = new Vector3f(0,0,0);
+	private void dropObjects() 
+	{
+		//TODO get from scenario.xml
+	    float brickLength = 0.30f;
+	    float brickWidth  = 0.50f;
+	    float brickHeight = 0.20f;
+	    int numberOfBricks = 20;
+	    float distanceBetweenTwoBricks = 0.2f;
+	    float brickMass = 20f;
+	    Vector3f orificeOffset = new Vector3f(0, 2.8f, 6);
+	    
+	    
+	    Vector3f currentBrickPos = getPosition().add(orificeOffset);
+		if(previousBrickPos.distance(currentBrickPos) > distanceBetweenTwoBricks)
+		{
+		    Box box = new Box(brickLength, brickHeight, brickWidth);
+	        box.scaleTextureCoordinates(new Vector2f(1f, 0.5f));
+	        Geometry brick_geo = new Geometry("brick_" + brickCounter, box);
+	        brick_geo.setMaterial(brickMaterial);
+	        brick_geo.setLocalTranslation(currentBrickPos);
+	        sim.getSceneNode().attachChild(brick_geo);
+
+	        RigidBodyControl brick_phy = new RigidBodyControl(brickMass);
+	        brick_geo.addControl(brick_phy);
+	        int lateralDirection = (brickCounter % 3) - 1;
+	        brick_phy.setLinearVelocity(new Vector3f(lateralDirection, -5, 0));
+	        sim.getBulletAppState().getPhysicsSpace().add(brick_phy);
+
+	        brickCounter++;
+	        previousBrickPos = currentBrickPos;
+	        
+			if(brickCounter > numberOfBricks)
+			{
+				loseCargo = false;
+				brickCounter = 0;
+			}
+		}
+	}
+
+
 	private void steerTowardsPosition(Vector3f wayPoint) 
 	{
 		// get relative position of way point --> steering direction
@@ -200,14 +243,16 @@ public class TrafficCar extends Car
 		
 		// get angle between driving direction and way point direction --> steering intensity
 		// only consider 2D space (projection of WPs to xz-plane)
-		float steeringAngle = getAngleBetweenDirections(frontGeometry.getWorldTranslation(), wayPoint, true);
+		Vector3f carFrontPos = frontGeometry.getWorldTranslation();
+		Vector3f carCenterPos = centerGeometry.getWorldTranslation();
+		float steeringAngle = Util.getAngleBetweenPoints(carFrontPos, carCenterPos, wayPoint, true);
 		
 		// compute steering intensity in percent
-		//  0  degree =   0%
-		//  45 degree =  50%
-		//  90 degree = 100%
-		// >90 degree = 100%
-		float steeringIntensity = Math.max(Math.min(2*steeringAngle/FastMath.PI,1f),0f);
+		//  0    degree =   0%
+		//  22,5 degree =  50%
+		//  45   degree = 100%
+		// >45   degree = 100%
+		float steeringIntensity = Math.max(Math.min(4*steeringAngle/FastMath.PI,1f),0f);
 		
 		// apply steering instruction
 		steer(steeringDirection*steeringIntensity);
@@ -249,29 +294,7 @@ public class TrafficCar extends Car
 			return 0;
 		}
 	}
-	
 
-	private float getAngleBetweenDirections(Vector3f position1, Vector3f position2, boolean is2DSpace) 
-	{
-		// get vehicle's center
-		Vector3f carCenterPos = centerGeometry.getWorldTranslation();
-		
-		// vector pointing from vehicle's center towards position 1
-		Vector3f frontLine = position1.subtract(carCenterPos);
-		if(is2DSpace)
-			frontLine.setY(0);
-		frontLine.normalizeLocal();
-		
-		// vector pointing from vehicle's center towards position 2
-		Vector3f wayPointLine = position2.subtract(carCenterPos);
-		if(is2DSpace)
-			wayPointLine.setY(0);
-		wayPointLine.normalizeLocal();
-		
-		// angle between both vectors
-		return frontLine.angleBetween(wayPointLine);
-	}
-	
 	
 	private void updateSpeed(ArrayList<TrafficCar> vehicleList) 
 	{
@@ -294,8 +317,8 @@ public class TrafficCar extends Car
 		if(currentSpeed < targetSpeed)
 		{
 			// too slow --> accelerate
-			setGasPedalIntensity(-1);
-			setBrakePedalPressIntensity(0);
+			setAcceleratorPedalIntensity(-1);
+			setBrakePedalIntensity(0);
 			//System.out.println("gas");
 			//System.out.print(" *** gas");
 		}
@@ -312,16 +335,17 @@ public class TrafficCar extends Car
 			// formerly use
 			//brakeIntensity = 1.0f;
 			
-			setBrakePedalPressIntensity(brakeIntensity);
-			setGasPedalIntensity(0);
+			setBrakePedalIntensity(brakeIntensity);
+			setAcceleratorPedalIntensity(0);
+			
 			//System.out.println("brake: " + brakeIntensity);
 			//System.out.print(" *** brake");
 		}
 		else
 		{
 			// else release pedals
-			setGasPedalIntensity(0);
-			setBrakePedalPressIntensity(0);
+			setAcceleratorPedalIntensity(0);
+			setBrakePedalIntensity(0);
 			//System.out.print(" *** free");
 		}
 		
@@ -329,13 +353,13 @@ public class TrafficCar extends Car
 		
 		// accelerate
 		if(engineOn)
-			carControl.accelerate(gasPedalPressIntensity * accelerationForce);
+			carControl.accelerate(acceleratorPedalIntensity * accelerationForce);
 		else
 			carControl.accelerate(0);
 		//System.out.print(" *** " + gasPedalPressIntensity * accelerationForce);
 		
 		// brake	
-		float appliedBrakeForce = brakePedalPressIntensity * maxBrakeForce;
+		float appliedBrakeForce = brakePedalIntensity * maxBrakeForce;
 		float currentFriction = 0.2f * maxFreeWheelBrakeForce;
 		carControl.brake(appliedBrakeForce + currentFriction);
 		
@@ -407,7 +431,9 @@ public class TrafficCar extends Car
 		
 		// angle between driving direction of traffic car and direction towards obstacle
 		// (consider 3D space, because obstacle could be located on a bridge above traffic car)
-		float angle = getAngleBetweenDirections(frontGeometry.getWorldTranslation(), obstaclePos, false);
+		Vector3f carFrontPos = frontGeometry.getWorldTranslation();
+		Vector3f carCenterPos = centerGeometry.getWorldTranslation();
+		float angle = Util.getAngleBetweenPoints(carFrontPos, carCenterPos, obstaclePos, false);
 		if(belowSafetyDistance(angle, distanceToObstacle))
 			return true;
 
@@ -417,7 +443,7 @@ public class TrafficCar extends Car
 		{
 			// angle between direction towards next WP and direction towards obstacle
 			// (consider 3D space, because obstacle could be located on a bridge above traffic car)
-			angle = getAngleBetweenDirections(nextWP.getPosition(), obstaclePos, false);
+			angle = Util.getAngleBetweenPoints(nextWP.getPosition(), carCenterPos, obstaclePos, false);
 			if(belowSafetyDistance(angle, distanceToObstacle))
 				return true;
 		}
@@ -433,9 +459,13 @@ public class TrafficCar extends Car
 		//if(name.equals("car1"))
 		//	System.out.println(lateralDistance + " *** " + forwardDistance);
 		
-		// TODO
+		float speedDependentForwardSafetyDistance = 0;
+		
+		if(useSpeedDependentForwardSafetyDistance)
+			speedDependentForwardSafetyDistance = 0.5f * getCurrentSpeedKmh();
+		
 		if((lateralDistance < minLateralSafetyDistance) && (forwardDistance > 0) && 
-				(forwardDistance < /*Math.max(0.5f * getCurrentSpeedKmh(),*/ minForwardSafetyDistance/*)*/))
+				(forwardDistance < Math.max(speedDependentForwardSafetyDistance , minForwardSafetyDistance)))
 		{
 			return true;
 		}

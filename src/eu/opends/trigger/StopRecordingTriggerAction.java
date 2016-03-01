@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2014 Rafael Math
+*  Copyright (C) 2015 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -53,7 +53,7 @@ public class StopRecordingTriggerAction extends TriggerAction
 					
 					// print time elapsed since start trigger was hit to screen 
 					String timestamp = dataWriter.getElapsedTime();
-					PanelCenter.getMessageBox().addMessage(timestamp, 0);
+					PanelCenter.getMessageBox().addMessage(timestamp, 3);
 				}
 			}
 			

@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2014 Rafael Math
+*  Copyright (C) 2015 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -124,6 +124,8 @@ public class MultiDriverClient extends Thread
 	@Override
 	public void run() 
 	{
+		String shutDownMessage = "Connection to multi driver server closed";
+		
 		// when loop is left, connection will be closed
 		// loop will be left when requested or error occurred
 		while(!stoprequested && !errorOccurred)
@@ -146,7 +148,13 @@ public class MultiDriverClient extends Thread
 			} catch (SocketException e) {
 				
 				// will be thrown if e.g. server was shut down
-				System.err.println("Socket error: Connection to multi driver server has to be closed");
+				shutDownMessage = "Multi driver server: connection closed by server";
+				errorOccurred = true;
+				
+			} catch (StringIndexOutOfBoundsException e) {
+				
+				// will be thrown if e.g. "stop server" button has been clicked
+				shutDownMessage = "Multi driver server: connection closed by server";
 				errorOccurred = true;
 				
 			} catch (SocketTimeoutException e) {
@@ -165,7 +173,7 @@ public class MultiDriverClient extends Thread
 				printWriter.close();
 				socket.close();
 					
-				System.out.println("Connection to multi driver server closed");
+				System.out.println(shutDownMessage);
 			}
 		} catch (Exception ex) {
 			System.err.println("Could not close connection to multi driver server");

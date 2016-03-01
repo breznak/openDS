@@ -26,12 +26,22 @@
 		<sendPosOriAsOneString>false</sendPosOriAsOneString>
 	</externalVisualization>
 	
+	<!-- 
 	<CANInterface>
 		<enableConnection>false</enableConnection>
 		<ip>192.168.0.2</ip>
 		<port>4711</port>
 		<updateRate>20</updateRate>
 		<maxSteeringAngle>180</maxSteeringAngle>
+	</CANInterface>
+	-->
+	
+	<CANInterface>
+		<enableConnection>false</enableConnection>
+		<ip>127.0.0.1</ip>
+		<port>4711</port>
+		<updateRate>60</updateRate>
+		<maxSteeringAngle>1</maxSteeringAngle>
 	</CANInterface>
 	
 	<multiDriver>
@@ -57,7 +67,7 @@
 	
 	<controllers>
 		<joystick>
-			<controllerID>0</controllerID>
+			<controllerID>1</controllerID>
 			<steeringAxis>3</steeringAxis>
 			<invertSteeringAxis>false</invertSteeringAxis>
 			<pedalAxis>4</pedalAxis>

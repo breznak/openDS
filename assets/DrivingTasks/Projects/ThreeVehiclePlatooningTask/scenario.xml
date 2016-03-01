@@ -5,9 +5,9 @@
         
         <environment>
         	<weather>
-                <snowingPercentage>0</snowingPercentage>
-        		<rainingPercentage>0</rainingPercentage>
-        		<fogPercentage>0</fogPercentage>
+                <snowingPercentage>-1</snowingPercentage>
+        		<rainingPercentage>-1</rainingPercentage>
+        		<fogPercentage>-1</fogPercentage>
         	</weather>
         </environment>
 
@@ -53,9 +53,18 @@
         			<minSpeed>0</minSpeed>
 					<maxSpeed>180</maxSpeed>
 					<acceleration>5.0</acceleration>
+					<displacement>1800</displacement>
 					<minRPM>750</minRPM>
 					<maxRPM>7500</maxRPM>
         		</engine>
+        		<cruiseControl>
+        			<acc>true</acc>
+        			<safetyDistance>
+        				<lateral>20</lateral>
+        				<forward>5</forward>
+    				</safetyDistance>
+    				<emergencyBrakeDistance>20</emergencyBrakeDistance>
+        		</cruiseControl>
         		<transmission>
         			<automatic>true</automatic>
         			<reverse>3.182</reverse>

@@ -40,7 +40,7 @@
             <shadowMode>Off</shadowMode>
         </model>
 		
-		<model id="driverCar" key="Models/Cars/drivingCars/CarRed/Car.scene">
+		<model id="driverCar" key="Models/Cars/drivingCars/CitroenC4/Car.j3o">
 			<mass>800</mass>
 			<visible>true</visible>
 			<collisionShape>meshShape</collisionShape>

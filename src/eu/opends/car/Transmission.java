@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2014 Rafael Math
+*  Copyright (C) 2015 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -33,7 +33,7 @@ import eu.opends.tools.PanelCenter;
 public class Transmission 
 {
 	// for speed percentage computation
-	private static final float speedAt100PercentMarker = 140f;
+	private static final float speedAt100PercentMarker = 140f; //FIXME 140f;  --> 80f for trucks
 	
 	// gears with transmission values
 	private static int numberOfGears;

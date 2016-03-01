@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2014 Rafael Math
+*  Copyright (C) 2015 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -19,7 +19,7 @@
 package eu.opends.input;
 
 import com.jme3.input.controls.ActionListener;
-import com.jme3.math.Vector3f;
+//import com.jme3.math.Vector3f;
 
 import eu.opends.audio.AudioCenter;
 import eu.opends.camera.CameraFactory;
@@ -28,6 +28,7 @@ import eu.opends.canbus.CANClient;
 import eu.opends.car.Car;
 import eu.opends.car.SteeringCar;
 import eu.opends.car.LightTexturesContainer.TurnSignalState;
+import eu.opends.effects.EffectCenter;
 import eu.opends.main.Simulator;
 import eu.opends.niftyGui.MessageBoxGUI;
 import eu.opends.tools.PanelCenter;
@@ -42,7 +43,7 @@ public class SimulatorActionListener implements ActionListener
 	private float steeringValue = 0;
 	private float accelerationValue = 0;
 	private Simulator sim;
-	private Car car;
+	private SteeringCar car;
 	private boolean isWireFrame = false;
 	
 	
@@ -103,7 +104,7 @@ public class SimulatorActionListener implements ActionListener
 			}
 			
 			sim.getThreeVehiclePlatoonTask().reportAcceleratorIntensity(Math.abs(accelerationValue));
-			car.setGasPedalIntensity(accelerationValue);
+			car.setAcceleratorPedalIntensity(accelerationValue);
 		} 
 		
 		else if (binding.equals(KeyMapping.ACCELERATE_BACK.getID())) 
@@ -115,17 +116,25 @@ public class SimulatorActionListener implements ActionListener
 			} else {
 				accelerationValue -= 1;
 			}
-			car.setGasPedalIntensity(accelerationValue);
+			car.setAcceleratorPedalIntensity(accelerationValue);
 		} 
 		
 		else if (binding.equals(KeyMapping.BRAKE.getID())) 
 		{
 			if (value) {
-				car.setBrakePedalPressIntensity(1f);		
+				car.setBrakePedalIntensity(1f);		
 				sim.getThreeVehiclePlatoonTask().reportBrakeIntensity(1f);
+				car.disableCruiseControlByBrake();
 			} else {
-				car.setBrakePedalPressIntensity(0f);
+				car.setBrakePedalIntensity(0f);
 				sim.getThreeVehiclePlatoonTask().reportBrakeIntensity(0f);
+			}
+		}
+
+		else if (binding.equals(KeyMapping.TOGGLE_HANDBRAKE.getID())) 
+		{
+			if (value) {
+				car.applyHandBrake(!car.isHandBrakeApplied());
 			}
 		}
 		
@@ -175,6 +184,34 @@ public class SimulatorActionListener implements ActionListener
 				sim.getThreeVehiclePlatoonTask().reportReactionKeyPressed();
 			}
 		}
+		
+		else if (binding.equals(KeyMapping.REPORT_LEADINGCARBRAKELIGHT_REACTION.getID())) 
+		{
+			if (value) {
+				sim.getThreeVehiclePlatoonTask().reportReaction("LCBL");
+			}
+		}
+		
+		else if (binding.equals(KeyMapping.REPORT_LEADINGCARTURNSIGNAL_REACTION.getID())) 
+		{
+			if (value) {
+				sim.getThreeVehiclePlatoonTask().reportReaction("LCTS");
+			}
+		}
+		
+		else if (binding.equals(KeyMapping.REPORT_FOLLOWERCARTURNSIGNAL_REACTION.getID())) 
+		{
+			if (value) {
+				sim.getThreeVehiclePlatoonTask().reportReaction("FCTS");
+			}
+		}
+
+		else if (binding.equals(KeyMapping.SET_MARKER.getID())) 
+		{
+			if (value) {
+				sim.getThreeVehiclePlatoonTask().setMarker();
+			}
+		}
 
 		else if (binding.equals(KeyMapping.TOGGLE_CAM.getID())) 
 		{
@@ -196,7 +233,7 @@ public class SimulatorActionListener implements ActionListener
 		{
 			if (value)
 			{
-				car.setEnginOn(!car.isEngineOn());
+				car.setEngineOn(!car.isEngineOn());
 			}
 		}
 		
@@ -223,6 +260,7 @@ public class SimulatorActionListener implements ActionListener
 			if (value)
 			{
 				sim.getTrafficLightCenter().toggleMode();
+				//sim.getPhysicalTraffic().getTrafficCar("car1").loseCargo();
 			}
 				
 		}
@@ -241,7 +279,7 @@ public class SimulatorActionListener implements ActionListener
 			if (value)
 			{
 				if (sim.getMyDataWriter() == null) {
-					sim.initializeDataWriter();
+					sim.initializeDataWriter(-1);
 				}
 	
 				if (sim.getMyDataWriter().isDataWriterEnabled() == false) {
@@ -339,7 +377,7 @@ public class SimulatorActionListener implements ActionListener
 		{
 			if (value)
 			{
-				sim.getObjectManipulationCenter().setPosition("RoadworksSign1", new Vector3f(-740,0,-41));
+				//sim.getObjectManipulationCenter().setPosition("RoadworksSign1", new Vector3f(-740,0,-41));
 				car.setToResetPosition(6);
 			}
 		}
@@ -348,7 +386,7 @@ public class SimulatorActionListener implements ActionListener
 		{
 			if (value)
 			{
-				sim.getObjectManipulationCenter().setPosition("RoadworksSign1", new Vector3f(-740,0,-40));
+				//sim.getObjectManipulationCenter().setPosition("RoadworksSign1", new Vector3f(-740,0,-40));
 				car.setToResetPosition(7);
 			}
 		}
@@ -357,7 +395,7 @@ public class SimulatorActionListener implements ActionListener
 		{
 			if (value)
 			{
-				sim.getObjectManipulationCenter().setRotation("RoadworksSign1", new float[]{0,0,0});
+				//sim.getObjectManipulationCenter().setRotation("RoadworksSign1", new float[]{0,0,0});
 				car.setToResetPosition(8);
 			}
 		}
@@ -366,7 +404,7 @@ public class SimulatorActionListener implements ActionListener
 		{
 			if (value)
 			{
-				sim.getObjectManipulationCenter().setRotation("RoadworksSign1", new float[]{0,90,0});
+				//sim.getObjectManipulationCenter().setRotation("RoadworksSign1", new float[]{0,90,0});
 				car.setToResetPosition(9);
 			}
 		}
@@ -413,8 +451,13 @@ public class SimulatorActionListener implements ActionListener
 		
 		else if (binding.equals(KeyMapping.SHUTDOWN.getID())) 
 		{
-			if (value)
-				sim.getShutDownGUI().toggleDialog();
+			if (value) 
+			{
+				if(Simulator.oculusRiftAttached)
+					sim.stop();
+				else
+					sim.getShutDownGUI().toggleDialog();
+			}
 		}
 		
 		else if (binding.equals(KeyMapping.TOGGLE_MIN_SPEED.getID())) 
@@ -521,6 +564,76 @@ public class SimulatorActionListener implements ActionListener
 			if (value)
 			{
 				((SteeringCar)sim.getCar()).getObjectLocator().toggleThingNode();
+			}
+		}
+		
+		else if (binding.equals(KeyMapping.CC_INC5.getID())) 
+		{
+			if (value)
+			{
+				((SteeringCar)sim.getCar()).increaseCruiseControl(5);
+			}
+		}
+		
+		else if (binding.equals(KeyMapping.CC_DEC5.getID())) 
+		{
+			if (value)
+			{
+				((SteeringCar)sim.getCar()).decreaseCruiseControl(5);
+			}
+		}
+		
+		else if (binding.equals(KeyMapping.SNOW_INC5.getID())) 
+		{
+			if (value)
+			{
+				float percentage = EffectCenter.getSnowingPercentage() + 5;
+				EffectCenter.setSnowingPercentage(percentage);
+			}
+		}
+		
+		else if (binding.equals(KeyMapping.SNOW_DEC5.getID())) 
+		{
+			if (value)
+			{
+				float percentage = EffectCenter.getSnowingPercentage() - 5;
+				EffectCenter.setSnowingPercentage(percentage);
+			}
+		}
+		
+		else if (binding.equals(KeyMapping.RAIN_INC5.getID())) 
+		{
+			if (value)
+			{
+				float percentage = EffectCenter.getRainingPercentage() + 5;
+				EffectCenter.setRainingPercentage(percentage);
+			}
+		}
+		
+		else if (binding.equals(KeyMapping.RAIN_DEC5.getID())) 
+		{
+			if (value)
+			{
+				float percentage = EffectCenter.getRainingPercentage() - 5;
+				EffectCenter.setRainingPercentage(percentage);
+			}
+		}
+		
+		else if (binding.equals(KeyMapping.FOG_INC5.getID())) 
+		{
+			if (value)
+			{
+				float percentage = EffectCenter.getFogPercentage() + 5;
+				EffectCenter.setFogPercentage(percentage);
+			}
+		}
+		
+		else if (binding.equals(KeyMapping.FOG_DEC5.getID())) 
+		{
+			if (value)
+			{
+				float percentage = EffectCenter.getFogPercentage() - 5;
+				EffectCenter.setFogPercentage(percentage);
 			}
 		}
 	}

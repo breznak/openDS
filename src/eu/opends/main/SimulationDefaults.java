@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2014 Rafael Math
+*  Copyright (C) 2015 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -30,6 +30,8 @@ public class SimulationDefaults
 	public static String driverName = "";
 	public static String drivingTaskFileName = "assets/DrivingTasks/Projects/Stadtmitte22/stadtmitte22.xml";
 	
+	public static Boolean General_pauseAfterStartup = false;
+	
 	// currently for Microsoft Windows users only
 	public static boolean startSimTdHmiGui = false;
 	public static boolean sendDataToHmi = false;
@@ -44,6 +46,10 @@ public class SimulationDefaults
 	public static Boolean KnowledgeManager_enableConnection = true;
 	public static String KnowledgeManager_ip = "127.0.0.1";
 	public static Integer KnowledgeManager_port = 55432;
+	
+	public static Boolean Simphynity_enableConnection = false;
+	public static String Simphynity_ip = "127.0.0.1";
+	public static Integer Simphynity_port = 20777;
 	
 	public static boolean CANInterface_enableConnection = false;
 	public static String CANInterface_ip = "192.168.0.2";
@@ -69,6 +75,8 @@ public class SimulationDefaults
 	public static boolean Eyetracker_warningFrame_show = false;
 	public static int Eyetracker_warningFrame_threshold = 3000;
 	public static int Eyetracker_warningFrame_flashingInterval = 500;
+	
+	public static String OculusRift_isAttached = "auto";
 	
 	public static boolean vsimrtiServer_startServer = false;
 	public static int vsimrtiServer_port = 1234;
@@ -99,5 +107,12 @@ public class SimulationDefaults
 	public static Vector3f initialCarPosition = new Vector3f(-36,0,0);
 	public static Quaternion initialCarRotation = new Quaternion(0, 0, 0, 1);
 	public static String skyTexture = "Textures/Sky/Bright/mountain.dds";
+	
+	public static Boolean cruiseControl_acc = false;
+	public static Float cruiseControl_safetyDistance_lateral = 20f;
+	public static Float cruiseControl_safetyDistance_forward = 5f;
+	public static Float cruiseControl_emergencyBrakeDistance = 20f;
+	public static Boolean cruiseControl_suppressDeactivationByBrake = false;
+	public static Float cruiseControl_initialSpeed = 0f;
 
 }

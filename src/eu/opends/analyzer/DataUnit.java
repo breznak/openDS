@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2014 Rafael Math
+*  Copyright (C) 2015 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -86,12 +86,6 @@ public class DataUnit implements Serializable
 	/**
 	 * The default constructor used in analyzer.
 	 * 
-	 * @param xpos
-	 *            The position of the car on the x axis.
-	 * @param ypos
-	 *            The position of the car on the y axis.
-	 * @param zpos
-	 *            The position of the car on the z axis.
 	 * @param speed
 	 *            The current speed of the car in kilometers per hour.
 	 * @param date

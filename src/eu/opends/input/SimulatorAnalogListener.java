@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2014 Rafael Math
+*  Copyright (C) 2015 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -64,7 +64,7 @@ public class SimulatorAnalogListener implements AnalogListener
 				simulator.getCar().unsteer();
 			else*/
 				simulator.getCar().steer(steeringValue/2.3f);
-				System.out.println("left: " + Math.round((steeringValue/2.3f)*100000)/1000f);
+				//System.out.println("left: " + Math.round((steeringValue/2.3f)*100000)/1000f);
 		} 
 		
 		else if (binding.equals("Joy Right")) 
@@ -80,7 +80,7 @@ public class SimulatorAnalogListener implements AnalogListener
 				simulator.getCar().unsteer();
 			else*/
 				simulator.getCar().steer(steeringValue/2.3f);
-				System.out.println("right: " + Math.round((steeringValue/2.3f)*100000)/1000f);
+				//System.out.println("right: " + Math.round((steeringValue/2.3f)*100000)/1000f);
 		} 
 		
 		else if (binding.equals("Joy Down")) 
@@ -98,7 +98,7 @@ public class SimulatorAnalogListener implements AnalogListener
 				simulator.getCar().resetPedals();
 			}
 			else
-				simulator.getCar().setGasPedalIntensity(accelerationValue);
+				simulator.getCar().setAcceleratorPedalIntensity(accelerationValue);
 			
 			simulator.getThreeVehiclePlatoonTask().reportAcceleratorIntensity(Math.abs(accelerationValue));
 		} 
@@ -117,7 +117,8 @@ public class SimulatorAnalogListener implements AnalogListener
 				simulator.getCar().resetPedals();
 			else
 			{
-				simulator.getCar().setBrakePedalPressIntensity(brakeValue);
+				simulator.getCar().disableCruiseControlByBrake();
+				simulator.getCar().setBrakePedalIntensity(brakeValue);
 				simulator.getThreeVehiclePlatoonTask().reportBrakeIntensity(brakeValue);
 			} 
 		}

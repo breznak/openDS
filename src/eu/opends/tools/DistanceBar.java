@@ -1,3 +1,21 @@
+/*
+*  This file is part of OpenDS (Open Source Driving Simulator).
+*  Copyright (C) 2015 Rafael Math
+*
+*  OpenDS is free software: you can redistribute it and/or modify
+*  it under the terms of the GNU General Public License as published by
+*  the Free Software Foundation, either version 3 of the License, or
+*  (at your option) any later version.
+*
+*  OpenDS is distributed in the hope that it will be useful,
+*  but WITHOUT ANY WARRANTY; without even the implied warranty of
+*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*  GNU General Public License for more details.
+*
+*  You should have received a copy of the GNU General Public License
+*  along with OpenDS. If not, see <http://www.gnu.org/licenses/>.
+*/
+
 package eu.opends.tools;
 
 import java.text.DecimalFormat;
@@ -17,11 +35,13 @@ import eu.opends.basics.SimulationBasics;
 public class DistanceBar 
 {
 	// default extent, position and rotation
+	private ArrayList<DistanceBarSegment> segmentsList = new ArrayList<DistanceBarSegment>();
 	private float distanceBarWidth = 20;
 	private float distanceBarHeight = 200;
 	private float distanceBarLeft = 10;
 	private float distanceBarBottom = 10;
 	private float distanceBarRotation = 0;
+	private boolean showText = false;
 
 	// dependent variables
 	private float globalMinDistance = Float.MAX_VALUE;
@@ -45,15 +65,21 @@ public class DistanceBar
 	private BitmapText distanceText;
 	
 	
-	public DistanceBar(SimulationBasics sim, ArrayList<DistanceBarSegment> segmentsList, 
+	public DistanceBar(ArrayList<DistanceBarSegment> segmentsList, 
 			float width, float height, float left, float bottom, float rotation, boolean showText)
 	{
+		this.segmentsList = segmentsList;
 		this.distanceBarWidth = width;
 		this.distanceBarHeight = height;
 		this.distanceBarLeft = left;
 		this.distanceBarBottom = bottom;
 		this.distanceBarRotation = rotation;
-		
+		this.showText = showText;
+	}
+	
+	
+	public void init(SimulationBasics sim)
+	{
 		distanceBarNode = new Node("distanceBar");
 		//ArrayList<DistanceBarSegment> segmentsList = initSegments();		
 				
@@ -172,5 +198,12 @@ public class DistanceBar
 		}
 		
 		return globalMaxDistance - globalMinDistance;
+	}
+	
+	
+	public String toString()
+	{
+
+		return "[" + distanceBarWidth + ", " +  distanceBarHeight + ", " + distanceBarLeft + ", " + distanceBarBottom + ", " + distanceBarRotation + ", " + showText + ", " + segmentsList.toString() + "]";
 	}
 }

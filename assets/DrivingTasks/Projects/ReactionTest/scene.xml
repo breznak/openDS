@@ -19,7 +19,7 @@
       </sounds>
 	
 	<models>
-		<model id="grass" key="Scenes/land_plain_50x5/land_plain.scene" ref="">
+		<model id="grass" key="Scenes/land_plain_50x5/land_plain.j3o" ref="">
                   <mass>0</mass>
                   <visible>true</visible>
                   <collisionShape>meshShape</collisionShape>
@@ -45,7 +45,7 @@
                         </vector>
                   </translation>
             </model>
-    <model id="Ferrari" key="Models/Cars/drivingCars/Ferrari/Car.scene" ref="">
+    <model id="Ferrari" key="Models/Cars/drivingCars/CitroenC4/Car.j3o" ref="">
                   <mass>800</mass>
                   <visible>true</visible>
                   <collisionShape>meshShape</collisionShape>

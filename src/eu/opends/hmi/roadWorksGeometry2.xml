@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<roadworksGeometry>
+	<tile id="0" type="straight" length="40.0" origin="1" destination="1" annotation="" trafficFlow="1" />
+	<tile id="0" type="straight" length="40.0" origin="2" destination="2" annotation="" trafficFlow="2" />
+	<tile id="1" type="straight" length="20.0" origin="1" destination="1" annotation="" trafficFlow="3" />
+	<tile id="1" type="panning" length="20.0" origin="2" destination="1" annotation="" trafficFlow="3" />
+	<tile id="2" type="straight" length="625.0" origin="1" destination="1" annotation="" trafficFlow="3" />
+	<tile id="3" type="straight" length="15.0" origin="1" destination="1" annotation="" trafficFlow="3" />
+	<tile id="3" type="panning" length="15.0" origin="1" destination="2" annotation="" trafficFlow="3" />
+	<tile id="4" type="straight" length="40.0" origin="1" destination="1" annotation="" trafficFlow="1" />
+	<tile id="4" type="straight" length="40.0" origin="2" destination="2" annotation="" trafficFlow="1" />
+</roadworksGeometry>

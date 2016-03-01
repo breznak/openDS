@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2014 Rafael Math
+*  Copyright (C) 2015 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -27,6 +27,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import com.jme3.material.RenderState.FaceCullMode;
+import com.jme3.math.Vector3f;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
@@ -60,11 +61,11 @@ public class Util
     
     public static Node findNode(Spatial spatial, String name) 
     {
-        if (spatial instanceof Node) 
+        if (spatial != null && spatial instanceof Node) 
         {
             Node node = (Node) spatial;
             
-            if (node.getName().startsWith(name))
+            if (node.getName() != null && node.getName().startsWith(name))
             	return (Node) spatial;
             
             for (int i = 0; i < node.getQuantity(); i++) 
@@ -236,6 +237,43 @@ public class Util
 		} catch (IOException e) {
 			return false;
 		}
+	}
+	
+	
+	/**
+	 * Computes the angle between three given points A, B, and C at point B. 
+	 * 
+	 * @param pointA
+	 * 		3-dimensional point A
+	 * 
+	 * @param pointB
+	 * 		3-dimensional point B where angle is measured
+	 * 
+	 * @param pointC
+	 * 		3-dimensional point C
+	 * 
+	 * @param is2DSpace
+	 * 		Compute angle in 2D-space (y=0 in points A, B, C)
+	 * 
+	 * @return
+	 * 		Angle between vector BA and vector BC
+	 */
+	public static float getAngleBetweenPoints(Vector3f pointA, Vector3f pointB, Vector3f pointC, boolean is2DSpace) 
+	{
+		// vector pointing from vehicle's center towards vehicle's front
+		Vector3f vectorBA = pointA.subtract(pointB);
+		if(is2DSpace)
+			vectorBA.setY(0);
+		vectorBA.normalizeLocal();
+		
+		// vector pointing from vehicle's center towards obstacle
+		Vector3f vectorBC = pointC.subtract(pointB);
+		if(is2DSpace)
+			vectorBC.setY(0);
+		vectorBC.normalizeLocal();
+		
+		// angle between both vectors
+		return vectorBA.angleBetween(vectorBC);
 	}
 
     

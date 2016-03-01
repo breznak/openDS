@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2014 Rafael Math
+*  Copyright (C) 2015 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -111,7 +111,7 @@ public class FollowBox
 	    
 	    // get start way point
 	    int startWayPointIndex = settings.getStartWayPointIndex();
-	    setToWayPoint(startWayPointIndex);
+	    setToWayPoint(startWayPointIndex);	    
         
         // set start speed
 	    float initialSpeed = waypointList.get(startWayPointIndex).getSpeed();
@@ -133,7 +133,7 @@ public class FollowBox
         motionControl.play(); // already contained in update method
 	}
 
-	
+	int counter = 0;
 	public void update(Vector3f vehiclePos)
 	{
 		// pause movement of follower box if vehicle's distance
@@ -147,11 +147,15 @@ public class FollowBox
 			motionControl.play();
 		*/
 		
-		if(sim.isPause())
+		// skip "else"-part during initialization (first 3 update loops)
+		if(sim.isPause() || counter<3)
+		{
 			motionControl.setSpeed(0f);
+			counter++;
+		}
 		else
 		{
-			float minDistance = 0.0f;
+			float minDistance = 1.0f;
 			float currentDistance = getCurrentDistance(vehiclePos);
 			
 			//if(vehicle.getName().equals("car1"))
@@ -163,7 +167,7 @@ public class FollowBox
 			//maxDistance --> 0
 			//minDistance --> 1
 			float factor = 1.0f - ((currentDistance-minDistance)/(maxDistance-minDistance));
-			motionControl.setSpeed(0.5f * factor);
+			motionControl.setSpeed(factor);
 		}
 		
 		// if new WP to set vehicle available, wait for NEXT update and set

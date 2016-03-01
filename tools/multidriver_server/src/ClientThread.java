@@ -4,16 +4,17 @@ import java.io.*;
  
 public class ClientThread extends Thread 
 {
-	private MultiDriverServer server;
+	private ServerThread server;
     private Socket socket;
     private PrintWriter output;
     private BufferedReader input;
 	private boolean isRunning;
 	private String id;
 	private boolean removeFromTheadList = false;
+	private boolean close = false;
 
  
-    public ClientThread(MultiDriverServer server, Socket socket) 
+    public ClientThread(ServerThread server, Socket socket) 
     {
     	super("MultiDriver_ClientThread");
     	this.server = server;
@@ -28,7 +29,7 @@ public class ClientThread extends Thread
 	    	input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 	    	isRunning = true;
 	    	
-	        while(true) 
+	        while(!close) 
 	        {	        	
 	        	String message = readMessage();
 	        	
@@ -152,4 +153,10 @@ public class ClientThread extends Thread
 	 	
 	 	return message;		 	
     }
+
+
+	public void closeClientSocket() 
+	{
+		close = true;		
+	}
 }

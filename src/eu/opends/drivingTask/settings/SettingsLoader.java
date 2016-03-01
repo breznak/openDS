@@ -1,7 +1,7 @@
 /*
 
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2014 Rafael Math
+*  Copyright (C) 2015 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -67,7 +67,10 @@ public class SettingsLoader
 		General_numberOfScreens("settings:general/settings:numberOfScreens"),
 		General_angleBetweenAdjacentCameras("settings:general/settings:angleBetweenAdjacentCameras"),
 		General_frameOfView("settings:general/settings:frameOfView"),
+		General_frustumNear("settings:general/settings:frustumNear"),
+		General_frustumFar("settings:general/settings:frustumFar"),
 		General_showStats("settings:general/settings:showStats"),
+		General_pauseAfterStartup("settings:general/settings:pauseAfterStartup"),
 		General_showHood("settings:general/settings:showHood"),
 		General_showAnalogIndicators("settings:general/settings:showAnalogIndicators"),
 		General_showDigitalIndicators("settings:general/settings:showDigitalIndicators"),
@@ -107,6 +110,9 @@ public class SettingsLoader
 		KnowledgeManager_enableConnection("settings:knowledgeManager/settings:enableConnection"),
 		KnowledgeManager_ip("settings:knowledgeManager/settings:ip"),
 		KnowledgeManager_port("settings:knowledgeManager/settings:port"),
+		Simphynity_enableConnection("settings:simphynity/settings:enableConnection"),
+		Simphynity_ip("settings:simphynity/settings:ip"),
+		Simphynity_port("settings:simphynity/settings:port"),
 		CANInterface_enableConnection("settings:CANInterface/settings:enableConnection"),
 		CANInterface_ip("settings:CANInterface/settings:ip"),
 		CANInterface_port("settings:CANInterface/settings:port"),
@@ -149,8 +155,8 @@ public class SettingsLoader
 		Eyetracker_highlightObjects_color("settings:eyetracker/settings:highlightObjects/settings:color"),
 		Eyetracker_warningFrame_show("settings:eyetracker/settings:warningFrame/settings:show"),
 		Eyetracker_warningFrame_threshold("settings:eyetracker/settings:warningFrame/settings:threshold"),
-		Eyetracker_warningFrame_flashingInterval("settings:eyetracker/settings:warningFrame/settings:flashingInterval");
-		
+		Eyetracker_warningFrame_flashingInterval("settings:eyetracker/settings:warningFrame/settings:flashingInterval"),
+		OculusRift_isAttached("settings:oculusRift/settings:isAttached");
 		
 		
 		private String path;

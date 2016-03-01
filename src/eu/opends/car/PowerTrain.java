@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2014 Rafael Math
+*  Copyright (C) 2015 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -24,6 +24,9 @@ import java.util.Iterator;
 
 import com.jme3.math.FastMath;
 
+import eu.opends.basics.SimulationBasics;
+import eu.opends.drivingTask.scenario.ScenarioLoader;
+import eu.opends.drivingTask.scenario.ScenarioLoader.CarProperty;
 import eu.opends.main.Simulator;
 import eu.opends.tools.PanelCenter;
 
@@ -35,10 +38,9 @@ public class PowerTrain
 {
 	private Car car;
 	private ArrayList<FuelConsumption> fuelConsumptionList = new ArrayList<FuelConsumption>();
-	
-	//TODO get values from scenario.xml
-	// displacement volume of the engine (in cm^3)
-	private final float displacementVolumeInCCM = 1800f; 
+		
+	// (default) displacement volume of the engine (in cm^3)
+	private final float defaultDisplacementVolumeInCCM = 1800f;
 	
 	// update fuel panel every 500 ms
 	private final int fuelConsumptionUpdateInterval = 500;
@@ -281,7 +283,11 @@ public class PowerTrain
 	
 	
 	private float getPEngine(float gasPedalPressIntensity)
-	{		
+	{
+		ScenarioLoader scenarioLoader = SimulationBasics.getDrivingTask().getScenarioLoader();
+		float displacementVolumeInCCM = scenarioLoader.getCarProperty(CarProperty.engine_displacement, 
+				defaultDisplacementVolumeInCCM);
+		
 		// rotations per minute in current frame
 		float rotationsPerMinute = car.getTransmission().getRPM();
 		

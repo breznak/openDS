@@ -25,13 +25,19 @@ elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns
         	<xs:element name="knowledgeManager" type="knowledgeManager"
         		maxOccurs="1" minOccurs="0">
         	</xs:element>
+        	<xs:element name="simphynity" type="simphynity" maxOccurs="1" minOccurs="0"></xs:element>
         	<xs:element name="CANInterface" type="CANInterface"
         		maxOccurs="1" minOccurs="0">
         	</xs:element>
         	<xs:element name="multiDriver" type="multiDriver"
         		maxOccurs="1" minOccurs="0">
         	</xs:element>
-        	<xs:element name="eyetracker" type="eyetracker" maxOccurs="1" minOccurs="0"></xs:element>
+        	<xs:element name="eyetracker" type="eyetracker"
+        		maxOccurs="1" minOccurs="0">
+        	</xs:element>
+        	<xs:element name="oculusRift" type="oculusRift"
+        		maxOccurs="1" minOccurs="0">
+        	</xs:element>
         	<xs:element name="vsimrtiServer" type="vsimrtiServer"
         		maxOccurs="1" minOccurs="0">
         	</xs:element>
@@ -70,6 +76,9 @@ elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns
         	<xs:element name="showStats" type="xs:boolean" maxOccurs="1"
         		minOccurs="0">
         	</xs:element>
+        	<xs:element name="pauseAfterStartup" type="xs:boolean"
+        		maxOccurs="1" minOccurs="0">
+        	</xs:element>
         	<xs:element name="showHood" type="xs:boolean" maxOccurs="1"
         		minOccurs="0">
         	</xs:element>
@@ -94,6 +103,8 @@ elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns
         	<xs:element name="frameOfView" type="xs:float" maxOccurs="1"
         		minOccurs="0">
         	</xs:element>
+        	<xs:element name="frustumNear" type="xs:float" maxOccurs="1" minOccurs="0"></xs:element>
+        	<xs:element name="frustumFar" type="xs:float" maxOccurs="1" minOccurs="0"></xs:element>
         	<xs:element name="rearviewMirror" type="mirror"
         		maxOccurs="1" minOccurs="0">
         	</xs:element>
@@ -110,7 +121,9 @@ elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns
         	<xs:element name="outsideCamPosition"
         		type="outsideCamPositionType" maxOccurs="1" minOccurs="0">
         	</xs:element>
-        	<xs:element name="captureVideo" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
+        	<xs:element name="captureVideo" type="xs:string"
+        		maxOccurs="1" minOccurs="0">
+        	</xs:element>
         </xs:all>
     </xs:complexType>
     
@@ -142,7 +155,7 @@ elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns
     		<xs:element name="ip" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
     		<xs:element name="port" type="xs:int" maxOccurs="1" minOccurs="0"></xs:element>
     		<xs:element name="updateRate" type="xs:int" maxOccurs="1" minOccurs="0"></xs:element>
-    		<xs:element name="maxSteeringAngle" type="xs:int" maxOccurs="1" minOccurs="0"></xs:element>
+    		<xs:element name="maxSteeringAngle" type="xs:float" maxOccurs="1" minOccurs="0"></xs:element>
     	</xs:all>
     </xs:complexType>
     
@@ -418,6 +431,30 @@ elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns
     		<xs:element name="threshold" type="xs:int" maxOccurs="1" minOccurs="0">
     		</xs:element>
     		<xs:element name="flashingInterval" type="xs:int" maxOccurs="1" minOccurs="0"></xs:element>
+    	</xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="oculusRift">
+        <xs:all>
+    		<xs:element name="isAttached" maxOccurs="1" minOccurs="0">
+    			<xs:simpleType>
+    				<xs:restriction base="xs:string">
+    					<xs:enumeration value="auto"></xs:enumeration>
+    					<xs:enumeration value="enabled"></xs:enumeration>
+    					<xs:enumeration value="disabled"></xs:enumeration>
+    				</xs:restriction>
+    			</xs:simpleType>
+    		</xs:element>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="simphynity">
+        <xs:all>
+    		<xs:element name="enableConnection" type="xs:boolean" maxOccurs="1" minOccurs="0">
+    		</xs:element>
+    		<xs:element name="ip" type="xs:string" maxOccurs="1" minOccurs="0">
+    		</xs:element>
+    		<xs:element name="port" type="xs:int" maxOccurs="1" minOccurs="0"></xs:element>
     	</xs:all>
     </xs:complexType>
 </xs:schema>

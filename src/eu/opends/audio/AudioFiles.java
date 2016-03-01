@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2014 Rafael Math
+*  Copyright (C) 2015 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -62,6 +62,8 @@ public class AudioFiles
 		addAudioFile("crash", "Sounds/Effects/crash.wav", false, 1f, 1f);
 		addAudioFile("horn", "Sounds/Effects/horn.wav", true, 0.5f, 1f);
 		addAudioFile("potHole", "Sounds/Effects/wheelTouch.wav", false, 0.3f, 1f);
+		
+		addAudioFile("turnSignal", "Sounds/Effects/turnSignal.wav", false, 0.25f, 1.0f);
 		
 		return audioNodeList;
 	}

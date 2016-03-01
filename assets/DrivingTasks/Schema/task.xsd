@@ -7,12 +7,16 @@ elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns
 
     <xs:element name="task">
         <xs:complexType>
-            <xs:choice maxOccurs="1" minOccurs="0">
-                <xs:element name="steeringTask" type="steeringTask" maxOccurs="1" minOccurs="0">
+            <xs:sequence>
+                <xs:choice maxOccurs="1" minOccurs="0">
+                	<xs:element name="steeringTask" type="steeringTask" maxOccurs="1" minOccurs="0">
+                	</xs:element>
+                	<xs:element name="threeVehiclePlatoon" type="threeVehiclePlatoon" maxOccurs="1" minOccurs="0">
+                	</xs:element>
+                </xs:choice>
+                <xs:element name="distanceBars" type="distanceBars" maxOccurs="1" minOccurs="0">
                 </xs:element>
-                <xs:element name="threeVehiclePlatoon" type="threeVehiclePlatoon" maxOccurs="1" minOccurs="0">
-                </xs:element>
-            </xs:choice>
+            </xs:sequence>
         </xs:complexType>
     </xs:element>
     
@@ -193,7 +197,7 @@ elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns
                 type="deviationToleranceType" maxOccurs="1"
                 minOccurs="0">
             </xs:element>
-            <xs:element name="distanceText" type="distanceTextType" maxOccurs="1" minOccurs="0"></xs:element>
+            <xs:element name="distanceIndicator" type="distanceTextType" maxOccurs="1" minOccurs="0"></xs:element>
             <xs:element name="logging" type="loggingType" maxOccurs="1"
                 minOccurs="0">
             </xs:element>
@@ -262,9 +266,10 @@ elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns
     </xs:complexType>
 
     <xs:complexType name="startPositionType">
-        <xs:attribute name="z" type="xs:float"></xs:attribute>
+    	<xs:attribute name="z" type="xs:float"></xs:attribute>
+    	<xs:attribute name="shutDownAfterXSeconds" type="xs:int"></xs:attribute>
     </xs:complexType>
-    
+
     <xs:complexType name="endPositionType">
         <xs:attribute name="z" type="xs:float"></xs:attribute>
         <xs:attribute name="shutDownWhenReached" type="xs:boolean"></xs:attribute>
@@ -283,19 +288,29 @@ elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns
     </xs:complexType>
 
     <xs:complexType name="speedReductionType">
-        <xs:attribute name="targetSpeedRegular" type="xs:float"></xs:attribute>
-        <xs:attribute name="targetSpeedEmergency" type="xs:float"></xs:attribute>
-        <xs:attribute name="minSpeed" type="xs:float"></xs:attribute>
-        <xs:attribute name="duration" type="xs:int"></xs:attribute>
-        <xs:attribute name="minTimeAllConditionsMet" type="xs:int"></xs:attribute>
-        <xs:attribute name="resetOnReaction" type="xs:boolean"></xs:attribute>
+    	<xs:attribute name="targetSpeedMinRegular" type="xs:float"></xs:attribute>
+    	<xs:attribute name="targetSpeedMaxRegular" type="xs:float"></xs:attribute>
+    	<xs:attribute name="targetSpeedMinEmergency" type="xs:float"></xs:attribute>
+    	<xs:attribute name="targetSpeedMaxEmergency" type="xs:float"></xs:attribute>
+    	<xs:attribute name="minSpeed" type="xs:float"></xs:attribute>
+    	<xs:attribute name="duration" type="xs:int"></xs:attribute>
+    	<xs:attribute name="minTimeAllConditionsMet" type="xs:int"></xs:attribute>
+    	<xs:attribute name="resetOnReaction" type="xs:boolean"></xs:attribute>
     </xs:complexType>
 
     <xs:complexType name="distanceTextType">
         <xs:all>
-            <xs:element name="hideAtPosition" type="hideAtPositionType" maxOccurs="1" minOccurs="0"></xs:element>
-            <xs:element name="scale" type="xs:float" maxOccurs="1" minOccurs="0"></xs:element>
-            <xs:element name="position" type="positionType" maxOccurs="1" minOccurs="0"></xs:element>
+        	<xs:element name="hideAtPosition" type="hideAtPositionType"
+        		maxOccurs="1" minOccurs="0">
+        	</xs:element>
+        	<xs:element name="showText" type="positionType"
+        		maxOccurs="1" minOccurs="0">
+        	</xs:element>
+        	<xs:element name="showLongitudinalDistanceBar"
+        		type="showLongitudinalDistanceBar" maxOccurs="1"
+        		minOccurs="0">
+        	</xs:element>
+        	<xs:element name="showLateralDeviationBar" type="showLateralDeviationBar" maxOccurs="1" minOccurs="0"></xs:element>
         </xs:all>
     </xs:complexType>
 
@@ -304,9 +319,78 @@ elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns
     </xs:complexType>
 
     <xs:complexType name="positionType">
-        <xs:attribute name="top" type="xs:int"></xs:attribute>
-        <xs:attribute name="bottom" type="xs:int"></xs:attribute>
-        <xs:attribute name="left" type="xs:int"></xs:attribute>
-        <xs:attribute name="right" type="xs:int"></xs:attribute>
+    	<xs:attribute name="top" type="xs:int"></xs:attribute>
+    	<xs:attribute name="bottom" type="xs:int"></xs:attribute>
+    	<xs:attribute name="left" type="xs:int"></xs:attribute>
+    	<xs:attribute name="right" type="xs:int"></xs:attribute>
+    	<xs:attribute name="scale" type="xs:float"></xs:attribute>
+    </xs:complexType>
+    
+    <xs:complexType name="distanceBars">
+    	<xs:sequence>
+            <xs:element name="distanceBar" type="distanceBar"
+            	maxOccurs="unbounded" minOccurs="0">
+            </xs:element>
+    	</xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="distanceBar">
+        <xs:all>
+        	<xs:element name="width" type="xs:float" maxOccurs="1"
+        		minOccurs="1">
+        	</xs:element>
+        	<xs:element name="height" type="xs:float" maxOccurs="1"
+        		minOccurs="1">
+        	</xs:element>
+        	<xs:element name="left" type="xs:float" maxOccurs="1"
+        		minOccurs="1">
+        	</xs:element>
+        	<xs:element name="bottom" type="xs:float" maxOccurs="1"
+        		minOccurs="1">
+        	</xs:element>
+        	<xs:element name="rotation" type="xs:float" maxOccurs="1"
+        		minOccurs="1">
+        	</xs:element>
+        	<xs:element name="showText" type="xs:boolean" maxOccurs="1"
+        		minOccurs="1">
+        	</xs:element>
+        	<xs:element name="segments" type="segments" maxOccurs="1"
+        		minOccurs="1">
+        	</xs:element>
+        </xs:all>
+
+        <xs:attribute name="id" type="xs:string"></xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="segments">
+    	<xs:sequence>
+    		<xs:element name="segment" type="segment"
+    			maxOccurs="unbounded" minOccurs="1">
+    		</xs:element>
+    	</xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="segment">
+    	<xs:attribute name="name" type="xs:string"></xs:attribute>
+    	<xs:attribute name="type">
+    		<xs:simpleType>
+    			<xs:restriction base="xs:string">
+    				<xs:enumeration value="red"></xs:enumeration>
+    				<xs:enumeration value="green"></xs:enumeration>
+    				<xs:enumeration value="redToGreen"></xs:enumeration>
+    				<xs:enumeration value="greenToRed"></xs:enumeration>
+    			</xs:restriction>
+    		</xs:simpleType>
+    	</xs:attribute>
+    	<xs:attribute name="minValue" type="xs:float"></xs:attribute>
+    	<xs:attribute name="maxValue" type="xs:float"></xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="showLongitudinalDistanceBar">
+    	<xs:attribute name="id" type="xs:string"></xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="showLateralDeviationBar">
+    	<xs:attribute name="id" type="xs:string"></xs:attribute>
     </xs:complexType>
 </xs:schema>

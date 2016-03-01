@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2014 Rafael Math
+*  Copyright (C) 2015 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -50,14 +50,22 @@ public class PanelCenter
 {
 	private static SimulationBasics sim;
 
-	private static Picture speedometer, RPMgauge, logo, hood, warningFrame;
-	private static Node RPMIndicator, speedIndicator;
+	private static Picture speedometer, RPMgauge, logo, hood, warningFrame, leftTurnSignal, 
+							leftTurnSignalOff, rightTurnSignal, rightTurnSignalOff, handBrakeIndicator, handBrakeIndicatorOff;
+	private static Node RPMIndicator, speedIndicator, cruiseControlIndicator;
 	private static BitmapText reverseText, neutralText, manualText, driveText, currentGearText, odometerText;	
 	private static BitmapText speedText, mileageText, markerText, storeText, deviationText, engineSpeedText, gearText;
 	private static BitmapText fuelConsumptionPer100KmText, fuelConsumptionPerHourText, totalFuelConsumptionText;
 	private static Node analogIndicators = new Node("AnalogIndicators");
 	private static boolean showWarningFrame = false;
 	private static int flashingInterval = 500;
+	
+	// OpenDS-Rift - digital rift panel
+	private static BitmapText riftSpeedText;
+	private static BitmapText riftRpmText;
+	private static BitmapText riftKmText;
+	private static String riftRpm = "";
+	private static String riftGear = "";
 	
 	// message box
 	private static MessageBoxGUI messageBoxGUI;
@@ -132,7 +140,14 @@ public class PanelCenter
 		
 		boolean showDigital = settingsLoader.getSetting(Setting.General_showDigitalIndicators, false);
 		boolean showFuel = settingsLoader.getSetting(Setting.General_showFuelConsumption, false);
-				
+		
+		// OpenDS-Rift - deactivate other panels
+		if (Simulator.oculusRiftAttached) {
+			showDigital = false;
+			showAnalog = false;
+			showFuel = false;
+		}
+
 		CullHint showAnalogIndicators = (showAnalog ? CullHint.Dynamic : CullHint.Always);
 		CullHint showDigitalIndicators = (showDigital ? CullHint.Dynamic : CullHint.Always);
 		CullHint showFuelConsumption = (showFuel ? CullHint.Dynamic : CullHint.Always);
@@ -147,8 +162,10 @@ public class PanelCenter
         
         hood = new Picture("hood");
         hood.setImage(sim.getAssetManager(), "Textures/Misc/hood.png", true);
+        int imageWidth = 1023; //998;
+        int imageHeight = 207; //294
         int width = sim.getSettings().getWidth();
-        int height = width/1023*207;
+        int height = width/imageWidth*imageHeight;
         hood.setWidth(width);
         hood.setHeight(height);
         hood.setPosition(0, 0);
@@ -185,6 +202,66 @@ public class PanelCenter
         speedometer.setHeight(184);
         speedometer.setPosition(100, 15);
         analogIndicators.attachChild(speedometer);
+        
+        handBrakeIndicator = new Picture("handBrakeIndicator");
+        handBrakeIndicator.setImage(sim.getAssetManager(), "Textures/Gauges/handBrakeIndicatorSmall.png", true);
+        handBrakeIndicator.setWidth(28);
+        handBrakeIndicator.setHeight(21);
+        handBrakeIndicator.setLocalTranslation(70, 65, 0);
+        handBrakeIndicator.setCullHint(CullHint.Always);
+        analogIndicators.attachChild(handBrakeIndicator);
+        
+        handBrakeIndicatorOff = new Picture("handBrakeIndicatorOff");
+        handBrakeIndicatorOff.setImage(sim.getAssetManager(), "Textures/Gauges/handBrakeIndicatorSmallOff.png", true);
+        handBrakeIndicatorOff.setWidth(28);
+        handBrakeIndicatorOff.setHeight(21);
+        handBrakeIndicatorOff.setLocalTranslation(70, 65, 0);
+        handBrakeIndicatorOff.setCullHint(CullHint.Inherit);
+        analogIndicators.attachChild(handBrakeIndicatorOff);        
+        
+        leftTurnSignal = new Picture("leftTurnSignal");
+        leftTurnSignal.setImage(sim.getAssetManager(), "Textures/Gauges/greenArrowSmall.png", true);
+        leftTurnSignal.setWidth(25);
+        leftTurnSignal.setHeight(28);
+        leftTurnSignal.setLocalTranslation(188, 60, 0);
+        leftTurnSignal.rotate(0, FastMath.PI, 0);
+        leftTurnSignal.setCullHint(CullHint.Always);
+        analogIndicators.attachChild(leftTurnSignal);
+        
+        leftTurnSignalOff = new Picture("leftTurnSignalOff");
+        leftTurnSignalOff.setImage(sim.getAssetManager(), "Textures/Gauges/greenArrowSmallOff.png", true);
+        leftTurnSignalOff.setWidth(25);
+        leftTurnSignalOff.setHeight(28);
+        leftTurnSignalOff.setLocalTranslation(188, 60, 0);
+        leftTurnSignalOff.rotate(0, FastMath.PI, 0);
+        leftTurnSignal.setCullHint(CullHint.Inherit);
+        analogIndicators.attachChild(leftTurnSignalOff);
+        
+        rightTurnSignal = new Picture("rightTurnSignal");
+        rightTurnSignal.setImage(sim.getAssetManager(), "Textures/Gauges/greenArrowSmall.png", true);
+        rightTurnSignal.setWidth(25);
+        rightTurnSignal.setHeight(28);
+        rightTurnSignal.setLocalTranslation(200, 60, 0);
+        leftTurnSignal.setCullHint(CullHint.Always);
+        analogIndicators.attachChild(rightTurnSignal);
+        
+        rightTurnSignalOff = new Picture("rightTurnSignalOff");
+        rightTurnSignalOff.setImage(sim.getAssetManager(), "Textures/Gauges/greenArrowSmallOff.png", true);
+        rightTurnSignalOff.setWidth(25);
+        rightTurnSignalOff.setHeight(28);
+        rightTurnSignalOff.setLocalTranslation(200, 60, 0);
+        leftTurnSignal.setCullHint(CullHint.Inherit);
+        analogIndicators.attachChild(rightTurnSignalOff);
+        
+        Picture cruiseControlNeedle = new Picture("cruiseControlNeedle");
+        cruiseControlNeedle.setImage(sim.getAssetManager(), "Textures/Gauges/cruiseControlIndicator.png", true);
+        cruiseControlNeedle.setWidth(100);
+        cruiseControlNeedle.setHeight(70);
+        cruiseControlNeedle.setLocalTranslation(-13,-13,0); // set pivot of needle
+        cruiseControlIndicator = new Node("cruiseControlIndicator");
+        cruiseControlIndicator.setLocalTranslation(193, 108, 0);
+        cruiseControlIndicator.attachChild(cruiseControlNeedle);
+        analogIndicators.attachChild(cruiseControlIndicator);
         
         Picture speedNeedle = new Picture("speedNeedle");
         speedNeedle.setImage(sim.getAssetManager(), "Textures/Gauges/indicator.png", true);
@@ -246,7 +323,10 @@ public class PanelCenter
         analogIndicators.attachChild(odometerText);
         
         analogIndicators.setCullHint(showAnalogIndicators);
-        analogIndicators.scale(analogIndicatorsScale);
+        if(Simulator.oculusRiftAttached)
+        	analogIndicators.scale(2*analogIndicatorsScale, analogIndicatorsScale, analogIndicatorsScale);
+        else
+        	analogIndicators.scale(analogIndicatorsScale);
         
         guiNode.attachChild(analogIndicators);
         
@@ -343,6 +423,98 @@ public class PanelCenter
         pictureMap = Simulator.getDrivingTask().getSceneLoader().getPictures();
         for(Entry<String,Picture> entry : pictureMap.entrySet())     	
         	guiNode.attachChild(entry.getValue());
+        
+        
+        // OpenDS-Rift - calc screen center
+        int screenWidth = sim.getSettings().getWidth();
+        int screenHeight = sim.getSettings().getHeight();
+
+        int startX = screenWidth / 2 + 200;
+        int startY = screenHeight / 2;
+        int line = 1;
+        final float BOX_WIDTH = 220;
+        
+        // OpenDS-Rift - default font for line space calculation
+        BitmapText defaultText = new BitmapText(guiFont, false);
+        defaultText.setSize(guiFont.getCharSet().getRenderedSize());
+        defaultText.setLocalScale(2, 1, 1);
+        float defaultLineHeight = defaultText.getLineHeight();
+        
+        // OpenDS-Rift - speed
+        riftSpeedText = new BitmapText(guiFont, false);          
+        riftSpeedText.setSize(guiFont.getCharSet().getRenderedSize());
+        riftSpeedText.setColor(ColorRGBA.White);
+        riftSpeedText.setText("");
+        riftSpeedText.setLocalScale(2, 1, 1);
+        riftSpeedText.setLocalTranslation(startX, startY, 0);
+        
+        // OpenDS-Rift - rpm / gear
+        riftRpmText = new BitmapText(guiFont, false);          
+        riftRpmText.setSize(guiFont.getCharSet().getRenderedSize());
+        riftRpmText.setColor(ColorRGBA.White);
+        riftRpmText.setText("");
+        riftRpmText.setLocalScale(2, 1, 1);
+        riftRpmText.setLocalTranslation(startX, startY - defaultLineHeight * line++, 0);
+        
+//        // OpenDS-Rift - gear
+//        riftGearText = new BitmapText(guiFont, false);          
+//        riftGearText.setSize(guiFont.getCharSet().getRenderedSize());
+//        riftGearText.setColor(ColorRGBA.White);
+//        riftGearText.setText("");
+//        riftGearText.setLocalScale(2, 1, 1);
+//        riftGearText.setLocalTranslation(startX, startY - defaultLineHeight * line++, 0);
+        
+        // OpenDS-Rift - km
+        riftKmText = new BitmapText(guiFont, false);          
+        riftKmText.setSize(guiFont.getCharSet().getRenderedSize());
+        riftKmText.setColor(ColorRGBA.White);
+        riftKmText.setText("");
+        riftKmText.setLocalScale(2, 1, 1);
+        riftKmText.setLocalTranslation(startX, startY - defaultLineHeight * line++, 0);
+        
+        // test box
+        float paddingX = 16;
+        float paddingY = 10;
+        float boxWidth = BOX_WIDTH + paddingX;
+        float boxHeight = defaultLineHeight * line + paddingY;
+        
+        
+//        Box b = new Box(boxWidth, boxHeight, 0);
+//        Geometry geom = new Geometry("Box", b);
+        
+//        Material mat = new Material(sim.getAssetManager(), "Common/MatDefs/Misc/Unshaded.j3md");
+//        mat.setTexture("ColorMap", 
+//                sim.getAssetManager().loadTexture("Textures/OculusRift/transparency.png"));
+//        mat.getAdditionalRenderState().setBlendMode(BlendMode.Alpha);
+//        geom.setQueueBucket(Bucket.Transparent);
+//        mat.setColor("Color", ColorRGBA.Gray);
+//        geom.setMaterial(mat);
+        
+//        geom.setLocalTranslation(startX + boxWidth - paddingX, startY - boxHeight + paddingY, 0);
+        
+        // test
+
+        
+        Picture panelBackground = new Picture("PanelBackground");
+        panelBackground.setImage(sim.getAssetManager(), "Textures/OculusRift/transparency.png", true);
+        
+        panelBackground.setWidth(boxWidth);
+        panelBackground.setHeight(boxHeight);
+        panelBackground.setPosition(startX - paddingX / 2, startY - boxHeight + paddingY / 2);
+        
+        
+        // OpenDS-Rift - attach riftPanel to GuiNode 
+        if (Simulator.oculusRiftAttached) {
+            Node riftPanel = new Node("riftPanel");
+        	riftPanel.attachChild(riftSpeedText);
+        	riftPanel.attachChild(riftRpmText);
+//        	riftPanel.attachChild(riftGearText);
+        	riftPanel.attachChild(riftKmText);
+//        	guiNode.attachChild(geom);
+        	guiNode.attachChild(panelBackground);
+        	guiNode.attachChild(riftPanel);
+        }
+        
         
 		resetPanelPosition(true);
 	}
@@ -450,6 +622,9 @@ public class PanelCenter
 		
 		updateMilageText(car);
 		
+		// OpenDS-Rift - update connected panel strings
+		riftRpmText.setText(riftRpm + " rpm / " + riftGear);
+		
 		// update message on screen
 		messageBoxGUI.update();
 		
@@ -499,8 +674,11 @@ public class PanelCenter
 		mileageText.setText(mileageString);
 		
 		float odometer = ((int)mileage)/1000f;
-		DecimalFormat df = new DecimalFormat("#0.000");
+		DecimalFormat df = new DecimalFormat("#0.0");
 		odometerText.setText(df.format(odometer) + " km");
+		
+		// OpenDS-Rift
+		riftKmText.setText(df.format(odometer) + " km");
 	}
 
 
@@ -537,6 +715,79 @@ public class PanelCenter
 		Quaternion rotation = new Quaternion();
 		rotation.fromAngles(0, 0, radians);
 		RPMIndicator.setLocalRotation(rotation);
+		
+		// OpenDS-Rift
+		riftRpm = ((Integer) (int) Math.floor(rpm)).toString();
+	}
+	
+	
+	public static void setCruiseControlIndicator(float speed) 
+	{
+		// bounds of cruise control indicator
+		speed = Math.min(Math.max(speed, 0), 260);
+		
+		// compute cruise control indicator's rotation
+		// zero-point of scale is 192 degrees to the left
+		// 1 speed unit per degree
+		float degree =  192f - (speed/1f);
+		float radians = FastMath.PI/180f * degree;
+		
+		// set speed indicator's rotation
+		Quaternion rotation = new Quaternion();
+		rotation.fromAngles(0, 0, radians);
+		cruiseControlIndicator.setLocalRotation(rotation);
+		cruiseControlIndicator.setCullHint(CullHint.Inherit);
+	}
+	
+	
+	public static void unsetCruiseControlIndicator() 
+	{
+		cruiseControlIndicator.setCullHint(CullHint.Always);
+	}
+	
+	
+	public static void setHandBrakeIndicator(boolean isOn)
+	{
+		if(isOn)
+		{
+			handBrakeIndicator.setCullHint(CullHint.Inherit);
+			handBrakeIndicatorOff.setCullHint(CullHint.Always);
+		}
+		else
+		{
+			handBrakeIndicatorOff.setCullHint(CullHint.Inherit);
+			handBrakeIndicator.setCullHint(CullHint.Always);
+		}
+	}
+	
+	
+	public static void setLeftTurnSignalArrow(boolean isOn)
+	{
+		if(isOn)
+		{
+			leftTurnSignal.setCullHint(CullHint.Inherit);
+			leftTurnSignalOff.setCullHint(CullHint.Always);
+		}
+		else
+		{
+			leftTurnSignalOff.setCullHint(CullHint.Inherit);
+			leftTurnSignal.setCullHint(CullHint.Always);
+		}
+	}
+	
+	
+	public static void setRightTurnSignalArrow(boolean isOn)
+	{
+		if(isOn)
+		{
+			rightTurnSignal.setCullHint(CullHint.Inherit);
+			rightTurnSignalOff.setCullHint(CullHint.Always);
+		}
+		else
+		{
+			rightTurnSignalOff.setCullHint(CullHint.Inherit);
+			rightTurnSignal.setCullHint(CullHint.Always);
+		}
 	}
 	
 	
@@ -569,17 +820,23 @@ public class PanelCenter
 		if(Math.abs(carSpeed) <= 0.7f)
 		{
 			speedText.setText("0.0 km/h");
+			// OpenDS-Rift
+			riftSpeedText.setText("0.0 km/h");
 			setSpeedIndicator(0);		
 		}
 		else
 		{
 			speedText.setText("" + carSpeed + " km/h");
-			setSpeedIndicator(carSpeed);		
+			// OpenDS-Rift
+			riftSpeedText.setText("" + carSpeed + " km/h");
+			setSpeedIndicator(carSpeed);
 		}
 		
 		if((currentSpeedLimit != 0) && ((carSpeed > currentSpeedLimit+10) || (carSpeed < upcomingSpeedLimit-10)))
 		{
 			speedText.setColor(ColorRGBA.Red);
+			// OpenDS-Rift
+			riftSpeedText.setColor(ColorRGBA.Red);
 			if(!reportedExceeding)
 			{
 				if(carSpeed > currentSpeedLimit+10)
@@ -597,20 +854,28 @@ public class PanelCenter
 				reportedExceeding = false;
 			}
 			speedText.setColor(ColorRGBA.LightGray);
+			// OpenDS-Rift
+			riftSpeedText.setColor(ColorRGBA.White);
 		}
 	}
 
 
 	public static void setGearIndicator(Integer gear, boolean isAutomaticTransmission) 
 	{
-		if(isAutomaticTransmission)
+		// OpenDS-Rift - set gear text
+		if(isAutomaticTransmission) {
 			gearText.setText("Gear: A" + gear);
-		else if (gear == 0)
+			riftGear = "A" + gear;
+		} else if (gear == 0) {
 			gearText.setText("Gear: N");
-		else if (gear == -1)
+			riftGear = "N";
+		} else if (gear == -1) {
 			gearText.setText("Gear: R");
-		else
+			riftGear = "R";
+		} else {
 			gearText.setText("Gear: M" + gear);
+			riftGear = "M" + gear;
+		}
 		
 		
 		// set indicator in RPM gauge

@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2014 Rafael Math
+*  Copyright (C) 2015 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -49,6 +49,7 @@ import eu.opends.main.Simulator;
 import eu.opends.niftyGui.InstructionScreenGUI;
 import eu.opends.niftyGui.KeyMappingGUI;
 import eu.opends.niftyGui.ShutDownGUI;
+import eu.opends.oculusRift.StereoCamAppState;
 import eu.opends.tools.PropertiesLoader;
 import eu.opends.tools.XMLLoader;
 import eu.opends.trigger.TriggerAction;
@@ -77,7 +78,9 @@ public class SimulationBasics extends SimpleApplication
 	protected TrafficLightCenter trafficLightCenter;
 	protected boolean debugEnabled = false;
 	protected int numberOfScreens;
-
+	protected StereoCamAppState stereoCamAppState;
+	protected Spatial observer = new Node("observer");
+	
 	
 	public KeyBindingCenter getKeyBindingCenter()
 	{
@@ -106,7 +109,16 @@ public class SimulationBasics extends SimpleApplication
         return bulletAppState;
     }
     
-	
+    public Spatial getObserver() 
+    {
+        return observer;
+    }
+    
+    public StereoCamAppState getStereoCamAppState() 
+    {
+        return stereoCamAppState;
+    }
+    
     public PhysicsSpace getPhysicsSpace() 
     {
         return bulletAppState.getPhysicsSpace();
@@ -207,6 +219,13 @@ public class SimulationBasics extends SimpleApplication
     public void simpleInitApp() 
     {    	
     	lookupNumberOfScreens();
+    	
+    	// OpenDS-Rift - init app state
+    	if(Simulator.oculusRiftAttached)
+    	{
+        	stereoCamAppState = new StereoCamAppState();
+        	stateManager.attach(stereoCamAppState);
+    	}
     	
     	// init physics
         bulletAppState = new BulletAppState();

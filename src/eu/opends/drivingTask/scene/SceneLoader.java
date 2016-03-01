@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2014 Rafael Math
+*  Copyright (C) 2015 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -41,6 +41,7 @@ import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.FastMath;
 import com.jme3.math.Quaternion;
+import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.queue.RenderQueue.ShadowMode;
 import com.jme3.scene.Geometry;
@@ -62,6 +63,7 @@ import eu.opends.basics.SimulationBasics;
 import eu.opends.car.ResetPosition;
 import eu.opends.drivingTask.DrivingTaskDataQuery;
 import eu.opends.drivingTask.DrivingTaskDataQuery.Layer;
+import eu.opends.tools.Util;
 
 /**
  * 
@@ -443,13 +445,14 @@ public class SceneLoader
 
 					if((geometryRef != null) && (geometryMap.containsKey(geometryRef)))
 					{
-						// get pre-defined shape
-						spatial = geometryMap.get(geometryRef).clone();
+						// get pre-defined shape (!!! clone() causes errors with multiple terrains !!!)
+						spatial = geometryMap.get(geometryRef).deepClone();
 					}
 					else
 						throw new Exception("No spatial available for model '" + name + "'");
 				}
 				
+
 
 				NodeList childnodes = currentNode.getChildNodes();
 				
@@ -519,6 +522,17 @@ public class SceneLoader
 					else if(currentChild.getNodeName().equals("collisionShape"))
 					{
 						collisionShape = currentChild.getTextContent();
+					}
+					
+					else if(currentChild.getNodeName().equals("textureScale"))
+					{
+						Vector2f textureScale = getVector2f(currentChild);
+						
+						for(Geometry g : Util.getAllGeometries(spatial))
+						{
+							g.getMesh().scaleTextureCoordinates(textureScale);
+							break;
+						}
 					}
 					
 					else if(currentChild.getNodeName().equals("scale"))
@@ -734,7 +748,6 @@ public class SceneLoader
 		else
 			return defaultValue;
 	}
-					
 
 	private Vector3f getVector3f(Node node) 
 	{
@@ -761,6 +774,35 @@ public class SceneLoader
 		
 		if(array.size() == 3)
 			return new Vector3f(array.get(0),array.get(1),array.get(2));
+		else
+			return null;
+	}
+	
+	private Vector2f getVector2f(Node node) 
+	{
+		ArrayList<Float> array = new ArrayList<Float>();
+		
+		NodeList childnodes = node.getChildNodes();
+
+		for(int a = 1; a<= childnodes.getLength(); a++)
+		{
+			Node childNode = childnodes.item(a-1);
+			if(childNode.getNodeName().equals("vector"))
+			{
+				NodeList childChildNodes = childNode.getChildNodes();
+				for(int b = 1; b<= childChildNodes.getLength(); b++)
+				{
+					Node childChildNode = childChildNodes.item(b-1);
+					if(childChildNode.getNodeName().equals("entry"))
+					{
+						array.add(Float.parseFloat(childChildNode.getChildNodes().item(0).getTextContent()));
+					}
+				}
+			}
+		}
+		
+		if(array.size() == 2)
+			return new Vector2f(array.get(0),array.get(1));
 		else
 			return null;
 	}
@@ -985,7 +1027,7 @@ public class SceneLoader
 			// Optimal terrain patch size is 65 (64x64). The total size is up to you. At 1025 
 			// it ran fine for me (200+FPS), however at size=2049, it got really slow. But that 
 			// is a jump from 2 million to 8 million triangles...
-			terrain = new TerrainQuad("terrain", patchSize, totalSize, heightmap.getHeightMap());
+			terrain = new TerrainQuad(name + "_terrainQuad", patchSize, totalSize, heightmap.getHeightMap());
 			TerrainLodControl control = new TerrainLodControl(terrain, sim.getCamera());
 			control.setLodCalculator(new DistanceLodCalculator(patchSize, lodFactor) );
 			terrain.addControl(control);
