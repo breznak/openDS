@@ -1,0 +1,716 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema targetNamespace="http://opends.eu/drivingtask/scene"
+elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://opends.eu/drivingtask/scene">
+
+    <xs:element name="scene">
+        <xs:annotation>
+        	<xs:documentation>All scene objects that are supposed to be available at runtime have to be attached to this element - whether they will be used/visible or not.
+This list can be considered as static declaration where unique identifiers have to be assigned to each object in order to address them from the scenario and interaction description.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:annotation>
+            	<xs:documentation>This element contains two matrices for converting model coordinates into geo coordinates and vice versa. NOT AVAILABLE YET.</xs:documentation>
+            </xs:annotation>
+            <xs:all>
+            	<xs:element minOccurs="0" maxOccurs="1" name="sounds" type="sounds" >
+            		<xs:annotation>
+            			<xs:documentation>This element contains a list of sound files which will be available for playing at runtime. Assignment of a unique identifier allows referencing from interaction description.</xs:documentation>
+            		</xs:annotation></xs:element>
+            	<xs:element name="pictures" type="pictures" maxOccurs="1" minOccurs="0">
+                    <xs:annotation>
+                    	<xs:documentation>This element contains a list of image files which will be available for display at runtime. Assignment of a unique identifier allows referencing from interaction description.</xs:documentation>
+                    </xs:annotation>
+            	</xs:element>
+            	<xs:element minOccurs="0" maxOccurs="1" name="models" type="models" >
+            		<xs:annotation>
+            			<xs:documentation>This element contains a list of model files which will be available as road objects at runtime. Assignment of a unique identifier allows referencing from sceneario and interaction description.</xs:documentation>
+            		</xs:annotation></xs:element>
+            	<xs:element name="geometries" type="geometries" maxOccurs="1" minOccurs="0">
+                    <xs:annotation>
+                    	<xs:documentation>This element contains a list of geometries which can be used to construct simple models without shape defining files. Assignment of a unique identifier allows referencing from the models element and scenario description.</xs:documentation>
+                    </xs:annotation>
+            	</xs:element>
+
+            	<xs:element name="resetPoints" type="points" maxOccurs="1" minOccurs="0">
+                    <xs:annotation>
+                    	<xs:documentation>This element contains a list of reset points which will be available at runtime. Assignment of a unique identifier allows referencing from interaction description.</xs:documentation>
+                    </xs:annotation>
+            	</xs:element>
+            	<xs:element minOccurs="0" maxOccurs="1" name="conversions" type="conversion" >
+            		<xs:annotation>
+            			<xs:documentation>This element contains a list of image files which will be available for playing at runtime. Assignment of a unique identifier allows referencing from interaction description.</xs:documentation></xs:annotation></xs:element>
+            	<xs:element minOccurs="0" maxOccurs="1" name="gravity" type="xs:float" >
+            		<xs:annotation>
+            			<xs:documentation>Gravity value which will be applied for physics computation.</xs:documentation>
+            		</xs:annotation></xs:element>
+            	<xs:element minOccurs="0" maxOccurs="1" name="time" type="xs:time" >
+            		<xs:annotation>
+            			<xs:documentation>Time at start of simulation. NOT AVAILABLE YET</xs:documentation>
+            		</xs:annotation></xs:element>
+            	<xs:element minOccurs="0" maxOccurs="1" name="date" type="xs:date" >
+            		<xs:annotation>
+            			<xs:documentation>Date at start of simulation. NOT AVAILABLE YET</xs:documentation>
+            		</xs:annotation></xs:element>
+
+
+
+
+            	<xs:element name="lights" type="lights" maxOccurs="1" minOccurs="0">
+                    <xs:annotation>
+                    	<xs:documentation>This element contains a list of light sources which will be available at runtime.</xs:documentation>
+                    </xs:annotation>
+            	</xs:element>
+            	<xs:element name="skyTexture" type="xs:string" maxOccurs="1" minOccurs="0">
+            		<xs:annotation>
+            			<xs:documentation>Texture path of syk box used in simulation</xs:documentation>
+            		</xs:annotation></xs:element>
+            </xs:all>
+
+
+
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="sun">
+        <xs:sequence>
+            <xs:element type="color" name="color"/>
+            <xs:element type="xs:float" name="intensity"/>
+            <xs:element type="translation" name="translation"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="conversion">
+        <xs:sequence>
+            <xs:element minOccurs="2" maxOccurs="2" type="matrix" name="matrix"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="models">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" type="model" name="model"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="model">
+    	<xs:sequence>
+    	    <xs:element minOccurs="0" maxOccurs="1" type="xs:float"
+    	        name="mass">
+    	        <xs:annotation>
+    	            <xs:documentation>
+    	                Specifies mass of the model in kilogram. 0 means
+    	                infinite mass.
+    	            </xs:documentation>
+    	        </xs:annotation>
+    	    </xs:element>
+
+    	    <xs:element minOccurs="0" maxOccurs="1" type="material"
+    	        name="material">
+    	        <xs:annotation>
+    	            <xs:documentation>
+    	                Specifies material (shade + color) of the model.
+    	            </xs:documentation>
+    	        </xs:annotation>
+    	    </xs:element>
+    	    <xs:element type="xs:boolean" name="visible" maxOccurs="1"
+    	        minOccurs="0">
+    	        <xs:annotation>
+    	            <xs:documentation>
+    	                Specifies whether the model will be visible at
+    	                startup.
+    	            </xs:documentation>
+    	        </xs:annotation>
+    	    </xs:element>
+    	    <xs:element name="collisionShape" maxOccurs="1"
+    	        minOccurs="1">
+    	        <xs:annotation>
+    	            <xs:documentation>
+    	                Specifies collision shape of the model: none,
+    	                boxShape, meshShape
+    	            </xs:documentation>
+    	        </xs:annotation>
+    	        <xs:simpleType>
+    	            <xs:restriction base="xs:string">
+    	                <xs:enumeration value="none"></xs:enumeration>
+    	                <xs:enumeration value="boxShape"></xs:enumeration>
+    	                <xs:enumeration value="meshShape"></xs:enumeration>
+    	            </xs:restriction>
+    	        </xs:simpleType>
+    	    </xs:element>
+    	    <xs:element name="collisionSound" type="collisionSound"
+    	        maxOccurs="1" minOccurs="0">
+    	        <xs:annotation>
+    	            <xs:documentation>
+    	                ID of sound file which will be played when the
+    	                driving car collides with this model. NOT
+    	                AVAILABLE YET.
+    	            </xs:documentation>
+    	        </xs:annotation>
+    	    </xs:element>
+    	    <xs:element type="scale" name="scale" maxOccurs="1"
+    	        minOccurs="0">
+    	        <xs:annotation>
+    	            <xs:documentation>
+    	                Scaling factor of the model as vector with 3
+    	                float values.
+    	            </xs:documentation>
+    	        </xs:annotation>
+    	    </xs:element>
+    	    <xs:element type="rotation" name="rotation" maxOccurs="1"
+    	        minOccurs="1">
+    	        <xs:annotation>
+    	            <xs:documentation>
+    	                Rotation of the model as rotation vector with 3
+    	                float values or quaternion (vector with 4 float
+    	                values).
+    	            </xs:documentation>
+    	        </xs:annotation>
+    	    </xs:element>
+    	    <xs:element type="translation" name="translation"
+    	        maxOccurs="1" minOccurs="1">
+    	        <xs:annotation>
+    	            <xs:documentation>
+    	                Position of the model as vector with 3 float
+    	                values.
+    	            </xs:documentation>
+    	        </xs:annotation>
+    	    </xs:element>
+    	    <xs:element name="ambientLight" type="ambientLight"
+    	        maxOccurs="1" minOccurs="0">
+    	        <xs:annotation>
+    	            <xs:documentation>
+    	                Color of ambient light illuminating the model as
+    	                RGBA-vector with 4 float values: [R,G,B,A].
+    	            </xs:documentation>
+    	        </xs:annotation>
+    	    </xs:element>
+    	    <xs:element name="shadowMode" maxOccurs="1" minOccurs="0">
+    	        <xs:simpleType>
+    	            <xs:restriction base="xs:string">
+    	                <xs:enumeration value="CastAndReceive"></xs:enumeration>
+    	                <xs:enumeration value="Cast"></xs:enumeration>
+    	                <xs:enumeration value="Receive"></xs:enumeration>
+    	                <xs:enumeration value="Off"></xs:enumeration>
+    	            </xs:restriction>
+    	        </xs:simpleType>
+    	    </xs:element>
+    	</xs:sequence>
+    	<xs:attribute name="id" type="xs:string" >
+    		<xs:annotation>
+    			<xs:documentation>Unique identifier of model file for reference.</xs:documentation>
+    		</xs:annotation></xs:attribute>
+    	<xs:attribute name="key" type="xs:string" >
+    		<xs:annotation>
+    			<xs:documentation>Relative path to model file in assets folder.</xs:documentation>
+    		</xs:annotation></xs:attribute>
+
+    	<xs:attribute name="ref" type="xs:string">
+    		<xs:annotation>
+    			<xs:documentation>Reference to geometry ID (if no model path given).</xs:documentation>
+    		</xs:annotation></xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="material">
+    	<xs:sequence>
+    		<xs:element minOccurs="0" maxOccurs="1" type="color"
+    			name="color" >
+    			<xs:annotation>
+    				<xs:documentation>Color of material as RGBA-vector with 4 float values: [R,G,B,A].</xs:documentation>
+    			</xs:annotation></xs:element>
+    	</xs:sequence>
+    	<xs:attribute name="key" type="xs:string">
+    		<xs:annotation>
+    			<xs:documentation>Path to material file (*.j3md). If not given, unshaded material will be used instead.</xs:documentation>
+    		</xs:annotation></xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="shape">
+        <xs:choice>
+            <xs:element type="box" name="box" />
+            <xs:element type="capsule" name="capsule"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:complexType name="capsule">
+        <xs:all>
+            <xs:element type="xs:float" name="radius"/>
+            <xs:element type="xs:float" name="height"/>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="box">
+    	<xs:all>
+    		<xs:element type="xs:float" name="width" maxOccurs="1" minOccurs="1">
+    			<xs:annotation>
+    				<xs:documentation>Width of the box in meters.</xs:documentation>
+    			</xs:annotation></xs:element>
+    		<xs:element type="xs:float" name="depth" maxOccurs="1" minOccurs="1">
+    			<xs:annotation>
+    				<xs:documentation>Depth of the box in meters.</xs:documentation>
+    			</xs:annotation></xs:element>
+    		<xs:element type="xs:float" name="height" maxOccurs="1" minOccurs="1">
+    			<xs:annotation>
+    				<xs:documentation>Height of the box in meters.</xs:documentation>
+    			</xs:annotation></xs:element>
+    	</xs:all>
+    	<xs:attribute name="id" type="xs:string">
+    		<xs:annotation>
+    			<xs:documentation>Unique identifier of box for reference.</xs:documentation>
+    		</xs:annotation></xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="sounds">
+        <xs:sequence>
+            <xs:element name="sound" minOccurs="0" maxOccurs="unbounded" type="sound"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="sound">
+        <xs:all>
+        	<xs:element type="positional" name="positional" maxOccurs="1" minOccurs="0"/>
+        	<xs:element name="directional" type="directional" maxOccurs="1" minOccurs="0"></xs:element>
+        	<xs:element type="xs:boolean" name="loop" maxOccurs="1" minOccurs="0">
+        		<xs:annotation>
+        			<xs:documentation>True if the audio should keep looping after it is done playing. The default is false.</xs:documentation>
+        		</xs:annotation></xs:element>
+        	<xs:element type="xs:float" name="volume" maxOccurs="1" minOccurs="0">
+        		<xs:annotation>
+        			<xs:documentation>Set the volume of this audio node. The volume is specified as gain. 1.0 is the default. </xs:documentation></xs:annotation></xs:element>
+        	<xs:element name="pitch" type="xs:float" maxOccurs="1" minOccurs="0">
+        		<xs:annotation>
+        			<xs:documentation>Set the pitch of the audio, also the speed of playback. The value must be between 0.5 and 2.0. </xs:documentation></xs:annotation></xs:element>
+        </xs:all>
+        <xs:attribute name="id" type="xs:string">
+        	<xs:annotation>
+        		<xs:documentation>Unique identifier of sound file for reference.</xs:documentation>
+        	</xs:annotation></xs:attribute>
+        <xs:attribute name="key" type="xs:string">
+        	<xs:annotation>
+        		<xs:documentation>Relative path to sound file in assets folder.</xs:documentation>
+        	</xs:annotation></xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="positional">
+        <xs:sequence>
+        	<xs:element type="translation" name="translation" maxOccurs="1" minOccurs="0">
+        		<xs:annotation>
+        			<xs:documentation>Position of sound source.</xs:documentation>
+        		</xs:annotation></xs:element>
+
+        </xs:sequence>
+        <xs:attribute name="value" type="xs:boolean" use="required" >
+        	<xs:annotation>
+        		<xs:documentation>Specifies whether this sound is positional. If true, a translation (position) from where the sound is emanating has to be given.</xs:documentation>
+        	</xs:annotation></xs:attribute>
+    </xs:complexType>
+
+    <xs:simpleType name="jtype">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="java_lang_String" />
+            <xs:enumeration value="java_lang_Boolean"/>
+            <xs:enumeration value="java_lang_Integer"/>
+            <xs:enumeration value="java_lang_Long"/>
+            <xs:enumeration value="java_lang_Double"/>
+            <xs:enumeration value="java_lang_Float"/>
+            <xs:enumeration value="java_lang_Short"/>
+            <xs:enumeration value="java_lang_Character"/>
+            <xs:enumeration value="java_lang_Byte"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="array">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry" type="xs:string"/>
+        </xs:sequence>
+        <xs:attribute name="jtype" type="jtype"/>
+        <xs:attribute name="size" type="xs:integer"/>
+    </xs:complexType>
+
+
+    <xs:complexType name="translation">
+        <xs:sequence>
+            <xs:element name="vector" type="array" maxOccurs="1" minOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="rotation">
+        <xs:sequence>
+            <xs:element name="vector" type="array" maxOccurs="1" minOccurs="1">
+            	<xs:annotation>
+            		<xs:documentation></xs:documentation>
+            	</xs:annotation></xs:element>
+        </xs:sequence>
+        <xs:attribute name="quaternion" type="xs:boolean">
+        	<xs:annotation>
+        		<xs:documentation>If true, a quaternion (4-float-vector) is expected, otherwise a rotation vector with 3 float values is expected.</xs:documentation>
+        	</xs:annotation></xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="scale">
+        <xs:sequence>
+            <xs:element name="vector" type="array" maxOccurs="1" minOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="color">
+        <xs:sequence>
+            <xs:element name="vector" type="array"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="matrix">
+        <xs:sequence>
+            <xs:element name="row" minOccurs="0" maxOccurs="unbounded" type="row"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:string">
+        	<xs:annotation>
+        		<xs:documentation></xs:documentation>
+        	</xs:annotation></xs:attribute>
+        <xs:attribute name="rows" type="xs:integer"/>
+        <xs:attribute name="cols" type="xs:integer"/>
+    </xs:complexType>
+
+    <xs:complexType name="row">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="directional">
+        <xs:all>
+            
+            <xs:element name="direction" type="translation" maxOccurs="1" minOccurs="0">
+            	<xs:annotation>
+            		<xs:documentation>Direction (3D-Vector) of sound.</xs:documentation>
+            	</xs:annotation></xs:element>
+            <xs:element name="innerAngle" type="xs:float" maxOccurs="1" minOccurs="0">
+            	<xs:annotation>
+            		<xs:documentation>Set the directional audio node cone inner angle. Does nothing if the audio node is not directional. </xs:documentation>
+            	</xs:annotation></xs:element>
+            <xs:element name="outerAngle" type="xs:float" maxOccurs="1" minOccurs="0">
+            	<xs:annotation>
+            		<xs:documentation>Set the directional audio node cone outer angle. Does nothing if the audio node is not directional. </xs:documentation></xs:annotation></xs:element>
+        </xs:all>
+    	<xs:attribute name="value" type="xs:boolean">
+    		<xs:annotation>
+    			<xs:documentation>Specifies whether this sound is directional. If true, a direction from where the sound is emanating, inner and outer angle have to be given.</xs:documentation>
+    		</xs:annotation></xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="geometries">
+    	<xs:choice maxOccurs="unbounded" minOccurs="1">
+    	    <xs:element name="box" type="box" maxOccurs="1"
+    	        minOccurs="0">
+    	    </xs:element>
+    	    <xs:element name="sphere" type="sphere" maxOccurs="1"
+    	        minOccurs="0">
+    	    </xs:element>
+    	    <xs:element name="cylinder" type="cylinder" maxOccurs="1"
+    	        minOccurs="0">
+    	    </xs:element>
+    	    <xs:element name="terrain" type="terrain" maxOccurs="1" minOccurs="0"></xs:element>
+    	    <xs:element name="point" type="point" maxOccurs="1"
+    	        minOccurs="0">
+    	    </xs:element>
+    	</xs:choice>
+    </xs:complexType>
+
+    <xs:complexType name="sphere">
+    	<xs:all>
+    		<xs:element name="samples" type="samples" maxOccurs="1" minOccurs="1">
+    			<xs:annotation>
+    				<xs:documentation>Number of samples used to approximate the curved surface of the sphere.</xs:documentation>
+    			</xs:annotation></xs:element>
+    		<xs:element name="radius" type="xs:float" maxOccurs="1" minOccurs="1">
+    			<xs:annotation>
+    				<xs:documentation>Radius of the sphere in meters.</xs:documentation>
+    			</xs:annotation></xs:element>
+    	</xs:all>
+    	<xs:attribute name="id" type="xs:string">
+    		<xs:annotation>
+    			<xs:documentation>Unique identifier of sphere for reference.</xs:documentation>
+    		</xs:annotation></xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="samples">
+    	<xs:attribute name="axis" type="xs:int"></xs:attribute>
+    	<xs:attribute name="radial" type="xs:int"></xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="cylinder">
+    	<xs:all>
+    		<xs:element name="samples" type="samples" maxOccurs="1" minOccurs="1">
+    			<xs:annotation>
+    				<xs:documentation>Number of samples used to approximate the curved surface of the cylinder.</xs:documentation>
+    			</xs:annotation></xs:element>
+    		<xs:element name="radius" type="xs:float" maxOccurs="1" minOccurs="1">
+    			<xs:annotation>
+    				<xs:documentation>Radius of the cylinder in meters.</xs:documentation>
+    			</xs:annotation></xs:element>
+    		<xs:element name="height" type="xs:float" maxOccurs="1" minOccurs="1">
+    			<xs:annotation>
+    				<xs:documentation>Height of the cylinder in meters.</xs:documentation>
+    			</xs:annotation></xs:element>
+    		<xs:element name="closed" type="xs:boolean" maxOccurs="1" minOccurs="1">
+    			<xs:annotation>
+    				<xs:documentation>Whether the cylinder is closed.</xs:documentation>
+    			</xs:annotation></xs:element>
+    	</xs:all>
+    	<xs:attribute name="id" type="xs:string">
+    		<xs:annotation>
+    			<xs:documentation>Unique identifier of cylinder for reference.</xs:documentation>
+    		</xs:annotation></xs:attribute>
+    </xs:complexType>
+    
+    <xs:complexType name="point">
+        <xs:sequence>
+    		<xs:element name="translation" type="translation" maxOccurs="1" minOccurs="1">
+    			<xs:annotation>
+    				<xs:documentation>Position of the point in 3D-space.</xs:documentation>
+    			</xs:annotation></xs:element>
+    	</xs:sequence>
+    	<xs:attribute name="id" type="xs:string">
+    		<xs:annotation>
+    			<xs:documentation>Unique identifier of point for reference.</xs:documentation>
+    		</xs:annotation></xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="resetPoint">
+    	<xs:all>
+    		<xs:element name="translation" type="translation">
+    			<xs:annotation>
+    				<xs:documentation>Position of the reset point in 3D-space</xs:documentation>
+    			</xs:annotation></xs:element>
+    		<xs:element name="rotation" type="rotation">
+    			<xs:annotation>
+    				<xs:documentation>Orientation of the car when it will be reset to this point.</xs:documentation>
+    			</xs:annotation></xs:element>
+    	</xs:all>
+    	<xs:attribute name="id" type="xs:string">
+    		<xs:annotation>
+    			<xs:documentation>Unique identifier of reset point for reference.</xs:documentation>
+    		</xs:annotation></xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="wayPoint">
+    	<xs:all>
+    		<xs:element name="translation" type="translation"></xs:element>
+    		<xs:element name="speed" type="xs:float"></xs:element>
+    		<xs:element name="endPoint" type="xs:boolean"></xs:element>
+    	</xs:all>
+    	<xs:attribute name="id" type="xs:string"></xs:attribute>
+    	<xs:attribute name="ref" type="xs:string"></xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="points">
+        <xs:sequence>
+    		<xs:element name="resetPoint" type="resetPoint" maxOccurs="unbounded" minOccurs="0"></xs:element>
+    	</xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="idealLine">
+    	<xs:sequence>
+    		<xs:element name="point" type="point" maxOccurs="unbounded"
+    			minOccurs="0">
+    		</xs:element>
+    	</xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="collisionSound">
+    	<xs:attribute name="ref" type="xs:string"></xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="pictures">
+    	<xs:sequence>
+    		<xs:element name="picture" type="picture" maxOccurs="unbounded"
+    			minOccurs="0">
+    		</xs:element>
+    	</xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="picture">
+        <xs:all>
+        	<xs:element name="vPosition" type="vPositionType" maxOccurs="1" minOccurs="1">
+        		<xs:annotation>
+        			<xs:documentation>Specifies vertical position. One of the following can be given: from top, from bottom or centered.</xs:documentation>
+        		</xs:annotation></xs:element>
+        	<xs:element name="hPosition" type="hPositionType" maxOccurs="1" minOccurs="1">
+        		<xs:annotation>
+        			<xs:documentation>Specifies horizontal position. One of the following can be given: from left, from right or centered.</xs:documentation>
+        		</xs:annotation></xs:element>
+        	<xs:element name="width" type="xs:int" maxOccurs="1" minOccurs="0">
+        		<xs:annotation>
+        			<xs:documentation>Width of the image in px.</xs:documentation>
+        		</xs:annotation></xs:element>
+        	<xs:element name="height" type="xs:int" maxOccurs="1" minOccurs="0">
+        		<xs:annotation>
+        			<xs:documentation>Height of the image in px.</xs:documentation>
+        		</xs:annotation></xs:element>
+        	<xs:element name="useAlpha" type="xs:boolean" maxOccurs="1" minOccurs="0">
+        		<xs:annotation>
+        			<xs:documentation>True if transparency should be supported.</xs:documentation>
+        		</xs:annotation></xs:element>
+        	<xs:element name="visible" type="xs:boolean" maxOccurs="1" minOccurs="0">
+        		<xs:annotation>
+        			<xs:documentation>If true, image will be visible at startup.</xs:documentation>
+        		</xs:annotation></xs:element>
+        </xs:all>
+
+        <xs:attribute name="id" type="xs:string">
+        	<xs:annotation>
+        		<xs:documentation>Unique identifier of image file for reference.</xs:documentation>
+        	</xs:annotation></xs:attribute>
+    	<xs:attribute name="level" type="xs:int">
+    		<xs:annotation>
+    			<xs:documentation>Level of image when overlapping with another image (background/foreground). Must be unique!</xs:documentation>
+    		</xs:annotation></xs:attribute>
+    	<xs:attribute name="key" type="xs:string">
+    		<xs:annotation>
+    			<xs:documentation>Relative path to image file in assets folder.</xs:documentation>
+    		</xs:annotation></xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="vPositionType">
+        <xs:choice>
+    		<xs:element name="fromTop" type="alignmentType">
+    			<xs:annotation>
+    				<xs:documentation>Specifies position as distance from top.</xs:documentation>
+    			</xs:annotation></xs:element>
+    		<xs:element name="fromBottom" type="alignmentType">
+    			<xs:annotation>
+    				<xs:documentation>Specifies position as distance from bottom.</xs:documentation>
+    			</xs:annotation></xs:element>
+    		<xs:element name="center" type="xs:string">
+    			<xs:annotation>
+    				<xs:documentation>Places the image vertically centered.</xs:documentation>
+    			</xs:annotation></xs:element>
+    	</xs:choice>
+    </xs:complexType>
+
+    <xs:complexType name="alignmentType">
+    	<xs:attribute name="unit">
+            <xs:annotation>
+            	<xs:documentation>Specifies whether the given value should be considered as number of pixels or percentage.</xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+    			<xs:restriction base="xs:string">
+    				<xs:enumeration value="px"></xs:enumeration>
+    				<xs:enumeration value="percent"></xs:enumeration>
+    				<xs:enumeration value="%"></xs:enumeration>
+    			</xs:restriction>
+    		</xs:simpleType>
+    	</xs:attribute>
+    	<xs:attribute name="value" type="xs:int">
+    		<xs:annotation>
+    			<xs:documentation>Distance value.</xs:documentation>
+    		</xs:annotation></xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="hPositionType">
+        <xs:choice>
+    		<xs:element name="fromLeft" type="alignmentType">
+    			<xs:annotation>
+    				<xs:documentation>Specifies position as distance from left.</xs:documentation>
+    			</xs:annotation></xs:element>
+    		<xs:element name="fromRight" type="alignmentType">
+    			<xs:annotation>
+    				<xs:documentation>Specifies position as distance from right.</xs:documentation>
+    			</xs:annotation></xs:element>
+    		<xs:element name="center" type="xs:string">
+    			<xs:annotation>
+    				<xs:documentation>Places image horizontally centered.</xs:documentation>
+    			</xs:annotation></xs:element>
+    	</xs:choice>
+    </xs:complexType>
+
+    <xs:complexType name="lights">
+        <xs:choice minOccurs="1" maxOccurs="unbounded">
+    		<xs:element name="directionalLight" type="directionalLight" maxOccurs="1" minOccurs="0">
+    			<xs:annotation>
+    				<xs:documentation>Defines a directional light source (e.g. sun light).</xs:documentation>
+    			</xs:annotation></xs:element>
+    		<xs:element name="pointLight" type="pointLight" maxOccurs="1" minOccurs="0">
+    			<xs:annotation>
+    				<xs:documentation>Defines a light source emanating from a point (e.g. light bulb).</xs:documentation>
+    			</xs:annotation></xs:element>
+    		<xs:element name="ambientLight" type="ambientLight" maxOccurs="1" minOccurs="0">
+    			<xs:annotation>
+    				<xs:documentation>Defines general ambient light.</xs:documentation>
+    			</xs:annotation></xs:element>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:complexType name="directionalLight">
+        <xs:all>
+    		<xs:element name="direction" type="translation" maxOccurs="1" minOccurs="1">
+    			<xs:annotation>
+    				<xs:documentation>Direction of light as vector with 3 float values.</xs:documentation>
+    			</xs:annotation></xs:element>
+    		<xs:element name="color" type="color" maxOccurs="1" minOccurs="0">
+    			<xs:annotation>
+    				<xs:documentation>Color of directional light as RGBA-vector with 4 float values: [R,G,B,A].</xs:documentation>
+    			</xs:annotation></xs:element>
+    	</xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="pointLight">
+        <xs:all>
+        	<xs:element name="position" type="translation" maxOccurs="1"
+        		minOccurs="1">
+        		<xs:annotation>
+        			<xs:documentation>Position of light as vector with 3 float values.
+        			</xs:documentation>
+        		</xs:annotation>
+        	</xs:element>
+        	<xs:element name="radius" type="xs:float" maxOccurs="1"
+        		minOccurs="0">
+        		<xs:annotation>
+        			<xs:documentation>Maximum distance the light source can be perceived from. The intensity is inversely proportional to distance.
+        			</xs:documentation>
+        		</xs:annotation>
+        	</xs:element>
+        	<xs:element name="color" type="color" maxOccurs="1"
+        		minOccurs="0">
+                <xs:annotation>
+                	<xs:documentation>Color of point light as RGBA-vector with 4 float values: [R,G,B,A].</xs:documentation>
+                </xs:annotation>
+        	</xs:element>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="ambientLight">
+    	<xs:sequence>
+    		<xs:element name="color" type="color" maxOccurs="1" minOccurs="1">
+    			<xs:annotation>
+    				<xs:documentation>Color of ambient light as RGBA-vector with 4 float values: [R,G,B,A].</xs:documentation>
+    			</xs:annotation></xs:element>
+    	</xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="terrain">
+        <xs:all>
+            <xs:element name="imageBasedHeightMap" type="imageBasedHeightMap"
+                maxOccurs="1" minOccurs="1">
+            </xs:element>
+            <xs:element name="smoothing" type="smoothing" maxOccurs="1" minOccurs="0"></xs:element>
+            <xs:element name="lod" type="lod" maxOccurs="1" minOccurs="0"></xs:element>
+        </xs:all>
+        <xs:attribute name="id" type="xs:string"></xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="imageBasedHeightMap">
+        <xs:attribute name="key" type="xs:string"></xs:attribute>
+        <xs:attribute name="heightScale" type="xs:float"></xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="smoothing">
+        <xs:attribute name="percentage" type="xs:float"></xs:attribute>
+        <xs:attribute name="radius" type="xs:int"></xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="lod">
+        <xs:attribute name="patchSize" type="xs:int"></xs:attribute>
+        <xs:attribute name="totalSize" type="xs:int"></xs:attribute>
+        <xs:attribute name="distanceFactor" type="xs:float"></xs:attribute>
+    </xs:complexType>
+</xs:schema>

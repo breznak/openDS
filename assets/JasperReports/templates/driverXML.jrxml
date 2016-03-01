@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report9" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="maxDeviation" class="java.lang.Float" isForPrompting="false">
+		<defaultValueExpression><![CDATA[1]]></defaultValueExpression>
+	</parameter>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="subject_name" class="java.lang.String">
+		<fieldDescription><![CDATA[data/entry/subject_name]]></fieldDescription>
+	</field>
+	<field name="is_main_driver" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[data/entry/is_main_driver]]></fieldDescription>
+	</field>
+	<field name="condition_name" class="java.lang.String">
+		<fieldDescription><![CDATA[data/entry/condition_name]]></fieldDescription>
+	</field>
+	<field name="condition_number" class="java.lang.Long">
+		<fieldDescription><![CDATA[data/entry/condition_number]]></fieldDescription>
+	</field>
+	<field name="steering_deviation" class="java.lang.Float">
+		<fieldDescription><![CDATA[data/entry/steering_deviation]]></fieldDescription>
+	</field>
+	<field name="co_driver_reaction" class="java.lang.Integer">
+		<fieldDescription><![CDATA[data/entry/co_driver_reaction]]></fieldDescription>
+	</field>
+	<field name="co_driver_reaction_time" class="java.lang.Long">
+		<fieldDescription><![CDATA[data/entry/co_driver_reaction_time]]></fieldDescription>
+	</field>
+	<field name="brake_reaction" class="java.lang.Integer">
+		<fieldDescription><![CDATA[data/entry/brake_reaction]]></fieldDescription>
+	</field>
+	<field name="brake_reaction_time_driver" class="java.lang.Long">
+		<fieldDescription><![CDATA[data/entry/brake_reaction_time_driver]]></fieldDescription>
+	</field>
+	<field name="brake_reaction_time_co_driver" class="java.lang.Long">
+		<fieldDescription><![CDATA[data/entry/brake_reaction_time_co_driver]]></fieldDescription>
+	</field>
+	<field name="acceleration_reaction" class="java.lang.Integer">
+		<fieldDescription><![CDATA[data/entry/acceleration_reaction]]></fieldDescription>
+	</field>
+	<field name="acceleration_reaction_time_driver" class="java.lang.Long">
+		<fieldDescription><![CDATA[data/entry/acceleration_reaction_time_driver]]></fieldDescription>
+	</field>
+	<field name="acceleration_reaction_time_co_driver" class="java.lang.Long">
+		<fieldDescription><![CDATA[data/entry/acceleration_reaction_time_co_driver]]></fieldDescription>
+	</field>
+	<field name="absolute_time" class="java.lang.Long">
+		<fieldDescription><![CDATA[data/entry/absolute_time]]></fieldDescription>
+	</field>
+	<field name="gesture_reaction" class="java.lang.Integer">
+		<fieldDescription><![CDATA[data/entry/gesture_reaction]]></fieldDescription>
+	</field>
+	<field name="gesture_reaction_time" class="java.lang.Long">
+		<fieldDescription><![CDATA[data/entry/gesture_reaction_time]]></fieldDescription>
+	</field>
+	<field name="lat_relevant_building" class="java.lang.Float">
+		<fieldDescription><![CDATA[data/entry/lat_relevant_building]]></fieldDescription>
+	</field>
+	<field name="lon_relevant_building" class="java.lang.Float">
+		<fieldDescription><![CDATA[data/entry/lon_relevant_building]]></fieldDescription>
+	</field>
+	<field name="x_screen_coordinate" class="java.lang.Float">
+		<fieldDescription><![CDATA[data/entry/x_screen_coordinate]]></fieldDescription>
+	</field>
+	<field name="y_screen_coordinate" class="java.lang.Float">
+		<fieldDescription><![CDATA[data/entry/y_screen_coordinate]]></fieldDescription>
+	</field>
+	<field name="non_relevant_buildings" class="java.lang.Integer">
+		<fieldDescription><![CDATA[data/entry/non_relevant_buildings]]></fieldDescription>
+	</field>
+	<field name="experimentTime" class="java.lang.Long">
+		<fieldDescription><![CDATA[data/entry/experimentTime]]></fieldDescription>
+	</field>
+	<variable name="startTime" class="java.lang.Long" calculation="Lowest">
+		<variableExpression><![CDATA[$F{absolute_time}]]></variableExpression>
+	</variable>
+	<variable name="endTime" class="java.lang.Long" calculation="Highest">
+		<variableExpression><![CDATA[$F{absolute_time}]]></variableExpression>
+	</variable>
+	<variable name="highestReactionTime" class="java.lang.Long" calculation="Highest">
+		<variableExpression><![CDATA[Math.max(Math.max($F{acceleration_reaction_time_driver},     $F{brake_reaction_time_driver}),     $F{gesture_reaction_time})]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="548" splitType="Stretch">
+			<staticText>
+				<reportElement x="77" y="313" width="239" height="20"/>
+				<textElement>
+					<font size="14" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Steering Deviation ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="293" y="27" width="85" height="20"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Subject Name:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="389" y="27" width="66" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{subject_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="597" y="7" width="31" height="20"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Role:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="639" y="7" width="52" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[( $F{is_main_driver} ? "driver" : "front seat passenger" )]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="293" y="7" width="85" height="20"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Experiment ID:]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="389" y="7" width="100" height="20" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{condition_number}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="542" y="27" width="86" height="20"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Condition Name:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="639" y="27" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{condition_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="8" y="27" width="86" height="20"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[End:]]></text>
+			</staticText>
+			<textField pattern="HH.mm">
+				<reportElement x="105" y="7" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format($V{startTime})]]></textFieldExpression>
+			</textField>
+			<xyBarChart>
+				<chart>
+					<reportElement mode="Transparent" x="0" y="67" width="802" height="217"/>
+					<box leftPadding="0"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend position="Top"/>
+				</chart>
+				<xyDataset>
+					<dataset>
+						<incrementWhenExpression><![CDATA[!($F{acceleration_reaction} == 0 && $F{brake_reaction} == 0 && $F{gesture_reaction} == 0)]]></incrementWhenExpression>
+					</dataset>
+					<xySeries>
+						<seriesExpression><![CDATA["Acceleration"]]></seriesExpression>
+						<xValueExpression><![CDATA[$F{experimentTime}/1000.0]]></xValueExpression>
+						<yValueExpression><![CDATA[(($F{acceleration_reaction} < 0) ?
+(($F{acceleration_reaction} < -1) ? $F{acceleration_reaction_time_driver} : -1000)
+:
+$F{acceleration_reaction_time_driver})]]></yValueExpression>
+					</xySeries>
+					<xySeries>
+						<seriesExpression><![CDATA["Brake"]]></seriesExpression>
+						<xValueExpression><![CDATA[$F{experimentTime}/1000.0]]></xValueExpression>
+						<yValueExpression><![CDATA[(($F{brake_reaction} < 0) ?
+(($F{brake_reaction} < -1) ? $F{brake_reaction_time_driver} : -1000)
+:
+$F{brake_reaction_time_driver})]]></yValueExpression>
+					</xySeries>
+					<xySeries>
+						<seriesExpression><![CDATA["Gesture"]]></seriesExpression>
+						<xValueExpression><![CDATA[$F{experimentTime}/1000.0]]></xValueExpression>
+						<yValueExpression><![CDATA[(($F{gesture_reaction} < 0) ?
+(($F{gesture_reaction} < -1) ? $F{gesture_reaction_time} : -1000)
+:
+$F{gesture_reaction_time})]]></yValueExpression>
+					</xySeries>
+				</xyDataset>
+				<barPlot isShowLabels="true" isShowTickLabels="true">
+					<plot/>
+					<itemLabel>
+						<font size="10" isUnderline="false"/>
+					</itemLabel>
+					<categoryAxisFormat>
+						<axisFormat labelColor="#000000" verticalTickLabels="false"/>
+					</categoryAxisFormat>
+					<domainAxisMinValueExpression><![CDATA[0]]></domainAxisMinValueExpression>
+					<domainAxisMaxValueExpression><![CDATA[($V{endTime}-$V{startTime})/1000.0]]></domainAxisMaxValueExpression>
+					<rangeAxisMinValueExpression><![CDATA[-2000]]></rangeAxisMinValueExpression>
+					<rangeAxisMaxValueExpression><![CDATA[$V{highestReactionTime}+1000]]></rangeAxisMaxValueExpression>
+				</barPlot>
+			</xyBarChart>
+			<staticText>
+				<reportElement x="8" y="7" width="86" height="20"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Start:]]></text>
+			</staticText>
+			<textField pattern="HH.mm">
+				<reportElement x="105" y="27" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format($V{endTime})]]></textFieldExpression>
+			</textField>
+			<xyLineChart>
+				<chart isShowLegend="false" theme="SteeringDeviationTheme">
+					<reportElement x="12" y="333" width="790" height="197"/>
+					<box leftPadding="0"/>
+					<chartTitle position="Top"/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<xyDataset>
+					<xySeries>
+						<seriesExpression><![CDATA["-1"]]></seriesExpression>
+						<xValueExpression><![CDATA[($F{absolute_time}.equals($V{startTime}) ? 0 :($F{experimentTime}/1000.0))]]></xValueExpression>
+						<yValueExpression><![CDATA[-1*$P{maxDeviation}]]></yValueExpression>
+					</xySeries>
+					<xySeries>
+						<seriesExpression><![CDATA["1"]]></seriesExpression>
+						<xValueExpression><![CDATA[($F{absolute_time}.equals($V{startTime}) ? 0 :($F{experimentTime}/1000.0))]]></xValueExpression>
+						<yValueExpression><![CDATA[$P{maxDeviation}]]></yValueExpression>
+					</xySeries>
+					<xySeries>
+						<seriesExpression><![CDATA[($F{absolute_time}.equals($V{startTime}) ? "0.0" :
+
+(($F{steering_deviation}/1000000.0 < $P{maxDeviation}) ?
+(($F{steering_deviation}/1000000.0 < -$P{maxDeviation}) ? "-1.0" : "0.0")
+:
+"1.0")
+
+)]]></seriesExpression>
+						<xValueExpression><![CDATA[$F{experimentTime}/1000.0]]></xValueExpression>
+						<yValueExpression><![CDATA[($F{absolute_time}.equals($V{startTime}) ?
+    (($F{steering_deviation}/1000000.0 < $P{maxDeviation}) ?
+        (($F{steering_deviation}/1000000.0 < -$P{maxDeviation}) ? -$P{maxDeviation} : $F{steering_deviation}/1000000.0)
+    :
+        $P{maxDeviation})
+:
+    $F{steering_deviation}/1000000.0)]]></yValueExpression>
+					</xySeries>
+				</xyDataset>
+				<linePlot isShowLines="true" isShowShapes="false">
+					<plot/>
+					<domainAxisMinValueExpression><![CDATA[0]]></domainAxisMinValueExpression>
+					<domainAxisMaxValueExpression><![CDATA[($V{endTime}-$V{startTime})/1000.0]]></domainAxisMaxValueExpression>
+					<rangeAxisMinValueExpression><![CDATA[-8]]></rangeAxisMinValueExpression>
+					<rangeAxisMaxValueExpression><![CDATA[8]]></rangeAxisMaxValueExpression>
+				</linePlot>
+			</xyLineChart>
+			<staticText>
+				<reportElement x="77" y="67" width="239" height="20"/>
+				<textElement>
+					<font size="14" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Reaction Times]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

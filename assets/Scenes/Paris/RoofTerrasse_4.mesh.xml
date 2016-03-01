@@ -1,0 +1,34 @@
+<mesh>
+	<submeshes>
+		<submesh material="RoofTerrasse_4.002" usesharedvertices="false">
+			<faces count="2">
+				<face v1="0" v2="1" v3="2"/>
+				<face v1="0" v2="2" v3="3"/>
+			</faces>
+			<geometry vertexcount="4">
+				<vertexbuffer positions="true" normals="true" texture_coords="1">
+					<vertex>
+						<position x="146.884995" y="22.143999" z="-258.727997"/>
+						<normal x="0.000000" y="1.000000" z="0.000000"/>
+						<texcoord u="0.371400" v="1.000000"/>
+					</vertex>
+					<vertex>
+						<position x="151.203003" y="22.143999" z="-280.325989"/>
+						<normal x="0.000000" y="1.000000" z="0.000000"/>
+						<texcoord u="1.748000" v="1.000000"/>
+					</vertex>
+					<vertex>
+						<position x="113.389000" y="22.143999" z="-281.181000"/>
+						<normal x="0.000000" y="1.000000" z="0.000000"/>
+						<texcoord u="1.337200" v="-1.328000"/>
+					</vertex>
+					<vertex>
+						<position x="112.944000" y="22.143999" z="-259.453003"/>
+						<normal x="0.000000" y="1.000000" z="0.000000"/>
+						<texcoord u="0.000000" v="-1.089000"/>
+					</vertex>
+				</vertexbuffer>
+			</geometry>
+		</submesh>
+	</submeshes>
+</mesh>

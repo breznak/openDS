@@ -1,0 +1,56 @@
+<mesh>
+	<submeshes>
+		<submesh material="ParkingLot_8" usesharedvertices="false">
+			<faces count="4">
+				<face v1="0" v2="1" v3="2"/>
+				<face v1="0" v2="2" v3="3"/>
+				<face v1="4" v2="5" v3="7"/>
+				<face v1="5" v2="6" v3="7"/>
+			</faces>
+			<geometry vertexcount="8">
+				<vertexbuffer positions="true" normals="true" texture_coords="1">
+					<vertex>
+						<position x="-938.682983" y="-99.800003" z="479.917999"/>
+						<normal x="0.000000" y="1.000000" z="0.000000"/>
+						<texcoord u="0.999600" v="0.999300"/>
+					</vertex>
+					<vertex>
+						<position x="-961.145020" y="-99.800003" z="481.675995"/>
+						<normal x="0.000000" y="1.000000" z="0.000000"/>
+						<texcoord u="0.000000" v="1.000000"/>
+					</vertex>
+					<vertex>
+						<position x="-959.049011" y="-99.800003" z="508.178986"/>
+						<normal x="0.000000" y="1.000000" z="0.000000"/>
+						<texcoord u="0.000000" v="0.000000"/>
+					</vertex>
+					<vertex>
+						<position x="-936.580017" y="-99.800003" z="506.393005"/>
+						<normal x="0.000000" y="1.000000" z="0.000000"/>
+						<texcoord u="1.000000" v="0.000400"/>
+					</vertex>
+					<vertex>
+						<position x="-978.879028" y="-99.800003" z="483.062988"/>
+						<normal x="0.000000" y="1.000000" z="0.000000"/>
+						<texcoord u="0.997700" v="0.000000"/>
+					</vertex>
+					<vertex>
+						<position x="-1007.538025" y="-99.800003" z="485.306000"/>
+						<normal x="0.000000" y="1.000000" z="0.000000"/>
+						<texcoord u="1.000000" v="0.988200"/>
+					</vertex>
+					<vertex>
+						<position x="-1006.309021" y="-99.800003" z="504.998993"/>
+						<normal x="0.000000" y="1.000000" z="0.000000"/>
+						<texcoord u="0.000000" v="1.000000"/>
+					</vertex>
+					<vertex>
+						<position x="-977.330017" y="-99.800003" z="502.684998"/>
+						<normal x="0.000000" y="1.000000" z="0.000000"/>
+						<texcoord u="0.000000" v="0.000600"/>
+					</vertex>
+				</vertexbuffer>
+			</geometry>
+		</submesh>
+	</submeshes>
+</mesh>

@@ -1,0 +1,865 @@
+<scene formatVersion="1.0.0">
+  <nodes>
+    <node name="BlindFacadeTextured">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BlindFacadeTextured" meshFile="BlindFacadeTextured.mesh"/>
+    </node>
+    <node name="Dirtmap_2">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="Dirtmap_2" meshFile="Dirtmap_2.mesh"/>
+    </node>
+    <node name="Dirtmap_1">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="Dirtmap_1" meshFile="Dirtmap_1.mesh"/>
+    </node>
+    <node name="FaitageTuile_6">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="FaitageTuile_6" meshFile="FaitageTuile_6.mesh"/>
+    </node>
+    <node name="FaitageTuile_5">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="FaitageTuile_5" meshFile="FaitageTuile_5.mesh"/>
+    </node>
+    <node name="FaitageTuile_4">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="FaitageTuile_4" meshFile="FaitageTuile_4.mesh"/>
+    </node>
+    <node name="BranchShader0">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BranchShader0" meshFile="BranchShader0.mesh"/>
+    </node>
+    <node name="FaitageTuile_2">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="FaitageTuile_2" meshFile="FaitageTuile_2.mesh"/>
+    </node>
+    <node name="FaitageTuile_1">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="FaitageTuile_1" meshFile="FaitageTuile_1.mesh"/>
+    </node>
+    <node name="BuildGeneric_49">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_49" meshFile="BuildGeneric_49.mesh"/>
+    </node>
+    <node name="BuildGeneric_48">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_48" meshFile="BuildGeneric_48.mesh"/>
+    </node>
+    <node name="BuildGeneric_37">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_37" meshFile="BuildGeneric_37.mesh"/>
+    </node>
+    <node name="ChimneyBase">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="ChimneyBase" meshFile="ChimneyBase.mesh"/>
+    </node>
+    <node name="Grass">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="Grass" meshFile="Grass.mesh"/>
+    </node>
+    <node name="RoofMansardArdoise">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="RoofMansardArdoise" meshFile="RoofMansardArdoise.mesh"/>
+    </node>
+    <node name="FaitageZinc_3">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="FaitageZinc_3" meshFile="FaitageZinc_3.mesh"/>
+    </node>
+    <node name="FaitageZinc_2">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="FaitageZinc_2" meshFile="FaitageZinc_2.mesh"/>
+    </node>
+    <node name="FaitageZinc_1">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="FaitageZinc_1" meshFile="FaitageZinc_1.mesh"/>
+    </node>
+    <node name="FaitageZinc_6">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="FaitageZinc_6" meshFile="FaitageZinc_6.mesh"/>
+    </node>
+    <node name="FaitageZinc_5">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="FaitageZinc_5" meshFile="FaitageZinc_5.mesh"/>
+    </node>
+    <node name="FaitageZinc_4">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="FaitageZinc_4" meshFile="FaitageZinc_4.mesh"/>
+    </node>
+    <node name="BuildGeneric_41">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_41" meshFile="BuildGeneric_41.mesh"/>
+    </node>
+    <node name="BuildGeneric_40">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_40" meshFile="BuildGeneric_40.mesh"/>
+    </node>
+    <node name="BuildGeneric_43">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_43" meshFile="BuildGeneric_43.mesh"/>
+    </node>
+    <node name="BuildGeneric_42">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_42" meshFile="BuildGeneric_42.mesh"/>
+    </node>
+    <node name="BuildGeneric_45">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_45" meshFile="BuildGeneric_45.mesh"/>
+    </node>
+    <node name="BuildGeneric_44">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_44" meshFile="BuildGeneric_44.mesh"/>
+    </node>
+    <node name="BuildGeneric_47">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_47" meshFile="BuildGeneric_47.mesh"/>
+    </node>
+    <node name="BuildGeneric_46">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_46" meshFile="BuildGeneric_46.mesh"/>
+    </node>
+    <node name="RoofMansardZinc">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="RoofMansardZinc" meshFile="RoofMansardZinc.mesh"/>
+    </node>
+    <node name="BuildGeneric_26">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_26" meshFile="BuildGeneric_26.mesh"/>
+    </node>
+    <node name="ChimneyBase_13">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="ChimneyBase_13" meshFile="ChimneyBase_13.mesh"/>
+    </node>
+    <node name="BuildGeneric_39">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_39" meshFile="BuildGeneric_39.mesh"/>
+    </node>
+    <node name="BuildGeneric_31">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_31" meshFile="BuildGeneric_31.mesh"/>
+    </node>
+    <node name="BaseCyl_1">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BaseCyl_1" meshFile="BaseCyl_1.mesh"/>
+    </node>
+    <node name="BuildGeneric">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric" meshFile="BuildGeneric.mesh"/>
+    </node>
+    <node name="BuildGeneric_56">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_56" meshFile="BuildGeneric_56.mesh"/>
+    </node>
+    <node name="BuildGeneric_57">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_57" meshFile="BuildGeneric_57.mesh"/>
+    </node>
+    <node name="BuildGeneric_54">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_54" meshFile="BuildGeneric_54.mesh"/>
+    </node>
+    <node name="BuildGeneric_55">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_55" meshFile="BuildGeneric_55.mesh"/>
+    </node>
+    <node name="BuildGeneric_52">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_52" meshFile="BuildGeneric_52.mesh"/>
+    </node>
+    <node name="BuildGeneric_53">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_53" meshFile="BuildGeneric_53.mesh"/>
+    </node>
+    <node name="BuildGeneric_50">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_50" meshFile="BuildGeneric_50.mesh"/>
+    </node>
+    <node name="BuildGeneric_51">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_51" meshFile="BuildGeneric_51.mesh"/>
+    </node>
+    <node name="Material">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="Material" meshFile="Material.mesh"/>
+    </node>
+    <node name="BuildGeneric_58">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_58" meshFile="BuildGeneric_58.mesh"/>
+    </node>
+    <node name="BuildGeneric_59">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_59" meshFile="BuildGeneric_59.mesh"/>
+    </node>
+    <node name="RoofMansardArdoise_1">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="RoofMansardArdoise_1" meshFile="RoofMansardArdoise_1.mesh"/>
+    </node>
+    <node name="FaitageArdoise_1">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="FaitageArdoise_1" meshFile="FaitageArdoise_1.mesh"/>
+    </node>
+    <node name="FaitageArdoise_3">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="FaitageArdoise_3" meshFile="FaitageArdoise_3.mesh"/>
+    </node>
+    <node name="FaitageArdoise_2">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="FaitageArdoise_2" meshFile="FaitageArdoise_2.mesh"/>
+    </node>
+    <node name="FaitageArdoise_5">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="FaitageArdoise_5" meshFile="FaitageArdoise_5.mesh"/>
+    </node>
+    <node name="FaitageArdoise_4">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="FaitageArdoise_4" meshFile="FaitageArdoise_4.mesh"/>
+    </node>
+    <node name="FaitageArdoise_6">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="FaitageArdoise_6" meshFile="FaitageArdoise_6.mesh"/>
+    </node>
+    <node name="RoofTerrasse_4">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="RoofTerrasse_4" meshFile="RoofTerrasse_4.mesh"/>
+    </node>
+    <node name="BuildGeneric_30">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_30" meshFile="BuildGeneric_30.mesh"/>
+    </node>
+    <node name="RoofTerrasse_1">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="RoofTerrasse_1" meshFile="RoofTerrasse_1.mesh"/>
+    </node>
+    <node name="RoofTerrasse_2">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="RoofTerrasse_2" meshFile="RoofTerrasse_2.mesh"/>
+    </node>
+    <node name="RoofTerrasse_3">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="RoofTerrasse_3" meshFile="RoofTerrasse_3.mesh"/>
+    </node>
+    <node name="BuildGeneric_32">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_32" meshFile="BuildGeneric_32.mesh"/>
+    </node>
+    <node name="BuildGeneric_33">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_33" meshFile="BuildGeneric_33.mesh"/>
+    </node>
+    <node name="BuildGeneric_34">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_34" meshFile="BuildGeneric_34.mesh"/>
+    </node>
+    <node name="BlindFacadeGF">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BlindFacadeGF" meshFile="BlindFacadeGF.mesh"/>
+    </node>
+    <node name="ChimneyBase_15">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="ChimneyBase_15" meshFile="ChimneyBase_15.mesh"/>
+    </node>
+    <node name="BuildGeneric_23">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_23" meshFile="BuildGeneric_23.mesh"/>
+    </node>
+    <node name="BuildGeneric_22">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_22" meshFile="BuildGeneric_22.mesh"/>
+    </node>
+    <node name="BuildGeneric_21">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_21" meshFile="BuildGeneric_21.mesh"/>
+    </node>
+    <node name="BuildGeneric_20">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_20" meshFile="BuildGeneric_20.mesh"/>
+    </node>
+    <node name="BuildGeneric_27">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_27" meshFile="BuildGeneric_27.mesh"/>
+    </node>
+    <node name="ChimneyBase_16">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="ChimneyBase_16" meshFile="ChimneyBase_16.mesh"/>
+    </node>
+    <node name="BuildGeneric_25">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_25" meshFile="BuildGeneric_25.mesh"/>
+    </node>
+    <node name="BuildGeneric_24">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_24" meshFile="BuildGeneric_24.mesh"/>
+    </node>
+    <node name="BuildGeneric_29">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_29" meshFile="BuildGeneric_29.mesh"/>
+    </node>
+    <node name="BuildGeneric_28">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_28" meshFile="BuildGeneric_28.mesh"/>
+    </node>
+    <node name="BuildGeneric_38">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_38" meshFile="BuildGeneric_38.mesh"/>
+    </node>
+    <node name="BlindFacadeTextured_1">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BlindFacadeTextured_1" meshFile="BlindFacadeTextured_1.mesh"/>
+    </node>
+    <node name="FoliageShader0">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="FoliageShader0" meshFile="FoliageShader0.mesh"/>
+    </node>
+    <node name="FaitageTuile_3">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="FaitageTuile_3" meshFile="FaitageTuile_3.mesh"/>
+    </node>
+    <node name="BaseCyl">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BaseCyl" meshFile="BaseCyl.mesh"/>
+    </node>
+    <node name="ChimneyBase_10">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="ChimneyBase_10" meshFile="ChimneyBase_10.mesh"/>
+    </node>
+    <node name="ChimneyBase_11">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="ChimneyBase_11" meshFile="ChimneyBase_11.mesh"/>
+    </node>
+    <node name="ChimneyBase_12">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="ChimneyBase_12" meshFile="ChimneyBase_12.mesh"/>
+    </node>
+    <node name="RoofMansardTuile">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="RoofMansardTuile" meshFile="RoofMansardTuile.mesh"/>
+    </node>
+    <node name="ChimneyBase_14">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="ChimneyBase_14" meshFile="ChimneyBase_14.mesh"/>
+    </node>
+    <node name="BuildGeneric_35">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_35" meshFile="BuildGeneric_35.mesh"/>
+    </node>
+    <node name="BuildGeneric_36">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_36" meshFile="BuildGeneric_36.mesh"/>
+    </node>
+    <node name="ChimneyBase_17">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="ChimneyBase_17" meshFile="ChimneyBase_17.mesh"/>
+    </node>
+    <node name="ChimneyBase_18">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="ChimneyBase_18" meshFile="ChimneyBase_18.mesh"/>
+    </node>
+    <node name="ChimneyBase_19">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="ChimneyBase_19" meshFile="ChimneyBase_19.mesh"/>
+    </node>
+    <node name="BlindFacadeTextured_2">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BlindFacadeTextured_2" meshFile="BlindFacadeTextured_2.mesh"/>
+    </node>
+    <node name="BlindFacadeTextured_3">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BlindFacadeTextured_3" meshFile="BlindFacadeTextured_3.mesh"/>
+    </node>
+    <node name="Dirtmap">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="Dirtmap" meshFile="Dirtmap.mesh"/>
+    </node>
+    <node name="YardFacade">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="YardFacade" meshFile="YardFacade.mesh"/>
+    </node>
+    <node name="Lane">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="Lane" meshFile="Lane.mesh"/>
+    </node>
+    <node name="YardFacade_1">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="YardFacade_1" meshFile="YardFacade_1.mesh"/>
+    </node>
+    <node name="ChimneyBase_20">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="ChimneyBase_20" meshFile="ChimneyBase_20.mesh"/>
+    </node>
+    <node name="FaitageTuile">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="FaitageTuile" meshFile="FaitageTuile.mesh"/>
+    </node>
+    <node name="Material_002">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="Material_002" meshFile="Material_002.mesh"/>
+    </node>
+    <node name="Material_003">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="Material_003" meshFile="Material_003.mesh"/>
+    </node>
+    <node name="Material_001">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="Material_001" meshFile="Material_001.mesh"/>
+    </node>
+    <node name="RoofMansardZinc_2">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="RoofMansardZinc_2" meshFile="RoofMansardZinc_2.mesh"/>
+    </node>
+    <node name="RoofMansardZinc_1">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="RoofMansardZinc_1" meshFile="RoofMansardZinc_1.mesh"/>
+    </node>
+    <node name="FaitageArdoise">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="FaitageArdoise" meshFile="FaitageArdoise.mesh"/>
+    </node>
+    <node name="ChimneyBase_6">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="ChimneyBase_6" meshFile="ChimneyBase_6.mesh"/>
+    </node>
+    <node name="ChimneyBase_7">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="ChimneyBase_7" meshFile="ChimneyBase_7.mesh"/>
+    </node>
+    <node name="ChimneyBase_4">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="ChimneyBase_4" meshFile="ChimneyBase_4.mesh"/>
+    </node>
+    <node name="ChimneyBase_5">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="ChimneyBase_5" meshFile="ChimneyBase_5.mesh"/>
+    </node>
+    <node name="ChimneyBase_2">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="ChimneyBase_2" meshFile="ChimneyBase_2.mesh"/>
+    </node>
+    <node name="ChimneyBase_3">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="ChimneyBase_3" meshFile="ChimneyBase_3.mesh"/>
+    </node>
+    <node name="ChimneyBase_1">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="ChimneyBase_1" meshFile="ChimneyBase_1.mesh"/>
+    </node>
+    <node name="ChimneyBase_8">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="ChimneyBase_8" meshFile="ChimneyBase_8.mesh"/>
+    </node>
+    <node name="ChimneyBase_9">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="ChimneyBase_9" meshFile="ChimneyBase_9.mesh"/>
+    </node>
+    <node name="BuildGeneric_18">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_18" meshFile="BuildGeneric_18.mesh"/>
+    </node>
+    <node name="BuildGeneric_19">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_19" meshFile="BuildGeneric_19.mesh"/>
+    </node>
+    <node name="BuildGeneric_12">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_12" meshFile="BuildGeneric_12.mesh"/>
+    </node>
+    <node name="BuildGeneric_13">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_13" meshFile="BuildGeneric_13.mesh"/>
+    </node>
+    <node name="BuildGeneric_10">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_10" meshFile="BuildGeneric_10.mesh"/>
+    </node>
+    <node name="BuildGeneric_11">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_11" meshFile="BuildGeneric_11.mesh"/>
+    </node>
+    <node name="BuildGeneric_16">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_16" meshFile="BuildGeneric_16.mesh"/>
+    </node>
+    <node name="BuildGeneric_17">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_17" meshFile="BuildGeneric_17.mesh"/>
+    </node>
+    <node name="BuildGeneric_14">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_14" meshFile="BuildGeneric_14.mesh"/>
+    </node>
+    <node name="BuildGeneric_15">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_15" meshFile="BuildGeneric_15.mesh"/>
+    </node>
+    <node name="BuildGeneric_62">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_62" meshFile="BuildGeneric_62.mesh"/>
+    </node>
+    <node name="RoofTerrasse">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="RoofTerrasse" meshFile="RoofTerrasse.mesh"/>
+    </node>
+    <node name="FaitageZinc">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="FaitageZinc" meshFile="FaitageZinc.mesh"/>
+    </node>
+    <node name="Pavement">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="Pavement" meshFile="Pavement.mesh"/>
+    </node>
+    <node name="Curbs">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="Curbs" meshFile="Curbs.mesh"/>
+    </node>
+    <node name="BuildGeneric_65">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_65" meshFile="BuildGeneric_65.mesh"/>
+    </node>
+    <node name="BuildGeneric_64">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_64" meshFile="BuildGeneric_64.mesh"/>
+    </node>
+    <node name="BuildGeneric_63">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_63" meshFile="BuildGeneric_63.mesh"/>
+    </node>
+    <node name="FanLight">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="FanLight" meshFile="FanLight.mesh"/>
+    </node>
+    <node name="BuildGeneric_61">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_61" meshFile="BuildGeneric_61.mesh"/>
+    </node>
+    <node name="BuildGeneric_60">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_60" meshFile="BuildGeneric_60.mesh"/>
+    </node>
+    <node name="BuildGeneric_8">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_8" meshFile="BuildGeneric_8.mesh"/>
+    </node>
+    <node name="BuildGeneric_9">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_9" meshFile="BuildGeneric_9.mesh"/>
+    </node>
+    <node name="BuildGeneric_1">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_1" meshFile="BuildGeneric_1.mesh"/>
+    </node>
+    <node name="BuildGeneric_2">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_2" meshFile="BuildGeneric_2.mesh"/>
+    </node>
+    <node name="BuildGeneric_3">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_3" meshFile="BuildGeneric_3.mesh"/>
+    </node>
+    <node name="BuildGeneric_4">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_4" meshFile="BuildGeneric_4.mesh"/>
+    </node>
+    <node name="BuildGeneric_5">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_5" meshFile="BuildGeneric_5.mesh"/>
+    </node>
+    <node name="BuildGeneric_6">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_6" meshFile="BuildGeneric_6.mesh"/>
+    </node>
+    <node name="BuildGeneric_7">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="BuildGeneric_7" meshFile="BuildGeneric_7.mesh"/>
+    </node>
+  </nodes>
+  <externals>
+    <item type="material">
+      <file name="Scene.material"/>
+    </item>
+  </externals>
+  <environment>
+    <colourAmbient r="0.000000" g="0.000000" b="0.000000"/>
+    <colourBackground r="0.056563" g="0.220815" b="0.400000"/>
+  </environment>
+</scene>

@@ -1,0 +1,85 @@
+<scene formatVersion="1.0.0">
+  <nodes>
+    <node name="TrafficLight.00_02.L">
+      <position x="-676.464111" y="-0.558000" z="-25.469408"/>
+      <quaternion x="0.000000" y="0.113203" z="-0.000000" w="0.993572"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.00_02.L" meshFile="trafficlight.mesh"/>
+    </node>
+    <node name="sb_smaf_kurven">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="sb_smaf_kurven" meshFile="kurven.mesh"/>
+    </node>
+    <node name="TrafficLight.00_14.L">
+      <position x="-687.940186" y="-0.557999" z="-28.045156"/>
+      <quaternion x="0.000000" y="-0.713250" z="-0.000000" w="0.700909"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.00_14.L" meshFile="trafficlight.mesh"/>
+    </node>
+    <node name="TrafficLight.00_00">
+      <position x="-675.991455" y="-0.558000" z="-25.588648"/>
+      <quaternion x="0.000000" y="0.113203" z="-0.000000" w="0.993572"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.00_00" meshFile="trafficlight.mesh"/>
+    </node>
+    <node name="TrafficLight.00_04">
+      <position x="-675.330505" y="-0.557999" z="-37.338509"/>
+      <quaternion x="0.000000" y="0.669131" z="-0.000000" w="0.743145"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.00_04" meshFile="trafficlight.mesh"/>
+    </node>
+    <node name="TrafficLight.00_08">
+      <position x="-687.239990" y="-0.557999" z="-38.763206"/>
+      <quaternion x="0.000000" y="0.996917" z="-0.000000" w="0.078459"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.00_08" meshFile="trafficlight.mesh"/>
+    </node>
+    <node name="TrafficLight.00_06.L">
+      <position x="-675.454834" y="-0.558000" z="-36.750046"/>
+      <quaternion x="0.000000" y="0.669131" z="-0.000000" w="0.743145"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.00_06.L" meshFile="trafficlight.mesh"/>
+    </node>
+    <node name="TrafficLight.00_10.L">
+      <position x="-686.614014" y="-0.557999" z="-38.760277"/>
+      <quaternion x="0.000000" y="0.996917" z="-0.000000" w="0.078459"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.00_10.L" meshFile="trafficlight.mesh"/>
+    </node>
+    <node name="sb_smaf_strassen">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="sb_smaf_strassen" meshFile="strassen.001.mesh"/>
+    </node>
+    <node name="sb_smaf_bordstein">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="sb_smaf_bordstein" meshFile="bordstein_neu.mesh"/>
+    </node>
+    <node name="TrafficLight.00_12">
+      <position x="-687.934937" y="-0.557999" z="-27.437828"/>
+      <quaternion x="0.000000" y="-0.713250" z="-0.000000" w="0.700909"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.00_12" meshFile="trafficlight.mesh"/>
+    </node>
+    <node name="Land.Grass">
+      <position x="-391.839844" y="-0.001000" z="7.867493"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="2000.000000" y="0.500000" z="2000.000000"/>
+      <entity name="Land.Grass" meshFile="Land.Grass.Mesh.mesh"/>
+    </node>
+  </nodes>
+  <externals>
+    <item type="material">
+      <file name="stadtmitte22.material"/>
+    </item>
+  </externals>
+  <environment>
+    <colourAmbient r="0.000000" g="0.000000" b="0.000000"/>
+    <colourBackground r="0.056563" g="0.220815" b="0.400000"/>
+  </environment>
+</scene>

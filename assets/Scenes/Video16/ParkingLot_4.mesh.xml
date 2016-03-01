@@ -1,0 +1,34 @@
+<mesh>
+	<submeshes>
+		<submesh material="ParkingLot_4" usesharedvertices="false">
+			<faces count="2">
+				<face v1="0" v2="1" v3="2"/>
+				<face v1="0" v2="2" v3="3"/>
+			</faces>
+			<geometry vertexcount="4">
+				<vertexbuffer positions="true" normals="true" texture_coords="1">
+					<vertex>
+						<position x="-1019.952026" y="-99.800003" z="606.888977"/>
+						<normal x="0.000000" y="1.000000" z="0.000000"/>
+						<texcoord u="1.000000" v="0.999200"/>
+					</vertex>
+					<vertex>
+						<position x="-988.807007" y="-99.800003" z="605.687012"/>
+						<normal x="0.000000" y="1.000000" z="0.000000"/>
+						<texcoord u="0.000000" v="1.000000"/>
+					</vertex>
+					<vertex>
+						<position x="-990.106018" y="-99.800003" z="572.781982"/>
+						<normal x="0.000000" y="1.000000" z="0.000000"/>
+						<texcoord u="0.000000" v="0.000000"/>
+					</vertex>
+					<vertex>
+						<position x="-1021.247009" y="-99.800003" z="574.018005"/>
+						<normal x="0.000000" y="1.000000" z="0.000000"/>
+						<texcoord u="0.999900" v="0.000200"/>
+					</vertex>
+				</vertexbuffer>
+			</geometry>
+		</submesh>
+	</submeshes>
+</mesh>

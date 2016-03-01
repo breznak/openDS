@@ -1,0 +1,733 @@
+<scene formatVersion="1.0.0">
+  <nodes>
+    <node name="TrafficLight.04_04">
+      <position x="-49.004932" y="-1.643511" z="-198.735001"/>
+      <quaternion x="0.000000" y="0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.04_04" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="TrafficLight.05_08.R">
+      <position x="151.419998" y="-1.643539" z="-187.504349"/>
+      <quaternion x="0.000000" y="-0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.05_08.R" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="TrafficLight.07_00.R">
+      <position x="164.627838" y="-1.643544" z="80.467529"/>
+      <quaternion x="-0.000000" y="0.707107" z="0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.07_00.R" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="Street.Crossing">
+      <position x="-55.606155" y="-0.605000" z="-53.480217"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Crossing" meshFile="Street.Crossing.Mesh.mesh"/>
+    </node>
+    <node name="Street.TL_B.004">
+      <position x="139.276718" y="-0.605004" z="86.108566"/>
+      <quaternion x="-0.000000" y="0.707107" z="0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="14.099998"/>
+      <entity name="Street.TL_B.004" meshFile="Street.TL_B.Mesh.mesh"/>
+    </node>
+    <node name="Street.Unit.002">
+      <position x="-55.605995" y="-0.604996" z="-34.705338"/>
+      <quaternion x="0.000000" y="1.000000" z="-0.000000" w="0.000000"/>
+      <scale x="4.700000" y="0.020000" z="14.100000"/>
+      <entity name="Street.Unit.002" meshFile="Street.Unit.Mesh.001.mesh"/>
+    </node>
+    <node name="TrafficLight.00_00">
+      <position x="-50.113510" y="-1.643509" z="-46.809563"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.00_00" meshFile="trafficlight.mesh"/>
+    </node>
+    <node name="TrafficLight.00_12">
+      <position x="-61.827652" y="-1.643508" z="-47.655754"/>
+      <quaternion x="0.000000" y="-0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.00_12" meshFile="trafficlight.mesh"/>
+    </node>
+    <node name="TrafficLight.07_06.L">
+      <position x="152.863190" y="-1.643543" z="79.968109"/>
+      <quaternion x="-0.000000" y="1.000000" z="-0.000000" w="0.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.07_06.L" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="TrafficLight.03_10.L">
+      <position x="-200.422043" y="-1.643516" z="-60.058372"/>
+      <quaternion x="-0.000000" y="1.000000" z="-0.000000" w="0.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.03_10.L" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="Street.Unit.004">
+      <position x="-18.493671" y="-0.605000" z="-53.480000"/>
+      <quaternion x="0.000000" y="0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Unit.004" meshFile="Street.Unit.Mesh.015.mesh"/>
+    </node>
+    <node name="TrafficLight.04_06.L">
+      <position x="-49.028248" y="-1.643511" z="-198.319595"/>
+      <quaternion x="0.000000" y="0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.04_06.L" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="TrafficLight.01_00">
+      <position x="163.554382" y="-1.643528" z="-46.809555"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.01_00" meshFile="trafficlight.001.mesh"/>
+    </node>
+    <node name="TrafficLight.00_06.L">
+      <position x="-49.347519" y="-1.643509" z="-58.544426"/>
+      <quaternion x="0.000000" y="0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.00_06.L" meshFile="trafficlight.mesh"/>
+    </node>
+    <node name="TrafficLight.01_04">
+      <position x="164.301300" y="-1.643528" z="-59.046860"/>
+      <quaternion x="0.000000" y="0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.01_04" meshFile="trafficlight.001.mesh"/>
+    </node>
+    <node name="TrafficLight.06_06.L">
+      <position x="-60.796787" y="-1.643531" z="79.973526"/>
+      <quaternion x="-0.000000" y="1.000000" z="0.000000" w="0.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.06_06.L" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="Street.TL_A.017">
+      <position x="297.566010" y="-0.605000" z="-72.236931"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="4.700000" y="0.020000" z="14.100000"/>
+      <entity name="Street.TL_A.017" meshFile="Street.TL_A.Mesh.004.mesh"/>
+    </node>
+    <node name="TrafficLight.05_00.R">
+      <position x="163.748383" y="-1.643538" z="-187.010178"/>
+      <quaternion x="-0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.05_00.R" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="Street.Unit.014">
+      <position x="195.174210" y="-0.605019" z="-53.479996"/>
+      <quaternion x="0.000000" y="0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Unit.014" meshFile="Street.Unit.Mesh.002.mesh"/>
+    </node>
+    <node name="Street.TL_C.004">
+      <position x="158.057983" y="-0.605004" z="67.349350"/>
+      <quaternion x="-0.000000" y="0.000000" z="0.000000" w="1.000000"/>
+      <scale x="4.699998" y="0.020000" z="14.100000"/>
+      <entity name="Street.TL_C.004" meshFile="Street.TL_C.Mesh.mesh"/>
+    </node>
+    <node name="Street.TL_B.002">
+      <position x="-195.258484" y="-0.604975" z="-72.258293"/>
+      <quaternion x="-0.000000" y="0.000000" z="0.000000" w="1.000000"/>
+      <scale x="4.700000" y="0.020000" z="14.100000"/>
+      <entity name="Street.TL_B.002" meshFile="Street.TL_B.Mesh.mesh"/>
+    </node>
+    <node name="Street.Unit.033">
+      <position x="-176.675491" y="-0.604940" z="-193.156006"/>
+      <quaternion x="0.000000" y="0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="4.890234"/>
+      <entity name="Street.Unit.033" meshFile="Street.Unit.Mesh.004.mesh"/>
+    </node>
+    <node name="Street.Unit.032">
+      <position x="269.599213" y="-0.604981" z="-193.145004"/>
+      <quaternion x="0.000000" y="0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Unit.032" meshFile="Street.Unit.Mesh.004.mesh"/>
+    </node>
+    <node name="Street.Unit.031">
+      <position x="269.801086" y="-0.605048" z="86.109001"/>
+      <quaternion x="0.000000" y="0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Unit.031" meshFile="Street.Unit.Mesh.004.mesh"/>
+    </node>
+    <node name="Street.Unit.030">
+      <position x="-176.466675" y="-0.605004" z="86.113998"/>
+      <quaternion x="0.000000" y="0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Unit.030" meshFile="Street.Unit.Mesh.004.mesh"/>
+    </node>
+    <node name="Street.Unit.036">
+      <position x="297.566010" y="-0.605046" z="58.137867"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Unit.036" meshFile="Street.Unit.Mesh.004.mesh"/>
+    </node>
+    <node name="Street.Unit.035">
+      <position x="297.566010" y="-0.604992" z="-174.490356"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Unit.035" meshFile="Street.Unit.Mesh.004.mesh"/>
+    </node>
+    <node name="Street.Unit.034">
+      <position x="-195.257996" y="-0.604948" z="-174.233429"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="4.700000" y="0.020000" z="4.887967"/>
+      <entity name="Street.Unit.034" meshFile="Street.Unit.Mesh.004.mesh"/>
+    </node>
+    <node name="TrafficLight.01_12">
+      <position x="151.840240" y="-1.643527" z="-47.655746"/>
+      <quaternion x="0.000000" y="-0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.01_12" meshFile="trafficlight.001.mesh"/>
+    </node>
+    <node name="Land.Grass">
+      <position x="-267.935791" y="-1.086613" z="-93.830673"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="2500.000000" y="0.500000" z="2500.000000"/>
+      <entity name="Land.Grass" meshFile="Land.Grass.Mesh.mesh"/>
+    </node>
+    <node name="Street.TL_C.001">
+      <position x="-55.609615" y="-0.604970" z="-174.396820"/>
+      <quaternion x="0.000000" y="1.000000" z="-0.000000" w="0.000000"/>
+      <scale x="4.700000" y="0.020000" z="14.100000"/>
+      <entity name="Street.TL_C.001" meshFile="Street.TL_C.Mesh.mesh"/>
+    </node>
+    <node name="TrafficLight.02_04">
+      <position x="303.144989" y="-1.643541" z="-46.940239"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.02_04" meshFile="trafficlight.002.mesh"/>
+    </node>
+    <node name="Street.Curve">
+      <position x="292.861572" y="-0.605000" z="81.399811"/>
+      <quaternion x="0.000000" y="0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="9.400001" y="0.020000" z="9.400001"/>
+      <entity name="Street.Curve" meshFile="Street.Curve.M.001.mesh"/>
+    </node>
+    <node name="TrafficLight.00_14.L">
+      <position x="-61.832901" y="-1.643508" z="-48.219475"/>
+      <quaternion x="0.000000" y="-0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.00_14.L" meshFile="trafficlight.mesh"/>
+    </node>
+    <node name="Street.TL_B.016">
+      <position x="297.566010" y="-0.605000" z="-34.821301"/>
+      <quaternion x="0.000000" y="1.000000" z="-0.000000" w="0.000000"/>
+      <scale x="4.700000" y="0.020000" z="14.100000"/>
+      <entity name="Street.TL_B.016" meshFile="Street.TL_B.Mesh.003.mesh"/>
+    </node>
+    <node name="TrafficLight.06_00.R">
+      <position x="-49.032124" y="-1.643532" z="80.472946"/>
+      <quaternion x="0.000000" y="0.707107" z="0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.06_00.R" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="TrafficLight.00_10.L">
+      <position x="-60.857620" y="-1.643509" z="-59.981194"/>
+      <quaternion x="0.000000" y="1.000000" z="-0.000000" w="0.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.00_10.L" meshFile="trafficlight.mesh"/>
+    </node>
+    <node name="TrafficLight.07_04.R">
+      <position x="152.299469" y="-1.643543" z="79.973358"/>
+      <quaternion x="-0.000000" y="1.000000" z="-0.000000" w="0.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.07_04.R" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="TrafficLight.04_10.U">
+      <position x="-62.176556" y="-1.643510" z="-187.990875"/>
+      <quaternion x="-0.000000" y="-0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.04_10.U" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="TrafficLight.02_02.L">
+      <position x="291.425568" y="-1.643540" z="-48.350151"/>
+      <quaternion x="0.000000" y="-0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.02_02.L" meshFile="trafficlight.002.mesh"/>
+    </node>
+    <node name="Street.Unit.028">
+      <position x="-195.257996" y="-0.604964" z="-16.189741"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Unit.028" meshFile="Street.Unit.Mesh.002.mesh"/>
+    </node>
+    <node name="Street.Unit.029">
+      <position x="-195.257996" y="-0.605000" z="58.193954"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Unit.029" meshFile="Street.Unit.Mesh.004.mesh"/>
+    </node>
+    <node name="TrafficLight.07_02.U">
+      <position x="164.624908" y="-1.643544" z="80.943420"/>
+      <quaternion x="-0.000000" y="0.707107" z="0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.07_02.U" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="Street.Unit.020">
+      <position x="55.874088" y="-0.605000" z="-193.160004"/>
+      <quaternion x="-0.000000" y="0.707107" z="0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Unit.020" meshFile="Street.Unit.Mesh.002.mesh"/>
+    </node>
+    <node name="Street.Unit.021">
+      <position x="195.393265" y="-0.605012" z="-193.145004"/>
+      <quaternion x="-0.000000" y="0.707107" z="0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Unit.021" meshFile="Street.Unit.Mesh.002.mesh"/>
+    </node>
+    <node name="Street.Unit.022">
+      <position x="-157.780289" y="-0.604980" z="-193.156006"/>
+      <quaternion x="-0.000000" y="0.707107" z="0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Unit.022" meshFile="Street.Unit.Mesh.002.mesh"/>
+    </node>
+    <node name="Street.Unit.024">
+      <position x="195.463409" y="-0.605028" z="86.109001"/>
+      <quaternion x="-0.000000" y="0.707107" z="0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Unit.024" meshFile="Street.Unit.Mesh.002.mesh"/>
+    </node>
+    <node name="Street.Unit.025">
+      <position x="297.566010" y="-0.605022" z="-16.216709"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Unit.025" meshFile="Street.Unit.Mesh.002.mesh"/>
+    </node>
+    <node name="Street.Unit.026">
+      <position x="297.566010" y="-0.604990" z="-156.683945"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="4.700000" y="0.020000" z="4.826531"/>
+      <entity name="Street.Unit.026" meshFile="Street.Unit.Mesh.002.mesh"/>
+    </node>
+    <node name="Street.Unit.027">
+      <position x="-195.257996" y="-0.604946" z="-155.435257"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Unit.027" meshFile="Street.Unit.Mesh.002.mesh"/>
+    </node>
+    <node name="TrafficLight.01_14.L">
+      <position x="151.834991" y="-1.643527" z="-48.219467"/>
+      <quaternion x="0.000000" y="-0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.01_14.L" meshFile="trafficlight.001.mesh"/>
+    </node>
+    <node name="Street.Unit.001">
+      <position x="-55.605999" y="-0.604999" z="-72.162338"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="4.700000" y="0.020000" z="14.100000"/>
+      <entity name="Street.Unit.001" meshFile="Street.Unit.Mesh.001.mesh"/>
+    </node>
+    <node name="TrafficLight.06_04.R">
+      <position x="-61.360508" y="-1.643531" z="79.978775"/>
+      <quaternion x="-0.000000" y="1.000000" z="0.000000" w="0.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.06_04.R" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="Street.Unit.006">
+      <position x="-55.606873" y="-0.604990" z="-15.989936"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Unit.006" meshFile="Street.Unit.Mesh.015.mesh"/>
+    </node>
+    <node name="Street.TL_B.001">
+      <position x="-36.828323" y="-0.604970" z="-193.156021"/>
+      <quaternion x="-0.000000" y="-0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="14.100000"/>
+      <entity name="Street.TL_B.001" meshFile="Street.TL_B.Mesh.mesh"/>
+    </node>
+    <node name="Street.Unit.015">
+      <position x="176.683380" y="-0.605019" z="-53.479996"/>
+      <quaternion x="0.000000" y="-0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="14.100002"/>
+      <entity name="Street.Unit.015" meshFile="Street.Unit.Mesh.mesh"/>
+    </node>
+    <node name="Street.TL_B.003">
+      <position x="-74.383293" y="-0.604992" z="86.113991"/>
+      <quaternion x="0.000000" y="0.707107" z="0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="14.100001"/>
+      <entity name="Street.TL_B.003" meshFile="Street.TL_B.Mesh.mesh"/>
+    </node>
+    <node name="Street.Unit.017">
+      <position x="-18.493643" y="-0.605007" z="86.110001"/>
+      <quaternion x="0.000000" y="0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Unit.017" meshFile="Street.Unit.Mesh.015.mesh"/>
+    </node>
+    <node name="Street.Unit.016">
+      <position x="55.737247" y="-0.605014" z="86.109978"/>
+      <quaternion x="-0.000000" y="0.707107" z="0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Unit.016" meshFile="Street.Unit.Mesh.002.mesh"/>
+    </node>
+    <node name="Street.Unit.011">
+      <position x="158.061874" y="-0.605014" z="-90.793839"/>
+      <quaternion x="0.000000" y="1.000000" z="-0.000000" w="0.000000"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Unit.011" meshFile="Street.Unit.Mesh.002.mesh"/>
+    </node>
+    <node name="Street.Unit.010">
+      <position x="139.299713" y="-0.605016" z="-53.479996"/>
+      <quaternion x="0.000000" y="0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="14.100002"/>
+      <entity name="Street.Unit.010" meshFile="Street.Unit.Mesh.mesh"/>
+    </node>
+    <node name="Street.Unit.013">
+      <position x="55.737221" y="-0.605007" z="-53.479996"/>
+      <quaternion x="0.000000" y="0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Unit.013" meshFile="Street.Unit.Mesh.002.mesh"/>
+    </node>
+    <node name="Street.Unit.012">
+      <position x="158.061005" y="-0.605009" z="-15.989929"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Unit.012" meshFile="Street.Unit.Mesh.002.mesh"/>
+    </node>
+    <node name="TrafficLight.01_10.L">
+      <position x="152.810272" y="-1.643528" z="-59.981186"/>
+      <quaternion x="0.000000" y="1.000000" z="-0.000000" w="0.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.01_10.L" meshFile="trafficlight.001.mesh"/>
+    </node>
+    <node name="TrafficLight.07_08">
+      <position x="151.453293" y="-1.643545" z="91.687546"/>
+      <quaternion x="0.000000" y="-0.707107" z="0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.07_08" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="Street.Unit.019">
+      <position x="-18.356806" y="-0.604993" z="-193.160004"/>
+      <quaternion x="-0.000000" y="0.707107" z="0.000000" w="0.707107"/>
+      <scale x="4.700001" y="0.020000" z="4.700000"/>
+      <entity name="Street.Unit.019" meshFile="Street.Unit.Mesh.015.mesh"/>
+    </node>
+    <node name="Street.Unit.018">
+      <position x="55.737247" y="-0.605014" z="86.109978"/>
+      <quaternion x="-0.000000" y="0.707107" z="0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Unit.018" meshFile="Street.Unit.Mesh.002.mesh"/>
+    </node>
+    <node name="TrafficLight.02_00.R">
+      <position x="291.430817" y="-1.643539" z="-47.786430"/>
+      <quaternion x="0.000000" y="-0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.02_00.R" meshFile="trafficlight.002.mesh"/>
+    </node>
+    <node name="Street.TL_A.002">
+      <position x="-195.258484" y="-0.604975" z="-34.785000"/>
+      <quaternion x="0.000000" y="1.000000" z="-0.000000" w="0.000000"/>
+      <scale x="4.700000" y="0.020000" z="14.100000"/>
+      <entity name="Street.TL_A.002" meshFile="Street.TL_A.Mesh.mesh"/>
+    </node>
+    <node name="TrafficLight.01_08">
+      <position x="152.334351" y="-1.643527" z="-59.984116"/>
+      <quaternion x="0.000000" y="1.000000" z="-0.000000" w="0.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.01_08" meshFile="trafficlight.001.mesh"/>
+    </node>
+    <node name="Street.TCrossing.002">
+      <position x="297.566254" y="-0.605000" z="-53.480000"/>
+      <quaternion x="0.000000" y="0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.TCrossing.002" meshFile="Street.TCross.M.001.mesh"/>
+    </node>
+    <node name="Street.Crossing.001">
+      <position x="158.061737" y="-0.605019" z="-53.480209"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Crossing.001" meshFile="Street.Crossing.M.mesh"/>
+    </node>
+    <node name="TrafficLight.06_08">
+      <position x="-62.206676" y="-1.643533" z="91.692963"/>
+      <quaternion x="0.000000" y="-0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.06_08" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="Street.TCrossing.005">
+      <position x="157.993057" y="-0.605004" z="86.108780"/>
+      <quaternion x="-0.000000" y="0.000000" z="0.000000" w="1.000000"/>
+      <scale x="4.699998" y="0.020000" z="4.700000"/>
+      <entity name="Street.TCrossing.005" meshFile="Street.TCross.M.mesh"/>
+    </node>
+    <node name="Street.TCrossing.004">
+      <position x="-55.666931" y="-0.604992" z="86.114204"/>
+      <quaternion x="0.000000" y="0.000000" z="0.000000" w="1.000000"/>
+      <scale x="4.699999" y="0.020000" z="4.700000"/>
+      <entity name="Street.TCrossing.004" meshFile="Street.TCross.M.mesh"/>
+    </node>
+    <node name="TrafficLight.04_08.R">
+      <position x="-62.179489" y="-1.643510" z="-187.514984"/>
+      <quaternion x="0.000000" y="-0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.04_08.R" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="Street.TCrossing.001">
+      <position x="-55.602039" y="-0.604970" z="-193.156250"/>
+      <quaternion x="0.000000" y="1.000000" z="-0.000000" w="0.000000"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.TCrossing.001" meshFile="Street.TCross.M.mesh"/>
+    </node>
+    <node name="Street.Unit.007">
+      <position x="-55.606014" y="-0.604995" z="-90.793846"/>
+      <quaternion x="0.000000" y="1.000000" z="-0.000000" w="0.000000"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Unit.007" meshFile="Street.Unit.Mesh.015.mesh"/>
+    </node>
+    <node name="Street.TCrossing.003">
+      <position x="-195.258698" y="-0.604975" z="-53.498322"/>
+      <quaternion x="0.000000" y="-0.707107" z="0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.TCrossing.003" meshFile="Street.TCross.M.mesh"/>
+    </node>
+    <node name="Street.Unit.005">
+      <position x="-157.930664" y="-0.604988" z="-53.479984"/>
+      <quaternion x="0.000000" y="0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Unit.005" meshFile="Street.Unit.Mesh.015.mesh"/>
+    </node>
+    <node name="Street.Unit.008">
+      <position x="-36.984497" y="-0.605000" z="-53.480000"/>
+      <quaternion x="0.000000" y="-0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="14.100002"/>
+      <entity name="Street.Unit.008" meshFile="Street.Unit.Mesh.001.mesh"/>
+    </node>
+    <node name="Street.Unit.009">
+      <position x="158.061890" y="-0.605018" z="-72.162338"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="4.700000" y="0.020000" z="14.100000"/>
+      <entity name="Street.Unit.009" meshFile="Street.Unit.Mesh.mesh"/>
+    </node>
+    <node name="TrafficLight.05_04">
+      <position x="164.594543" y="-1.643539" z="-198.724365"/>
+      <quaternion x="0.000000" y="0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.05_04" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="Street.TL_C">
+      <position x="158.054794" y="-0.604999" z="-174.386246"/>
+      <quaternion x="0.000000" y="1.000000" z="-0.000000" w="0.000000"/>
+      <scale x="4.700000" y="0.020000" z="14.100000"/>
+      <entity name="Street.TL_C" meshFile="Street.TL_C.Mesh.mesh"/>
+    </node>
+    <node name="Street.TL_B">
+      <position x="176.771164" y="-0.604999" z="-193.145386"/>
+      <quaternion x="-0.000000" y="-0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="14.100000"/>
+      <entity name="Street.TL_B" meshFile="Street.TL_B.Mesh.mesh"/>
+    </node>
+    <node name="Street.TL_A">
+      <position x="139.297867" y="-0.604999" z="-193.145401"/>
+      <quaternion x="0.000000" y="0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="14.100002"/>
+      <entity name="Street.TL_A" meshFile="Street.TL_A.Mesh.mesh"/>
+    </node>
+    <node name="TrafficLight.06_02.U">
+      <position x="-49.035053" y="-1.643532" z="80.948837"/>
+      <quaternion x="0.000000" y="0.707107" z="0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.06_02.U" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="Street.TL_C.016">
+      <position x="278.807220" y="-0.605000" z="-53.480000"/>
+      <quaternion x="0.000000" y="0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="14.100002"/>
+      <entity name="Street.TL_C.016" meshFile="Street.TL_C.Mesh.003.mesh"/>
+    </node>
+    <node name="TrafficLight.03_06.L">
+      <position x="-189.118011" y="-1.643515" z="-58.671799"/>
+      <quaternion x="-0.000000" y="0.707107" z="0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.03_06.L" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="TrafficLight.05_10.U">
+      <position x="151.422928" y="-1.643539" z="-187.980240"/>
+      <quaternion x="-0.000000" y="-0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.05_10.U" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="Street.Unit.023">
+      <position x="-158.174850" y="-0.604995" z="86.113998"/>
+      <quaternion x="-0.000000" y="0.707107" z="0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Unit.023" meshFile="Street.Unit.Mesh.002.mesh"/>
+    </node>
+    <node name="TrafficLight.01_02.L">
+      <position x="163.139008" y="-1.643528" z="-46.832870"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.01_02.L" meshFile="trafficlight.001.mesh"/>
+    </node>
+    <node name="TrafficLight.02_08.R">
+      <position x="291.924957" y="-1.643540" z="-60.114799"/>
+      <quaternion x="0.000000" y="1.000000" z="-0.000000" w="0.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.02_08.R" meshFile="trafficlight.002.mesh"/>
+    </node>
+    <node name="TrafficLight.03_08">
+      <position x="-200.837448" y="-1.643516" z="-60.081688"/>
+      <quaternion x="-0.000000" y="1.000000" z="-0.000000" w="0.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.03_08" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="TrafficLight.02_10.U">
+      <position x="292.400848" y="-1.643540" z="-60.111870"/>
+      <quaternion x="0.000000" y="1.000000" z="-0.000000" w="0.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.02_10.U" meshFile="trafficlight.002.mesh"/>
+    </node>
+    <node name="TrafficLight.06_10.L">
+      <position x="-62.183361" y="-1.643533" z="91.277557"/>
+      <quaternion x="0.000000" y="-0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.06_10.L" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="TrafficLight.00_02.L">
+      <position x="-50.528885" y="-1.643509" z="-46.832878"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.00_02.L" meshFile="trafficlight.mesh"/>
+    </node>
+    <node name="TrafficLight.03_02.U">
+      <position x="-190.093323" y="-1.643515" z="-46.910065"/>
+      <quaternion x="-0.000000" y="0.000000" z="0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.03_02.U" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="Street.TL_C.002">
+      <position x="-176.499268" y="-0.604975" z="-53.477013"/>
+      <quaternion x="0.000000" y="-0.707107" z="0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="14.100002"/>
+      <entity name="Street.TL_C.002" meshFile="Street.TL_C.Mesh.mesh"/>
+    </node>
+    <node name="TrafficLight.07_10.L">
+      <position x="151.476608" y="-1.643545" z="91.272141"/>
+      <quaternion x="0.000000" y="-0.707107" z="0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.07_10.L" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="TrafficLight.05_06.L">
+      <position x="164.571243" y="-1.643540" z="-198.308960"/>
+      <quaternion x="0.000000" y="0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.05_06.L" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="TrafficLight.03_00.R">
+      <position x="-189.617432" y="-1.643515" z="-46.907135"/>
+      <quaternion x="-0.000000" y="0.000000" z="0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.03_00.R" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="TrafficLight.05_02.L">
+      <position x="163.184647" y="-1.643538" z="-187.004929"/>
+      <quaternion x="-0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.05_02.L" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="Street.TCrossing">
+      <position x="158.054794" y="-0.604999" z="-193.145615"/>
+      <quaternion x="0.000000" y="1.000000" z="-0.000000" w="0.000000"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.TCrossing" meshFile="Street.TCross.M.mesh"/>
+    </node>
+    <node name="Street.TL_C.003">
+      <position x="-55.602013" y="-0.604992" z="67.354774"/>
+      <quaternion x="0.000000" y="0.000000" z="0.000000" w="1.000000"/>
+      <scale x="4.699999" y="0.020000" z="14.100000"/>
+      <entity name="Street.TL_C.003" meshFile="Street.TL_C.Mesh.mesh"/>
+    </node>
+    <node name="TrafficLight.00_04">
+      <position x="-49.366592" y="-1.643509" z="-59.046867"/>
+      <quaternion x="0.000000" y="0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.00_04" meshFile="trafficlight.mesh"/>
+    </node>
+    <node name="Street.TL_A.004">
+      <position x="176.750000" y="-0.605004" z="86.108566"/>
+      <quaternion x="0.000000" y="-0.707107" z="0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="14.100002"/>
+      <entity name="Street.TL_A.004" meshFile="Street.TL_A.Mesh.mesh"/>
+    </node>
+    <node name="TrafficLight.04_02.L">
+      <position x="-50.414833" y="-1.643510" z="-187.015564"/>
+      <quaternion x="-0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.04_02.L" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="TrafficLight.04_00.R">
+      <position x="-49.851101" y="-1.643510" z="-187.020813"/>
+      <quaternion x="-0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.04_00.R" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="TrafficLight.00_08">
+      <position x="-61.333542" y="-1.643508" z="-59.984123"/>
+      <quaternion x="0.000000" y="1.000000" z="-0.000000" w="0.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.00_08" meshFile="trafficlight.mesh"/>
+    </node>
+    <node name="TrafficLight.03_04.R">
+      <position x="-189.123260" y="-1.643515" z="-59.235519"/>
+      <quaternion x="-0.000000" y="0.707107" z="0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.03_04.R" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="TrafficLight.02_06.L">
+      <position x="302.729584" y="-1.643541" z="-46.963554"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.02_06.L" meshFile="trafficlight.002.mesh"/>
+    </node>
+    <node name="Street.Unit">
+      <position x="-74.368172" y="-0.604997" z="-53.479992"/>
+      <quaternion x="0.000000" y="0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="14.100002"/>
+      <entity name="Street.Unit" meshFile="Street.Unit.Mesh.001.mesh"/>
+    </node>
+    <node name="Street.Unit.003">
+      <position x="158.061890" y="-0.605015" z="-34.705338"/>
+      <quaternion x="0.000000" y="1.000000" z="-0.000000" w="0.000000"/>
+      <scale x="4.700000" y="0.020000" z="14.100000"/>
+      <entity name="Street.Unit.003" meshFile="Street.Unit.Mesh.mesh"/>
+    </node>
+    <node name="Street.TL_A.001">
+      <position x="-74.301620" y="-0.604970" z="-193.156036"/>
+      <quaternion x="0.000000" y="0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="14.100002"/>
+      <entity name="Street.TL_A.001" meshFile="Street.TL_A.Mesh.mesh"/>
+    </node>
+    <node name="TrafficLight.01_06.L">
+      <position x="164.320374" y="-1.643528" z="-58.544418"/>
+      <quaternion x="0.000000" y="0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.01_06.L" meshFile="trafficlight.001.mesh"/>
+    </node>
+    <node name="Street.Curve.001">
+      <position x="292.843231" y="-0.604940" z="-188.445755"/>
+      <quaternion x="0.000000" y="1.000000" z="-0.000000" w="0.000000"/>
+      <scale x="9.400000" y="0.020000" z="9.400000"/>
+      <entity name="Street.Curve.001" meshFile="Street.Curve.M.001.mesh"/>
+    </node>
+    <node name="Street.Curve.002">
+      <position x="-190.555511" y="-0.604895" z="-188.441879"/>
+      <quaternion x="0.000000" y="-0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="9.400001" y="0.020000" z="9.400001"/>
+      <entity name="Street.Curve.002" meshFile="Street.Curve.M.001.mesh"/>
+    </node>
+    <node name="Street.Curve.003">
+      <position x="-190.560989" y="-0.604957" z="81.410004"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="9.400000" y="0.020000" z="9.400000"/>
+      <entity name="Street.Curve.003" meshFile="Street.Curve.M.001.mesh"/>
+    </node>
+    <node name="Street.TL_A.003">
+      <position x="-36.910000" y="-0.604992" z="86.113998"/>
+      <quaternion x="0.000000" y="-0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="14.100002"/>
+      <entity name="Street.TL_A.003" meshFile="Street.TL_A.Mesh.mesh"/>
+    </node>
+  </nodes>
+  <externals>
+    <item type="material">
+      <file name="Scene.material"/>
+    </item>
+  </externals>
+  <environment>
+    <colourAmbient r="0.000000" g="0.000000" b="0.000000"/>
+    <colourBackground r="0.056563" g="0.220815" b="0.400000"/>
+  </environment>
+</scene>

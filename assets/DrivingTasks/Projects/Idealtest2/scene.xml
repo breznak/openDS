@@ -1,0 +1,558 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scene xmlns="http://opends.eu/drivingtask/scene"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:schemaLocation="http://opends.eu/drivingtask/scene ../../Schema/scene.xsd">
+        
+    <sounds>
+    	<sound id="beep" key="Sounds/Effects/Beep.ogg">
+    		<positional value="false" />
+    		<directional value="false" />
+    		<loop>false</loop>
+    		<volume>0.5</volume>
+    		<pitch>1</pitch>
+    	</sound>
+    </sounds>
+
+	<models>
+		<model id="idealtest2" key="Scenes/idealtest2/idealtest2.scene">
+			<mass>0</mass>
+			<visible>true</visible>
+			<collisionShape>meshShape</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1</entry>
+					<entry>1</entry>
+					<entry>1</entry>
+				</vector>
+			</scale>
+
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>0</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>0</entry>
+					<entry>0</entry>
+				</vector>
+			</translation>
+		</model>
+		<model id="driverCar" key="Models/Cars/drivingCars/Ferrari/Car.scene">
+			<mass>800</mass>
+			<visible>true</visible>
+			<collisionShape>meshShape</collisionShape>
+			
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1</entry>
+					<entry>1</entry>
+					<entry>1</entry>
+				</vector>
+			</scale>
+
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>90</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-172.47427</entry>
+					<entry>0</entry>
+					<entry>-51.814003</entry>
+				</vector>
+			</translation>
+		</model>
+
+		<model id="resetBox" key="" ref="box">
+			<mass>0</mass>
+
+			<material>
+				<color>
+					<vector jtype="java_lang_Float" size="4">
+						<entry>0</entry>
+						<entry>1</entry>
+						<entry>1</entry>
+						<entry>1</entry>
+					</vector>
+				</color>
+			</material>
+			
+			<visible>true</visible>
+			<collisionShape>none</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1</entry>
+					<entry>1</entry>
+					<entry>1</entry>
+				</vector>
+			</scale>
+			
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>90</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-115.15094</entry>
+					<entry>-1.693</entry>
+					<entry>-13.839374</entry>
+				</vector>
+			</translation>
+		</model>
+		<!-- 
+        <model id="trafficLightBox" key="" ref="box">
+            <mass>0</mass>
+
+            <material>
+                <color>
+                    <vector jtype="java_lang_Float" size="4">
+                        <entry>0</entry>
+                        <entry>1</entry>
+                        <entry>0</entry>
+                        <entry>0</entry>
+                    </vector>
+                </color>
+            </material>
+            
+            <visible>true</visible>
+            <collisionShape>none</collisionShape>
+            <scale>
+                <vector jtype="java_lang_Float" size="3">
+                    <entry>1</entry>
+                    <entry>1</entry>
+                    <entry>1</entry>
+                </vector>
+            </scale>
+            
+            <rotation quaternion="false">
+                <vector jtype="java_lang_Float" size="3">
+                    <entry>0</entry>
+                    <entry>90</entry>
+                    <entry>0</entry>
+                </vector>
+            </rotation>
+
+            <translation>
+                <vector jtype="java_lang_Float" size="3">
+                    <entry>-79.41404</entry>
+                    <entry>0.3898322</entry>
+                    <entry>-50.552567</entry>
+                </vector>
+            </translation>
+        </model>
+         -->
+        
+		<model id="redBox" key="" ref="box">
+			<mass>0</mass>
+
+			<material>
+				<color>
+					<vector jtype="java_lang_Float" size="4">
+						<entry>1</entry>
+						<entry>0</entry>
+						<entry>0</entry>
+						<entry>1</entry>
+					</vector>
+				</color>
+			</material>
+			
+			<visible>false</visible>
+			<collisionShape>none</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1</entry>
+					<entry>1</entry>
+					<entry>1</entry>
+				</vector>
+			</scale>
+			
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>90</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-134.01392</entry>
+					<entry>-1.693</entry>
+					<entry>-53.676697</entry>
+				</vector>
+			</translation>
+		</model>
+		
+		<model id="blueBox" key="" ref="box">
+			<mass>0</mass>
+
+			<material>
+				<color>
+					<vector jtype="java_lang_Float" size="4">
+						<entry>0</entry>
+						<entry>0</entry>
+						<entry>1</entry>
+						<entry>1</entry>
+					</vector>
+				</color>
+			</material>
+			
+			<visible>false</visible>
+			<collisionShape>none</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1</entry>
+					<entry>1</entry>
+					<entry>1</entry>
+				</vector>
+			</scale>
+			
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>90</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-28.342762</entry>
+					<entry>-1.693</entry>
+					<entry>-193.38043</entry>
+				</vector>
+			</translation>
+		</model>
+	
+		<model id="RoadworksSign1" key="Models/RoadWorksSign/RoadWorksSign.scene">
+			<mass>0</mass>
+			<visible>true</visible>
+			<collisionShape>meshShape</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0.02</entry>
+					<entry>0.02</entry>
+					<entry>0.02</entry>
+				</vector>
+			</scale>
+
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>270</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-81</entry>
+					<entry>-1.693</entry>
+					<entry>-38</entry>
+				</vector>
+			</translation>
+		</model>	
+<!--		
+		<model id="redBox" key="" ref="box">
+			<mass>0</mass>
+
+			<material>
+				<color>
+					<vector jtype="java_lang_Float" size="4">
+						<entry>1</entry>
+						<entry>0</entry>
+						<entry>0</entry>
+						<entry>1</entry>
+					</vector>
+				</color>
+			</material>
+			
+			<visible>true</visible>
+			<collisionShape>none</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1</entry>
+					<entry>1</entry>
+					<entry>1</entry>
+				</vector>
+			</scale>
+			
+			<rotation quaternion="true">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>0.707107</entry>
+					<entry>0</entry>
+					<entry>-0.707107</entry>
+				</vector>
+			</rotation>
+
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-61</entry>
+					<entry>-1.693</entry>
+					<entry>-48</entry>
+				</vector>
+			</translation>
+		</model>				
+			
+		<model id="truck1" key="Models/Truck/Truck.scene">
+			<mass>0</mass>
+			<visible>true</visible>
+			<collisionShape>meshShape</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0.4</entry>
+					<entry>0.4</entry>
+					<entry>0.4</entry>
+				</vector>
+			</scale>
+
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>90</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-141.879</entry>
+					<entry>4.013</entry>
+					<entry>-51.259</entry>
+				</vector>
+			</translation>
+		</model>
+
+		<model id="truck2" key="Models/Truck/Truck.scene">
+			<mass>0</mass>
+			<visible>true</visible>
+			<collisionShape>meshShape</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0.4</entry>
+					<entry>0.4</entry>
+					<entry>0.4</entry>
+				</vector>
+			</scale>
+
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>90</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-57.625</entry>
+					<entry>4.015</entry>
+					<entry>-40.675</entry>
+				</vector>
+			</translation>
+		</model>
+-->
+	</models>
+
+	<geometries>
+		<box id="box">
+			<width>5</width>
+			<depth>3</depth>
+			<height>0.1</height>
+		</box>
+		
+		<box id="box2">
+			<width>10</width>
+			<depth>10</depth>
+			<height>1</height>
+		</box>
+		
+		<sphere id="sphere1">
+			<samples axis="20" radial="40"/>
+			<radius>20</radius>
+		</sphere>
+
+		<box id="box3">
+			<width>10</width>
+			<depth>10</depth>
+			<height>5</height>
+		</box>
+		
+		<cylinder id="cylinder1">
+			<samples axis="20" radial="40"/>
+			<radius>20</radius>
+			<height>10</height>
+			<closed>true</closed>
+		</cylinder>
+
+		<point id="IdealPoint.001"><translation><vector jtype="java_lang_Float" size="3"><entry>-132.83734</entry><entry>-2.09E-4</entry><entry>-51.80753</entry></vector></translation></point>
+		<point id="IdealPoint.032"><translation><vector jtype="java_lang_Float" size="3"><entry>-90.1766</entry><entry>-2.13E-4</entry><entry>-51.75042</entry></vector></translation></point>
+		<point id="IdealPoint.033"><translation><vector jtype="java_lang_Float" size="3"><entry>-88.63464</entry><entry>-2.13E-4</entry><entry>-51.92175</entry></vector></translation></point>
+		<point id="IdealPoint.034"><translation><vector jtype="java_lang_Float" size="3"><entry>-87.149796</entry><entry>-2.13E-4</entry><entry>-52.15019</entry></vector></translation></point>
+		<point id="IdealPoint.035"><translation><vector jtype="java_lang_Float" size="3"><entry>-85.55073</entry><entry>-2.13E-4</entry><entry>-52.26441</entry></vector></translation></point>
+		<point id="IdealPoint.052"><translation><vector jtype="java_lang_Float" size="3"><entry>-59.565933</entry><entry>-2.15E-4</entry><entry>-52.492847</entry></vector></translation></point>
+		<point id="IdealPoint.053"><translation><vector jtype="java_lang_Float" size="3"><entry>-57.90976</entry><entry>-2.15E-4</entry><entry>-52.664177</entry></vector></translation></point>
+		<point id="IdealPoint.054"><translation><vector jtype="java_lang_Float" size="3"><entry>-56.59624</entry><entry>-2.16E-4</entry><entry>-53.063942</entry></vector></translation></point>
+		<point id="IdealPoint.055"><translation><vector jtype="java_lang_Float" size="3"><entry>-55.225616</entry><entry>-2.15E-4</entry><entry>-53.749256</entry></vector></translation></point>
+		<point id="IdealPoint.056"><translation><vector jtype="java_lang_Float" size="3"><entry>-54.483192</entry><entry>-2.15E-4</entry><entry>-54.948555</entry></vector></translation></point>
+		<point id="IdealPoint.057"><translation><vector jtype="java_lang_Float" size="3"><entry>-54.083427</entry><entry>-2.15E-4</entry><entry>-56.49051</entry></vector></translation></point>
+		<point id="IdealPoint.058"><translation><vector jtype="java_lang_Float" size="3"><entry>-53.740772</entry><entry>-2.14E-4</entry><entry>-58.260902</entry></vector></translation></point>
+		<point id="IdealPoint.113"><translation><vector jtype="java_lang_Float" size="3"><entry>-53.755672</entry><entry>-1.94E-4</entry><entry>-158.39494</entry></vector></translation></point>
+		<point id="IdealPoint.114"><translation><vector jtype="java_lang_Float" size="3"><entry>-53.226982</entry><entry>-1.94E-4</entry><entry>-160.2076</entry></vector></translation></point>
+		<point id="IdealPoint.115"><translation><vector jtype="java_lang_Float" size="3"><entry>-52.924873</entry><entry>-1.94E-4</entry><entry>-161.8692</entry></vector></translation></point>
+		<point id="IdealPoint.116"><translation><vector jtype="java_lang_Float" size="3"><entry>-52.69829</entry><entry>-1.93E-4</entry><entry>-163.45528</entry></vector></translation></point>
+		<point id="IdealPoint.138"><translation><vector jtype="java_lang_Float" size="3"><entry>-52.65906</entry><entry>-1.88E-4</entry><entry>-188.76872</entry></vector></translation></point>
+		<point id="IdealPoint.139"><translation><vector jtype="java_lang_Float" size="3"><entry>-52.3136</entry><entry>-1.88E-4</entry><entry>-189.67557</entry></vector></translation></point>
+		<point id="IdealPoint.140"><translation><vector jtype="java_lang_Float" size="3"><entry>-51.709038</entry><entry>-1.88E-4</entry><entry>-190.10739</entry></vector></translation></point>
+		<point id="IdealPoint.141"><translation><vector jtype="java_lang_Float" size="3"><entry>-50.71583</entry><entry>-1.88E-4</entry><entry>-190.71194</entry></vector></translation></point>
+		<point id="IdealPoint.142"><translation><vector jtype="java_lang_Float" size="3"><entry>-49.333977</entry><entry>-1.88E-4</entry><entry>-191.0574</entry></vector></translation></point>
+		<point id="IdealPoint.143"><translation><vector jtype="java_lang_Float" size="3"><entry>-47.736206</entry><entry>-1.88E-4</entry><entry>-191.27332</entry></vector></translation></point>
+		<point id="IdealPoint.150"><translation><vector jtype="java_lang_Float" size="3"><entry>-34.954052</entry><entry>-1.88E-4</entry><entry>-191.23013</entry></vector></translation></point>
+		
+		<point id="201"><translation><vector jtype="java_lang_Float" size="3"><entry>-57.553032</entry><entry>-0.17</entry><entry>-50.641</entry></vector></translation></point>
+		<point id="202"><translation><vector jtype="java_lang_Float" size="3"><entry>-58.458622</entry><entry>-0.17</entry><entry>74.62811</entry></vector></translation></point>
+		<point id="203"><translation><vector jtype="java_lang_Float" size="3"><entry>-58.458633</entry><entry>-0.17</entry><entry>84.24828</entry></vector></translation></point>
+		<point id="204"><translation><vector jtype="java_lang_Float" size="3"><entry>-182.1062</entry><entry>-0.17</entry><entry>84.49099</entry></vector></translation></point>
+		<point id="205"><translation><vector jtype="java_lang_Float" size="3"><entry>-188.93419</entry><entry>-0.17</entry><entry>83.57963</entry></vector></translation></point>
+		<point id="206"><translation><vector jtype="java_lang_Float" size="3"><entry>-193.49127</entry><entry>-0.17</entry><entry>77.97089</entry></vector></translation></point>
+		<point id="207"><translation><vector jtype="java_lang_Float" size="3"><entry>-192.26537</entry><entry>-0.17</entry><entry>-42.02943</entry></vector></translation></point>
+		<point id="208"><translation><vector jtype="java_lang_Float" size="3"><entry>-192.26535</entry><entry>-0.17</entry><entry>-51.122475</entry></vector></translation></point>
+		<point id="209"><translation><vector jtype="java_lang_Float" size="3"><entry>-70.96055</entry><entry>-0.17</entry><entry>-50.526424</entry></vector></translation></point>
+
+	</geometries>
+	
+	
+	<resetPoints>			
+		<resetPoint id="reset1">
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-61</entry>
+					<entry>0</entry>
+					<entry>-38</entry>
+				</vector>
+			</translation>
+			<rotation quaternion="true">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>0.707107</entry>
+					<entry>0</entry>
+					<entry>-0.707107</entry>
+				</vector>
+			</rotation>
+		</resetPoint>
+		
+		<resetPoint id="reset2">
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-71</entry>
+					<entry>0</entry>
+					<entry>-38</entry>
+				</vector>
+			</translation>
+			<rotation quaternion="true">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>0.707107</entry>
+					<entry>0</entry>
+					<entry>-0.707107</entry>
+				</vector>
+			</rotation>
+		</resetPoint>
+	</resetPoints>
+	
+   
+    <gravity>9.81</gravity>
+    
+    <time>19:00:12</time>
+    
+    <date>2010-11-25</date>
+	
+	
+	<lights>
+		<directionalLight>
+			<direction>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0.5</entry>
+					<entry>-0.5</entry>
+					<entry>0.5</entry>
+				</vector>
+			</direction>
+			<color>
+				<vector jtype="java_lang_Float" size="4">
+					<entry>0.7</entry>
+					<entry>0.7</entry>
+					<entry>0.7</entry>
+					<entry>0.7</entry>
+				</vector>
+			</color>
+		</directionalLight>
+		<directionalLight>
+			<direction>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-0.5</entry>
+					<entry>-0.5</entry>
+					<entry>0.5</entry>
+				</vector>
+			</direction>
+			<color>
+				<vector jtype="java_lang_Float" size="4">
+					<entry>0.7</entry>
+					<entry>0.7</entry>
+					<entry>0.7</entry>
+					<entry>0.7</entry>
+				</vector>
+			</color>
+		</directionalLight>
+		<directionalLight>
+			<direction>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0.5</entry>
+					<entry>-0.5</entry>
+					<entry>-0.5</entry>
+				</vector>
+			</direction>
+			<color>
+				<vector jtype="java_lang_Float" size="4">
+					<entry>0.7</entry>
+					<entry>0.7</entry>
+					<entry>0.7</entry>
+					<entry>0.7</entry>
+				</vector>
+			</color>
+		</directionalLight>
+		<directionalLight>
+			<direction>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-0.5</entry>
+					<entry>-0.5</entry>
+					<entry>-0.5</entry>
+				</vector>
+			</direction>
+			<color>
+				<vector jtype="java_lang_Float" size="4">
+					<entry>0.7</entry>
+					<entry>0.7</entry>
+					<entry>0.7</entry>
+					<entry>0.7</entry>
+				</vector>
+			</color>
+		</directionalLight>
+	</lights>
+	
+	<skyTexture>Textures/Sky/Bright/hills.dds</skyTexture>
+
+</scene>

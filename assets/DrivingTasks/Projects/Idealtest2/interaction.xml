@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interaction xmlns="http://opends.eu/drivingtask/interaction"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:schemaLocation="http://opends.eu/drivingtask/interaction ../../Schema/interaction.xsd">
+
+
+	<activities>
+		<activity id="activity01">
+			<action id="manipulateObject" delay="0" repeat="4">
+				<parameter name="id" value="RoadworksSign1" />
+				<parameter name="translationX" value="-81" />
+				<parameter name="translationY" value="-1.693" />
+				<parameter name="translationZ" value="-48" />
+				<parameter name="rotationX" value="0" />
+				<parameter name="rotationY" value="135" />
+				<parameter name="rotationZ" value="0" />
+				<parameter name="scaleX" value="0.02" />
+				<parameter name="scaleY" value="0.02" />
+				<parameter name="scaleZ" value="0.02" />
+				<parameter name="visible" value="true" />
+			</action>
+		</activity>
+		<activity id="activity02">
+			<action id="sendMessage" delay="0" repeat="4">
+				<parameter name="text" value="Recording started" />
+				<parameter name="duration" value="3" />
+			</action>
+		</activity>
+		<activity id="activity03">
+			<action id="pauseSimulation" delay="0" repeat="4">
+				<parameter name="duration" value="3" />
+			</action>
+		</activity>
+		<activity id="activity04">
+			<action id="startRecording" delay="0" repeat="4">
+				<parameter name="track" value="1" />
+			</action>
+		</activity>
+		<activity id="activity05">
+			<action id="stopRecording" delay="0" repeat="4">
+			</action>
+		</activity>
+		<activity id="activity06">
+			<action id="playSound" delay="0" repeat="4">
+				<parameter name="soundID" value="beep" />
+			</action>
+		</activity>
+		<activity id="activity07">
+			<action id="resetCar" delay="0" repeat="4">
+				<parameter name="resetPointID" value="reset2" />
+			</action>
+		</activity>
+		<activity id="activity08">
+			<action id="moveTraffic" delay="0" repeat="4">
+				<parameter name="trafficObjectID" value="car2" />
+				<parameter name="wayPointID" value="204" />
+			</action>
+		</activity>
+		<activity id="activity09">
+			<action id="requestGreenTrafficLight" delay="0" repeat="0">
+				<parameter name="trafficLightID" value="TrafficLight.00_00" />
+			</action>
+		</activity>
+		<activity id="activity10">
+			<action id="setTVPTStimulus" delay="0" repeat="0">
+				<parameter name="stimulusID" value="FVTS" />
+			</action>
+		</activity>
+		<activity id="activity11">
+			<action id="writeToKnowledgeBase" delay="0" repeat="0">
+				<parameter name="path" value="/thisVehicle/physicalAttributes" />
+				<parameter name="propertyName" value="testBoolean" />
+				<parameter name="propertyValue" value="true" />
+				<parameter name="propertyType" value="boolean" />
+			</action>
+		</activity>
+        <activity id="activity12">
+            <action id="reportTrafficLight" delay="0" repeat="0">
+                <parameter name="trafficLightID" value="TrafficLight.00_12" />
+                <parameter name="trafficLightState" value="red" />
+            </action>
+        </activity>
+        <activity id="activity13">
+            <action id="reportTrafficLight" delay="0" repeat="0">
+                <parameter name="trafficLightID" value="TrafficLight.00_12" />
+                <parameter name="trafficLightState" value="yellow" />
+            </action>
+        </activity>
+        <activity id="activity14">
+            <action id="reportTrafficLight" delay="0" repeat="0">
+                <parameter name="trafficLightID" value="TrafficLight.00_12" />
+                <parameter name="trafficLightState" value="green" />
+            </action>
+        </activity>
+        <activity id="activity15">
+            <action id="reportSpeed" delay="0" repeat="0">
+                <parameter name="type" value="greaterThan" />
+                <parameter name="speed" value="20" />
+            </action>
+        </activity>
+        <activity id="activity16">
+            <action id="reportSpeed" delay="0" repeat="0">
+                <parameter name="type" value="lessThan" />
+                <parameter name="speed" value="20" />
+            </action>
+        </activity>
+	</activities>
+	
+	<triggers>
+        <trigger id="collideWithTrafficLightBox" priority="1">
+            <activities>
+                <activity ref="activity15"/>
+                <activity ref="activity16"/>
+            </activities>
+            
+            <condition>collideWith:trafficLightBox</condition>
+        </trigger>
+    
+		<trigger id="collideWithResetBox" priority="1">
+			
+			<activities>
+				<activity ref="activity08"/>
+				<!-- <activity ref="activity10"/>  -->
+				<!-- <activity ref="activity11"/>  -->
+			</activities>
+						
+			<condition>collideWith:resetBox</condition>
+
+		</trigger>
+		
+		<trigger id="collideWithRedBox" priority="1">
+			
+			<activities>
+				<activity ref="activity04"/>
+				<activity ref="activity02"/>
+				<!-- 
+				<activity ref="activity08"/>
+				<activity id="activity02">
+					<action id="moveObject" delay="0" repeat="1">
+						<parameter name="id" value="RoadWorksSign01" />
+						<parameter name="translationX" value="-81" />
+						<parameter name="translationY" value="-1.693" />
+						<parameter name="translationZ" value="-48" />
+						<parameter name="rotationX" value="90" />
+						<parameter name="rotationY" value="135" />
+						<parameter name="rotationZ" value="0" />
+						<parameter name="scaleX" value="1" />
+						<parameter name="scaleY" value="2" />
+						<parameter name="scaleZ" value="2" />
+						<parameter name="visible" value="true" />
+						<parameter name="collidable" value="true" />
+					</action>
+				</activity>
+				 -->
+			</activities>
+						
+			<condition>collideWith:redBox</condition>
+
+		</trigger>
+		
+		<trigger id="collideWithBlueBox" priority="1">
+			
+			<activities>
+				<activity ref="activity05"/>
+				<!-- 
+				<activity ref="activity02"/>
+				<activity ref="activity08"/>
+				<activity id="activity02">
+					<action id="moveObject" delay="0" repeat="1">
+						<parameter name="id" value="RoadWorksSign01" />
+						<parameter name="translationX" value="-81" />
+						<parameter name="translationY" value="-1.693" />
+						<parameter name="translationZ" value="-48" />
+						<parameter name="rotationX" value="90" />
+						<parameter name="rotationY" value="135" />
+						<parameter name="rotationZ" value="0" />
+						<parameter name="scaleX" value="1" />
+						<parameter name="scaleY" value="2" />
+						<parameter name="scaleZ" value="2" />
+						<parameter name="visible" value="true" />
+						<parameter name="collidable" value="true" />
+					</action>
+				</activity>
+				 -->
+			</activities>
+						
+			<condition>collideWith:blueBox</condition>
+
+		</trigger>
+		
+		<trigger id="pressKeyB01" priority="2">
+			<activities>
+				<activity id="activityB01">
+					<action id="moveTraffic" delay="0" repeat="4">
+						<parameter name="trafficObjectID" value="car2" />
+						<parameter name="wayPointID" value="201" />
+					</action>
+				</activity>
+			</activities>	
+			<condition>pressKey:1</condition>
+		</trigger>
+		<trigger id="pressKeyB02" priority="2">
+			<activities>
+				<activity id="activityB02">
+					<action id="moveTraffic" delay="0" repeat="4">
+						<parameter name="trafficObjectID" value="car2" />
+						<parameter name="wayPointID" value="202" />
+					</action>
+				</activity>
+			</activities>	
+			<condition>pressKey:2</condition>
+		</trigger>
+		<trigger id="pressKeyB03" priority="2">
+			<activities>
+				<activity id="activityB03">
+					<action id="moveTraffic" delay="0" repeat="4">
+						<parameter name="trafficObjectID" value="car2" />
+						<parameter name="wayPointID" value="203" />
+					</action>
+				</activity>
+			</activities>	
+			<condition>pressKey:3</condition>
+		</trigger>
+		<trigger id="pressKeyB04" priority="2">
+			<activities>
+				<activity id="activityB04">
+					<action id="moveTraffic" delay="0" repeat="4">
+						<parameter name="trafficObjectID" value="car2" />
+						<parameter name="wayPointID" value="204" />
+					</action>
+				</activity>
+			</activities>	
+			<condition>pressKey:4</condition>
+		</trigger>
+		<trigger id="pressKeyB05" priority="2">
+			<activities>
+				<activity id="activityB05">
+					<action id="moveTraffic" delay="0" repeat="4">
+						<parameter name="trafficObjectID" value="car2" />
+						<parameter name="wayPointID" value="205" />
+					</action>
+				</activity>
+			</activities>	
+			<condition>pressKey:5</condition>
+		</trigger>
+		<trigger id="pressKeyB06" priority="2">
+			<activities>
+				<activity id="activityB06">
+					<action id="moveTraffic" delay="0" repeat="4">
+						<parameter name="trafficObjectID" value="car2" />
+						<parameter name="wayPointID" value="206" />
+					</action>
+				</activity>
+			</activities>	
+			<condition>pressKey:6</condition>
+		</trigger>
+		<trigger id="pressKeyB07" priority="2">
+			<activities>
+				<activity id="activityB07">
+					<action id="moveTraffic" delay="0" repeat="4">
+						<parameter name="trafficObjectID" value="car2" />
+						<parameter name="wayPointID" value="207" />
+					</action>
+				</activity>
+			</activities>	
+			<condition>pressKey:7</condition>
+		</trigger>
+		<trigger id="pressKeyB08" priority="2">
+			<activities>
+				<activity id="activityB08">
+					<action id="moveTraffic" delay="0" repeat="4">
+						<parameter name="trafficObjectID" value="car2" />
+						<parameter name="wayPointID" value="208" />
+					</action>
+				</activity>
+			</activities>	
+			<condition>pressKey:8</condition>
+		</trigger>
+		<trigger id="pressKeyB09" priority="2">
+			<activities>
+				<activity id="activityB09">
+					<action id="moveTraffic" delay="0" repeat="4">
+						<parameter name="trafficObjectID" value="car2" />
+						<parameter name="wayPointID" value="209" />
+					</action>
+				</activity>
+			</activities>	
+			<condition>pressKey:9</condition>
+		</trigger>
+
+	</triggers>
+	
+</interaction>

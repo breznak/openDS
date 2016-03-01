@@ -1,0 +1,56 @@
+<mesh>
+	<submeshes>
+		<submesh material="tree15" usesharedvertices="false">
+			<faces count="4">
+				<face v1="0" v2="1" v3="2"/>
+				<face v1="0" v2="2" v3="3"/>
+				<face v1="4" v2="5" v3="6"/>
+				<face v1="4" v2="6" v3="7"/>
+			</faces>
+			<geometry vertexcount="8">
+				<vertexbuffer positions="true" normals="true" texture_coords="1">
+					<vertex>
+						<position x="-838.794006" y="-98.945999" z="654.916016"/>
+						<normal x="0.674915" y="0.024281" z="0.737496"/>
+						<texcoord u="1.000000" v="1.000000"/>
+					</vertex>
+					<vertex>
+						<position x="-838.771973" y="-89.110001" z="654.572021"/>
+						<normal x="0.674915" y="0.024281" z="0.737496"/>
+						<texcoord u="1.000000" v="0.000000"/>
+					</vertex>
+					<vertex>
+						<position x="-845.914001" y="-88.865997" z="661.099976"/>
+						<normal x="0.674915" y="0.024281" z="0.737496"/>
+						<texcoord u="0.000000" v="0.000000"/>
+					</vertex>
+					<vertex>
+						<position x="-845.935974" y="-98.702003" z="661.443970"/>
+						<normal x="0.674915" y="0.024281" z="0.737496"/>
+						<texcoord u="0.000000" v="1.000000"/>
+					</vertex>
+					<vertex>
+						<position x="-838.770020" y="-98.695000" z="662.116028"/>
+						<normal x="-0.733186" y="0.025410" z="0.679553"/>
+						<texcoord u="1.000000" v="1.000000"/>
+					</vertex>
+					<vertex>
+						<position x="-838.747986" y="-88.858002" z="661.771973"/>
+						<normal x="-0.733186" y="0.025410" z="0.679553"/>
+						<texcoord u="1.000000" v="0.000000"/>
+					</vertex>
+					<vertex>
+						<position x="-846.119019" y="-89.120003" z="653.828979"/>
+						<normal x="-0.733186" y="0.025410" z="0.679553"/>
+						<texcoord u="0.000000" v="0.000000"/>
+					</vertex>
+					<vertex>
+						<position x="-846.140991" y="-98.956001" z="654.172974"/>
+						<normal x="-0.733186" y="0.025410" z="0.679553"/>
+						<texcoord u="0.000000" v="1.000000"/>
+					</vertex>
+				</vertexbuffer>
+			</geometry>
+		</submesh>
+	</submeshes>
+</mesh>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<task xmlns="http://opends.eu/drivingtask/task"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:schemaLocation="http://opends.eu/drivingtask/task ../../Schema/task.xsd">
+        
+    <threeVehiclePlatoon>
+        <leadingCar id="car1" minDistance="20" maxDistance="50" />
+        <followerCar id="car2" minDistance="5" maxDistance="15" />
+        <laneOffset x="2.204541" />
+        <brakeLight minDuration="2500" />
+        <turnSignal duration="2500" />
+        <maxReactionTime>5000</maxReactionTime>
+        <deviationTolerance>
+            <longitudinal lowerBound="20" upperBound="35" />
+            <lateral lowerBound="-2" upperBound="3"/>
+        </deviationTolerance>
+        <logging>
+            <startPosition z="6800" />
+            <endPosition z="5000" shutDownWhenReached="false"/>
+            <loggingRate>20</loggingRate>
+            <database url="jdbc:mysql:///simulator" user="root" password="" table="tvpt" />   
+            <condition name="baseline" number="1" />
+            <reportTemplate>assets/JasperReports/templates/tvpt.jasper</reportTemplate>
+            <additionalTable>true</additionalTable>
+        </logging>
+    </threeVehiclePlatoon>
+</task>

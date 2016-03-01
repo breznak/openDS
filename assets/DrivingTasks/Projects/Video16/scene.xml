@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scene xmlns="http://opends.eu/drivingtask/scene"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:schemaLocation="http://opends.eu/drivingtask/scene ../../Schema/scene.xsd">
+        
+    <sounds>
+    </sounds>
+		
+	<models>
+		<model id="grassPlane" key="Scenes/grassPlane/Scene.scene">
+			<mass>0</mass>
+			<visible>true</visible>
+			<collisionShape>meshShape</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1</entry>
+					<entry>1</entry>
+					<entry>1</entry>
+				</vector>
+			</scale>
+
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>0</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>0</entry>
+					<entry>0</entry>
+				</vector>
+			</translation>
+		</model>
+		<model id="driverCar" key="Models/Cars/drivingCars/Ferrari/Car.scene">
+			<mass>800</mass>
+			<visible>true</visible>
+			<collisionShape>meshShape</collisionShape>
+	
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1</entry>
+					<entry>1</entry>
+					<entry>1</entry>
+				</vector>
+			</scale>
+	
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>300</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+	
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-250.33698</entry>
+					<entry>4</entry>
+					<entry>272.0944</entry>
+				</vector>
+			</translation>
+	
+		</model>
+		
+		<model id="City" key="Scenes/Video16/video16.scene">
+			<mass>0</mass>
+			<visible>true</visible>
+			<collisionShape>meshShape</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0.3</entry>
+					<entry>0.3</entry>
+					<entry>0.3</entry>
+				</vector>
+			</scale>
+
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>0</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>30</entry>
+					<entry>0</entry>
+				</vector>
+			</translation>
+		</model>
+	</models>
+    
+    <gravity>9.81</gravity>
+    
+    <time>19:00:12</time>
+    
+    <date>2010-11-25</date>
+	
+	<lights>
+		<directionalLight>
+			<direction>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0.5</entry>
+					<entry>-0.5</entry>
+					<entry>0.5</entry>
+				</vector>
+			</direction>
+			<color>
+				<vector jtype="java_lang_Float" size="4">
+					<entry>0.7</entry>
+					<entry>0.7</entry>
+					<entry>0.7</entry>
+					<entry>0.7</entry>
+				</vector>
+			</color>
+		</directionalLight>
+		<directionalLight>
+			<direction>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-0.5</entry>
+					<entry>-0.5</entry>
+					<entry>0.5</entry>
+				</vector>
+			</direction>
+			<color>
+				<vector jtype="java_lang_Float" size="4">
+					<entry>0.7</entry>
+					<entry>0.7</entry>
+					<entry>0.7</entry>
+					<entry>0.7</entry>
+				</vector>
+			</color>
+		</directionalLight>
+		<directionalLight>
+			<direction>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0.5</entry>
+					<entry>-0.5</entry>
+					<entry>-0.5</entry>
+				</vector>
+			</direction>
+			<color>
+				<vector jtype="java_lang_Float" size="4">
+					<entry>0.7</entry>
+					<entry>0.7</entry>
+					<entry>0.7</entry>
+					<entry>0.7</entry>
+				</vector>
+			</color>
+		</directionalLight>
+		<directionalLight>
+			<direction>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-0.5</entry>
+					<entry>-0.5</entry>
+					<entry>-0.5</entry>
+				</vector>
+			</direction>
+			<color>
+				<vector jtype="java_lang_Float" size="4">
+					<entry>0.7</entry>
+					<entry>0.7</entry>
+					<entry>0.7</entry>
+					<entry>0.7</entry>
+				</vector>
+			</color>
+		</directionalLight>
+	</lights>
+	<skyTexture>Textures/Sky/Bright/hills.dds</skyTexture>
+</scene>

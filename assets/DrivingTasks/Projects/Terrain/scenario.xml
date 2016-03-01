@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scenario xmlns="http://opends.eu/drivingtask/scenario"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:schemaLocation="http://opends.eu/drivingtask/scenario ../../Schema/scenario.xsd">
+        
+        <environment>
+        	<weather>
+                <snowingPercentage>0</snowingPercentage>
+        		<rainingPercentage>0</rainingPercentage>
+        		<fogPercentage>0</fogPercentage>
+        	</weather>
+        </environment>
+
+        <driver>
+        	<car id="" ref="driverCar" profile="">
+        		<tires profile="">
+        			<type>winter</type>
+        			<size>16</size>
+        		</tires>
+        		<engine profile="">
+        			<engineOn>true</engineOn>
+        			<minSpeed>0</minSpeed>
+					<maxSpeed>180</maxSpeed>
+					<acceleration>3.3</acceleration>
+					<minRPM>750</minRPM>
+					<maxRPM>7500</maxRPM>
+        		</engine>
+        		<light>
+        			<intensity>0.0</intensity>
+        		</light>
+        		<transmission>
+        			<automatic>true</automatic>
+        			<reverse>3.182</reverse>
+        			<forward>
+	        			<vector jtype="java_lang_Float" size="6">
+							<entry>3.615</entry>
+							<entry>1.955</entry>
+							<entry>1.281</entry>
+							<entry>0.973</entry>
+							<entry>0.778</entry>
+							<entry>0.646</entry>
+						</vector>
+					</forward>
+        		</transmission>
+        		<suspension>
+					<stiffness>120</stiffness>
+					<compression>0.2</compression>
+					<damping>0.3</damping>
+        		</suspension>
+        		<wheel>
+        			<frictionSlip>50</frictionSlip>
+        		</wheel>
+        		<brake profile="">
+        			<decelerationFreeWheel>2.0</decelerationFreeWheel>
+        			<decelerationBrake>8.7</decelerationBrake>
+        		</brake>
+        	</car>
+        </driver>
+        
+        <traffic>
+        </traffic>
+        
+        <road>
+        </road>
+        
+        <coordinateConversion>
+            <geoToModel>
+                <matrix>
+                    <m00>1</m00>
+                    <m01>2</m01>
+                    <m02>3</m02>
+                    <m03>4</m03>
+                    <m10>5</m10>
+                    <m11>6</m11>
+                    <m12>7</m12>
+                    <m13>8</m13>
+                    <m20>9</m20>
+                    <m21>10</m21>
+                    <m22>11</m22>
+                    <m23>12</m23>
+                    <m30>13</m30>
+                    <m31>14</m31>
+                    <m32>15</m32>
+                    <m33>16</m33>
+                </matrix>
+            </geoToModel>
+            <modelToGeo>
+                <matrix>
+                    <m00>17</m00>
+                    <m01>18</m01>
+                    <m02>19</m02>
+                    <m03>20</m03>
+                    <m10>21</m10>
+                    <m11>22</m11>
+                    <m12>23</m12>
+                    <m13>24</m13>
+                    <m20>25</m20>
+                    <m21>26</m21>
+                    <m22>27</m22>
+                    <m23>28</m23>
+                    <m30>29</m30>
+                    <m31>30</m31>
+                    <m32>31</m32>
+                    <m33>32</m33>
+                </matrix>
+            </modelToGeo>
+        </coordinateConversion>
+        
+</scenario>

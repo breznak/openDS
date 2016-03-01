@@ -1,0 +1,815 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scene xmlns="http://opends.eu/drivingtask/scene"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:schemaLocation="http://opends.eu/drivingtask/scene ../../Schema/scene.xsd">
+        
+    <sounds>
+    </sounds>
+		
+	<models>
+		<model id="grassPlane" key="Scenes/grassPlane/Scene.scene">
+			<mass>0</mass>
+			<visible>true</visible>
+			<collisionShape>meshShape</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1</entry>
+					<entry>1</entry>
+					<entry>1</entry>
+				</vector>
+			</scale>
+
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>0</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>0</entry>
+					<entry>0</entry>
+				</vector>
+			</translation>
+		</model>
+		
+		<model id="driverCar" key="Models/Cars/drivingCars/CarRed/Car.scene">
+			<mass>800</mass>
+			<visible>true</visible>
+			<collisionShape>meshShape</collisionShape>
+	
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1</entry>
+					<entry>1</entry>
+					<entry>1</entry>
+				</vector>
+			</scale>
+
+			<rotation quaternion="true">
+				<vector jtype="java_lang_Float" size="4">
+					<entry>-0.015870064</entry>
+					<entry>0.019761475</entry>
+					<entry>0.0006448222</entry>
+					<entry>0.99967855</entry>
+				</vector>
+			</rotation>
+	
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-69.29116</entry>
+					<entry>0.0</entry>
+					<entry>32.32251</entry>
+				</vector>
+			</translation>
+	
+		</model>
+		
+		<model id="City" key="Scenes/Paris/city.scene">
+			<mass>0</mass>
+			<visible>true</visible>
+			<collisionShape>meshShape</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0.4</entry>
+					<entry>0.4</entry>
+					<entry>0.4</entry>
+				</vector>
+			</scale>
+
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>90</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>0</entry>
+					<entry>0</entry>
+				</vector>
+			</translation>
+		</model>
+
+		<model id="speedLimit50_1" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene" ref="">
+			<mass>0</mass>
+			<visible>true</visible>
+			<collisionShape>meshShape</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1.0</entry>
+					<entry>1.0</entry>
+					<entry>1.0</entry>
+				</vector>
+			</scale>
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>3.3726878</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-67.56921</entry>
+					<entry>-0.26787683</entry>
+					<entry>19.673075</entry>
+				</vector>
+			</translation>
+		</model>
+		
+		
+		<model id="PedestrianCrossing_1" key="Models/RoadSigns/squarePlatesWithPole/PedestrianCrossing/PedestrianCrossing.scene" ref="">
+			<mass>0</mass>
+			<visible>true</visible>
+			<collisionShape>meshShape</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1.0</entry>
+					<entry>1.0</entry>
+					<entry>1.0</entry>
+				</vector>
+			</scale>
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>92.87769</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-69.77681</entry>
+					<entry>-0.26786697</entry>
+					<entry>-48.558113</entry>
+				</vector>
+			</translation>
+		</model>
+		<model id="PedestrianCrossing_2"
+			key="Models/RoadSigns/squarePlatesWithPole/PedestrianCrossing/PedestrianCrossing.scene"
+			ref="">
+			<mass>0</mass>
+			<visible>true</visible>
+			<collisionShape>meshShape</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1.0</entry>
+					<entry>1.0</entry>
+					<entry>1.0</entry>
+				</vector>
+			</scale>
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>-85.50483</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-76.7611</entry>
+					<entry>-0.2678074</entry>
+					<entry>-52.2128</entry>
+				</vector>
+			</translation>
+		</model>
+		<model id="PedestrianCrossing_3"
+			key="Models/RoadSigns/squarePlatesWithPole/PedestrianCrossing/PedestrianCrossing.scene"
+			ref="">
+			<mass>0</mass>
+			<visible>true</visible>
+			<collisionShape>meshShape</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1.0</entry>
+					<entry>1.0</entry>
+					<entry>1.0</entry>
+				</vector>
+			</scale>
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>-160.63153</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-65.74201</entry>
+					<entry>-0.26788977</entry>
+					<entry>-65.30306</entry>
+				</vector>
+			</translation>
+		</model>
+		<model id="PedestrianCrossing_4"
+			key="Models/RoadSigns/squarePlatesWithPole/PedestrianCrossing/PedestrianCrossing.scene"
+			ref="">
+			<mass>0</mass>
+			<visible>true</visible>
+			<collisionShape>meshShape</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1.0</entry>
+					<entry>1.0</entry>
+					<entry>1.0</entry>
+				</vector>
+			</scale>
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>-73.90647</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-78.84718</entry>
+					<entry>-0.2678811</entry>
+					<entry>-67.83503</entry>
+				</vector>
+			</translation>
+		</model>
+		<model id="PedestrianCrossing_5"
+			key="Models/RoadSigns/squarePlatesWithPole/PedestrianCrossing/PedestrianCrossing.scene"
+			ref="">
+			<mass>0</mass>
+			<visible>true</visible>
+			<collisionShape>meshShape</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1.0</entry>
+					<entry>1.0</entry>
+					<entry>1.0</entry>
+				</vector>
+			</scale>
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>-11.19485</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-84.90509</entry>
+					<entry>-0.26789016</entry>
+					<entry>-56.391914</entry>
+				</vector>
+			</translation>
+		</model>
+		<model id="PedestrianCrossing_6"
+			key="Models/RoadSigns/squarePlatesWithPole/PedestrianCrossing/PedestrianCrossing.scene"
+			ref="">
+			<mass>0</mass>
+			<visible>true</visible>
+			<collisionShape>meshShape</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1.0</entry>
+					<entry>1.0</entry>
+					<entry>1.0</entry>
+				</vector>
+			</scale>
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>166.93623</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-80.001465</entry>
+					<entry>-0.26780695</entry>
+					<entry>-62.838104</entry>
+				</vector>
+			</translation>
+		</model>
+		<model id="PedestrianCrossing_7"
+			key="Models/RoadSigns/squarePlatesWithPole/PedestrianCrossing/PedestrianCrossing.scene"
+			ref="">
+			<mass>0</mass>
+			<visible>true</visible>
+			<collisionShape>meshShape</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1.0</entry>
+					<entry>1.0</entry>
+					<entry>1.0</entry>
+				</vector>
+			</scale>
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>26.67316</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-65.75124</entry>
+					<entry>-0.26787275</entry>
+					<entry>-57.624588</entry>
+				</vector>
+			</translation>
+		</model>
+		<model id="PedestrianCrossing_8"
+			key="Models/RoadSigns/squarePlatesWithPole/PedestrianCrossing/PedestrianCrossing.scene"
+			ref="">
+			<mass>0</mass>
+			<visible>true</visible>
+			<collisionShape>meshShape</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1.0</entry>
+					<entry>1.0</entry>
+					<entry>1.0</entry>
+				</vector>
+			</scale>
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>101.91483</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-71.271454</entry>
+					<entry>-0.2678658</entry>
+					<entry>-65.84422</entry>
+				</vector>
+			</translation>
+		</model>
+		<model id="SpeedLimitZone30_1"
+			key="Models/RoadSigns/squarePlatesWithPole/SpeedLimitZone30/SpeedLimitZone30.scene"
+			ref="">
+			<mass>0</mass>
+			<visible>true</visible>
+			<collisionShape>meshShape</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1.0</entry>
+					<entry>1.0</entry>
+					<entry>1.0</entry>
+				</vector>
+			</scale>
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>100.02323</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-73.1055</entry>
+					<entry>-0.26780465</entry>
+					<entry>-75.02349</entry>
+				</vector>
+			</translation>
+		</model>
+		<model id="Roundabout_1"
+			key="Models/RoadSigns/blueMandatories/Roundabout/Roundabout.scene"
+			ref="">
+			<mass>0</mass>
+			<visible>true</visible>
+			<collisionShape>meshShape</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1.0</entry>
+					<entry>1.0</entry>
+					<entry>1.0</entry>
+				</vector>
+			</scale>
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>0.26046935</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-69.59739</entry>
+					<entry>-0.26780188</entry>
+					<entry>-40.772446</entry>
+				</vector>
+			</translation>
+		</model>
+		<model id="BicycleCrossing_1"
+			key="Models/RoadSigns/dangerSigns/BicycleCrossing/BicycleCrossing.scene"
+			ref="">
+			<mass>0</mass>
+			<visible>true</visible>
+			<collisionShape>meshShape</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1.0</entry>
+					<entry>1.0</entry>
+					<entry>1.0</entry>
+				</vector>
+			</scale>
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>-68.145615</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-41.157326</entry>
+					<entry>-0.2678055</entry>
+					<entry>-69.686066</entry>
+				</vector>
+			</translation>
+		</model>
+		<model id="Stop_1" key="Models/RoadSigns/otherSigns/Stop/Stop.scene"
+			ref="">
+			<mass>0</mass>
+			<visible>true</visible>
+			<collisionShape>meshShape</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1.0</entry>
+					<entry>1.0</entry>
+					<entry>1.0</entry>
+				</vector>
+			</scale>
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>25.461515</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-14.084358</entry>
+					<entry>-0.2678606</entry>
+					<entry>-81.90646</entry>
+				</vector>
+			</translation>
+		</model>
+		<model id="PedestrianCrossing_9"
+			key="Models/RoadSigns/squarePlatesWithPole/PedestrianCrossing/PedestrianCrossing.scene"
+			ref="">
+			<mass>0</mass>
+			<visible>true</visible>
+			<collisionShape>meshShape</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1.0</entry>
+					<entry>1.0</entry>
+					<entry>1.0</entry>
+				</vector>
+			</scale>
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>26.917927</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-26.65161</entry>
+					<entry>-0.2678098</entry>
+					<entry>-76.71051</entry>
+				</vector>
+			</translation>
+		</model>
+		<model id="PedestrianCrossing_10"
+			key="Models/RoadSigns/squarePlatesWithPole/PedestrianCrossing/PedestrianCrossing.scene"
+			ref="">
+			<mass>0</mass>
+			<visible>true</visible>
+			<collisionShape>meshShape</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1.0</entry>
+					<entry>1.0</entry>
+					<entry>1.0</entry>
+				</vector>
+			</scale>
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>-157.16766</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-25.969158</entry>
+					<entry>-0.26787826</entry>
+					<entry>-84.44266</entry>
+				</vector>
+			</translation>
+		</model>
+		<model id="PriorityRoad_1"
+			key="Models/RoadSigns/squarePlatesWithPole/PriorityRoad/PriorityRoad.scene"
+			ref="">
+			<mass>0</mass>
+			<visible>true</visible>
+			<collisionShape>meshShape</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1.0</entry>
+					<entry>1.0</entry>
+					<entry>1.0</entry>
+				</vector>
+			</scale>
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>18.759005</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-33.25165</entry>
+					<entry>-0.26787484</entry>
+					<entry>-73.48714</entry>
+				</vector>
+			</translation>
+		</model>
+		<model id="PriorityRoad_2"
+			key="Models/RoadSigns/squarePlatesWithPole/PriorityRoad/PriorityRoad.scene"
+			ref="">
+			<mass>0</mass>
+			<visible>true</visible>
+			<collisionShape>meshShape</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1.0</entry>
+					<entry>1.0</entry>
+					<entry>1.0</entry>
+				</vector>
+			</scale>
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>-155.42549</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-12.0583</entry>
+					<entry>-0.26780248</entry>
+					<entry>-91.229385</entry>
+				</vector>
+			</translation>
+		</model>
+		<model id="CurveRight_1"
+			key="Models/RoadSigns/dangerSigns/CurveRight/CurveRight.scene" ref="">
+			<mass>0</mass>
+			<visible>true</visible>
+			<collisionShape>meshShape</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1.0</entry>
+					<entry>1.0</entry>
+					<entry>1.0</entry>
+				</vector>
+			</scale>
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>12.438264</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-79.12053</entry>
+					<entry>-0.267823</entry>
+					<entry>-107.46204</entry>
+				</vector>
+			</translation>
+		</model>
+		
+		
+		<model id="redBox" key="" ref="box">
+			<mass>0</mass>
+
+			<material>
+				<color>
+					<vector jtype="java_lang_Float" size="4">
+						<entry>1</entry>
+						<entry>0</entry>
+						<entry>0</entry>
+						<entry>1</entry>
+					</vector>
+				</color>
+			</material>
+			
+			<visible>true</visible>
+			<collisionShape>none</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1</entry>
+					<entry>1</entry>
+					<entry>1</entry>
+				</vector>
+			</scale>
+			
+			<rotation quaternion="true">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>0</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-71</entry>
+					<entry>-0.3</entry>
+					<entry>10</entry>
+				</vector>
+			</translation>
+		</model>
+	
+		<model id="blueBox" key="" ref="box">
+			<mass>0</mass>
+
+			<material>
+				<color>
+					<vector jtype="java_lang_Float" size="4">
+						<entry>0</entry>
+						<entry>0</entry>
+						<entry>1</entry>
+						<entry>1</entry>
+					</vector>
+				</color>
+			</material>
+			
+			<visible>true</visible>
+			<collisionShape>none</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1</entry>
+					<entry>1</entry>
+					<entry>1</entry>
+				</vector>
+			</scale>
+			
+			<rotation quaternion="true">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>0</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-74</entry>
+					<entry>-0.3</entry>
+					<entry>10</entry>
+				</vector>
+			</translation>
+		</model>
+
+		<model id="greenBox" key="" ref="box">
+			<mass>0</mass>
+
+			<material>
+				<color>
+					<vector jtype="java_lang_Float" size="4">
+						<entry>0</entry>
+						<entry>1</entry>
+						<entry>0</entry>
+						<entry>1</entry>
+					</vector>
+				</color>
+			</material>
+			
+			<visible>true</visible>
+			<collisionShape>none</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1</entry>
+					<entry>1</entry>
+					<entry>1</entry>
+				</vector>
+			</scale>
+			
+			<rotation quaternion="true">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>0</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-68</entry>
+					<entry>-0.3</entry>
+					<entry>10</entry>
+				</vector>
+			</translation>
+		</model>
+<!--  -->	
+	</models>
+    
+	<geometries>
+		<box id="box">
+			<width>1</width>
+			<depth>1</depth>
+			<height>0.1</height>
+		</box>
+	</geometries>
+
+
+    <gravity>9.81</gravity>
+    
+    <time>19:00:12</time>
+    
+    <date>2013-03-05</date>
+	
+	<lights>
+		<directionalLight>
+			<direction>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0.5</entry>
+					<entry>-0.5</entry>
+					<entry>0.5</entry>
+				</vector>
+			</direction>
+			<color>
+				<vector jtype="java_lang_Float" size="4">
+					<entry>0.7</entry>
+					<entry>0.7</entry>
+					<entry>0.7</entry>
+					<entry>0.7</entry>
+				</vector>
+			</color>
+		</directionalLight>
+		<directionalLight>
+			<direction>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-0.5</entry>
+					<entry>-0.5</entry>
+					<entry>0.5</entry>
+				</vector>
+			</direction>
+			<color>
+				<vector jtype="java_lang_Float" size="4">
+					<entry>0.7</entry>
+					<entry>0.7</entry>
+					<entry>0.7</entry>
+					<entry>0.7</entry>
+				</vector>
+			</color>
+		</directionalLight>
+		<directionalLight>
+			<direction>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0.5</entry>
+					<entry>-0.5</entry>
+					<entry>-0.5</entry>
+				</vector>
+			</direction>
+			<color>
+				<vector jtype="java_lang_Float" size="4">
+					<entry>0.7</entry>
+					<entry>0.7</entry>
+					<entry>0.7</entry>
+					<entry>0.7</entry>
+				</vector>
+			</color>
+		</directionalLight>
+		<directionalLight>
+			<direction>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-0.5</entry>
+					<entry>-0.5</entry>
+					<entry>-0.5</entry>
+				</vector>
+			</direction>
+			<color>
+				<vector jtype="java_lang_Float" size="4">
+					<entry>0.7</entry>
+					<entry>0.7</entry>
+					<entry>0.7</entry>
+					<entry>0.7</entry>
+				</vector>
+			</color>
+		</directionalLight>
+	</lights>
+	
+	<skyTexture>Textures/Sky/Bright/hills.dds</skyTexture>
+
+</scene>

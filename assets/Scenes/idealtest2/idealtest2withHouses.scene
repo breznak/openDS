@@ -1,0 +1,1771 @@
+<scene formatVersion="1.0.0">
+  <nodes>
+    <node name="IdealPoint.111">
+      <position x="-53.755672" y="-0.000195" z="-154.467529"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.111" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.110">
+      <position x="-53.755672" y="-0.000196" z="-152.579346"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.110" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.113">
+      <position x="-53.755672" y="-0.000194" z="-158.394943"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.113" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.112">
+      <position x="-53.755672" y="-0.000195" z="-156.506760"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.112" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.115">
+      <position x="-52.924873" y="-0.000194" z="-161.869202"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.115" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.114">
+      <position x="-53.226982" y="-0.000194" z="-160.207596"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.114" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.117">
+      <position x="-52.773819" y="-0.000193" z="-164.814774"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.117" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.116">
+      <position x="-52.698292" y="-0.000193" z="-163.455276"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.116" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.119">
+      <position x="-52.745426" y="-0.000192" z="-167.710907"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.119" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.118">
+      <position x="-52.773819" y="-0.000193" z="-166.376419"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.118" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.052">
+      <position x="-59.565933" y="-0.000215" z="-52.492847"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.052" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.053">
+      <position x="-57.909760" y="-0.000215" z="-52.664177"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.053" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.054">
+      <position x="-56.596241" y="-0.000216" z="-53.063942"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.054" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.055">
+      <position x="-55.225616" y="-0.000215" z="-53.749256"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.055" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.056">
+      <position x="-54.483192" y="-0.000215" z="-54.948555"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.056" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.057">
+      <position x="-54.083427" y="-0.000215" z="-56.490509"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.057" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="House1.016">
+      <position x="225.656036" y="-0.685710" z="-65.518417"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="2.000000" y="2.000000" z="2.000000"/>
+      <entity name="House1.016" meshFile="obj0_dom.001.mesh"/>
+    </node>
+    <node name="TrafficLight.04_04">
+      <position x="-49.004932" y="-1.643511" z="-198.735001"/>
+      <quaternion x="0.000000" y="0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.04_04" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="TrafficLight.05_08.R">
+      <position x="151.419998" y="-1.643539" z="-187.504349"/>
+      <quaternion x="0.000000" y="-0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.05_08.R" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="House1.009">
+      <position x="-79.072113" y="-0.685680" z="-19.352949"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="2.000000" y="2.000000" z="2.000000"/>
+      <entity name="House1.009" meshFile="obj0_dom.mesh"/>
+    </node>
+    <node name="TrafficLight.07_00.R">
+      <position x="164.627838" y="-1.643544" z="80.467529"/>
+      <quaternion x="-0.000000" y="0.707107" z="0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.07_00.R" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="Street.Crossing">
+      <position x="-55.606155" y="-0.605000" z="-53.480217"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Crossing" meshFile="Street.Crossing.Mesh.mesh"/>
+    </node>
+    <node name="Street.TL_B.004">
+      <position x="139.276718" y="-0.605004" z="86.108566"/>
+      <quaternion x="-0.000000" y="0.707107" z="0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="14.099998"/>
+      <entity name="Street.TL_B.004" meshFile="Street.TL_B.Mesh.mesh"/>
+    </node>
+    <node name="Street.Unit.002">
+      <position x="-55.605995" y="-0.604996" z="-34.705338"/>
+      <quaternion x="0.000000" y="1.000000" z="-0.000000" w="0.000000"/>
+      <scale x="4.700000" y="0.020000" z="14.100000"/>
+      <entity name="Street.Unit.002" meshFile="Street.Unit.Mesh.001.mesh"/>
+    </node>
+    <node name="TrafficLight.00_00">
+      <position x="-50.113510" y="-1.643509" z="-46.809563"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.00_00" meshFile="trafficlight.mesh"/>
+    </node>
+    <node name="IdealPoint.050">
+      <position x="-62.478516" y="-0.000215" z="-52.492847"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.050" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="TrafficLight.00_12">
+      <position x="-61.827652" y="-1.643508" z="-47.655754"/>
+      <quaternion x="0.000000" y="-0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.00_12" meshFile="trafficlight.mesh"/>
+    </node>
+    <node name="IdealPoint.051">
+      <position x="-60.879452" y="-0.000215" z="-52.492847"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.051" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="TrafficLight.07_06.L">
+      <position x="152.863190" y="-1.643543" z="79.968109"/>
+      <quaternion x="-0.000000" y="1.000000" z="-0.000000" w="0.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.07_06.L" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="TrafficLight.03_10.L">
+      <position x="-200.422043" y="-1.643516" z="-60.058372"/>
+      <quaternion x="-0.000000" y="1.000000" z="-0.000000" w="0.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.03_10.L" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="Street.Unit.004">
+      <position x="-18.493671" y="-0.605000" z="-53.480000"/>
+      <quaternion x="0.000000" y="0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Unit.004" meshFile="Street.Unit.Mesh.015.mesh"/>
+    </node>
+    <node name="House1.017">
+      <position x="187.961304" y="-0.685706" z="-113.377975"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="2.000000" y="2.000000" z="2.000000"/>
+      <entity name="House1.017" meshFile="obj0_dom.001.mesh"/>
+    </node>
+    <node name="IdealPoint.047">
+      <position x="-66.533287" y="-0.000215" z="-52.492847"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.047" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.046">
+      <position x="-68.246567" y="-0.000215" z="-52.492847"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.046" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.045">
+      <position x="-69.674301" y="-0.000214" z="-52.435738"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.045" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.044">
+      <position x="-71.330475" y="-0.000214" z="-52.435738"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.044" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.043">
+      <position x="-73.500633" y="-0.000214" z="-52.435738"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.043" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.042">
+      <position x="-75.442352" y="-0.000214" z="-52.378628"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.042" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.041">
+      <position x="-76.927200" y="-0.000214" z="-52.378628"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.041" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.040">
+      <position x="-78.183609" y="-0.000214" z="-52.321518"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.040" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="TrafficLight.04_06.L">
+      <position x="-49.028248" y="-1.643511" z="-198.319595"/>
+      <quaternion x="0.000000" y="0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.04_06.L" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="TrafficLight.01_00">
+      <position x="163.554382" y="-1.643528" z="-46.809555"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.01_00" meshFile="trafficlight.001.mesh"/>
+    </node>
+    <node name="House1.015">
+      <position x="230.738480" y="-0.685711" z="-31.211975"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="2.000000" y="2.000000" z="2.000000"/>
+      <entity name="House1.015" meshFile="obj0_dom.001.mesh"/>
+    </node>
+    <node name="TrafficLight.00_06.L">
+      <position x="-49.347519" y="-1.643509" z="-58.544426"/>
+      <quaternion x="0.000000" y="0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.00_06.L" meshFile="trafficlight.mesh"/>
+    </node>
+    <node name="TrafficLight.01_04">
+      <position x="164.301300" y="-1.643528" z="-59.046860"/>
+      <quaternion x="0.000000" y="0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.01_04" meshFile="trafficlight.001.mesh"/>
+    </node>
+    <node name="IdealPoint.049">
+      <position x="-64.020470" y="-0.000215" z="-52.492847"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.049" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.048">
+      <position x="-65.391098" y="-0.000215" z="-52.492847"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.048" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="TrafficLight.06_06.L">
+      <position x="-60.796787" y="-1.643531" z="79.973526"/>
+      <quaternion x="-0.000000" y="1.000000" z="0.000000" w="0.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.06_06.L" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="Street.TL_A.017">
+      <position x="297.566010" y="-0.605000" z="-72.236931"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="4.700000" y="0.020000" z="14.100000"/>
+      <entity name="Street.TL_A.017" meshFile="Street.TL_A.Mesh.004.mesh"/>
+    </node>
+    <node name="House1">
+      <position x="-35.024368" y="-0.685685" z="-32.906120"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="2.000000" y="2.000000" z="2.000000"/>
+      <entity name="House1" meshFile="obj0_dom.mesh"/>
+    </node>
+    <node name="TrafficLight.05_00.R">
+      <position x="163.748383" y="-1.643538" z="-187.010178"/>
+      <quaternion x="-0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.05_00.R" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="Street.Unit.014">
+      <position x="195.174210" y="-0.605019" z="-53.479996"/>
+      <quaternion x="0.000000" y="0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Unit.014" meshFile="Street.Unit.Mesh.002.mesh"/>
+    </node>
+    <node name="Street.TL_C.004">
+      <position x="158.057983" y="-0.605004" z="67.349350"/>
+      <quaternion x="-0.000000" y="0.000000" z="0.000000" w="1.000000"/>
+      <scale x="4.699998" y="0.020000" z="14.100000"/>
+      <entity name="Street.TL_C.004" meshFile="Street.TL_C.Mesh.mesh"/>
+    </node>
+    <node name="House1.019">
+      <position x="126.972107" y="-0.685698" z="-71.871445"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="2.000000" y="2.000000" z="2.000000"/>
+      <entity name="House1.019" meshFile="obj0_dom.001.mesh"/>
+    </node>
+    <node name="Street.TL_B.002">
+      <position x="-195.258484" y="-0.604975" z="-72.258293"/>
+      <quaternion x="-0.000000" y="0.000000" z="0.000000" w="1.000000"/>
+      <scale x="4.700000" y="0.020000" z="14.100000"/>
+      <entity name="Street.TL_B.002" meshFile="Street.TL_B.Mesh.mesh"/>
+    </node>
+    <node name="Street.Unit.033">
+      <position x="-176.675491" y="-0.604940" z="-193.156006"/>
+      <quaternion x="0.000000" y="0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="4.890234"/>
+      <entity name="Street.Unit.033" meshFile="Street.Unit.Mesh.004.mesh"/>
+    </node>
+    <node name="Street.Unit.032">
+      <position x="269.599213" y="-0.604981" z="-193.145004"/>
+      <quaternion x="0.000000" y="0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Unit.032" meshFile="Street.Unit.Mesh.004.mesh"/>
+    </node>
+    <node name="Street.Unit.031">
+      <position x="269.801086" y="-0.605048" z="86.109001"/>
+      <quaternion x="0.000000" y="0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Unit.031" meshFile="Street.Unit.Mesh.004.mesh"/>
+    </node>
+    <node name="Street.Unit.030">
+      <position x="-176.466675" y="-0.605004" z="86.113998"/>
+      <quaternion x="0.000000" y="0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Unit.030" meshFile="Street.Unit.Mesh.004.mesh"/>
+    </node>
+    <node name="Street.Unit.036">
+      <position x="297.566010" y="-0.605046" z="58.137867"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Unit.036" meshFile="Street.Unit.Mesh.004.mesh"/>
+    </node>
+    <node name="Street.Unit.035">
+      <position x="297.566010" y="-0.604992" z="-174.490356"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Unit.035" meshFile="Street.Unit.Mesh.004.mesh"/>
+    </node>
+    <node name="Street.Unit.034">
+      <position x="-195.257996" y="-0.604948" z="-174.233429"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="4.700000" y="0.020000" z="4.887967"/>
+      <entity name="Street.Unit.034" meshFile="Street.Unit.Mesh.004.mesh"/>
+    </node>
+    <node name="TrafficLight.01_12">
+      <position x="151.840240" y="-1.643527" z="-47.655746"/>
+      <quaternion x="0.000000" y="-0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.01_12" meshFile="trafficlight.001.mesh"/>
+    </node>
+    <node name="Land.Grass">
+      <position x="-267.935791" y="-1.086613" z="-93.830673"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="2500.000000" y="0.500000" z="2500.000000"/>
+      <entity name="Land.Grass" meshFile="Land.Grass.Mesh.mesh"/>
+    </node>
+    <node name="Street.TL_C.001">
+      <position x="-55.609615" y="-0.604970" z="-174.396820"/>
+      <quaternion x="0.000000" y="1.000000" z="-0.000000" w="0.000000"/>
+      <scale x="4.700000" y="0.020000" z="14.100000"/>
+      <entity name="Street.TL_C.001" meshFile="Street.TL_C.Mesh.mesh"/>
+    </node>
+    <node name="TrafficLight.02_04">
+      <position x="303.144989" y="-1.643541" z="-46.940239"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.02_04" meshFile="trafficlight.002.mesh"/>
+    </node>
+    <node name="Street.Curve">
+      <position x="292.861572" y="-0.605000" z="81.399811"/>
+      <quaternion x="0.000000" y="0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="9.400001" y="0.020000" z="9.400001"/>
+      <entity name="Street.Curve" meshFile="Street.Curve.M.001.mesh"/>
+    </node>
+    <node name="IdealPoint.032">
+      <position x="-90.176598" y="-0.000213" z="-51.750420"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.032" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.033">
+      <position x="-88.634644" y="-0.000213" z="-51.921749"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.033" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.030">
+      <position x="-92.917847" y="-0.000213" z="-51.750420"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.030" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.031">
+      <position x="-91.490112" y="-0.000213" z="-51.750420"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.031" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.036">
+      <position x="-84.065880" y="-0.000213" z="-52.321518"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.036" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.037">
+      <position x="-82.752365" y="-0.000213" z="-52.321518"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.037" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.034">
+      <position x="-87.149796" y="-0.000213" z="-52.150188"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.034" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.035">
+      <position x="-85.550728" y="-0.000213" z="-52.264408"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.035" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="TrafficLight.00_14.L">
+      <position x="-61.832901" y="-1.643508" z="-48.219475"/>
+      <quaternion x="0.000000" y="-0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.00_14.L" meshFile="trafficlight.mesh"/>
+    </node>
+    <node name="IdealPoint.038">
+      <position x="-81.381737" y="-0.000214" z="-52.321518"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.038" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.039">
+      <position x="-80.011108" y="-0.000214" z="-52.321518"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.039" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="Street.TL_B.016">
+      <position x="297.566010" y="-0.605000" z="-34.821301"/>
+      <quaternion x="0.000000" y="1.000000" z="-0.000000" w="0.000000"/>
+      <scale x="4.700000" y="0.020000" z="14.100000"/>
+      <entity name="Street.TL_B.016" meshFile="Street.TL_B.Mesh.003.mesh"/>
+    </node>
+    <node name="TrafficLight.06_00.R">
+      <position x="-49.032124" y="-1.643532" z="80.472946"/>
+      <quaternion x="0.000000" y="0.707107" z="0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.06_00.R" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="TrafficLight.00_10.L">
+      <position x="-60.857620" y="-1.643509" z="-59.981194"/>
+      <quaternion x="0.000000" y="1.000000" z="-0.000000" w="0.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.00_10.L" meshFile="trafficlight.mesh"/>
+    </node>
+    <node name="IdealPoint.022">
+      <position x="-105.367699" y="-0.000212" z="-51.750420"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.022" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="TrafficLight.07_04.R">
+      <position x="152.299469" y="-1.643543" z="79.973358"/>
+      <quaternion x="-0.000000" y="1.000000" z="-0.000000" w="0.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.07_04.R" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="TrafficLight.04_10.U">
+      <position x="-62.176556" y="-1.643510" z="-187.990875"/>
+      <quaternion x="-0.000000" y="-0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.04_10.U" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="House1.018">
+      <position x="132.478058" y="-0.685699" z="-107.024948"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="2.000000" y="2.000000" z="2.000000"/>
+      <entity name="House1.018" meshFile="obj0_dom.001.mesh"/>
+    </node>
+    <node name="IdealPoint.106">
+      <position x="-53.805332" y="-0.000198" z="-143.979706"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.106" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="TrafficLight.02_02.L">
+      <position x="291.425568" y="-1.643540" z="-48.350151"/>
+      <quaternion x="0.000000" y="-0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.02_02.L" meshFile="trafficlight.002.mesh"/>
+    </node>
+    <node name="IdealPoint.107">
+      <position x="-53.805332" y="-0.000197" z="-146.313751"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.107" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="Street.Unit.028">
+      <position x="-195.257996" y="-0.604964" z="-16.189741"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Unit.028" meshFile="Street.Unit.Mesh.002.mesh"/>
+    </node>
+    <node name="Street.Unit.029">
+      <position x="-195.257996" y="-0.605000" z="58.193954"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Unit.029" meshFile="Street.Unit.Mesh.004.mesh"/>
+    </node>
+    <node name="TrafficLight.07_02.U">
+      <position x="164.624908" y="-1.643544" z="80.943420"/>
+      <quaternion x="-0.000000" y="0.707107" z="0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.07_02.U" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="IdealPoint.027">
+      <position x="-97.315269" y="-0.000212" z="-51.750420"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.027" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="Street.Unit.020">
+      <position x="55.874088" y="-0.605000" z="-193.160004"/>
+      <quaternion x="-0.000000" y="0.707107" z="0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Unit.020" meshFile="Street.Unit.Mesh.002.mesh"/>
+    </node>
+    <node name="Street.Unit.021">
+      <position x="195.393265" y="-0.605012" z="-193.145004"/>
+      <quaternion x="-0.000000" y="0.707107" z="0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Unit.021" meshFile="Street.Unit.Mesh.002.mesh"/>
+    </node>
+    <node name="Street.Unit.022">
+      <position x="-157.780289" y="-0.604980" z="-193.156006"/>
+      <quaternion x="-0.000000" y="0.707107" z="0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Unit.022" meshFile="Street.Unit.Mesh.002.mesh"/>
+    </node>
+    <node name="IdealPoint.026">
+      <position x="-98.857224" y="-0.000212" z="-51.750420"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.026" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="Street.Unit.024">
+      <position x="195.463409" y="-0.605028" z="86.109001"/>
+      <quaternion x="-0.000000" y="0.707107" z="0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Unit.024" meshFile="Street.Unit.Mesh.002.mesh"/>
+    </node>
+    <node name="Street.Unit.025">
+      <position x="297.566010" y="-0.605022" z="-16.216709"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Unit.025" meshFile="Street.Unit.Mesh.002.mesh"/>
+    </node>
+    <node name="Street.Unit.026">
+      <position x="297.566010" y="-0.604990" z="-156.683945"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="4.700000" y="0.020000" z="4.826531"/>
+      <entity name="Street.Unit.026" meshFile="Street.Unit.Mesh.002.mesh"/>
+    </node>
+    <node name="Street.Unit.027">
+      <position x="-195.257996" y="-0.604946" z="-155.435257"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Unit.027" meshFile="Street.Unit.Mesh.002.mesh"/>
+    </node>
+    <node name="House1.012">
+      <position x="134.595764" y="-0.685699" z="-19.352951"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="2.000000" y="2.000000" z="2.000000"/>
+      <entity name="House1.012" meshFile="obj0_dom.001.mesh"/>
+    </node>
+    <node name="IdealPoint.029">
+      <position x="-94.631126" y="-0.000213" z="-51.750420"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.029" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="House1.010">
+      <position x="-118.037445" y="-0.685675" z="-37.564999"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="2.000000" y="2.000000" z="2.000000"/>
+      <entity name="House1.010" meshFile="obj0_dom.mesh"/>
+    </node>
+    <node name="House1.011">
+      <position x="95.630447" y="-0.685694" z="-37.565002"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="2.000000" y="2.000000" z="2.000000"/>
+      <entity name="House1.011" meshFile="obj0_dom.001.mesh"/>
+    </node>
+    <node name="IdealPoint.128">
+      <position x="-52.745426" y="-0.000190" z="-177.670700"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.128" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.129">
+      <position x="-52.745426" y="-0.000190" z="-178.793457"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.129" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="TrafficLight.01_14.L">
+      <position x="151.834991" y="-1.643527" z="-48.219467"/>
+      <quaternion x="0.000000" y="-0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.01_14.L" meshFile="trafficlight.001.mesh"/>
+    </node>
+    <node name="IdealPoint.028">
+      <position x="-95.887535" y="-0.000213" z="-51.750420"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.028" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.124">
+      <position x="-52.745426" y="-0.000191" z="-173.136490"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.124" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.125">
+      <position x="-52.788609" y="-0.000191" z="-174.388794"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.125" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.126">
+      <position x="-52.745426" y="-0.000191" z="-175.554733"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.126" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.127">
+      <position x="-52.702244" y="-0.000191" z="-176.720673"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.127" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.120">
+      <position x="-52.717033" y="-0.000192" z="-168.960220"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.120" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.121">
+      <position x="-52.745426" y="-0.000192" z="-169.868805"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.121" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.122">
+      <position x="-52.745426" y="-0.000192" z="-170.890976"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.122" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.123">
+      <position x="-52.788609" y="-0.000191" z="-172.143280"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.123" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.021">
+      <position x="-107.023872" y="-0.000212" z="-51.693310"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.021" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.020">
+      <position x="-108.394501" y="-0.000211" z="-51.693310"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.020" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.023">
+      <position x="-103.654419" y="-0.000212" z="-51.750420"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.023" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.109">
+      <position x="-53.680145" y="-0.000196" z="-150.540115"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.109" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.025">
+      <position x="-100.399178" y="-0.000212" z="-51.750420"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.025" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.024">
+      <position x="-101.998245" y="-0.000212" z="-51.750420"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.024" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.148">
+      <position x="-38.970066" y="-0.000188" z="-191.230133"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.148" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.149">
+      <position x="-36.422272" y="-0.000188" z="-191.230133"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.149" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.146">
+      <position x="-42.813347" y="-0.000188" z="-191.230133"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.146" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.147">
+      <position x="-40.956482" y="-0.000188" z="-191.230133"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.147" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.144">
+      <position x="-46.095253" y="-0.000188" z="-191.230133"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.144" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.145">
+      <position x="-44.454300" y="-0.000188" z="-191.230133"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.145" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.142">
+      <position x="-49.333977" y="-0.000188" z="-191.057404"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.142" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.143">
+      <position x="-47.736206" y="-0.000188" z="-191.273315"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.143" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.140">
+      <position x="-51.709038" y="-0.000188" z="-190.107391"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.140" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.141">
+      <position x="-50.715832" y="-0.000188" z="-190.711945"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.141" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="Street.Unit.001">
+      <position x="-55.605999" y="-0.604999" z="-72.162338"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="4.700000" y="0.020000" z="14.100000"/>
+      <entity name="Street.Unit.001" meshFile="Street.Unit.Mesh.001.mesh"/>
+    </node>
+    <node name="TrafficLight.06_04.R">
+      <position x="-61.360508" y="-1.643531" z="79.978775"/>
+      <quaternion x="-0.000000" y="1.000000" z="0.000000" w="0.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.06_04.R" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="Street.Unit.006">
+      <position x="-55.606873" y="-0.604990" z="-15.989936"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Unit.006" meshFile="Street.Unit.Mesh.015.mesh"/>
+    </node>
+    <node name="Street.TL_B.001">
+      <position x="-36.828323" y="-0.604970" z="-193.156021"/>
+      <quaternion x="-0.000000" y="-0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="14.100000"/>
+      <entity name="Street.TL_B.001" meshFile="Street.TL_B.Mesh.mesh"/>
+    </node>
+    <node name="Street.Unit.015">
+      <position x="176.683380" y="-0.605019" z="-53.479996"/>
+      <quaternion x="0.000000" y="-0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="14.100002"/>
+      <entity name="Street.Unit.015" meshFile="Street.Unit.Mesh.mesh"/>
+    </node>
+    <node name="Street.TL_B.003">
+      <position x="-74.383293" y="-0.604992" z="86.113991"/>
+      <quaternion x="0.000000" y="0.707107" z="0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="14.100001"/>
+      <entity name="Street.TL_B.003" meshFile="Street.TL_B.Mesh.mesh"/>
+    </node>
+    <node name="Street.Unit.017">
+      <position x="-18.493643" y="-0.605007" z="86.110001"/>
+      <quaternion x="0.000000" y="0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Unit.017" meshFile="Street.Unit.Mesh.015.mesh"/>
+    </node>
+    <node name="Street.Unit.016">
+      <position x="55.737247" y="-0.605014" z="86.109978"/>
+      <quaternion x="-0.000000" y="0.707107" z="0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Unit.016" meshFile="Street.Unit.Mesh.002.mesh"/>
+    </node>
+    <node name="Street.Unit.011">
+      <position x="158.061874" y="-0.605014" z="-90.793839"/>
+      <quaternion x="0.000000" y="1.000000" z="-0.000000" w="0.000000"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Unit.011" meshFile="Street.Unit.Mesh.002.mesh"/>
+    </node>
+    <node name="Street.Unit.010">
+      <position x="139.299713" y="-0.605016" z="-53.479996"/>
+      <quaternion x="0.000000" y="0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="14.100002"/>
+      <entity name="Street.Unit.010" meshFile="Street.Unit.Mesh.mesh"/>
+    </node>
+    <node name="Street.Unit.013">
+      <position x="55.737221" y="-0.605007" z="-53.479996"/>
+      <quaternion x="0.000000" y="0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Unit.013" meshFile="Street.Unit.Mesh.002.mesh"/>
+    </node>
+    <node name="Street.Unit.012">
+      <position x="158.061005" y="-0.605009" z="-15.989929"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Unit.012" meshFile="Street.Unit.Mesh.002.mesh"/>
+    </node>
+    <node name="TrafficLight.01_10.L">
+      <position x="152.810272" y="-1.643528" z="-59.981186"/>
+      <quaternion x="0.000000" y="1.000000" z="-0.000000" w="0.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.01_10.L" meshFile="trafficlight.001.mesh"/>
+    </node>
+    <node name="TrafficLight.07_08">
+      <position x="151.453293" y="-1.643545" z="91.687546"/>
+      <quaternion x="0.000000" y="-0.707107" z="0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.07_08" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="Street.Unit.019">
+      <position x="-18.356806" y="-0.604993" z="-193.160004"/>
+      <quaternion x="-0.000000" y="0.707107" z="0.000000" w="0.707107"/>
+      <scale x="4.700001" y="0.020000" z="4.700000"/>
+      <entity name="Street.Unit.019" meshFile="Street.Unit.Mesh.015.mesh"/>
+    </node>
+    <node name="Street.Unit.018">
+      <position x="55.737247" y="-0.605014" z="86.109978"/>
+      <quaternion x="-0.000000" y="0.707107" z="0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Unit.018" meshFile="Street.Unit.Mesh.002.mesh"/>
+    </node>
+    <node name="IdealPoint.108">
+      <position x="-53.755672" y="-0.000197" z="-148.349823"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.108" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.139">
+      <position x="-52.313599" y="-0.000188" z="-189.675568"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.139" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.138">
+      <position x="-52.659061" y="-0.000188" z="-188.768723"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.138" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="House1.005">
+      <position x="11.988148" y="-0.685691" z="-65.518402"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="2.000000" y="2.000000" z="2.000000"/>
+      <entity name="House1.005" meshFile="obj0_dom.mesh"/>
+    </node>
+    <node name="House1.004">
+      <position x="-25.706581" y="-0.685687" z="-113.377983"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="2.000000" y="2.000000" z="2.000000"/>
+      <entity name="House1.004" meshFile="obj0_dom.mesh"/>
+    </node>
+    <node name="TrafficLight.02_00.R">
+      <position x="291.430817" y="-1.643539" z="-47.786430"/>
+      <quaternion x="0.000000" y="-0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.02_00.R" meshFile="trafficlight.002.mesh"/>
+    </node>
+    <node name="House1.006">
+      <position x="17.070589" y="-0.685692" z="-31.211975"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="2.000000" y="2.000000" z="2.000000"/>
+      <entity name="House1.006" meshFile="obj0_dom.mesh"/>
+    </node>
+    <node name="IdealPoint.133">
+      <position x="-52.659061" y="-0.000189" z="-182.895844"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.133" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.132">
+      <position x="-52.659061" y="-0.000189" z="-181.945816"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.132" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.131">
+      <position x="-52.659061" y="-0.000190" z="-180.823059"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.131" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.130">
+      <position x="-52.659061" y="-0.000190" z="-179.657120"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.130" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.137">
+      <position x="-52.659061" y="-0.000188" z="-187.473236"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.137" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.136">
+      <position x="-52.702244" y="-0.000188" z="-186.609573"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.136" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.135">
+      <position x="-52.702244" y="-0.000189" z="-185.270905"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.135" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.134">
+      <position x="-52.659061" y="-0.000189" z="-184.148148"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.134" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="Street.TL_A.002">
+      <position x="-195.258484" y="-0.604975" z="-34.785000"/>
+      <quaternion x="0.000000" y="1.000000" z="-0.000000" w="0.000000"/>
+      <scale x="4.700000" y="0.020000" z="14.100000"/>
+      <entity name="Street.TL_A.002" meshFile="Street.TL_A.Mesh.mesh"/>
+    </node>
+    <node name="TrafficLight.01_08">
+      <position x="152.334351" y="-1.643527" z="-59.984116"/>
+      <quaternion x="0.000000" y="1.000000" z="-0.000000" w="0.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.01_08" meshFile="trafficlight.001.mesh"/>
+    </node>
+    <node name="IdealPoint.150">
+      <position x="-34.954052" y="-0.000188" z="-191.230133"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.150" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="Street.TCrossing.002">
+      <position x="297.566254" y="-0.605000" z="-53.480000"/>
+      <quaternion x="0.000000" y="0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.TCrossing.002" meshFile="Street.TCross.M.001.mesh"/>
+    </node>
+    <node name="Street.Crossing.001">
+      <position x="158.061737" y="-0.605019" z="-53.480209"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Crossing.001" meshFile="Street.Crossing.M.mesh"/>
+    </node>
+    <node name="TrafficLight.06_08">
+      <position x="-62.206676" y="-1.643533" z="91.692963"/>
+      <quaternion x="0.000000" y="-0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.06_08" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="House1.007">
+      <position x="-34.600815" y="-0.685685" z="-4.952726"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="2.000000" y="2.000000" z="2.000000"/>
+      <entity name="House1.007" meshFile="obj0_dom.mesh"/>
+    </node>
+    <node name="Street.TCrossing.005">
+      <position x="157.993057" y="-0.605004" z="86.108780"/>
+      <quaternion x="-0.000000" y="0.000000" z="0.000000" w="1.000000"/>
+      <scale x="4.699998" y="0.020000" z="4.700000"/>
+      <entity name="Street.TCrossing.005" meshFile="Street.TCross.M.mesh"/>
+    </node>
+    <node name="Street.TCrossing.004">
+      <position x="-55.666931" y="-0.604992" z="86.114204"/>
+      <quaternion x="0.000000" y="0.000000" z="0.000000" w="1.000000"/>
+      <scale x="4.699999" y="0.020000" z="4.700000"/>
+      <entity name="Street.TCrossing.004" meshFile="Street.TCross.M.mesh"/>
+    </node>
+    <node name="TrafficLight.04_08.R">
+      <position x="-62.179489" y="-1.643510" z="-187.514984"/>
+      <quaternion x="0.000000" y="-0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.04_08.R" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="Street.TCrossing.001">
+      <position x="-55.602039" y="-0.604970" z="-193.156250"/>
+      <quaternion x="0.000000" y="1.000000" z="-0.000000" w="0.000000"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.TCrossing.001" meshFile="Street.TCross.M.mesh"/>
+    </node>
+    <node name="Street.Unit.007">
+      <position x="-55.606014" y="-0.604995" z="-90.793846"/>
+      <quaternion x="0.000000" y="1.000000" z="-0.000000" w="0.000000"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Unit.007" meshFile="Street.Unit.Mesh.015.mesh"/>
+    </node>
+    <node name="Street.TCrossing.003">
+      <position x="-195.258698" y="-0.604975" z="-53.498322"/>
+      <quaternion x="0.000000" y="-0.707107" z="0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.TCrossing.003" meshFile="Street.TCross.M.mesh"/>
+    </node>
+    <node name="Street.Unit.005">
+      <position x="-157.930664" y="-0.604988" z="-53.479984"/>
+      <quaternion x="0.000000" y="0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Unit.005" meshFile="Street.Unit.Mesh.015.mesh"/>
+    </node>
+    <node name="Street.Unit.008">
+      <position x="-36.984497" y="-0.605000" z="-53.480000"/>
+      <quaternion x="0.000000" y="-0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="14.100002"/>
+      <entity name="Street.Unit.008" meshFile="Street.Unit.Mesh.001.mesh"/>
+    </node>
+    <node name="Street.Unit.009">
+      <position x="158.061890" y="-0.605018" z="-72.162338"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="4.700000" y="0.020000" z="14.100000"/>
+      <entity name="Street.Unit.009" meshFile="Street.Unit.Mesh.mesh"/>
+    </node>
+    <node name="House1.001">
+      <position x="-33.753769" y="-0.685685" z="-70.600838"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="2.000000" y="2.000000" z="2.000000"/>
+      <entity name="House1.001" meshFile="obj0_dom.mesh"/>
+    </node>
+    <node name="House1.013">
+      <position x="117.230804" y="-0.685696" z="12.412262"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="2.000000" y="2.000000" z="2.000000"/>
+      <entity name="House1.013" meshFile="obj0_dom.001.mesh"/>
+    </node>
+    <node name="TrafficLight.05_04">
+      <position x="164.594543" y="-1.643539" z="-198.724365"/>
+      <quaternion x="0.000000" y="0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.05_04" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="Street.TL_C">
+      <position x="158.054794" y="-0.604999" z="-174.386246"/>
+      <quaternion x="0.000000" y="1.000000" z="-0.000000" w="0.000000"/>
+      <scale x="4.700000" y="0.020000" z="14.100000"/>
+      <entity name="Street.TL_C" meshFile="Street.TL_C.Mesh.mesh"/>
+    </node>
+    <node name="Street.TL_B">
+      <position x="176.771164" y="-0.604999" z="-193.145386"/>
+      <quaternion x="-0.000000" y="-0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="14.100000"/>
+      <entity name="Street.TL_B" meshFile="Street.TL_B.Mesh.mesh"/>
+    </node>
+    <node name="Street.TL_A">
+      <position x="139.297867" y="-0.604999" z="-193.145401"/>
+      <quaternion x="0.000000" y="0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="14.100002"/>
+      <entity name="Street.TL_A" meshFile="Street.TL_A.Mesh.mesh"/>
+    </node>
+    <node name="TrafficLight.06_02.U">
+      <position x="-49.035053" y="-1.643532" z="80.948837"/>
+      <quaternion x="0.000000" y="0.707107" z="0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.06_02.U" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="Street.TL_C.016">
+      <position x="278.807220" y="-0.605000" z="-53.480000"/>
+      <quaternion x="0.000000" y="0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="14.100002"/>
+      <entity name="Street.TL_C.016" meshFile="Street.TL_C.Mesh.003.mesh"/>
+    </node>
+    <node name="TrafficLight.03_06.L">
+      <position x="-189.118011" y="-1.643515" z="-58.671799"/>
+      <quaternion x="-0.000000" y="0.707107" z="0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.03_06.L" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="TrafficLight.05_10.U">
+      <position x="151.422928" y="-1.643539" z="-187.980240"/>
+      <quaternion x="-0.000000" y="-0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.05_10.U" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="Street.Unit.023">
+      <position x="-158.174850" y="-0.604995" z="86.113998"/>
+      <quaternion x="-0.000000" y="0.707107" z="0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.Unit.023" meshFile="Street.Unit.Mesh.002.mesh"/>
+    </node>
+    <node name="TrafficLight.01_02.L">
+      <position x="163.139008" y="-1.643528" z="-46.832870"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.01_02.L" meshFile="trafficlight.001.mesh"/>
+    </node>
+    <node name="TrafficLight.02_08.R">
+      <position x="291.924957" y="-1.643540" z="-60.114799"/>
+      <quaternion x="0.000000" y="1.000000" z="-0.000000" w="0.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.02_08.R" meshFile="trafficlight.002.mesh"/>
+    </node>
+    <node name="TrafficLight.03_08">
+      <position x="-200.837448" y="-1.643516" z="-60.081688"/>
+      <quaternion x="-0.000000" y="1.000000" z="-0.000000" w="0.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.03_08" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="House1.002">
+      <position x="-86.695786" y="-0.685679" z="-71.871437"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="2.000000" y="2.000000" z="2.000000"/>
+      <entity name="House1.002" meshFile="obj0_dom.mesh"/>
+    </node>
+    <node name="TrafficLight.02_10.U">
+      <position x="292.400848" y="-1.643540" z="-60.111870"/>
+      <quaternion x="0.000000" y="1.000000" z="-0.000000" w="0.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.02_10.U" meshFile="trafficlight.002.mesh"/>
+    </node>
+    <node name="IdealPoint.094">
+      <position x="-53.954311" y="-0.000203" z="-119.397812"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.094" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.095">
+      <position x="-54.053631" y="-0.000202" z="-121.036606"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.095" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.096">
+      <position x="-53.904652" y="-0.000202" z="-123.172005"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.096" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.097">
+      <position x="-53.904652" y="-0.000202" z="-124.959778"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.097" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.090">
+      <position x="-53.954311" y="-0.000204" z="-112.197060"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.090" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.091">
+      <position x="-53.954311" y="-0.000204" z="-114.084152"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.091" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.092">
+      <position x="-53.904652" y="-0.000203" z="-115.822266"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.092" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.093">
+      <position x="-53.954311" y="-0.000203" z="-117.709358"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.093" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="House1.021">
+      <position x="178.643524" y="-0.685704" z="-32.906113"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="2.000000" y="2.000000" z="2.000000"/>
+      <entity name="House1.021" meshFile="obj0_dom.001.mesh"/>
+    </node>
+    <node name="House1.020">
+      <position x="179.914124" y="-0.685705" z="-70.600845"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="2.000000" y="2.000000" z="2.000000"/>
+      <entity name="House1.020" meshFile="obj0_dom.001.mesh"/>
+    </node>
+    <node name="IdealPoint.098">
+      <position x="-53.854992" y="-0.000201" z="-126.896530"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.098" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.099">
+      <position x="-53.954311" y="-0.000201" z="-128.733963"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.099" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="House1.014">
+      <position x="179.067078" y="-0.685704" z="-4.952728"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="2.000000" y="2.000000" z="2.000000"/>
+      <entity name="House1.014" meshFile="obj0_dom.001.mesh"/>
+    </node>
+    <node name="IdealPoint.018">
+      <position x="-111.307083" y="-0.000211" z="-51.636200"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.018" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.019">
+      <position x="-109.936455" y="-0.000211" z="-51.636200"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.019" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="TrafficLight.06_10.L">
+      <position x="-62.183361" y="-1.643533" z="91.277557"/>
+      <quaternion x="0.000000" y="-0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.06_10.L" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="IdealPoint.014">
+      <position x="-116.561157" y="-0.000211" z="-51.693310"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.014" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.015">
+      <position x="-115.418968" y="-0.000211" z="-51.636200"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.015" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.016">
+      <position x="-114.048340" y="-0.000211" z="-51.636200"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.016" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.017">
+      <position x="-112.677711" y="-0.000211" z="-51.636200"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.017" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.010">
+      <position x="-121.929443" y="-0.000210" z="-51.636200"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.010" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.011">
+      <position x="-120.615929" y="-0.000211" z="-51.636200"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.011" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.012">
+      <position x="-119.302414" y="-0.000211" z="-51.636200"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.012" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.013">
+      <position x="-118.160225" y="-0.000211" z="-51.693310"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.013" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="TrafficLight.00_02.L">
+      <position x="-50.528885" y="-1.643509" z="-46.832878"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.00_02.L" meshFile="trafficlight.mesh"/>
+    </node>
+    <node name="IdealPoint.078">
+      <position x="-53.904652" y="-0.000208" z="-90.992073"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.078" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.079">
+      <position x="-53.904652" y="-0.000208" z="-92.630867"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.079" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.076">
+      <position x="-53.854992" y="-0.000209" z="-88.062111"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.076" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.077">
+      <position x="-53.904652" y="-0.000209" z="-89.452599"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.077" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.074">
+      <position x="-53.854992" y="-0.000209" z="-85.045242"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.074" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.075">
+      <position x="-53.854992" y="-0.000209" z="-86.472977"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.075" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.072">
+      <position x="-53.912102" y="-0.000210" z="-81.447350"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.072" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.073">
+      <position x="-53.969212" y="-0.000210" z="-83.389069"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.073" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.070">
+      <position x="-53.797882" y="-0.000211" z="-77.849457"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.070" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.071">
+      <position x="-53.912102" y="-0.000210" z="-79.905396"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.071" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="TrafficLight.03_02.U">
+      <position x="-190.093323" y="-1.643515" z="-46.910065"/>
+      <quaternion x="-0.000000" y="0.000000" z="0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.03_02.U" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="Street.TL_C.002">
+      <position x="-176.499268" y="-0.604975" z="-53.477013"/>
+      <quaternion x="0.000000" y="-0.707107" z="0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="14.100002"/>
+      <entity name="Street.TL_C.002" meshFile="Street.TL_C.Mesh.mesh"/>
+    </node>
+    <node name="TrafficLight.07_10.L">
+      <position x="151.476608" y="-1.643545" z="91.272141"/>
+      <quaternion x="0.000000" y="-0.707107" z="0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.07_10.L" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="TrafficLight.05_06.L">
+      <position x="164.571243" y="-1.643540" z="-198.308960"/>
+      <quaternion x="0.000000" y="0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.05_06.L" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="TrafficLight.03_00.R">
+      <position x="-189.617432" y="-1.643515" z="-46.907135"/>
+      <quaternion x="-0.000000" y="0.000000" z="0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.03_00.R" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="TrafficLight.05_02.L">
+      <position x="163.184647" y="-1.643538" z="-187.004929"/>
+      <quaternion x="-0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.05_02.L" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="IdealPoint.083">
+      <position x="-54.003971" y="-0.000207" z="-99.186043"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.083" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.082">
+      <position x="-53.954311" y="-0.000207" z="-97.298950"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.082" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.081">
+      <position x="-54.003971" y="-0.000207" z="-95.809135"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.081" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.080">
+      <position x="-53.904652" y="-0.000208" z="-94.319321"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.080" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.087">
+      <position x="-53.904652" y="-0.000205" z="-106.337135"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.087" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.086">
+      <position x="-53.904652" y="-0.000206" z="-104.400383"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.086" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.085">
+      <position x="-54.003971" y="-0.000206" z="-102.662270"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.085" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.084">
+      <position x="-54.003971" y="-0.000206" z="-100.775177"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.084" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.089">
+      <position x="-53.954311" y="-0.000204" z="-110.111320"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.089" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.088">
+      <position x="-53.954311" y="-0.000205" z="-108.174568"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.088" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="House1.003">
+      <position x="-81.189819" y="-0.685680" z="-107.024933"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="2.000000" y="2.000000" z="2.000000"/>
+      <entity name="House1.003" meshFile="obj0_dom.mesh"/>
+    </node>
+    <node name="Street.TCrossing">
+      <position x="158.054794" y="-0.604999" z="-193.145615"/>
+      <quaternion x="0.000000" y="1.000000" z="-0.000000" w="0.000000"/>
+      <scale x="4.700000" y="0.020000" z="4.700000"/>
+      <entity name="Street.TCrossing" meshFile="Street.TCross.M.mesh"/>
+    </node>
+    <node name="Car.Driver">
+      <position x="-132.926727" y="-0.208000" z="-51.514839"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.600922" y="0.667692" z="0.667692"/>
+      <entity name="Car.Driver" meshFile="Car.Driver.Mesh.mesh"/>
+    </node>
+    <node name="Street.TL_C.003">
+      <position x="-55.602013" y="-0.604992" z="67.354774"/>
+      <quaternion x="0.000000" y="0.000000" z="0.000000" w="1.000000"/>
+      <scale x="4.699999" y="0.020000" z="14.100000"/>
+      <entity name="Street.TL_C.003" meshFile="Street.TL_C.Mesh.mesh"/>
+    </node>
+    <node name="IdealPoint.009">
+      <position x="-123.128738" y="-0.000210" z="-51.693310"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.009" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.008">
+      <position x="-124.442253" y="-0.000210" z="-51.693310"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.008" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="TrafficLight.00_04">
+      <position x="-49.366592" y="-1.643509" z="-59.046867"/>
+      <quaternion x="0.000000" y="0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.00_04" meshFile="trafficlight.mesh"/>
+    </node>
+    <node name="IdealPoint.003">
+      <position x="-130.381638" y="-0.000210" z="-51.750420"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.003" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.002">
+      <position x="-131.638046" y="-0.000210" z="-51.750420"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.002" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.001">
+      <position x="-132.837341" y="-0.000209" z="-51.807529"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.001" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.007">
+      <position x="-125.869987" y="-0.000210" z="-51.693310"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.007" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.006">
+      <position x="-127.012177" y="-0.000210" z="-51.693310"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.006" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.005">
+      <position x="-128.097260" y="-0.000210" z="-51.693310"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.005" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.004">
+      <position x="-129.296555" y="-0.000210" z="-51.750420"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.004" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.102">
+      <position x="-53.805332" y="-0.000200" z="-134.742874"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.102" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.103">
+      <position x="-53.755672" y="-0.000199" z="-136.977585"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.103" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.100">
+      <position x="-53.854992" y="-0.000200" z="-130.720383"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.100" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.101">
+      <position x="-53.904652" y="-0.000200" z="-132.806122"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.101" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.069">
+      <position x="-53.740772" y="-0.000211" z="-76.079063"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.069" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.068">
+      <position x="-53.740772" y="-0.000211" z="-74.194450"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.068" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.104">
+      <position x="-53.755672" y="-0.000199" z="-139.460602"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.104" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.105">
+      <position x="-53.805332" y="-0.000198" z="-141.794647"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.105" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.065">
+      <position x="-53.740772" y="-0.000212" z="-69.454361"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.065" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.064">
+      <position x="-53.740772" y="-0.000212" z="-67.855293"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.064" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.067">
+      <position x="-53.740772" y="-0.000212" z="-72.595383"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.067" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.066">
+      <position x="-53.683662" y="-0.000212" z="-70.939209"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.066" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.061">
+      <position x="-53.683662" y="-0.000213" z="-63.400753"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.061" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.060">
+      <position x="-53.683662" y="-0.000214" z="-61.801689"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.060" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.063">
+      <position x="-53.683662" y="-0.000213" z="-66.370445"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.063" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="IdealPoint.062">
+      <position x="-53.740772" y="-0.000213" z="-64.885597"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.062" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="Street.TL_A.004">
+      <position x="176.750000" y="-0.605004" z="86.108566"/>
+      <quaternion x="0.000000" y="-0.707107" z="0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="14.100002"/>
+      <entity name="Street.TL_A.004" meshFile="Street.TL_A.Mesh.mesh"/>
+    </node>
+    <node name="TrafficLight.04_02.L">
+      <position x="-50.414833" y="-1.643510" z="-187.015564"/>
+      <quaternion x="-0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.04_02.L" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="IdealPoint.058">
+      <position x="-53.740772" y="-0.000214" z="-58.260902"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.058" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="House1.008">
+      <position x="-96.437088" y="-0.685677" z="12.412264"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="2.000000" y="2.000000" z="2.000000"/>
+      <entity name="House1.008" meshFile="obj0_dom.mesh"/>
+    </node>
+    <node name="TrafficLight.04_00.R">
+      <position x="-49.851101" y="-1.643510" z="-187.020813"/>
+      <quaternion x="-0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.04_00.R" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="TrafficLight.00_08">
+      <position x="-61.333542" y="-1.643508" z="-59.984123"/>
+      <quaternion x="0.000000" y="1.000000" z="-0.000000" w="0.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.00_08" meshFile="trafficlight.mesh"/>
+    </node>
+    <node name="TrafficLight.03_04.R">
+      <position x="-189.123260" y="-1.643515" z="-59.235519"/>
+      <quaternion x="-0.000000" y="0.707107" z="0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.03_04.R" meshFile="trafficlight.003.mesh"/>
+    </node>
+    <node name="TrafficLight.02_06.L">
+      <position x="302.729584" y="-1.643541" z="-46.963554"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.02_06.L" meshFile="trafficlight.002.mesh"/>
+    </node>
+    <node name="Street.Unit">
+      <position x="-74.368172" y="-0.604997" z="-53.479992"/>
+      <quaternion x="0.000000" y="0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="14.100002"/>
+      <entity name="Street.Unit" meshFile="Street.Unit.Mesh.001.mesh"/>
+    </node>
+    <node name="Street.Unit.003">
+      <position x="158.061890" y="-0.605015" z="-34.705338"/>
+      <quaternion x="0.000000" y="1.000000" z="-0.000000" w="0.000000"/>
+      <scale x="4.700000" y="0.020000" z="14.100000"/>
+      <entity name="Street.Unit.003" meshFile="Street.Unit.Mesh.mesh"/>
+    </node>
+    <node name="Street.TL_A.001">
+      <position x="-74.301620" y="-0.604970" z="-193.156036"/>
+      <quaternion x="0.000000" y="0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="14.100002"/>
+      <entity name="Street.TL_A.001" meshFile="Street.TL_A.Mesh.mesh"/>
+    </node>
+    <node name="TrafficLight.01_06.L">
+      <position x="164.320374" y="-1.643528" z="-58.544418"/>
+      <quaternion x="0.000000" y="0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="TrafficLight.01_06.L" meshFile="trafficlight.001.mesh"/>
+    </node>
+    <node name="IdealPoint.059">
+      <position x="-53.740772" y="-0.000214" z="-60.031296"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="0.100000" y="0.000000" z="0.100000"/>
+      <entity name="IdealPoint.059" meshFile="IdealPoint.001.mesh"/>
+    </node>
+    <node name="Street.Curve.001">
+      <position x="292.843231" y="-0.604940" z="-188.445755"/>
+      <quaternion x="0.000000" y="1.000000" z="-0.000000" w="0.000000"/>
+      <scale x="9.400000" y="0.020000" z="9.400000"/>
+      <entity name="Street.Curve.001" meshFile="Street.Curve.M.001.mesh"/>
+    </node>
+    <node name="Street.Curve.002">
+      <position x="-190.555511" y="-0.604895" z="-188.441879"/>
+      <quaternion x="0.000000" y="-0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="9.400001" y="0.020000" z="9.400001"/>
+      <entity name="Street.Curve.002" meshFile="Street.Curve.M.001.mesh"/>
+    </node>
+    <node name="Street.Curve.003">
+      <position x="-190.560989" y="-0.604957" z="81.410004"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="9.400000" y="0.020000" z="9.400000"/>
+      <entity name="Street.Curve.003" meshFile="Street.Curve.M.001.mesh"/>
+    </node>
+    <node name="Street.TL_A.003">
+      <position x="-36.910000" y="-0.604992" z="86.113998"/>
+      <quaternion x="0.000000" y="-0.707107" z="-0.000000" w="0.707107"/>
+      <scale x="4.700000" y="0.020000" z="14.100002"/>
+      <entity name="Street.TL_A.003" meshFile="Street.TL_A.Mesh.mesh"/>
+    </node>
+  </nodes>
+  <externals>
+    <item type="material">
+      <file name="Scene.material"/>
+    </item>
+  </externals>
+  <environment>
+    <colourAmbient r="0.000000" g="0.000000" b="0.000000"/>
+    <colourBackground r="0.056563" g="0.220815" b="0.400000"/>
+  </environment>
+</scene>

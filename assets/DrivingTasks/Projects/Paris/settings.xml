@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://opends.eu/drivingtask/settings"
+		  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+          xsi:schemaLocation="http://opends.eu/drivingtask/settings ../../Schema/settings.xsd">
+
+	<general>
+		<driverName>default driver</driverName>
+		<showStats>false</showStats>
+	</general>
+	
+	<objectLocator>
+		<enable>true</enable>
+		<fileName>trafficObjects.txt</fileName>	
+	</objectLocator>
+	
+	<SIMTD>
+		<sendDataToHmi>false</sendDataToHmi>
+		<startGui>false</startGui>
+		<hmiNativePath>assets/HMI</hmiNativePath>
+		<hmiNativeExecutable>HMI_GUI.exe</hmiNativeExecutable>
+		<ip>127.0.0.1</ip>
+		<port>3110</port>
+	</SIMTD>
+	
+	<externalVisualization>
+		<enableConnection>false</enableConnection>
+		<ip>141.96.189.103</ip>
+		<port>4711</port>
+		<updateRate>20</updateRate>
+		<scalingFactor>100</scalingFactor>
+		<sendPosOriAsOneString>false</sendPosOriAsOneString>
+	</externalVisualization>
+	
+	<CANInterface>
+		<enableConnection>false</enableConnection>
+		<ip>192.168.0.2</ip>
+		<port>4711</port>
+		<updateRate>20</updateRate>
+		<maxSteeringAngle>180</maxSteeringAngle>
+	</CANInterface>
+	
+	<vsimrtiServer>
+		<startServer>false</startServer>
+		<port>1122</port>
+	</vsimrtiServer>
+
+	<reactionMeasurement>
+		<groupRed>incongruent</groupRed>
+		<groupGreen>congruent</groupGreen>
+		<groupYellow>control_neutral</groupYellow>
+		<groupCyan>control_silence</groupCyan>
+		<groupBlue>no_target</groupBlue>
+		<groupMagenta></groupMagenta>
+	</reactionMeasurement>
+	
+	<controllers>
+		<joystick>
+			<controllerID>0</controllerID>
+			<steeringAxis>3</steeringAxis>
+			<invertSteeringAxis>false</invertSteeringAxis>
+			<pedalAxis>4</pedalAxis>
+			<invertPedalAxis>false</invertPedalAxis>
+			<steeringSensitivityFactor>1.0</steeringSensitivityFactor>
+			<pedalSensitivityFactor>1.0</pedalSensitivityFactor>
+			<keyAssignments>
+				<keyAssignment function="start_engine" key="BUTTON_1" />
+				<keyAssignment function="stop_engine" key="BUTTON_2" />
+			</keyAssignments>
+		</joystick>
+		<keyboard>
+			<keyAssignments>
+				<keyAssignment function="toggle_cam" key="KEY_V" />
+				<keyAssignment function="horn" key="KEY_H" />
+			</keyAssignments>
+		</keyboard>
+		<mouse>
+			<!-- only for outside view -->
+			<minScrollZoom>1</minScrollZoom>
+			<maxScrollZoom>40</maxScrollZoom>
+			<scrollSensitivityFactor>5</scrollSensitivityFactor>
+		</mouse>
+	</controllers>
+	
+</settings>

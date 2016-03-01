@@ -1,0 +1,132 @@
+material Mat
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.640000 0.640000 0.640000 1.000000
+			specular 0.500000 0.500000 0.500000 1.000000 12.500000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture curb0.jpg
+				tex_address_mode wrap
+				filtering trilinear
+				max_anisotropy 16
+				colour_op alpha_blend
+			}
+		}
+	}
+}
+material Car.Driver.Mat
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.800000 0.719719 0.000000 1.000000
+			specular 0.500000 0.500000 0.500000 1.000000 12.500000
+			emissive 0.000000 0.000000 0.000000 1.000000
+		}
+	}
+}
+material BaseWhite
+{
+	technique
+	{
+		pass
+		{
+		}
+	}
+}
+material Land.Grass.Mat
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.800000 0.800000 0.800000 1.000000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture grass.png
+				tex_address_mode wrap
+				filtering trilinear
+				max_anisotropy 16
+				colour_op modulate
+			}
+		}
+	}
+}
+material Material__ampel_tex_t
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.512000 0.512000 0.512000 1.000000
+			specular 0.500000 0.500000 0.500000 1.000000 12.500000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture ampel_tex.tga
+				tex_address_mode wrap
+				filtering trilinear
+				max_anisotropy 16
+				colour_op alpha_blend
+			}
+		}
+	}
+}
+material _2_Mat0Tex0
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.640000 0.640000 0.640000 1.000000
+			specular 0.500000 0.500000 0.500000 1.000000 12.500000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture road.png
+				tex_address_mode wrap
+				filtering trilinear
+				max_anisotropy 16
+				colour_op alpha_blend
+			}
+		}
+	}
+}
+material _3_Mat0Tex0.001
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.640000 0.640000 0.640000 1.000000
+			specular 0.500000 0.500000 0.500000 1.000000 12.500000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture road.png
+				tex_address_mode wrap
+				filtering trilinear
+				max_anisotropy 16
+				colour_op alpha_blend
+			}
+		}
+	}
+}

@@ -1,0 +1,277 @@
+material Street.Crossing.Mat
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.800000 0.800000 0.800000 1.000000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture crossing.png
+				tex_address_mode wrap
+				filtering trilinear
+				max_anisotropy 16
+				colour_op modulate
+			}
+		}
+	}
+}
+material Street.TCrossing.M
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.800000 0.800000 0.800000 1.000000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture t-part.png
+				tex_address_mode wrap
+				filtering trilinear
+				max_anisotropy 16
+				colour_op modulate
+			}
+		}
+	}
+}
+material dom
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.627451 0.627451 0.627451 1.000000
+			specular 0.500000 0.500000 0.500000 1.000000 12.500000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture dom.jpg
+				tex_address_mode wrap
+				filtering trilinear
+				max_anisotropy 16
+				colour_op alpha_blend
+			}
+		}
+	}
+}
+material Car.Driver.Mat
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.800000 0.719719 0.000000 1.000000
+			specular 0.500000 0.500000 0.500000 1.000000 12.500000
+			emissive 0.000000 0.000000 0.000000 1.000000
+		}
+	}
+}
+material BaseWhite
+{
+	technique
+	{
+		pass
+		{
+		}
+	}
+}
+material Street.TL_C.Mat
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.800000 0.800000 0.800000 1.000000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture street_TL_C.png
+				tex_address_mode wrap
+				filtering trilinear
+				max_anisotropy 16
+				colour_op modulate
+			}
+		}
+	}
+}
+material Street.TL_B.Mat
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.800000 0.800000 0.800000 1.000000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture street_TL_B.png
+				tex_address_mode wrap
+				filtering trilinear
+				max_anisotropy 16
+				colour_op modulate
+			}
+		}
+	}
+}
+material Street.Unit.Mat.002
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.800000 0.800000 0.800000 1.000000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture street_NS.png
+				tex_address_mode wrap
+				filtering trilinear
+				max_anisotropy 16
+				colour_op modulate
+			}
+		}
+	}
+}
+material Land.Grass.Mat
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.800000 0.800000 0.800000 1.000000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture grass.png
+				tex_address_mode wrap
+				filtering trilinear
+				max_anisotropy 16
+				colour_op modulate
+			}
+		}
+	}
+}
+material Street.TL_A.Mat.002
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.800000 0.800000 0.800000 1.000000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture street_TL_A.png
+				tex_address_mode wrap
+				filtering trilinear
+				max_anisotropy 16
+				colour_op modulate
+			}
+		}
+	}
+}
+material Street.Unit.Mat.001
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.800000 0.800000 0.800000 1.000000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture street_TL.png
+				tex_address_mode wrap
+				filtering trilinear
+				max_anisotropy 16
+				colour_op modulate
+			}
+		}
+	}
+}
+material Material__ampel_tex_t
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.512000 0.512000 0.512000 1.000000
+			specular 0.500000 0.500000 0.500000 1.000000 12.500000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture ampel_tex.tga
+				tex_address_mode wrap
+				filtering trilinear
+				max_anisotropy 16
+				colour_op alpha_blend
+			}
+		}
+	}
+}
+material Street.Curve.M
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.800000 0.800000 0.800000 1.000000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture curve.png
+				tex_address_mode wrap
+				filtering trilinear
+				max_anisotropy 16
+				colour_op modulate
+			}
+		}
+	}
+}
+material Street.Unit.Mat.008
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.800000 0.800000 0.800000 1.000000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture street_NS.png
+				tex_address_mode wrap
+				filtering trilinear
+				max_anisotropy 16
+				colour_op modulate
+			}
+		}
+	}
+}

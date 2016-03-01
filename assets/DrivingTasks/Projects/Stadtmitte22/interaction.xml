@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interaction xmlns="http://opends.eu/drivingtask/interaction"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:schemaLocation="http://opends.eu/drivingtask/interaction ../../Schema/interaction.xsd">
+
+
+	<activities>
+		<activity id="activity01a">
+			<action id="manipulateObject" delay="0" repeat="4">
+				<parameter name="id" value="RoadworksSign1" />
+				<parameter name="setTranslationX" value="-740" />
+				<parameter name="setTranslationY" value="-0.693" />
+				<parameter name="setTranslationZ" value="-38" />
+			</action>
+		</activity>
+		<activity id="activity01b">
+			<action id="manipulateObject" delay="0" repeat="4">
+				<parameter name="id" value="RoadworksSign1" />
+				<parameter name="setTranslationX" value="-740" />
+				<parameter name="setTranslationY" value="-0.693" />
+				<parameter name="setTranslationZ" value="-30" />
+			</action>
+		</activity>
+		<activity id="activity02">
+			<action id="sendMessage" delay="0" repeat="4">
+				<parameter name="text" value="Text message" />
+				<parameter name="duration" value="3" />
+			</action>
+		</activity>
+		<activity id="activity03">
+			<action id="pauseSimulation" delay="0" repeat="4">
+				<parameter name="duration" value="3" />
+			</action>
+		</activity>
+		<activity id="activity04">
+			<action id="startRecording" delay="0" repeat="4">
+				<parameter name="track" value="1" />
+			</action>
+		</activity>
+		<activity id="activity05">
+			<action id="stopRecording" delay="0" repeat="4">
+			</action>
+		</activity>
+		<activity id="activity06">
+			<action id="playSound" delay="3" repeat="4">
+				<parameter name="soundID" value="beep" />
+			</action>
+		</activity>
+		<activity id="activity07">
+			<action id="resetCar" delay="0" repeat="4">
+				<parameter name="resetPointID" value="reset1" />
+			</action>
+		</activity>
+		<activity id="activity08">
+			<action id="moveTraffic" delay="0" repeat="4">
+				<parameter name="trafficObjectID" value="truck2" />
+				<parameter name="wayPointID" value="206" />
+			</action>
+		</activity>
+		<activity id="activity09">
+			<action id="startPresentationTask" delay="0" repeat="3">
+				<parameter name="presentationTaskType" value="localDangerWarning" />
+				<parameter name="targetPositionX" value=" -166.32379" />
+				<parameter name="targetPositionY" value="1" />
+				<parameter name="targetPositionZ" value="-173.18553" />
+				<parameter name="localDangerWarningName" value="LostCargo" />
+				<!-- values for localDangerWarningName:
+					 BreakDown,RoadWorks,LostCargo,MobileRWs,Pedestr,Animals,
+					 Danger,Accident,Emergency,Congest,Snow,Crosswind,Rain,Fog -->
+				<parameter name="displayDurationMillis" value="-1" />
+			</action>
+		</activity>
+		<activity id="activity10">
+			<action id="startPresentationTask" delay="0" repeat="1">
+				<parameter name="presentationTaskType" value="roadWorksInformation" />
+				<parameter name="startPositionX" value="-400" />
+				<parameter name="startPositionY" value="1" />
+				<parameter name="startPositionZ" value="1" />
+				<parameter name="endPositionX" value="1" />
+				<parameter name="endPositionY" value="1" />
+				<parameter name="endPositionZ" value="1" />
+				<parameter name="geometryFile" value="assets/DrivingTasks/Projects/Stadtmitte22/roadWorksGeometry.xml"/>
+			</action>
+		</activity>
+		<activity id="activity11">
+			<action id="openInstructionsScreen" delay="0" repeat="1">
+				<parameter name="instructionID" value="instructionScreen_1" />
+			</action>
+		</activity>
+	</activities>
+	
+	<triggers>
+		<trigger id="collide" priority="1">
+			
+			<activities>
+				<activity ref="activity02"/>
+				<activity ref="activity07"/>
+			</activities>
+						
+			<condition>collideWith:redBox</condition>
+
+		</trigger>
+		
+		<trigger id="collide" priority="1">
+			
+			<activities>
+				<activity ref="activity01a"/>
+				<!--
+				<activity ref="activity06"/>
+				<activity ref="activity10"/>
+				-->
+			</activities>
+						
+			<condition>collideWith:blueBox</condition>
+
+		</trigger>
+		
+		<trigger id="collide" priority="1">
+			
+			<activities>
+				<activity ref="activity01b"/>
+				<!--
+				<activity ref="activity09"/>
+				<activity ref="activity11"/>
+				-->
+			</activities>
+						
+			<condition>collideWith:greenBox</condition>
+
+		</trigger>
+		
+		<trigger id="pressKey" priority="2">
+			
+			<activities>
+				<activity ref="activity06"/>
+				<activity id="activityZ">
+					<action id="sendMessage" delay="0" repeat="4">
+						<parameter name="text" value="bingo" />
+						<parameter name="duration" value="3" />
+					</action>
+				</activity>
+			</activities>
+						
+			<condition>pressKey:X</condition>
+
+		</trigger>
+	</triggers>
+	
+</interaction>

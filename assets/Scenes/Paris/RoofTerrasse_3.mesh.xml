@@ -1,0 +1,106 @@
+<mesh>
+	<submeshes>
+		<submesh material="RoofTerrasse_3.002" usesharedvertices="false">
+			<faces count="9">
+				<face v1="0" v2="1" v3="2"/>
+				<face v1="0" v2="2" v3="3"/>
+				<face v1="4" v2="5" v3="7"/>
+				<face v1="5" v2="6" v3="7"/>
+				<face v1="8" v2="9" v3="10"/>
+				<face v1="8" v2="10" v3="11"/>
+				<face v1="12" v2="13" v3="14"/>
+				<face v1="12" v2="14" v3="15"/>
+				<face v1="16" v2="12" v3="15"/>
+			</faces>
+			<geometry vertexcount="17">
+				<vertexbuffer positions="true" normals="true" texture_coords="1">
+					<vertex>
+						<position x="179.298004" y="18.292000" z="240.054993"/>
+						<normal x="0.000000" y="1.000000" z="0.000000"/>
+						<texcoord u="0.000200" v="1.000000"/>
+					</vertex>
+					<vertex>
+						<position x="193.440994" y="18.292000" z="220.794006"/>
+						<normal x="0.000000" y="1.000000" z="0.000000"/>
+						<texcoord u="1.493700" v="1.000000"/>
+					</vertex>
+					<vertex>
+						<position x="167.610001" y="18.292000" z="201.860992"/>
+						<normal x="0.000000" y="1.000000" z="0.000000"/>
+						<texcoord u="1.492000" v="-1.001700"/>
+					</vertex>
+					<vertex>
+						<position x="153.496994" y="18.292000" z="221.113998"/>
+						<normal x="0.000000" y="1.000000" z="0.000000"/>
+						<texcoord u="0.000000" v="-1.000400"/>
+					</vertex>
+					<vertex>
+						<position x="-179.488998" y="18.292000" z="-121.348000"/>
+						<normal x="0.000000" y="1.000000" z="-0.000000"/>
+						<texcoord u="0.001300" v="1.000000"/>
+					</vertex>
+					<vertex>
+						<position x="-194.175003" y="18.292000" z="-95.780998"/>
+						<normal x="0.000000" y="1.000000" z="-0.000000"/>
+						<texcoord u="1.844100" v="1.000000"/>
+					</vertex>
+					<vertex>
+						<position x="-178.813004" y="18.292000" z="-86.959000"/>
+						<normal x="0.000000" y="1.000000" z="-0.000000"/>
+						<texcoord u="1.844000" v="-0.107200"/>
+					</vertex>
+					<vertex>
+						<position x="-164.160004" y="18.292000" z="-112.567001"/>
+						<normal x="0.000000" y="1.000000" z="-0.000000"/>
+						<texcoord u="0.000000" v="-0.104100"/>
+					</vertex>
+					<vertex>
+						<position x="-57.638000" y="21.177000" z="78.275002"/>
+						<normal x="0.000000" y="1.000000" z="0.000000"/>
+						<texcoord u="0.012900" v="1.000000"/>
+					</vertex>
+					<vertex>
+						<position x="-36.063999" y="21.177000" z="67.011002"/>
+						<normal x="0.000000" y="1.000000" z="0.000000"/>
+						<texcoord u="1.534100" v="1.000000"/>
+					</vertex>
+					<vertex>
+						<position x="-54.258999" y="21.177000" z="32.497002"/>
+						<normal x="0.000000" y="1.000000" z="0.000000"/>
+						<texcoord u="1.524300" v="-1.438500"/>
+					</vertex>
+					<vertex>
+						<position x="-75.831001" y="21.177000" z="43.877998"/>
+						<normal x="0.000000" y="1.000000" z="0.000000"/>
+						<texcoord u="0.000000" v="-1.431900"/>
+					</vertex>
+					<vertex>
+						<position x="259.122009" y="19.283001" z="-60.443001"/>
+						<normal x="0.000000" y="1.000000" z="0.000000"/>
+						<texcoord u="1.977100" v="-1.357800"/>
+					</vertex>
+					<vertex>
+						<position x="245.317001" y="19.283001" z="-88.905998"/>
+						<normal x="0.000000" y="1.000000" z="0.000000"/>
+						<texcoord u="0.000000" v="-1.356800"/>
+					</vertex>
+					<vertex>
+						<position x="211.544006" y="19.283001" z="-72.129997"/>
+						<normal x="0.000000" y="1.000000" z="0.000000"/>
+						<texcoord u="0.023500" v="1.000000"/>
+					</vertex>
+					<vertex>
+						<position x="220.748001" y="19.283001" z="-53.126999"/>
+						<normal x="0.000000" y="1.000000" z="0.000000"/>
+						<texcoord u="1.343200" v="1.000000"/>
+					</vertex>
+					<vertex>
+						<position x="225.182007" y="19.283001" z="-43.972000"/>
+						<normal x="0.000000" y="1.000000" z="0.000000"/>
+						<texcoord u="1.979000" v="1.000000"/>
+					</vertex>
+				</vertexbuffer>
+			</geometry>
+		</submesh>
+	</submeshes>
+</mesh>

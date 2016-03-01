@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interaction xmlns="http://opends.eu/drivingtask/interaction"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:schemaLocation="http://opends.eu/drivingtask/interaction ../../Schema/interaction.xsd">
+
+
+	<activities>
+		<activity id="activity01">
+			<action id="manipulateObject" delay="0" repeat="40">
+				<parameter name="id" value="RoadworksSign1" />
+				<parameter name="addTranslationX" value="-1" />
+				<parameter name="setTranslationY" value="-1.693" />
+				<parameter name="setTranslationZ" value="-48" />
+				<parameter name="setRotationX" value="0" />
+				<parameter name="addRotationY" value="10" />
+				<parameter name="setRotationZ" value="0" />
+				<parameter name="setScaleX" value="0.02" />
+				<parameter name="addScaleY" value="0.02" />
+				<parameter name="setScaleZ" value="0.02" />
+				<parameter name="visible" value="true" />
+			</action>
+		</activity>
+		<activity id="activity02">
+			<action id="sendMessage" delay="0" repeat="4">
+				<parameter name="text" value="Hallo das hier ist nur ein Test, wie viel Information in die kleine Message Box hineinpasst. Leider habe ich noch keine Idee, wie ich die Länge dynamisch anpassen kann! Hallo das hier ist nur ein Test, wie viel Information in die kleine Message Box hineinpasst. Hallo das hier ist nur ein Test, wie viel Information in die kleine Message Box hineinpasst. Leider habe ich noch keine Idee, wie ich die Länge dynamisch anpassen kann! Hallo das hier ist nur ein Test, wie viel Information in die kleine Message Box hineinpasst. Leider habe ich noch keine Idee, wie ich die Länge dynamisch anpassen kann!" />
+				<parameter name="duration" value="10" />
+			</action>
+		</activity>
+		<activity id="activity03">
+			<action id="pauseSimulation" delay="10" repeat="4">
+				<parameter name="duration" value="3" />
+			</action>
+		</activity>
+		<activity id="activity04">
+			<action id="startRecording" delay="0" repeat="4">
+				<parameter name="track" value="1" />
+			</action>
+		</activity>
+		<activity id="activity05">
+			<action id="stopRecording" delay="0" repeat="4">
+			</action>
+		</activity>
+		<activity id="activity06">
+			<action id="playSound" delay="5" repeat="4">
+				<parameter name="soundID" value="beep" />
+			</action>
+		</activity>
+		<activity id="activity07">
+			<action id="resetCar" delay="0" repeat="4">
+				<parameter name="resetPointID" value="reset2" />
+			</action>
+		</activity>
+		<activity id="activity08">
+			<action id="moveTraffic" delay="0" repeat="4">
+				<parameter name="trafficObjectID" value="truck2" />
+				<parameter name="wayPointID" value="206" />
+			</action>
+		</activity>
+	</activities>
+	
+	<triggers>
+		<trigger id="collide" priority="1">
+			
+			<activities>
+				<activity ref="activity01"/>
+				<activity ref="activity02"/>
+				
+				<!-- 
+				<activity ref="activity03"/>
+				
+				<activity id="activity02">
+					<action id="moveObject" delay="0" repeat="1">
+						<parameter name="id" value="RoadWorksSign01" />
+						<parameter name="translationX" value="-81" />
+						<parameter name="translationY" value="-1.693" />
+						<parameter name="translationZ" value="-48" />
+						<parameter name="rotationX" value="90" />
+						<parameter name="rotationY" value="135" />
+						<parameter name="rotationZ" value="0" />
+						<parameter name="scaleX" value="1" />
+						<parameter name="scaleY" value="2" />
+						<parameter name="scaleZ" value="2" />
+						<parameter name="visible" value="true" />
+						<parameter name="collidable" value="true" />
+					</action>
+				</activity>
+				 -->
+			</activities>
+						
+			<condition>collideWith:redBox</condition>
+
+		</trigger>
+		
+		<trigger id="pressKey" priority="2">
+			
+			<activities>
+				<activity ref="activity01"/>
+				<activity ref="activity02"/>
+				<activity ref="activity06"/>
+			</activities>
+						
+			<condition>pressKey:X</condition>
+
+		</trigger>
+	</triggers>
+	
+</interaction>

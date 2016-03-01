@@ -1,0 +1,1765 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scene xmlns="http://opends.eu/drivingtask/scene"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:schemaLocation="http://opends.eu/drivingtask/scene ../../Schema/scene.xsd">
+        
+    <sounds>
+    	<sound id="beep" key="Sounds/Effects/Beep.ogg">
+    		<positional value="false" />
+    		<directional value="false" />
+    		<loop>false</loop>
+    		<volume>0.5</volume>
+    		<pitch>1</pitch>
+    	</sound>
+    </sounds>
+
+	<models>
+		<model id="twoLaneRoad" key="Scenes/twoLaneRoad/twoLaneRoad.scene">
+			<mass>0</mass>
+			<visible>true</visible>
+			<collisionShape>meshShape</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1</entry>
+					<entry>1</entry>
+					<entry>1</entry>
+				</vector>
+			</scale>
+
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>0</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>0</entry>
+					<entry>0</entry>
+				</vector>
+			</translation>
+			<shadowMode>Off</shadowMode>
+		</model>
+		<model id="driverCar" key="Models/Cars/drivingCars/Ferrari/Car.scene">
+			<mass>800</mass>
+			<visible>true</visible>
+			<collisionShape>meshShape</collisionShape>
+			
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1</entry>
+					<entry>1</entry>
+					<entry>1</entry>
+				</vector>
+			</scale>
+
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>0</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>2</entry>
+					<entry>0</entry>
+					<entry>0</entry>
+				</vector>
+			</translation>
+		</model>
+		
+		
+		<model id="blueCylinder" key="" ref="cylinder">
+			<mass>0</mass>
+
+			<material>
+				<color>
+					<vector jtype="java_lang_Float" size="4">
+						<entry>0</entry>
+						<entry>0</entry>
+						<entry>1</entry>
+						<entry>1</entry>
+					</vector>
+				</color>
+			</material>
+			
+			<visible>true</visible>
+			<collisionShape>none</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1</entry>
+					<entry>1</entry>
+					<entry>1</entry>
+				</vector>
+			</scale>
+			
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>90</entry>
+					<entry>0</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+			
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-1</entry>
+					<entry>0</entry>
+					<entry>-50</entry>
+				</vector>
+			</translation>
+		</model>
+		
+		<model id="yellowCylinder" key="Models/panel/panel.scene">
+			<mass>0</mass>
+			<visible>true</visible>
+			<collisionShape>none</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0.5</entry>
+					<entry>1.5</entry>
+					<entry>1</entry>
+				</vector>
+			</scale>
+			
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>0</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+			
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1</entry>
+					<entry>0</entry>
+					<entry>-50</entry>
+				</vector>
+			</translation>
+		</model>
+		
+		<model id="trafficLightBox" key="" ref="box">
+			<mass>0</mass>
+
+			<material>
+				<color>
+					<vector jtype="java_lang_Float" size="4">
+						<entry>0</entry>
+						<entry>1</entry>
+						<entry>0</entry>
+						<entry>1</entry>
+					</vector>
+				</color>
+			</material>
+			
+			<visible>true</visible>
+			<collisionShape>none</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1</entry>
+					<entry>1</entry>
+					<entry>1</entry>
+				</vector>
+			</scale>
+			
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>90</entry>
+					<entry>0</entry>
+					<entry>270</entry>
+				</vector>
+			</rotation>
+			
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1</entry>
+					<entry>0</entry>
+					<entry>-50</entry>
+				</vector>
+			</translation>
+		</model>
+		
+		<model id="startSign" key="Models/startSign/startSign.scene">
+			<mass>0</mass>			
+			<visible>true</visible>
+			<collisionShape>none</collisionShape>
+			
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>2</entry>
+					<entry>1</entry>
+					<entry>0.5</entry>
+				</vector>
+			</scale>
+			
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>0</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+			
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>8</entry>
+					<entry>1.5</entry>
+					<entry>0</entry>
+				</vector>
+			</translation>
+		</model>
+		
+		<model id="blackCylinderStartRight" key="" ref="cylinder2">
+			<mass>0</mass>
+
+			<material>
+				<color>
+					<vector jtype="java_lang_Float" size="4">
+						<entry>0</entry>
+						<entry>0</entry>
+						<entry>0</entry>
+						<entry>1</entry>
+					</vector>
+				</color>
+			</material>
+			
+			<visible>true</visible>
+			<collisionShape>none</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0.1</entry>
+					<entry>0.1</entry>
+					<entry>0.5</entry>
+				</vector>
+			</scale>
+			
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>90</entry>
+					<entry>0</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+			
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>9.95</entry>
+					<entry>0</entry>
+					<entry>0</entry>
+				</vector>
+			</translation>
+		</model>
+		
+		<model id="blackCylinderStartLeft" key="" ref="cylinder2">
+			<mass>0</mass>
+
+			<material>
+				<color>
+					<vector jtype="java_lang_Float" size="4">
+						<entry>0</entry>
+						<entry>0</entry>
+						<entry>0</entry>
+						<entry>1</entry>
+					</vector>
+				</color>
+			</material>
+			
+			<visible>true</visible>
+			<collisionShape>none</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0.1</entry>
+					<entry>0.1</entry>
+					<entry>0.5</entry>
+				</vector>
+			</scale>
+			
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>90</entry>
+					<entry>0</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+			
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>6.05</entry>
+					<entry>0</entry>
+					<entry>0</entry>
+				</vector>
+			</translation>
+		</model>
+		
+		<model id="finishSign" key="Models/finishSign/finishSign.scene">
+			<mass>0</mass>			
+			<visible>true</visible>
+			<collisionShape>none</collisionShape>
+			
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>2</entry>
+					<entry>1</entry>
+					<entry>0.5</entry>
+				</vector>
+			</scale>
+			
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>0</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+			
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>8</entry>
+					<entry>1.5</entry>
+					<entry>-8500</entry>
+				</vector>
+			</translation>
+		</model>
+		
+		<model id="blackCylinderFinishRight" key="" ref="cylinder2">
+			<mass>0</mass>
+
+			<material>
+				<color>
+					<vector jtype="java_lang_Float" size="4">
+						<entry>0</entry>
+						<entry>0</entry>
+						<entry>0</entry>
+						<entry>1</entry>
+					</vector>
+				</color>
+			</material>
+			
+			<visible>true</visible>
+			<collisionShape>none</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0.1</entry>
+					<entry>0.1</entry>
+					<entry>0.5</entry>
+				</vector>
+			</scale>
+			
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>90</entry>
+					<entry>0</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+			
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>9.95</entry>
+					<entry>0</entry>
+					<entry>-8500</entry>
+				</vector>
+			</translation>
+		</model>
+		
+		<model id="blackCylinderFinishLeft" key="" ref="cylinder2">
+			<mass>0</mass>
+
+			<material>
+				<color>
+					<vector jtype="java_lang_Float" size="4">
+						<entry>0</entry>
+						<entry>0</entry>
+						<entry>0</entry>
+						<entry>1</entry>
+					</vector>
+				</color>
+			</material>
+			
+			<visible>true</visible>
+			<collisionShape>none</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0.1</entry>
+					<entry>0.1</entry>
+					<entry>0.5</entry>
+				</vector>
+			</scale>
+			
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>90</entry>
+					<entry>0</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+			
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>6.05</entry>
+					<entry>0</entry>
+					<entry>-8500</entry>
+				</vector>
+			</translation>
+		</model>
+<!--	
+		<model id="RoadworksSign1" key="Models/RoadWorksSign/RoadWorksSign.scene">
+			<mass>0</mass>
+			<visible>true</visible>
+			<collisionShape>meshShape</collisionShape>
+			<collisionSound ref="beep" />
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0.02</entry>
+					<entry>0.02</entry>
+					<entry>0.02</entry>
+				</vector>
+			</scale>
+
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>270</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-81</entry>
+					<entry>-0.693</entry>
+					<entry>-38</entry>
+				</vector>
+			</translation>
+		</model>	
+		
+ 		
+		<model id="Post" key="Models/Trafficlight/trafficlight.scene">
+			<mass>0</mass>
+			<visible>true</visible>
+			<collisionShape>meshShape</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1</entry>
+					<entry>1</entry>
+					<entry>1</entry>
+				</vector>
+			</scale>
+
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>270</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-91</entry>
+					<entry>-1.693</entry>
+					<entry>-38</entry>
+				</vector>
+			</translation>
+		</model>	
+	
+
+		<model id="redBox" key="" ref="box">
+			<mass>0</mass>
+
+			<material>
+				<color>
+					<vector jtype="java_lang_Float" size="4">
+						<entry>1</entry>
+						<entry>0</entry>
+						<entry>0</entry>
+						<entry>1</entry>
+					</vector>
+				</color>
+			</material>
+			
+			<visible>true</visible>
+			<collisionShape>none</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1</entry>
+					<entry>1</entry>
+					<entry>1</entry>
+				</vector>
+			</scale>
+			
+			<rotation quaternion="true">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>0.707107</entry>
+					<entry>0</entry>
+					<entry>-0.707107</entry>
+				</vector>
+			</rotation>
+
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-61</entry>
+					<entry>-1.693</entry>
+					<entry>-48</entry>
+				</vector>
+			</translation>
+		</model>				
+	
+		<model id="truck1" key="Models/Truck/Truck.scene">
+			<mass>0</mass>
+			<visible>true</visible>
+			<collisionShape>meshShape</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0.4</entry>
+					<entry>0.4</entry>
+					<entry>0.4</entry>
+				</vector>
+			</scale>
+
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>90</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-141.879</entry>
+					<entry>4.013</entry>
+					<entry>-51.259</entry>
+				</vector>
+			</translation>
+		</model>
+
+		<model id="truck2" key="Models/Truck/Truck.scene">
+			<mass>0</mass>
+			<visible>true</visible>
+			<collisionShape>meshShape</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0.4</entry>
+					<entry>0.4</entry>
+					<entry>0.4</entry>
+				</vector>
+			</scale>
+
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>90</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-57.625</entry>
+					<entry>4.015</entry>
+					<entry>-40.675</entry>
+				</vector>
+			</translation>
+		</model>
+-->		
+<!-- 
+		<model id="house01" key="" ref="POI">
+			<mass>0</mass>
+
+			<material>
+				<color>
+					<vector jtype="java_lang_Float" size="4">
+						<entry>0</entry>
+						<entry>1</entry>
+						<entry>0</entry>
+						<entry>1</entry>
+					</vector>
+				</color>
+			</material>
+			
+			<visible>true</visible>
+			<collisionShape>none</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1</entry>
+					<entry>1</entry>
+					<entry>1</entry>
+				</vector>
+			</scale>
+			
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>0</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+			
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>15</entry>
+					<entry>2.3</entry>
+					<entry>-50</entry>
+				</vector>
+			</translation>
+		</model>
+		
+		<model id="house02" key="" ref="POI">
+			<mass>0</mass>
+
+			<material>
+				<color>
+					<vector jtype="java_lang_Float" size="4">
+						<entry>0</entry>
+						<entry>1</entry>
+						<entry>0</entry>
+						<entry>1</entry>
+					</vector>
+				</color>
+			</material>
+			
+			<visible>true</visible>
+			<collisionShape>none</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1</entry>
+					<entry>1</entry>
+					<entry>1</entry>
+				</vector>
+			</scale>
+			
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>0</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+			
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-15</entry>
+					<entry>2.3</entry>
+					<entry>-100</entry>
+				</vector>
+			</translation>
+		</model>
+		
+		<model id="house03" key="" ref="POI">
+			<mass>0</mass>
+
+			<material>
+				<color>
+					<vector jtype="java_lang_Float" size="4">
+						<entry>0</entry>
+						<entry>1</entry>
+						<entry>0</entry>
+						<entry>1</entry>
+					</vector>
+				</color>
+			</material>
+			
+			<visible>true</visible>
+			<collisionShape>none</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1</entry>
+					<entry>1</entry>
+					<entry>1</entry>
+				</vector>
+			</scale>
+			
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>0</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+			
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>15</entry>
+					<entry>2.3</entry>
+					<entry>-150</entry>
+				</vector>
+			</translation>
+		</model>
+		
+		
+		<model id="house04" key="" ref="POI">
+			<mass>0</mass>
+
+			<material>
+				<color>
+					<vector jtype="java_lang_Float" size="4">
+						<entry>0</entry>
+						<entry>1</entry>
+						<entry>0</entry>
+						<entry>1</entry>
+					</vector>
+				</color>
+			</material>
+			
+			<visible>true</visible>
+			<collisionShape>none</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1</entry>
+					<entry>1</entry>
+					<entry>1</entry>
+				</vector>
+			</scale>
+			
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>0</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+			
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-15</entry>
+					<entry>2.3</entry>
+					<entry>-200</entry>
+				</vector>
+			</translation>
+		</model>
+		
+		<model id="house05" key="" ref="POI">
+			<mass>0</mass>
+
+			<material>
+				<color>
+					<vector jtype="java_lang_Float" size="4">
+						<entry>0</entry>
+						<entry>1</entry>
+						<entry>0</entry>
+						<entry>1</entry>
+					</vector>
+				</color>
+			</material>
+			
+			<visible>true</visible>
+			<collisionShape>none</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1</entry>
+					<entry>1</entry>
+					<entry>1</entry>
+				</vector>
+			</scale>
+			
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>0</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+			
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>15</entry>
+					<entry>2.3</entry>
+					<entry>-250</entry>
+				</vector>
+			</translation>
+		</model>
+		
+		<model id="house06" key="" ref="POI">
+			<mass>0</mass>
+
+			<material>
+				<color>
+					<vector jtype="java_lang_Float" size="4">
+						<entry>0</entry>
+						<entry>1</entry>
+						<entry>0</entry>
+						<entry>1</entry>
+					</vector>
+				</color>
+			</material>
+			
+			<visible>true</visible>
+			<collisionShape>none</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1</entry>
+					<entry>1</entry>
+					<entry>1</entry>
+				</vector>
+			</scale>
+			
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>0</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+			
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-15</entry>
+					<entry>2.3</entry>
+					<entry>-300</entry>
+				</vector>
+			</translation>
+		</model>
+		
+		<model id="house07" key="" ref="POI">
+			<mass>0</mass>
+
+			<material>
+				<color>
+					<vector jtype="java_lang_Float" size="4">
+						<entry>0</entry>
+						<entry>1</entry>
+						<entry>0</entry>
+						<entry>1</entry>
+					</vector>
+				</color>
+			</material>
+			
+			<visible>true</visible>
+			<collisionShape>none</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1</entry>
+					<entry>1</entry>
+					<entry>1</entry>
+				</vector>
+			</scale>
+			
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>0</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+			
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>15</entry>
+					<entry>2.3</entry>
+					<entry>-350</entry>
+				</vector>
+			</translation>
+		</model>
+		
+		
+		<model id="house08" key="" ref="POI">
+			<mass>0</mass>
+
+			<material>
+				<color>
+					<vector jtype="java_lang_Float" size="4">
+						<entry>0</entry>
+						<entry>1</entry>
+						<entry>0</entry>
+						<entry>1</entry>
+					</vector>
+				</color>
+			</material>
+			
+			<visible>true</visible>
+			<collisionShape>none</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1</entry>
+					<entry>1</entry>
+					<entry>1</entry>
+				</vector>
+			</scale>
+			
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>0</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+			
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-15</entry>
+					<entry>2.3</entry>
+					<entry>-400</entry>
+				</vector>
+			</translation>
+		</model>
+		
+		<model id="house09" key="" ref="POI">
+			<mass>0</mass>
+
+			<material>
+				<color>
+					<vector jtype="java_lang_Float" size="4">
+						<entry>0</entry>
+						<entry>1</entry>
+						<entry>0</entry>
+						<entry>1</entry>
+					</vector>
+				</color>
+			</material>
+			
+			<visible>true</visible>
+			<collisionShape>none</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1</entry>
+					<entry>1</entry>
+					<entry>1</entry>
+				</vector>
+			</scale>
+			
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>0</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+			
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>15</entry>
+					<entry>2.3</entry>
+					<entry>-450</entry>
+				</vector>
+			</translation>
+		</model>
+		
+		<model id="house10" key="" ref="POI">
+			<mass>0</mass>
+
+			<material>
+				<color>
+					<vector jtype="java_lang_Float" size="4">
+						<entry>0</entry>
+						<entry>1</entry>
+						<entry>0</entry>
+						<entry>1</entry>
+					</vector>
+				</color>
+			</material>
+			
+			<visible>true</visible>
+			<collisionShape>none</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1</entry>
+					<entry>1</entry>
+					<entry>1</entry>
+				</vector>
+			</scale>
+			
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>0</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+			
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-15</entry>
+					<entry>2.3</entry>
+					<entry>-500</entry>
+				</vector>
+			</translation>
+		</model>
+		
+		<model id="house11" key="" ref="POI">
+			<mass>0</mass>
+
+			<material>
+				<color>
+					<vector jtype="java_lang_Float" size="4">
+						<entry>0</entry>
+						<entry>1</entry>
+						<entry>0</entry>
+						<entry>1</entry>
+					</vector>
+				</color>
+			</material>
+			
+			<visible>true</visible>
+			<collisionShape>none</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1</entry>
+					<entry>1</entry>
+					<entry>1</entry>
+				</vector>
+			</scale>
+			
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>0</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+			
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>15</entry>
+					<entry>2.3</entry>
+					<entry>-550</entry>
+				</vector>
+			</translation>
+		</model>
+		
+		
+		<model id="house12" key="" ref="POI">
+			<mass>0</mass>
+
+			<material>
+				<color>
+					<vector jtype="java_lang_Float" size="4">
+						<entry>0</entry>
+						<entry>1</entry>
+						<entry>0</entry>
+						<entry>1</entry>
+					</vector>
+				</color>
+			</material>
+			
+			<visible>true</visible>
+			<collisionShape>none</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1</entry>
+					<entry>1</entry>
+					<entry>1</entry>
+				</vector>
+			</scale>
+			
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>0</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+			
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-15</entry>
+					<entry>2.3</entry>
+					<entry>-600</entry>
+				</vector>
+			</translation>
+		</model>
+		
+		<model id="house13" key="" ref="POI">
+			<mass>0</mass>
+
+			<material>
+				<color>
+					<vector jtype="java_lang_Float" size="4">
+						<entry>0</entry>
+						<entry>1</entry>
+						<entry>0</entry>
+						<entry>1</entry>
+					</vector>
+				</color>
+			</material>
+			
+			<visible>true</visible>
+			<collisionShape>none</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1</entry>
+					<entry>1</entry>
+					<entry>1</entry>
+				</vector>
+			</scale>
+			
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>0</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+			
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>15</entry>
+					<entry>2.3</entry>
+					<entry>-650</entry>
+				</vector>
+			</translation>
+		</model>
+		
+		<model id="house14" key="" ref="POI">
+			<mass>0</mass>
+
+			<material>
+				<color>
+					<vector jtype="java_lang_Float" size="4">
+						<entry>0</entry>
+						<entry>1</entry>
+						<entry>0</entry>
+						<entry>1</entry>
+					</vector>
+				</color>
+			</material>
+			
+			<visible>true</visible>
+			<collisionShape>none</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1</entry>
+					<entry>1</entry>
+					<entry>1</entry>
+				</vector>
+			</scale>
+			
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>0</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+			
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-15</entry>
+					<entry>2.3</entry>
+					<entry>-700</entry>
+				</vector>
+			</translation>
+		</model>
+		
+		<model id="house15" key="" ref="POI">
+			<mass>0</mass>
+
+			<material>
+				<color>
+					<vector jtype="java_lang_Float" size="4">
+						<entry>0</entry>
+						<entry>1</entry>
+						<entry>0</entry>
+						<entry>1</entry>
+					</vector>
+				</color>
+			</material>
+			
+			<visible>true</visible>
+			<collisionShape>none</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1</entry>
+					<entry>1</entry>
+					<entry>1</entry>
+				</vector>
+			</scale>
+			
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>0</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+			
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>15</entry>
+					<entry>2.3</entry>
+					<entry>-750</entry>
+				</vector>
+			</translation>
+		</model>
+		
+		
+		<model id="house16" key="" ref="POI">
+			<mass>0</mass>
+
+			<material>
+				<color>
+					<vector jtype="java_lang_Float" size="4">
+						<entry>0</entry>
+						<entry>1</entry>
+						<entry>0</entry>
+						<entry>1</entry>
+					</vector>
+				</color>
+			</material>
+			
+			<visible>true</visible>
+			<collisionShape>none</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1</entry>
+					<entry>1</entry>
+					<entry>1</entry>
+				</vector>
+			</scale>
+			
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>0</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+			
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-15</entry>
+					<entry>2.3</entry>
+					<entry>-800</entry>
+				</vector>
+			</translation>
+		</model>
+		
+		<model id="house17" key="" ref="POI">
+			<mass>0</mass>
+
+			<material>
+				<color>
+					<vector jtype="java_lang_Float" size="4">
+						<entry>0</entry>
+						<entry>1</entry>
+						<entry>0</entry>
+						<entry>1</entry>
+					</vector>
+				</color>
+			</material>
+			
+			<visible>true</visible>
+			<collisionShape>none</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1</entry>
+					<entry>1</entry>
+					<entry>1</entry>
+				</vector>
+			</scale>
+			
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>0</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+			
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>15</entry>
+					<entry>2.3</entry>
+					<entry>-850</entry>
+				</vector>
+			</translation>
+		</model>
+		
+		<model id="house18" key="" ref="POI">
+			<mass>0</mass>
+
+			<material>
+				<color>
+					<vector jtype="java_lang_Float" size="4">
+						<entry>0</entry>
+						<entry>1</entry>
+						<entry>0</entry>
+						<entry>1</entry>
+					</vector>
+				</color>
+			</material>
+			
+			<visible>true</visible>
+			<collisionShape>none</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1</entry>
+					<entry>1</entry>
+					<entry>1</entry>
+				</vector>
+			</scale>
+			
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>0</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+			
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-15</entry>
+					<entry>2.3</entry>
+					<entry>-900</entry>
+				</vector>
+			</translation>
+		</model>
+		
+		<model id="house19" key="" ref="POI">
+			<mass>0</mass>
+
+			<material>
+				<color>
+					<vector jtype="java_lang_Float" size="4">
+						<entry>0</entry>
+						<entry>1</entry>
+						<entry>0</entry>
+						<entry>1</entry>
+					</vector>
+				</color>
+			</material>
+			
+			<visible>true</visible>
+			<collisionShape>none</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1</entry>
+					<entry>1</entry>
+					<entry>1</entry>
+				</vector>
+			</scale>
+			
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>0</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+			
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>15</entry>
+					<entry>2.3</entry>
+					<entry>-950</entry>
+				</vector>
+			</translation>
+		</model>
+		
+		
+		<model id="house20" key="" ref="POI">
+			<mass>0</mass>
+
+			<material>
+				<color>
+					<vector jtype="java_lang_Float" size="4">
+						<entry>0</entry>
+						<entry>1</entry>
+						<entry>0</entry>
+						<entry>1</entry>
+					</vector>
+				</color>
+			</material>
+			
+			<visible>true</visible>
+			<collisionShape>none</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1</entry>
+					<entry>1</entry>
+					<entry>1</entry>
+				</vector>
+			</scale>
+			
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>0</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+			
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-15</entry>
+					<entry>2.3</entry>
+					<entry>-1000</entry>
+				</vector>
+			</translation>
+		</model>
+		
+		<model id="house21" key="" ref="POI">
+			<mass>0</mass>
+
+			<material>
+				<color>
+					<vector jtype="java_lang_Float" size="4">
+						<entry>0</entry>
+						<entry>1</entry>
+						<entry>0</entry>
+						<entry>1</entry>
+					</vector>
+				</color>
+			</material>
+			
+			<visible>true</visible>
+			<collisionShape>none</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1</entry>
+					<entry>1</entry>
+					<entry>1</entry>
+				</vector>
+			</scale>
+			
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>0</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+			
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>15</entry>
+					<entry>2.3</entry>
+					<entry>-1050</entry>
+				</vector>
+			</translation>
+		</model>
+		
+		<model id="house22" key="" ref="POI">
+			<mass>0</mass>
+
+			<material>
+				<color>
+					<vector jtype="java_lang_Float" size="4">
+						<entry>0</entry>
+						<entry>1</entry>
+						<entry>0</entry>
+						<entry>1</entry>
+					</vector>
+				</color>
+			</material>
+			
+			<visible>true</visible>
+			<collisionShape>none</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1</entry>
+					<entry>1</entry>
+					<entry>1</entry>
+				</vector>
+			</scale>
+			
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>0</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+			
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-15</entry>
+					<entry>2.3</entry>
+					<entry>-1100</entry>
+				</vector>
+			</translation>
+		</model>
+		
+		<model id="house23" key="" ref="POI">
+			<mass>0</mass>
+
+			<material>
+				<color>
+					<vector jtype="java_lang_Float" size="4">
+						<entry>0</entry>
+						<entry>1</entry>
+						<entry>0</entry>
+						<entry>1</entry>
+					</vector>
+				</color>
+			</material>
+			
+			<visible>true</visible>
+			<collisionShape>none</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1</entry>
+					<entry>1</entry>
+					<entry>1</entry>
+				</vector>
+			</scale>
+			
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>0</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+			
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>15</entry>
+					<entry>2.3</entry>
+					<entry>-1150</entry>
+				</vector>
+			</translation>
+		</model>
+		
+		
+		<model id="house24" key="" ref="POI">
+			<mass>0</mass>
+
+			<material>
+				<color>
+					<vector jtype="java_lang_Float" size="4">
+						<entry>0</entry>
+						<entry>1</entry>
+						<entry>0</entry>
+						<entry>1</entry>
+					</vector>
+				</color>
+			</material>
+			
+			<visible>true</visible>
+			<collisionShape>none</collisionShape>
+			<scale>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>1</entry>
+					<entry>1</entry>
+					<entry>1</entry>
+				</vector>
+			</scale>
+			
+			<rotation quaternion="false">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>0</entry>
+					<entry>0</entry>
+				</vector>
+			</rotation>
+			
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-15</entry>
+					<entry>2.3</entry>
+					<entry>-1200</entry>
+				</vector>
+			</translation>
+		</model>
+ -->		
+	</models>
+
+	<geometries>
+		<point id="startPoint">
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>2</entry>
+					<entry>0.4</entry>
+					<entry>100</entry>
+				</vector>
+			</translation>
+		</point>
+		
+		<point id="startPointSecondaryTask">
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>2</entry>
+					<entry>0.4</entry>
+					<entry>30</entry>
+				</vector>
+			</translation>
+		</point>
+		
+		<point id="startPointPrimaryTask">
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>2</entry>
+					<entry>0.4</entry>
+					<entry>0</entry>
+				</vector>
+			</translation>
+		</point>
+		
+		<point id="endTasks">
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>2</entry>
+					<entry>0.4</entry>
+					<entry>-8500</entry>
+				</vector>
+			</translation>
+		</point>
+		
+		<point id="endPoint">
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>2</entry>
+					<entry>0.4</entry>
+					<entry>-8600</entry>
+				</vector>
+			</translation>
+		</point>
+		
+		<cylinder id="cylinder2">
+			<samples axis="20" radial="20"/>
+			<radius>0.5</radius>
+			<height>5</height>
+			<closed>true</closed>
+		</cylinder>
+		 
+		<box id="cylinder">
+			<width>0.2</width>
+			<depth>0.01</depth>
+			<height>1.5</height>
+		</box>
+		
+		
+		<box id="box">
+			<width>0.90</width>
+			<depth>0.01</depth>
+			<height>0.50</height>
+		</box>
+		
+		<box id="POI">
+			<width>3</width>
+			<depth>3</depth>
+			<height>3</height>
+			<!--  
+			<height>0.001</height>
+			-->
+		</box>
+		
+	</geometries>
+	
+	
+	<resetPoints>			
+		<resetPoint id="reset1">
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-61</entry>
+					<entry>0</entry>
+					<entry>-38</entry>
+				</vector>
+			</translation>
+			<rotation quaternion="true">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>0.707107</entry>
+					<entry>0</entry>
+					<entry>-0.707107</entry>
+				</vector>
+			</rotation>
+		</resetPoint>
+		
+		<resetPoint id="reset2">
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-71</entry>
+					<entry>0</entry>
+					<entry>-38</entry>
+				</vector>
+			</translation>
+			<rotation quaternion="true">
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0</entry>
+					<entry>0.707107</entry>
+					<entry>0</entry>
+					<entry>-0.707107</entry>
+				</vector>
+			</rotation>
+		</resetPoint>
+	</resetPoints>
+	
+   
+    <gravity>9.81</gravity>
+    
+    <time>19:00:12</time>
+    
+    <date>2010-11-25</date>
+	
+	<lights>
+		<directionalLight>
+			<direction>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0.5</entry>
+					<entry>-0.5</entry>
+					<entry>0.5</entry>
+				</vector>
+			</direction>
+			<color>
+				<vector jtype="java_lang_Float" size="4">
+					<entry>0.7</entry>
+					<entry>0.7</entry>
+					<entry>0.7</entry>
+					<entry>0.7</entry>
+				</vector>
+			</color>
+		</directionalLight>
+		<directionalLight>
+			<direction>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-0.5</entry>
+					<entry>-0.5</entry>
+					<entry>0.5</entry>
+				</vector>
+			</direction>
+			<color>
+				<vector jtype="java_lang_Float" size="4">
+					<entry>0.7</entry>
+					<entry>0.7</entry>
+					<entry>0.7</entry>
+					<entry>0.7</entry>
+				</vector>
+			</color>
+		</directionalLight>
+		<directionalLight>
+			<direction>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>0.5</entry>
+					<entry>-0.5</entry>
+					<entry>-0.5</entry>
+				</vector>
+			</direction>
+			<color>
+				<vector jtype="java_lang_Float" size="4">
+					<entry>0.7</entry>
+					<entry>0.7</entry>
+					<entry>0.7</entry>
+					<entry>0.7</entry>
+				</vector>
+			</color>
+		</directionalLight>
+		<directionalLight>
+			<direction>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>-0.5</entry>
+					<entry>-0.5</entry>
+					<entry>-0.5</entry>
+				</vector>
+			</direction>
+			<color>
+				<vector jtype="java_lang_Float" size="4">
+					<entry>0.7</entry>
+					<entry>0.7</entry>
+					<entry>0.7</entry>
+					<entry>0.7</entry>
+				</vector>
+			</color>
+		</directionalLight>
+	</lights>
+	<skyTexture>Textures/Sky/Bright/hills.dds</skyTexture>
+</scene>

@@ -1,0 +1,342 @@
+material Material.001
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.136978 0.052176 0.018545 1.000000
+			specular 0.250000 0.250000 0.250000 1.000000 12.000000
+			emissive 0.000000 0.000000 0.000000 1.000000
+		}
+	}
+}
+material Lane
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.640000 0.640000 0.640000 1.000000
+			specular 0.000000 0.000000 0.000000 1.000000 0.250000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			scene_blend alpha_blend
+			depth_write off
+			texture_unit
+			{
+				texture street_1lanes_stripes.png
+				tex_address_mode wrap
+				filtering trilinear
+				max_anisotropy 16
+			}
+		}
+	}
+}
+material Material_001
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.049551 0.000000 0.512000 1.000000
+			specular 0.250000 0.250000 0.250000 1.000000 12.000000
+			emissive 0.000000 0.000000 0.000000 1.000000
+		}
+	}
+}
+material Curbs
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.640000 0.640000 0.640000 1.000000
+			specular 0.000000 0.000000 0.000000 1.000000 0.250000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture curb.png
+				tex_address_mode wrap
+				filtering trilinear
+				max_anisotropy 16
+				colour_op alpha_blend
+			}
+		}
+	}
+}
+material Stripe_2
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.640000 0.640000 0.640000 1.000000
+			specular 0.000000 0.000000 0.000000 1.000000 0.250000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture stripe.png
+				tex_address_mode wrap
+				filtering trilinear
+				max_anisotropy 16
+				colour_op alpha_blend
+			}
+		}
+	}
+}
+material Stripe_3
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.640000 0.640000 0.640000 1.000000
+			specular 0.000000 0.000000 0.000000 1.000000 0.250000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture stripe.png
+				tex_address_mode wrap
+				filtering trilinear
+				max_anisotropy 16
+				colour_op alpha_blend
+			}
+		}
+	}
+}
+material None_div_top_png
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.640000 0.640000 0.640000 1.000000
+			specular 0.400000 0.400000 0.400000 1.000000 0.250000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			scene_blend alpha_blend
+			depth_write off
+			texture_unit
+			{
+				texture div_top.png
+				tex_address_mode wrap
+				filtering trilinear
+			}
+		}
+	}
+}
+material Stripe_1
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.640000 0.640000 0.640000 1.000000
+			specular 0.000000 0.000000 0.000000 1.000000 0.250000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture stripe.png
+				tex_address_mode wrap
+				filtering trilinear
+				max_anisotropy 16
+				colour_op alpha_blend
+			}
+		}
+	}
+}
+material Material_002
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.286701 0.286701 0.286701 1.000000
+			specular 0.250000 0.250000 0.250000 1.000000 12.000000
+			emissive 0.000000 0.000000 0.000000 1.000000
+		}
+	}
+}
+material Material_003
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.640000 0.640000 0.640000 1.000000
+			specular 0.250000 0.250000 0.250000 1.000000 12.000000
+			emissive 0.000000 0.000000 0.000000 1.000000
+		}
+	}
+}
+material Stripe_4
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.640000 0.640000 0.640000 1.000000
+			specular 0.000000 0.000000 0.000000 1.000000 0.250000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture stripe.png
+				tex_address_mode wrap
+				filtering trilinear
+				max_anisotropy 16
+				colour_op alpha_blend
+			}
+		}
+	}
+}
+material Stripe_5
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.640000 0.640000 0.640000 1.000000
+			specular 0.000000 0.000000 0.000000 1.000000 0.250000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture stripe.png
+				tex_address_mode wrap
+				filtering trilinear
+				max_anisotropy 16
+				colour_op alpha_blend
+			}
+		}
+	}
+}
+material Dirtmap
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.640000 0.640000 0.640000 1.000000
+			specular 0.000000 0.000000 0.000000 1.000000 0.250000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			scene_blend alpha_blend
+			depth_write off
+			texture_unit
+			{
+				texture asphalt.png
+				tex_address_mode wrap
+				filtering trilinear
+			}
+		}
+	}
+}
+material Stripe
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.640000 0.640000 0.640000 1.000000
+			specular 0.000000 0.000000 0.000000 1.000000 0.250000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture stripe.png
+				tex_address_mode wrap
+				filtering trilinear
+				max_anisotropy 16
+				colour_op alpha_blend
+			}
+		}
+	}
+}
+material Dirtmap_1
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.640000 0.640000 0.640000 1.000000
+			specular 0.000000 0.000000 0.000000 1.000000 0.250000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture sidewalk_bricks.jpg
+				tex_address_mode wrap
+				filtering trilinear
+				max_anisotropy 16
+				colour_op alpha_blend
+			}
+		}
+	}
+}
+material None_div_png
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.640000 0.640000 0.640000 1.000000
+			specular 0.400000 0.400000 0.400000 1.000000 0.250000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			scene_blend alpha_blend
+			depth_write off
+			texture_unit
+			{
+				texture div.png
+				tex_address_mode wrap
+				filtering trilinear
+			}
+		}
+	}
+}
+material Grass
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.640000 0.640000 0.640000 1.000000
+			specular 0.000000 0.000000 0.000000 1.000000 0.250000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture grass.png
+				tex_address_mode wrap
+				filtering trilinear
+				colour_op alpha_blend
+			}
+		}
+	}
+}

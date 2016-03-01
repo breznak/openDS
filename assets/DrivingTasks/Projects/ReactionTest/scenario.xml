@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<scenario xmlns="http://opends.eu/drivingtask/scenario" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://opends.eu/drivingtask/scenario ../../Schema/scenario.xsd">
+        
+        <environment>
+        	<weather>
+                <snowingPercentage>0</snowingPercentage>
+        		<rainingPercentage>0</rainingPercentage>
+        		<fogPercentage>0</fogPercentage>
+        	</weather>
+        </environment>
+
+        <driver>       	
+        	<car id="" profile="" ref="Ferrari">
+        		<resetPoints>
+        			<resetPoint ref="reset1"/>
+        		</resetPoints>
+        		<tires profile="">
+        			<type>winter</type>
+        			<size>16</size>
+        		</tires>
+        		<engine profile="">
+        			<engineOn>true</engineOn>
+        			<minSpeed>20</minSpeed>
+					<maxSpeed>60</maxSpeed>
+					<acceleration>3.3</acceleration>
+					<minRPM>750</minRPM>
+					<maxRPM>7500</maxRPM>
+					<soundIntensity>0.25</soundIntensity>
+        		</engine>
+        		<transmission>
+        			<automatic>true</automatic>
+        			<reverse>3.182</reverse>
+        			<forward>
+	        			<vector jtype="java_lang_Float" size="6">
+							<entry>3.615</entry>
+							<entry>1.955</entry>
+							<entry>1.281</entry>
+							<entry>0.973</entry>
+							<entry>0.778</entry>
+							<entry>0.646</entry>
+						</vector>
+					</forward>
+        		</transmission>
+        		<suspension>
+					<stiffness>120</stiffness>
+					<compression>0.2</compression>
+					<damping>0.3</damping>
+        		</suspension>
+        		<wheel>
+        			<frictionSlip>50</frictionSlip>
+        		</wheel>
+        		<brake profile="">
+        			<decelerationFreeWheel>2.0</decelerationFreeWheel>
+        			<decelerationBrake>8.7</decelerationBrake>
+        		</brake>
+        	</car>
+        </driver>
+        
+        <traffic>
+        </traffic>
+        
+        <road>
+        <lane id="0">
+                  <xMin>-9.25</xMin>
+                  <xMax>-5.55</xMax>
+            </lane>
+            <lane id="1">
+                  <xMin>-5.55</xMin>
+                  <xMax>-1.85</xMax>
+            </lane>
+            <lane id="2">
+                  <xMin>-1.85</xMin>
+                  <xMax>1.85</xMax>
+            </lane>
+            <lane id="3">
+                  <xMin>1.85</xMin>
+                  <xMax>5.55</xMax>
+            </lane>
+            <lane id="4">
+                  <xMin>5.55</xMin>
+                  <xMax>9.25</xMax>
+            </lane>
+      </road>
+        
+</scenario>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interaction xmlns="http://opends.eu/drivingtask/interaction"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:schemaLocation="http://opends.eu/drivingtask/interaction ../../Schema/interaction.xsd">
+
+
+	<activities>
+		<activity id="movePedestrianCrossing_1">
+			<action id="manipulateObject" delay="0" repeat="0">
+				<parameter name="id" value="PedestrianCrossing_1" />
+				<parameter name="setTranslationX" value="-74.77681" />
+				<parameter name="setTranslationY" value="-0.26786697" />
+				<parameter name="setTranslationZ" value="5.0" />
+			</action>
+		</activity>
+		<activity id="movePedestrianCrossing_1Back">
+			<action id="manipulateObject" delay="0" repeat="0">
+				<parameter name="id" value="PedestrianCrossing_1" />
+				<parameter name="setTranslationX" value="-69.77681" />
+				<parameter name="setTranslationY" value="-0.26786697" />
+				<parameter name="setTranslationZ" value="5.0" />
+			</action>
+		</activity>
+		<activity id="moveCar1">
+			<action id="moveTraffic" delay="0" repeat="0">
+				<parameter name="trafficObjectID" value="car1" />
+				<parameter name="wayPointID" value="WayPoint_6" />
+			</action>
+		</activity>
+	</activities>
+	
+	<triggers>
+		<trigger id="collisionWithRedBox" priority="1">
+			<activities>
+				<activity ref="moveCar1"/>
+			</activities>		
+			<condition>collideWith:redBox</condition>
+		</trigger>
+		
+		<trigger id="collisionWithBlueBox" priority="1">
+			<activities>
+				<activity ref="movePedestrianCrossing_1"/>
+			</activities>		
+			<condition>collideWith:blueBox</condition>
+		</trigger>
+		
+		<trigger id="collisionWithGreenBox" priority="1">
+			<activities>
+				<activity ref="movePedestrianCrossing_1Back"/>
+			</activities>		
+			<condition>collideWith:greenBox</condition>
+		</trigger>
+	</triggers>
+	
+</interaction>

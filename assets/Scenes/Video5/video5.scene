@@ -1,0 +1,119 @@
+<scene formatVersion="1.0.0">
+  <nodes>
+    <node name="Lane">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="Lane" meshFile="Lane.mesh"/>
+    </node>
+    <node name="Material_001">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="Material_001" meshFile="Material_001.mesh"/>
+    </node>
+    <node name="Material">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="Material" meshFile="Material.mesh"/>
+    </node>
+    <node name="Curbs">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="Curbs" meshFile="Curbs.mesh"/>
+    </node>
+    <node name="Stripe_2">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="Stripe_2" meshFile="Stripe_2.mesh"/>
+    </node>
+    <node name="Stripe_3">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="Stripe_3" meshFile="Stripe_3.mesh"/>
+    </node>
+    <!--
+    <node name="None_div_top_png">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="None_div_top_png" meshFile="None_div_top_png.mesh"/>
+    </node>
+    -->
+    <node name="Stripe_1">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="Stripe_1" meshFile="Stripe_1.mesh"/>
+    </node>
+    <node name="Material_002">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="Material_002" meshFile="Material_002.mesh"/>
+    </node>
+    <node name="Material_003">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="Material_003" meshFile="Material_003.mesh"/>
+    </node>
+    <node name="Stripe_4">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="Stripe_4" meshFile="Stripe_4.mesh"/>
+    </node>
+    <node name="Stripe_5">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="Stripe_5" meshFile="Stripe_5.mesh"/>
+    </node>
+    <node name="Dirtmap">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="Dirtmap" meshFile="Dirtmap.mesh"/>
+    </node>
+    <node name="Stripe">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="Stripe" meshFile="Stripe.mesh"/>
+    </node>
+    <node name="Dirtmap_1">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="Dirtmap_1" meshFile="Dirtmap_1.mesh"/>
+    </node>
+    <!--
+    <node name="None_div_png">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="None_div_png" meshFile="None_div_png.mesh"/>
+    </node>
+    -->
+    <node name="Grass">
+      <position x="0.000000" y="0.000000" z="-0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="-0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="Grass" meshFile="Grass.mesh"/>
+    </node>
+  </nodes>
+  <externals>
+    <item type="material">
+      <file name="video5.material"/>
+    </item>
+  </externals>
+  <environment>
+    <colourAmbient r="0.000000" g="0.000000" b="0.000000"/>
+    <colourBackground r="0.056563" g="0.220815" b="0.400000"/>
+  </environment>
+</scene>

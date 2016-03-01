@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<task xmlns="http://opends.eu/drivingtask/task"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:schemaLocation="http://opends.eu/drivingtask/task ../../Schema/task.xsd">
+        
+    <steeringTask>
+		<startPoint ref="startPointPrimaryTask" />
+		<endPoint ref="endTasks" />
+		<steeringTaskType>driver</steeringTaskType>
+		<distanceToObjects>30</distanceToObjects>
+		<objectOffset>-0.1</objectOffset>
+		<heightOffset>2.5</heightOffset>
+		<targetObject id="yellowCylinder" speed="0.5" maxLeft="6" maxRight="2" />
+		<steeringObject id="blueCylinder" speed="4" maxLeft="6" maxRight="2" />
+		<trafficLightObject id="trafficLightBox" />
+		<pauseAfterTargetSet>2000</pauseAfterTargetSet>
+		<blinkingInterval>150</blinkingInterval>
+		<database url="jdbc:mysql:///simulator" user="root" password="" table="car_experiment_results" />
+		<additionalTable>true</additionalTable>
+		<conditionName>speech</conditionName>
+		<conditionNumber>123</conditionNumber>
+
+		<primaryTask>
+			<startPoint ref="startPointPrimaryTask" />
+			<endPoint ref="endTasks" />
+			<isPeripheralMode>false</isPeripheralMode>
+			<iconWidth>73</iconWidth>
+			<iconHeight>73</iconHeight>
+			<iconDistFromLeftFrameBorder>100</iconDistFromLeftFrameBorder>
+			<iconDistFromRightFrameBorder>100</iconDistFromRightFrameBorder>
+			<lightMinPause>10000</lightMinPause>
+			<lightMaxPause>15000</lightMaxPause>
+			<lightDuration>5000</lightDuration>
+			<blinkingThreshold>1.0</blinkingThreshold>
+			<minBlinkingDuration>1000</minBlinkingDuration>
+		</primaryTask>
+		
+		<secondaryTask>
+			<startPoint ref="startPointSecondaryTask" />
+			<endPoint ref="endTasks" />
+			<waitForNextLandmark>3000</waitForNextLandmark>
+			<minTimeOfAppearance>2000</minTimeOfAppearance>
+			<maxVisibilityDistance>500</maxVisibilityDistance>
+			<maxSelectionDistance>200</maxSelectionDistance>
+			<maxAngle>45</maxAngle>
+			<landmarkObjects>
+				<landmarkObject id="house01"/>
+				<landmarkObject id="house02"/>
+				<landmarkObject id="house03"/>
+				<landmarkObject id="house04"/>
+				<landmarkObject id="house05"/>
+				<landmarkObject id="house06"/>
+				<landmarkObject id="house07"/>
+				<landmarkObject id="house08"/>
+				<landmarkObject id="house09"/>
+				<landmarkObject id="house10"/>
+				<landmarkObject id="house11"/>
+				<landmarkObject id="house12"/>
+				<landmarkObject id="house13"/>
+				<landmarkObject id="house14"/>
+				<landmarkObject id="house15"/>
+				<landmarkObject id="house16"/>
+				<landmarkObject id="house17"/>
+				<landmarkObject id="house18"/>
+				<landmarkObject id="house19"/>
+				<landmarkObject id="house20"/>
+				<landmarkObject id="house21"/>
+				<landmarkObject id="house22"/>
+				<landmarkObject id="house23"/>
+				<landmarkObject id="house24"/>
+			</landmarkObjects>
+			<landmarkTextures>
+				<landmarkTexture url="Textures/ReactionTest/landmarks/akropolis.jpg" />
+				<landmarkTexture url="Textures/ReactionTest/landmarks/atomium.jpg" />
+				<landmarkTexture url="Textures/ReactionTest/landmarks/brandenburgerTor.jpg" />
+				<landmarkTexture url="Textures/ReactionTest/landmarks/cheopsPyramide.jpg" />
+				<landmarkTexture url="Textures/ReactionTest/landmarks/eiffelturm.jpg" />
+				<landmarkTexture url="Textures/ReactionTest/landmarks/freiheitsstatue.jpg" />
+				<landmarkTexture url="Textures/ReactionTest/landmarks/goldenGateBridge.jpg" />
+				<landmarkTexture url="Textures/ReactionTest/landmarks/petersdom.jpg" />
+				<landmarkTexture url="Textures/ReactionTest/landmarks/sacreCoeur.jpg" />
+				<landmarkTexture url="Textures/ReactionTest/landmarks/tajMahal.jpg" />
+				<landmarkTexture url="Textures/ReactionTest/landmarks/towerBridge.jpg" />
+			</landmarkTextures>
+			<distractorTextures>
+				<distractorTexture url="Textures/ReactionTest/buildings/build01.jpg"/>
+				<distractorTexture url="Textures/ReactionTest/buildings/build02.jpg"/>
+				<distractorTexture url="Textures/ReactionTest/buildings/build03.jpg"/>
+				<distractorTexture url="Textures/ReactionTest/buildings/build04.jpg"/>
+				<distractorTexture url="Textures/ReactionTest/buildings/build05.jpg"/>
+				<distractorTexture url="Textures/ReactionTest/buildings/build06.jpg"/>
+				<distractorTexture url="Textures/ReactionTest/buildings/build07.jpg"/>
+			</distractorTextures>
+		</secondaryTask>
+	</steeringTask>
+</task>

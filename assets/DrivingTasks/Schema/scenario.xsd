@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema targetNamespace="http://opends.eu/drivingtask/scenario"
+elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://opends.eu/drivingtask/scenario">
+              
+    <xs:element name="scenario">
+        <xs:complexType>
+            <xs:all>
+                <xs:element minOccurs="0" maxOccurs="1"
+                    name="environment" type="environment" />
+
+                <xs:element minOccurs="1" maxOccurs="1" name="driver"
+                    type="driver" />
+                <xs:element minOccurs="0" maxOccurs="1" name="traffic"
+                    type="traffic" />
+                <xs:element minOccurs="0" maxOccurs="1" name="road"
+                    type="road" />
+                <xs:element name="coordinateConversion" type="coordinateConversionType"
+                    maxOccurs="1" minOccurs="0">
+                </xs:element>
+            </xs:all>
+
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="environment">
+        <xs:all>
+            <xs:element minOccurs="0" maxOccurs="1" name="weather"
+            	type="weather" />
+            
+        </xs:all>
+    </xs:complexType>
+
+
+
+
+    <xs:complexType name="driver">
+        <xs:all>
+        	<xs:element name="cameraFlight" type="cameraFlight" maxOccurs="1" minOccurs="0">
+        	</xs:element>
+        	<xs:element name="idealTrack" type="idealTrack" maxOccurs="1" minOccurs="0">
+        	</xs:element>
+        	<xs:element minOccurs="1" maxOccurs="1" name="car" type="car" />
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="car">
+        <xs:all>
+
+        	<xs:element name="resetPoints" type="resetPoints"
+        		maxOccurs="1" minOccurs="0">
+        	</xs:element>
+        	<xs:element name="tires" type="tires" maxOccurs="1"
+        		minOccurs="0" />
+        	<xs:element name="engine" type="engine" maxOccurs="1"
+        		minOccurs="1" />
+
+        	<xs:element name="transmission" type="transmission"
+        		maxOccurs="1" minOccurs="0">
+        	</xs:element>
+        	<xs:element name="suspension" type="suspension"
+        		maxOccurs="1" minOccurs="0">
+        	</xs:element>
+        	<xs:element name="wheel" type="wheel" maxOccurs="1"
+        		minOccurs="0">
+        	</xs:element>
+        	<xs:element name="brake" type="brake" maxOccurs="1"
+        		minOccurs="1" />
+
+        	<xs:element name="light" type="light" maxOccurs="1" minOccurs="0"></xs:element>
+        </xs:all>
+        <xs:attribute name="id" type="xs:string"/>
+        <xs:attribute name="ref" type="xs:string"/>
+        <xs:attribute name="profile" type="xs:string"/>
+    </xs:complexType>
+
+    <xs:complexType name="brake">
+        <xs:all>
+            <xs:element name="decelerationFreeWheel" type="xs:float" maxOccurs="1" minOccurs="1"/>
+            <xs:element name="decelerationBrake" type="xs:float" maxOccurs="1" minOccurs="1"/>
+        </xs:all>
+        <xs:attribute name="profile" type="xs:string"/>
+    </xs:complexType>
+
+    <xs:complexType name="engine">
+        <xs:all>
+            <xs:element name="engineOn" type="xs:boolean" maxOccurs="1"
+                minOccurs="0">
+            </xs:element>
+            <xs:element name="minSpeed" type="xs:float" maxOccurs="1"
+                minOccurs="0">
+            </xs:element>
+            <xs:element name="maxSpeed" type="xs:float" maxOccurs="1"
+                minOccurs="0" />
+            <xs:element name="acceleration" type="xs:float"
+                maxOccurs="1" minOccurs="1" />
+
+            <xs:element name="minRPM" type="xs:float" maxOccurs="1"
+                minOccurs="0">
+            </xs:element>
+            <xs:element name="maxRPM" type="xs:float" maxOccurs="1"
+                minOccurs="0">
+            </xs:element>
+            <xs:element name="soundIntensity" type="xs:float" maxOccurs="1" minOccurs="0"></xs:element>
+        </xs:all>
+        <xs:attribute name="profile" type="xs:string"/>
+    </xs:complexType>
+
+    <xs:complexType name="tires">
+        <xs:all>
+            <xs:element name="type" type="xs:string" maxOccurs="1" minOccurs="0"/>
+            <xs:element name="size" type="xs:integer" maxOccurs="1" minOccurs="0"/>
+        </xs:all>
+        <xs:attribute name="profile" type="xs:string"/>
+    </xs:complexType>
+
+    <xs:complexType name="traffic">
+        <xs:choice maxOccurs="unbounded" minOccurs="0">
+
+
+        	<xs:element name="pedestrian" type="pedestrian" maxOccurs="1" minOccurs="0"></xs:element>
+        	<xs:element name="vehicle" type="vehicle" maxOccurs="1" minOccurs="0">
+        	</xs:element>
+        </xs:choice>
+        
+    </xs:complexType>
+
+    <xs:complexType name="pedestrian">
+        <xs:attribute name="id" type="xs:string"/>
+    </xs:complexType>
+
+    <xs:complexType name="road">
+        <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element name="lane" type="lane" maxOccurs="1"
+                minOccurs="0">
+            </xs:element>
+            <xs:element minOccurs="0" maxOccurs="1" name="roadsign"
+                type="roadsign" />
+
+            <xs:element minOccurs="0" maxOccurs="1" name="speedLimit"
+                type="speedlimit" />
+            <xs:element minOccurs="0" maxOccurs="1"
+                name="intersection" type="trafficlightgroup" />
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:complexType name="trafficlightgroup">
+    	<xs:all>
+    		<xs:element name="phases" type="phasesType" maxOccurs="1"
+    			minOccurs="0">
+    		</xs:element>
+    		<xs:element name="trafficLights" type="trafficLightsType"
+    			maxOccurs="1" minOccurs="0">
+    		</xs:element>
+
+    	</xs:all>
+
+    	<xs:attribute name="id" type="xs:string" />
+
+    	<xs:attribute name="mode" type="xs:string"></xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="trafficlight">
+    	<xs:all>
+
+    		<xs:element name="initialState" maxOccurs="1"
+    			minOccurs="0">
+    			<xs:simpleType>
+    				<xs:restriction base="xs:string">
+    					<xs:enumeration value="red"></xs:enumeration>
+    					<xs:enumeration value="yellow"></xs:enumeration>
+    					<xs:enumeration value="green"></xs:enumeration>
+    					<xs:enumeration value="all"></xs:enumeration>
+    					<xs:enumeration value="off"></xs:enumeration>
+    					<xs:enumeration value="yellowred"></xs:enumeration>
+    				</xs:restriction>
+    			</xs:simpleType>
+    		</xs:element>
+    		<xs:element name="direction" maxOccurs="1" minOccurs="0">
+    			<xs:simpleType>
+    				<xs:restriction base="xs:string">
+    					<xs:enumeration value="up"></xs:enumeration>
+    					<xs:enumeration value="left"></xs:enumeration>
+    					<xs:enumeration value="right"></xs:enumeration>
+    					<xs:enumeration value="none"></xs:enumeration>
+    				</xs:restriction>
+    			</xs:simpleType>
+    		</xs:element>
+
+    		<xs:element name="requiresRed" type="xs:string"
+    			maxOccurs="1" minOccurs="0">
+    		</xs:element>
+    		<xs:element name="positionData" type="positionDataType"
+    			maxOccurs="1" minOccurs="0">
+    		</xs:element>
+    	</xs:all>
+
+    	<xs:attribute name="ref" type="xs:string" />
+    	<xs:attribute name="id" type="xs:string" />
+    	<xs:attribute name="phasePosition" type="xs:int"></xs:attribute>
+    	<xs:attribute name="trigger" type="xs:string"></xs:attribute>
+    	<xs:attribute name="phaseTrigger" type="xs:string"></xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="speedlimit">
+        <xs:all>
+            <xs:element name="ending" type="xs:boolean" maxOccurs="1" minOccurs="0"/>
+            <xs:element name="limit" type="xs:integer" maxOccurs="1" minOccurs="0"/>
+        </xs:all>
+        <xs:attribute name="profile" type="xs:string"/>
+        <xs:attribute name="ref" type="xs:string"/>
+        <xs:attribute name="id" type="xs:string"/>
+    </xs:complexType>
+
+    <xs:complexType name="radar">
+        <xs:all>
+            <xs:element name="checkpoint" type="xs:string"/>
+            <xs:element name="warn" type="xs:boolean"/>
+            <xs:element name="limit" type="xs:integer"/>
+        </xs:all>
+        <xs:attribute name="ref" type="xs:string"/>
+        <xs:attribute name="id" type="xs:string"/>
+    </xs:complexType>
+    
+    <xs:complexType name="roadsign">
+        <xs:attribute name="ref" type="xs:string"/>
+        <xs:attribute name="id" type="xs:string"/>
+    </xs:complexType>
+
+    <xs:complexType name="startPosition">
+    	<xs:sequence>
+    		<xs:element name="translation" type="translation"></xs:element>
+    		<xs:element name="rotation" type="rotation"></xs:element>
+    	</xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="translation">
+        <xs:sequence>
+            <xs:element name="vector" type="array" maxOccurs="1" minOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="rotation">
+        <xs:sequence>
+            <xs:element name="vector" type="array"/>
+        </xs:sequence>
+        <xs:attribute name="quaternion" type="xs:boolean"/>
+    </xs:complexType>
+    
+    <xs:complexType name="array">
+        <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="unbounded" name="entry" type="xs:string"/>
+        </xs:sequence>
+        <xs:attribute name="jtype" type="jtype"/>
+        <xs:attribute name="size" type="xs:integer"/>
+    </xs:complexType>
+
+    <xs:simpleType name="jtype">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="java_lang_String" />
+            <xs:enumeration value="java_lang_Boolean"/>
+            <xs:enumeration value="java_lang_Integer"/>
+            <xs:enumeration value="java_lang_Long"/>
+            <xs:enumeration value="java_lang_Double"/>
+            <xs:enumeration value="java_lang_Float"/>
+            <xs:enumeration value="java_lang_Short"/>
+            <xs:enumeration value="java_lang_Character"/>
+            <xs:enumeration value="java_lang_Byte"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+
+    <xs:complexType name="transmission">
+        <xs:all>
+    		<xs:element name="automatic" type="xs:boolean" maxOccurs="1" minOccurs="0"></xs:element>
+    		<xs:element name="reverse" type="xs:float" maxOccurs="1" minOccurs="0"></xs:element>
+    		<xs:element name="forward" type="forward" maxOccurs="1" minOccurs="0"></xs:element>
+    	</xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="suspension">
+        <xs:all>
+    		<xs:element name="stiffness" type="xs:float" maxOccurs="1" minOccurs="0"></xs:element>
+    		<xs:element name="compression" type="xs:float" maxOccurs="1" minOccurs="0"></xs:element>
+    		<xs:element name="damping" type="xs:float" maxOccurs="1" minOccurs="0"></xs:element>
+    	</xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="vehicle">
+        <xs:all>
+    		<xs:element name="modelPath" type="xs:string" maxOccurs="1" minOccurs="1"></xs:element>
+    		<xs:element name="mass" type="xs:float" maxOccurs="1" minOccurs="1"></xs:element>
+    		<xs:element name="acceleration" type="xs:float" maxOccurs="1" minOccurs="1"></xs:element>
+    		<xs:element name="decelerationBrake" type="xs:float" maxOccurs="1" minOccurs="1"></xs:element>
+    		<xs:element name="decelerationFreeWheel" type="xs:float" maxOccurs="1" minOccurs="1"></xs:element>
+    		<xs:element name="engineOn" type="xs:boolean" maxOccurs="1" minOccurs="1"></xs:element>
+    		<xs:element name="maxDistanceFromPath" type="xs:float" maxOccurs="1" minOccurs="1"></xs:element>
+    		<xs:element name="curveTension" type="xs:float" maxOccurs="1" minOccurs="1"></xs:element>
+    		<xs:element name="pathIsCycle" type="xs:boolean" maxOccurs="1" minOccurs="1"></xs:element>
+    		<xs:element name="pathIsVisible" type="xs:boolean" maxOccurs="1" minOccurs="1"></xs:element>
+    		<xs:element name="startWayPoint" type="xs:string" maxOccurs="1" minOccurs="1"></xs:element>
+    		<xs:element name="wayPoints" type="wayPoints" maxOccurs="1" minOccurs="1"></xs:element>
+    	</xs:all>
+    	<xs:attribute name="id" type="xs:string"></xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="wayPoints">
+    	<xs:sequence>
+    		<xs:element name="wayPoint" type="wayPoint" maxOccurs="unbounded" minOccurs="2"></xs:element>
+    	</xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="wayPoint">
+        <xs:all>
+        	<xs:element name="translation" type="translation"
+        		maxOccurs="1" minOccurs="0">
+        	</xs:element>
+        	<xs:element name="speed" type="xs:float" maxOccurs="1"
+        		minOccurs="1">
+        	</xs:element>
+        	<xs:element name="trafficLight" type="xs:string"
+        		maxOccurs="1" minOccurs="0">
+        	</xs:element>
+        	<xs:element name="headLightIntensity" type="xs:float"
+        		maxOccurs="1" minOccurs="0">
+        	</xs:element>
+        	<xs:element name="turnSignal" maxOccurs="1" minOccurs="0">
+        		<xs:simpleType>
+        			<xs:restriction base="xs:string">
+        				<xs:enumeration value="off"></xs:enumeration>
+        				<xs:enumeration value="left"></xs:enumeration>
+        				<xs:enumeration value="right"></xs:enumeration>
+        				<xs:enumeration value="both"></xs:enumeration>
+        			</xs:restriction>
+        		</xs:simpleType>
+        	</xs:element>
+        </xs:all>
+
+        <xs:attribute name="id" type="xs:string"></xs:attribute>
+    	<xs:attribute name="ref" type="xs:string"></xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="resetPoints">
+    	<xs:sequence>
+    		<xs:element name="resetPoint" type="resetPoint" maxOccurs="unbounded" minOccurs="1"></xs:element>
+    	</xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="resetPoint">
+    	<xs:sequence maxOccurs="1" minOccurs="0">
+    		<xs:element name="translation" type="translation"></xs:element>
+    		<xs:element name="rotation" type="rotation"></xs:element>
+    	</xs:sequence>
+    	<xs:attribute name="id" type="xs:string"></xs:attribute>
+    	<xs:attribute name="ref" type="xs:string"></xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="wheel">
+        <xs:all>
+    		<xs:element name="frictionSlip" type="xs:float" maxOccurs="1" minOccurs="0"></xs:element>
+    	</xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="forward">
+    	<xs:sequence>
+    		<xs:element name="vector" type="array"></xs:element>
+    	</xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="idealTrack">
+    	<xs:sequence>
+    		<xs:element name="point" type="point" maxOccurs="unbounded" minOccurs="2"></xs:element>
+    	</xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="point">
+    	<xs:sequence>
+    		<xs:element name="translation" type="translation"
+    		    maxOccurs="1" minOccurs="0">
+    		</xs:element>
+    	</xs:sequence>
+    	<xs:attribute name="id" type="xs:string"></xs:attribute>
+    	<xs:attribute name="ref" type="xs:string"></xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="cameraFlight">
+        <xs:all>
+    		<xs:element name="speed" type="xs:float" maxOccurs="1" minOccurs="1"></xs:element>
+    		<xs:element name="automaticStart" type="xs:boolean" maxOccurs="1" minOccurs="0"></xs:element>
+    		<xs:element name="automaticStop" type="xs:boolean" maxOccurs="1" minOccurs="0"></xs:element>
+    		<xs:element name="track" type="cameraFlightTrack" maxOccurs="1" minOccurs="1"></xs:element>
+    	</xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="cameraFlightTrack">
+    	<xs:sequence>
+    		<xs:element name="point" type="point" maxOccurs="unbounded" minOccurs="2"></xs:element>
+    	</xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="refElement">
+    	<xs:attribute name="ref" type="xs:string"></xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="weather">
+        <xs:all>
+        	<xs:element name="snowingPercentage" type="xs:float"
+        		maxOccurs="1" minOccurs="0">
+        	</xs:element>
+        	<xs:element name="rainingPercentage" type="xs:float" maxOccurs="1"
+        		minOccurs="0">
+        	</xs:element>
+        	<xs:element name="fogPercentage" type="xs:float" maxOccurs="1" minOccurs="0"></xs:element>
+        </xs:all>
+        
+    </xs:complexType>
+
+    <xs:complexType name="lane">
+        <xs:all>
+            <xs:element name="xMin" type="xs:float" maxOccurs="1"
+                minOccurs="1">
+            </xs:element>
+            <xs:element name="xMax" type="xs:float" maxOccurs="1"
+                minOccurs="1">
+            </xs:element>
+        </xs:all>
+        <xs:attribute name="id" type="xs:string"></xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="coordinateConversionType">
+        <xs:all>
+            <xs:element name="modelToGeo" type="matrix" maxOccurs="1" minOccurs="0"></xs:element>
+            <xs:element name="geoToModel" type="matrix" maxOccurs="1"
+                minOccurs="0">
+            </xs:element>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="matrix4x4">
+        <xs:sequence>
+            <xs:element name="m00" type="xs:float" maxOccurs="1" minOccurs="1"></xs:element>
+            <xs:element name="m01" type="xs:float" maxOccurs="1" minOccurs="1"></xs:element>
+            <xs:element name="m02" type="xs:float" maxOccurs="1" minOccurs="1"></xs:element>
+            <xs:element name="m03" type="xs:float" maxOccurs="1" minOccurs="1"></xs:element>
+            <xs:element name="m10" type="xs:float" maxOccurs="1" minOccurs="1"></xs:element>
+            <xs:element name="m11" type="xs:float" maxOccurs="1" minOccurs="1"></xs:element>
+            <xs:element name="m12" type="xs:float" maxOccurs="1" minOccurs="1"></xs:element>
+            <xs:element name="m13" type="xs:float" maxOccurs="1" minOccurs="1"></xs:element>
+            <xs:element name="m20" type="xs:float" maxOccurs="1" minOccurs="1"></xs:element>
+            <xs:element name="m21" type="xs:float" maxOccurs="1" minOccurs="1"></xs:element>
+            <xs:element name="m22" type="xs:float" maxOccurs="1" minOccurs="1"></xs:element>
+            <xs:element name="m23" type="xs:float" maxOccurs="1" minOccurs="1"></xs:element>
+            <xs:element name="m30" type="xs:float" maxOccurs="1" minOccurs="1"></xs:element>
+            <xs:element name="m31" type="xs:float" maxOccurs="1" minOccurs="1"></xs:element>
+            <xs:element name="m32" type="xs:float" maxOccurs="1" minOccurs="1"></xs:element>
+            <xs:element name="m33" type="xs:float" maxOccurs="1" minOccurs="1"></xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="matrix">
+        <xs:sequence>
+            <xs:element name="matrix" type="matrix4x4" maxOccurs="1" minOccurs="1"></xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="light">
+        <xs:all>
+    		<xs:element name="intensity" type="xs:float" maxOccurs="1" minOccurs="1"></xs:element>
+    	</xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="positionDataType">
+    	<xs:attribute name="roadID" type="xs:string"></xs:attribute>
+    	<xs:attribute name="crossingType" type="xs:int"></xs:attribute>
+    	<xs:attribute name="arrowType" type="xs:int"></xs:attribute>
+    	<xs:attribute name="lane" type="xs:int"></xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="trafficLightsType">
+    	<xs:sequence>
+    		<xs:element name="trafficLight" type="trafficlight" maxOccurs="unbounded" minOccurs="1"></xs:element>
+    	</xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="phasesType">
+    	<xs:sequence>
+    		<xs:element name="phase" type="phaseType" maxOccurs="unbounded" minOccurs="1"></xs:element>
+    	</xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="phaseType">
+    	<xs:sequence></xs:sequence>
+    	<xs:attribute name="id" type="xs:string"></xs:attribute>
+    	<xs:attribute name="duration" type="xs:int"></xs:attribute>
+    	<xs:attribute name="state" type="xs:string"></xs:attribute>
+    </xs:complexType>
+</xs:schema>
