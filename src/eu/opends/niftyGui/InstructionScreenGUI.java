@@ -30,6 +30,7 @@ import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.elements.Element;
 import de.lessvoid.nifty.screen.Screen;
 import eu.opends.basics.SimulationBasics;
+import eu.opends.main.Simulator;
 
 
 /**
@@ -42,7 +43,7 @@ import eu.opends.basics.SimulationBasics;
 public class InstructionScreenGUI 
 {
 	private Nifty nifty;
-	private SimulationBasics sim;
+	private Simulator sim;
 	private boolean instructionScreenHidden = true;
 	private boolean initiallyPaused = false;
 	private AssetManager assetManager;
@@ -58,7 +59,7 @@ public class InstructionScreenGUI
 	 * @param sim
 	 * 			SimulationBasics class.
 	 */
-	public InstructionScreenGUI(SimulationBasics sim)
+	public InstructionScreenGUI(Simulator sim)
 	{
 		this.sim = sim;
 		this.assetManager = sim.getAssetManager();
