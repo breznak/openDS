@@ -40,6 +40,8 @@ import com.jme3.niftygui.NiftyJmeDisplay;
 import com.sun.javafx.application.PlatformImpl;
 
 import de.lessvoid.nifty.Nifty;
+import distraction.DistractionSettings;
+import distraction.DroppingBox;
 import eu.opends.analyzer.DrivingTaskLogger;
 import eu.opends.analyzer.DataWriter;
 import eu.opends.audio.AudioCenter;
@@ -90,6 +92,8 @@ public class Simulator extends SimulationBasics
     private int frameCounter = 0;
     private boolean drivingTaskGiven = false;
     private boolean initializationFinished = false;
+    DistractionSettings distSet;
+    private DroppingBox dropBox;
     
     private static Float gravityConstant;
 	public static Float getGravityConstant()
@@ -459,6 +463,9 @@ public class Simulator extends SimulationBasics
 		}
 		
 		joystickSpringController = new ForceFeedbackJoystickController(this);
+                
+                dropBox = new DroppingBox(this);
+                distSet = new DistractionSettings();
 		
 		initializationFinished = true;
     }
@@ -561,6 +568,10 @@ public class Simulator extends SimulationBasics
 			
 			if(eyetrackerCenter != null)
 				eyetrackerCenter.update();
+                        
+                        if(distSet.isBox){
+                            dropBox.updateDropingBox(tpf, distSet.propabilityBox);
+                        }
 
     		if(frameCounter == 5)
     		{
