@@ -18,11 +18,30 @@
 
 package eu.opends.niftyGui;
 
+
+import com.jme3.asset.AssetManager;
+import com.jme3.material.Material;
+import com.jme3.math.ColorRGBA;
+import com.jme3.scene.Node;
+import com.jme3.scene.Geometry;
+import com.jme3.scene.Spatial;
+import com.jme3.scene.shape.Sphere;
 import de.lessvoid.nifty.Nifty;
+import de.lessvoid.nifty.NiftyEventSubscriber;
+import de.lessvoid.nifty.controls.CheckBox;
+import de.lessvoid.nifty.controls.CheckBoxStateChangedEvent;
+import de.lessvoid.nifty.controls.Slider;
+import de.lessvoid.nifty.controls.SliderChangedEvent;
+import de.lessvoid.nifty.elements.events.NiftyMousePrimaryClickedEvent;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
+import distraction.DistractionSettings;
 import eu.opends.basics.SimulationBasics;
 
+import eu.opends.effects.EffectCenter;
+import eu.opends.car.SteeringCar;
+import eu.opends.car.LightTexturesContainer.TurnSignalState;
+import eu.opends.main.Simulator;
 
 /**
  * This class handles display and user interaction with the key mapping 
@@ -32,10 +51,28 @@ import eu.opends.basics.SimulationBasics;
  */
 public class InstructionScreenGUIController implements ScreenController 
 {
-	//private SimulationBasics sim;
-	//private Nifty nifty;
-	private InstructionScreenGUI instructionScreenGUI;
-	
+    
+
+	private final Simulator sim;
+	private final Nifty nifty;
+	private final InstructionScreenGUI instructionScreenGUI;
+        private CheckBox CheckBox_snow;
+        private CheckBox CheckBox_rain;
+        private CheckBox CheckBox_fog;
+        private Slider Slider_rain;
+        private Slider Slider_snow;
+        private Slider Slider_fog;
+        private float Intensity_rain = 0;
+        private float Intensity_snow = 0;
+        private float Intensity_fog = 0;
+        private SteeringCar car;
+        private AssetManager manager;
+        private Node root;
+        DistractionSettings DistSet;
+        
+        
+        
+        
 	
 	/**
 	 * Creates a new controller instance for the key mapping and graphic 
@@ -47,11 +84,14 @@ public class InstructionScreenGUIController implements ScreenController
 	 * @param instructionScreenGUI
 	 * 			Instance of the key mapping and graphic settings GUI.
 	 */
-	public InstructionScreenGUIController(SimulationBasics sim, InstructionScreenGUI instructionScreenGUI) 
+	public InstructionScreenGUIController(Simulator sim, InstructionScreenGUI instructionScreenGUI) 
 	{
-		//this.sim = sim;
+		this.sim = sim;
 		this.instructionScreenGUI = instructionScreenGUI;
-		//this.nifty = instructionScreenGUI.getNifty();
+		this.nifty = instructionScreenGUI.getNifty();
+                this.car = sim.getCar();
+                this.manager = sim.getAssetManager();  
+                this.root = sim.getSceneNode();
 	}
 
 	
@@ -78,12 +118,103 @@ public class InstructionScreenGUIController implements ScreenController
 	@Override
 	public void onStartScreen() 
 	{
-
+            Screen screen = nifty.getCurrentScreen();
+            CheckBox_rain = screen.findNiftyControl("CheckBox_rain", CheckBox.class);
+            CheckBox_snow = screen.findNiftyControl("CheckBox_snow", CheckBox.class);
+            CheckBox_fog = screen.findNiftyControl("CheckBox_fog", CheckBox.class);
+            Slider_snow = screen.findNiftyControl("Slider_snow", Slider.class);
+            Slider_rain = screen.findNiftyControl("Slider_rain", Slider.class);
+            Slider_fog = screen.findNiftyControl("Slider_fog", Slider.class);
+            Slider_rain.setStepSize(10);
+            Slider_rain.disable();
+            Slider_snow.setStepSize(10);
+            Slider_snow.disable();
+            Slider_fog.setStepSize(10);
+            Slider_fog.setMax(70);
+            Slider_fog.disable();
+            
+            
+            
 	}
-	
+        
+        @NiftyEventSubscriber(id="CheckBox_rain") 
+        public void rainToggle(final String id, final CheckBoxStateChangedEvent event) 
+        {  
+            if (CheckBox_rain.isChecked()) {
+                Slider_rain.enable();
+                EffectCenter.setRainingPercentage(Intensity_rain);
+                DistSet.setIsRain(true);
+                DistSet.setIsBox(true);
+                DistSet.setPropabilityBox(8);
+            }
+            else {
+                Slider_rain.setValue(0);
+                Intensity_rain = Slider_rain.getValue();
+                Slider_rain.disable();
+                EffectCenter.setRainingPercentage(Intensity_rain);
+                DistSet.setIsRain(false);
+            }
+        }
+        
+        @NiftyEventSubscriber(id="CheckBox_snow") 
+        public void snowToggle(final String id, final CheckBoxStateChangedEvent event) 
+        {  
+            if (CheckBox_snow.isChecked()) {
+                Slider_snow.enable();
+                EffectCenter.setSnowingPercentage(Intensity_snow);
+                DistSet.setIsSnow(true);
+            }
+            else {
+                Slider_snow.setValue(0);
+                Intensity_snow = Slider_snow.getValue();
+                Slider_snow.disable();
+                EffectCenter.setSnowingPercentage(Intensity_snow);
+                DistSet.setIsSnow(false);
+            }
+        }
+        
+        @NiftyEventSubscriber(id="CheckBox_fog") 
+        public void fogToggle(final String id, final CheckBoxStateChangedEvent event) 
+        {  
+            if (CheckBox_fog.isChecked()) {
+                Slider_fog.enable();
+                EffectCenter.setFogPercentage(Intensity_fog);
+                DistSet.setIsFog(true);
+            }
+            else {
+                Slider_fog.setValue(0);
+                Intensity_fog = Slider_fog.getValue();
+                Slider_fog.disable();
+                EffectCenter.setSnowingPercentage(Intensity_fog);
+                DistSet.setIsFog(false);
+            }
+        }
+        
+        @NiftyEventSubscriber(id="Slider_rain") 
+        public void rainIntensity(final String id, final SliderChangedEvent event) 
+        {   
+                Intensity_rain = Slider_rain.getValue();
+                EffectCenter.setRainingPercentage(Intensity_rain);
+        }
+        
+        @NiftyEventSubscriber(id="Slider_snow") 
+        public void snowIntensity(final String id, final SliderChangedEvent event) 
+        {   
+                Intensity_snow = Slider_snow.getValue();
+                EffectCenter.setSnowingPercentage(Intensity_snow);
+        }
+        
+        @NiftyEventSubscriber(id="Slider_fog") 
+        public void fogIntensity(final String id, final SliderChangedEvent event) 
+        {   
+                Intensity_fog = Slider_fog.getValue();
+                EffectCenter.setFogPercentage(Intensity_fog);
+        }
+        
 	public void clickStartButton()
 	{
 		instructionScreenGUI.hideDialog();
+                
 	}
 
 }
