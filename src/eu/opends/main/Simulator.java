@@ -40,6 +40,9 @@ import com.jme3.niftygui.NiftyJmeDisplay;
 import com.sun.javafx.application.PlatformImpl;
 
 import de.lessvoid.nifty.Nifty;
+import distraction.DistractionSettings;
+import distraction.ListOfDistractions;
+
 import eu.opends.analyzer.DrivingTaskLogger;
 import eu.opends.analyzer.DataWriter;
 import eu.opends.audio.AudioCenter;
@@ -90,6 +93,11 @@ public class Simulator extends SimulationBasics
     private int frameCounter = 0;
     private boolean drivingTaskGiven = false;
     private boolean initializationFinished = false;
+    DistractionSettings distSet;
+    ListOfDistractions LoD;
+
+    public static float Timer;
+
     
     private static Float gravityConstant;
 	public static Float getGravityConstant()
@@ -459,7 +467,13 @@ public class Simulator extends SimulationBasics
 		}
 		
 		joystickSpringController = new ForceFeedbackJoystickController(this);
-		
+                
+                
+                distSet = new DistractionSettings();
+                LoD = new ListOfDistractions(this);
+                LoD.initialize();
+                DistractionSettings.setDistRunning(false);
+                
 		initializationFinished = true;
     }
 
@@ -561,6 +575,26 @@ public class Simulator extends SimulationBasics
 			
 			if(eyetrackerCenter != null)
 				eyetrackerCenter.update();
+                        
+                        
+                        if(DistractionSettings.isDistRunning() == false){
+                            Timer = Timer + tpf;
+                            if (Timer > 3){
+                                LoD.update(tpf);
+                                DistractionSettings.setDistRunning(true);
+                                Timer = 0;
+                            }
+                        } else {
+                            Timer = Timer + tpf;
+                            if (Timer > 3){
+                                LoD.removeDist();
+                                DistractionSettings.setDistRunning(false);
+                                Timer = 0;
+                            }
+                        }
+                        
+                        
+                        
 
     		if(frameCounter == 5)
     		{

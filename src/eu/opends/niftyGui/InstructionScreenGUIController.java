@@ -18,11 +18,23 @@
 
 package eu.opends.niftyGui;
 
+
+import com.jme3.asset.AssetManager;
 import de.lessvoid.nifty.Nifty;
+import de.lessvoid.nifty.NiftyEventSubscriber;
+import de.lessvoid.nifty.controls.CheckBox;
+import de.lessvoid.nifty.controls.CheckBoxStateChangedEvent;
+import de.lessvoid.nifty.controls.Slider;
+import de.lessvoid.nifty.controls.SliderChangedEvent;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
-import eu.opends.basics.SimulationBasics;
 
+
+
+import distraction.DistractionSettings;
+import distraction.Weather;
+import eu.opends.main.Simulator;
+import de.lessvoid.nifty.elements.Element;
 
 /**
  * This class handles display and user interaction with the key mapping 
@@ -32,10 +44,29 @@ import eu.opends.basics.SimulationBasics;
  */
 public class InstructionScreenGUIController implements ScreenController 
 {
-	//private SimulationBasics sim;
-	//private Nifty nifty;
-	private InstructionScreenGUI instructionScreenGUI;
-	
+    
+
+	private final Nifty nifty;
+	private final InstructionScreenGUI instructionScreenGUI;
+        private CheckBox CheckBox_snow;
+        private CheckBox CheckBox_rain;
+        private CheckBox CheckBox_fog;
+        private CheckBox CheckBox_box;
+        private CheckBox CheckBox_pedestrian;
+        private CheckBox CheckBox_sound;
+        private CheckBox CheckBox_text;
+        private CheckBox CheckBox_dark;
+        private Slider Slider_rain;
+        private Slider Slider_snow;
+        private Slider Slider_fog;
+        private Slider Slider_box;
+        private Slider Slider_pedestrian;
+        private Slider Slider_sound;
+        private Slider Slider_text;
+        private Slider Slider_dark;
+        private Element infoRain;
+        private final AssetManager manager;
+        
 	
 	/**
 	 * Creates a new controller instance for the key mapping and graphic 
@@ -47,11 +78,12 @@ public class InstructionScreenGUIController implements ScreenController
 	 * @param instructionScreenGUI
 	 * 			Instance of the key mapping and graphic settings GUI.
 	 */
-	public InstructionScreenGUIController(SimulationBasics sim, InstructionScreenGUI instructionScreenGUI) 
+	public InstructionScreenGUIController(Simulator sim, InstructionScreenGUI instructionScreenGUI) 
 	{
-		//this.sim = sim;
 		this.instructionScreenGUI = instructionScreenGUI;
-		//this.nifty = instructionScreenGUI.getNifty();
+		this.nifty = instructionScreenGUI.getNifty();
+                this.manager = sim.getAssetManager();
+                
 	}
 
 	
@@ -71,19 +103,243 @@ public class InstructionScreenGUIController implements ScreenController
 
 	}
 
-	
 	/**
 	 * Will be called when GUI is started.
 	 */
 	@Override
 	public void onStartScreen() 
 	{
-
+            Screen screen = nifty.getCurrentScreen();
+            CheckBox_rain = screen.findNiftyControl("CheckBox_rain", CheckBox.class);
+            CheckBox_snow = screen.findNiftyControl("CheckBox_snow", CheckBox.class);
+            CheckBox_fog = screen.findNiftyControl("CheckBox_fog", CheckBox.class);
+            CheckBox_box = screen.findNiftyControl("CheckBox_box", CheckBox.class);
+            CheckBox_pedestrian = screen.findNiftyControl("CheckBox_pedestrian", CheckBox.class);
+            CheckBox_sound = screen.findNiftyControl("CheckBox_sound", CheckBox.class);
+            CheckBox_text = screen.findNiftyControl("CheckBox_text", CheckBox.class);
+            CheckBox_dark = screen.findNiftyControl("CheckBox_dark", CheckBox.class);
+            
+            Slider_snow = screen.findNiftyControl("Slider_snow", Slider.class);
+            Slider_rain = screen.findNiftyControl("Slider_rain", Slider.class);
+            Slider_fog = screen.findNiftyControl("Slider_fog", Slider.class);
+            Slider_box = screen.findNiftyControl("Slider_box", Slider.class);
+            Slider_pedestrian = screen.findNiftyControl("Slider_pedestrian", Slider.class);
+            Slider_sound = screen.findNiftyControl("Slider_sound", Slider.class);
+            Slider_text = screen.findNiftyControl("Slider_text", Slider.class);
+            Slider_dark = screen.findNiftyControl("Slider_dark", Slider.class);
+            
+            Slider_rain.setStepSize(10);
+            Slider_rain.disable();
+            Slider_snow.setStepSize(10);
+            Slider_snow.disable();
+            Slider_fog.setStepSize(10);
+            Slider_fog.setMax(70);
+            Slider_fog.disable(); 
+            Slider_box.setMax(10);
+            Slider_box.disable();
+            Slider_sound.setMax(10);
+            Slider_sound.disable();
+            Slider_pedestrian.setMax(10);
+            Slider_pedestrian.disable();
+            Slider_text.setMax(10);
+            Slider_text.disable();
+            Slider_dark.setMax(10);
+            Slider_dark.disable();
+  
+            
 	}
-	
+        
+        @NiftyEventSubscriber(id="CheckBox_rain") 
+        public void toggleRain(final String id, final CheckBoxStateChangedEvent event) 
+        {  
+            if (CheckBox_rain.isChecked()) {
+                Slider_rain.enable();
+                DistractionSettings.setRain(true); 
+                DistractionSettings.setBox(true);
+                DistractionSettings.setPropabilityBox(10); 
+            }
+            else {
+                Slider_rain.setValue(0);
+                Slider_rain.disable();
+                DistractionSettings.setRain(false);
+            }
+            DistractionSettings.setIntensityRain(Slider_rain.getValue());
+            Weather.setWeather();
+        }
+        
+        @NiftyEventSubscriber(id="CheckBox_snow") 
+        public void toggleSnow(final String id, final CheckBoxStateChangedEvent event) 
+        {  
+            if (CheckBox_snow.isChecked()) {
+                Slider_snow.enable();
+                DistractionSettings.setSnow(true);
+            }
+            else {
+                Slider_snow.setValue(0);
+                Slider_snow.disable();
+                DistractionSettings.setSnow(false);
+            }
+            DistractionSettings.setIntensitySnow(Slider_snow.getValue());
+            Weather.setWeather();
+        }
+        
+        @NiftyEventSubscriber(id="CheckBox_fog") 
+        public void toggleFog(final String id, final CheckBoxStateChangedEvent event) 
+        {  
+            if (CheckBox_fog.isChecked()) {
+                Slider_fog.enable();
+                DistractionSettings.setFog(true);
+            }
+            else {
+                Slider_fog.setValue(0);
+                Slider_fog.disable();
+                DistractionSettings.setFog(false);
+            }
+            DistractionSettings.setIntensityFog(Slider_fog.getValue());
+            Weather.setWeather();
+        }
+        
+        @NiftyEventSubscriber(id="CheckBox_box") 
+        public void toggleBox(final String id, final CheckBoxStateChangedEvent event) 
+        {  
+            if (CheckBox_box.isChecked()) {
+                Slider_box.enable();
+                DistractionSettings.setBox(true);
+                System.out.println("box work");
+            }
+            else {
+                Slider_box.setValue(0);
+                Slider_box.disable();
+                DistractionSettings.setBox(false);
+            }
+            DistractionSettings.setPropabilityBox(Slider_box.getValue());
+        }
+        
+        @NiftyEventSubscriber(id="CheckBox_sound") 
+        public void toggleSound(final String id, final CheckBoxStateChangedEvent event) 
+        {  
+            if (CheckBox_sound.isChecked()) {
+                Slider_sound.enable();
+                DistractionSettings.setSound(true);
+                System.out.println("sound work");
+            }
+            else {
+                Slider_sound.setValue(0);
+                Slider_sound.disable();
+                DistractionSettings.setSound(false);
+            }
+            DistractionSettings.setPropabilitySound(Slider_sound.getValue());
+        }
+        
+        @NiftyEventSubscriber(id="CheckBox_pedestrian") 
+        public void togglePedestrian(final String id, final CheckBoxStateChangedEvent event) 
+        {  
+            if (CheckBox_pedestrian.isChecked()) {
+                Slider_pedestrian.enable();
+                DistractionSettings.setPedestrian(true);
+                System.out.println("pedestr work");
+            }
+            else {
+                Slider_pedestrian.setValue(0);
+                Slider_pedestrian.disable();
+                DistractionSettings.setPedestrian(false);
+            }
+            DistractionSettings.setPropabilityPedestrian(Slider_pedestrian.getValue());
+        }
+        
+        @NiftyEventSubscriber(id="CheckBox_text") 
+        public void toggleText(final String id, final CheckBoxStateChangedEvent event) 
+        {  
+            if (CheckBox_text.isChecked()) {
+                Slider_text.enable();
+                DistractionSettings.setText(true);
+                System.out.println("text work");
+            }
+            else {
+                Slider_text.setValue(0);
+                Slider_text.disable();
+                DistractionSettings.setText(false);
+            }
+            DistractionSettings.setPropabilityText(Slider_text.getValue());
+        }
+        
+        @NiftyEventSubscriber(id="CheckBox_dark") 
+        public void toggleDark(final String id, final CheckBoxStateChangedEvent event) 
+        {  
+            if (CheckBox_dark.isChecked()) {
+                Slider_dark.enable();
+                DistractionSettings.setDark(true);
+                System.out.println("dark work");
+            }
+            else {
+                Slider_dark.setValue(0);
+                Slider_dark.disable();
+                DistractionSettings.setDark(false);
+            }
+            DistractionSettings.setPropabilityDark(Slider_dark.getValue());
+        }
+        
+        @NiftyEventSubscriber(id="Slider_rain") 
+        public void intensityRain(final String id, final SliderChangedEvent event) 
+        {   
+                DistractionSettings.setIntensityRain(Slider_rain.getValue());
+                Weather.setWeather();
+        }
+        
+        @NiftyEventSubscriber(id="Slider_snow") 
+        public void intensitySnow(final String id, final SliderChangedEvent event) 
+        {   
+                DistractionSettings.setIntensitySnow(Slider_snow.getValue());
+                Weather.setWeather();
+        }
+        
+        @NiftyEventSubscriber(id="Slider_fog") 
+        public void intensityFog(final String id, final SliderChangedEvent event) 
+        {   
+                DistractionSettings.setIntensityFog(Slider_fog.getValue());
+                Weather.setWeather();
+        }
+        
+        @NiftyEventSubscriber(id="Slider_box") 
+        public void propabilityBox(final String id, final SliderChangedEvent event) 
+        {   
+                DistractionSettings.setPropabilityBox(Slider_box.getValue());
+        }
+        
+        @NiftyEventSubscriber(id="Slider_sound") 
+        public void propabilitySound(final String id, final SliderChangedEvent event) 
+        {   
+                DistractionSettings.setPropabilitySound(Slider_sound.getValue());
+        }
+        
+        @NiftyEventSubscriber(id="Slider_pedestrian") 
+        public void propabilityPedestrian(final String id, final SliderChangedEvent event) 
+        {   
+                DistractionSettings.setPropabilityPedestrian(Slider_pedestrian.getValue());
+        }
+        
+        @NiftyEventSubscriber(id="Slider_text") 
+        public void propabilityText(final String id, final SliderChangedEvent event) 
+        {   
+                DistractionSettings.setPropabilityText(Slider_text.getValue());
+        }
+        
+        @NiftyEventSubscriber(id="Slider_dark") 
+        public void propabilityDark(final String id, final SliderChangedEvent event) 
+        {   
+                DistractionSettings.setPropabilityDark(Slider_dark.getValue());
+        }
+        
+        
+        public void clickCloseButton()
+	{
+		nifty.closePopup(infoRain.getId());
+	}
+        
 	public void clickStartButton()
 	{
 		instructionScreenGUI.hideDialog();
+                
 	}
 
 }
