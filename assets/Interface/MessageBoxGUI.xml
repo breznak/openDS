@@ -32,12 +32,12 @@
 					<panel childLayout="center" height="20px" width="*" valign="center">
 					</panel>
 					<panel childLayout="center" height="20px" width="20px" valign="center">
-					<!-- 
+					
 						<control id="closeButton" name="button" label="X"
 							align="right" height="14px" width="20">
 							<interact onClick="clickCloseButton()" />
 						</control>
-						 -->
+						
 					</panel>
 				</panel>
 				<panel childLayout="horizontal" height="*" width="100%" align="center" backgroundColor="#0008">

@@ -34,14 +34,19 @@ import org.apache.log4j.PropertyConfigurator;
 
 import com.jme3.app.StatsAppState;
 import com.jme3.app.state.VideoRecorderAppState;
+import com.jme3.asset.AssetManager;
+import com.jme3.bullet.PhysicsSpace;
 import com.jme3.input.Joystick;
+import com.jme3.math.Ray;
 import com.jme3.math.Vector3f;
 import com.jme3.niftygui.NiftyJmeDisplay;
 import com.sun.javafx.application.PlatformImpl;
 
 import de.lessvoid.nifty.Nifty;
-import distraction.DistractionSettings;
-import distraction.ListOfDistractions;
+import cz.cvut.cognitive.distractors.DistractionSettings;
+import cz.cvut.cognitive.distractors.ListOfDistractions;
+
+import static cz.cvut.cognitive.distractors.PedestrianDistraction.results;
 
 import eu.opends.analyzer.DrivingTaskLogger;
 import eu.opends.analyzer.DataWriter;
@@ -95,6 +100,7 @@ public class Simulator extends SimulationBasics
     private boolean initializationFinished = false;
     DistractionSettings distSet;
     ListOfDistractions LoD;
+    
 
     public static float Timer;
 
@@ -472,7 +478,10 @@ public class Simulator extends SimulationBasics
                 distSet = new DistractionSettings();
                 LoD = new ListOfDistractions(this);
                 LoD.initialize();
+                DistractionSettings.setDistScenario(false);
                 DistractionSettings.setDistRunning(false);
+                Timer = 0;
+                DistractionSettings.setQuestionAnswered(true);
                 
 		initializationFinished = true;
     }
@@ -576,22 +585,46 @@ public class Simulator extends SimulationBasics
 			if(eyetrackerCenter != null)
 				eyetrackerCenter.update();
                         
+                        if(DistractionSettings.isDistScenario() == true){
+                            if(DistractionSettings.isDistRunning() == false){
+                                Timer = Timer + tpf;
+                                if (Timer > 5)
+                                {
+                                    LoD.update(tpf);
+                                    Timer = 0;
+                                }
+                            } else if (DistractionSettings.isQuestionAnswered()) {  
+                                
+                                Timer = Timer + tpf;
+                                if(Timer > 5){
+                                    LoD.removeDist();
+                                    DistractionSettings.setDistRunning(false);
+                                    Timer = 0;
+                                }
+                            } else {
+                                if(!isPause()){
+                                    setPause(true);
+                                    inputManager.setCursorVisible(true);
+                                }
+                            }
+                        } 
+                                
+                                
+                                   
                         
-                        if(DistractionSettings.isDistRunning() == false){
-                            Timer = Timer + tpf;
-                            if (Timer > 3){
-                                LoD.update(tpf);
-                                DistractionSettings.setDistRunning(true);
-                                Timer = 0;
-                            }
-                        } else {
-                            Timer = Timer + tpf;
-                            if (Timer > 3){
-                                LoD.removeDist();
-                                DistractionSettings.setDistRunning(false);
-                                Timer = 0;
-                            }
-                        }
+                        
+                        //TODO: obalit car ghost controllom a detekovat to (naprava)
+                        //text
+                        //mapa
+                        //cesta detekcia
+                        //
+                            
+                       //     if(results.size()>0 && results.getClosestCollision().getDistance() <= 1){
+                        //        System.out.println("colision");
+                       //     }else{
+                       //         System.out.println("no colision");
+                        //    }
+                        
                         
                         
                         

@@ -1,9 +1,16 @@
 
-package distraction;
+package cz.cvut.cognitive.distractors;
 
 /**
  *
  * @author Johnny
+ * 
+ * Class containing all settings of distraction-related classes for easy access.
+ * Contains relevant variables and getters with setters:
+ * 
+ * Boolean variables of active / nonactive distractions
+ * Float variables of probabilities of these distractions
+ * 
  */
 public class DistractionSettings {
     
@@ -18,12 +25,30 @@ public class DistractionSettings {
     public static float intensityRain;
     public static float intensitySnow;
     public static float intensityFog;
-    public static float propabilitySound;
-    public static float propabilityBox;
-    public static float propabilityText;
-    public static float propabilityPedestrian;
-    public static float propabilityDark;
+    public static float probabilitySound;
+    public static float probabilityBox;
+    public static float probabilityText;
+    public static float probabilityPedestrian;
+    public static float probabilityDark;
     public static boolean distRunning;
+    public static boolean distScenario;
+    public static boolean questionAnswered;
+
+    public static boolean isQuestionAnswered() {
+        return questionAnswered;
+    }
+
+    public static void setQuestionAnswered(boolean questionAnswered) {
+        DistractionSettings.questionAnswered = questionAnswered;
+    }
+
+    public static boolean isDistScenario() {
+        return distScenario;
+    }
+
+    public static void setDistScenario(boolean distScenario) {
+        DistractionSettings.distScenario = distScenario;
+    }
 
     public static boolean isDistRunning() {
         return distRunning;
@@ -97,20 +122,20 @@ public class DistractionSettings {
         DistractionSettings.Dark = Dark;
     }
 
-    public static float getPropabilityPedestrian() {
-        return propabilityPedestrian;
+    public static float getProbabilityPedestrian() {
+        return probabilityPedestrian;
     }
 
-    public static void setPropabilityPedestrian(float propabilityPedestrian) {
-        DistractionSettings.propabilityPedestrian = propabilityPedestrian;
+    public static void setProbabilityPedestrian(float propabilityPedestrian) {
+        DistractionSettings.probabilityPedestrian = propabilityPedestrian;
     }
 
-    public static float getPropabilityDark() {
-        return propabilityDark;
+    public static float getProbabilityDark() {
+        return probabilityDark;
     }
 
-    public static void setPropabilityDark(float propabilityDark) {
-        DistractionSettings.propabilityDark = propabilityDark;
+    public static void setProbabilityDark(float propabilityDark) {
+        DistractionSettings.probabilityDark = propabilityDark;
     }
 
     public static float getIntensityRain() {
@@ -137,33 +162,27 @@ public class DistractionSettings {
         DistractionSettings.intensityFog = intensityFog;
     }
     
-    public static float getPropabilitySound() {
-        return propabilitySound;
+    public static float getProbabilitySound() {
+        return probabilitySound;
     }
 
-    public static void setPropabilitySound(float propabilitySound) {
-        DistractionSettings.propabilitySound = propabilitySound;
+    public static void setProbabilitySound(float propabilitySound) {
+        DistractionSettings.probabilitySound = propabilitySound;
     }
 
-    public static float getPropabilityBox() {
-        return propabilityBox;
+    public static float getProbabilityBox() {
+        return probabilityBox;
     }
 
-    public static void setPropabilityBox(float propabilityBox) {
-        DistractionSettings.propabilityBox = propabilityBox;
+    public static void setProbabilityBox(float propabilityBox) {
+        DistractionSettings.probabilityBox = propabilityBox;
     }
 
-    public static float getPropabilityText() {
-        return propabilityText;
+    public static float getProbabilityText() {
+        return probabilityText;
     }
 
-    public static void setPropabilityText(float propabilityText) {
-        DistractionSettings.propabilityText = propabilityText;
-    }
-
-    
-
-    
-    
-    
+    public static void setProbabilityText(float propabilityText) {
+        DistractionSettings.probabilityText = propabilityText;
+    }   
 }

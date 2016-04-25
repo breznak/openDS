@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<nifty>
+    <useControls filename="nifty-default-controls.xml"/>
+    <useStyles filename="nifty-default-styles.xml"/>
+    <screen id="start" controller="cz.cvut.cognitive.distractors.TextDistractionController">
+		<layer id="questionScreen" childLayout="absolute">
+			
+			<panel id="questionPanel" childLayout="absolute" width="600px" x="350" y="400" style="nifty-panel" height="240px">
+                <control name="textfield" id="answerField" width="550px" x="10" y="150" />
+				<control name="listBox" id="questionBox" width="550px" x="10" y="10" height="150px" vertical="optional" horizontal="optional" displayItems="5" selection="Disabled"/>
+				<control name="button" id="cancelQuestionButton" childLayout="center" x="10" width="120px" y="180" label="Cancel" height="31px">
+					<interact onClick="clickCancelButton()" />
+				</control>
+				<control name="button" id="answerButton" childLayout="center" x="440" width="120px" y="180" label="Answer" height="31px">
+					<interact onClick="clickAnswerButton()" />
+				</control>
+						
+            </panel>
+
+		</layer>
+	</screen>
+</nifty>

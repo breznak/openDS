@@ -1,14 +1,18 @@
                    
-package distraction;
+package cz.cvut.cognitive.distractors;
 
 /**
  *
  * @author Johnny
+ * 
+ * Class handles distractions of enviroment (rain, snow and fog) according to 
+ * options.
+ * 
  */
 import eu.opends.effects.EffectCenter;
 
 
-public class Weather {
+public class WeatherDistration {
     
     public static void setWeather (){
         if (DistractionSettings.isRain()){
