@@ -82,7 +82,7 @@ public class SimulationBasics extends SimpleApplication
 	protected StereoCamAppState stereoCamAppState;
 	protected Spatial observer = new Node("observer");
 	
-	
+        	
 	public KeyBindingCenter getKeyBindingCenter()
 	{
 		return keyBindingCenter;
@@ -262,7 +262,7 @@ public class SimulationBasics extends SimpleApplication
         
         keyMappingGUI = new KeyMappingGUI(this);
         shutDownGUI = new ShutDownGUI(this);
-        instructionScreenGUI = new InstructionScreenGUI(this);
+        instructionScreenGUI = new InstructionScreenGUI((Simulator)this);
     }
 
 
