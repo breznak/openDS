@@ -1,0 +1,12 @@
+<lightTextures>
+	<position path="chassis/chassis-entity/Chassis-ogremesh/Chassis-geom-1" >
+		<allOff texture="eclipse2003-diffuse-gray.jpg" />
+		<leftTurn texture="leftTurnBody.png" />
+		<rightTurn texture="rightTurnBody.png" />
+		<hazardLights texture="hazardLightsBody.png" />
+		<brakeLights texture="brakeLightsBody.png" />
+		<leftTurnBrakeLights texture="leftTurnBrakeLightsBody.png" />
+		<rightTurnBrakeLights texture="rightTurnBrakeLightsBody.png" />
+		<hazardLightsBrakeLights texture="hazardLightsBrakeLightsBody.png" />
+	</position>
+</lightTextures>

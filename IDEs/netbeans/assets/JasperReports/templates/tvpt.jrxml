@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report9" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8185045d-29a6-4256-8cf5-9c9525104f16">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="New Dataset 1" uuid="f7e62c97-fb63-4000-91b5-f7d2a3002382">
+		<queryString>
+			<![CDATA[SELECT
+    *
+FROM
+    `tvpt` tvpt
+WHERE
+    brakeLightReaction <> 0 OR
+    leadingCarTurnSignalReaction <> 0 OR
+    followerCarTurnSignalReaction <> 0 OR
+    speedReduction1Reaction <> 0;]]>
+		</queryString>
+		<field name="driverName" class="java.lang.String"/>
+		<field name="conditionName" class="java.lang.String"/>
+		<field name="conditionNumber" class="java.lang.Long"/>
+		<field name="steeringCarSpeedKmh" class="java.lang.Float"/>
+		<field name="steeringCarX" class="java.lang.Float"/>
+		<field name="steeringCarZ" class="java.lang.Float"/>
+		<field name="leadingCarSpeedKmh" class="java.lang.Float"/>
+		<field name="leadingCarZ" class="java.lang.Float"/>
+		<field name="followerCarSpeedKmh" class="java.lang.Float"/>
+		<field name="followerCarZ" class="java.lang.Float"/>
+		<field name="leadingCarBrakeLightOn" class="java.lang.Boolean"/>
+		<field name="leadingCarTurnSignalOn" class="java.lang.String"/>
+		<field name="followerCarTurnSignalOn" class="java.lang.Boolean"/>
+		<field name="distanceToLeadingCar" class="java.lang.Float"/>
+		<field name="distanceFromLaneCenter" class="java.lang.Float"/>
+		<field name="distanceToFollowerCar" class="java.lang.Float"/>
+		<field name="longitudinalDeviation" class="java.lang.Float"/>
+		<field name="lateralDeviation" class="java.lang.Float"/>
+		<field name="brakeLightReaction" class="java.lang.Integer"/>
+		<field name="brakeLightReactionTime" class="java.lang.Long"/>
+		<field name="leadingCarTurnSignalReaction" class="java.lang.Integer"/>
+		<field name="leadingCarTurnSignalReactionTime" class="java.lang.Long"/>
+		<field name="followerCarTurnSignalReaction" class="java.lang.Integer"/>
+		<field name="followerCarTurnSignalReactionTime" class="java.lang.Long"/>
+		<field name="speedReduction1Reaction" class="java.lang.Integer"/>
+		<field name="speedReduction1ReactionTime" class="java.lang.Long"/>
+		<field name="absoluteTime" class="java.lang.Long"/>
+		<field name="experimentTime" class="java.lang.Long"/>
+	</subDataset>
+	<parameter name="maxDeviation" class="java.lang.Float" isForPrompting="false">
+		<defaultValueExpression><![CDATA[1]]></defaultValueExpression>
+	</parameter>
+	<parameter name="longitudinalToleranceLowerBound" class="java.lang.Float" isForPrompting="false">
+		<defaultValueExpression><![CDATA[24]]></defaultValueExpression>
+	</parameter>
+	<parameter name="longitudinalToleranceUpperBound" class="java.lang.Float" isForPrompting="false">
+		<defaultValueExpression><![CDATA[28]]></defaultValueExpression>
+	</parameter>
+	<parameter name="lateralToleranceLowerBound" class="java.lang.Float" isForPrompting="false">
+		<defaultValueExpression><![CDATA[-1]]></defaultValueExpression>
+	</parameter>
+	<parameter name="lateralToleranceUpperBound" class="java.lang.Float" isForPrompting="false">
+		<defaultValueExpression><![CDATA[1]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select * from tvpt;]]>
+	</queryString>
+	<field name="driverName" class="java.lang.String"/>
+	<field name="conditionName" class="java.lang.String"/>
+	<field name="conditionNumber" class="java.lang.Long"/>
+	<field name="steeringCarSpeedKmh" class="java.lang.Float"/>
+	<field name="steeringCarX" class="java.lang.Float"/>
+	<field name="steeringCarZ" class="java.lang.Float"/>
+	<field name="leadingCarSpeedKmh" class="java.lang.Float"/>
+	<field name="leadingCarZ" class="java.lang.Float"/>
+	<field name="followerCarSpeedKmh" class="java.lang.Float"/>
+	<field name="followerCarZ" class="java.lang.Float"/>
+	<field name="leadingCarBrakeLightOn" class="java.lang.Boolean"/>
+	<field name="leadingCarTurnSignalOn" class="java.lang.String"/>
+	<field name="followerCarTurnSignalOn" class="java.lang.Boolean"/>
+	<field name="distanceToLeadingCar" class="java.lang.Float"/>
+	<field name="distanceFromLaneCenter" class="java.lang.Float"/>
+	<field name="distanceToFollowerCar" class="java.lang.Float"/>
+	<field name="longitudinalDeviation" class="java.lang.Float"/>
+	<field name="lateralDeviation" class="java.lang.Float"/>
+	<field name="brakeLightReaction" class="java.lang.Integer"/>
+	<field name="brakeLightReactionTime" class="java.lang.Long"/>
+	<field name="leadingCarTurnSignalReaction" class="java.lang.Integer"/>
+	<field name="leadingCarTurnSignalReactionTime" class="java.lang.Long"/>
+	<field name="followerCarTurnSignalReactionTime" class="java.lang.Long"/>
+	<field name="followerCarTurnSignalReaction" class="java.lang.Integer"/>
+	<field name="speedReduction1Reaction" class="java.lang.Integer"/>
+	<field name="speedReduction1ReactionTime" class="java.lang.Long"/>
+	<field name="absoluteTime" class="java.lang.Long"/>
+	<field name="experimentTime" class="java.lang.Long"/>
+	<variable name="startTime" class="java.lang.Long" calculation="Lowest">
+		<variableExpression><![CDATA[$F{absoluteTime}]]></variableExpression>
+	</variable>
+	<variable name="endTime" class="java.lang.Long" calculation="Highest">
+		<variableExpression><![CDATA[$F{absoluteTime}]]></variableExpression>
+	</variable>
+	<variable name="highestReactionTime" class="java.lang.Long" calculation="Highest">
+		<variableExpression><![CDATA[Math.max(Math.max(Math.max($F{brakeLightReactionTime},
+    $F{leadingCarTurnSignalReactionTime}),
+    $F{followerCarTurnSignalReactionTime}),
+    $F{speedReduction1ReactionTime})]]></variableExpression>
+	</variable>
+	<variable name="highestLongitudinalDistance" class="java.lang.Float" calculation="Highest">
+		<variableExpression><![CDATA[$F{distanceToLeadingCar}]]></variableExpression>
+	</variable>
+	<variable name="lowestLongitudinalDistance" class="java.lang.Float" calculation="Lowest">
+		<variableExpression><![CDATA[$F{distanceToLeadingCar}]]></variableExpression>
+	</variable>
+	<variable name="highestLateralDeviation" class="java.lang.Float" calculation="Highest">
+		<variableExpression><![CDATA[$F{distanceFromLaneCenter}]]></variableExpression>
+	</variable>
+	<variable name="lowestLateralDeviation" class="java.lang.Float" calculation="Lowest">
+		<variableExpression><![CDATA[$F{distanceFromLaneCenter}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="548" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="dbcf94fc-552c-4a9e-920a-d5d26e1efe72" x="77" y="382" width="239" height="20"/>
+				<textElement>
+					<font size="14" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Lateral Deviation ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="be4414d2-57c9-4d68-bc53-f2486af74986" x="293" y="27" width="85" height="20"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Subject Name:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="201ea915-7e19-448e-8b0b-a3242c673718" x="389" y="27" width="66" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{driverName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="3009384c-fd0b-47be-ad09-54fb040a8e02" x="597" y="7" width="31" height="20"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Role:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="e0f83f01-4538-45f0-9809-3a050a1ae6c1" x="639" y="7" width="156" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Three Vehicle Platoon Task"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="686f3062-f0b9-4997-ae9e-7a3d67890d10" x="293" y="7" width="85" height="20"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Experiment ID:]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement uuid="e688efe8-0946-49ca-acb0-311f33be6005" mode="Transparent" x="389" y="7" width="100" height="20" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{conditionNumber}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="d1bb1281-4fa9-4557-858d-69e9eb7787c4" x="542" y="27" width="86" height="20"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Condition Name:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="8ad16839-212e-489a-82fa-feabbade1bce" x="639" y="27" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{conditionName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="41e45c3a-d660-48f8-a1ee-fc21f06ccf79" x="8" y="27" width="86" height="20"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[End:]]></text>
+			</staticText>
+			<textField pattern="HH.mm">
+				<reportElement uuid="d1f93d71-292e-4d12-b5e3-2bac5c516342" x="105" y="7" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format($V{startTime})]]></textFieldExpression>
+			</textField>
+			<xyBarChart>
+				<chart>
+					<reportElement uuid="58e2648e-b76f-4cd6-aa6c-44fd182ac7b5" mode="Transparent" x="0" y="67" width="802" height="139"/>
+					<box leftPadding="0"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend position="Top"/>
+				</chart>
+				<xyDataset>
+					<dataset>
+						<datasetRun subDataset="New Dataset 1" uuid="6b5c4d76-9ba2-4517-86fa-1c9faf5b8519"/>
+					</dataset>
+					<xySeries>
+						<seriesExpression><![CDATA["Brake Light"]]></seriesExpression>
+						<xValueExpression><![CDATA[$F{experimentTime}/1000.0]]></xValueExpression>
+						<yValueExpression><![CDATA[(($F{brakeLightReaction} < 0) ?
+(($F{brakeLightReaction} < -1) ? $F{brakeLightReactionTime} : -1000)
+:
+$F{brakeLightReactionTime})]]></yValueExpression>
+					</xySeries>
+					<xySeries>
+						<seriesExpression><![CDATA["Leading Car Turn Signal"]]></seriesExpression>
+						<xValueExpression><![CDATA[$F{experimentTime}/1000.0]]></xValueExpression>
+						<yValueExpression><![CDATA[(($F{leadingCarTurnSignalReaction} < 0) ?
+(($F{leadingCarTurnSignalReaction} < -1) ? $F{leadingCarTurnSignalReactionTime} : -1000)
+:
+$F{leadingCarTurnSignalReactionTime})]]></yValueExpression>
+					</xySeries>
+					<xySeries>
+						<seriesExpression><![CDATA["Follower Car Turn Signal"]]></seriesExpression>
+						<xValueExpression><![CDATA[$F{experimentTime}/1000.0]]></xValueExpression>
+						<yValueExpression><![CDATA[(($F{followerCarTurnSignalReaction} < 0) ?
+(($F{followerCarTurnSignalReaction} < -1) ? $F{followerCarTurnSignalReactionTime} : -1000)
+:
+$F{followerCarTurnSignalReactionTime})]]></yValueExpression>
+					</xySeries>
+					<xySeries>
+						<seriesExpression><![CDATA["Speed Reduction"]]></seriesExpression>
+						<xValueExpression><![CDATA[$F{experimentTime}/1000.0]]></xValueExpression>
+						<yValueExpression><![CDATA[(($F{speedReduction1Reaction} < 0) ?
+(($F{speedReduction1Reaction} < -1) ? $F{speedReduction1ReactionTime} : -1000)
+:
+$F{speedReduction1ReactionTime})]]></yValueExpression>
+					</xySeries>
+				</xyDataset>
+				<barPlot isShowLabels="true" isShowTickLabels="true">
+					<plot>
+						<seriesColor seriesOrder="0" color="#FF0000"/>
+						<seriesColor seriesOrder="1" color="#FFFF00"/>
+						<seriesColor seriesOrder="2" color="#0000FF"/>
+						<seriesColor seriesOrder="3" color="#00FF00"/>
+					</plot>
+					<itemLabel>
+						<font size="10" isUnderline="false"/>
+					</itemLabel>
+					<categoryAxisFormat>
+						<axisFormat labelColor="#000000" verticalTickLabels="false"/>
+					</categoryAxisFormat>
+					<domainAxisMinValueExpression><![CDATA[0]]></domainAxisMinValueExpression>
+					<domainAxisMaxValueExpression><![CDATA[($V{endTime}-$V{startTime})/1000.0]]></domainAxisMaxValueExpression>
+					<rangeAxisMinValueExpression><![CDATA[0]]></rangeAxisMinValueExpression>
+					<rangeAxisMaxValueExpression><![CDATA[$V{highestReactionTime}+1000]]></rangeAxisMaxValueExpression>
+				</barPlot>
+			</xyBarChart>
+			<staticText>
+				<reportElement uuid="1c74f85d-a052-4f46-9f78-cd79748c2fa0" x="8" y="7" width="86" height="20"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Start:]]></text>
+			</staticText>
+			<textField pattern="HH.mm">
+				<reportElement uuid="0b23cce1-0fcd-46fa-b110-5c9e65a1b241" x="105" y="27" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format($V{endTime})]]></textFieldExpression>
+			</textField>
+			<xyLineChart>
+				<chart isShowLegend="false" theme="SteeringDeviationTheme">
+					<reportElement uuid="3c181e3e-1ff7-4866-9ad2-b475f2c2b60d" x="5" y="231" width="790" height="145"/>
+					<box leftPadding="0"/>
+					<chartTitle position="Top"/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<xyDataset>
+					<xySeries>
+						<seriesExpression><![CDATA["LowerBound"]]></seriesExpression>
+						<xValueExpression><![CDATA[($F{absoluteTime}.equals($V{startTime}) ? 0 :$F{experimentTime})]]></xValueExpression>
+						<yValueExpression><![CDATA[$P{longitudinalToleranceLowerBound}]]></yValueExpression>
+					</xySeries>
+					<xySeries>
+						<seriesExpression><![CDATA["UpperBound"]]></seriesExpression>
+						<xValueExpression><![CDATA[($F{absoluteTime}.equals($V{startTime}) ? 0 :$F{experimentTime})]]></xValueExpression>
+						<yValueExpression><![CDATA[$P{longitudinalToleranceUpperBound}]]></yValueExpression>
+					</xySeries>
+					<xySeries>
+						<seriesExpression><![CDATA[($F{absoluteTime}.equals($V{startTime}) ? "C" :
+
+(($F{distanceToLeadingCar} < $P{longitudinalToleranceUpperBound}) ?
+(($F{distanceToLeadingCar} < $P{longitudinalToleranceLowerBound}) ? "B" : "C")
+:
+"A")
+
+)]]></seriesExpression>
+						<xValueExpression><![CDATA[$F{experimentTime}/1000.0]]></xValueExpression>
+						<yValueExpression><![CDATA[($F{absoluteTime}.equals($V{startTime}) ?
+    (($F{distanceToLeadingCar} < $P{longitudinalToleranceUpperBound}) ?
+        (($F{distanceToLeadingCar} < $P{longitudinalToleranceLowerBound}) ? $P{longitudinalToleranceLowerBound} : $F{distanceToLeadingCar})
+    :
+        $P{longitudinalToleranceUpperBound})
+:
+    $F{distanceToLeadingCar})]]></yValueExpression>
+					</xySeries>
+				</xyDataset>
+				<linePlot isShowLines="true" isShowShapes="false">
+					<plot/>
+					<domainAxisMinValueExpression><![CDATA[0]]></domainAxisMinValueExpression>
+					<domainAxisMaxValueExpression><![CDATA[($V{endTime}-$V{startTime})/1000.0]]></domainAxisMaxValueExpression>
+					<rangeAxisMinValueExpression><![CDATA[Math.min($V{lowestLongitudinalDistance},$P{longitudinalToleranceLowerBound})-5]]></rangeAxisMinValueExpression>
+					<rangeAxisMaxValueExpression><![CDATA[Math.max($V{highestLongitudinalDistance},$P{longitudinalToleranceUpperBound})+5]]></rangeAxisMaxValueExpression>
+				</linePlot>
+			</xyLineChart>
+			<staticText>
+				<reportElement uuid="b682b485-0e22-4024-aa06-043575cb4935" x="77" y="67" width="239" height="20"/>
+				<textElement>
+					<font size="14" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Reaction Times]]></text>
+			</staticText>
+			<xyLineChart>
+				<chart isShowLegend="false" theme="SteeringDeviationTheme">
+					<reportElement uuid="620296d9-889c-4a06-89f5-dd279698a92d" x="5" y="402" width="790" height="145"/>
+					<box leftPadding="0"/>
+					<chartTitle position="Top"/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<xyDataset>
+					<xySeries>
+						<seriesExpression><![CDATA["-1"]]></seriesExpression>
+						<xValueExpression><![CDATA[($F{absoluteTime}.equals($V{startTime}) ? 0 :$F{experimentTime})]]></xValueExpression>
+						<yValueExpression><![CDATA[$P{lateralToleranceLowerBound}]]></yValueExpression>
+					</xySeries>
+					<xySeries>
+						<seriesExpression><![CDATA["1"]]></seriesExpression>
+						<xValueExpression><![CDATA[($F{absoluteTime}.equals($V{startTime}) ? 0 :$F{experimentTime})]]></xValueExpression>
+						<yValueExpression><![CDATA[$P{lateralToleranceUpperBound}]]></yValueExpression>
+					</xySeries>
+					<xySeries>
+						<seriesExpression><![CDATA[($F{absoluteTime}.equals($V{startTime}) ? "0.0" :
+
+(($F{distanceFromLaneCenter} < $P{lateralToleranceUpperBound}) ?
+(($F{distanceFromLaneCenter} < $P{lateralToleranceLowerBound}) ? "-1.0" : "0.0")
+:
+"1.0")
+
+)]]></seriesExpression>
+						<xValueExpression><![CDATA[$F{experimentTime}/1000.0]]></xValueExpression>
+						<yValueExpression><![CDATA[($F{absoluteTime}.equals($V{startTime}) ?
+    (($F{distanceFromLaneCenter} < $P{lateralToleranceUpperBound}) ?
+        (($F{distanceFromLaneCenter} < $P{lateralToleranceLowerBound}) ? $P{lateralToleranceLowerBound} : $F{distanceFromLaneCenter})
+    :
+        $P{lateralToleranceUpperBound})
+:
+    $F{distanceFromLaneCenter})]]></yValueExpression>
+					</xySeries>
+				</xyDataset>
+				<linePlot isShowLines="true" isShowShapes="false">
+					<plot/>
+					<domainAxisMinValueExpression><![CDATA[0]]></domainAxisMinValueExpression>
+					<domainAxisMaxValueExpression><![CDATA[($V{endTime}-$V{startTime})/1000.0]]></domainAxisMaxValueExpression>
+					<rangeAxisMinValueExpression><![CDATA[Math.min($V{lowestLateralDeviation},$P{lateralToleranceLowerBound})-2]]></rangeAxisMinValueExpression>
+					<rangeAxisMaxValueExpression><![CDATA[Math.max($V{highestLateralDeviation},$P{lateralToleranceUpperBound})+2]]></rangeAxisMaxValueExpression>
+				</linePlot>
+			</xyLineChart>
+			<staticText>
+				<reportElement uuid="4e554e02-4cc5-4198-8501-b8276374f41a" x="77" y="211" width="239" height="20"/>
+				<textElement>
+					<font size="14" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Longitudinal Distance]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

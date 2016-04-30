@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<nifty>
+    <useControls filename="nifty-default-controls.xml"/>
+    <useStyles filename="nifty-default-styles.xml"/>
+    <screen id="start" controller="eu.opends.niftyGui.DistractionScreenGUIController">
+        <layer id="distractionScreen_1" childLayout="horizontal" visible="true">
+            <panel id="options_panel" childLayout="absolute" width="688px" x="41" y="51" style="nifty-panel" height="626px">
+                <panel id="weather_panel" childLayout="absolute" backgroundColor="#333333ff" width="177px" x="13" y="66" style="nifty-panel" height="334px">
+                    <control name="horizontalSlider" id="Slider_fog" width="150px" x="3" y="290"/>
+                    <control name="checkbox" id="CheckBox_fog" x="55" y="256"/>
+                    <control name="horizontalSlider" id="Slider_snow" width="150px" x="3" y="205"/>
+                    <control name="checkbox" id="CheckBox_snow" x="55" y="172"/>
+                    <control name="horizontalSlider" id="Slider_rain" width="150px" x="6" y="119"/>
+                    <control name="checkbox" id="CheckBox_rain" x="57" y="84"/>
+                    <control name="label" id="GLabel16" width="100px" x="19" y="10" text="Weather" align="center" height="50px" font="aurulent-sans-16.fnt"/>
+					<!--
+					<image filename="Interface\Distraction_Menu_Images\Infobox.png" visibleToMouse="false" width="30px" x="94" y="81" height="29px" id="Info_rain" >
+								
+                    </image>
+					<control name="listBox" id="questionBox" vertical="optional"
+						horizontal="optional" displayItems="4" selection="Disabled"
+						style="nifty-style-black" width="50%" x="267" y="58" height="71px"/>
+					-->
+
+                </panel>
+				
+                <control name="label" id="GLabel15" width="100px" x="185" y="4" text="Options" height="50px" font="aurulent-sans-16.fnt"/>
+                <control name="label" id="GLabel19" width="60px" x="11" y="333" text="Fog" height="25px" font="aurulent-sans-16.fnt"/>
+                <control name="label" id="GLabel17" width="60px" x="15" y="248" text="Snow" height="25px" font="aurulent-sans-16.fnt"/>
+                <control name="label" id="GLabel18" width="60px" x="15" y="158" text="Rain" height="25px" font="aurulent-sans-16.fnt"/>
+                <control name="button" id="StartButton" childLayout="center" x="529" width="120px" y="560" label="Start" height="31px">
+					<interact onClick="clickStartButton()" />
+				</control>
+				<panel id="GPanel0" childLayout="absolute" backgroundColor="#333333ff" width="269px" x="202" y="65" style="nifty-panel-simple" height="525px">
+					
+					<control name="horizontalSlider" id="Slider_sound" width="152px" x="40" y="485" height="27px"/>					
+					<control name="checkbox" id="CheckBox_sound" x="43" y="445"/>					
+					<control name="label" id="Label_sound" width="117px" x="74" y="443" text="Sound distraction" height="26px" font="aurulent-sans-16.fnt"/>
+					
+					<control name="horizontalSlider" id="Slider_text" width="156px" x="35" y="401" height="22px"/>
+					<control name="checkbox" id="CheckBox_text" x="41" y="369"/>
+					<control name="label" id="Label_text" width="100px" x="48" y="367" text="Text field" height="28px" font="aurulent-sans-16.fnt"/>
+					
+					<control name="horizontalSlider" id="Slider_dark" width="153px" x="34" y="325" height="20px"/>
+					<control name="checkbox" id="CheckBox_dark" x="43" y="285"/>
+					<control name="label" id="Label_dark" width="125px" x="76" y="283" text="Screen darkening" height="28px" font="aurulent-sans-16.fnt"/>
+					
+					<control name="horizontalSlider" id="Slider_pedestrian" width="156px" x="34" y="247" height="21px"/>
+					<control name="checkbox" id="CheckBox_pedestrian" x="43" y="202"/>
+					<control name="label" id="Label_pedestrian" width="102px" x="60" y="200" text="Pedestrian" height="31px" font="aurulent-sans-16.fnt"/>
+					
+					<control name="horizontalSlider" id="Slider_box" width="159px" x="34" y="157" height="22px"/>
+					<control name="checkbox" id="CheckBox_box" x="43" y="122"/>
+					<control name="label" id="Label_box" width="81px" x="79" y="122" text="Dropping box" height="25px" font="aurulent-sans-16.fnt"/>
+					
+					<control name="label" id="Label_distract" width="100px" x="77" y="9" text="Other distractions" height="50px" font="aurulent-sans-16.fnt"/>
+				</panel>
+                
+            </panel>
+		</layer>
+		
+		
+    </screen>
+	
+	
+</nifty>
+
+

@@ -29,7 +29,8 @@ import com.jme3.scene.Spatial.CullHint;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.elements.Element;
 import de.lessvoid.nifty.screen.Screen;
-import eu.opends.basics.SimulationBasics;
+import eu.opends.main.Simulator;
+
 
 
 /**
@@ -38,18 +39,21 @@ import eu.opends.basics.SimulationBasics;
  * tab of the GUI.
  * 
  * @author Rafael Math
+ * 
+ * edited by Johnny Marek
  */
 public class InstructionScreenGUI 
 {
 	private Nifty nifty;
-	private SimulationBasics sim;
+	private final Simulator sim;
 	private boolean instructionScreenHidden = true;
 	private boolean initiallyPaused = false;
-	private AssetManager assetManager;
-	private InputManager inputManager;
-	private AudioRenderer audioRenderer;
-	private ViewPort guiViewPort;
-	private FlyByCamera flyCam;
+	private final AssetManager assetManager;
+	private final InputManager inputManager;
+	private final AudioRenderer audioRenderer;
+	private final ViewPort guiViewPort;
+	private final FlyByCamera flyCam;
+        private String xmlPath;
 	
 	
 	/**
@@ -58,7 +62,7 @@ public class InstructionScreenGUI
 	 * @param sim
 	 * 			SimulationBasics class.
 	 */
-	public InstructionScreenGUI(SimulationBasics sim)
+	public InstructionScreenGUI(Simulator sim)
 	{
 		this.sim = sim;
 		this.assetManager = sim.getAssetManager();
@@ -129,11 +133,30 @@ public class InstructionScreenGUI
     	
     	// Create a new NiftyGUI object
     	nifty = niftyDisplay.getNifty();
-    		
-    	String xmlPath = "Interface/InstructionScreenGUI.xml";
+        
+        // Get layerID from interaction.xml file of coresponding DrivingTask
+        // Read XML and initialize custom ScreenController
+        switch (layerID){
+            case "instructionScreen_1": {
+                xmlPath = "Interface/InstructionScreenGUI.xml";
+                nifty.fromXml(xmlPath, "start", new InstructionScreenGUIController(sim, this));
+            } 
+                break;
+            
+            case "distractionScreen_1": {
+                xmlPath = "Interface/DistractionScreenGUI.xml";
+                nifty.fromXml(xmlPath, "start", new DistractionScreenGUIController(this));
+                
+            } 
+                break;
+                
+            default: System.out.println("Invalid layerID: " + layerID);
+                break;
+            }
+                        
+
     	
-    	// Read XML and initialize custom ScreenController
-    	nifty.fromXml(xmlPath, "start", new InstructionScreenGUIController(sim, this));
+
     		
     	// attach the Nifty display to the GUI view port as a processor
     	guiViewPort.addProcessor(niftyDisplay);
@@ -162,7 +185,7 @@ public class InstructionScreenGUI
 	 */
 	private void closeInstructionScreenGUI() 
 	{
-		nifty.exit();
+	nifty.exit();
         inputManager.setCursorVisible(false);
         flyCam.setEnabled(true);
 	}

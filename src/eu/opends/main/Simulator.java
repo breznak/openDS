@@ -34,12 +34,20 @@ import org.apache.log4j.PropertyConfigurator;
 
 import com.jme3.app.StatsAppState;
 import com.jme3.app.state.VideoRecorderAppState;
+import com.jme3.asset.AssetManager;
+import com.jme3.bullet.PhysicsSpace;
 import com.jme3.input.Joystick;
+import com.jme3.math.Ray;
 import com.jme3.math.Vector3f;
 import com.jme3.niftygui.NiftyJmeDisplay;
 import com.sun.javafx.application.PlatformImpl;
 
 import de.lessvoid.nifty.Nifty;
+import cz.cvut.cognitive.distractors.DistractionSettings;
+import cz.cvut.cognitive.distractors.ListOfDistractions;
+
+import static cz.cvut.cognitive.distractors.PedestrianDistraction.results;
+
 import eu.opends.analyzer.DrivingTaskLogger;
 import eu.opends.analyzer.DataWriter;
 import eu.opends.audio.AudioCenter;
@@ -90,6 +98,12 @@ public class Simulator extends SimulationBasics
     private int frameCounter = 0;
     private boolean drivingTaskGiven = false;
     private boolean initializationFinished = false;
+    DistractionSettings distSet;
+    ListOfDistractions LoD;
+    
+
+    public static float Timer;
+
     
     private static Float gravityConstant;
 	public static Float getGravityConstant()
@@ -459,7 +473,16 @@ public class Simulator extends SimulationBasics
 		}
 		
 		joystickSpringController = new ForceFeedbackJoystickController(this);
-		
+                
+                
+                distSet = new DistractionSettings();
+                LoD = new ListOfDistractions(this);
+                LoD.initialize();
+                DistractionSettings.setDistScenario(false);
+                DistractionSettings.setDistRunning(false);
+                Timer = 0;
+                DistractionSettings.setQuestionAnswered(true);
+                
 		initializationFinished = true;
     }
 
@@ -561,6 +584,50 @@ public class Simulator extends SimulationBasics
 			
 			if(eyetrackerCenter != null)
 				eyetrackerCenter.update();
+                        
+                        if(DistractionSettings.isDistScenario() == true){
+                            if(DistractionSettings.isDistRunning() == false){
+                                Timer = Timer + tpf;
+                                if (Timer > 5)
+                                {
+                                    LoD.update(tpf);
+                                    Timer = 0;
+                                }
+                            } else if (DistractionSettings.isQuestionAnswered()) {  
+                                
+                                Timer = Timer + tpf;
+                                if(Timer > 5){
+                                    LoD.removeDist();
+                                    DistractionSettings.setDistRunning(false);
+                                    Timer = 0;
+                                }
+                            } else {
+                                if(!isPause()){
+                                    setPause(true);
+                                    inputManager.setCursorVisible(true);
+                                }
+                            }
+                        } 
+                                
+                                
+                                   
+                        
+                        
+                        //TODO: obalit car ghost controllom a detekovat to (naprava)
+                        //text
+                        //mapa
+                        //cesta detekcia
+                        //
+                            
+                       //     if(results.size()>0 && results.getClosestCollision().getDistance() <= 1){
+                        //        System.out.println("colision");
+                       //     }else{
+                       //         System.out.println("no colision");
+                        //    }
+                        
+                        
+                        
+                        
 
     		if(frameCounter == 5)
     		{

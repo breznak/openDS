@@ -1,0 +1,115 @@
+material fskin.002/SOLID/TEX/fskin.jpg
+{
+	technique
+	{
+		pass
+		{
+			diffuse 0.505882 0.505882 0.505882
+			specular 0.500000 0.500000 0.500000 12.500000
+			texture_unit
+			{
+				texture Car.jpg
+			}
+		}
+	}
+}
+material Windows
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.640000 0.640000 0.640000 1.000000
+			specular 0.500000 0.500000 0.500000 1.000000 12.500000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture Car_Blue_SideWindow.png
+				tex_address_mode wrap
+				filtering trilinear
+			}
+		}
+	}
+}
+material CarTexture
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.640000 0.640000 0.640000 1.000000
+			specular 0.500000 0.500000 0.500000 1.000000 12.500000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture Car_Blue_Body.png
+				tex_address_mode wrap
+				filtering trilinear
+			}
+		}
+	}
+}
+material WindShield
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.640000 0.640000 0.640000 1.000000
+			specular 0.500000 0.500000 0.500000 1.000000 12.500000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture Car_Blue_WindShield.png
+				tex_address_mode wrap
+				filtering trilinear
+			}
+		}
+	}
+}
+material RearWindow
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.640000 0.640000 0.640000 1.000000
+			specular 0.500000 0.500000 0.500000 1.000000 12.500000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture Car_Blue_RearWindow.png
+				tex_address_mode wrap
+				filtering trilinear
+			}
+		}
+	}
+}
+material WhiteStripe
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.640000 0.640000 0.640000 1.000000
+			specular 0.500000 0.500000 0.500000 1.000000 12.500000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture WhiteStripe.png
+				tex_address_mode wrap
+				filtering trilinear
+			}
+		}
+	}
+}

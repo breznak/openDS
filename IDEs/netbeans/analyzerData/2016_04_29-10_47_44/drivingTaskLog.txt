@@ -1,0 +1,5 @@
+Driver: default driver
+Driving Task: reactionTest.xml
+Start Time: 2016-04-29 10:47:52.928
+
+trial;vpn;age;gender;task;task_detail;condition_num;condition_string;track;accuracy;additional_false_r;RT_brake1;RT_brake2;RT_brake3;RT_brake4;RT_change1;RT_change2;RT_change3;RT_change4

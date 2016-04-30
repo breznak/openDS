@@ -1,0 +1,12 @@
+ParkingSign01_;Models/MalaySigns/ParkingP01/OneWayStreet.scene;1,-0.5,-5;0,0,0;1,1,1;
+ParkingSign02_;Models/MalaySigns/ParkingP02/OneWayStreet.scene;1,-0.5,-5;0,0,0;1,1,1;
+ParkingSign03_;Models/MalaySigns/ParkingP03/OneWayStreet.scene;1,-0.5,-5;0,0,0;1,1,1;
+ParkingSign04_;Models/MalaySigns/ParkingP04/OneWayStreet.scene;1,-0.5,-5;0,0,0;1,1,1;
+ParkingSign05_;Models/MalaySigns/ParkingP05/OneWayStreet.scene;1,-0.5,-5;0,0,0;1,1,1;
+ParkingSign06_;Models/MalaySigns/ParkingP06/OneWayStreet.scene;1,-0.5,-5;0,0,0;1,1,1;
+ParkingSignTP01_;Models/MalaySigns/ParkingTP01/OneWayStreet.scene;1,-0.5,-5;0,0,0;1,1,1;
+ParkingSignTP02_;Models/MalaySigns/ParkingTP02/OneWayStreet.scene;1,-0.5,-5;0,0,0;1,1,1;
+Selekoh_berbahaya_;Models/MalaySigns/Selekoh_berbahaya/PriorityRoad.scene;1,-0.5,-5;0,0,0;1,1,1;
+MalayStop_;Models/MalaySigns/Stop/Stop.scene;1,-0.5,-5;0,0,0;1,1,1;
+Roundabout_;Models/MalaySigns/Roundabout/PriorityRoad.scene;1,-0.5,-5;0,0,0;1,1,1;
+TrafficLight_;Models/TrafficLight/trafficlight.scene;1,-0.5,-5;0,0,0;1,1,1;

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nifty xmlns="http://nifty-gui.sourceforge.net/nifty-1.3.xsd" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xsi:schemaLocation="http://nifty-gui.sourceforge.net/nifty-1.3.xsd http://nifty-gui.sourceforge.net/nifty-1.3.xsd">
+  <!-- +++++++++++++++++++++++++++++++++++++++ -->
+  <!-- load default styles and controls -->
+  <!-- +++++++++++++++++++++++++++++++++++++++ -->
+  <useStyles filename="nifty-default-styles.xml" />
+  <useControls filename="nifty-default-controls.xml" />
+  <style id="console-red" base="button-font">
+    <attributes font="fonts/menu.fnt" color="#f00f"/>
+  </style>
+  <style id="console-white" base="button-font">
+    <attributes font="fonts/menu.fnt" color="#ffff"/>
+  </style>
+  <style id="console-font">
+    <attributes font="fonts/verdana-48-regular.fnt" color="#00ff"/>
+  </style>
+
+<!-- 
+	<controlDefinition name="folderBrowserLine">
+  		<panel childLayout="horizontal" width="100%" align="center">
+    		<image id="#browser-line-icon" width="23px" height="23px" />
+    		<control id="#browser-line-text" name="label" align="left" textHAlign="left" 
+    			height="23px" width="*" wrap="true" >
+    			<interact onClick="blockSelected()" />
+    		</control>
+  		</panel>
+	</controlDefinition>
+-->
+	
+  <!-- +++++++++++++++++++++++++++++++++++++++ -->
+  <!-- start screen -->
+  <!-- +++++++++++++++++++++++++++++++++++++++ -->
+  
+	<screen id="start" controller="eu.opends.niftyGui.DrivingTaskSelectionGUIController">
+		<layer id="backLayer" childLayout="vertical" backgroundColor="#ffffff00">
+			<panel childLayout="center" align="center" width="100%" height="100%">
+				<control name="label" id="loadingLabel" text="Loading..." color="#00000000"
+							align="center" valign="center" font="Interface/Fonts/Arial32px.fnt" height="50px" >
+					<effect>
+						  <onEndScreen name="colorPulsate" startColor="#ffffffff" endColor="#000000ff" 
+							pulsateType="sin" period="1000" cycle="true"/>
+					</effect>
+				</control>
+			</panel>
+		</layer>
+		<layer id="topLayer" childLayout="vertical" backgroundColor="#ffffff00">
+		
+			<panel height="20%" />
+
+			<panel id="menuPanel" childLayout="vertical" align="center" style="nifty-panel"
+				width="60%" height="60%">
+				<effect>
+					<onStartScreen name="move" timeType="exp" factor="3.5"
+						direction="top" mode="in" length="500" inherit="true" />
+					<onEndScreen name="move" timeType="exp" factor="3.5"
+						direction="top" mode="out" length="500" inherit="true" />
+				</effect>
+
+				<panel childLayout="vertical" width="100%" height="15px" />
+
+				<panel childLayout="vertical" width="100%" height="25px">
+					<control name="label" id="headingLabel" text="Welcome to OpenDS"
+						valign="top" align="center" />
+				</panel>
+				
+				<panel childLayout="horizontal" width="100%" height="90%">
+
+					<panel childLayout="vertical" width="15px" />
+
+					<panel childLayout="vertical" width="90px">
+
+						<panel childLayout="vertical" height="15px" />
+
+						<panel childLayout="center" align="right" height="30px">
+							<control name="label" id="driversNameLabel" text="Driver's name:"
+								align="right" size="80px" />
+						</panel>
+
+						<panel childLayout="horizontal" height="20px" />
+
+						<panel childLayout="center" align="right" height="*">
+							<control name="label" id="drivingTaskLabel" text="Driving Task:"
+								align="right" size="80px" />
+						</panel>
+
+						<panel childLayout="center" align="right" height="40px" />
+
+						<panel childLayout="vertical" height="15px" />
+					</panel>
+
+					<panel childLayout="vertical" width="10px" />
+
+					<panel childLayout="vertical" width="*">
+
+						<panel childLayout="vertical" height="15px" />
+
+						<panel childLayout="center" height="30px">
+							<control name="textfield" id="driversNameTextfield" text=""
+								align="center" hight="180px" />
+						</panel>
+
+						<panel childLayout="horizontal" height="20px" />
+
+						<panel childLayout="vertical" height="*">
+							<control name="textfield" id="drivingTaskTextfield" text=""
+								align="center" hight="180px"/>
+							<control name="listBox" id="drivingTaskListbox" vertical="optional"
+								horizontal="optional" displayItems="8" selection="Single"
+								viewConverterClass="eu.opends.niftyGui.listBox.TextListBoxViewConverter" />
+							<!-- 	
+								viewConverterClass="eu.opends.niftyGui.FolderBrowserViewConverter">
+  								<control name="folderBrowserLine"/>
+  							</control>
+  							 -->
+  							 
+  							 <!-- 
+  							 <control name="label" id="errorMessage" text="" width="100%" color="#ff0000ff" 
+  							 textHAlign="left" />
+  							 -->
+  							 
+						</panel>
+
+						<panel childLayout="horizontal" height="40px">
+
+							<panel childLayout="center">
+								<control id="startButton" name="button" label="Start"
+									align="center" height="30px">
+									<interact onClick="clickStartButton()" />
+								</control>
+							</panel>
+
+							<panel width="10px" />
+
+							<panel childLayout="center">
+								<control id="quitButton" name="button" label="Quit"
+									align="center" height="30px">
+									<interact onClick="clickQuitButton()" />
+								</control>
+							</panel>
+							<!-- 
+							<panel childLayout="center">
+								<image filename="../assets/Textures/Gauges/RPMgauge.png" id="image">
+								</image>
+							</panel>
+ 							-->
+						</panel>
+
+						<panel childLayout="vertical" height="15px" />
+
+					</panel>
+
+					<panel childLayout="vertical" width="15px" />
+
+				</panel>
+
+			</panel>
+
+			<panel height="20%" />
+			
+		</layer>
+				
+	</screen>
+	
+	<popup id="errorPopup" childLayout="center" backgroundColor="#0008">
+		<panel childLayout="vertical" style="nifty-panel-red" width="350px" height="150px" valign="center" align="center">
+			<panel childLayout="center" height="25px"/>
+			<panel childLayout="vertical" height="40px" valign="center">
+				<control name="label" id="errorMessageText" text="The selected file is an invalid driving task!" 
+					width="100%" heigth="100%" color="#ffffffff" textHAlign="center"/>
+			</panel>
+			<panel childLayout="vertical" height="80px" width="100%" align="center">
+				<control id="closeButton" name="button" label="Close"
+					align="center" height="30px">
+					<interact onClick="clickCloseButton()" />
+				</control>
+			</panel>
+		</panel>
+	</popup>
+	
+</nifty>
