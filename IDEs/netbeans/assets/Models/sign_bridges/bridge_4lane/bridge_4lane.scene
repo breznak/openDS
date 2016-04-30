@@ -1,0 +1,49 @@
+<scene formatVersion="1.0.0">
+  <nodes>
+      <node name="b4l_truss_s1">
+        <position x="0.000000" y="0.000004" z="0.000000"/>
+        <quaternion x="0.000000" y="0.000000" z="0.000000" w="1.000000"/>
+        <scale x="1.000000" y="1.000000" z="1.000000"/>
+        <entity name="b4l_truss_s1" meshFile="b4l_truss_s1.Mesh.mesh"/>
+      </node>
+      <node name="b4l_truss_s2">
+        <position x="0.000000" y="0.000000" z="0.000000"/>
+        <quaternion x="0.000000" y="0.000000" z="0.000000" w="1.000000"/>
+        <scale x="1.000000" y="1.000000" z="1.000000"/>
+        <entity name="b4l_truss_s2" meshFile="b4l_truss_s2.Mesh.mesh"/>
+      </node>
+      <node name="b4l_pillar_s2">
+        <position x="0.000000" y="-0.000004" z="0.000000"/>
+        <quaternion x="0.000000" y="0.000000" z="0.000000" w="1.000000"/>
+        <scale x="1.000000" y="1.000000" z="1.000000"/>
+        <entity name="b4l_pillar_s2" meshFile="b4l_pillar_s2.Mesh.mesh"/>
+      </node>
+      <node name="b4l_truss_m2">
+        <position x="0.000000" y="-0.000004" z="0.000000"/>
+        <quaternion x="0.000000" y="0.000000" z="0.000000" w="1.000000"/>
+        <scale x="1.000000" y="1.000000" z="1.000000"/>
+        <entity name="b4l_truss_m2" meshFile="b4l_truss_m2.Mesh.mesh"/>
+      </node>
+      <node name="b4l_truss_m1">
+        <position x="0.000000" y="-0.000004" z="0.000000"/>
+        <quaternion x="0.000000" y="0.000000" z="0.000000" w="1.000000"/>
+        <scale x="1.000000" y="1.000000" z="1.000000"/>
+        <entity name="b4l_truss_m1" meshFile="b4l_truss_m1.Mesh.mesh"/>
+      </node>
+      <node name="b4l_pillar_s1">
+        <position x="0.000000" y="-0.000004" z="0.000000"/>
+        <quaternion x="0.000000" y="0.000000" z="0.000000" w="1.000000"/>
+        <scale x="1.000000" y="1.000000" z="1.000000"/>
+        <entity name="b4l_pillar_s1" meshFile="b4l_pillar_s1.Mesh.mesh"/>
+      </node>
+  </nodes>
+  <externals>
+    <item type="material">
+      <file name="bridge_4lane.material"/>
+    </item>
+  </externals>
+  <environment>
+    <colourAmbient r="0.000000" g="0.000000" b="0.000000"/>
+    <colourBackground r="0.056563" g="0.220815" b="0.400000"/>
+  </environment>
+</scene>

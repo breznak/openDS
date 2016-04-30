@@ -1,0 +1,7 @@
+WayPoint_;null;0,0,0;0,0,0;0.4,0.4,0.4;
+Red-whiteStripes_;Models/MotorwayTask/Red-whiteStripes/ObstructionMarker.scene;1,-0.5,-5;0,0,0;1,0.5,1;
+Yield_;Models/MotorwayTask/Yield/Yield.scene;1,-0.5,-5;0,-0.5,0;1,1,1;
+Ausfhart_;Models/MotorwayTask/Ausfahrt/DetourDirectionSign.scene;1,-5,-5;0,0,0;3,3,3;
+HighWayExit100m_;Models/MotorwayTask/HighWayExit100m/ObstructionMarker.scene;1,-1,-5;0,0,0;1,1,2.5;
+HighWayExit200m_;Models/MotorwayTask/HighWayExit200m/ObstructionMarker.scene;1,-1,-5;0,0,0;1,1,2.5;
+HighWayExit300m_;Models/MotorwayTask/HighWayExit300m/ObstructionMarker.scene;1,-1,-5;0,0,0;1,1,2.5;

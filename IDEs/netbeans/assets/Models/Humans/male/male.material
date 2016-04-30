@@ -1,0 +1,457 @@
+
+material _missing_material_
+{
+    receive_shadows off
+    technique
+    {
+        pass
+        {
+            ambient 0.1 0.1 0.1 1.0
+            diffuse 0.8 0.0 0.0 1.0
+            specular 0.5 0.5 0.5 1.0 12.5
+            emissive 0.3 0.3 0.3 1.0
+        }
+    }
+}
+
+// male:Eyebrow008:eyebrow011 genrated by blender2ogre 0.6.0
+
+material male:Eyebrow008:eyebrow011 
+{
+    receive_shadows on 
+
+    technique
+    {
+        pass male:Eyebrow008:eyebrow011
+        {
+            ambient 1.0 1.0 1.0 0.0
+            diffuse 1.0 1.0 1.0 0.0
+            specular 0.0 0.0 0.0 0.0 64.0
+            emissive 0.0 0.0 0.0 0.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+            texture_unit 
+            {
+                texture eyebrow011.png
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op alpha_blend
+            }
+        }
+    }
+}
+// male:Low-Poly:Eyeblue genrated by blender2ogre 0.6.0
+
+material male:Low-Poly:Eyeblue 
+{
+    receive_shadows on 
+
+    technique
+    {
+        pass male:Low-Poly:Eyeblue
+        {
+            ambient 1.0 1.0 1.0 0.0
+            diffuse 1.0 1.0 1.0 0.0
+            specular 1.0 1.0 1.0 0.0 127.75
+            emissive 0.0 0.0 0.0 0.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+            texture_unit 
+            {
+                texture blue_eye.png
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op alpha_blend
+            }
+        }
+    }
+}
+// male:mhair02:mhair02black genrated by blender2ogre 0.6.0
+
+material male:mhair02:mhair02black 
+{
+    receive_shadows on 
+
+    technique
+    {
+        pass male:mhair02:mhair02black
+        {
+            ambient 1.0 1.0 1.0 0.0
+            diffuse 1.0 1.0 1.0 0.0
+            specular 0.05098000168800354 0.05098000168800354 0.05098000168800354 0.0 122.75
+            emissive 0.0 0.0 0.0 0.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+            texture_unit 
+            {
+                texture male02_diffuse_black.png
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op alpha_blend
+            }
+        }
+    }
+}
+// male:tshirt02:tshirt02Material genrated by blender2ogre 0.6.0
+
+material male:tshirt02:tshirt02Material 
+{
+    receive_shadows on 
+
+    technique
+    {
+        pass male:tshirt02:tshirt02Material
+        {
+            ambient 1.0 1.0 1.0 0.0
+            diffuse 1.0 1.0 1.0 0.0
+            specular 0.031369999051094055 0.031369999051094055 0.031369999051094055 0.0 25.0
+            emissive 0.0 0.0 0.0 0.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+            texture_unit 
+            {
+                texture tshirt02_texture.png
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op alpha_blend
+            }
+            texture_unit 
+            {
+                texture tshirt02_normals.png
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op modulate
+            }
+        }
+    }
+}
+// male:jeans01:short01Material genrated by blender2ogre 0.6.0
+
+material male:jeans01:short01Material 
+{
+    receive_shadows on 
+
+    technique
+    {
+        pass male:jeans01:short01Material
+        {
+            ambient 1.0 1.0 1.0 0.0
+            diffuse 1.0 1.0 1.0 0.0
+            specular 0.5 0.5 0.5 0.0 64.0
+            emissive 0.0 0.0 0.0 0.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+            texture_unit 
+            {
+                texture jeans01_black_diffuse.png
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op alpha_blend
+            }
+            texture_unit 
+            {
+                texture jeans01_normals.png
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op modulate
+            }
+        }
+    }
+}
+// male:Skin genrated by blender2ogre 0.6.0
+
+material male:Skin 
+{
+    receive_shadows on 
+
+    technique
+    {
+        pass male:Skin
+        {
+            ambient 1.0 1.0 1.0 0.0
+            diffuse 1.0 1.0 1.0 0.0
+            specular 0.02745000086724758 0.02745000086724758 0.02745000086724758 0.0 64.0
+            emissive 0.0 0.0 0.0 0.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+            texture_unit 
+            {
+                texture young_lightskinned_male_diffuse.png
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op alpha_blend
+            }
+        }
+    }
+}
+// male:Invisio genrated by blender2ogre 0.6.0
+
+material male:Invisio 
+{
+    receive_shadows off 
+
+    technique
+    {
+        pass male:Invisio
+        {
+            ambient 1.0 1.0 1.0 0.0
+            diffuse 0.800000011920929 0.800000011920929 0.800000011920929 0.0
+            specular 0.5 0.5 0.5 0.0 12.5
+            emissive 1.0 1.0 1.0 1.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+        }
+    }
+}
+// male:Red genrated by blender2ogre 0.6.0
+
+material male:Red 
+{
+    receive_shadows off 
+
+    technique
+    {
+        pass male:Red
+        {
+            ambient 1.0 0.0 0.0 0.0
+            diffuse 0.800000011920929 0.0 0.0 0.0
+            specular 0.5 0.5 0.5 0.0 12.5
+            emissive 1.0 0.0 0.0 1.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+        }
+    }
+}
+// male:Green genrated by blender2ogre 0.6.0
+
+material male:Green 
+{
+    receive_shadows off 
+
+    technique
+    {
+        pass male:Green
+        {
+            ambient 0.0 1.0 0.0 0.0
+            diffuse 0.0 0.800000011920929 0.0 0.0
+            specular 0.5 0.5 0.5 0.0 12.5
+            emissive 0.0 1.0 0.0 1.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+        }
+    }
+}
+// male:Blue genrated by blender2ogre 0.6.0
+
+material male:Blue 
+{
+    receive_shadows off 
+
+    technique
+    {
+        pass male:Blue
+        {
+            ambient 0.0 0.0 1.0 0.0
+            diffuse 0.0 0.0 0.800000011920929 0.0
+            specular 0.5 0.5 0.5 0.0 12.5
+            emissive 0.0 0.0 1.0 1.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+        }
+    }
+}
+// male:Yellow genrated by blender2ogre 0.6.0
+
+material male:Yellow 
+{
+    receive_shadows off 
+
+    technique
+    {
+        pass male:Yellow
+        {
+            ambient 1.0 1.0 0.0 0.0
+            diffuse 0.800000011920929 0.800000011920929 0.0 0.0
+            specular 0.5 0.5 0.5 0.0 12.5
+            emissive 1.0 1.0 0.0 1.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+        }
+    }
+}

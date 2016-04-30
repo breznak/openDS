@@ -1,0 +1,21 @@
+material Material_perexod.jpg
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.481882 0.481882 0.481882 1.000000
+			specular 0.250000 0.250000 0.250000 1.000000 12.000000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture OnWeekdays.jpg
+				tex_address_mode wrap
+				filtering trilinear
+				colour_op alpha_blend
+			}
+		}
+	}
+}
