@@ -83,7 +83,7 @@ public class TextDistraction extends DistractionClass {
             textOn = true;
             CognitiveFunction.distScore += COG_SCORE;
             CognitiveFunction.activeDistCount++;
-            CognitiveFunction.activeDistNames += "Text; ";
+            CognitiveFunction.activeDistNames[5] = 1;
             DistractionSettings.distRunning++;
         }   
     }
@@ -100,7 +100,7 @@ public class TextDistraction extends DistractionClass {
             hideDialog();
             CognitiveFunction.distScore -= COG_SCORE;
             CognitiveFunction.activeDistCount--;
-            CognitiveFunction.activeDistNames = CognitiveFunction.activeDistNames.replace("Text; ", "");
+            CognitiveFunction.activeDistNames[5] = 0;
             textOn = false;
         }
     }

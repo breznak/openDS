@@ -193,7 +193,7 @@ public class PedestrianDistraction extends DistractionClass{
         pedestrianOn = true;
         CognitiveFunction.distScore += COG_SCORE;
         CognitiveFunction.activeDistCount++;
-        CognitiveFunction.activeDistNames += "Pedestrian; ";
+        CognitiveFunction.activeDistNames[3] = 1;
         DistractionSettings.distRunning++; 
     }
 
@@ -217,7 +217,7 @@ public class PedestrianDistraction extends DistractionClass{
             pedestrianOn = false;
             CognitiveFunction.distScore -= COG_SCORE;
             CognitiveFunction.activeDistCount--;
-            CognitiveFunction.activeDistNames = CognitiveFunction.activeDistNames.replace("Pedestrian; ", "");
+            CognitiveFunction.activeDistNames[3] = 0;
             DistractionSettings.distRunning--;
         } 
     }

@@ -45,9 +45,7 @@ public class SoundDistraction extends DistractionClass{
             soundOn = true;
             CognitiveFunction.distScore += COG_SCORE;
             CognitiveFunction.activeDistCount++;
-            CognitiveFunction.activeDistNames += "Sound; ";
-            CognitiveFunction.activeDistCount--;
-            CognitiveFunction.activeDistNames = CognitiveFunction.activeDistNames.replace("Sound; ", "");
+            CognitiveFunction.activeDistNames[4] = 1;
             DistractionSettings.distRunning++;
         }
         
@@ -63,6 +61,8 @@ public class SoundDistraction extends DistractionClass{
         if(soundOn){
             soundTest.pause();
             CognitiveFunction.distScore -= COG_SCORE;
+            CognitiveFunction.activeDistCount--;
+            CognitiveFunction.activeDistNames[4] = 0;
             soundOn = false;
             DistractionSettings.distRunning--;
         }

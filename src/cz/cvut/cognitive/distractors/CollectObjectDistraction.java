@@ -200,7 +200,7 @@ public class CollectObjectDistraction extends DistractionClass{
             collectOn = true;
             CognitiveFunction.distScore += COG_SCORE;
             CognitiveFunction.activeDistCount++;
-            CognitiveFunction.activeDistNames += "Collect; ";
+            CognitiveFunction.activeDistNames[1] = 1;
             DistractionSettings.distRunning++;
     }
 
@@ -217,7 +217,7 @@ public class CollectObjectDistraction extends DistractionClass{
                 e.printStackTrace();
             } 
             CognitiveFunction.activeDistCount--;
-            CognitiveFunction.activeDistNames = CognitiveFunction.activeDistNames.replace("Collect; ", "");
+            CognitiveFunction.activeDistNames[1] = 0;
             sim.getSceneNode().detachChild(greenSpatial);
             sim.getSceneNode().detachChild(redSpatial);
 

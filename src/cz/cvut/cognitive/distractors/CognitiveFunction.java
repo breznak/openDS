@@ -40,7 +40,7 @@ public class CognitiveFunction {
     
     public static int distScore = 0;
     public static int activeDistCount = 0;
-    public static String activeDistNames = "";
+    public static int [] activeDistNames = new int [6];
     
     public CognitiveFunction(Simulator sim){ //create ghostcontrol around car
     this.sim = sim;
@@ -157,9 +157,10 @@ public class CognitiveFunction {
             }
         }
         try (BufferedWriter writer2 = new BufferedWriter(new FileWriter(outputFolder, true))) {
-            writer2.write(curDate.getTime() + ", " + cogLoadScore + ", " + roadDifficulty + ", " + car.getCurrentSpeedKmh() + ", " + Simulator.playerHealth + ", " 
-                    + BoxDistraction.boxHitCount + ", " + PedestrianDistraction.pedestrianHitCount + ", " + nonSceneObjects  + ", " + activeDistCount  
-                    + ", " + activeDistNames);
+            writer2.write(curDate.getTime() + "," + cogLoadScore + "," + roadDifficulty + "," + car.getCurrentSpeedKmh() + "," + Simulator.playerHealth + "," 
+                    + BoxDistraction.boxHitCount + "," + PedestrianDistraction.pedestrianHitCount + "," + nonSceneObjects  + "," + activeDistCount  
+                    + "," + activeDistNames[0] + "," + activeDistNames[1] + "," + activeDistNames[2] + "," + activeDistNames[3] + "," + activeDistNames[4]
+             + "," + activeDistNames[5]);
             writer2.newLine();
            
         } catch (IOException e) {

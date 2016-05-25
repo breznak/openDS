@@ -39,7 +39,7 @@ public class DarkeningDistraction extends DistractionClass{
             darkOn = true;
             CognitiveFunction.distScore += COG_SCORE;
             CognitiveFunction.activeDistCount++;
-            CognitiveFunction.activeDistNames += "Dark; ";
+            CognitiveFunction.activeDistNames[2] = 1;
             DistractionSettings.distRunning++;
         }
     }
@@ -55,7 +55,7 @@ public class DarkeningDistraction extends DistractionClass{
             darkOn = false;
             CognitiveFunction.distScore -= COG_SCORE;
             CognitiveFunction.activeDistCount--;
-            CognitiveFunction.activeDistNames = CognitiveFunction.activeDistNames.replace("Dark; ", "");
+            CognitiveFunction.activeDistNames[2] = 0;
             DistractionSettings.distRunning--;
         }
     }

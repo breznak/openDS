@@ -140,7 +140,7 @@ public class BoxDistraction extends DistractionClass{
                     boxOn = true;
                     CognitiveFunction.distScore += COG_SCORE;
                     CognitiveFunction.activeDistCount++;
-                    CognitiveFunction.activeDistNames += "Box; ";
+                    CognitiveFunction.activeDistNames[0] = 1;
                     DistractionSettings.distRunning++;
                 }
              }
@@ -158,7 +158,7 @@ public class BoxDistraction extends DistractionClass{
             bulletAppState.getPhysicsSpace().remove(box_phy); 
             CognitiveFunction.distScore -= COG_SCORE;
             CognitiveFunction.activeDistCount--;
-            CognitiveFunction.activeDistNames = CognitiveFunction.activeDistNames.replace("Box; ", "");
+            CognitiveFunction.activeDistNames[0] = 0;
             boxOn = false;
             DistractionSettings.distRunning--;
         }
