@@ -1,0 +1,8 @@
+Question:      Right Answer:     [Users Answer]:   ; Correctly answered?
+What is the capital of the Czech Republic? Prague [Replace this with your Answer and clicdasdk Answer Button] ; 0
+How many months does 2 years have? 24 [Replace this with your Answer and click Answer Buttonasdasd] ; 0
+What is the color of the grass? Green [Replace this with your Answer and click Anasdasdswer Button] ; 0
+How much grams is 1 decagram? 10 [Replace this with your Answer and click Answer Buttonasdasd] ; 0
+What color of trafic light signalizes to stop? Red [Replace this with your Answer and click Answer Buttasdasdon] ; 0
+Last name of the presindent of the Czech Republic? Zeman [Replace this with your Answer and click Answer Buttonasdasd] ; 0
+Last name of the presindent of the Czech Republic? Zeman [Replace this with your Answer and click Answer Buttonasda] ; 0

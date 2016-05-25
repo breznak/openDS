@@ -218,7 +218,6 @@ public class SimulationBasics extends SimpleApplication
 	public void toggleDebugMode()
 	{
 		debugEnabled = !debugEnabled;
-		bulletAppState.setDebugEnabled(debugEnabled);
 	}
 	
 
@@ -253,6 +252,8 @@ public class SimulationBasics extends SimpleApplication
         //if (settings.getRenderer().startsWith("LWJGL")) 
         //	sceneNode.setShadowMode(ShadowMode.Receive);
         
+//        bulletAppState.setDebugEnabled(true);
+        
         // setup light settings
         lightFactory = new LightFactory(this);
         lightFactory.initLight();
@@ -262,7 +263,7 @@ public class SimulationBasics extends SimpleApplication
         
         keyMappingGUI = new KeyMappingGUI(this);
         shutDownGUI = new ShutDownGUI(this);
-        instructionScreenGUI = new InstructionScreenGUI(this);
+        instructionScreenGUI = new InstructionScreenGUI((Simulator)this);
     }
 
 

@@ -34,12 +34,22 @@ import org.apache.log4j.PropertyConfigurator;
 
 import com.jme3.app.StatsAppState;
 import com.jme3.app.state.VideoRecorderAppState;
+import com.jme3.asset.AssetManager;
+import com.jme3.bullet.PhysicsSpace;
+import com.jme3.font.BitmapText;
 import com.jme3.input.Joystick;
+import com.jme3.math.Ray;
 import com.jme3.math.Vector3f;
 import com.jme3.niftygui.NiftyJmeDisplay;
 import com.sun.javafx.application.PlatformImpl;
 
 import de.lessvoid.nifty.Nifty;
+import cz.cvut.cognitive.distractors.DistractionSettings;
+import cz.cvut.cognitive.distractors.ListOfDistractions;
+
+import cz.cvut.cognitive.distractors.BoxDistraction;
+import cz.cvut.cognitive.distractors.CognitiveFunction;
+
 import eu.opends.analyzer.DrivingTaskLogger;
 import eu.opends.analyzer.DataWriter;
 import eu.opends.audio.AudioCenter;
@@ -90,6 +100,18 @@ public class Simulator extends SimulationBasics
     private int frameCounter = 0;
     private boolean drivingTaskGiven = false;
     private boolean initializationFinished = false;
+    DistractionSettings distSet;
+    ListOfDistractions LoD;
+    private CognitiveFunction cogFunction;
+    
+
+    public static float Timer;
+    public float cogTimer;
+    public static int playerHealth = 100;
+    private String lastWord;
+    private BitmapText healthText;
+
+    
     
     private static Float gravityConstant;
 	public static Float getGravityConstant()
@@ -459,7 +481,25 @@ public class Simulator extends SimulationBasics
 		}
 		
 		joystickSpringController = new ForceFeedbackJoystickController(this);
-		
+                
+                lastWord = SimulationDefaults.drivingTaskFileName.substring(SimulationDefaults.drivingTaskFileName.lastIndexOf("\\")+1);
+                if(lastWord.equalsIgnoreCase("A_DistractionTest.xml")){
+                    distSet = new DistractionSettings();
+                    LoD = new ListOfDistractions(this);
+                    LoD.initialize();
+                    cogFunction = new CognitiveFunction(this);
+                    DistractionSettings.setDistScenario(false);
+                    DistractionSettings.distRunning=0;
+                    Timer = 0;
+                    cogTimer = 0;
+                    DistractionSettings.setQuestionAnswered(true);
+                    healthText = new BitmapText(this.getAssetManager().loadFont("Interface/Fonts/Default.fnt"), false);
+                    healthText.setSize(this.getAssetManager().loadFont("Interface/Fonts/Default.fnt").getCharSet().getRenderedSize());
+                    healthText.setText("Car Health: " + Simulator.playerHealth);
+                    healthText.setLocalTranslation(1100, 250, 0);
+                    this.getGuiNode().attachChild(healthText);
+                }
+                
 		initializationFinished = true;
     }
 
@@ -561,6 +601,51 @@ public class Simulator extends SimulationBasics
 			
 			if(eyetrackerCenter != null)
 				eyetrackerCenter.update();
+                        
+                        if(DistractionSettings.isDistScenario() == true){
+                            cogTimer = cogTimer + tpf;
+                            if (cogTimer>1){
+                                cogFunction.update(tpf);
+                                cogTimer = 0; 
+                            }
+                            
+                            if(DistractionSettings.distRunning <= 0){
+                                Timer = Timer + tpf;
+                                if (Timer > 2)
+                                {
+                                    LoD.update(tpf);
+                                    Timer = 0;
+                                }
+                            } else if (DistractionSettings.isQuestionAnswered()) {  
+                                LoD.collide(tpf);
+                                Timer = Timer + tpf;
+                                if(Timer > 5){
+                                    LoD.removeDist();
+                                    Timer = 0;
+                                }
+                            } else {
+                                if(!isPause()){
+                                    setPause(true);
+                                    inputManager.setCursorVisible(true);
+                                }
+                            }
+                        } 
+                                
+                                
+                                   
+                        
+                        
+                        //TODO: obalit car ghost controllom a detekovat to (naprava)
+                        //text
+                        //mapa
+                        //cesta detekcia
+                        //
+                            
+                            
+                        
+                        
+                        
+                        
 
     		if(frameCounter == 5)
     		{
@@ -571,6 +656,12 @@ public class Simulator extends SimulationBasics
     		
     		joystickSpringController.update(tpf);
     	}
+    }
+    
+    public void updateHealth(){
+        this.getGuiNode().detachChild(healthText);
+        healthText.setText("Car Health: " + Simulator.playerHealth);
+        this.getGuiNode().attachChild(healthText);
     }
 
     
