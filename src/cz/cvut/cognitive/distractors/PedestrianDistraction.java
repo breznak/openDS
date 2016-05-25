@@ -187,7 +187,7 @@ public class PedestrianDistraction extends DistractionClass{
         motionControl = new MotionEvent(pedestrianSpatial,path);
         //motionControl.setDirectionType(MotionEvent.Direction.PathAndRotation);
         //motionControl.setRotation(new Quaternion().fromAngleNormalAxis(-FastMath.HALF_PI, Vector3f.UNIT_Y));
-        motionControl.setSpeed(1f); 
+        motionControl.setSpeed(0.3f); 
         motionControl.play();
         motionControl.setLoopMode(LoopMode.Loop);
         pedestrianOn = true;

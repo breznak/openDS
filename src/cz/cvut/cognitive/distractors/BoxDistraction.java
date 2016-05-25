@@ -142,7 +142,6 @@ public class BoxDistraction extends DistractionClass{
                     CognitiveFunction.activeDistCount++;
                     CognitiveFunction.activeDistNames += "Box; ";
                     DistractionSettings.distRunning++;
-                    System.out.println("SPAWNOL");
                 }
              }
         

@@ -611,7 +611,7 @@ public class Simulator extends SimulationBasics
                             
                             if(DistractionSettings.distRunning <= 0){
                                 Timer = Timer + tpf;
-                                if (Timer > 2)
+                                if (Timer > 5)
                                 {
                                     LoD.update(tpf);
                                     Timer = 0;
@@ -619,7 +619,7 @@ public class Simulator extends SimulationBasics
                             } else if (DistractionSettings.isQuestionAnswered()) {  
                                 LoD.collide(tpf);
                                 Timer = Timer + tpf;
-                                if(Timer > 5){
+                                if(Timer > 15){
                                     LoD.removeDist();
                                     Timer = 0;
                                 }
