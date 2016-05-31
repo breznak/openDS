@@ -12,6 +12,7 @@ DoNotEnter_;Models/RoadSigns/prohibitions/Do-not-enter/DoNotEnter.scene;1,-0.5,-
 SpeedLimit30_;Models/RoadSigns/speedLimits/speedLimit30/speedLimit30.scene;1,-0.5,-5;0,0,0;1,1,1;
 SpeedLimit50_;Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene;1,-0.5,-5;0,0,0;1,1,1;
 SpeedLimit70_;Models/RoadSigns/speedLimits/speedLimit70/speedLimit70.scene;1,-0.5,-5;0,0,0;1,1,1;
+SpeedLimit100_;Models/RoadSigns/speedLimits/speedLimit100/speedLimit100.scene;1,-0.5,-5;0,0,0;1,1,1;
 PriorityRoad_;Models/RoadSigns/squarePlatesWithPole/PriorityRoad/PriorityRoad.scene;1,-0.5,-5;0,115,0;1,1,1;
 EndOfPriorityRoad_;Models/RoadSigns/squarePlatesWithPole/EndOfPriorityRoad/EndOfPriorityRoad.scene;1,-0.5,-5;0,115,0;1,1,1;
 Yield_;Models/RoadSigns/otherSigns/Yield/Yield.scene;-2,-0.5,-5;0,89.7,0;1,1,1;
