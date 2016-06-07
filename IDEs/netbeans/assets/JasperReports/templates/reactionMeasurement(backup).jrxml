@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report9" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="groupRed" class="java.lang.String">
+		<defaultValueExpression><![CDATA[" "]]></defaultValueExpression>
+	</parameter>
+	<parameter name="groupYellow" class="java.lang.String">
+		<defaultValueExpression><![CDATA["  "]]></defaultValueExpression>
+	</parameter>
+	<parameter name="groupGreen" class="java.lang.String">
+		<defaultValueExpression><![CDATA["   "]]></defaultValueExpression>
+	</parameter>
+	<parameter name="groupCyan" class="java.lang.String">
+		<defaultValueExpression><![CDATA["    "]]></defaultValueExpression>
+	</parameter>
+	<parameter name="groupBlue" class="java.lang.String">
+		<defaultValueExpression><![CDATA["     "]]></defaultValueExpression>
+	</parameter>
+	<parameter name="groupMagenta" class="java.lang.String">
+		<defaultValueExpression><![CDATA["      "]]></defaultValueExpression>
+	</parameter>
+	<queryString language="xPath">
+		<![CDATA[report/reactionMeasurement]]>
+	</queryString>
+	<field name="reactionGroup" class="java.lang.String">
+		<fieldDescription><![CDATA[reactionGroup]]></fieldDescription>
+	</field>
+	<field name="reactionResult" class="java.lang.Integer">
+		<fieldDescription><![CDATA[reactionResult]]></fieldDescription>
+	</field>
+	<field name="reactionTime" class="java.lang.Long">
+		<fieldDescription><![CDATA[reactionTime]]></fieldDescription>
+	</field>
+	<field name="absoluteTime" class="java.lang.Long">
+		<fieldDescription><![CDATA[absoluteTime]]></fieldDescription>
+	</field>
+	<field name="experimentTime" class="java.lang.Long">
+		<fieldDescription><![CDATA[experimentTime]]></fieldDescription>
+	</field>
+	<variable name="startTime" class="java.lang.Long" calculation="Lowest">
+		<variableExpression><![CDATA[$F{absoluteTime}]]></variableExpression>
+	</variable>
+	<variable name="endTime" class="java.lang.Long" calculation="Highest">
+		<variableExpression><![CDATA[$F{absoluteTime}]]></variableExpression>
+	</variable>
+	<variable name="highestReactionTime" class="java.lang.Long" calculation="Highest">
+		<variableExpression><![CDATA[$F{reactionTime}]]></variableExpression>
+	</variable>
+	<variable name="experimentDuration" class="java.lang.Long" calculation="Highest">
+		<variableExpression><![CDATA[$F{experimentTime}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="548" splitType="Stretch">
+			<staticText>
+				<reportElement x="8" y="27" width="86" height="20"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[End:]]></text>
+			</staticText>
+			<textField pattern="HH.mm">
+				<reportElement x="105" y="7" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format($V{startTime})]]></textFieldExpression>
+			</textField>
+			<xyBarChart>
+				<chart>
+					<reportElement mode="Transparent" x="0" y="67" width="802" height="457"/>
+					<box leftPadding="0"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend position="Right"/>
+				</chart>
+				<xyDataset>
+					<xySeries>
+						<seriesExpression><![CDATA[$P{groupRed}]]></seriesExpression>
+						<xValueExpression><![CDATA[$F{experimentTime}/1000.0]]></xValueExpression>
+						<yValueExpression><![CDATA[$F{reactionGroup}.equals($P{groupRed}) ?
+(
+    (($F{reactionResult} < 0) ?
+    (($F{reactionResult} < -1) ? $F{reactionTime} : -$F{reactionTime})
+    :
+    $F{reactionTime})
+):0]]></yValueExpression>
+						<labelExpression><![CDATA[$F{reactionGroup}.equals($P{groupRed}) ?
+(
+    (($F{reactionResult} < 0) ?
+    (($F{reactionResult} < -1) ? $F{reactionTime}.toString() : "-1000")
+    :
+    $F{reactionTime}.toString())
+):""]]></labelExpression>
+					</xySeries>
+					<xySeries>
+						<seriesExpression><![CDATA[$P{groupYellow}]]></seriesExpression>
+						<xValueExpression><![CDATA[$F{experimentTime}/1000.0]]></xValueExpression>
+						<yValueExpression><![CDATA[$F{reactionGroup}.equals($P{groupYellow}) ?
+(
+    (($F{reactionResult} < 0) ?
+    (($F{reactionResult} < -1) ? $F{reactionTime} : -$F{reactionTime})
+    :
+    $F{reactionTime})
+):0]]></yValueExpression>
+						<labelExpression><![CDATA[$F{reactionGroup}.equals($P{groupYellow}) ?
+(
+    (($F{reactionResult} < 0) ?
+    (($F{reactionResult} < -1) ? $F{reactionTime}.toString() : "-1000")
+    :
+    $F{reactionTime}.toString())
+):""]]></labelExpression>
+					</xySeries>
+					<xySeries>
+						<seriesExpression><![CDATA[$P{groupGreen}]]></seriesExpression>
+						<xValueExpression><![CDATA[$F{experimentTime}/1000.0]]></xValueExpression>
+						<yValueExpression><![CDATA[$F{reactionGroup}.equals($P{groupGreen}) ?
+(
+    (($F{reactionResult} < 0) ?
+    (($F{reactionResult} < -1) ? $F{reactionTime} : -$F{reactionTime})
+    :
+    $F{reactionTime})
+):0]]></yValueExpression>
+						<labelExpression><![CDATA[$F{reactionGroup}.equals($P{groupGreen}) ?
+(
+    (($F{reactionResult} < 0) ?
+    (($F{reactionResult} < -1) ? $F{reactionTime}.toString() : "-1000")
+    :
+    $F{reactionTime}.toString())
+):""]]></labelExpression>
+					</xySeries>
+					<xySeries>
+						<seriesExpression><![CDATA[$P{groupCyan}]]></seriesExpression>
+						<xValueExpression><![CDATA[$F{experimentTime}/1000.0]]></xValueExpression>
+						<yValueExpression><![CDATA[$F{reactionGroup}.equals($P{groupCyan}) ?
+(
+    (($F{reactionResult} < 0) ?
+    (($F{reactionResult} < -1) ? $F{reactionTime} : -$F{reactionTime})
+    :
+    $F{reactionTime})
+):0]]></yValueExpression>
+						<labelExpression><![CDATA[$F{reactionGroup}.equals($P{groupCyan}) ?
+(
+    (($F{reactionResult} < 0) ?
+    (($F{reactionResult} < -1) ? $F{reactionTime}.toString() : "-1000")
+    :
+    $F{reactionTime}.toString())
+):""]]></labelExpression>
+					</xySeries>
+					<xySeries>
+						<seriesExpression><![CDATA[$P{groupBlue}]]></seriesExpression>
+						<xValueExpression><![CDATA[$F{experimentTime}/1000.0]]></xValueExpression>
+						<yValueExpression><![CDATA[$F{reactionGroup}.equals($P{groupBlue}) ?
+(
+    (($F{reactionResult} < 0) ?
+    (($F{reactionResult} < -1) ? $F{reactionTime} : -$F{reactionTime})
+    :
+    $F{reactionTime})
+):0]]></yValueExpression>
+						<labelExpression><![CDATA[$F{reactionGroup}.equals($P{groupBlue}) ?
+(
+    (($F{reactionResult} < 0) ?
+    (($F{reactionResult} < -1) ? $F{reactionTime}.toString() : "-1000")
+    :
+    $F{reactionTime}.toString())
+):""]]></labelExpression>
+					</xySeries>
+					<xySeries>
+						<seriesExpression><![CDATA[$P{groupMagenta}]]></seriesExpression>
+						<xValueExpression><![CDATA[$F{experimentTime}/1000.0]]></xValueExpression>
+						<yValueExpression><![CDATA[$F{reactionGroup}.equals($P{groupMagenta}) ?
+(
+    (($F{reactionResult} < 0) ?
+    (($F{reactionResult} < -1) ? $F{reactionTime} : -$F{reactionTime})
+    :
+    $F{reactionTime})
+):0]]></yValueExpression>
+						<labelExpression><![CDATA[$F{reactionGroup}.equals($P{groupMagenta}) ?
+(
+    (($F{reactionResult} < 0) ?
+    (($F{reactionResult} < -1) ? $F{reactionTime}.toString() : "-1000")
+    :
+    $F{reactionTime}.toString())
+):""]]></labelExpression>
+					</xySeries>
+				</xyDataset>
+				<barPlot isShowLabels="true" isShowTickLabels="true">
+					<plot>
+						<seriesColor seriesOrder="0" color="#FF0000"/>
+						<seriesColor seriesOrder="1" color="#FFFF00"/>
+						<seriesColor seriesOrder="2" color="#00FF00"/>
+						<seriesColor seriesOrder="3" color="#00FFFF"/>
+						<seriesColor seriesOrder="4" color="#0000FF"/>
+						<seriesColor seriesOrder="5" color="#FF00FF"/>
+					</plot>
+					<itemLabel>
+						<font size="10" isUnderline="false"/>
+					</itemLabel>
+					<categoryAxisFormat>
+						<axisFormat labelColor="#000000" verticalTickLabels="false"/>
+					</categoryAxisFormat>
+					<domainAxisMinValueExpression><![CDATA[0]]></domainAxisMinValueExpression>
+					<domainAxisMaxValueExpression><![CDATA[($V{experimentDuration}+1000)/1000.0]]></domainAxisMaxValueExpression>
+					<rangeAxisMinValueExpression><![CDATA[-2000]]></rangeAxisMinValueExpression>
+					<rangeAxisMaxValueExpression><![CDATA[$V{highestReactionTime}+1000]]></rangeAxisMaxValueExpression>
+				</barPlot>
+			</xyBarChart>
+			<staticText>
+				<reportElement x="8" y="7" width="86" height="20"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Start:]]></text>
+			</staticText>
+			<textField pattern="HH.mm">
+				<reportElement x="105" y="27" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format($V{endTime})]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

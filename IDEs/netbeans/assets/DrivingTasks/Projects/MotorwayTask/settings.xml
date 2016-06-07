@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://opends.eu/drivingtask/settings"
+		  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+          xsi:schemaLocation="http://opends.eu/drivingtask/settings ../../Schema/settings.xsd">
+
+	<general>
+		<driverName>default driver</driverName>
+		<showStats>false</showStats>
+		<!-- <captureVideo>test.avi</captureVideo> -->
+		<mirrorMode>all</mirrorMode>
+		<rearviewMirror>
+			<viewPortLeft>0.35</viewPortLeft>
+			<viewPortRight>0.65</viewPortRight>
+			<viewPortBottom>0.75</viewPortBottom>
+			<viewPortTop>0.95</viewPortTop>
+		</rearviewMirror>
+		<leftMirror>
+			<viewPortLeft>0.05</viewPortLeft>
+			<viewPortRight>0.20</viewPortRight>
+			<viewPortBottom>0.4</viewPortBottom>
+			<viewPortTop>0.7</viewPortTop>
+			<horizontalAngle>-15</horizontalAngle> <!-- <horizontalAngle>-45</horizontalAngle> -->
+			<verticalAngle>5</verticalAngle>
+		</leftMirror>
+		<rightMirror>
+			<viewPortLeft>0.8</viewPortLeft>
+			<viewPortRight>0.95</viewPortRight>
+			<viewPortBottom>0.4</viewPortBottom>
+			<viewPortTop>0.7</viewPortTop>
+			<horizontalAngle>15</horizontalAngle> <!-- <horizontalAngle>45</horizontalAngle> -->
+			<verticalAngle>5</verticalAngle>
+		</rightMirror>
+	</general>
+	
+	<objectLocator>
+		<enable>false</enable>
+		<fileName>trafficObjects.txt</fileName>	
+	</objectLocator>
+	
+	<HMI>
+		<enableConnection>false</enableConnection>
+		<ip>127.0.0.1</ip>
+		<port>2111</port>
+	</HMI>
+	
+	<externalVisualization>
+		<enableConnection>false</enableConnection>
+		<ip>141.96.189.103</ip>
+		<port>4711</port>
+		<updateRate>20</updateRate>
+		<scalingFactor>100</scalingFactor>
+		<sendPosOriAsOneString>false</sendPosOriAsOneString>
+	</externalVisualization>
+	
+	<CANInterface>
+		<enableConnection>false</enableConnection>
+		<ip>192.168.0.2</ip>
+		<port>4711</port>
+		<updateRate>20</updateRate>
+		<maxSteeringAngle>180</maxSteeringAngle>
+	</CANInterface>
+	
+	<vsimrtiServer>
+		<startServer>false</startServer>
+		<port>1122</port>
+	</vsimrtiServer>
+
+	<reactionMeasurement>
+		<groupRed>incongruent</groupRed>
+		<groupGreen>congruent</groupGreen>
+		<groupYellow>control_neutral</groupYellow>
+		<groupCyan>control_silence</groupCyan>
+		<groupBlue>no_target</groupBlue>
+		<groupMagenta></groupMagenta>
+	</reactionMeasurement>
+	
+	<controllers>
+		<joystick>
+			<!-- Logitech G27 -->
+			<dumpJoystickList>true</dumpJoystickList>
+			<steering controllerID="0" axisID="3" invert="false" sensitivity="1.0"/>
+			<combinedPedals controllerID="0" axisID="4" invert="false" sensitivity="1.0"/>
+			<accelerator controllerID="0" axisID="6" invert="true" sensitivity="1.0"/>
+			<brake controllerID="0" axisID="5" invert="true" sensitivity="1.0"/>
+			<clutch controllerID="0" axisID="7" invert="true" sensitivity="1.0"/>
+			<keyAssignments>
+				<keyAssignment function="start_engine" key="BUTTON_1" />
+				<keyAssignment function="stop_engine" key="BUTTON_2" />
+			</keyAssignments>
+		</joystick>
+		<keyboard>
+			<keyAssignments>
+				<keyAssignment function="toggle_cam" key="KEY_V" />
+				<keyAssignment function="snow_inc5" key="KEY_0" />
+				<keyAssignment function="snow_dec5" key="KEY_9" />
+				<keyAssignment function="rain_inc5" key="KEY_8" />
+				<keyAssignment function="rain_dec5" key="KEY_7" />
+				<keyAssignment function="fog_inc5" key="KEY_6" />
+				<keyAssignment function="fog_dec5" key="KEY_5" />
+				<keyAssignment function="horn" key="KEY_N" />
+			</keyAssignments>
+		</keyboard>
+		<mouse>
+			<!-- only for outside view -->
+			<minScrollZoom>1</minScrollZoom>
+			<maxScrollZoom>40</maxScrollZoom>
+			<scrollSensitivityFactor>5</scrollSensitivityFactor>
+		</mouse>
+	</controllers>
+	
+</settings>

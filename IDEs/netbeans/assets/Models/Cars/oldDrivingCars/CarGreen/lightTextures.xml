@@ -1,0 +1,22 @@
+<lightTextures>
+	<position path="chassis/chassis-entity/Chassis-ogremesh/Chassis-geom-1" >
+		<allOff texture="Car_Green_Body.png" />
+		<leftTurn texture="Car_Green_Body.png" />
+		<rightTurn texture="Car_Green_Body.png" />
+		<hazardLights texture="hazardLightsBody.png" />
+		<brakeLights texture="brakeLightsBody.png" />
+		<leftTurnBrakeLights texture="brakeLightsBody.png" />
+		<rightTurnBrakeLights texture="brakeLightsBody.png" />
+		<hazardLightsBrakeLights texture="hazardLightsBrakeLightsBody.png" />
+	</position>
+	<position path="chassis/chassis-entity/Chassis-ogremesh/Chassis-geom-2" >
+		<allOff texture="Car_Green_RearWindow.png" />
+		<leftTurn texture="Car_Green_RearWindow.png" />
+		<rightTurn texture="Car_Green_RearWindow.png" />
+		<hazardLights texture="Car_Green_RearWindow.png" />
+		<brakeLights texture="Car_Green_RearWindow2.png" />
+		<leftTurnBrakeLights texture="Car_Green_RearWindow2.png" />
+		<rightTurnBrakeLights texture="Car_Green_RearWindow2.png" />
+		<hazardLightsBrakeLights texture="Car_Green_RearWindow2.png" />
+	</position>
+</lightTextures>

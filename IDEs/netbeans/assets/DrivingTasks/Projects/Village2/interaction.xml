@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interaction xmlns="http://opends.eu/drivingtask/interaction"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:schemaLocation="http://opends.eu/drivingtask/interaction ../../Schema/interaction.xsd">
+
+
+	<activities>
+		<activity id="activity01">
+			<action id="requestGreenTrafficLight" delay="0" repeat="0">
+				<parameter name="trafficLightID" value="TrafficLight_1" />
+			</action>
+		</activity>
+		<activity id="activity02">
+			<action id="requestGreenTrafficLight" delay="0" repeat="0">
+				<parameter name="trafficLightID" value="TrafficLight_2" />
+			</action>
+		</activity>
+		<activity id="activity03">
+			<action id="requestGreenTrafficLight" delay="0" repeat="0">
+				<parameter name="trafficLightID" value="TrafficLight_3" />
+			</action>
+		</activity>
+	</activities>
+	
+	<triggers>
+		<trigger id="collideWithTrafficLightBox1" priority="1">
+            <activities>
+                <activity ref="activity01"/>
+            </activities>
+            
+            <condition>collideWith:triggerBox1</condition>
+        </trigger>
+    
+		<trigger id="collideWithTrafficLightBox2" priority="1">
+            <activities>
+                <activity ref="activity02"/>
+            </activities>
+            
+            <condition>collideWith:triggerBox2</condition>
+        </trigger>
+        
+        <trigger id="collideWithTrafficLightBox3" priority="1">
+            <activities>
+                <activity ref="activity03"/>
+            </activities>
+            
+            <condition>collideWith:triggerBox3</condition>
+        </trigger>
+	</triggers>
+	
+</interaction>

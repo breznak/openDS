@@ -1,0 +1,814 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nifty xmlns="http://nifty-gui.sourceforge.net/nifty-1.3.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://nifty-gui.sourceforge.net/nifty-1.3.xsd http://nifty-gui.sourceforge.net/nifty-1.3.xsd">
+	<!-- +++++++++++++++++++++++++++++++++++++++ -->
+	<!-- load default styles and controls -->
+	<!-- +++++++++++++++++++++++++++++++++++++++ -->
+	<useStyles filename="nifty-default-styles.xml" />
+	<useControls filename="nifty-default-controls.xml" />
+	<style id="console-red" base="button-font">
+		<attributes font="fonts/menu.fnt" color="#f00f" />
+	</style>
+	<style id="console-white" base="button-font">
+		<attributes font="fonts/menu.fnt" color="#ffff" />
+	</style>
+	<style id="console-font">
+		<attributes font="fonts/verdana-48-regular.fnt" color="#00ff" />
+	</style>
+
+	<!-- +++++++++++++++++++++++++++++++++++++++ -->
+	<!-- start screen -->
+	<!-- +++++++++++++++++++++++++++++++++++++++ -->
+
+	<screen id="start"
+		controller="eu.opends.niftyGui.KeyMappingGUIController">
+		<layer id="menuLayer" childLayout="vertical" backgroundColor="#0008">
+			<panel childLayout="horizontal" align="center" width="100%"
+				height="30px">
+				<control id="keyMappingButton1" name="button" label="Key Mapping 1"
+					align="center" height="30px" width="200px">
+					<effect>
+						<onClick name="show" targetElement="keyMappingLayer1" />
+						<onClick name="hide" targetElement="keyMappingLayer2" />
+						<onClick name="hide" targetElement="graphicSettingsLayer" />
+					</effect>
+				</control>
+				<control id="keyMappingButton2" name="button" label="Key Mapping 2"
+					align="center" height="30px" width="200px">
+					<effect>
+						<onClick name="hide" targetElement="keyMappingLayer1" />
+						<onClick name="show" targetElement="keyMappingLayer2" />
+						<onClick name="hide" targetElement="graphicSettingsLayer" />
+					</effect>
+				</control>
+				<control id="graphicSettingsButton" name="button" label="Graphic Settings"
+					align="center" height="30px" width="200px">
+					<effect>
+						<onClick name="hide" targetElement="keyMappingLayer1" />
+						<onClick name="hide" targetElement="keyMappingLayer2" />
+						<onClick name="show" targetElement="graphicSettingsLayer" />
+					</effect>
+				</control>
+				<control id="cancelButton" name="button" label="back"
+					align="center" height="30px" width="200px">
+					<interact onClick="clickBackButton()" />
+				</control>
+			</panel>
+		</layer>
+		<layer id="keyMappingLayer1" childLayout="vertical"
+			backgroundColor="#0000">
+			<panel childLayout="vertical" align="center" width="100%"
+				height="100%">
+				<panel childLayout="vertical" align="center" width="100%"
+					height="80px">
+					<panel childLayout="center" align="center" width="100%"
+						height="30px" />
+					<panel childLayout="center" align="center" width="100%"
+						height="70px">
+						<control name="label" text="Key Mapping Overview 1" color="#ffffffff"
+							align="center" valign="center" font="Interface/Fonts/Arial32px.fnt"
+							height="50px">
+						</control>
+					</panel>
+				</panel>
+				<panel childLayout="horizontal" align="center" width="100%"
+					height="*">
+					<panel childLayout="vertical" align="center" width="6%"
+						height="100%">
+					</panel>
+					<panel childLayout="vertical" align="center" width="20%"
+						height="100%">
+						<control name="label" id="labelFunctionA00" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionA01" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionA02" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionA03" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionA04" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionA05" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionA06" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionA07" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionA08" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionA09" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+					</panel>
+					<panel childLayout="vertical" align="center" width="1%"
+						height="100%">
+					</panel>
+					<panel childLayout="vertical" align="center" width="5%"
+						height="100%">
+						<control name="label" id="labelKeyA00" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyA01" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyA02" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyA03" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyA04" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyA05" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyA06" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyA07" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyA08" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyA09" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+					</panel>
+					<panel childLayout="vertical" align="center" width="5%"
+						height="100%">
+					</panel>
+					<panel childLayout="vertical" align="center" width="20%"
+						height="100%">
+						<control name="label" id="labelFunctionA10" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionA11" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionA12" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionA13" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionA14" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionA15" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionA16" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionA17" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionA18" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionA19" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+					</panel>
+					<panel childLayout="vertical" align="center" width="1%"
+						height="100%">
+					</panel>
+					<panel childLayout="vertical" align="center" width="5%"
+						height="100%">
+						<control name="label" id="labelKeyA10" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyA11" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyA12" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyA13" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyA14" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyA15" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyA16" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyA17" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyA18" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyA19" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+					</panel>
+					<panel childLayout="vertical" align="center" width="5%"
+						height="100%">
+					</panel>
+					<panel childLayout="vertical" align="center" width="20%"
+						height="100%">
+						<control name="label" id="labelFunctionA20" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionA21" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionA22" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionA23" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionA24" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionA25" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionA26" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionA27" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionA28" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionA29" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+					</panel>
+					<panel childLayout="vertical" align="center" width="1%"
+						height="100%">
+					</panel>
+					<panel childLayout="vertical" align="center" width="5%"
+						height="100%">
+						<control name="label" id="labelKeyA20" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyA21" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyA22" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyA23" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyA24" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyA25" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyA26" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyA27" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyA28" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyA29" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+					</panel>
+					<panel childLayout="vertical" align="center" width="6%"
+						height="100%">
+					</panel>
+				</panel>
+				<panel childLayout="center" align="center" width="100%"
+					height="30px">
+				</panel>
+			</panel>
+		</layer>
+		<layer id="keyMappingLayer2" childLayout="vertical"
+			backgroundColor="#0000" visible="false">
+			<panel childLayout="vertical" align="center" width="100%"
+				height="100%">
+				<panel childLayout="vertical" align="center" width="100%"
+					height="80px">
+					<panel childLayout="center" align="center" width="100%"
+						height="30px" />
+					<panel childLayout="center" align="center" width="100%"
+						height="70px">
+						<control name="label" text="Key Mapping Overview 2" color="#ffffffff"
+							align="center" valign="center" font="Interface/Fonts/Arial32px.fnt"
+							height="50px">
+						</control>
+					</panel>
+				</panel>
+				<panel childLayout="horizontal" align="center" width="100%"
+					height="*">
+					<panel childLayout="vertical" align="center" width="6%"
+						height="100%">
+					</panel>
+					<panel childLayout="vertical" align="center" width="20%"
+						height="100%">
+						<control name="label" id="labelFunctionB00" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionB01" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionB02" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionB03" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionB04" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionB05" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionB06" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionB07" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionB08" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionB09" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+					</panel>
+					<panel childLayout="vertical" align="center" width="1%"
+						height="100%">
+					</panel>
+					<panel childLayout="vertical" align="center" width="5%"
+						height="100%">
+						<control name="label" id="labelKeyB00" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyB01" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyB02" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyB03" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyB04" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyB05" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyB06" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyB07" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyB08" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyB09" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+					</panel>
+					<panel childLayout="vertical" align="center" width="5%"
+						height="100%">
+					</panel>
+					<panel childLayout="vertical" align="center" width="20%"
+						height="100%">
+						<control name="label" id="labelFunctionB10" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionB11" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionB12" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionB13" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionB14" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionB15" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionB16" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionB17" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionB18" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionB19" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+					</panel>
+					<panel childLayout="vertical" align="center" width="1%"
+						height="100%">
+					</panel>
+					<panel childLayout="vertical" align="center" width="5%"
+						height="100%">
+						<control name="label" id="labelKeyB10" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyB11" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyB12" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyB13" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyB14" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyB15" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyB16" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyB17" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyB18" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyB19" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+					</panel>
+					<panel childLayout="vertical" align="center" width="5%"
+						height="100%">
+					</panel>
+					<panel childLayout="vertical" align="center" width="20%"
+						height="100%">
+						<control name="label" id="labelFunctionB20" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionB21" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionB22" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionB23" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionB24" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionB25" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionB26" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionB27" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionB28" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelFunctionB29" text="Overview"
+							color="#ffffffff" align="right" textHAlign="right" valign="center"
+							height="10%" width="100%">
+						</control>
+					</panel>
+					<panel childLayout="vertical" align="center" width="1%"
+						height="100%">
+					</panel>
+					<panel childLayout="vertical" align="center" width="5%"
+						height="100%">
+						<control name="label" id="labelKeyB20" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyB21" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyB22" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyB23" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyB24" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyB25" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyB26" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyB27" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyB28" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+						<control name="label" id="labelKeyB29" text="Overview"
+							color="#ffffffff" align="left" textHAlign="left" valign="center"
+							height="10%" width="100%">
+						</control>
+					</panel>
+					<panel childLayout="vertical" align="center" width="6%"
+						height="100%">
+					</panel>
+				</panel>
+				<panel childLayout="center" align="center" width="100%"
+					height="30px">
+				</panel>
+			</panel>
+		</layer>
+		<layer id="graphicSettingsLayer" childLayout="vertical"
+			backgroundColor="#0000" visible="false">
+			<panel childLayout="vertical" align="center" width="100%"
+				height="100%">
+				<panel childLayout="vertical" align="center" width="100%"
+					height="80px">
+					<panel childLayout="center" align="center" width="100%"
+						height="30px" />
+					<panel childLayout="center" align="center" width="100%"
+						height="70px">
+						<control name="label" text="Graphic Settings" color="#ffffffff"
+							align="center" valign="center" font="Interface/Fonts/Arial32px.fnt"
+							height="50px">
+						</control>
+					</panel>
+				</panel>
+				<panel childLayout="center" align="center" width="100%"
+					height="50px" />
+
+				<panel childLayout="horizontal" align="center" width="600px"
+					height="250px" style="nifty-panel">
+
+					<panel childLayout="vertical" width="15px" />
+
+					<panel childLayout="vertical" width="90px">
+
+						<panel childLayout="center" height="20px" />
+
+						<panel childLayout="center" align="right" height="30px">
+							<control name="label" id="resolutionLabel" text="Resolution:"
+								align="right" size="80px" />
+						</panel>
+
+						<panel childLayout="center" height="20px" />
+
+						<panel childLayout="center" align="right" height="30px">
+							<control name="label" id="frequencyLabel" text="Frequency:"
+								align="right" size="80px" />
+						</panel>
+
+						<panel childLayout="center" height="20px" />
+
+						<panel childLayout="center" align="right" height="30px">
+							<control name="label" id="fullscreenLabel" text="Full Screen:"
+								align="right" size="80px" />
+						</panel>
+
+						<panel childLayout="center" height="50px" />
+					</panel>
+
+					<panel childLayout="vertical" width="10px" />
+
+					<panel childLayout="vertical" width="150px">
+
+						<panel childLayout="center" height="20px" />
+
+						<panel childLayout="center" height="30px">
+							<control name="dropDown" id="resolutionDropDown" />
+						</panel>
+
+						<panel childLayout="center" height="20px" />
+
+						<panel childLayout="center" height="30px">
+							<control name="dropDown" id="frequencyDropDown" align="center" />
+						</panel>
+
+						<panel childLayout="center" height="20px" />
+
+						<panel childLayout="center" height="30px">
+							<control name="checkbox" id="fullscreenCheckBox" align="center" />
+						</panel>
+
+						<panel childLayout="center" height="20px" />
+
+						<panel childLayout="center">
+							<control id="applyButton" name="button" label="Apply"
+								align="center" height="30px">
+								<interact onClick="clickApplyButton()" />
+							</control>
+						</panel>
+
+					</panel>
+
+					<panel childLayout="vertical" width="10px" />
+
+					<panel childLayout="vertical" width="90px">
+
+						<panel childLayout="center" height="20px" />
+
+						<panel childLayout="center" align="right" height="30px">
+							<control name="label" id="colordepthLabel" text="Color Depth"
+								align="right" size="80px" />
+						</panel>
+
+						<panel childLayout="center" height="20px" />
+
+						<panel childLayout="center" align="right" height="30px">
+							<control name="label" id="samplesLabel" text="Samples:"
+								align="right" size="80px" />
+						</panel>
+
+						<panel childLayout="center" height="20px" />
+
+						<panel childLayout="center" align="right" height="30px">
+							<control name="label" id="vsyncLabel" text="VSync:"
+								align="right" size="80px" />
+						</panel>
+
+						<panel childLayout="center" height="50px" />
+					</panel>
+
+					<panel childLayout="vertical" width="10px" />
+
+					<panel childLayout="vertical" width="150px">
+
+						<panel childLayout="center" height="20px" />
+
+						<panel childLayout="center" height="30px">
+							<control name="dropDown" id="colordepthDropDown" align="center" />
+						</panel>
+
+						<panel childLayout="center" height="20px" />
+
+						<panel childLayout="center" height="30px">
+							<control name="dropDown" id="samplesDropDown" align="center" />
+						</panel>
+
+						<panel childLayout="center" height="20px" />
+
+						<panel childLayout="center" height="30px">
+							<control name="checkbox" id="vsyncCheckBox" align="center" />
+						</panel>
+
+						<panel childLayout="center" height="50px" />
+
+					</panel>
+
+					<panel childLayout="vertical" width="15px" />
+
+				</panel>
+
+
+				<panel childLayout="center" align="center" width="100%"
+					height="30px">
+				</panel>
+			</panel>
+		</layer>
+	</screen>
+
+</nifty>

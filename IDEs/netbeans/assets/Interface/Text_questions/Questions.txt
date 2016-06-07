@@ -1,0 +1,12 @@
+What is the capital of the Czech Republic? ; Prague
+What is the color of the grass? ; Green
+How much is 2 + 3 * 4 ? ; 14
+How much grams is 1 decagram? ; 10
+Last name of the presindent of the Czech Republic? ; Zeman
+What is the capital of Germany? ; Berlin
+What color of trafic light signalizes to stop? ; Red
+What is the third planet from the sun in our solar system? ; Earth
+How many months does 2 years have? ; 24
+How many minutes are 3 hours? ; 180
+What day is 27. 5. 2016? ; Friday
+How many weather distractors is there to chose from? ; 3

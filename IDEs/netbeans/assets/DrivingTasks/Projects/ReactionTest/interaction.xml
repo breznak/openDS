@@ -1,0 +1,608 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<interaction xmlns="http://opends.eu/drivingtask/interaction" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://opends.eu/drivingtask/interaction ../../Schema/interaction.xsd">
+	<activities>
+    <activity id="StartPosition_openInstructionsScreen" ref="">
+                  <action delay="0.0" id="openInstructionsScreen" repeat="1">
+                        <parameter name="instructionID" value="instructionScreen_1"/>
+                  </action>
+            </activity>
+            <activity id="Start_startRM" ref="">
+                  <action delay="0.0" id="startReactionMeasurement" repeat="1"/>
+            </activity>
+            <activity id="Start_startRecording" ref="">
+                  <action delay="0.0" id="startRecording" repeat="4">
+                        <parameter name="track" value="1"/>
+                  </action>
+            </activity>
+            <activity id="End_stopRecording" ref="">
+                  <action delay="0.0" id="stopRecording" repeat="4"/>
+            </activity>
+            <activity id="End_pauseSimulation" ref="">
+                  <action delay="0.0" id="pauseSimulation" repeat="4">
+                        <parameter name="duration" value="0"/>
+                  </action>
+            </activity>
+            <activity id="BLC_Test_Block0_Trial0_Trigger0_makeVisible_BLC_Test_Block0_Trial0_ContainerElement0" ref="">
+                  <action delay="0.1" id="manipulateObject" repeat="4">
+                        <parameter name="visible" value="true"/>
+                        <parameter name="id" value="BLC_Test_Block0_Trial0_ContainerElement0"/>
+                  </action>
+            </activity>
+            <activity id="BLC_Test_Block0_Trial0_Trigger0_setupBrakeLaneChangeReactionTimer" ref="">
+                  <action delay="0.1" id="setupBrakeReactionTimer" repeat="1">
+                        <parameter name="startSpeed" value="50"/>
+                        <parameter name="mustPressBrakePedal" value="true"/>
+                        <parameter name="taskCompletionAfterDistance" value="117"/>
+                        <parameter name="taskCompletionAfterTime" value="7000"/>
+                        <parameter name="timerID" value="timer1"/>
+                        <parameter name="successSound" value="good"/>
+                        <parameter name="allowLaneChange" value="true"/>
+                        <parameter name="congruenceClass" value="Brake"/>
+                        <parameter name="targetSpeed" value="40"/>
+                        <parameter name="holdSpeedFor" value="2000"/>
+                        <parameter name="failSound" value="fail"/>
+                  </action>
+            </activity>
+            <activity id="BLC_Test_Block0_Trial1_Trigger0_makeVisible_BLC_Test_Block0_Trial1_ContainerElement4" ref="">
+                  <action delay="0.1" id="manipulateObject" repeat="4">
+                        <parameter name="visible" value="true"/>
+                        <parameter name="id" value="BLC_Test_Block0_Trial1_ContainerElement4"/>
+                  </action>
+            </activity>
+            <activity id="BLC_Test_Block0_Trial1_Trigger0_setupBrakeLaneChangeReactionTimer" ref="">
+                  <action delay="0.1" id="setupLaneChangeReactionTimer" repeat="1">
+                        <parameter name="minSteeringAngle" value="0"/>
+                        <parameter name="targetLane" value="4"/>
+                        <parameter name="startLane" value="2"/>
+                        <parameter name="taskCompletionAfterDistance" value="117"/>
+                        <parameter name="taskCompletionAfterTime" value="7000"/>
+                        <parameter name="timerID" value="timer1"/>
+                        <parameter name="allowBrake" value="true"/>
+                        <parameter name="successSound" value="good"/>
+                        <parameter name="congruenceClass" value="LaneChange"/>
+                        <parameter name="holdLaneFor" value="2000"/>
+                        <parameter name="failSound" value="fail"/>
+                  </action>
+            </activity>
+            <activity id="BLC_Test_Block0_Trial2_Trigger0_makeVisible_BLC_Test_Block0_Trial2_ContainerElement4" ref="">
+                  <action delay="0.1" id="manipulateObject" repeat="4">
+                        <parameter name="visible" value="true"/>
+                        <parameter name="id" value="BLC_Test_Block0_Trial2_ContainerElement4"/>
+                  </action>
+            </activity>
+            <activity id="BLC_Test_Block0_Trial2_Trigger0_setupBrakeLaneChangeReactionTimer" ref="">
+                  <action delay="0.1" id="setupBrakeReactionTimer" repeat="1">
+                        <parameter name="startSpeed" value="50"/>
+                        <parameter name="mustPressBrakePedal" value="true"/>
+                        <parameter name="taskCompletionAfterDistance" value="117"/>
+                        <parameter name="taskCompletionAfterTime" value="7000"/>
+                        <parameter name="timerID" value="timer1"/>
+                        <parameter name="successSound" value="good"/>
+                        <parameter name="allowLaneChange" value="true"/>
+                        <parameter name="congruenceClass" value="Brake"/>
+                        <parameter name="targetSpeed" value="40"/>
+                        <parameter name="holdSpeedFor" value="2000"/>
+                        <parameter name="failSound" value="fail"/>
+                  </action>
+            </activity>
+            <activity id="BLC_Test_Block0_Trial3_Trigger0_makeVisible_BLC_Test_Block0_Trial3_ContainerElement0" ref="">
+                  <action delay="0.1" id="manipulateObject" repeat="4">
+                        <parameter name="visible" value="true"/>
+                        <parameter name="id" value="BLC_Test_Block0_Trial3_ContainerElement0"/>
+                  </action>
+            </activity>
+            <activity id="BLC_Test_Block0_Trial3_Trigger0_setupBrakeLaneChangeReactionTimer" ref="">
+                  <action delay="0.1" id="setupBrakeReactionTimer" repeat="1">
+                        <parameter name="startSpeed" value="50"/>
+                        <parameter name="mustPressBrakePedal" value="true"/>
+                        <parameter name="taskCompletionAfterDistance" value="117"/>
+                        <parameter name="taskCompletionAfterTime" value="7000"/>
+                        <parameter name="timerID" value="timer1"/>
+                        <parameter name="successSound" value="good"/>
+                        <parameter name="allowLaneChange" value="true"/>
+                        <parameter name="congruenceClass" value="Brake"/>
+                        <parameter name="targetSpeed" value="40"/>
+                        <parameter name="holdSpeedFor" value="2000"/>
+                        <parameter name="failSound" value="fail"/>
+                  </action>
+            </activity>
+            <activity id="BLC_Test_Block0_Trial4_Trigger0_makeVisible_BLC_Test_Block0_Trial4_ContainerElement1" ref="">
+                  <action delay="0.1" id="manipulateObject" repeat="4">
+                        <parameter name="visible" value="true"/>
+                        <parameter name="id" value="BLC_Test_Block0_Trial4_ContainerElement1"/>
+                  </action>
+            </activity>
+            <activity id="BLC_Test_Block0_Trial4_Trigger0_setupBrakeLaneChangeReactionTimer" ref="">
+                  <action delay="0.1" id="setupBrakeReactionTimer" repeat="1">
+                        <parameter name="startSpeed" value="50"/>
+                        <parameter name="mustPressBrakePedal" value="true"/>
+                        <parameter name="taskCompletionAfterDistance" value="117"/>
+                        <parameter name="taskCompletionAfterTime" value="7000"/>
+                        <parameter name="timerID" value="timer1"/>
+                        <parameter name="successSound" value="good"/>
+                        <parameter name="allowLaneChange" value="true"/>
+                        <parameter name="congruenceClass" value="Brake"/>
+                        <parameter name="targetSpeed" value="40"/>
+                        <parameter name="holdSpeedFor" value="2000"/>
+                        <parameter name="failSound" value="fail"/>
+                  </action>
+            </activity>
+            <activity id="BLC_Test_Block0_Trial5_Trigger0_makeVisible_BLC_Test_Block0_Trial5_ContainerElement1" ref="">
+                  <action delay="0.1" id="manipulateObject" repeat="4">
+                        <parameter name="visible" value="true"/>
+                        <parameter name="id" value="BLC_Test_Block0_Trial5_ContainerElement1"/>
+                  </action>
+            </activity>
+            <activity id="BLC_Test_Block0_Trial5_Trigger0_setupBrakeLaneChangeReactionTimer" ref="">
+                  <action delay="0.1" id="setupLaneChangeReactionTimer" repeat="1">
+                        <parameter name="minSteeringAngle" value="0"/>
+                        <parameter name="targetLane" value="1"/>
+                        <parameter name="startLane" value="2"/>
+                        <parameter name="taskCompletionAfterDistance" value="117"/>
+                        <parameter name="taskCompletionAfterTime" value="7000"/>
+                        <parameter name="timerID" value="timer1"/>
+                        <parameter name="allowBrake" value="true"/>
+                        <parameter name="successSound" value="good"/>
+                        <parameter name="congruenceClass" value="LaneChange"/>
+                        <parameter name="holdLaneFor" value="2000"/>
+                        <parameter name="failSound" value="fail"/>
+                  </action>
+            </activity>
+            <activity id="BLC_Test_Block0_Trial6_Trigger0_makeVisible_BLC_Test_Block0_Trial6_ContainerElement3" ref="">
+                  <action delay="0.1" id="manipulateObject" repeat="4">
+                        <parameter name="visible" value="true"/>
+                        <parameter name="id" value="BLC_Test_Block0_Trial6_ContainerElement3"/>
+                  </action>
+            </activity>
+            <activity id="BLC_Test_Block0_Trial6_Trigger0_setupBrakeLaneChangeReactionTimer" ref="">
+                  <action delay="0.1" id="setupBrakeReactionTimer" repeat="1">
+                        <parameter name="startSpeed" value="50"/>
+                        <parameter name="mustPressBrakePedal" value="true"/>
+                        <parameter name="taskCompletionAfterDistance" value="117"/>
+                        <parameter name="taskCompletionAfterTime" value="7000"/>
+                        <parameter name="timerID" value="timer1"/>
+                        <parameter name="successSound" value="good"/>
+                        <parameter name="allowLaneChange" value="true"/>
+                        <parameter name="congruenceClass" value="Brake"/>
+                        <parameter name="targetSpeed" value="40"/>
+                        <parameter name="holdSpeedFor" value="2000"/>
+                        <parameter name="failSound" value="fail"/>
+                  </action>
+            </activity>
+            <activity id="BLC_Test_Block0_Trial7_Trigger0_makeVisible_BLC_Test_Block0_Trial7_ContainerElement0" ref="">
+                  <action delay="0.1" id="manipulateObject" repeat="4">
+                        <parameter name="visible" value="true"/>
+                        <parameter name="id" value="BLC_Test_Block0_Trial7_ContainerElement0"/>
+                  </action>
+            </activity>
+            <activity id="BLC_Test_Block0_Trial7_Trigger0_setupBrakeLaneChangeReactionTimer" ref="">
+                  <action delay="0.1" id="setupLaneChangeReactionTimer" repeat="1">
+                        <parameter name="minSteeringAngle" value="0"/>
+                        <parameter name="targetLane" value="0"/>
+                        <parameter name="startLane" value="2"/>
+                        <parameter name="taskCompletionAfterDistance" value="117"/>
+                        <parameter name="taskCompletionAfterTime" value="7000"/>
+                        <parameter name="timerID" value="timer1"/>
+                        <parameter name="allowBrake" value="true"/>
+                        <parameter name="successSound" value="good"/>
+                        <parameter name="congruenceClass" value="LaneChange"/>
+                        <parameter name="holdLaneFor" value="2000"/>
+                        <parameter name="failSound" value="fail"/>
+                  </action>
+            </activity>
+            <activity id="BLC_Test_Block0_Trial8_Trigger0_makeVisible_BLC_Test_Block0_Trial8_ContainerElement3" ref="">
+                  <action delay="0.1" id="manipulateObject" repeat="4">
+                        <parameter name="visible" value="true"/>
+                        <parameter name="id" value="BLC_Test_Block0_Trial8_ContainerElement3"/>
+                  </action>
+            </activity>
+            <activity id="BLC_Test_Block0_Trial8_Trigger0_setupBrakeLaneChangeReactionTimer" ref="">
+                  <action delay="0.1" id="setupBrakeReactionTimer" repeat="1">
+                        <parameter name="startSpeed" value="50"/>
+                        <parameter name="mustPressBrakePedal" value="true"/>
+                        <parameter name="taskCompletionAfterDistance" value="117"/>
+                        <parameter name="taskCompletionAfterTime" value="7000"/>
+                        <parameter name="timerID" value="timer1"/>
+                        <parameter name="successSound" value="good"/>
+                        <parameter name="allowLaneChange" value="true"/>
+                        <parameter name="congruenceClass" value="Brake"/>
+                        <parameter name="targetSpeed" value="40"/>
+                        <parameter name="holdSpeedFor" value="2000"/>
+                        <parameter name="failSound" value="fail"/>
+                  </action>
+            </activity>
+            <activity id="BLC_Test_Block0_Trial9_Trigger0_makeVisible_BLC_Test_Block0_Trial9_ContainerElement4" ref="">
+                  <action delay="0.1" id="manipulateObject" repeat="4">
+                        <parameter name="visible" value="true"/>
+                        <parameter name="id" value="BLC_Test_Block0_Trial9_ContainerElement4"/>
+                  </action>
+            </activity>
+            <activity id="BLC_Test_Block0_Trial9_Trigger0_setupBrakeLaneChangeReactionTimer" ref="">
+                  <action delay="0.1" id="setupLaneChangeReactionTimer" repeat="1">
+                        <parameter name="minSteeringAngle" value="0"/>
+                        <parameter name="targetLane" value="4"/>
+                        <parameter name="startLane" value="2"/>
+                        <parameter name="taskCompletionAfterDistance" value="117"/>
+                        <parameter name="taskCompletionAfterTime" value="7000"/>
+                        <parameter name="timerID" value="timer1"/>
+                        <parameter name="allowBrake" value="true"/>
+                        <parameter name="successSound" value="good"/>
+                        <parameter name="congruenceClass" value="LaneChange"/>
+                        <parameter name="holdLaneFor" value="2000"/>
+                        <parameter name="failSound" value="fail"/>
+                  </action>
+            </activity>
+            <activity id="BLC_Test_Block0_Trial10_Trigger0_makeVisible_BLC_Test_Block0_Trial10_ContainerElement3" ref="">
+                  <action delay="0.1" id="manipulateObject" repeat="4">
+                        <parameter name="visible" value="true"/>
+                        <parameter name="id" value="BLC_Test_Block0_Trial10_ContainerElement3"/>
+                  </action>
+            </activity>
+            <activity id="BLC_Test_Block0_Trial10_Trigger0_setupBrakeLaneChangeReactionTimer" ref="">
+                  <action delay="0.1" id="setupLaneChangeReactionTimer" repeat="1">
+                        <parameter name="minSteeringAngle" value="0"/>
+                        <parameter name="targetLane" value="3"/>
+                        <parameter name="startLane" value="2"/>
+                        <parameter name="taskCompletionAfterDistance" value="117"/>
+                        <parameter name="taskCompletionAfterTime" value="7000"/>
+                        <parameter name="timerID" value="timer1"/>
+                        <parameter name="allowBrake" value="true"/>
+                        <parameter name="successSound" value="good"/>
+                        <parameter name="congruenceClass" value="LaneChange"/>
+                        <parameter name="holdLaneFor" value="2000"/>
+                        <parameter name="failSound" value="fail"/>
+                  </action>
+            </activity>
+            <activity id="BLC_Test_Block0_Trial11_Trigger0_makeVisible_BLC_Test_Block0_Trial11_ContainerElement0" ref="">
+                  <action delay="0.1" id="manipulateObject" repeat="4">
+                        <parameter name="visible" value="true"/>
+                        <parameter name="id" value="BLC_Test_Block0_Trial11_ContainerElement0"/>
+                  </action>
+            </activity>
+            <activity id="BLC_Test_Block0_Trial11_Trigger0_setupBrakeLaneChangeReactionTimer" ref="">
+                  <action delay="0.1" id="setupLaneChangeReactionTimer" repeat="1">
+                        <parameter name="minSteeringAngle" value="0"/>
+                        <parameter name="targetLane" value="0"/>
+                        <parameter name="startLane" value="2"/>
+                        <parameter name="taskCompletionAfterDistance" value="117"/>
+                        <parameter name="taskCompletionAfterTime" value="7000"/>
+                        <parameter name="timerID" value="timer1"/>
+                        <parameter name="allowBrake" value="true"/>
+                        <parameter name="successSound" value="good"/>
+                        <parameter name="congruenceClass" value="LaneChange"/>
+                        <parameter name="holdLaneFor" value="2000"/>
+                        <parameter name="failSound" value="fail"/>
+                  </action>
+            </activity>
+            <activity id="BLC_Test_Block0_Trial12_Trigger0_makeVisible_BLC_Test_Block0_Trial12_ContainerElement3" ref="">
+                  <action delay="0.1" id="manipulateObject" repeat="4">
+                        <parameter name="visible" value="true"/>
+                        <parameter name="id" value="BLC_Test_Block0_Trial12_ContainerElement3"/>
+                  </action>
+            </activity>
+            <activity id="BLC_Test_Block0_Trial12_Trigger0_setupBrakeLaneChangeReactionTimer" ref="">
+                  <action delay="0.1" id="setupBrakeReactionTimer" repeat="1">
+                        <parameter name="startSpeed" value="50"/>
+                        <parameter name="mustPressBrakePedal" value="true"/>
+                        <parameter name="taskCompletionAfterDistance" value="117"/>
+                        <parameter name="taskCompletionAfterTime" value="7000"/>
+                        <parameter name="timerID" value="timer1"/>
+                        <parameter name="successSound" value="good"/>
+                        <parameter name="allowLaneChange" value="true"/>
+                        <parameter name="congruenceClass" value="Brake"/>
+                        <parameter name="targetSpeed" value="40"/>
+                        <parameter name="holdSpeedFor" value="2000"/>
+                        <parameter name="failSound" value="fail"/>
+                  </action>
+            </activity>
+            <activity id="BLC_Test_Block0_Trial13_Trigger0_makeVisible_BLC_Test_Block0_Trial13_ContainerElement0" ref="">
+                  <action delay="0.1" id="manipulateObject" repeat="4">
+                        <parameter name="visible" value="true"/>
+                        <parameter name="id" value="BLC_Test_Block0_Trial13_ContainerElement0"/>
+                  </action>
+            </activity>
+            <activity id="BLC_Test_Block0_Trial13_Trigger0_setupBrakeLaneChangeReactionTimer" ref="">
+                  <action delay="0.1" id="setupLaneChangeReactionTimer" repeat="1">
+                        <parameter name="minSteeringAngle" value="0"/>
+                        <parameter name="targetLane" value="0"/>
+                        <parameter name="startLane" value="2"/>
+                        <parameter name="taskCompletionAfterDistance" value="117"/>
+                        <parameter name="taskCompletionAfterTime" value="7000"/>
+                        <parameter name="timerID" value="timer1"/>
+                        <parameter name="allowBrake" value="true"/>
+                        <parameter name="successSound" value="good"/>
+                        <parameter name="congruenceClass" value="LaneChange"/>
+                        <parameter name="holdLaneFor" value="2000"/>
+                        <parameter name="failSound" value="fail"/>
+                  </action>
+            </activity>
+            <activity id="BLC_Test_Block0_Trial14_Trigger0_makeVisible_BLC_Test_Block0_Trial14_ContainerElement1" ref="">
+                  <action delay="0.1" id="manipulateObject" repeat="4">
+                        <parameter name="visible" value="true"/>
+                        <parameter name="id" value="BLC_Test_Block0_Trial14_ContainerElement1"/>
+                  </action>
+            </activity>
+            <activity id="BLC_Test_Block0_Trial14_Trigger0_setupBrakeLaneChangeReactionTimer" ref="">
+                  <action delay="0.1" id="setupBrakeReactionTimer" repeat="1">
+                        <parameter name="startSpeed" value="50"/>
+                        <parameter name="mustPressBrakePedal" value="true"/>
+                        <parameter name="taskCompletionAfterDistance" value="117"/>
+                        <parameter name="taskCompletionAfterTime" value="7000"/>
+                        <parameter name="timerID" value="timer1"/>
+                        <parameter name="successSound" value="good"/>
+                        <parameter name="allowLaneChange" value="true"/>
+                        <parameter name="congruenceClass" value="Brake"/>
+                        <parameter name="targetSpeed" value="40"/>
+                        <parameter name="holdSpeedFor" value="2000"/>
+                        <parameter name="failSound" value="fail"/>
+                  </action>
+            </activity>
+            <activity id="BLC_Test_Block0_Trial15_Trigger0_makeVisible_BLC_Test_Block0_Trial15_ContainerElement3" ref="">
+                  <action delay="0.1" id="manipulateObject" repeat="4">
+                        <parameter name="visible" value="true"/>
+                        <parameter name="id" value="BLC_Test_Block0_Trial15_ContainerElement3"/>
+                  </action>
+            </activity>
+            <activity id="BLC_Test_Block0_Trial15_Trigger0_setupBrakeLaneChangeReactionTimer" ref="">
+                  <action delay="0.1" id="setupLaneChangeReactionTimer" repeat="1">
+                        <parameter name="minSteeringAngle" value="0"/>
+                        <parameter name="targetLane" value="3"/>
+                        <parameter name="startLane" value="2"/>
+                        <parameter name="taskCompletionAfterDistance" value="117"/>
+                        <parameter name="taskCompletionAfterTime" value="7000"/>
+                        <parameter name="timerID" value="timer1"/>
+                        <parameter name="allowBrake" value="true"/>
+                        <parameter name="successSound" value="good"/>
+                        <parameter name="congruenceClass" value="LaneChange"/>
+                        <parameter name="holdLaneFor" value="2000"/>
+                        <parameter name="failSound" value="fail"/>
+                  </action>
+            </activity>
+            <activity id="BLC_Test_Block0_Trial16_Trigger0_makeVisible_BLC_Test_Block0_Trial16_ContainerElement1" ref="">
+                  <action delay="0.1" id="manipulateObject" repeat="4">
+                        <parameter name="visible" value="true"/>
+                        <parameter name="id" value="BLC_Test_Block0_Trial16_ContainerElement1"/>
+                  </action>
+            </activity>
+            <activity id="BLC_Test_Block0_Trial16_Trigger0_setupBrakeLaneChangeReactionTimer" ref="">
+                  <action delay="0.1" id="setupBrakeReactionTimer" repeat="1">
+                        <parameter name="startSpeed" value="50"/>
+                        <parameter name="mustPressBrakePedal" value="true"/>
+                        <parameter name="taskCompletionAfterDistance" value="117"/>
+                        <parameter name="taskCompletionAfterTime" value="7000"/>
+                        <parameter name="timerID" value="timer1"/>
+                        <parameter name="successSound" value="good"/>
+                        <parameter name="allowLaneChange" value="true"/>
+                        <parameter name="congruenceClass" value="Brake"/>
+                        <parameter name="targetSpeed" value="40"/>
+                        <parameter name="holdSpeedFor" value="2000"/>
+                        <parameter name="failSound" value="fail"/>
+                  </action>
+            </activity>
+            <activity id="BLC_Test_Block0_Trial17_Trigger0_makeVisible_BLC_Test_Block0_Trial17_ContainerElement1" ref="">
+                  <action delay="0.1" id="manipulateObject" repeat="4">
+                        <parameter name="visible" value="true"/>
+                        <parameter name="id" value="BLC_Test_Block0_Trial17_ContainerElement1"/>
+                  </action>
+            </activity>
+            <activity id="BLC_Test_Block0_Trial17_Trigger0_setupBrakeLaneChangeReactionTimer" ref="">
+                  <action delay="0.1" id="setupLaneChangeReactionTimer" repeat="1">
+                        <parameter name="minSteeringAngle" value="0"/>
+                        <parameter name="targetLane" value="1"/>
+                        <parameter name="startLane" value="2"/>
+                        <parameter name="taskCompletionAfterDistance" value="117"/>
+                        <parameter name="taskCompletionAfterTime" value="7000"/>
+                        <parameter name="timerID" value="timer1"/>
+                        <parameter name="allowBrake" value="true"/>
+                        <parameter name="successSound" value="good"/>
+                        <parameter name="congruenceClass" value="LaneChange"/>
+                        <parameter name="holdLaneFor" value="2000"/>
+                        <parameter name="failSound" value="fail"/>
+                  </action>
+            </activity>
+            <activity id="BLC_Test_Block0_Trial18_Trigger0_makeVisible_BLC_Test_Block0_Trial18_ContainerElement4" ref="">
+                  <action delay="0.1" id="manipulateObject" repeat="4">
+                        <parameter name="visible" value="true"/>
+                        <parameter name="id" value="BLC_Test_Block0_Trial18_ContainerElement4"/>
+                  </action>
+            </activity>
+            <activity id="BLC_Test_Block0_Trial18_Trigger0_setupBrakeLaneChangeReactionTimer" ref="">
+                  <action delay="0.1" id="setupBrakeReactionTimer" repeat="1">
+                        <parameter name="startSpeed" value="50"/>
+                        <parameter name="mustPressBrakePedal" value="true"/>
+                        <parameter name="taskCompletionAfterDistance" value="117"/>
+                        <parameter name="taskCompletionAfterTime" value="7000"/>
+                        <parameter name="timerID" value="timer1"/>
+                        <parameter name="successSound" value="good"/>
+                        <parameter name="allowLaneChange" value="true"/>
+                        <parameter name="congruenceClass" value="Brake"/>
+                        <parameter name="targetSpeed" value="40"/>
+                        <parameter name="holdSpeedFor" value="2000"/>
+                        <parameter name="failSound" value="fail"/>
+                  </action>
+            </activity>
+            <activity id="BLC_Test_Block0_Trial19_Trigger0_makeVisible_BLC_Test_Block0_Trial19_ContainerElement4" ref="">
+                  <action delay="0.1" id="manipulateObject" repeat="4">
+                        <parameter name="visible" value="true"/>
+                        <parameter name="id" value="BLC_Test_Block0_Trial19_ContainerElement4"/>
+                  </action>
+            </activity>
+            <activity id="BLC_Test_Block0_Trial19_Trigger0_setupBrakeLaneChangeReactionTimer" ref="">
+                  <action delay="0.1" id="setupLaneChangeReactionTimer" repeat="1">
+                        <parameter name="minSteeringAngle" value="0"/>
+                        <parameter name="targetLane" value="4"/>
+                        <parameter name="startLane" value="2"/>
+                        <parameter name="taskCompletionAfterDistance" value="117"/>
+                        <parameter name="taskCompletionAfterTime" value="7000"/>
+                        <parameter name="timerID" value="timer1"/>
+                        <parameter name="allowBrake" value="true"/>
+                        <parameter name="successSound" value="good"/>
+                        <parameter name="congruenceClass" value="LaneChange"/>
+                        <parameter name="holdLaneFor" value="2000"/>
+                        <parameter name="failSound" value="fail"/>
+                  </action>
+            </activity>
+      </activities>
+	<triggers>
+	<trigger id="Exp_BLC_150_StartPosition_Trigger" priority="1">
+                  <activities>
+                        <activity ref="StartPosition_openInstructionsScreen"/>
+                  </activities>
+                  <condition>collideWith:Exp_BLC_150_StartPosition_Trigger</condition>
+            </trigger>
+            <trigger id="BLC_Test_Start_Trigger" priority="1">
+                  <activities>
+                        <activity ref="Start_startRM"/>
+                        <activity ref="Start_startRecording"/>
+                  </activities>
+                  <condition>collideWith:BLC_Test_Start_Trigger</condition>
+            </trigger>
+            <trigger id="BLC_Test_End_Trigger" priority="1">
+                  <activities>
+                        <activity ref="End_stopRecording"/>
+                        <activity ref="End_pauseSimulation"/>
+                  </activities>
+                  <condition>collideWith:BLC_Test_End_Trigger</condition>
+            </trigger>
+            <trigger id="BLC_Test_Block0_Trial0_Trigger0" priority="1">
+                  <activities>
+                        <activity ref="BLC_Test_Block0_Trial0_Trigger0_makeVisible_BLC_Test_Block0_Trial0_ContainerElement0"/>
+                        <activity ref="BLC_Test_Block0_Trial0_Trigger0_setupBrakeLaneChangeReactionTimer"/>
+                  </activities>
+                  <condition>collideWith:BLC_Test_Block0_Trial0_Trigger0</condition>
+            </trigger>
+            <trigger id="BLC_Test_Block0_Trial1_Trigger0" priority="1">
+                  <activities>
+                        <activity ref="BLC_Test_Block0_Trial1_Trigger0_makeVisible_BLC_Test_Block0_Trial1_ContainerElement4"/>
+                        <activity ref="BLC_Test_Block0_Trial1_Trigger0_setupBrakeLaneChangeReactionTimer"/>
+                  </activities>
+                  <condition>collideWith:BLC_Test_Block0_Trial1_Trigger0</condition>
+            </trigger>
+            <trigger id="BLC_Test_Block0_Trial2_Trigger0" priority="1">
+                  <activities>
+                        <activity ref="BLC_Test_Block0_Trial2_Trigger0_makeVisible_BLC_Test_Block0_Trial2_ContainerElement4"/>
+                        <activity ref="BLC_Test_Block0_Trial2_Trigger0_setupBrakeLaneChangeReactionTimer"/>
+                  </activities>
+                  <condition>collideWith:BLC_Test_Block0_Trial2_Trigger0</condition>
+            </trigger>
+            <trigger id="BLC_Test_Block0_Trial3_Trigger0" priority="1">
+                  <activities>
+                        <activity ref="BLC_Test_Block0_Trial3_Trigger0_makeVisible_BLC_Test_Block0_Trial3_ContainerElement0"/>
+                        <activity ref="BLC_Test_Block0_Trial3_Trigger0_setupBrakeLaneChangeReactionTimer"/>
+                  </activities>
+                  <condition>collideWith:BLC_Test_Block0_Trial3_Trigger0</condition>
+            </trigger>
+            <trigger id="BLC_Test_Block0_Trial4_Trigger0" priority="1">
+                  <activities>
+                        <activity ref="BLC_Test_Block0_Trial4_Trigger0_makeVisible_BLC_Test_Block0_Trial4_ContainerElement1"/>
+                        <activity ref="BLC_Test_Block0_Trial4_Trigger0_setupBrakeLaneChangeReactionTimer"/>
+                  </activities>
+                  <condition>collideWith:BLC_Test_Block0_Trial4_Trigger0</condition>
+            </trigger>
+            <trigger id="BLC_Test_Block0_Trial5_Trigger0" priority="1">
+                  <activities>
+                        <activity ref="BLC_Test_Block0_Trial5_Trigger0_makeVisible_BLC_Test_Block0_Trial5_ContainerElement1"/>
+                        <activity ref="BLC_Test_Block0_Trial5_Trigger0_setupBrakeLaneChangeReactionTimer"/>
+                  </activities>
+                  <condition>collideWith:BLC_Test_Block0_Trial5_Trigger0</condition>
+            </trigger>
+            <trigger id="BLC_Test_Block0_Trial6_Trigger0" priority="1">
+                  <activities>
+                        <activity ref="BLC_Test_Block0_Trial6_Trigger0_makeVisible_BLC_Test_Block0_Trial6_ContainerElement3"/>
+                        <activity ref="BLC_Test_Block0_Trial6_Trigger0_setupBrakeLaneChangeReactionTimer"/>
+                  </activities>
+                  <condition>collideWith:BLC_Test_Block0_Trial6_Trigger0</condition>
+            </trigger>
+            <trigger id="BLC_Test_Block0_Trial7_Trigger0" priority="1">
+                  <activities>
+                        <activity ref="BLC_Test_Block0_Trial7_Trigger0_makeVisible_BLC_Test_Block0_Trial7_ContainerElement0"/>
+                        <activity ref="BLC_Test_Block0_Trial7_Trigger0_setupBrakeLaneChangeReactionTimer"/>
+                  </activities>
+                  <condition>collideWith:BLC_Test_Block0_Trial7_Trigger0</condition>
+            </trigger>
+            <trigger id="BLC_Test_Block0_Trial8_Trigger0" priority="1">
+                  <activities>
+                        <activity ref="BLC_Test_Block0_Trial8_Trigger0_makeVisible_BLC_Test_Block0_Trial8_ContainerElement3"/>
+                        <activity ref="BLC_Test_Block0_Trial8_Trigger0_setupBrakeLaneChangeReactionTimer"/>
+                  </activities>
+                  <condition>collideWith:BLC_Test_Block0_Trial8_Trigger0</condition>
+            </trigger>
+            <trigger id="BLC_Test_Block0_Trial9_Trigger0" priority="1">
+                  <activities>
+                        <activity ref="BLC_Test_Block0_Trial9_Trigger0_makeVisible_BLC_Test_Block0_Trial9_ContainerElement4"/>
+                        <activity ref="BLC_Test_Block0_Trial9_Trigger0_setupBrakeLaneChangeReactionTimer"/>
+                  </activities>
+                  <condition>collideWith:BLC_Test_Block0_Trial9_Trigger0</condition>
+            </trigger>
+            <trigger id="BLC_Test_Block0_Trial10_Trigger0" priority="1">
+                  <activities>
+                        <activity ref="BLC_Test_Block0_Trial10_Trigger0_makeVisible_BLC_Test_Block0_Trial10_ContainerElement3"/>
+                        <activity ref="BLC_Test_Block0_Trial10_Trigger0_setupBrakeLaneChangeReactionTimer"/>
+                  </activities>
+                  <condition>collideWith:BLC_Test_Block0_Trial10_Trigger0</condition>
+            </trigger>
+            <trigger id="BLC_Test_Block0_Trial11_Trigger0" priority="1">
+                  <activities>
+                        <activity ref="BLC_Test_Block0_Trial11_Trigger0_makeVisible_BLC_Test_Block0_Trial11_ContainerElement0"/>
+                        <activity ref="BLC_Test_Block0_Trial11_Trigger0_setupBrakeLaneChangeReactionTimer"/>
+                  </activities>
+                  <condition>collideWith:BLC_Test_Block0_Trial11_Trigger0</condition>
+            </trigger>
+            <trigger id="BLC_Test_Block0_Trial12_Trigger0" priority="1">
+                  <activities>
+                        <activity ref="BLC_Test_Block0_Trial12_Trigger0_makeVisible_BLC_Test_Block0_Trial12_ContainerElement3"/>
+                        <activity ref="BLC_Test_Block0_Trial12_Trigger0_setupBrakeLaneChangeReactionTimer"/>
+                  </activities>
+                  <condition>collideWith:BLC_Test_Block0_Trial12_Trigger0</condition>
+            </trigger>
+            <trigger id="BLC_Test_Block0_Trial13_Trigger0" priority="1">
+                  <activities>
+                        <activity ref="BLC_Test_Block0_Trial13_Trigger0_makeVisible_BLC_Test_Block0_Trial13_ContainerElement0"/>
+                        <activity ref="BLC_Test_Block0_Trial13_Trigger0_setupBrakeLaneChangeReactionTimer"/>
+                  </activities>
+                  <condition>collideWith:BLC_Test_Block0_Trial13_Trigger0</condition>
+            </trigger>
+            <trigger id="BLC_Test_Block0_Trial14_Trigger0" priority="1">
+                  <activities>
+                        <activity ref="BLC_Test_Block0_Trial14_Trigger0_makeVisible_BLC_Test_Block0_Trial14_ContainerElement1"/>
+                        <activity ref="BLC_Test_Block0_Trial14_Trigger0_setupBrakeLaneChangeReactionTimer"/>
+                  </activities>
+                  <condition>collideWith:BLC_Test_Block0_Trial14_Trigger0</condition>
+            </trigger>
+            <trigger id="BLC_Test_Block0_Trial15_Trigger0" priority="1">
+                  <activities>
+                        <activity ref="BLC_Test_Block0_Trial15_Trigger0_makeVisible_BLC_Test_Block0_Trial15_ContainerElement3"/>
+                        <activity ref="BLC_Test_Block0_Trial15_Trigger0_setupBrakeLaneChangeReactionTimer"/>
+                  </activities>
+                  <condition>collideWith:BLC_Test_Block0_Trial15_Trigger0</condition>
+            </trigger>
+            <trigger id="BLC_Test_Block0_Trial16_Trigger0" priority="1">
+                  <activities>
+                        <activity ref="BLC_Test_Block0_Trial16_Trigger0_makeVisible_BLC_Test_Block0_Trial16_ContainerElement1"/>
+                        <activity ref="BLC_Test_Block0_Trial16_Trigger0_setupBrakeLaneChangeReactionTimer"/>
+                  </activities>
+                  <condition>collideWith:BLC_Test_Block0_Trial16_Trigger0</condition>
+            </trigger>
+            <trigger id="BLC_Test_Block0_Trial17_Trigger0" priority="1">
+                  <activities>
+                        <activity ref="BLC_Test_Block0_Trial17_Trigger0_makeVisible_BLC_Test_Block0_Trial17_ContainerElement1"/>
+                        <activity ref="BLC_Test_Block0_Trial17_Trigger0_setupBrakeLaneChangeReactionTimer"/>
+                  </activities>
+                  <condition>collideWith:BLC_Test_Block0_Trial17_Trigger0</condition>
+            </trigger>
+            <trigger id="BLC_Test_Block0_Trial18_Trigger0" priority="1">
+                  <activities>
+                        <activity ref="BLC_Test_Block0_Trial18_Trigger0_makeVisible_BLC_Test_Block0_Trial18_ContainerElement4"/>
+                        <activity ref="BLC_Test_Block0_Trial18_Trigger0_setupBrakeLaneChangeReactionTimer"/>
+                  </activities>
+                  <condition>collideWith:BLC_Test_Block0_Trial18_Trigger0</condition>
+            </trigger>
+            <trigger id="BLC_Test_Block0_Trial19_Trigger0" priority="1">
+                  <activities>
+                        <activity ref="BLC_Test_Block0_Trial19_Trigger0_makeVisible_BLC_Test_Block0_Trial19_ContainerElement4"/>
+                        <activity ref="BLC_Test_Block0_Trial19_Trigger0_setupBrakeLaneChangeReactionTimer"/>
+                  </activities>
+                  <condition>collideWith:BLC_Test_Block0_Trial19_Trigger0</condition>
+            </trigger>
+      </triggers>
+</interaction>
