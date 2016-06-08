@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2015 Rafael Math
+*  Copyright (C) 2016 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -31,15 +31,10 @@ import org.w3c.dom.NodeList;
 
 import Jama.Matrix;
 
-import com.jme3.light.AmbientLight;
-import com.jme3.material.Material;
-import com.jme3.math.ColorRGBA;
 import com.jme3.math.FastMath;
 import com.jme3.math.Quaternion;
 import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
-import com.jme3.renderer.queue.RenderQueue.ShadowMode;
-import com.jme3.scene.Geometry;
 
 import eu.opends.basics.MapObject;
 import eu.opends.basics.SimulationBasics;
@@ -58,7 +53,6 @@ import eu.opends.environment.TrafficLight.TrafficLightDirection;
 import eu.opends.environment.TrafficLight.TrafficLightState;
 import eu.opends.main.DriveAnalyzer;
 import eu.opends.main.Simulator;
-import eu.opends.tools.Util;
 import eu.opends.traffic.FollowBoxSettings;
 import eu.opends.traffic.PedestrianData;
 import eu.opends.traffic.PhysicalTraffic;
@@ -482,7 +476,31 @@ public class ScenarioLoader
 		return new WeatherSettings(snowingPercentage, rainingPercentage, fogPercentage);
 	}
 	
+	
+	public boolean isBloomFilter() 
+	{
+		Boolean useBloomFilter = dtData.getValue(Layer.SCENARIO, 
+				"/scenario:scenario/scenario:environment/scenario:useBloomFilter", Boolean.class);
+		
+		if(useBloomFilter == null)
+			useBloomFilter = false;
+		
+		return useBloomFilter;
+	}
+	
+	
+	public boolean isShadowFilter() 
+	{
+		Boolean useShadowFilter = dtData.getValue(Layer.SCENARIO, 
+				"/scenario:scenario/scenario:environment/scenario:useShadowFilter", Boolean.class);
+		
+		if(useShadowFilter == null)
+			useShadowFilter = true;
+		
+		return useShadowFilter;
+	}
 
+	
 	/**
 	 * Looks up the node "startPosition" for the initial location 
 	 * of the car at the beginning of the simulation.
@@ -587,6 +605,7 @@ public class ScenarioLoader
 				String modelPath = null;
 				ArrayList<Waypoint> wayPoints = new ArrayList<Waypoint>();
 				Float curveTension = null;
+				Float minDistance = null;
 				Float maxDistance = null;
 				Boolean pathIsCycle = null;
 				Boolean pathIsVisible = null;
@@ -652,6 +671,13 @@ public class ScenarioLoader
 						curveTension = Float.parseFloat(currentChild.getTextContent());
 					}
 					
+					//Float minDistance = dtData.getValue(Layer.SCENARIO, 
+					//		"/scenario:scenario/scenario:traffic/scenario:vehicle["+k+"]/scenario:minDistanceFromPath", Float.class);
+					else if(currentChild.getNodeName().equals("minDistanceFromPath"))
+					{
+						minDistance = Float.parseFloat(currentChild.getTextContent());
+					}
+					
 					//Float maxDistance = dtData.getValue(Layer.SCENARIO, 
 					//		"/scenario:scenario/scenario:traffic/scenario:vehicle["+k+"]/scenario:maxDistanceFromPath", Float.class);
 					else if(currentChild.getNodeName().equals("maxDistanceFromPath"))
@@ -699,6 +725,9 @@ public class ScenarioLoader
 				if(curveTension == null)
 					curveTension = 0.05f;
 				
+				if(minDistance == null)
+					minDistance = 1.0f;
+				
 				if(maxDistance == null)
 					maxDistance = 10.0f;
 				
@@ -712,7 +741,7 @@ public class ScenarioLoader
 					startWayPoint = "WayPoint_1";
 
 				TrafficCarData trafficCarData = new TrafficCarData(name, mass, acceleration, decelerationBrake, 
-						decelerationFreeWheel, engineOn, modelPath, new FollowBoxSettings(wayPoints, maxDistance, 
+						decelerationFreeWheel, engineOn, modelPath, new FollowBoxSettings(wayPoints, minDistance, maxDistance, 
 						curveTension, pathIsCycle, pathIsVisible, startWayPoint));
 				PhysicalTraffic.getVehicleDataList().add(trafficCarData);
 			}
@@ -738,12 +767,16 @@ public class ScenarioLoader
 				NodeList childnodes = currentNode.getChildNodes();
 				
 				Float mass = null;
+				boolean enabled = true;
 				String animationStand = null;
 				String animationWalk = null;
-				Float scale = null;
+				Float localScale = null;
+				Vector3f localTranslation = null;
+				Quaternion localRotation = null;
 				String modelPath = null;
 				ArrayList<Waypoint> wayPoints = new ArrayList<Waypoint>();
 				Float curveTension = null;
+				Float minDistance = null;
 				Float maxDistance = null;
 				Boolean pathIsCycle = null;
 				Boolean pathIsVisible = null;
@@ -758,6 +791,13 @@ public class ScenarioLoader
 					if(currentChild.getNodeName().equals("mass"))
 					{
 						mass = Float.parseFloat(currentChild.getTextContent());
+					}
+					
+					//Boolean enabled = dtData.getValue(Layer.SCENARIO, 
+					//		"/scenario:scenario/scenario:traffic/scenario:pedestrian["+k+"]/scenario:enabled", Boolean.class);
+					else if(currentChild.getNodeName().equals("enabled"))
+					{
+						enabled = Boolean.parseBoolean(currentChild.getTextContent());
 					}
 					
 					//String animationStand = dtData.getValue(Layer.SCENARIO, 
@@ -778,9 +818,23 @@ public class ScenarioLoader
 					//		"/scenario:scenario/scenario:traffic/scenario:pedestrian["+k+"]/scenario:scale", Float.class);
 					else if(currentChild.getNodeName().equals("scale"))
 					{
-						scale = Float.parseFloat(currentChild.getTextContent());
+						localScale = Float.parseFloat(currentChild.getTextContent());
+					}
+					
+					else if(currentChild.getNodeName().equals("localTranslation"))
+					{
+						//localTranslation = getTranslation(currentChild);
+						localTranslation = dtData.getVector3f(Layer.SCENARIO, "/scenario:scenario/scenario:traffic/scenario:pedestrian["+
+								k+"]/scenario:localTranslation");
 					}
 
+					else if(currentChild.getNodeName().equals("localRotation"))
+					{
+						//localRotation = getRotation(currentChild); // method does not exist
+						localRotation = dtData.getQuaternion(Layer.SCENARIO, "/scenario:scenario/scenario:traffic/scenario:pedestrian["+
+								k+"]/scenario:localRotation");
+					}
+					
 					//String modelPath = dtData.getValue(Layer.SCENARIO, 
 					//		"/scenario:scenario/scenario:traffic/scenario:pedestrian["+k+"]/scenario:modelPath", String.class);
 					else if(currentChild.getNodeName().equals("modelPath"))
@@ -800,6 +854,13 @@ public class ScenarioLoader
 					else if(currentChild.getNodeName().equals("curveTension"))
 					{
 						curveTension = Float.parseFloat(currentChild.getTextContent());
+					}
+					
+					//Float minDistance = dtData.getValue(Layer.SCENARIO, 
+					//		"/scenario:scenario/scenario:traffic/scenario:pedestrian["+k+"]/scenario:minDistanceFromPath", Float.class);
+					else if(currentChild.getNodeName().equals("minDistanceFromPath"))
+					{
+						minDistance = Float.parseFloat(currentChild.getTextContent());
 					}
 					
 					//Float maxDistance = dtData.getValue(Layer.SCENARIO, 
@@ -840,11 +901,20 @@ public class ScenarioLoader
 				if(animationWalk == null)
 					animationWalk = "Walk";
 				
-				if(scale == null)
-					scale = 1.0f;
+				if(localScale == null)
+					localScale = 1.0f;
+				
+				if(localTranslation == null)
+					localTranslation = new Vector3f(0,0,0);
+				
+				if(localRotation == null)
+					localRotation = new Quaternion();
 				
 				if(curveTension == null)
 					curveTension = 0.05f;
+				
+				if(minDistance == null)
+					minDistance = 1.0f;
 				
 				if(maxDistance == null)
 					maxDistance = 1.1f;
@@ -858,9 +928,9 @@ public class ScenarioLoader
 				if(startWayPoint == null)
 					startWayPoint = "WayPoint_1";
 
-				PedestrianData pedestrianData = new PedestrianData(name, mass, animationStand, animationWalk, 
-						scale, modelPath, new FollowBoxSettings(wayPoints, maxDistance, 
-						curveTension, pathIsCycle, pathIsVisible, startWayPoint));
+				PedestrianData pedestrianData = new PedestrianData(name, enabled, mass, animationStand, animationWalk, 
+						localScale, localTranslation, localRotation, modelPath, new FollowBoxSettings(wayPoints, minDistance,
+						maxDistance, curveTension, pathIsCycle, pathIsVisible, startWayPoint));
 				PhysicalTraffic.getPedestrianDataList().add(pedestrianData);
 			}
 			
@@ -901,7 +971,7 @@ public class ScenarioLoader
 					{
 						Node currentChild = childnodes.item(j-1);
 						
-						//translation = getVector3f(layer, path + "/" + translation + ":translation");
+						//translation = getVector3f(layer, path + "/" + layer + ":translation");
 						if(currentChild.getNodeName().equals("translation"))
 						{
 							translation = getTranslation(currentChild);
@@ -998,7 +1068,7 @@ public class ScenarioLoader
 					if(entryNodesList.item(2).getNodeName().equals("entry"))
 						z = Float.parseFloat(entryNodesList.item(2).getTextContent());
 				}
-
+				
 				if(x!=null && y!=null && z!=null)
 				{
 					return new Vector3f(x,y,z);
@@ -1262,5 +1332,6 @@ public class ScenarioLoader
 	{
 		return globalTrafficLightList;
 	}
+
 	
 }

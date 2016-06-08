@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2015 Rafael Math
+*  Copyright (C) 2016 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -41,6 +41,7 @@ import eu.opends.trigger.PlayNextMovieAction;
 import eu.opends.trigger.PlaySoundAction;
 import eu.opends.trigger.PresentationTaskAction;
 import eu.opends.trigger.ReportSpeedTriggerAction;
+import eu.opends.trigger.ReportTextTriggerAction;
 import eu.opends.trigger.ReportTrafficLightTriggerAction;
 import eu.opends.trigger.RequestGreenTrafficLightAction;
 import eu.opends.trigger.ResetCarToResetPointAction;
@@ -562,17 +563,33 @@ public class InteractionMethods
 			if(trafficObjectID == null)
 				throw new Exception();
 			
-			// read ID of traffic object
+			// read ID of way point
 			parameter = "wayPointID";
 			String wayPointID = parameterList.getProperty(parameter);
-			if(wayPointID == null)
-				throw new Exception();
+			
+			// read engine status
+			parameter = "engineOn";
+			String engineOnString = parameterList.getProperty(parameter);
+			Boolean engineOn;
+			if(engineOnString == null)
+				engineOn = null;
+			else
+				engineOn = Boolean.parseBoolean(engineOnString);
+			
+			// read enabled status
+			parameter = "enabled";
+			String enabledString = parameterList.getProperty(parameter);
+			Boolean enabled;
+			if(enabledString == null)
+				enabled = null;
+			else
+				enabled = Boolean.parseBoolean(enabledString);
 			
 			// create ResetCarToResetPointAction
-			return new MoveTrafficTriggerAction(sim, delay, repeat, trafficObjectID, wayPointID);
+			return new MoveTrafficTriggerAction(sim, delay, repeat, trafficObjectID, wayPointID, engineOn, enabled);
 			
 		} catch (Exception e) {
-	
+	e.printStackTrace();
 			reportError("moveTraffic", parameter);
 			return null;
 		}
@@ -1437,32 +1454,22 @@ public class InteractionMethods
 			// extract minimal steering angle that has to be overcome
 			parameter = "minSteeringAngle";
 			Float minSteeringAngle = Float.parseFloat(parameterList.getProperty(parameter));
-			if(minSteeringAngle == null)
-				minSteeringAngle = 0f;
 			
 			// task must be completed after x milliseconds (0 = no limit)
 			parameter = "taskCompletionAfterTime";
 			Float taskCompletionAfterTime = Float.parseFloat(parameterList.getProperty(parameter));
-			if(taskCompletionAfterTime == null)
-				taskCompletionAfterTime = 0f;
 			
 			// task must be completed after x meters (0 = no limit)
 			parameter = "taskCompletionAfterDistance";
 			Float taskCompletionAfterDistance = Float.parseFloat(parameterList.getProperty(parameter));
-			if(taskCompletionAfterDistance == null)
-				taskCompletionAfterDistance = 0f;
 			
 			// driver may brake while changing lanes? (if false, failure reaction will be reported) 
 			parameter = "allowBrake";
 			Boolean allowBrake = Boolean.parseBoolean(parameterList.getProperty(parameter));
-			if(allowBrake == null)
-				allowBrake = true;
 			
 			// number of milliseconds the target lane must be kept
 			parameter = "holdLaneFor";
 			Float holdLaneFor = Float.parseFloat(parameterList.getProperty(parameter));
-			if(holdLaneFor == null)
-				holdLaneFor = 0f;
 			
 			// sound file that will be played after failed/missed lane change (optional)
 			parameter = "failSound";
@@ -1562,44 +1569,30 @@ public class InteractionMethods
 			// extract speed at which braking must start
 			parameter = "startSpeed";
 			Float startSpeed = Float.parseFloat(parameterList.getProperty(parameter));
-			if(startSpeed == null)
-				startSpeed = 80.0f;
 			
 			// extract speed at which braking must end
 			parameter = "targetSpeed";
 			Float targetSpeed = Float.parseFloat(parameterList.getProperty(parameter));
-			if(targetSpeed == null)
-				targetSpeed = 60.0f;
 			
 			// extract whether brake pedal must be pressed
 			parameter = "mustPressBrakePedal";
 			Boolean mustPressBrakePedal = Boolean.parseBoolean(parameterList.getProperty(parameter));
-			if(mustPressBrakePedal == null)
-				mustPressBrakePedal = true;
 			
 			// task must be completed after x milliseconds (0 = no limit)
 			parameter = "taskCompletionAfterTime";
 			Float taskCompletionAfterTime = Float.parseFloat(parameterList.getProperty(parameter));
-			if(taskCompletionAfterTime == null)
-				taskCompletionAfterTime = 0f;
 			
 			// task must be completed after x meters (0 = no limit)
 			parameter = "taskCompletionAfterDistance";
 			Float taskCompletionAfterDistance = Float.parseFloat(parameterList.getProperty(parameter));
-			if(taskCompletionAfterDistance == null)
-				taskCompletionAfterDistance = 0f;
 			
 			// driver may change lanes while braking? (if false, failure reaction will be reported) 
 			parameter = "allowLaneChange";
 			Boolean allowLaneChange = Boolean.parseBoolean(parameterList.getProperty(parameter));
-			if(allowLaneChange == null)
-				allowLaneChange = true;
 			
 			// number of milliseconds the target speed must be kept
 			parameter = "holdSpeedFor";
 			Float holdSpeedFor = Float.parseFloat(parameterList.getProperty(parameter));
-			if(holdSpeedFor == null)
-				holdSpeedFor = 0f;
 			
 			// sound file that will be played after failed/missed lane change (optional)
 			parameter = "failSound";
@@ -1623,6 +1616,66 @@ public class InteractionMethods
 		} catch (Exception e) {
 			
 			reportError("setupBrakeReactionTimer", parameter);
+			return null;
+		}
+	}
+	
+	
+	/**
+	 * Writes a custom entry to the log
+	 * 
+	 * @param sim
+	 * 			Simulator.
+	 * 
+	 * @param delay
+	 * 			Amount of seconds (float) to wait before the TriggerAction will be executed.
+	 * 
+	 * @param repeat
+	 * 			Number of maximum repetitions (0 = infinite).
+	 * 
+	 * @param parameterList
+	 * 			List of additional parameters.
+	 * 
+	 * @return
+	 * 			ReportText trigger action.
+	 */
+	@Action(
+			name = "reportText",
+			layer = Layer.INTERACTION,
+			description = "Writes a user-generated entry to the log",
+			defaultDelay = 0,
+			defaultRepeat = 0,
+			param = {@Parameter(name="text", type="String", defaultValue="", 
+								description="Text to write to the log file"),
+					 @Parameter(name="timestamp", type="Boolean", defaultValue="true", 
+					 			description="Add time stamp to text")
+					}
+		)
+	public TriggerAction reportText(SimulationBasics sim, float delay, int repeat, Properties parameterList)
+	{	
+		String parameter = "";
+		
+		try {
+			
+			// extract text
+			parameter = "text";
+			String text = parameterList.getProperty(parameter);
+			if(text == null)
+				text = "";
+			
+			// log timestamp?
+			parameter = "timestamp";
+			String timeString = parameterList.getProperty(parameter);
+			boolean timestamp = true;
+			if(timeString != null)
+				timestamp = Boolean.parseBoolean(timeString);
+	
+			// create ReportTextTriggerAction
+			return new ReportTextTriggerAction(delay, repeat, text, timestamp);
+			
+		} catch (Exception e) {
+			
+			reportError("reportText", parameter);
 			return null;
 		}
 	}
@@ -1681,10 +1734,7 @@ public class InteractionMethods
 			
 			// extract speed to compare driving car's speed with
 			parameter = "speed";
-			Float speed = Float.parseFloat(parameterList.getProperty(parameter));
-			if(speed == null)
-				speed = 50.0f;
-			
+			Float speed = Float.parseFloat(parameterList.getProperty(parameter));			
 			speed = FastMath.abs(speed);
 	
 			// create ReportSpeedTriggerAction

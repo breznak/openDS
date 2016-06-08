@@ -1,1 +1,6 @@
 WayPoint_;null;0,0,0;0,0,0;0.4,0.4,0.4;
+Delineator_;Models/delineator/delineator.scene;1,-0.1,-5;0,270,0;1,1,1;
+CurveLeft_;Models/RoadSigns/squarePlates/CurveLeft/CurveLeft.scene;1,-0.5,-5;0,0,0;1,1,1;
+CurveRight_;Models/RoadSigns/squarePlates/CurveRight/CurveRight.scene;1,-0.5,-5;0,0,0;1,1,1;
+CurveLeftP_;Models/RoadSigns/squarePlatesWithPole/CurveLeft/CurveLeft.scene;1,-0.5,-5;0,0,0;0.6,0.6,0.6;
+CurveRightP_;Models/RoadSigns/squarePlatesWithPole/CurveRight/CurveRight.scene;1,-0.5,-5;0,0,0;0.6,0.6,0.6;

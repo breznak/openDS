@@ -30,7 +30,7 @@
 			<translation>
 				<vector jtype="java_lang_Float" size="3">
 					<entry>0</entry>
-					<entry>0</entry>
+					<entry>0.55</entry>
 					<entry>0</entry>
 				</vector>
 			</translation>
@@ -95,6 +95,7 @@
 					<entry>0</entry>
 				</vector>
 			</translation>
+			<shadowMode>Receive</shadowMode>
 		</model>
 
 		<model id="speedLimit50_1" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene" ref="">
@@ -809,7 +810,5 @@
 			</color>
 		</directionalLight>
 	</lights>
-	
-	<skyTexture>Textures/Sky/Bright/hills.dds</skyTexture>
-
+	<skyTexture>Textures/Sky/Clouds/clouds.properties</skyTexture>
 </scene>

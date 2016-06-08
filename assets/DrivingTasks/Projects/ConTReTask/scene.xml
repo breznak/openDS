@@ -1594,6 +1594,26 @@
 			</translation>
 		</point>
 		
+		<point id="triggerPos1">
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>2</entry>
+					<entry>0.4</entry>
+					<entry>-10</entry>
+				</vector>
+			</translation>
+		</point>
+		
+		<point id="triggerPos2">
+			<translation>
+				<vector jtype="java_lang_Float" size="3">
+					<entry>2</entry>
+					<entry>0.4</entry>
+					<entry>-20</entry>
+				</vector>
+			</translation>
+		</point>
+		
 		<point id="endTasks">
 			<translation>
 				<vector jtype="java_lang_Float" size="3">
@@ -1761,5 +1781,5 @@
 			</color>
 		</directionalLight>
 	</lights>
-	<skyTexture>Textures/Sky/Bright/hills.dds</skyTexture>
+	<skyTexture>Textures/Sky/Clouds/clouds.properties</skyTexture>
 </scene>

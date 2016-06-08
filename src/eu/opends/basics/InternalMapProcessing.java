@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2015 Rafael Math
+*  Copyright (C) 2016 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -64,7 +64,7 @@ public class InternalMapProcessing
 		}
 	}
 
-	
+
 	private String listToString(Node sceneNode) 
 	{
 		String output = "";

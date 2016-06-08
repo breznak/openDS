@@ -77,7 +77,7 @@
 		<mouse>
 			<!-- only for outside view -->
 			<minScrollZoom>1</minScrollZoom>
-			<maxScrollZoom>40</maxScrollZoom>
+			<maxScrollZoom>40000</maxScrollZoom>
 			<scrollSensitivityFactor>5</scrollSensitivityFactor>
 		</mouse>
 	</controllers>
