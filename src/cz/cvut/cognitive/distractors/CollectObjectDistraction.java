@@ -228,6 +228,7 @@ public class CollectObjectDistraction extends DistractionClass{
             sim.getGuiNode().detachChild(redText);
             CognitiveFunction.distScore -= COG_SCORE;
             collectOn = false;
+            Simulator.Timer = 0;
             DistractionSettings.distRunning--;
         }
     }

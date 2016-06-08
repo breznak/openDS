@@ -30,7 +30,7 @@ public class CognitiveFunction {
     private int overlappingCount;
     private int nonSceneObjects = 0;
     private float cogLoadScore = 0;
-    private String outputFolder;
+    public String outputFolder;
     public static String saveHere;
     private boolean firstWriting = true;
     private Camera camera;
@@ -69,9 +69,11 @@ public class CognitiveFunction {
         //counts nonscene objects (3 are scene models (from XML) - grass platform, city model, car model)
         if(overlappingCount > 3) nonSceneObjects = overlappingCount - 3;
         
-        cogLoadScore = (float)((nonSceneObjects * 0.5) + distScore + (car.getCurrentSpeedKmh() * 0.05));
-        //checkCollision();
         checkRoad();
+        cogLoadScore = (float)((nonSceneObjects * 0.5) + distScore + (car.getCurrentSpeedKmh() * 0.05) + roadDifficulty);
+        //System.out.println(car.getSlopeDegree());
+        //checkCollision();
+        
         writeToFile();
     }
     

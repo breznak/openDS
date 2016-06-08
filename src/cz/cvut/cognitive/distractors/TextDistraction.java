@@ -1,11 +1,16 @@
 package cz.cvut.cognitive.distractors;
 
 import com.jme3.input.InputManager;
+import com.jme3.input.KeyInput;
+import com.jme3.input.controls.InputListener;
+import com.jme3.input.controls.KeyTrigger;
 import com.jme3.math.Vector3f;
 import com.jme3.niftygui.NiftyJmeDisplay;
 import com.jme3.renderer.ViewPort;
 import de.lessvoid.nifty.Nifty;
 import eu.opends.car.SteeringCar;
+import eu.opends.input.KeyMapping;
+import eu.opends.input.SimulatorActionListener;
 import eu.opends.main.Simulator;
 
 /**
@@ -54,6 +59,7 @@ public class TextDistraction extends DistractionClass {
 		// Read XML and initialize custom ScreenController
 		nifty.fromXml(xmlPath, "start",	controller);
                 COG_SCORE = 3;
+                inputManager.deleteMapping("toggle_cinematics"); //deletes contre error when Enter is pressed while answering question.
                 
     }
     
@@ -75,8 +81,9 @@ public class TextDistraction extends DistractionClass {
             car.getCarControl().setLinearVelocity(Vector3f.ZERO);
             car.getCarControl().setAngularVelocity(Vector3f.ZERO);
             car.getCarControl().resetSuspension();
-            car.setSteeringWheelState(0);
-            
+            //car.setSteeringWheelState(0);
+            inputManager.deleteMapping("steer_right");
+            inputManager.deleteMapping("steer_left");
             sim.setPause(true);
             DistractionSettings.setQuestionAnswered(false);
             showDialog();
@@ -130,11 +137,14 @@ public class TextDistraction extends DistractionClass {
                     // stops movement of the car
                     car.getCarControl().setLinearVelocity(Vector3f.ZERO);
                     car.getCarControl().setAngularVelocity(Vector3f.ZERO);
-                    car.getCarControl().resetSuspension();
-                    car.setSteeringWheelState(0);
                     // detach the Nifty display from the gui view port as a processor
                     guiViewPort.removeProcessor(niftyDisplay);
                     inputManager.setCursorVisible(false);
+                    inputManager.addMapping("steer_right", new KeyTrigger(KeyInput.KEY_RIGHT));
+                    InputListener simulatorActionListener = new SimulatorActionListener(sim);
+                    inputManager.addListener(simulatorActionListener, "steer_right");
+                    inputManager.addMapping("steer_left", new KeyTrigger(KeyInput.KEY_LEFT));
+                    inputManager.addListener(simulatorActionListener, "steer_left");
                     sim.setPause(false);
                     questionOnScreen = false;
 		}

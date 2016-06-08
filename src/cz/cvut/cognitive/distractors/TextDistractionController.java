@@ -39,7 +39,7 @@ public class TextDistractionController implements ScreenController  {
     private int lineCount;
     private int questionIndex;
     private int userAnswersArraySize = 50;
-    private final String userAnswersFilePath = "assets/Interface/Text_questions/Answers.txt";
+    private final String userAnswersFilePath = CognitiveFunction.saveHere + "/Answers.txt";
     private final String questionsFilePath = "assets/Interface/Text_questions/Questions.txt";
     private final SteeringCar car;
     private final Simulator sim;
@@ -147,6 +147,7 @@ public class TextDistractionController implements ScreenController  {
      * OpenDS team.
      * 
      */
+    @SuppressWarnings("unchecked")
     public void sendToScreen(){
         //presets answerfield text
         answerField.setText("Replace this with your Answer and click Answer Button");
