@@ -486,8 +486,8 @@ public class Simulator extends SimulationBasics
                 if(lastWord.equalsIgnoreCase("A_DistractionTest.xml")){
                     distSet = new DistractionSettings();
                     LoD = new ListOfDistractions(this);
-                    LoD.initialize();
                     cogFunction = new CognitiveFunction(this);
+                    LoD.initialize();
                     DistractionSettings.setDistScenario(false);
                     DistractionSettings.distRunning=0;
                     Timer = 0;
@@ -624,10 +624,8 @@ public class Simulator extends SimulationBasics
                                     Timer = 0;
                                 }
                             } else {
-                                if(!isPause()){
-                                    setPause(true);
-                                    inputManager.setCursorVisible(true);
-                                }
+                                inputManager.setCursorVisible(true);
+                                
                             }
                         } 
                                 
