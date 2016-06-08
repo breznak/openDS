@@ -18,6 +18,17 @@
 			<action id="shutDownSimulation" delay="0" repeat="0">
 			</action>
 		</activity>
+		<activity id="sendText1">
+			<action id="sendMessage" delay="0" repeat="4">
+				<parameter name="text" value="Hello World" />
+				<parameter name="duration" value="3" />
+			</action>
+		</activity>
+		<activity id="playSound1">
+			<action id="playSound" delay="0" repeat="4">
+				<parameter name="soundID" value="beep" />
+			</action>
+		</activity>
 	</activities>
 	
 	<triggers>
@@ -38,6 +49,19 @@
 				<activity ref="shutDownSim"/>
 			</activities>		
 			<condition>remote:shutDown</condition>
+		</trigger>
+		<trigger id="SendTextWhenCameraAtTriggerPos1" priority="1">
+			<activities>
+				<activity ref="sendText1"/>
+			</activities>		
+			<condition>cameraWaypoint:triggerPos1</condition>
+		</trigger>
+		
+		<trigger id="PlaySoundWhenCameraAtTriggerPos2" priority="1">
+			<activities>
+				<activity ref="playSound1"/>
+			</activities>		
+			<condition>cameraWaypoint:triggerPos2</condition>
 		</trigger>
 	</triggers>
 	

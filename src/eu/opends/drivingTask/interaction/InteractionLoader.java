@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2015 Rafael Math
+*  Copyright (C) 2016 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -33,12 +33,16 @@ import org.w3c.dom.NodeList;
 
 import com.jme3.input.InputManager;
 import com.jme3.input.KeyInput;
+import com.jme3.input.controls.JoyAxisTrigger;
 import com.jme3.input.controls.JoyButtonTrigger;
 import com.jme3.input.controls.KeyTrigger;
 
 import eu.opends.basics.SimulationBasics;
 import eu.opends.drivingTask.DrivingTaskDataQuery;
 import eu.opends.drivingTask.DrivingTaskDataQuery.Layer;
+import eu.opends.drivingTask.settings.SettingsLoader;
+import eu.opends.drivingTask.settings.SettingsLoader.Setting;
+import eu.opends.input.AxisAnalogListener;
 import eu.opends.input.KeyActionListener;
 import eu.opends.main.Simulator;
 import eu.opends.trigger.TriggerAction;
@@ -53,12 +57,14 @@ public class InteractionLoader
 	private SimulationBasics sim;
 	private Map<String,List<ActionDescription>> activityMap;
 	private List<TriggerDescription> triggerList;
+	private SettingsLoader settingsLoader;
 	
 	
-	public InteractionLoader(DrivingTaskDataQuery dtData, SimulationBasics sim) 
+	public InteractionLoader(DrivingTaskDataQuery dtData, SimulationBasics sim, SettingsLoader settingsLoader) 
 	{
 		this.dtData = dtData;
 		this.sim = sim;
+		this.settingsLoader = settingsLoader;
 		this.activityMap = new HashMap<String,List<ActionDescription>>();
 		this.triggerList = new ArrayList<TriggerDescription>();
 		readActivities();
@@ -312,7 +318,7 @@ public class InteractionLoader
 				// trigger name
 				String triggerName = triggerDescription.getName();
 					
-				// trigger key
+				// trigger button
 				String[] array = triggerDescription.getCondition().split(":");
 				String button = array[1].toUpperCase();
 				
@@ -337,6 +343,86 @@ public class InteractionLoader
 					System.err.println("Invalid button '" + button + "' for trigger '" + triggerName + "'");
 				}
 			}
+			else if(triggerDescription.getCondition().startsWith("pressPedal:"))
+			{
+				float triggeringThreshold = 0.2f;
+				int controllerID;
+				int axis;
+				boolean invertAxis;
+				float sensitivityFactor;
+				
+				// trigger name
+				String triggerName = triggerDescription.getName();
+					
+				// trigger pedal
+				String[] array = triggerDescription.getCondition().split(":");
+				String pedal = array[1].toUpperCase();
+				
+				
+				try {
+					
+					if(array.length >=3)
+						triggeringThreshold = Float.parseFloat(array[2]);
+				
+				} catch (Exception e) {
+					System.err.println("Invalid threshold '" + array[2] + "' for trigger '" + triggerName + "'");
+				}
+			
+				
+				try {
+					
+					if(pedal.startsWith("PEDAL_"))
+						pedal.replace("PEDAL_", "");
+					
+					
+					//SettingsLoader settingsLoader = Simulator.getDrivingTask().getSettingsLoader();
+					if(pedal.equalsIgnoreCase("combinedPedals"))
+					{ 
+						controllerID = settingsLoader.getSetting(Setting.Joystick_combinedPedalsControllerID, 0);
+						axis = settingsLoader.getSetting(Setting.Joystick_combinedPedalsAxis, 2);
+						invertAxis = settingsLoader.getSetting(Setting.Joystick_invertCombinedPedalsAxis, false);
+						sensitivityFactor = settingsLoader.getSetting(Setting.Joystick_combinedPedalsSensitivityFactor, 1.0f);
+					}
+					else if(pedal.equalsIgnoreCase("accelerator"))
+					{ 
+						controllerID = settingsLoader.getSetting(Setting.Joystick_acceleratorControllerID, 0);
+						axis = settingsLoader.getSetting(Setting.Joystick_acceleratorAxis, 6);
+						invertAxis = settingsLoader.getSetting(Setting.Joystick_invertAcceleratorAxis, true);
+						sensitivityFactor = settingsLoader.getSetting(Setting.Joystick_acceleratorSensitivityFactor, 1.0f);
+					}
+					else if(pedal.equalsIgnoreCase("brake"))
+					{ 
+						controllerID = settingsLoader.getSetting(Setting.Joystick_brakeControllerID, 0);
+						axis = settingsLoader.getSetting(Setting.Joystick_brakeAxis, 5);
+						invertAxis = settingsLoader.getSetting(Setting.Joystick_invertBrakeAxis, true);
+						sensitivityFactor = settingsLoader.getSetting(Setting.Joystick_brakeSensitivityFactor, 1.0f);
+					}
+					else if(pedal.equalsIgnoreCase("clutch"))
+					{ 
+						controllerID = settingsLoader.getSetting(Setting.Joystick_clutchControllerID, 0);
+						axis = settingsLoader.getSetting(Setting.Joystick_clutchAxis, 7);
+						invertAxis = settingsLoader.getSetting(Setting.Joystick_invertClutchAxis, true);
+						sensitivityFactor = settingsLoader.getSetting(Setting.Joystick_clutchSensitivityFactor, 1.0f);
+					}
+					else
+						throw new Exception();
+					
+					// trigger action
+					List<TriggerAction> triggerActionList = getTriggerActionList(triggerDescription);
+						
+					if(!triggerActionList.isEmpty())
+					{
+						InputManager inputManager = sim.getInputManager();
+						inputManager.addMapping(triggerName + "Up", new JoyAxisTrigger(controllerID, axis, invertAxis));
+				    	inputManager.addMapping(triggerName + "Down", new JoyAxisTrigger(controllerID, axis, !invertAxis));
+						inputManager.addListener(new AxisAnalogListener(triggerActionList, triggerName, triggeringThreshold, sensitivityFactor), 
+								triggerName + "Up", triggerName + "Down");
+					}
+				
+				} catch (Exception e) {
+					System.err.println("Invalid pedal '" + array[1] + "' for trigger '" + triggerName + "'");
+				}
+			}
 			else if(triggerDescription.getCondition().startsWith("remote:"))
 			{
 				String[] array = triggerDescription.getCondition().split(":");
@@ -346,6 +432,16 @@ public class InteractionLoader
 				
 				if(!triggerActionList.isEmpty())
 					SimulationBasics.getRemoteTriggerActionListMap().put(objectName, triggerActionList);
+			}
+			else if(triggerDescription.getCondition().startsWith("cameraWaypoint:"))
+			{
+				String[] array = triggerDescription.getCondition().split(":");
+				String objectName = array[1];
+				
+				List<TriggerAction> triggerActionList = getTriggerActionList(triggerDescription);
+				
+				if(!triggerActionList.isEmpty())
+					SimulationBasics.getCameraWaypointTriggerActionListMap().put(objectName, triggerActionList);
 			}
 		}
 	}

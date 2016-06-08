@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2015 Rafael Math
+*  Copyright (C) 2016 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -51,11 +51,10 @@ public class DataWriter
 	private BufferedWriter out;
 	private File outFile;
 	private String newLine = System.getProperty("line.separator");
-	private Date lastAnalyzerDataSave;
+	private long lastAnalyzerDataSave;
 	private Car car;
 	private File analyzerDataFile;
 	private boolean dataWriterEnabled = false;
-	private Date curDate;
 	private String relativeDrivingTaskPath;
 
 
@@ -108,7 +107,7 @@ public class DataWriter
 			e.printStackTrace();
 		}
 		arrayDataList = new ArrayList<DataUnit>();
-		lastAnalyzerDataSave = new Date();
+		lastAnalyzerDataSave = (new Date()).getTime();
 	}
 	
 	
@@ -128,10 +127,19 @@ public class DataWriter
 	 */
 	public void saveAnalyzerData() 
 	{
-		curDate = new Date();
+		int updateInterval = 50; // = 1000/20
+		
+		Date curDate = new Date();
 
-		if (curDate.getTime() - lastAnalyzerDataSave.getTime() >= 50) 
+		if (curDate.getTime() - lastAnalyzerDataSave/*.getTime()*/ >= 2*updateInterval) 
 		{
+			lastAnalyzerDataSave = curDate.getTime() - 2*updateInterval;
+		}
+		
+		
+		if (curDate.getTime() - lastAnalyzerDataSave/*.getTime()*/ >= updateInterval) 
+		{
+			//System.err.println("diff: " + (curDate.getTime() - lastAnalyzerDataSave));
 			write(
 					curDate,
 					Math.round(car.getPosition().x * 1000) / 1000.0f,
@@ -146,7 +154,8 @@ public class DataWriter
 							.getAcceleratorPedalIntensity(), car.getBrakePedalIntensity(), 
 							car.isEngineOn());
 
-			lastAnalyzerDataSave = curDate;
+			//lastAnalyzerDataSave = curDate;
+			lastAnalyzerDataSave += updateInterval;
 		}
 
 	}

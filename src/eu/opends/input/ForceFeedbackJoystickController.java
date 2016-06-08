@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2015 Rafael Math
+*  Copyright (C) 2016 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -41,14 +41,14 @@ public class ForceFeedbackJoystickController implements FeatureNotSupportedEvent
 	private SpringEffect springEffect;
 	//private DamperEffect damperEffect;
 	private float springForceFactor = 1.0f;
-	private float damperForceFactor = 1.0f;
+	//private float damperForceFactor = 1.0f;
 
 
 	public ForceFeedbackJoystickController(Simulator sim)
 	{
 		enabled = Simulator.getSettingsLoader().getSetting(Setting.Joystick_enableForceFeedback, false);
 		springForceFactor = Simulator.getSettingsLoader().getSetting(Setting.Joystick_springForce, 1.0f);
-		damperForceFactor = Simulator.getSettingsLoader().getSetting(Setting.Joystick_damperForce, 1.0f);
+		//damperForceFactor = Simulator.getSettingsLoader().getSetting(Setting.Joystick_damperForce, 1.0f);
 		
 		if(enabled)
 		{
@@ -80,8 +80,8 @@ public class ForceFeedbackJoystickController implements FeatureNotSupportedEvent
 			
 			if(primaryJoystick != null)
 			{
-				//System.out.println("Joystick "+js.getIndex()+ " ("+js.getName()+"):");
-				System.out.println("Supported effects: "+ primaryJoystick.getSupportedEffects());
+				System.out.println("Supported effects of " + primaryJoystick.getName() + ": " 
+								+ primaryJoystick.getSupportedEffects());
 		
 				//System.out.println(" creating effects ...");
 				springEffect = new SpringEffect();

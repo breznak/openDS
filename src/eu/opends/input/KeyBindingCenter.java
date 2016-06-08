@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2015 Rafael Math
+*  Copyright (C) 2016 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -178,12 +178,66 @@ public class KeyBindingCenter
     	inputManager.addMapping("SteeringWheelLeft", new JoyAxisTrigger(steeringControllerID, steeringAxis, !invertSteeringAxis));
         inputManager.addMapping("CombinedPedalsBrake", new JoyAxisTrigger(combinedPedalsControllerID, combinedPedalsAxis, invertCombinedPedalsAxis));
     	inputManager.addMapping("CombinedPedalsAccelerator", new JoyAxisTrigger(combinedPedalsControllerID, combinedPedalsAxis, !invertCombinedPedalsAxis));
-    	inputManager.addMapping("Accelerator", new JoyAxisTrigger(acceleratorControllerID, acceleratorAxis, invertAcceleratorAxis));
-    	inputManager.addMapping("Brake", new JoyAxisTrigger(brakeControllerID, brakeAxis, invertBrakeAxis));
-    	inputManager.addMapping("Clutch", new JoyAxisTrigger(clutchControllerID, clutchAxis, invertClutchAxis));
+    	inputManager.addMapping("AcceleratorUp", new JoyAxisTrigger(acceleratorControllerID, acceleratorAxis, invertAcceleratorAxis));
+    	inputManager.addMapping("AcceleratorDown", new JoyAxisTrigger(acceleratorControllerID, acceleratorAxis, !invertAcceleratorAxis));
+    	inputManager.addMapping("BrakeUp", new JoyAxisTrigger(brakeControllerID, brakeAxis, invertBrakeAxis));
+    	inputManager.addMapping("BrakeDown", new JoyAxisTrigger(brakeControllerID, brakeAxis, !invertBrakeAxis));
+    	inputManager.addMapping("ClutchUp", new JoyAxisTrigger(clutchControllerID, clutchAxis, invertClutchAxis));
+    	inputManager.addMapping("ClutchDown", new JoyAxisTrigger(clutchControllerID, clutchAxis, !invertClutchAxis));
     	
         inputManager.addListener(simulatorAnalogListener, "SteeringWheelLeft", "SteeringWheelRight", 
-        		"CombinedPedalsAccelerator", "CombinedPedalsBrake", "Accelerator", "Brake", "Clutch");
+        		"CombinedPedalsAccelerator", "CombinedPedalsBrake", "AcceleratorUp", "AcceleratorDown", 
+        		"BrakeUp", "BrakeDown", "ClutchUp", "ClutchDown");
+        		
+        /*
+        inputManager.addMapping("0_0", new JoyAxisTrigger(0, 0, false));
+        inputManager.addMapping("0_1", new JoyAxisTrigger(0, 1, false));
+        inputManager.addMapping("0_2", new JoyAxisTrigger(0, 2, false));
+        inputManager.addMapping("0_3", new JoyAxisTrigger(0, 3, false));
+        inputManager.addMapping("0_4", new JoyAxisTrigger(0, 4, false));
+        inputManager.addMapping("0_5", new JoyAxisTrigger(0, 5, false));
+        inputManager.addMapping("0_6", new JoyAxisTrigger(0, 6, false));
+        inputManager.addMapping("0_7", new JoyAxisTrigger(0, 7, false));
+        inputManager.addMapping("0_8", new JoyAxisTrigger(0, 8, false));
+        inputManager.addMapping("0_9", new JoyAxisTrigger(0, 9, false));
+        
+        inputManager.addMapping("0_0n", new JoyAxisTrigger(0, 0, true));
+        inputManager.addMapping("0_1n", new JoyAxisTrigger(0, 1, true));
+        inputManager.addMapping("0_2n", new JoyAxisTrigger(0, 2, true));
+        inputManager.addMapping("0_3n", new JoyAxisTrigger(0, 3, true));
+        inputManager.addMapping("0_4n", new JoyAxisTrigger(0, 4, true));
+        inputManager.addMapping("0_5n", new JoyAxisTrigger(0, 5, true));
+        inputManager.addMapping("0_6n", new JoyAxisTrigger(0, 6, true));
+        inputManager.addMapping("0_7n", new JoyAxisTrigger(0, 7, true));
+        inputManager.addMapping("0_8n", new JoyAxisTrigger(0, 8, true));
+        inputManager.addMapping("0_9n", new JoyAxisTrigger(0, 9, true));
+        
+        inputManager.addMapping("1_0", new JoyAxisTrigger(1, 0, false));
+        inputManager.addMapping("1_1", new JoyAxisTrigger(1, 1, false));
+        inputManager.addMapping("1_2", new JoyAxisTrigger(1, 2, false));
+        inputManager.addMapping("1_3", new JoyAxisTrigger(1, 3, false));
+        inputManager.addMapping("1_4", new JoyAxisTrigger(1, 4, false));
+        inputManager.addMapping("1_5", new JoyAxisTrigger(1, 5, false));
+        inputManager.addMapping("1_6", new JoyAxisTrigger(1, 6, false));
+        inputManager.addMapping("1_7", new JoyAxisTrigger(1, 7, false));
+        inputManager.addMapping("1_8", new JoyAxisTrigger(1, 8, false));
+        inputManager.addMapping("1_9", new JoyAxisTrigger(1, 9, false));
+        
+        inputManager.addMapping("1_0n", new JoyAxisTrigger(1, 0, true));
+        inputManager.addMapping("1_1n", new JoyAxisTrigger(1, 1, true));
+        inputManager.addMapping("1_2n", new JoyAxisTrigger(1, 2, true));
+        inputManager.addMapping("1_3n", new JoyAxisTrigger(1, 3, true));
+        inputManager.addMapping("1_4n", new JoyAxisTrigger(1, 4, true));
+        inputManager.addMapping("1_5n", new JoyAxisTrigger(1, 5, true));
+        inputManager.addMapping("1_6n", new JoyAxisTrigger(1, 6, true));
+        inputManager.addMapping("1_7n", new JoyAxisTrigger(1, 7, true));
+        inputManager.addMapping("1_8n", new JoyAxisTrigger(1, 8, true));
+        inputManager.addMapping("1_n", new JoyAxisTrigger(1, 9, true));
+        
+        inputManager.addListener(simulatorAnalogListener, "0_0", "0_1", "0_2", "0_3", "0_4", "0_5", "0_6", "0_7", "0_8", "0_9", 
+        		"1_0", "1_1", "1_2", "1_3", "1_4", "1_5", "1_6", "1_7", "1_8", "1_9", "0_0n", "0_1n", "0_2n", "0_3n", "0_4n", "0_5n", 
+        		"0_6n", "0_7n", "0_8n", "0_9n", "1_0n", "1_1n", "1_2n", "1_3n", "1_4n", "1_5n", "1_6n", "1_7n", "1_8n", "1_9n");
+        */
 
         if(dumpJoystickList)
         	dumpJoysticks();

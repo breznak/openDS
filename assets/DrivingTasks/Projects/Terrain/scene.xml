@@ -37,7 +37,7 @@
                 </vector>
             </translation>
             
-            <shadowMode>Off</shadowMode>
+            <shadowMode>Receive</shadowMode>
         </model>
 		 
 		<model id="driverCar" key="Models/Cars/drivingCars/CitroenC4/Car.j3o">
@@ -157,5 +157,5 @@
 			</color>
 		</directionalLight>
 	</lights>
-
+	<skyTexture>Textures/Sky/Clouds/clouds.properties</skyTexture>
 </scene>

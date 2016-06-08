@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2015 Rafael Math
+*  Copyright (C) 2016 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -32,11 +32,13 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
+import eu.opends.profiler.BasicProfilerState;
 import com.jme3.app.StatsAppState;
 import com.jme3.app.state.VideoRecorderAppState;
 import com.jme3.input.Joystick;
 import com.jme3.math.Vector3f;
 import com.jme3.niftygui.NiftyJmeDisplay;
+import com.jme3.scene.Spatial.CullHint;
 import com.sun.javafx.application.PlatformImpl;
 
 import de.lessvoid.nifty.Nifty;
@@ -158,6 +160,11 @@ public class Simulator extends SimulationBasics
 		showStats = show;
 		setDisplayFps(show);
     	setDisplayStatView(show);
+    	
+    	if(show)
+    		getCoordinateSystem().setCullHint(CullHint.Dynamic);
+    	else
+    		getCoordinateSystem().setCullHint(CullHint.Always);
 	}
 	
 	public void toggleStats()
@@ -295,7 +302,9 @@ public class Simulator extends SimulationBasics
 
 
     public void simpleInitDrivingTask(String drivingTaskFileName, String driverName)
-    {		
+    {
+    	stateManager.attach(new BasicProfilerState(false));
+    	
     	SimulationDefaults.drivingTaskFileName = drivingTaskFileName;
     	
     	Util.makeDirectory("analyzerData");
@@ -320,8 +329,9 @@ public class Simulator extends SimulationBasics
     	// set gravity
     	gravityConstant = drivingTask.getSceneLoader().getGravity(SimulationDefaults.gravity);
     	getPhysicsSpace().setGravity(new Vector3f(0, -gravityConstant, 0));	
-    	getPhysicsSpace().setAccuracy(0.008f); //TODO comment to set accuracy to 0.0166666 ?
-
+    	//getPhysicsSpace().setAccuracy(0.008f); //TODO comment to set accuracy to 0.0166666 ?
+    	//getPhysicsSpace().setAccuracy(0.011f); // new try
+    	
     	PanelCenter.init(this);
 	
         Joystick[] joysticks = inputManager.getJoysticks();
@@ -331,6 +341,9 @@ public class Simulator extends SimulationBasics
         
     	//load map model
 		new InternalMapProcessing(this);
+		
+		// start trafficLightCenter
+		trafficLightCenter = new TrafficLightCenter(this);
 		
 		// create and place steering car
 		car = new SteeringCar(this);
@@ -368,8 +381,7 @@ public class Simulator extends SimulationBasics
         // setup camera settings
         cameraFactory = new SimulatorCam(this, car);
         
-		// start trafficLightCenter
-		trafficLightCenter = new TrafficLightCenter(this);
+
 		
 		// init trigger center
 		triggerCenter.setup();
@@ -570,10 +582,20 @@ public class Simulator extends SimulationBasics
     		frameCounter++;
     		
     		joystickSpringController.update(tpf);
+    		
+    		updateCoordinateSystem();
     	}
     }
 
     
+	private void updateCoordinateSystem()
+	{
+		getCoordinateSystem().getChild("x-cone").setLocalTranslation(car.getPosition().getX(), 0, 0);
+		getCoordinateSystem().getChild("y-cone").setLocalTranslation(0, car.getPosition().getY(), 0);
+		getCoordinateSystem().getChild("z-cone").setLocalTranslation(0, 0, car.getPosition().getZ());
+	}
+	
+
 	private void updateDataWriter() 
 	{
 		if (dataWriter != null && dataWriter.isDataWriterEnabled()) 

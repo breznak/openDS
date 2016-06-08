@@ -2,6 +2,23 @@ OpenDS Change Log
 ================
 
 
+OpenDS 4.0 (released April 2016)
+-----------------------------------------
+  * Bicycle support
+  * Game engine update (jMonkeyEngine 3.1 Alpha 1)
+  * Optimization (rendering, physics simulation, trigger checks, autonomous vehicles)
+  * Enhanced stats screen (coordinate axes and resource consumption)
+  * Support for various sky texture formats
+  * Added trigger action for custom data logging (ReportTextTriggerAction)
+  * Manual gear shift available
+  * Added position-based event triggering during camera flight
+  * Enhanced support for Fanatec wheels and pedals *PRO*
+  * New driving tasks *PRO*
+  * Enhanced support for Atomic Motion Chairs *PRO*
+  * Git repository for code sharing opened
+  * Documentation update
+
+
 OpenDS 3.5 (released November 2015)
 -----------------------------------------
   * Pedestrian support
@@ -20,7 +37,8 @@ OpenDS 3.5 (released November 2015)
 
  OpenDS 3.0 (released May 2015)
  -----------------------------------------
-  * Oculus Rift support o Static car interior
+  * Oculus Rift support 
+  * Static car interior
   * Lane Change Test rebuilt *PRO*
   * Adaptive cruise control (ACC)
   * Support for AMS Motion Seats through Simphinity

@@ -55,6 +55,7 @@
         </driver>
         
         <traffic>
+        
 			<vehicle id="car1a">
 				<modelPath>Models/Cars/drivingCars/bmw1/Car.j3o</modelPath>
 				<mass>800</mass>
@@ -217,6 +218,7 @@
 
 				</wayPoints>
         	</vehicle>
+        	 
 			<vehicle id="car2c">
 				<modelPath>Models/Cars/drivingCars/JohnDeere6170R/Car.j3o</modelPath>
 				<mass>800</mass>
@@ -305,6 +307,7 @@
 
 				</wayPoints>
         	</vehicle>
+
         </traffic>
         
         <road>
