@@ -602,7 +602,7 @@ public class Simulator extends SimulationBasics
 			if(eyetrackerCenter != null)
 				eyetrackerCenter.update();
                         
-                        if(DistractionSettings.isDistScenario() == true){
+                        if(cogFunction != null && DistractionSettings.isDistScenario()){
                             cogTimer = cogTimer + tpf;
                             if (cogTimer>1){
                                 cogFunction.update(tpf);
