@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nifty xmlns="http://nifty-gui.sourceforge.net/nifty-1.3.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://nifty-gui.sourceforge.net/nifty-1.3.xsd http://nifty-gui.sourceforge.net/nifty-1.3.xsd">
+	<!-- +++++++++++++++++++++++++++++++++++++++ -->
+	<!-- load default styles and controls -->
+	<!-- +++++++++++++++++++++++++++++++++++++++ -->
+	<useStyles filename="nifty-default-styles.xml" />
+	<useControls filename="nifty-default-controls.xml" />
+	<style id="console-red" base="button-font">
+		<attributes font="fonts/menu.fnt" color="#f00f" />
+	</style>
+	<style id="console-white" base="button-font">
+		<attributes font="fonts/menu.fnt" color="#ffff" />
+	</style>
+	<style id="console-font">
+		<attributes font="fonts/verdana-48-regular.fnt" color="#00ff" />
+	</style>
+
+	<!-- +++++++++++++++++++++++++++++++++++++++ -->
+	<!-- start screen -->
+	<!-- +++++++++++++++++++++++++++++++++++++++ -->
+
+	<screen id="start"
+		controller="eu.opends.niftyGui.InstructionScreenGUIController">
+		
+		<layer id="instructionScreen_1" childLayout="vertical" backgroundColor="#0008" visible="true">
+			
+         	<panel childLayout="vertical" align="center" width="100%">
+        
+               	<panel childLayout="center" align="center" width="100%" height="60px" />
+	
+				<panel childLayout="center" align="center" width="100%" height="30px">
+        	   		<control name="label" text="Welcome to this driving simulator experiment." color="#ffffffff"
+						align="center" valign="center" height="50px" font="Interface/Fonts/Arial32px.fnt">
+					</control>
+        		</panel>
+			
+				<panel childLayout="center" align="center" width="100%" height="30px" />
+				
+        		<panel childLayout="center" align="center" width="100%" height="30px">
+           			<control name="label" text="Please put on  headphones for the entire duration of the experiment." color="#ffffffff"
+						align="center" valign="center" height="50px" font="Interface/Fonts/Arial32px.fnt">
+					</control>
+        		</panel>
+        		
+				<panel childLayout="center" align="center" width="100%" height="30px" />
+         	    
+         	    <panel childLayout="center" align="center" width="100%" height="30px">
+					<control name="label" text="In the following simulation you will be driving on a 5-lane road." color="#ffffffff"
+						align="center" valign="center" height="50px" font="Interface/Fonts/Arial32px.fnt">
+					</control>
+        		</panel>
+          	    
+          	    <panel childLayout="center" align="center" width="100%" height="30px">
+					<control name="label" text="Your task will be to drive in the center lane at full speed (60 km/h)" color="#ffffffff"
+						align="center" valign="center" height="50px" font="Interface/Fonts/Arial32px.fnt">
+					</control>
+       			</panel>
+       	        
+       	        <panel childLayout="center" align="center" width="100%" height="30px">
+					<control name="label" text="and to stay in lane as good as possible." color="#ffffffff"
+						align="center" valign="center" height="50px" font="Interface/Fonts/Arial32px.fnt">
+					</control>
+       			</panel>
+       						
+				<panel childLayout="center" align="center" width="100%" height="30px" />
+
+        	    <panel childLayout="center" align="center" width="100%" height="30px">
+					<control name="label" text="Note: the car's speed is fixed between 20 km/h and 60 km/h." color="#ffffffff"
+						align="center" valign="center" height="50px" font="Interface/Fonts/Arial32px.fnt">
+		            </control>
+       			</panel>
+       	               			
+				<panel childLayout="center" align="center" width="100%" height="30px" />
+				
+       	        <panel childLayout="center" align="center" width="100%" height="30px">
+					<control name="label" text="You will pass different sign gantries." color="#ffffffff"
+						align="center" valign="center" height="50px" font="Interface/Fonts/Arial32px.fnt">
+					</control>
+       			</panel>
+				
+				<panel childLayout="center" align="center" width="100%" height="30px" />
+				
+			</panel>
+			
+			<panel childLayout="vertical" align="center" width="100%" height="*"/>
+
+			<panel childLayout="vertical" align="center" width="100%" height="10%">
+				<panel childLayout="vertical" align="center" width="100%" height="50%" />
+				<panel childLayout="horizontal" align="center" width="100%" height="50%">
+					<panel childLayout="center" align="center" width="20%" height="100%" />
+					<panel childLayout="center" align="center" width="20%" height="100%" />
+					<panel childLayout="center" align="center" width="20%" height="100%" />
+					<panel childLayout="center" align="center" width="20%" height="100%" />
+						<control id="vor" name="button" label="next" height="100%" width="20%">
+							<effect>
+								<onClick name="focus" targetElement="#parent#parent#parent" />
+								<onClick name="show" targetElement="instructionScreen_1_2" />
+								<onClick name="hide" targetElement="instructionScreen_1" />
+							</effect>
+						</control>
+	        	</panel>
+			</panel>
+
+	    </layer>
+
+
+		<layer id="instructionScreen_1_2" childLayout="vertical" backgroundColor="#0008" visible="false">
+			
+         	<panel childLayout="vertical" align="center" width="100%">
+        	   	<panel childLayout="center" align="center" width="100%" height="60px" />
+          		
+          		<panel childLayout="center" align="center" width="100%" height="30px">
+					<control name="label" text="Your task is to react as fast as possible on appearing signs." color="#ffffffff"
+						align="center" valign="center" height="50px" font="Interface/Fonts/Arial32px.fnt">
+					</control>
+        		</panel>
+				
+				<panel childLayout="center" align="center" width="100%" height="30px" />
+          	    
+       	        <panel childLayout="center" align="center" width="100%" height="30px">
+					<control name="label" text="If a red sign (x) shows up, you will have to slow down as fast as possible to 20 km/h" color="#ffffffff"
+						align="center" valign="center" height="50px" font="Interface/Fonts/Arial32px.fnt">
+					</control>
+				</panel>
+       	        <panel childLayout="center" align="center" width="100%" height="30px">
+					<control name="label" text="without leaving the center lane." color="#ffffffff"
+						align="center" valign="center" height="50px" font="Interface/Fonts/Arial32px.fnt">
+					</control>
+				</panel>
+				
+				<panel childLayout="center" align="center" width="100%" height="30px" />
+				
+       	        <panel childLayout="center" align="center" width="100%" height="30px">
+					<control name="label" text="If a green sign (arrow) shows up, you  will have to steer your car to the indicated lane" color="#ffffffff"
+						align="center" valign="center" height="50px" font="Interface/Fonts/Arial32px.fnt">
+					</control>
+				</panel>
+       	        <panel childLayout="center" align="center" width="100%" height="30px">
+					<control name="label" text="as fast as possible without getting any slower." color="#ffffffff"
+						align="center" valign="center" height="50px" font="Interface/Fonts/Arial32px.fnt">
+					</control>
+       			</panel>
+				        		
+        		<panel childLayout="center" align="center" width="100%" height="30px" />
+        						
+			</panel>
+			
+			<panel childLayout="horizontal" align="center" width="100%" height="40%">
+				
+				<panel childLayout="center" align="center" width="10%" height="100%" />
+			
+        	   	<panel childLayout="center" align="center" width="35%" height="100%">
+					<image filename="Interface/images_instruction_screen/brake.png" 
+						height="100%" width="100%" >
+					</image>
+        		</panel>
+				
+				<panel childLayout="center" align="center" width="10%" height="100%" />
+				
+				<panel childLayout="center" align="center" width="35%" height="100%">
+					<image filename="Interface/images_instruction_screen/laneChange.png" 
+						height="100%" width="100%" >
+					</image>
+        		</panel>
+				
+				<panel childLayout="center" align="center" width="10%" height="100%" />
+				
+			</panel>
+			
+			<panel childLayout="vertical" align="center" width="100%" height="*"/>
+
+			<panel childLayout="vertical" align="center" width="100%" height="10%">
+				<panel childLayout="vertical" align="center" width="100%" height="50%" />
+				<panel childLayout="horizontal" align="center" width="100%" height="50%">
+					<control id="zurueck" name="button" label="previous" height="100%" width="20%">
+						<effect>
+							<onClick name="focus" targetElement="#parent#parent#parent" />
+							<onClick name="show" targetElement="instructionScreen_1" />
+							<onClick name="hide" targetElement="instructionScreen_1_2" />
+						</effect>
+					</control>
+					<panel childLayout="center" align="center" width="20%" height="100%" />
+					<panel childLayout="center" align="center" width="20%" height="100%" />
+					<panel childLayout="center" align="center" width="20%" height="100%" />
+					<control id="vor" name="button" label="next" height="100%" width="20%">
+						<effect>
+							<onClick name="focus" targetElement="#parent#parent#parent" />
+							<onClick name="show" targetElement="instructionScreen_1_3" />
+							<onClick name="hide" targetElement="instructionScreen_1_2" />
+						</effect>
+					</control>
+	        	</panel>
+			</panel>
+
+	    </layer>		
+
+
+		<layer id="instructionScreen_1_3" childLayout="vertical" backgroundColor="#0008" visible="false">
+			
+         	<panel childLayout="vertical" align="center" width="100%">
+         		
+				<panel childLayout="center" align="center" width="100%" height="60px" />
+				
+				<panel childLayout="center" align="center" width="100%" height="30px">
+        	    	<control name="label" text="In a short distance after each sign gantry an acoustic signal will be played" color="#ffffffff"
+						align="center" valign="center" height="50px" font="Interface/Fonts/Arial32px.fnt">
+		            </control>
+        		</panel>
+        		
+        		<panel childLayout="center" align="center" width="100%" height="30px">
+					<control name="label" text="which indicates the end of the current reaction measurement." color="#ffffffff"
+						align="center" valign="center" height="50px" font="Interface/Fonts/Arial32px.fnt">
+					</control>
+				</panel>
+				
+				<panel childLayout="center" align="center" width="100%" height="30px" />
+				
+				<panel childLayout="center" align="center" width="100%" height="30px">
+					<control name="label" text="When you hear this signal please accelerate to full speed (60 km/h)" color="#ffffffff"
+						align="center" valign="center" height="50px" font="Interface/Fonts/Arial32px.fnt">
+					</control>
+				</panel>
+				<panel childLayout="center" align="center" width="100%" height="30px">
+					<control name="label" text="and make sure to return to the center lane for the next sign." color="#ffffffff"
+						align="center" valign="center" height="50px" font="Interface/Fonts/Arial32px.fnt">
+					</control>
+				</panel>
+								
+				<panel childLayout="center" align="center" width="100%" height="30px" />
+				
+				<panel childLayout="center" align="center" width="100%" height="30px">
+					<control name="label" text="If you have questions, please contact the supervisor." color="#ffffffff"
+						align="center" valign="center" height="50px" font="Interface/Fonts/Arial32px.fnt">
+					</control>
+				</panel>
+        		
+        		<panel childLayout="center" align="center" width="100%" height="30px" />
+			</panel>
+
+			<panel childLayout="vertical" align="center" width="100%" height="10%">
+        		<panel childLayout="center" align="center" width="10%" height="100%">
+        		</panel>
+			</panel>
+			
+			<panel childLayout="vertical" align="center" width="100%" height="*"/>
+
+			<panel childLayout="vertical" align="center" width="100%" height="10%">
+				<panel childLayout="vertical" align="center" width="100%" height="50%" />
+				<panel childLayout="horizontal" align="center" width="100%" height="50%">
+					<control id="zurueck" name="button" label="previous" height="100%" width="20%">
+						<effect>
+							<onClick name="focus" targetElement="#parent#parent#parent" />
+							<onClick name="show" targetElement="instructionScreen_1_2" />
+							<onClick name="hide" targetElement="instructionScreen_1_3" />
+						</effect>
+					</control>
+					<panel childLayout="center" align="center" width="20%" height="100%" />
+					<panel childLayout="center" align="center" width="20%" height="100%" />
+					<panel childLayout="center" align="center" width="20%" height="100%" />
+					<control id="vor" name="button" label="start" height="100%" width="20%">
+						<interact onClick="clickStartButton()" />
+					</control>
+	            </panel>
+			</panel>
+
+	    </layer>
+		
+	</screen>
+
+</nifty>

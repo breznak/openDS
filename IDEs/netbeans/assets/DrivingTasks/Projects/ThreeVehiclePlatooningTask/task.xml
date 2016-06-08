@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<task xmlns="http://opends.eu/drivingtask/task"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:schemaLocation="http://opends.eu/drivingtask/task ../../Schema/task.xsd">
+        
+    <threeVehiclePlatoon>
+        <leadingCar id="car1" minDistance="20" maxDistance="50" />
+        <followerCar id="car2" minDistance="5" maxDistance="15" />
+        <laneOffset x="2.204541" />
+        <brakeLight minDuration="2500" resetOnReaction="true" />
+        <turnSignal duration="2500" resetOnReaction="true" />
+        <speedReduction targetSpeedMinRegular="50" targetSpeedMaxRegular="50" targetSpeedMinEmergency="0" 
+                targetSpeedMaxEmergency="0" minSpeed="20" duration="5000" minTimeAllConditionsMet="1000" 
+                resetOnReaction="false" />
+        <maxReactionTime>5000</maxReactionTime>
+        <deviationTolerance>
+            <longitudinal lowerBound="20" upperBound="35" />
+            <lateral lowerBound="-2" upperBound="3"/>
+        </deviationTolerance>
+        <distanceIndicator>
+            <hideAtPosition z="6750" />
+            <!-- <showText top="300" left="409" scale="3" /> -->
+            <showLongitudinalDistanceBar id="verticalBar" />
+            <showLateralDeviationBar id="horizontalBar" />
+        </distanceIndicator> 
+        <logging>
+            <startPosition z="6800" />
+            <endPosition z="5000" shutDownWhenReached="false"/>
+            <loggingRate>20</loggingRate>
+            <database url="jdbc:mysql:///simulator" user="root" password="" table="tvpt" />   
+            <condition name="baseline" number="1" />
+            <reportTemplate>assets/JasperReports/templates/tvpt.jasper</reportTemplate>
+            <additionalTable>true</additionalTable>
+        </logging>
+    </threeVehiclePlatoon>
+    <distanceBars>
+	    <distanceBar id="verticalBar">
+	    	<width>20</width>
+	    	<height>200</height>
+	    	<left>700</left>
+	    	<bottom>300</bottom>
+	    	<rotation>180</rotation>
+	    	<showText>true</showText>
+	    	<segments>
+	    		<segment name="0" type="red" minValue="0" maxValue="15" />
+	    		<segment name="1" type="redToGreen" minValue="15" maxValue="25" />
+	    		<segment name="2" type="green" minValue="25" maxValue="30" />
+	    		<segment name="3" type="greenToRed" minValue="30" maxValue="40" />
+	    		<segment name="4" type="red" minValue="40" maxValue="55" />
+	    	</segments>				
+	    </distanceBar>
+	    <distanceBar id="horizontalBar">
+	    	<width>20</width>
+	    	<height>200</height>
+	    	<left>800</left>
+	    	<bottom>50</bottom>
+	    	<rotation>270</rotation>
+	    	<showText>true</showText>
+	    	<segments>
+	    		<segment name="0" type="red" minValue="-5" maxValue="-2" />
+	    		<segment name="1" type="redToGreen" minValue="-2" maxValue="0" />
+	    		<segment name="2" type="greenToRed" minValue="0" maxValue="2" />
+	    		<segment name="3" type="red" minValue="2" maxValue="5" />
+	    	</segments>
+	    </distanceBar>
+    </distanceBars>
+</task>

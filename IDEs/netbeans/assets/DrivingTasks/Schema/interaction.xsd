@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema targetNamespace="http://opends.eu/drivingtask/interaction"
+elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://opends.eu/drivingtask/interaction">
+
+    <xs:element name="interaction">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="1" name="activities" type="activities"/>
+                <xs:element minOccurs="0" maxOccurs="1" name="triggers" type="triggers"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="triggers">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="trigger" type="trigger"/>
+        </xs:sequence>
+    </xs:complexType>
+   
+    <xs:complexType name="trigger">
+        <xs:sequence>
+            <xs:element name="activities" type="activities"/>
+            <xs:element name="condition" type="xs:string"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:string"/>
+        <xs:attribute name="priority" type="xs:integer"/>
+    </xs:complexType>
+
+    <xs:complexType name="activities">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="activity" type="activity"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="activity">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="action" type="action"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:string"/>
+        <xs:attribute name="ref" type="xs:string"/>
+    </xs:complexType>
+
+    <xs:complexType name="action">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="parameter" type="parameter"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:string"/>
+        <xs:attribute name="delay" type="xs:float"/>
+        <xs:attribute name="repeat" type="xs:integer"/>
+    </xs:complexType>
+
+    <xs:complexType name="parameter">
+        <xs:attribute name="value" type="xs:string" use="required" />
+        <xs:attribute name="name" type="xs:string" use="required" />
+    </xs:complexType>
+</xs:schema>

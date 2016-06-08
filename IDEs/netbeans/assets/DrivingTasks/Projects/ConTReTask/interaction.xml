@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interaction xmlns="http://opends.eu/drivingtask/interaction"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:schemaLocation="http://opends.eu/drivingtask/interaction ../../Schema/interaction.xsd">
+
+
+	<activities>
+		<activity id="resumeSim">
+			<action id="resumeSimulation" delay="0" repeat="0">
+			</action>
+		</activity>
+		<activity id="speedChange">
+			<action id="setupContreTask" delay="0" repeat="0">
+				<parameter name="targetObjectSpeed" value="5" />
+			</action>
+		</activity>
+		<activity id="shutDownSim">
+			<action id="shutDownSimulation" delay="0" repeat="0">
+			</action>
+		</activity>
+	</activities>
+	
+	<triggers>
+		<trigger id="TTLTriggerResume" priority="1">
+			<activities>
+				<activity ref="resumeSim"/>
+			</activities>		
+			<condition>remote:resume</condition>
+		</trigger>
+		<trigger id="TTLTriggerSpeedChange" priority="1">
+			<activities>
+				<activity ref="speedChange"/>
+			</activities>		
+			<condition>remote:speed</condition>
+		</trigger>
+		<trigger id="TTLTriggerShutDown" priority="1">
+			<activities>
+				<activity ref="shutDownSim"/>
+			</activities>		
+			<condition>remote:shutDown</condition>
+		</trigger>
+	</triggers>
+	
+</interaction>

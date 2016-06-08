@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema targetNamespace="http://opends.eu/drivingtask/settings" 
+elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://opends.eu/drivingtask/settings">
+    
+    <xs:element name="settings" type="settings"></xs:element>
+    
+    <xs:complexType name="settings">
+        <xs:all>
+        	<xs:element name="general" type="general" maxOccurs="1"
+        		minOccurs="0">
+        	</xs:element>
+        	<xs:element name="analyzer" type="analyzer" maxOccurs="1"
+        		minOccurs="0">
+        	</xs:element>
+        	<xs:element name="objectLocator" type="objectLocator"
+        		maxOccurs="1" minOccurs="0">
+        	</xs:element>
+        	<xs:element name="HMI" type="HMI" maxOccurs="1"
+        		minOccurs="0">
+        	</xs:element>
+        	<xs:element name="externalVisualization"
+        		type="externalVisualization" maxOccurs="1" minOccurs="0">
+        	</xs:element>
+        	<xs:element name="knowledgeManager" type="knowledgeManager"
+        		maxOccurs="1" minOccurs="0">
+        	</xs:element>
+        	<xs:element name="simphynity" type="simphynity" maxOccurs="1" minOccurs="0"></xs:element>
+        	<xs:element name="CANInterface" type="CANInterface"
+        		maxOccurs="1" minOccurs="0">
+        	</xs:element>
+        	<xs:element name="multiDriver" type="multiDriver"
+        		maxOccurs="1" minOccurs="0">
+        	</xs:element>
+        	<xs:element name="eyetracker" type="eyetracker"
+        		maxOccurs="1" minOccurs="0">
+        	</xs:element>
+        	<xs:element name="oculusRift" type="oculusRift"
+        		maxOccurs="1" minOccurs="0">
+        	</xs:element>
+        	<xs:element name="vsimrtiServer" type="vsimrtiServer"
+        		maxOccurs="1" minOccurs="0">
+        	</xs:element>
+
+
+        	<xs:element name="settingsControllerServer"
+        		type="settingsControllerServer" maxOccurs="1" minOccurs="0">
+        	</xs:element>
+        	<xs:element name="reactionMeasurement"
+        		type="reactionMeasurement" maxOccurs="1" minOccurs="0">
+        	</xs:element>
+        	<xs:element name="controllers" type="controllers"
+        		maxOccurs="1" minOccurs="0">
+        	</xs:element>
+
+        </xs:all>
+
+    </xs:complexType>
+
+    <xs:complexType name="general">
+        <xs:all>
+        	<xs:element name="driverName" type="xs:string" maxOccurs="1"
+        		minOccurs="0">
+        	</xs:element>
+
+        	<xs:element name="mirrorMode" maxOccurs="1" minOccurs="0">
+        		<xs:simpleType>
+        			<xs:restriction base="xs:string">
+        				<xs:enumeration value="off"></xs:enumeration>
+        				<xs:enumeration value="side_only"></xs:enumeration>
+        				<xs:enumeration value="back_only"></xs:enumeration>
+        				<xs:enumeration value="all"></xs:enumeration>
+        			</xs:restriction>
+        		</xs:simpleType>
+        	</xs:element>
+        	<xs:element name="showStats" type="xs:boolean" maxOccurs="1"
+        		minOccurs="0">
+        	</xs:element>
+        	<xs:element name="pauseAfterStartup" type="xs:boolean"
+        		maxOccurs="1" minOccurs="0">
+        	</xs:element>
+        	<xs:element name="showHood" type="xs:boolean" maxOccurs="1"
+        		minOccurs="0">
+        	</xs:element>
+        	<xs:element name="showAnalogIndicators" type="xs:boolean"
+        		maxOccurs="1" minOccurs="0">
+        	</xs:element>
+        	<xs:element name="analogIndicators"
+        		type="analogIndicatorsType" maxOccurs="1" minOccurs="0">
+        	</xs:element>
+        	<xs:element name="showDigitalIndicators" type="xs:boolean"
+        		maxOccurs="1" minOccurs="0">
+        	</xs:element>
+        	<xs:element name="showFuelConsumption" type="xs:boolean"
+        		maxOccurs="1" minOccurs="0">
+        	</xs:element>
+        	<xs:element name="numberOfScreens" type="xs:int"
+        		maxOccurs="1" minOccurs="0">
+        	</xs:element>
+        	<xs:element name="angleBetweenAdjacentCameras"
+        		type="xs:float" maxOccurs="1" minOccurs="0">
+        	</xs:element>
+
+        	<xs:element name="frustumNear" type="xs:float" maxOccurs="1"
+        		minOccurs="0">
+        	</xs:element>
+        	<xs:element name="frustumFar" type="xs:float" maxOccurs="1"
+        		minOccurs="0">
+        	</xs:element>
+        	<xs:element name="rearviewMirror" type="mirror"
+        		maxOccurs="1" minOccurs="0">
+        	</xs:element>
+
+        	<xs:element name="leftMirror" type="mirror" maxOccurs="1"
+        		minOccurs="0">
+        	</xs:element>
+        	<xs:element name="rightMirror" type="mirror" maxOccurs="1"
+        		minOccurs="0">
+        	</xs:element>
+        	<xs:element name="topView" type="topViewType" maxOccurs="1"
+        		minOccurs="0">
+        	</xs:element>
+        	<xs:element name="outsideCamPosition"
+        		type="outsideCamPositionType" maxOccurs="1" minOccurs="0">
+        	</xs:element>
+        	<xs:element name="captureVideo" type="xs:string"
+        		maxOccurs="1" minOccurs="0">
+        	</xs:element>
+        	<xs:element name="cameraMode" maxOccurs="1" minOccurs="0">
+        		<xs:simpleType>
+        			<xs:restriction base="xs:string">
+        				<xs:enumeration value="ego"></xs:enumeration>
+        				<xs:enumeration value="chase"></xs:enumeration>
+        				<xs:enumeration value="static_back"></xs:enumeration>
+        			</xs:restriction>
+        		</xs:simpleType>
+        	</xs:element>
+        </xs:all>
+    </xs:complexType>
+    
+    <xs:complexType name="HMI">
+        <xs:all>
+    		<xs:element name="enableConnection" type="xs:boolean" maxOccurs="1" minOccurs="0"></xs:element>
+    		<xs:element name="ip" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
+    		<xs:element name="port" type="xs:int" maxOccurs="1" minOccurs="0"></xs:element>
+    	</xs:all>
+    </xs:complexType>
+    
+    <xs:complexType name="externalVisualization">
+        <xs:all>
+    		<xs:element name="enableConnection" type="xs:boolean" maxOccurs="1" minOccurs="0"></xs:element>
+    		<xs:element name="ip" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
+    		<xs:element name="port" type="xs:int" minOccurs="0" maxOccurs="1"></xs:element>
+    		<xs:element name="updateRate" type="xs:int" minOccurs="0" maxOccurs="1"></xs:element>
+    		<xs:element name="scalingFactor" type="xs:float" minOccurs="0" maxOccurs="1"></xs:element>
+    		<xs:element name="sendPosOriAsOneString" type="xs:boolean" minOccurs="0" maxOccurs="1"></xs:element>
+    	</xs:all>
+    </xs:complexType>
+    
+    <xs:complexType name="CANInterface">
+        <xs:all>
+    		<xs:element name="enableConnection" type="xs:boolean" maxOccurs="1" minOccurs="0"></xs:element>
+    		<xs:element name="ip" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
+    		<xs:element name="port" type="xs:int" maxOccurs="1" minOccurs="0"></xs:element>
+    		<xs:element name="updateRate" type="xs:int" maxOccurs="1" minOccurs="0"></xs:element>
+    		<xs:element name="maxSteeringAngle" type="xs:float" maxOccurs="1" minOccurs="0"></xs:element>
+    	</xs:all>
+    </xs:complexType>
+    
+    
+    <xs:complexType name="controllers">
+        <xs:all>
+    		<xs:element name="joystick" type="joystick" maxOccurs="1" minOccurs="0"></xs:element>
+    		<xs:element name="keyboard" type="keyboard" maxOccurs="1" minOccurs="0"></xs:element>
+    		<xs:element name="mouse" type="mouse" maxOccurs="1" minOccurs="0"></xs:element>
+        </xs:all>
+    </xs:complexType>
+    
+    <xs:complexType name="vsimrtiServer">
+        <xs:all>
+    		<xs:element name="startServer" type="xs:boolean" maxOccurs="1" minOccurs="0"></xs:element>
+    		<xs:element name="port" type="xs:int" maxOccurs="1" minOccurs="0"></xs:element>
+    	</xs:all>
+    </xs:complexType>
+
+
+    <xs:complexType name="joystick">
+        <xs:all>
+        	<xs:element name="dumpJoystickList" type="xs:boolean"
+        		maxOccurs="1" minOccurs="0">
+        	</xs:element>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        	<xs:element name="steering" type="joyAxis" maxOccurs="1"
+        		minOccurs="0">
+        	</xs:element>
+        	<xs:element name="combinedPedals" type="joyAxis"
+        		maxOccurs="1" minOccurs="0">
+        	</xs:element>
+        	<xs:element name="accelerator" type="joyAxis" maxOccurs="1"
+        		minOccurs="0">
+        	</xs:element>
+        	<xs:element name="brake" type="joyAxis" maxOccurs="1"
+        		minOccurs="0">
+        	</xs:element>
+        	<xs:element name="clutch" type="joyAxis" maxOccurs="1"
+        		minOccurs="0">
+        	</xs:element>
+        	<xs:element name="keyAssignments" type="keyAssignments"
+        		maxOccurs="1" minOccurs="0">
+        	</xs:element>
+        	<xs:element name="enableForceFeedback" type="xs:boolean" maxOccurs="1" minOccurs="0"></xs:element>
+        	<xs:element name="springForce" type="xs:float" maxOccurs="1" minOccurs="0"></xs:element>
+        	<xs:element name="damperForce" type="xs:float" maxOccurs="1" minOccurs="0"></xs:element>
+        </xs:all>
+
+    </xs:complexType>
+
+
+    <xs:complexType name="keyboard">
+        <xs:all>
+    		<xs:element name="keyAssignments" type="keyAssignments" maxOccurs="1" minOccurs="0"></xs:element>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="mouse">
+        <xs:all>
+        	<xs:element name="scrollSensitivityFactor"
+        		type="xs:float" maxOccurs="1" minOccurs="0">
+        	</xs:element>
+        	<xs:element name="minScrollZoom" type="xs:float" maxOccurs="1" minOccurs="0"></xs:element>
+        	<xs:element name="maxScrollZoom" type="xs:float" maxOccurs="1" minOccurs="0"></xs:element>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="keyAssignments">
+    	<xs:sequence>
+    		<xs:element name="keyAssignment" type="keyAssignment" maxOccurs="unbounded" minOccurs="0"></xs:element>
+    	</xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="keyAssignment">
+    	<xs:attribute name="function" type="xs:string"></xs:attribute>
+    	<xs:attribute name="key" type="xs:string"></xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="reactionMeasurement">
+        <xs:all>
+    		<xs:element name="groupRed" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
+    		<xs:element name="groupGreen" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
+    		<xs:element name="groupYellow" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
+    		<xs:element name="groupCyan" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
+    		<xs:element name="groupBlue" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
+    		<xs:element name="groupMagenta" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
+    	</xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="mirror">
+        <xs:all>
+            <xs:element name="viewPortLeft" type="xs:float"
+                maxOccurs="1" minOccurs="0">
+            </xs:element>
+            <xs:element name="viewPortRight" type="xs:float"
+                maxOccurs="1" minOccurs="0">
+            </xs:element>
+            <xs:element name="viewPortBottom" type="xs:float"
+                maxOccurs="1" minOccurs="0">
+            </xs:element>
+            <xs:element name="viewPortTop" type="xs:float" maxOccurs="1"
+                minOccurs="0">
+            </xs:element>
+            <xs:element name="horizontalAngle" type="xs:float" maxOccurs="1" minOccurs="0"></xs:element>
+            <xs:element name="verticalAngle" type="xs:float"
+                maxOccurs="1" minOccurs="0">
+            </xs:element>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="analyzer">
+        <xs:all>
+        	<xs:element name="fileName" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
+        	<xs:element name="suppressPDFPopup" type="xs:boolean"
+        		maxOccurs="1" minOccurs="0">
+        	</xs:element>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="settingsControllerServer">
+        <xs:all>
+            <xs:element name="startServer" type="xs:boolean" maxOccurs="1" minOccurs="0">
+            </xs:element>
+            <xs:element name="port" type="xs:int" maxOccurs="1" minOccurs="0"></xs:element>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="analogIndicatorsType">
+        <xs:all>
+
+
+            
+            <xs:element name="left" type="xs:int" maxOccurs="1" minOccurs="0">
+                </xs:element>
+            <xs:element name="right" type="xs:int" maxOccurs="1" minOccurs="0">
+                </xs:element>
+            <xs:element name="bottom" type="xs:int" maxOccurs="1" minOccurs="0">
+                </xs:element>
+            <xs:element name="top" type="xs:int" maxOccurs="1" minOccurs="0"></xs:element>
+            <xs:element name="scale" type="xs:float" maxOccurs="1" minOccurs="0">
+            </xs:element>
+        </xs:all>
+
+    </xs:complexType>
+
+    <xs:complexType name="outsideCamPositionType">
+    	<xs:sequence>
+    		<xs:element name="x" type="xs:float" maxOccurs="1"
+    			minOccurs="0">
+    		</xs:element>
+    		<xs:element name="y" type="xs:float" maxOccurs="1"
+    			minOccurs="0">
+    		</xs:element>
+    		<xs:element name="z" type="xs:float" maxOccurs="1" minOccurs="0"></xs:element>
+    	</xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="topViewType">
+    	<xs:sequence>
+    		<xs:element name="carPointingUp" type="xs:boolean"
+    			maxOccurs="1" minOccurs="0">
+    		</xs:element>
+    		<xs:element name="viewPortLeft" type="xs:float"
+    			maxOccurs="1" minOccurs="0">
+    		</xs:element>
+    		<xs:element name="viewPortRight" type="xs:float"
+    			maxOccurs="1" minOccurs="0">
+    		</xs:element>
+    		<xs:element name="viewPortBottom" type="xs:float"
+    			maxOccurs="1" minOccurs="0">
+    		</xs:element>
+    		<xs:element name="viewPortTop" type="xs:float" maxOccurs="1"
+    			minOccurs="0">
+    		</xs:element>
+    		<xs:element name="verticalDistance" type="xs:float" maxOccurs="1" minOccurs="0"></xs:element>
+    		<xs:element name="carOffset" type="xs:float" maxOccurs="1" minOccurs="0"></xs:element>
+    	</xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="objectLocator">
+        <xs:all>
+    		<xs:element name="enable" type="xs:boolean" maxOccurs="1" minOccurs="0">
+    		</xs:element>
+    		<xs:element name="fileName" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
+    	</xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="multiDriver">
+        <xs:all>
+        	<xs:element name="enableConnection" type="xs:boolean" maxOccurs="1" minOccurs="0"></xs:element>
+        	<xs:element name="ip" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
+        	<xs:element name="port" type="xs:int" maxOccurs="1" minOccurs="0"></xs:element>
+        	<xs:element name="updateRate" type="xs:int" maxOccurs="1" minOccurs="0"></xs:element>
+        </xs:all>
+
+    </xs:complexType>
+
+    <xs:complexType name="knowledgeManager">
+        <xs:all>
+    		<xs:element name="enableConnection" type="xs:boolean" maxOccurs="1" minOccurs="0">
+    		</xs:element>
+    		<xs:element name="ip" type="xs:string" maxOccurs="1" minOccurs="0">
+    		</xs:element>
+    		<xs:element name="port" type="xs:int" maxOccurs="1" minOccurs="0"></xs:element>
+    	</xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="eyetracker">
+        <xs:all>
+        	<xs:element name="enableConnection" type="xs:boolean"
+        		maxOccurs="1" minOccurs="0">
+        	</xs:element>
+        	<xs:element name="port" type="xs:int" maxOccurs="1"
+        		minOccurs="0">
+        	</xs:element>
+        	<xs:element name="smoothingFactor" type="xs:int"
+        		maxOccurs="1" minOccurs="0">
+        	</xs:element>
+        	<xs:element name="crossHairs" type="crossHairs"
+        		maxOccurs="1" minOccurs="0">
+        	</xs:element>
+        	<xs:element name="gazeSphere" type="gazeSphere"
+        		maxOccurs="1" minOccurs="0">
+        	</xs:element>
+        	<xs:element name="highlightObjects" type="highlightObjects"
+        		maxOccurs="1" minOccurs="0">
+        	</xs:element>
+        	<xs:element name="warningFrame" type="warningFrame" maxOccurs="1" minOccurs="0"></xs:element>
+        </xs:all>
+
+    </xs:complexType>
+
+    <xs:complexType name="crossHairs">
+        <xs:all>
+        	<xs:element name="show" type="xs:boolean" maxOccurs="1"
+        		minOccurs="0">
+        	</xs:element>
+        	<xs:element name="color" type="xs:string" maxOccurs="1"
+        		minOccurs="0">
+        	</xs:element>
+        	<xs:element name="scalingFactor" type="xs:float" maxOccurs="1" minOccurs="0"></xs:element>
+        </xs:all>
+        
+    </xs:complexType>
+
+    <xs:complexType name="gazeSphere">
+        <xs:all>
+    		<xs:element name="show" type="xs:boolean" maxOccurs="1" minOccurs="0"></xs:element>
+    		<xs:element name="color" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
+    	</xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="highlightObjects">
+        <xs:all>
+    		<xs:element name="mode" maxOccurs="1" minOccurs="0">
+    			<xs:simpleType>
+    				<xs:restriction base="xs:string">
+    					<xs:enumeration value="VehiclesOnly"></xs:enumeration>
+    					<xs:enumeration value="None"></xs:enumeration>
+    					<xs:enumeration value="All"></xs:enumeration>
+    				</xs:restriction>
+    			</xs:simpleType>
+    		</xs:element>
+    		<xs:element name="color" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
+    	</xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="warningFrame">
+        <xs:all>
+    		<xs:element name="show" type="xs:boolean" maxOccurs="1" minOccurs="0">
+    		</xs:element>
+    		<xs:element name="threshold" type="xs:int" maxOccurs="1" minOccurs="0">
+    		</xs:element>
+    		<xs:element name="flashingInterval" type="xs:int" maxOccurs="1" minOccurs="0"></xs:element>
+    	</xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="oculusRift">
+        <xs:all>
+    		<xs:element name="isAttached" maxOccurs="1" minOccurs="0">
+    			<xs:simpleType>
+    				<xs:restriction base="xs:string">
+    					<xs:enumeration value="auto"></xs:enumeration>
+    					<xs:enumeration value="enabled"></xs:enumeration>
+    					<xs:enumeration value="disabled"></xs:enumeration>
+    				</xs:restriction>
+    			</xs:simpleType>
+    		</xs:element>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="simphynity">
+        <xs:all>
+    		<xs:element name="enableConnection" type="xs:boolean" maxOccurs="1" minOccurs="0">
+    		</xs:element>
+    		<xs:element name="ip" type="xs:string" maxOccurs="1" minOccurs="0">
+    		</xs:element>
+    		<xs:element name="port" type="xs:int" maxOccurs="1" minOccurs="0"></xs:element>
+    	</xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="joyAxis">
+    	<xs:attribute name="controllerID" type="xs:int"></xs:attribute>
+    	<xs:attribute name="axisID" type="xs:int"></xs:attribute>
+    	<xs:attribute name="invert" type="xs:boolean"></xs:attribute>
+    	<xs:attribute name="sensitivity" type="xs:float"></xs:attribute>
+    </xs:complexType>
+</xs:schema>

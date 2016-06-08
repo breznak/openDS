@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nifty xmlns="http://nifty-gui.sourceforge.net/nifty-1.3.xsd" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xsi:schemaLocation="http://nifty-gui.sourceforge.net/nifty-1.3.xsd http://nifty-gui.sourceforge.net/nifty-1.3.xsd">
+  <!-- +++++++++++++++++++++++++++++++++++++++ -->
+  <!-- load default styles and controls -->
+  <!-- +++++++++++++++++++++++++++++++++++++++ -->
+  <useStyles filename="nifty-default-styles.xml" />
+  <useControls filename="nifty-default-controls.xml" />
+  <style id="console-red" base="button-font">
+    <attributes font="fonts/menu.fnt" color="#f00f"/>
+  </style>
+  <style id="console-white" base="button-font">
+    <attributes font="fonts/menu.fnt" color="#ffff"/>
+  </style>
+  <style id="console-font">
+    <attributes font="fonts/verdana-48-regular.fnt" color="#00ff"/>
+  </style>
+	
+  <!-- +++++++++++++++++++++++++++++++++++++++ -->
+  <!-- start screen -->
+  <!-- +++++++++++++++++++++++++++++++++++++++ -->
+  
+	<screen id="start" controller="eu.opends.niftyGui.ShutDownGUIController">
+	
+	<layer id="topLayer" childLayout="center" backgroundColor="#0008">
+		<panel childLayout="vertical" style="nifty-panel-red" width="350px" height="150px" valign="center" align="center">
+			<panel childLayout="center" height="25px"/>
+			<panel childLayout="vertical" height="40px" valign="center">
+				<control name="label" id="closeMessageText" text="Do you really want to quit?" 
+					width="100%" heigth="100%" color="#ffffffff" textHAlign="center"/>
+			</panel>
+			<panel childLayout="horizontal" height="80px" width="100%" align="center">
+				<panel childLayout="center" height="100%" width="50%" align="center">
+					<control id="closeButton" name="button" label="Quit"
+						align="center" height="30px">
+						<interact onClick="clickCloseButton()" />
+					</control>
+				</panel>
+				<panel childLayout="center" height="100%" width="50%" align="center">
+					<control id="cancelButton" name="button" label="Cancel"
+						align="center" height="30px">
+						<interact onClick="clickCancelButton()" />
+					</control>
+				</panel>
+			</panel>
+		</panel>
+	</layer>
+				
+	</screen>
+	
+
+	
+</nifty>
