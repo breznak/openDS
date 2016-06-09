@@ -321,6 +321,7 @@ public class DistractionScreenGUIController implements ScreenController
         public void propabilityBox(final String id, final SliderChangedEvent event) 
         {   
                 DistractionSettings.setProbabilityBox(Slider_box.getValue());
+                System.out.println("KRABICE="+Slider_box.getValue());
         }
         
         @NiftyEventSubscriber(id="Slider_sound") 

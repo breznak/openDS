@@ -102,7 +102,7 @@ public class BoxDistraction extends DistractionClass{
      * despawn in earlier call).
      */
     @Override
-    public void update (float tpf, float probability){
+    public void update (float tpf, float probability){        
         int n = (int)(Math.random() * 100) + 1;
             if (n <= probability){ 
                 CollisionResults results = new CollisionResults();

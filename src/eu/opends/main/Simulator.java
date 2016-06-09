@@ -536,8 +536,10 @@ public class Simulator extends SimulationBasics
     {
     	if(initializationFinished)
     	{
-			super.simpleUpdate(tpf);
+            System.err.println("UPDATE"+DistractionSettings.isDistScenario() +" "+cogFunction==null);
 			
+			super.simpleUpdate(tpf);
+                        
 			// updates camera
 			cameraFactory.updateCamera();
 		
@@ -603,6 +605,7 @@ public class Simulator extends SimulationBasics
 				eyetrackerCenter.update();
                         
                         if(cogFunction != null && DistractionSettings.isDistScenario()){
+                            System.out.println("COG="+tpf);
                             cogTimer = cogTimer + tpf;
                             if (cogTimer>1){
                                 cogFunction.update(tpf);
@@ -610,6 +613,7 @@ public class Simulator extends SimulationBasics
                             }
                             
                             if(DistractionSettings.distRunning <= 0){
+                                System.out.println("SIM="+DistractionSettings.distRunning);
                                 Timer = Timer + tpf;
                                 if (Timer > 5)
                                 {
