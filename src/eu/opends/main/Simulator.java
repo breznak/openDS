@@ -536,7 +536,7 @@ public class Simulator extends SimulationBasics
     {
     	if(initializationFinished)
     	{
-            System.err.println("UPDATE"+DistractionSettings.isDistScenario() +" "+cogFunction==null);
+            System.err.println("UPDATE"+DistractionSettings.isDistScenario() +" "+(cogFunction==null));
 			
 			super.simpleUpdate(tpf);
                         
