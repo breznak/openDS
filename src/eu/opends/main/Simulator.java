@@ -482,7 +482,7 @@ public class Simulator extends SimulationBasics
 		
 		joystickSpringController = new ForceFeedbackJoystickController(this);
                 
-                lastWord = SimulationDefaults.drivingTaskFileName.substring(SimulationDefaults.drivingTaskFileName.lastIndexOf(File.separator)+1);
+                lastWord = SimulationDefaults.drivingTaskFileName.substring(SimulationDefaults.drivingTaskFileName.lastIndexOf("\\")+1);
                 if(lastWord.equalsIgnoreCase("A_DistractionTest.xml")){
                     distSet = new DistractionSettings();
                     LoD = new ListOfDistractions(this);
@@ -536,6 +536,7 @@ public class Simulator extends SimulationBasics
     {
     	if(initializationFinished)
     	{
+            System.err.println("UPDATE"+DistractionSettings.isDistScenario() +" "+(cogFunction==null));
 			
 			super.simpleUpdate(tpf);
                         
@@ -604,6 +605,7 @@ public class Simulator extends SimulationBasics
 				eyetrackerCenter.update();
                         
                         if(cogFunction != null && DistractionSettings.isDistScenario()){
+                            System.out.println("COG="+tpf);
                             cogTimer = cogTimer + tpf;
                             if (cogTimer>1){
                                 cogFunction.update(tpf);
@@ -611,6 +613,7 @@ public class Simulator extends SimulationBasics
                             }
                             
                             if(DistractionSettings.distRunning <= 0){
+                                System.out.println("SIM="+DistractionSettings.distRunning);
                                 Timer = Timer + tpf;
                                 if (Timer > 5)
                                 {

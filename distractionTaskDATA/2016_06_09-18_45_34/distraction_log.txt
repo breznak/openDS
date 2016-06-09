@@ -1,9 +1,0 @@
-Distraction Task log from 2016_06_09-18_45_40
-Driver: TestDriver
-Rain intensity: 0.0 Snow intensity: 0.0 Fog intensity: 0.0
-Time (ms),   Cog.load Score, Road Score,  Current speed (Km/H),   Current car "HealthPoints",   Number of dropboxhit,   Number of pedestrian hits,   Number of nonScene objects,   Number of active distractors,   Names of active distractors 1465490740352,0.12397081,0.0,2.4794161,100,0.0,0,0,0,0,0,0,0,0,0
-1465490741161,0.07765664,0.0,1.5531328,100,0.0,0,0,0,0,0,0,0,0,0
-1465490742186,0.13279372,0.0,2.6558745,100,0.0,0,0,0,0,0,0,0,0,0
-1465490743305,0.2785613,0.0,5.571226,100,0.0,0,0,0,0,0,0,0,0,0
-1465490744384,2.4496996,0.0,8.993993,100,0.0,0,0,1,0,0,0,1,0,0
-1465490745607,2.511923,0.0,10.2384615,100,0.0,0,0,1,0,0,0,1,0,0
