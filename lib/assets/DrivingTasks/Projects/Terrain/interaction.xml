@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interaction xmlns="http://opends.eu/drivingtask/interaction"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:schemaLocation="http://opends.eu/drivingtask/interaction ../../Schema/interaction.xsd">
+
+
+	<activities>
+		<activity id="activity01">
+			<action id="manipulateObject" delay="0" repeat="4">
+				<parameter name="id" value="RoadworksSign1" />
+				<parameter name="translationX" value="-81" />
+				<parameter name="translationY" value="-1.693" />
+				<parameter name="translationZ" value="-48" />
+				<parameter name="rotationX" value="0" />
+				<parameter name="rotationY" value="135" />
+				<parameter name="rotationZ" value="0" />
+				<parameter name="scaleX" value="0.02" />
+				<parameter name="scaleY" value="0.02" />
+				<parameter name="scaleZ" value="0.02" />
+				<parameter name="visible" value="true" />
+			</action>
+		</activity>
+		<activity id="activity02">
+			<action id="sendMessage" delay="0" repeat="4">
+				<parameter name="text" value="Rafael" />
+				<parameter name="duration" value="3" />
+			</action>
+		</activity>
+		<activity id="activity03">
+			<action id="pauseSimulation" delay="0" repeat="4">
+				<parameter name="duration" value="3" />
+			</action>
+		</activity>
+		<activity id="activity04">
+			<action id="startRecording" delay="0" repeat="4">
+				<parameter name="track" value="1" />
+			</action>
+		</activity>
+		<activity id="activity05">
+			<action id="stopRecording" delay="0" repeat="4">
+			</action>
+		</activity>
+		<activity id="activity06">
+			<action id="playSound" delay="0" repeat="4">
+				<parameter name="soundID" value="beep" />
+			</action>
+		</activity>
+	</activities>
+	
+	<triggers>
+
+	</triggers>
+	
+</interaction>

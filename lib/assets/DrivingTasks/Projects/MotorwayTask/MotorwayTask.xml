@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>Settings file for Driving Task</comment>
+<entry key="scene">scene.xml</entry>
+<entry key="scenario">scenario.xml</entry>
+<entry key="interaction">interaction.xml</entry>
+<entry key="settings">settings.xml</entry>
+<entry key="verbose">false</entry>
+</properties>

@@ -1,0 +1,12 @@
+<lightTextures>
+	<position path="chassis/chassis-entity/Chassis-ogremesh/Chassis-geom-1" >
+		<allOff texture="car_videogame_texture.jpg" />
+		<leftTurn texture="car_videogame_texture.jpg" />
+		<rightTurn texture="car_videogame_texture.jpg" />
+		<hazardLights texture="hazardLightsBody.png" />
+		<brakeLights texture="brakeLightsBody.png" />
+		<leftTurnBrakeLights texture="brakeLightsBody.png" />
+		<rightTurnBrakeLights texture="brakeLightsBody.png" />
+		<hazardLightsBrakeLights texture="hazardLightsBrakeLightsBody.png" />
+	</position>
+</lightTextures>

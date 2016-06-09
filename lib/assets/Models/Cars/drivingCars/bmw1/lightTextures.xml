@@ -1,0 +1,12 @@
+<lightTextures>
+	<position path="chassis/chassis-entity/Chassis-ogremesh/Chassis-geom-1" >
+		<allOff texture="bmw1.png" />
+		<leftTurn texture="bmw1_left.png" />
+		<rightTurn texture="bmw1_right.png" />
+		<hazardLights texture="bmw1_hazard.png" />
+		<brakeLights texture="bmw1_brake.png" />
+		<leftTurnBrakeLights texture="bmw1_left_brake.png" />
+		<rightTurnBrakeLights texture="bmw1_right_brake.png" />
+		<hazardLightsBrakeLights texture="bmw1_hazard_brake.png" />
+	</position>
+</lightTextures>
