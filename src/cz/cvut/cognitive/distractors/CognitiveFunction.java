@@ -12,6 +12,7 @@ import eu.opends.main.SimulationDefaults;
 import eu.opends.main.Simulator;
 import eu.opends.tools.Util;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Date;
@@ -53,10 +54,10 @@ public class CognitiveFunction {
     bulletAppState.getPhysicsSpace().add(ghost); 
     
     Util.makeDirectory("distractionTaskDATA");
-    outputFolder = "distractionTaskDATA/" + Util.getDateTimeString();
+    outputFolder = "distractionTaskDATA"+File.separator+ Util.getDateTimeString();
     saveHere = outputFolder;
     Util.makeDirectory(outputFolder);
-    outputFolder = outputFolder +"/distraction_log.txt";
+    outputFolder = outputFolder +File.separator+"distraction_log.txt";
     
     
     

@@ -321,7 +321,7 @@ public class Simulator extends SimulationBasics
     	SimulationDefaults.drivingTaskFileName = drivingTaskFileName;
     	
     	Util.makeDirectory("analyzerData");
-    	outputFolder = "analyzerData/" + Util.getDateTimeString();
+    	outputFolder = "analyzerData"+File.separator+ Util.getDateTimeString();
     	
     	initDrivingTaskLayers();
     	
@@ -482,7 +482,7 @@ public class Simulator extends SimulationBasics
 		
 		joystickSpringController = new ForceFeedbackJoystickController(this);
                 
-                lastWord = SimulationDefaults.drivingTaskFileName.substring(SimulationDefaults.drivingTaskFileName.lastIndexOf("\\")+1);
+                lastWord = SimulationDefaults.drivingTaskFileName.substring(SimulationDefaults.drivingTaskFileName.lastIndexOf(File.separator)+1);
                 if(lastWord.equalsIgnoreCase("A_DistractionTest.xml")){
                     distSet = new DistractionSettings();
                     LoD = new ListOfDistractions(this);
@@ -493,8 +493,8 @@ public class Simulator extends SimulationBasics
                     Timer = 0;
                     cogTimer = 0;
                     DistractionSettings.setQuestionAnswered(true);
-                    healthText = new BitmapText(this.getAssetManager().loadFont("Interface/Fonts/Default.fnt"), false);
-                    healthText.setSize(this.getAssetManager().loadFont("Interface/Fonts/Default.fnt").getCharSet().getRenderedSize());
+                    healthText = new BitmapText(this.getAssetManager().loadFont("Interface"+File.separator+"Fonts"+File.separator+"Default.fnt"), false);
+                    healthText.setSize(this.getAssetManager().loadFont("Interface"+File.separator+"Fonts"+File.separator+"Default.fnt").getCharSet().getRenderedSize());
                     healthText.setText("Car Health: " + Simulator.playerHealth);
                     healthText.setLocalTranslation(1100, 250, 0);
                     this.getGuiNode().attachChild(healthText);
@@ -782,7 +782,7 @@ public class Simulator extends SimulationBasics
     		 
     		
     		// load logger configuration file
-    		PropertyConfigurator.configure("assets/JasperReports/log4j/log4j.properties");
+    		PropertyConfigurator.configure("assets"+File.separator+"JasperReports"+File.separator+"log4j"+File.separator+"log4j.properties");
     		
     		/*
     		logger.debug("Sample debug message");

@@ -27,6 +27,7 @@ import com.jme3.texture.Texture;
 import eu.opends.car.SteeringCar;
 import eu.opends.main.Simulator;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -70,13 +71,13 @@ public class CollectObjectDistraction extends DistractionClass{
         this.manager = sim.getAssetManager();
         this.camera = sim.getCamera();
 
-        greenText = new BitmapText(manager.loadFont("Interface/Fonts/Default.fnt"), false);
+        greenText = new BitmapText(manager.loadFont("Interface"+File.separator+"Fonts"+File.separator+"Default.fnt"), false);
         greenText.setSize(40);
         greenText.setColor(ColorRGBA.Green);
         greenText.setText("Pick up the GREEN ball");
         greenText.setLocalTranslation(500, 700, 0);
         
-        redText = new BitmapText(manager.loadFont("Interface/Fonts/Default.fnt"), false);
+        redText = new BitmapText(manager.loadFont("Interface"+File.separator+"Fonts"+File.separator+"Default.fnt"), false);
         redText.setSize(40);
         redText.setColor(ColorRGBA.Red);
         redText.setText("Pick up the RED ball");
@@ -89,7 +90,7 @@ public class CollectObjectDistraction extends DistractionClass{
         
         greenGeo = new Geometry("GreenSphere", new Sphere (15, 15, 0.4f));
         Material collect_mat = new Material(manager,
-        "Common/MatDefs/Misc/Unshaded.j3md");
+        "Common"+File.separator+"MatDefs"+File.separator+"Misc"+File.separator+"Unshaded.j3md");
         try{
             TextureKey textureKey = new TextureKey(texturePathGreen, false);
             Texture texture = sim.getAssetManager().loadTexture(textureKey);
@@ -108,7 +109,7 @@ public class CollectObjectDistraction extends DistractionClass{
         
         redGeo = new Geometry("RedSphere", new Sphere (15, 15, 0.4f));
         Material avoid_mat = new Material(manager,
-        "Common/MatDefs/Misc/Unshaded.j3md");
+        "Common"+File.separator+"MatDefs"+File.separator+"Misc"+File.separator+"Unshaded.j3md");
         try{
             TextureKey textureKey = new TextureKey(texturePathRed, false);
             Texture texture = sim.getAssetManager().loadTexture(textureKey);
@@ -208,7 +209,7 @@ public class CollectObjectDistraction extends DistractionClass{
     public void remove() {
         if(collectOn){
             if(!collected) correctScore[1]++;
-            outputFolder = CognitiveFunction.saveHere + "/Collectible.txt";
+            outputFolder = CognitiveFunction.saveHere +File.separator+"Collectible.txt";
             try (BufferedWriter writer2 = new BufferedWriter(new FileWriter(outputFolder, true))) {
             writer2.write(correctScore[0] + " " + correctScore[1]);
             writer2.newLine();
