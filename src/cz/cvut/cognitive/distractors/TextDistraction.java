@@ -7,9 +7,9 @@ import com.jme3.input.controls.KeyTrigger;
 import com.jme3.math.Vector3f;
 import com.jme3.niftygui.NiftyJmeDisplay;
 import com.jme3.renderer.ViewPort;
+import cz.cvut.cognitive.load.CognitiveFunction;
 import de.lessvoid.nifty.Nifty;
 import eu.opends.car.SteeringCar;
-import eu.opends.input.KeyMapping;
 import eu.opends.input.SimulatorActionListener;
 import eu.opends.main.Simulator;
 
