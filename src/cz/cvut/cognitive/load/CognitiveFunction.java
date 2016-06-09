@@ -1,4 +1,4 @@
-package cz.cvut.cognitive.distractors;
+package cz.cvut.cognitive.load;
 
 import com.jme3.bullet.BulletAppState;
 import com.jme3.bullet.collision.shapes.CapsuleCollisionShape;
@@ -7,6 +7,9 @@ import com.jme3.collision.CollisionResults;
 import com.jme3.math.Ray;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.Camera;
+import cz.cvut.cognitive.distractors.BoxDistraction;
+import cz.cvut.cognitive.distractors.DistractionSettings;
+import cz.cvut.cognitive.distractors.PedestrianDistraction;
 import eu.opends.car.SteeringCar;
 import eu.opends.main.SimulationDefaults;
 import eu.opends.main.Simulator;
@@ -39,7 +42,7 @@ public class CognitiveFunction {
     private float roadDifficulty;
     
     
-    public static int distScore = 0;
+    public static int distScore = 0; //FIXME replace this with a better code
     public static int activeDistCount = 0;
     public static int [] activeDistNames = new int [6];
     

@@ -25,11 +25,13 @@ import com.jme3.input.InputManager;
 import com.jme3.niftygui.NiftyJmeDisplay;
 import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Spatial.CullHint;
+import cz.cvut.cognitive.override.DistractionScreenGUIController;
 
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.elements.Element;
 import de.lessvoid.nifty.screen.Screen;
 import eu.opends.main.Simulator;
+import java.io.File;
 
 
 
@@ -144,7 +146,7 @@ public class InstructionScreenGUI
                 break;
             
             case "distractionScreen_1": {
-                xmlPath = "Interface/DistractionScreenGUI.xml";
+                xmlPath = "Interface"+File.separator+"DistractionScreenGUI.xml";
                 nifty.fromXml(xmlPath, "start", new DistractionScreenGUIController(sim, this));
                 
             } 

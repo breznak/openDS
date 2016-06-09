@@ -34,11 +34,8 @@ import org.apache.log4j.PropertyConfigurator;
 
 import com.jme3.app.StatsAppState;
 import com.jme3.app.state.VideoRecorderAppState;
-import com.jme3.asset.AssetManager;
-import com.jme3.bullet.PhysicsSpace;
 import com.jme3.font.BitmapText;
 import com.jme3.input.Joystick;
-import com.jme3.math.Ray;
 import com.jme3.math.Vector3f;
 import com.jme3.niftygui.NiftyJmeDisplay;
 import com.sun.javafx.application.PlatformImpl;
@@ -47,8 +44,7 @@ import de.lessvoid.nifty.Nifty;
 import cz.cvut.cognitive.distractors.DistractionSettings;
 import cz.cvut.cognitive.distractors.ListOfDistractions;
 
-import cz.cvut.cognitive.distractors.BoxDistraction;
-import cz.cvut.cognitive.distractors.CognitiveFunction;
+import cz.cvut.cognitive.load.CognitiveFunction;
 
 import eu.opends.analyzer.DrivingTaskLogger;
 import eu.opends.analyzer.DataWriter;

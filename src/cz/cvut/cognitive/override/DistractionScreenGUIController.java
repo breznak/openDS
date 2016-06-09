@@ -16,10 +16,10 @@
 *  along with OpenDS. If not, see <http://www.gnu.org/licenses/>.
 */
 
-package eu.opends.niftyGui;
+package cz.cvut.cognitive.override;
 
 
-import cz.cvut.cognitive.distractors.CognitiveFunction;
+import cz.cvut.cognitive.load.CognitiveFunction;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.NiftyEventSubscriber;
 import de.lessvoid.nifty.controls.CheckBox;
@@ -35,6 +35,7 @@ import cz.cvut.cognitive.distractors.DistractionSettings;
 import cz.cvut.cognitive.distractors.WeatherDistraction;
 import de.lessvoid.nifty.elements.Element;
 import eu.opends.main.Simulator;
+import eu.opends.niftyGui.InstructionScreenGUI;
 
 
 /**

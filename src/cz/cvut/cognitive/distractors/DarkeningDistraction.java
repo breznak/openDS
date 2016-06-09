@@ -1,5 +1,6 @@
  package cz.cvut.cognitive.distractors;
 
+import cz.cvut.cognitive.load.CognitiveFunction;
 import eu.opends.main.Simulator;
 
 /**
