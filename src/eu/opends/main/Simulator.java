@@ -34,11 +34,8 @@ import org.apache.log4j.PropertyConfigurator;
 
 import com.jme3.app.StatsAppState;
 import com.jme3.app.state.VideoRecorderAppState;
-import com.jme3.asset.AssetManager;
-import com.jme3.bullet.PhysicsSpace;
 import com.jme3.font.BitmapText;
 import com.jme3.input.Joystick;
-import com.jme3.math.Ray;
 import com.jme3.math.Vector3f;
 import com.jme3.niftygui.NiftyJmeDisplay;
 import com.sun.javafx.application.PlatformImpl;
@@ -47,8 +44,7 @@ import de.lessvoid.nifty.Nifty;
 import cz.cvut.cognitive.distractors.DistractionSettings;
 import cz.cvut.cognitive.distractors.ListOfDistractions;
 
-import cz.cvut.cognitive.distractors.BoxDistraction;
-import cz.cvut.cognitive.distractors.CognitiveFunction;
+import cz.cvut.cognitive.load.CognitiveFunction;
 
 import eu.opends.analyzer.DrivingTaskLogger;
 import eu.opends.analyzer.DataWriter;
@@ -321,7 +317,7 @@ public class Simulator extends SimulationBasics
     	SimulationDefaults.drivingTaskFileName = drivingTaskFileName;
     	
     	Util.makeDirectory("analyzerData");
-    	outputFolder = "analyzerData/" + Util.getDateTimeString();
+    	outputFolder = "analyzerData"+File.separator+ Util.getDateTimeString();
     	
     	initDrivingTaskLayers();
     	
@@ -493,8 +489,8 @@ public class Simulator extends SimulationBasics
                     Timer = 0;
                     cogTimer = 0;
                     DistractionSettings.setQuestionAnswered(true);
-                    healthText = new BitmapText(this.getAssetManager().loadFont("Interface/Fonts/Default.fnt"), false);
-                    healthText.setSize(this.getAssetManager().loadFont("Interface/Fonts/Default.fnt").getCharSet().getRenderedSize());
+                    healthText = new BitmapText(this.getAssetManager().loadFont("Interface"+File.separator+"Fonts"+File.separator+"Default.fnt"), false);
+                    healthText.setSize(this.getAssetManager().loadFont("Interface"+File.separator+"Fonts"+File.separator+"Default.fnt").getCharSet().getRenderedSize());
                     healthText.setText("Car Health: " + Simulator.playerHealth);
                     healthText.setLocalTranslation(1100, 250, 0);
                     this.getGuiNode().attachChild(healthText);
@@ -536,9 +532,8 @@ public class Simulator extends SimulationBasics
     {
     	if(initializationFinished)
     	{
-			
 			super.simpleUpdate(tpf);
-                        
+			
 			// updates camera
 			cameraFactory.updateCamera();
 		
@@ -783,7 +778,7 @@ public class Simulator extends SimulationBasics
     		 
     		
     		// load logger configuration file
-    		PropertyConfigurator.configure("assets/JasperReports/log4j/log4j.properties");
+    		PropertyConfigurator.configure("assets"+File.separator+"JasperReports"+File.separator+"log4j"+File.separator+"log4j.properties");
     		
     		/*
     		logger.debug("Sample debug message");

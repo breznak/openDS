@@ -2,6 +2,7 @@ package cz.cvut.cognitive.distractors;
 
 import com.jme3.asset.AssetManager;
 import com.jme3.audio.AudioNode;
+import cz.cvut.cognitive.load.CognitiveFunction;
 import eu.opends.main.Simulator;
 
 /**

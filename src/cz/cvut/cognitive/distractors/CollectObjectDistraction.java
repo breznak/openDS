@@ -1,32 +1,27 @@
 
 package cz.cvut.cognitive.distractors;
 
-import com.bulletphysics.collision.shapes.BoxShape;
+import cz.cvut.cognitive.load.CognitiveFunction;
 import com.jme3.asset.AssetManager;
 import com.jme3.asset.TextureKey;
-import com.jme3.bullet.BulletAppState;
-import com.jme3.bullet.collision.shapes.CapsuleCollisionShape;
 import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.control.GhostControl;
-import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.bullet.util.CollisionShapeFactory;
 import com.jme3.collision.CollisionResults;
 import com.jme3.font.BitmapText;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
-import com.jme3.math.Matrix3f;
 import com.jme3.math.Ray;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.Camera;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Spatial;
-import com.jme3.scene.shape.Box;
 import com.jme3.scene.shape.Sphere;
-import static com.jme3.shader.VarType.Vector3;
 import com.jme3.texture.Texture;
 import eu.opends.car.SteeringCar;
 import eu.opends.main.Simulator;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -70,13 +65,13 @@ public class CollectObjectDistraction extends DistractionClass{
         this.manager = sim.getAssetManager();
         this.camera = sim.getCamera();
 
-        greenText = new BitmapText(manager.loadFont("Interface/Fonts/Default.fnt"), false);
+        greenText = new BitmapText(manager.loadFont("Interface"+File.separator+"Fonts"+File.separator+"Default.fnt"), false);
         greenText.setSize(40);
         greenText.setColor(ColorRGBA.Green);
         greenText.setText("Pick up the GREEN ball");
         greenText.setLocalTranslation(500, 700, 0);
         
-        redText = new BitmapText(manager.loadFont("Interface/Fonts/Default.fnt"), false);
+        redText = new BitmapText(manager.loadFont("Interface"+File.separator+"Fonts"+File.separator+"Default.fnt"), false);
         redText.setSize(40);
         redText.setColor(ColorRGBA.Red);
         redText.setText("Pick up the RED ball");
@@ -89,7 +84,7 @@ public class CollectObjectDistraction extends DistractionClass{
         
         greenGeo = new Geometry("GreenSphere", new Sphere (15, 15, 0.4f));
         Material collect_mat = new Material(manager,
-        "Common/MatDefs/Misc/Unshaded.j3md");
+        "Common"+File.separator+"MatDefs"+File.separator+"Misc"+File.separator+"Unshaded.j3md");
         try{
             TextureKey textureKey = new TextureKey(texturePathGreen, false);
             Texture texture = sim.getAssetManager().loadTexture(textureKey);
@@ -108,7 +103,7 @@ public class CollectObjectDistraction extends DistractionClass{
         
         redGeo = new Geometry("RedSphere", new Sphere (15, 15, 0.4f));
         Material avoid_mat = new Material(manager,
-        "Common/MatDefs/Misc/Unshaded.j3md");
+        "Common"+File.separator+"MatDefs"+File.separator+"Misc"+File.separator+"Unshaded.j3md");
         try{
             TextureKey textureKey = new TextureKey(texturePathRed, false);
             Texture texture = sim.getAssetManager().loadTexture(textureKey);
@@ -208,7 +203,7 @@ public class CollectObjectDistraction extends DistractionClass{
     public void remove() {
         if(collectOn){
             if(!collected) correctScore[1]++;
-            outputFolder = CognitiveFunction.saveHere + "/Collectible.txt";
+            outputFolder = CognitiveFunction.saveHere +File.separator+"Collectible.txt";
             try (BufferedWriter writer2 = new BufferedWriter(new FileWriter(outputFolder, true))) {
             writer2.write(correctScore[0] + " " + correctScore[1]);
             writer2.newLine();
