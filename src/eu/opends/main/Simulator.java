@@ -788,7 +788,11 @@ public class Simulator extends SimulationBasics
     		logger.fatal("Sample fatal message");
     		*/
     		
-    		oculusRiftAttached = OculusRift.initialize();
+                try { // OculusRift initialization may fail, it's ok to ignore, unless you actually are using the device!
+    		  oculusRiftAttached = OculusRift.initialize();
+                } catch (UnsatisfiedLinkError | Exception ex) {
+                    System.err.println("Oculus Rift: Initialization failed! OK to ignore, unless you need this device. Message was: \n"+ex.getLocalizedMessage());
+                }
     		
     		// only show severe jme3-logs
     		java.util.logging.Logger.getLogger("").setLevel(java.util.logging.Level.SEVERE);
