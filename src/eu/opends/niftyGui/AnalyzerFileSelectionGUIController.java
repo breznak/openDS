@@ -32,7 +32,7 @@ import de.lessvoid.nifty.controls.TextField;
 import de.lessvoid.nifty.controls.TextFieldChangedEvent;
 import de.lessvoid.nifty.elements.Element;
 import de.lessvoid.nifty.elements.render.TextRenderer;
-import de.lessvoid.nifty.input.NiftyInputEvent;
+import de.lessvoid.nifty.input.NiftyStandardInputEvent;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
 import de.lessvoid.nifty.tools.Color;
@@ -246,10 +246,10 @@ public class AnalyzerFileSelectionGUIController implements ScreenController
 
 	
 	@NiftyEventSubscriber(id="analyzerFileTextfield")
-	public void onanalyzerFileTextfieldInputEvent(final String id, final NiftyInputEvent event) 
+	public void onanalyzerFileTextfieldInputEvent(final String id, final NiftyStandardInputEvent event) 
 	{
 		// update folder view, when return key was hit and focus is on driving task text field
-		if (NiftyInputEvent.SubmitText.equals(event)) 
+		if (NiftyStandardInputEvent.SubmitText.equals(event)) 
 		{
 			currentPath = getTextFromTextfield("analyzerFileTextfield");
 			updateListBox();
