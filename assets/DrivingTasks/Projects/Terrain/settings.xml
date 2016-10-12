@@ -6,10 +6,12 @@
 	<general>
 		<driverName>default driver</driverName>
 		<showStats>false</showStats>
+
 		<!-- 
 		<numberOfScreens>3</numberOfScreens>
 		<angleBetweenAdjacentCameras>45</angleBetweenAdjacentCameras>
-		 -->
+		-->
+		 
 	</general>
 	
 	<HMI>
@@ -18,6 +20,15 @@
 		<port>2111</port>
 	</HMI>
 	
+	<!-- -->
+	<simphynity>
+		<enableConnection>true</enableConnection>
+		<ip>127.0.0.1</ip>
+		<port>20777</port>
+	</simphynity>
+	<!--  -->
+	 
+	 
 	<settingsControllerServer>
 		<startServer>true</startServer>
 		<port>123</port>
@@ -94,7 +105,7 @@
 		<mouse>
 			<!-- only for outside view -->
 			<minScrollZoom>1</minScrollZoom>
-			<maxScrollZoom>40</maxScrollZoom>
+			<maxScrollZoom>4000</maxScrollZoom>
 			<scrollSensitivityFactor>5</scrollSensitivityFactor>
 		</mouse>
 	</controllers>

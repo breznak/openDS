@@ -9,6 +9,8 @@
         		<rainingPercentage>-1</rainingPercentage>
         		<fogPercentage>-1</fogPercentage>
         	</weather>
+        	<useBloomFilter>false</useBloomFilter>
+        	<useShadowFilter>false</useShadowFilter>
         </environment>
 
         <driver>
@@ -58,6 +60,7 @@
         </driver>
         
         <traffic>
+        	<!-- 
         	<pedestrian id="pedestrian01">
         		<modelPath>Models/Humans/female/female.scene</modelPath>
 				<mass>5</mass>
@@ -76,7 +79,7 @@
 					<wayPoint id="WayPoint_4"><translation><vector jtype="java_lang_Float" size="3"><entry>229</entry><entry>137</entry><entry>44</entry></vector></translation><speed>4</speed></wayPoint>
 				</wayPoints>
         	</pedestrian>
-        	<!-- 
+        	
         	<pedestrian id="pedestrian02">
         		<modelPath>Models/Humans/male/male.scene</modelPath>
 				<mass>5</mass>
@@ -96,6 +99,44 @@
 				</wayPoints>
         	</pedestrian>
         	-->
+        	
+        	<!-- 
+        	<pedestrian id="cyclist">
+        		<modelPath>Models/Cyclists/male/male.scene</modelPath>
+				<mass>5</mass>
+				<animationStand>Wait</animationStand>
+				<animationWalk>Pedal</animationWalk>
+				<scale>0.9</scale>
+				<localTranslation>
+					<vector jtype="java_lang_Float" size="3">
+						<entry>0</entry>
+						<entry>0.2</entry>
+						<entry>0</entry>
+					</vector>
+				</localTranslation>
+				<localRotation>
+					<vector jtype="java_lang_Float" size="3">
+						<entry>270</entry>
+						<entry>0</entry>
+						<entry>0</entry>
+					</vector>
+				</localRotation>
+				<maxDistanceFromPath>1.1</maxDistanceFromPath>
+				<curveTension>0.1</curveTension>
+				<pathIsCycle>true</pathIsCycle>
+				<pathIsVisible>true</pathIsVisible>
+				<startWayPoint>WayPoint_1</startWayPoint>
+				<wayPoints>
+					<wayPoint id="WayPoint_1"><translation><vector jtype="java_lang_Float" size="3"><entry>229</entry><entry>137</entry><entry>34</entry></vector></translation><speed>4</speed></wayPoint>
+					<wayPoint id="WayPoint_2"><translation><vector jtype="java_lang_Float" size="3"><entry>239</entry><entry>137</entry><entry>34</entry></vector></translation><speed>4</speed></wayPoint>
+					<wayPoint id="WayPoint_3"><translation><vector jtype="java_lang_Float" size="3"><entry>239</entry><entry>137</entry><entry>44</entry></vector></translation><speed>4</speed><waitingTime>5000</waitingTime></wayPoint>
+					<wayPoint id="WayPoint_4"><translation><vector jtype="java_lang_Float" size="3"><entry>229</entry><entry>137</entry><entry>44</entry></vector></translation><speed>4</speed></wayPoint>
+				</wayPoints>
+        	</pedestrian>
+        	 -->
+        	 
+        	 
+        	<!-- 
         	<vehicle id="car1">
 				<modelPath>Models/Cars/drivingCars/bmw1/Car.j3o</modelPath>
 				<mass>800</mass>
@@ -115,6 +156,8 @@
 					<wayPoint id="WayPoint_8"><translation><vector jtype="java_lang_Float" size="3"><entry>239</entry><entry>137</entry><entry>44</entry></vector></translation><speed>5</speed></wayPoint>
 				</wayPoints>
         	</vehicle>
+        	-->
+        	 
         </traffic>
         
         <road>

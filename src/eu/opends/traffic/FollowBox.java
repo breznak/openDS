@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2015 Rafael Math
+*  Copyright (C) 2016 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -46,6 +46,7 @@ public class FollowBox
 	private TrafficObject trafficObject;
 	private FollowBoxSettings settings;
 	private List<Waypoint> waypointList;
+	private float minDistance;
 	private float maxDistance;
     private MotionPath motionPath;
     private MotionEvent motionControl;
@@ -64,6 +65,7 @@ public class FollowBox
 		this.settings = settings;
 		
 		waypointList = settings.getWayPoints();
+		minDistance = settings.getMinDistance();
 		maxDistance = settings.getMaxDistance();
 		
 		motionPath = new MotionPath();
@@ -133,6 +135,7 @@ public class FollowBox
         motionControl.play(); // already contained in update method
 	}
 
+	
 	int counter = 0;
 	public void update(Vector3f trafficObjectPos)
 	{
@@ -155,7 +158,6 @@ public class FollowBox
 		}
 		else
 		{
-			float minDistance = 1.0f;
 			float currentDistance = getCurrentDistance(trafficObjectPos);
 			
 			//if(trafficObject.getName().equals("car1"))

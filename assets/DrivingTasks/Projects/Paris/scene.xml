@@ -175,5 +175,5 @@
 			</color>
 		</directionalLight>
 	</lights>
-
+	<skyTexture>Textures/Sky/Clouds/clouds.properties</skyTexture>
 </scene>

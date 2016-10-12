@@ -16,6 +16,7 @@
 	<classpathentry kind="lib" path="lib/contre.jar"/>
 	<classpathentry kind="lib" path="lib/eyetracker.jar"/>
 	<classpathentry kind="lib" path="lib/ffjoystick.jar"/>
+	<classpathentry kind="lib" path="lib/simphynity.jar"/>
 	<classpathentry kind="lib" path="lib/j2ee-1.4.jar"/>
 	<classpathentry kind="lib" path="lib/Jama-1.0.3.jar"/>
 	<classpathentry kind="lib" path="lib/jaxdomBundle.jar"/>
@@ -26,35 +27,80 @@
 	<classpathentry kind="lib" path="lib/NetMessageProtocol.jar"/>
 	<classpathentry kind="lib" path="lib/tvpt.jar"/>
 	<classpathentry kind="lib" path="lib/oculus.jar"/>
-	<classpathentry kind="lib" path="lib/jME3/eventbus.jar"/>
-	<classpathentry kind="lib" path="lib/jME3/gluegen-rt.jar"/>
-	<classpathentry kind="lib" path="lib/jME3/j-ogg-oggd.jar"/>
-	<classpathentry kind="lib" path="lib/jME3/j-ogg-vorbisd.jar"/>
-	<classpathentry kind="lib" path="lib/jME3/jbullet.jar"/>
-	<classpathentry kind="lib" path="lib/jME3/jglfont-core.jar"/>
-	<classpathentry kind="lib" path="lib/jME3/jinput.jar"/>
-	<classpathentry kind="lib" path="lib/jME3/jME3-blender.jar"/>
-	<classpathentry kind="lib" path="lib/jME3/jME3-core.jar"/>
-	<classpathentry kind="lib" path="lib/jME3/jME3-desktop.jar"/>
-	<classpathentry kind="lib" path="lib/jME3/jME3-effects.jar"/>
-	<classpathentry kind="lib" path="lib/jME3/jME3-jbullet.jar"/>
-	<classpathentry kind="lib" path="lib/jME3/jME3-jogg.jar"/>
-	<classpathentry kind="lib" path="lib/jME3/jME3-lwjgl-natives.jar"/>
-	<classpathentry kind="lib" path="lib/jME3/jME3-lwjgl.jar"/>
-	<classpathentry kind="lib" path="lib/jME3/jME3-networking.jar"/>
-	<classpathentry kind="lib" path="lib/jME3/jME3-niftygui.jar"/>
-	<classpathentry kind="lib" path="lib/jME3/jME3-openal-soft-natives-android.jar"/>
-	<classpathentry kind="lib" path="lib/jME3/jME3-plugins.jar"/>
-	<classpathentry kind="lib" path="lib/jME3/jME3-terrain.jar"/>
-	<classpathentry kind="lib" path="lib/jME3/joal.jar"/>
-	<classpathentry kind="lib" path="lib/jME3/jogl-all.jar"/>
-	<classpathentry kind="lib" path="lib/jME3/lwjgl.jar"/>
-	<classpathentry kind="lib" path="lib/jME3/nifty-default-controls.jar"/>
-	<classpathentry kind="lib" path="lib/jME3/nifty-style-black.jar"/>
-	<classpathentry kind="lib" path="lib/jME3/nifty.jar"/>
-	<classpathentry kind="lib" path="lib/jME3/stack-alloc.jar"/>
-	<classpathentry kind="lib" path="lib/jME3/vecmath.jar"/>
-	<classpathentry kind="lib" path="lib/jME3/xmlpull-xpp3.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/core-0.27.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/dense64-0.27.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/denseC64-0.27.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/eventbus.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/gluegen-rt-2.3.1-natives-linux-amd64.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/gluegen-rt-2.3.1-natives-linux-armv6.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/gluegen-rt-2.3.1-natives-linux-armv6hf.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/gluegen-rt-2.3.1-natives-linux-i586.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/gluegen-rt-2.3.1-natives-macosx-universal.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/gluegen-rt-2.3.1-natives-solaris-amd64.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/gluegen-rt-2.3.1-natives-solaris-i586.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/gluegen-rt-2.3.1-natives-windows-amd64.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/gluegen-rt-2.3.1-natives-windows-i586.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/gluegen-rt-2.3.1.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/gluegen-rt-main-2.3.1.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/j-ogg-all-1.0.0.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/jbullet.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/jglfont-core_1.3.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/jinput-2.0.5.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/jinput-platform-2.0.5-natives-linux.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/jinput-platform-2.0.5-natives-osx.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/jinput-platform-2.0.5-natives-windows.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/jme3-android-3.1.0-alpha1.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/jme3-android-native-3.1.0-alpha1.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/jme3-blender-3.1.0-alpha1.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/jme3-core-3.1.0-alpha1.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/jme3-desktop-3.1.0-alpha1.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/jme3-effects-3.1.0-alpha1.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/jme3-ios-3.1.0-alpha1.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/jme3-jbullet-3.1.0-alpha1.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/jme3-jogg-3.1.0-alpha1.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/jme3-jogl-3.1.0-alpha1.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/jme3-lwjgl-3.1.0-alpha1.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/jme3-networking-3.1.0-alpha1.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/jme3-niftygui-3.0.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/jme3-plugins-3.1.0-alpha1.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/jme3-terrain-3.1.0-alpha1.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/joal-2.3.1-natives-linux-amd64.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/joal-2.3.1-natives-linux-armv6.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/joal-2.3.1-natives-linux-armv6hf.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/joal-2.3.1-natives-linux-i586.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/joal-2.3.1-natives-macosx-universal.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/joal-2.3.1-natives-solaris-amd64.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/joal-2.3.1-natives-solaris-i586.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/joal-2.3.1-natives-windows-amd64.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/joal-2.3.1-natives-windows-i586.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/joal-2.3.1.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/joal-main-2.3.1.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/jogl-all-2.3.1-natives-linux-amd64.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/jogl-all-2.3.1-natives-linux-armv6.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/jogl-all-2.3.1-natives-linux-armv6hf.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/jogl-all-2.3.1-natives-linux-i586.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/jogl-all-2.3.1-natives-macosx-universal.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/jogl-all-2.3.1-natives-solaris-amd64.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/jogl-all-2.3.1-natives-solaris-i586.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/jogl-all-2.3.1-natives-windows-amd64.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/jogl-all-2.3.1-natives-windows-i586.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/jogl-all-2.3.1.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/jogl-all-main-2.3.1.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/jsr305-2.0.2.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/jutils-1.0.0.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/lwjgl-2.9.3.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/lwjgl-platform-2.9.3-natives-linux.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/lwjgl-platform-2.9.3-natives-osx.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/lwjgl-platform-2.9.3-natives-windows.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/nifty-1.3.3.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/nifty-default-controls-1.3.3.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/nifty-style-black-1.3.3.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/proguard.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/retrace.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/simple-0.27.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/stack-alloc.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/vecmath-1.3.1.jar"/>
+	<classpathentry kind="lib" path="lib/jme3.1/xmlpull-xpp3.jar"/>
 	<classpathentry kind="lib" path="lib/jasperreports/ant-1.7.1.jar"/>
 	<classpathentry kind="lib" path="lib/jasperreports/antlr-2.7.5.jar"/>
 	<classpathentry kind="lib" path="lib/jasperreports/barbecue-1.5-beta1.jar"/>
