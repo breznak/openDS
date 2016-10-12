@@ -96,6 +96,7 @@ public class Simulator extends SimulationBasics
     private int frameCounter = 0;
     private boolean drivingTaskGiven = false;
     private boolean initializationFinished = false;
+    // CognitiveLoad module related vars
     DistractionSettings distSet;
     ListOfDistractions LoD;
     private CognitiveFunction cogFunction;
@@ -270,6 +271,8 @@ public class Simulator extends SimulationBasics
 	{
 		return joystickSpringController;
 	}
+        
+        private boolean platformImplInitialized = false; //signals if PlatformImpl (JavFX) is used (=initialized OK)
 
 	
     @Override
@@ -749,8 +752,10 @@ public class Simulator extends SimulationBasics
 		super.destroy();
 		logger.info("finished destroy()");
 		
-		PlatformImpl.exit();
-		//System.exit(0);
+                if(this.platformImplInitialized) {
+    		   PlatformImpl.exit();
+                   //System.exit(0);
+                 }
     }
 	
 
@@ -788,14 +793,24 @@ public class Simulator extends SimulationBasics
     		logger.fatal("Sample fatal message");
     		*/
     		
-    		oculusRiftAttached = OculusRift.initialize();
+                try { // OculusRift initialization may fail, it's ok to ignore, unless you actually are using the device!
+    		  oculusRiftAttached = OculusRift.initialize();
+                } catch (UnsatisfiedLinkError | Exception ex) {
+                    System.err.println("Oculus Rift: Initialization failed! OK to ignore, unless you need this device. Message was: \n"+ex.getLocalizedMessage());
+                }
     		
     		// only show severe jme3-logs
     		java.util.logging.Logger.getLogger("").setLevel(java.util.logging.Level.SEVERE);
     		
-    		PlatformImpl.startup(() -> {});
+                Simulator sim = new Simulator();
     		
-	    	Simulator sim = new Simulator();
+                try {
+    		  PlatformImpl.startup(() -> {});
+                  sim.platformImplInitialized = true;
+                  
+                } catch (RuntimeException re) {
+                    System.err.println("JavaFX: QuantumRenderer initialization failed! This is needed only for MoviePlayer, we can continue OK. Message: \n"+ re.getLocalizedMessage());
+                }
     		
 	    	StartPropertiesReader startPropertiesReader = new StartPropertiesReader();
 
