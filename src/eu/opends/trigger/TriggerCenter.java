@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2015 Rafael Math
+*  Copyright (C) 2016 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -26,7 +26,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import com.jme3.collision.CollisionResults;
 //import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 
@@ -36,7 +35,6 @@ import eu.opends.basics.SimulationBasics;
 import eu.opends.car.Car;
 import eu.opends.environment.TrafficLightCenter.TriggerType;
 import eu.opends.main.Simulator;
-import eu.opends.tools.Util;
 
 
 /**
@@ -46,8 +44,6 @@ import eu.opends.tools.Util;
  */
 public class TriggerCenter 
 {
-	private CollisionResults resultCollision;
-
 	private Simulator sim;
 
 	private String triggerName;
@@ -82,8 +78,6 @@ public class TriggerCenter
 	
 	public void setup() 
 	{
-		resultCollision = new CollisionResults();
-
 		Spatial tempSpatial;
 
 		String tempSpatialName;
@@ -131,15 +125,16 @@ public class TriggerCenter
 	{
 		for (Entry<String, Spatial> trigger : triggerList.entrySet())
 		{
-			resultCollision.clear();
 			triggerName = trigger.getValue().getName();
 			
-			// calculate collision of the car with a road object trigger
-			Spatial triggerObject = sim.getTriggerNode().getChild(triggerName);
-			sim.getCar().getCarNode().collideWith(triggerObject.getWorldBound(), resultCollision);
+			// calculate intersection of the car with a road object trigger
+			Spatial triggerObject = sim.getTriggerNode().getChild(triggerName);		
 			
-			if(resultCollision.size() > 0) 
+			if(sim.getCar().getCarNode().getWorldBound().intersects(triggerObject.getWorldBound())) 
+			{
 				sim.getTrafficLightCenter().reportCollision(trigger.getKey(), TriggerType.REQUEST);
+				//System.err.println("Trigger: " + System.currentTimeMillis());
+			}
 		}
 	}
 	
@@ -158,14 +153,12 @@ public class TriggerCenter
 	{
 		for (Entry<String, Spatial> trigger : triggerList.entrySet())
 		{
-			resultCollision.clear();
 			triggerName = trigger.getValue().getName();
 			
-			// calculate collision of the car with a road object trigger
+			// calculate intersection of the car with a road object trigger
 			Spatial triggerObject = sim.getTriggerNode().getChild(triggerName);
-			sim.getCar().getCarNode().collideWith(triggerObject.getWorldBound(), resultCollision);
 			
-			if(resultCollision.size() > 0) 
+			if(sim.getCar().getCarNode().getWorldBound().intersects(triggerObject.getWorldBound())) 
 			{
 				sim.getTrafficLightCenter().reportCollision(trigger.getKey(), TriggerType.PHASE);
 			}
@@ -185,22 +178,20 @@ public class TriggerCenter
 	private void handleRoadObjectsCollision(LinkedList<Spatial> triggerList)
 	{
 		Car car = sim.getCar();
-		
+
 		for (Spatial trigger : triggerList) 
 		{	
 			// TODO: caution! trigger center may be farther away than 1000 meters when hitting
 			if(trigger.getWorldTranslation().distance(car.getCarNode().getWorldTranslation()) < 1000)
 			{
-				resultCollision.clear();
 				String triggerName = trigger.getName();
 					
 				// calculate collision of the car with a road object trigger
 
 				Spatial triggerObject = sim.getTriggerNode().getChild(triggerName);
-				car.getCarNode().collideWith(triggerObject.getWorldBound(), resultCollision);
 				
-				// if car has collided with a trigger --> report trigger to HMI Center
-				if(resultCollision.size() > 0)
+				// if car intersects with a trigger --> report trigger to HMI Center
+				if(car.getCarNode().getWorldBound().intersects(triggerObject.getWorldBound()))
 				{
 					if(SimulationBasics.getTriggerActionListMap().containsKey(triggerName))
 						TriggerCenter.performTriggerAction(triggerName);
@@ -229,12 +220,10 @@ public class TriggerCenter
 				resultCollision.clear();
 				//String[] roadObjectName = roadObject.getName().split("\\.");
 				
-				// calculate collision of the car with a road object
-				car.getCarNode().collideWith(roadObject.getWorldBound(), resultCollision);
-	
-				if(resultCollision.size() > 0)
+				// calculate intersection of the car with a road object
+				if(car.getCarNode().getWorldBound().intersects(roadObject.getWorldBound()))
 				{
-					// if car has collided with a road object --> report collision
+					// if car intersects with a road object --> report collision
 					//System.out.println("Collided with: " + roadObjectName[0]);
 					
 					// report collision with chassis --> play sound
@@ -374,6 +363,26 @@ public class TriggerCenter
 		}
 	}
 
+	
+	/**
+	 * Reports a camer waypoint trigger event and performs the specified
+	 * action (e.g. send a text to the screen)
+	 * 
+	 * @param triggerID
+	 * 			name of the trigger (needed to look up action) 
+	 */
+	public static void performCameraWaypointTriggerAction(String triggerID)
+	{
+		if(SimulationBasics.getCameraWaypointTriggerActionListMap().containsKey(triggerID))
+		{
+			System.err.println("CameraWaypoint trigger hit: " + triggerID);
+		
+			List<TriggerAction> triggerActionList = SimulationBasics.getCameraWaypointTriggerActionListMap().get(triggerID);
+			for(TriggerAction triggerAction : triggerActionList)
+				triggerAction.performAction();
+		}
+	}
+	
 	
 	/**
 	 * Every time a trigger is reported it will be added to trigger report 

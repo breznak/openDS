@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2015 Rafael Math
+*  Copyright (C) 2016 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -28,11 +28,19 @@ import com.jme3.app.SimpleApplication;
 import com.jme3.asset.AssetNotFoundException;
 import com.jme3.asset.plugins.FileLocator;
 import com.jme3.bullet.PhysicsSpace;
+import com.jme3.material.Material;
+import com.jme3.math.ColorRGBA;
+import com.jme3.math.FastMath;
+import com.jme3.math.Quaternion;
 import com.jme3.renderer.queue.RenderQueue.ShadowMode;
+import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
+import com.jme3.scene.Spatial.CullHint;
+import com.jme3.scene.shape.Cylinder;
 import com.jme3.system.AppSettings;
 import com.jme3.util.SkyFactory;
+import com.jme3.util.SkyFactory.EnvMapType;
 
 import eu.opends.camera.CameraFactory;
 import eu.opends.cameraFlight.CameraFlight;
@@ -67,6 +75,7 @@ public class SimulationBasics extends SimpleApplication
 	protected static SettingsLoader settingsLoader;
 	protected static Map<String,List<TriggerAction>> triggerActionListMap = new HashMap<String,List<TriggerAction>>();
 	protected static Map<String,List<TriggerAction>> remoteTriggerActionListMap = new HashMap<String,List<TriggerAction>>();
+	protected static Map<String,List<TriggerAction>> cameraWaypointTriggerActionListMap = new HashMap<String,List<TriggerAction>>();
 	protected BulletAppState bulletAppState;
 	protected LightFactory lightFactory;
 	protected CameraFactory cameraFactory;
@@ -81,6 +90,7 @@ public class SimulationBasics extends SimpleApplication
 	protected int numberOfScreens;
 	protected StereoCamAppState stereoCamAppState;
 	protected Spatial observer = new Node("observer");
+	protected Node coordinateSystem = new Node("coordinateSystem");
 	
 	
 	public KeyBindingCenter getKeyBindingCenter()
@@ -88,10 +98,12 @@ public class SimulationBasics extends SimpleApplication
 		return keyBindingCenter;
 	}
 	
+	
 	public TrafficLightCenter getTrafficLightCenter() 
 	{
 		return trafficLightCenter;
 	}
+	
 	
 	public Node getSceneNode()
 	{
@@ -105,20 +117,29 @@ public class SimulationBasics extends SimpleApplication
 	}
 	
 	
+	public Node getCoordinateSystem()
+	{
+		return coordinateSystem;
+	}
+	
+	
     public BulletAppState getBulletAppState() 
     {
         return bulletAppState;
     }
+    
     
     public Spatial getObserver() 
     {
         return observer;
     }
     
+    
     public StereoCamAppState getStereoCamAppState() 
     {
         return stereoCamAppState;
     }
+    
     
     public PhysicsSpace getPhysicsSpace() 
     {
@@ -176,6 +197,12 @@ public class SimulationBasics extends SimpleApplication
 	public static Map<String,List<TriggerAction>> getRemoteTriggerActionListMap() 
 	{
 		return remoteTriggerActionListMap;
+	}
+	
+	
+	public static Map<String,List<TriggerAction>> getCameraWaypointTriggerActionListMap() 
+	{
+		return cameraWaypointTriggerActionListMap;
 	}
 	
 	
@@ -264,38 +291,139 @@ public class SimulationBasics extends SimpleApplication
         keyMappingGUI = new KeyMappingGUI(this);
         shutDownGUI = new ShutDownGUI(this);
         instructionScreenGUI = new InstructionScreenGUI((Simulator)this);
+        
+        createCoordinateSystem();
     }
 
+    
+	private void createCoordinateSystem()
+	{		
+		Node xAxisCylinder = createCylinder("x-axis", new ColorRGBA(1,0,0,0));		
+		xAxisCylinder.setLocalRotation((new Quaternion()).fromAngles(0, -90*FastMath.DEG_TO_RAD, 0));
+		coordinateSystem.attachChild(xAxisCylinder);
+		
+		Node xAxisCone = createCone("x-cone", new ColorRGBA(1,0,0,1));		
+		xAxisCone.setLocalTranslation(10,0,0);
+		xAxisCone.setLocalRotation((new Quaternion()).fromAngles(0, -90*FastMath.DEG_TO_RAD, 0));
+		coordinateSystem.attachChild(xAxisCone);
+		
+		
+		Node yAxisCylinder = createCylinder("y-axis", new ColorRGBA(0,1,0,1));
+        yAxisCylinder.setLocalRotation((new Quaternion()).fromAngles(90*FastMath.DEG_TO_RAD, 0, 0));
+        coordinateSystem.attachChild(yAxisCylinder);
+		
+		Node yAxisCone = createCone("y-cone", new ColorRGBA(0,1,0,1));
+		yAxisCone.setLocalTranslation(0,10,0);
+		yAxisCone.setLocalRotation((new Quaternion()).fromAngles(90*FastMath.DEG_TO_RAD, 0, 0));
+		coordinateSystem.attachChild(yAxisCone);
+		
+
+		Node zAxisCylinder = createCylinder("z-axis", new ColorRGBA(0,0,1,1));
+		zAxisCylinder.setLocalRotation((new Quaternion()).fromAngles(0, 0, 0));
+		coordinateSystem.attachChild(zAxisCylinder);
+
+		Node zAxisCone = createCone("z-cone", new ColorRGBA(0,0,1,1));
+		zAxisCone.setLocalTranslation(0,0,10);
+		zAxisCone.setLocalRotation((new Quaternion()).fromAngles(0, 180*FastMath.DEG_TO_RAD, 0));
+		coordinateSystem.attachChild(zAxisCone);
+		
+		coordinateSystem.setCullHint(CullHint.Always);
+		
+		sceneNode.attachChild(coordinateSystem);
+	}
+
+
+	private Node createCone(String name, ColorRGBA color)
+	{
+		int axisSamples = 5;		
+		int radialSamples = 20;		
+		float radius = 2;
+		float radius2 = 0;
+		float height = 5;
+		Boolean closed = true;
+				
+		// create new cylinder
+		Cylinder cylinder = new Cylinder(axisSamples, radialSamples, radius, radius2, height, closed, false);
+		Geometry geometry = new Geometry(name + "_cylinder", cylinder);
+		
+		String matDefinition = "Common/MatDefs/Misc/Unshaded.j3md";
+		Material material = new Material(this.getAssetManager(), matDefinition);
+		material.setColor("Color", color);
+		geometry.setMaterial(material);
+		
+		Node node = new Node(name);
+		node.attachChild(geometry);
+		return node;
+	}
+
+
+	private Node createCylinder(String name, ColorRGBA color)
+	{
+		int axisSamples = 5;		
+		int radialSamples = 20;		
+		float radius = 0.5f;
+		float height = 10000;
+		Boolean closed = true;
+				
+		// create new cylinder
+		Cylinder cylinder = new Cylinder(axisSamples, radialSamples, radius, height, closed);
+		Geometry geometry = new Geometry(name + "_cylinder", cylinder);
+		
+		String matDefinition = "Common/MatDefs/Misc/Unshaded.j3md";
+		Material material = new Material(this.getAssetManager(), matDefinition);
+		material.setColor("Color", color);
+		geometry.setMaterial(material);
+		
+		Node node = new Node(name);
+		node.attachChild(geometry);
+		return node;
+	}
+	
 
 	private void createSkyBox()
 	{
 		String skyModelPath = Simulator.getDrivingTask().getSceneLoader().getSkyTexture(SimulationDefaults.skyTexture);
-        assetManager.registerLocator("assets", FileLocator.class);
-        Spatial sky;
-        try{
-        	sky = SkyFactory.createSky(assetManager, skyModelPath, false);
+		assetManager.registerLocator("assets", FileLocator.class);
+		
+		Spatial sky;
+		
+		try{
+			
+	        if(skyModelPath.toLowerCase().endsWith(".dds"))
+	        {
+		        sky = SkyFactory.createSky(assetManager, skyModelPath, EnvMapType.CubeMap);
+	        }
+	        else if(skyModelPath.toLowerCase().endsWith(".hdr"))
+	        {
+	        	Quaternion rotation = new Quaternion();
+	            rotation.fromAngles(270*FastMath.DEG_TO_RAD, 0, 0);
+	            
+	            sky = SkyFactory.createSky(assetManager, skyModelPath, EnvMapType.SphereMap);
+	            sky.setLocalRotation(rotation);
+	        }
+	        else
+	        {
+	        	sky = SkyPropertiesReader.getSettings(assetManager, skyModelPath);
+	        }
+	        
+	        
         } catch (AssetNotFoundException e) {
+        	
         	System.err.println("SimulationBasics: Could not find sky texture '" + skyModelPath + 
         			"'. Using default ('" + SimulationDefaults.skyTexture + "').");
-        	sky = SkyFactory.createSky(assetManager, SimulationDefaults.skyTexture, false);
+        	sky = SkyFactory.createSky(assetManager, SimulationDefaults.skyTexture, EnvMapType.CubeMap);
+        	
+        } catch (Exception e) {
+    	
+        	System.err.println("SimulationBasics: Could not load sky texture '" + skyModelPath + 
+        			"'. Using default ('" + SimulationDefaults.skyTexture + "').");
+        	e.printStackTrace();
+        	sky = SkyFactory.createSky(assetManager, SimulationDefaults.skyTexture, EnvMapType.CubeMap);
+    	
         }
+		
         sky.setShadowMode(ShadowMode.Off);
         sceneNode.attachChild(sky);
-        
-        /*
-        Texture west = assetManager.loadTexture("Textures/Sky/Clouds/west.png");
-        Texture east = assetManager.loadTexture("Textures/Sky/Clouds/east.png");
-        Texture north = assetManager.loadTexture("Textures/Sky/Clouds/north.png");
-        Texture south = assetManager.loadTexture("Textures/Sky/Clouds/south.png");
-        Texture up = assetManager.loadTexture("Textures/Sky/Clouds/up.png");
-        Texture down = assetManager.loadTexture("Textures/Sky/Clouds/down.png");
-
-        // vector used to flip textures (as textures will be applied from the outside of the box)
-        Vector3f normalScale = new Vector3f(-1, 1, 1);
-        Spatial skySpatial = SkyFactory.createSky(assetManager, west, east, north, south, up, down, normalScale);
-        skySpatial.setShadowMode(ShadowMode.Off);
-        rootNode.attachChild(skySpatial);
-        */
 	}
     
 

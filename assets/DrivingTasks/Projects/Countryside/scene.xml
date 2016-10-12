@@ -213,5 +213,5 @@
 			</color>
 		</directionalLight>
 	</lights>
-	<skyTexture>Textures/Sky/Bright/hills.dds</skyTexture>
+	<skyTexture>Textures/Sky/Clouds/clouds.properties</skyTexture>
 </scene>

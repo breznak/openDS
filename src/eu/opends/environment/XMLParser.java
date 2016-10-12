@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2015 Rafael Math
+*  Copyright (C) 2016 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -348,8 +348,8 @@ public class XMLParser
 						// channel3 input
 						else if(actionID.equals("channel3"))	
 						{
-							float value = Float.parseFloat(valueString);
-							float percentage = voltToPercentage(value, 0.2f, 3.7f);
+							//float value = Float.parseFloat(valueString);
+							//float percentage = voltToPercentage(value, 0.2f, 3.7f);
 							//System.out.println("channel3: " + percentage);
 						}
 						

@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2015 Rafael Math
+*  Copyright (C) 2016 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -442,6 +442,7 @@ public abstract class CameraFactory
 		float horizontalAngle = settingsLoader.getSetting(Setting.General_rearviewMirror_horizontalAngle, 0f);
 		float verticalAngle = settingsLoader.getSetting(Setting.General_rearviewMirror_verticalAngle, 0f);
 
+		/*
 		if(sim.getNumberOfScreens() > 1)
 		{
 			left = 0.4f;
@@ -449,6 +450,7 @@ public abstract class CameraFactory
 			bottom = 0.78f;
 			top = 0.98f;
 		}
+		*/
 		
 		backMirrorFrame =createMirrorFrame("backViewFrame",left,right,bottom,top);
 		sim.getGuiNode().attachChild(backMirrorFrame);

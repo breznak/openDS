@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2015 Rafael Math
+*  Copyright (C) 2016 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -20,8 +20,11 @@ package eu.opends.car;
 
 import java.io.File;
 
+import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.control.VehicleControl;
 import com.jme3.bullet.joints.HingeJoint;
+import com.jme3.bullet.objects.PhysicsRigidBody;
+import com.jme3.bullet.util.CollisionShapeFactory;
 import com.jme3.light.SpotLight;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
@@ -170,16 +173,47 @@ public abstract class Car
 		trailerNode = trailerModelLoader.getCarNode();
 		sim.getSceneNode().attachChild(trailerNode);
 		
+		/*
 		// apply joint
 		HingeJoint joint=new HingeJoint(carNode.getControl(VehicleControl.class),
 				trailerNode.getControl(VehicleControl.class),
-		        new Vector3f(0f, 0f, 2f),    // pivot point local to carNode
+		        new Vector3f(0f, 0f, 3f),    // pivot point local to carNode
 		        new Vector3f(0f, 0f, -1.5f), // pivot point local to trailerNode 
 		        Vector3f.UNIT_Y, 			 // DoF Axis of carNode (Y axis)
 		        Vector3f.UNIT_Y);        	 // DoF Axis of trailerNode (Y axis)
 		joint.setCollisionBetweenLinkedBodys(false);
 		joint.setLimit(-FastMath.HALF_PI, FastMath.HALF_PI);	        
 		sim.getPhysicsSpace().add(joint);
+		*/
+		
+		Box sphere = new Box(0.1f, 0.1f, 0.1f);
+		Geometry spatial = new Geometry("box", sphere);
+		CollisionShape boxShape = CollisionShapeFactory.createBoxShape(spatial);
+		PhysicsRigidBody connector = new PhysicsRigidBody(boxShape, 1f);
+		sim.getPhysicsSpace().add(connector);	
+		
+		
+		// apply joint1
+		HingeJoint joint1 = new HingeJoint(carNode.getControl(VehicleControl.class),
+				connector,
+		        new Vector3f(0f, 0f, 2.5f),  // pivot point local to carNode
+		        new Vector3f(0f, 0f, 0f), 	 // pivot point local to connector 
+		        Vector3f.UNIT_Y, 			 // DoF Axis of carNode (Y axis)
+		        Vector3f.UNIT_Y);        	 // DoF Axis of connector (Y axis)
+		joint1.setCollisionBetweenLinkedBodys(false);
+		joint1.setLimit(-FastMath.HALF_PI, FastMath.HALF_PI);	        
+		sim.getPhysicsSpace().add(joint1);
+		
+		// apply joint
+		HingeJoint joint2 = new HingeJoint(connector,
+				trailerNode.getControl(VehicleControl.class),
+		        new Vector3f(0f, 0f, 0f),    // pivot point local to connector
+		        new Vector3f(0f, 0f, -1.5f), // pivot point local to trailerNode 
+		        Vector3f.UNIT_Y, 			 // DoF Axis of connector (Y axis)
+		        Vector3f.UNIT_Y);        	 // DoF Axis of trailerNode (Y axis)
+		joint2.setCollisionBetweenLinkedBodys(false);
+		joint2.setLimit(-FastMath.HALF_PI, FastMath.HALF_PI);	        
+		sim.getPhysicsSpace().add(joint2);
 	}
 	
 	
@@ -667,10 +701,13 @@ public abstract class Car
 
 	protected void showEngineStatusMessage(boolean engineOn) 
 	{
-		if(engineOn)
-			PanelCenter.getMessageBox().addMessage("Engine on", 2);
-		else
-			PanelCenter.getMessageBox().addMessage("Engine off. Press 'e' to start.", 0);
+		if(this instanceof SteeringCar)
+		{
+			if(engineOn)
+				PanelCenter.getMessageBox().addMessage("Engine on", 2);
+			else
+				PanelCenter.getMessageBox().addMessage("Engine off. Press 'e' to start.", 0);
+		}
 	}
 
 	

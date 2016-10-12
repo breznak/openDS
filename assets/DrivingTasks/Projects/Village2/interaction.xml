@@ -20,6 +20,12 @@
 				<parameter name="trafficLightID" value="TrafficLight_3" />
 			</action>
 		</activity>
+		<activity id="message">
+			<action id="sendMessage" delay="0" repeat="4">
+				<parameter name="text" value="Test" />
+				<parameter name="duration" value="1" />
+			</action>
+		</activity>
 	</activities>
 	
 	<triggers>
@@ -45,6 +51,14 @@
             </activities>
             
             <condition>collideWith:triggerBox3</condition>
+        </trigger>
+        
+        <trigger id="pressAccelerator" priority="1">
+            <activities>
+                <activity ref="message"/>
+            </activities>
+            
+            <condition>pressPedal:accelerator:0.56</condition>
         </trigger>
 	</triggers>
 	

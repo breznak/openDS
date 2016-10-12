@@ -1,7 +1,7 @@
 /*
 
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2015 Rafael Math
+*  Copyright (C) 2016 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -169,7 +169,8 @@ public class SettingsLoader
 		Eyetracker_warningFrame_show("settings:eyetracker/settings:warningFrame/settings:show"),
 		Eyetracker_warningFrame_threshold("settings:eyetracker/settings:warningFrame/settings:threshold"),
 		Eyetracker_warningFrame_flashingInterval("settings:eyetracker/settings:warningFrame/settings:flashingInterval"),
-		OculusRift_isAttached("settings:oculusRift/settings:isAttached");
+		OculusRift_isAttached("settings:oculusRift/settings:isAttached"),
+		Maritime_displayMode("settings:maritime/settings:displayMode");
 		
 		
 		private String path;

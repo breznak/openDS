@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2015 Rafael Math
+*  Copyright (C) 2016 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -82,7 +82,7 @@ public class PhysicalTraffic extends Thread
 	}
 	
 	
-	public void run(float tpf)
+	public void run()
 	{
 		if(trafficObjectList.size() >= 1)
 		{
@@ -99,6 +99,7 @@ public class PhysicalTraffic extends Thread
 				{
 					lastUpdate = System.currentTimeMillis();
 					
+					float tpf = elapsedTime/1000f;
 					// update every traffic object
 					for(TrafficObject trafficObject : trafficObjectList)
 						trafficObject.update(tpf, trafficObjectList);
