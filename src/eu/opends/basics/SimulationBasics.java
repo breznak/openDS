@@ -291,6 +291,7 @@ public class SimulationBasics extends SimpleApplication
         keyMappingGUI = new KeyMappingGUI(this);
         shutDownGUI = new ShutDownGUI(this);
         instructionScreenGUI = new InstructionScreenGUI((Simulator)this);
+        
         createCoordinateSystem();
     }
 
