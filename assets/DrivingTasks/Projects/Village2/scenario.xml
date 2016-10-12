@@ -9,10 +9,14 @@
         		<rainingPercentage>-1</rainingPercentage>
         		<fogPercentage>-1</fogPercentage>
         	</weather>
+        	<useShadowFilter>true</useShadowFilter>
         </environment>
 
         <driver>
         	<car id="" ref="driverCar" profile="">
+        		<resetPoints>
+        			<resetPoint ref="reset1" />
+        		</resetPoints>
         		<tires profile="">
         			<type>winter</type>
         			<size>16</size>
@@ -62,7 +66,8 @@
 				<decelerationBrake>8.7</decelerationBrake>
 				<decelerationFreeWheel>2.0</decelerationFreeWheel>
 				<engineOn>true</engineOn>
-				<maxDistanceFromPath>3.0</maxDistanceFromPath>
+				<minDistanceFromPath>2.0</minDistanceFromPath>
+				<maxDistanceFromPath>5.0</maxDistanceFromPath>
 				<curveTension>0.05</curveTension>
 				<pathIsCycle>false</pathIsCycle>
 				<pathIsVisible>false</pathIsVisible>
@@ -145,7 +150,8 @@
 				<decelerationBrake>8.7</decelerationBrake>
 				<decelerationFreeWheel>2.0</decelerationFreeWheel>
 				<engineOn>true</engineOn>
-				<maxDistanceFromPath>3.0</maxDistanceFromPath>
+				<minDistanceFromPath>2.0</minDistanceFromPath>
+				<maxDistanceFromPath>5.0</maxDistanceFromPath>
 				<curveTension>0.05</curveTension>
 				<pathIsCycle>false</pathIsCycle>
 				<pathIsVisible>false</pathIsVisible>
@@ -228,7 +234,8 @@
 				<decelerationBrake>8.7</decelerationBrake>
 				<decelerationFreeWheel>2.0</decelerationFreeWheel>
 				<engineOn>true</engineOn>
-				<maxDistanceFromPath>3.0</maxDistanceFromPath>
+				<minDistanceFromPath>2.0</minDistanceFromPath>
+				<maxDistanceFromPath>5.0</maxDistanceFromPath>
 				<curveTension>0.05</curveTension>
 				<pathIsCycle>false</pathIsCycle>
 				<pathIsVisible>false</pathIsVisible>
@@ -287,7 +294,8 @@
 				<decelerationBrake>8.7</decelerationBrake>
 				<decelerationFreeWheel>2.0</decelerationFreeWheel>
 				<engineOn>true</engineOn>
-				<maxDistanceFromPath>3.0</maxDistanceFromPath>
+				<minDistanceFromPath>2.0</minDistanceFromPath>
+				<maxDistanceFromPath>5.0</maxDistanceFromPath>
 				<curveTension>0.05</curveTension>
 				<pathIsCycle>false</pathIsCycle>
 				<pathIsVisible>false</pathIsVisible>
@@ -351,7 +359,8 @@
 				<decelerationBrake>8.7</decelerationBrake>
 				<decelerationFreeWheel>2.0</decelerationFreeWheel>
 				<engineOn>true</engineOn>
-				<maxDistanceFromPath>3.0</maxDistanceFromPath>
+				<minDistanceFromPath>2.0</minDistanceFromPath>
+				<maxDistanceFromPath>5.0</maxDistanceFromPath>
 				<curveTension>0.05</curveTension>
 				<pathIsCycle>false</pathIsCycle>
 				<pathIsVisible>false</pathIsVisible>
@@ -415,7 +424,8 @@
 				<decelerationBrake>8.7</decelerationBrake>
 				<decelerationFreeWheel>2.0</decelerationFreeWheel>
 				<engineOn>true</engineOn>
-				<maxDistanceFromPath>3.0</maxDistanceFromPath>
+				<minDistanceFromPath>2.0</minDistanceFromPath>
+				<maxDistanceFromPath>5.0</maxDistanceFromPath>
 				<curveTension>0.05</curveTension>
 				<pathIsCycle>false</pathIsCycle>
 				<pathIsVisible>false</pathIsVisible>
@@ -479,7 +489,8 @@
 				<decelerationBrake>8.7</decelerationBrake>
 				<decelerationFreeWheel>2.0</decelerationFreeWheel>
 				<engineOn>true</engineOn>
-				<maxDistanceFromPath>3.0</maxDistanceFromPath>
+				<minDistanceFromPath>2.0</minDistanceFromPath>
+				<maxDistanceFromPath>5.0</maxDistanceFromPath>
 				<curveTension>0.05</curveTension>
 				<pathIsCycle>false</pathIsCycle>
 				<pathIsVisible>false</pathIsVisible>
@@ -543,7 +554,8 @@
 				<decelerationBrake>8.7</decelerationBrake>
 				<decelerationFreeWheel>2.0</decelerationFreeWheel>
 				<engineOn>true</engineOn>
-				<maxDistanceFromPath>3.0</maxDistanceFromPath>
+				<minDistanceFromPath>2.0</minDistanceFromPath>
+				<maxDistanceFromPath>5.0</maxDistanceFromPath>
 				<curveTension>0.05</curveTension>
 				<pathIsCycle>false</pathIsCycle>
 				<pathIsVisible>false</pathIsVisible>
@@ -607,7 +619,8 @@
 				<decelerationBrake>8.7</decelerationBrake>
 				<decelerationFreeWheel>2.0</decelerationFreeWheel>
 				<engineOn>true</engineOn>
-				<maxDistanceFromPath>3.0</maxDistanceFromPath>
+				<minDistanceFromPath>2.0</minDistanceFromPath>
+				<maxDistanceFromPath>5.0</maxDistanceFromPath>
 				<curveTension>0.05</curveTension>
 				<pathIsCycle>false</pathIsCycle>
 				<pathIsVisible>false</pathIsVisible>
@@ -671,7 +684,8 @@
 				<decelerationBrake>8.7</decelerationBrake>
 				<decelerationFreeWheel>2.0</decelerationFreeWheel>
 				<engineOn>true</engineOn>
-				<maxDistanceFromPath>3.0</maxDistanceFromPath>
+				<minDistanceFromPath>2.0</minDistanceFromPath>
+				<maxDistanceFromPath>5.0</maxDistanceFromPath>
 				<curveTension>0.05</curveTension>
 				<pathIsCycle>false</pathIsCycle>
 				<pathIsVisible>false</pathIsVisible>

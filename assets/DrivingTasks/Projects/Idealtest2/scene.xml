@@ -42,7 +42,7 @@
 				</vector>
 			</translation>
 		</model>
-		<model id="driverCar" key="Models/Cars/drivingCars/AudiS6/Car.j3o">
+		<model id="driverCar" key="Models/Cars/drivingCars/Ferrari/Car.scene">
 			<mass>800</mass>
 			<visible>true</visible>
 			<collisionShape>meshShape</collisionShape>
@@ -800,7 +800,5 @@
 			</color>
 		</directionalLight>
 	</lights>
-	
-	<skyTexture>Textures/Sky/Bright/hills.dds</skyTexture>
-
+	<skyTexture>Textures/Sky/Clouds/clouds.properties</skyTexture>
 </scene>

@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2015 Rafael Math
+*  Copyright (C) 2016 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -31,17 +31,12 @@ import com.jme3.math.Quaternion;
 import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Geometry;
-import com.jme3.scene.Node;
-import com.jme3.scene.Spatial.CullHint;
 import com.jme3.scene.shape.Box;
-import com.jme3.scene.shape.Sphere;
 import com.jme3.texture.Texture;
 
 import eu.opends.car.Car;
 import eu.opends.car.LightTexturesContainer.TurnSignalState;
-import eu.opends.environment.TrafficLight;
 import eu.opends.environment.TrafficLightCenter;
-import eu.opends.environment.TrafficLight.TrafficLightState;
 import eu.opends.main.Simulator;
 import eu.opends.tools.Util;
 
@@ -87,7 +82,7 @@ public class TrafficCar extends Car implements TrafficObject
 		maxFreeWheelBrakeForce = 0.004375f * decelerationFreeWheel * mass;
 		
 		engineOn = trafficCarData.isEngineOn();
-		showEngineStatusMessage(engineOn);
+		//showEngineStatusMessage(engineOn);
 		
 		modelPath = trafficCarData.getModelPath();
 		
@@ -249,10 +244,10 @@ public class TrafficCar extends Car implements TrafficObject
 		float steeringAngle = Util.getAngleBetweenPoints(carFrontPos, carCenterPos, wayPoint, true);
 		
 		// compute steering intensity in percent
-		//  0    degree =   0%
-		//  22,5 degree =  50%
-		//  45   degree = 100%
-		// >45   degree = 100%
+		//  0     degree =   0%
+		//  11.25 degree =  50%
+		//  22.5  degree = 100%
+		// >22.5  degree = 100%
 		float steeringIntensity = Math.max(Math.min(4*steeringAngle/FastMath.PI,1f),0f);
 		
 		// apply steering instruction

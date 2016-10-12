@@ -25,10 +25,15 @@ elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns
 
     <xs:complexType name="environment">
         <xs:all>
-            <xs:element minOccurs="0" maxOccurs="1" name="weather"
-            	type="weather" />
-            
-        </xs:all>
+        	<xs:element minOccurs="0" maxOccurs="1" name="weather"
+        		type="weather" />
+
+        	<xs:element name="useBloomFilter" type="xs:boolean"
+        		maxOccurs="1" minOccurs="0">
+        	</xs:element>
+        	<xs:element name="useShadowFilter" type="xs:boolean" maxOccurs="1" minOccurs="0"></xs:element>
+        </xs:all>
+
     </xs:complexType>
 
 
@@ -135,21 +140,51 @@ elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns
     <xs:complexType name="pedestrian">
 
         <xs:all>
-    		<xs:element name="modelPath" type="xs:string" maxOccurs="1" minOccurs="1"></xs:element>
-    		<xs:element name="mass" type="xs:float" maxOccurs="1" minOccurs="1"></xs:element>
-    		<xs:element name="animationStand" type="xs:string" maxOccurs="1" minOccurs="1"></xs:element>
-    		<xs:element name="animationWalk" type="xs:string" maxOccurs="1" minOccurs="1"></xs:element>
-    		<xs:element name="scale" type="xs:float" maxOccurs="1" minOccurs="1"></xs:element>
-    		<xs:element name="maxDistanceFromPath" type="xs:float" maxOccurs="1" minOccurs="1"></xs:element>
-    		<xs:element name="curveTension" type="xs:float" maxOccurs="1" minOccurs="1"></xs:element>
-    		<xs:element name="pathIsCycle" type="xs:boolean" maxOccurs="1" minOccurs="1"></xs:element>
-    		<xs:element name="pathIsVisible" type="xs:boolean" maxOccurs="1" minOccurs="1"></xs:element>
-    		<xs:element name="startWayPoint" type="xs:string" maxOccurs="1" minOccurs="1"></xs:element>
-    		<xs:element name="wayPoints" type="wayPoints" maxOccurs="1"
-    			minOccurs="1">
-    		</xs:element>
+        	<xs:element name="modelPath" type="xs:string" maxOccurs="1"
+        		minOccurs="1">
+        	</xs:element>
+        	<xs:element name="enabled" type="xs:boolean" maxOccurs="1"
+        		minOccurs="0">
+        	</xs:element>
+        	<xs:element name="mass" type="xs:float" maxOccurs="1"
+        		minOccurs="1">
+        	</xs:element>
+        	<xs:element name="animationStand" type="xs:string"
+        		maxOccurs="1" minOccurs="1">
+        	</xs:element>
+        	<xs:element name="animationWalk" type="xs:string"
+        		maxOccurs="1" minOccurs="1">
+        	</xs:element>
+        	<xs:element name="scale" type="xs:float" maxOccurs="1"
+        		minOccurs="1">
+        	</xs:element>
+        	<xs:element name="localTranslation" type="translation"
+        		maxOccurs="1" minOccurs="0">
+        	</xs:element>
+        	<xs:element name="localRotation" type="rotation"
+        		maxOccurs="1" minOccurs="0">
+        	</xs:element>
+        	<xs:element name="minDistanceFromPath" type="xs:float" maxOccurs="1" minOccurs="0"></xs:element>
+        	<xs:element name="maxDistanceFromPath" type="xs:float"
+        		maxOccurs="1" minOccurs="1">
+        	</xs:element>
+        	<xs:element name="curveTension" type="xs:float"
+        		maxOccurs="1" minOccurs="1">
+        	</xs:element>
+        	<xs:element name="pathIsCycle" type="xs:boolean"
+        		maxOccurs="1" minOccurs="1">
+        	</xs:element>
+        	<xs:element name="pathIsVisible" type="xs:boolean"
+        		maxOccurs="1" minOccurs="1">
+        	</xs:element>
+        	<xs:element name="startWayPoint" type="xs:string"
+        		maxOccurs="1" minOccurs="1">
+        	</xs:element>
+        	<xs:element name="wayPoints" type="wayPoints" maxOccurs="1"
+        		minOccurs="1">
+        	</xs:element>
         </xs:all>
-    	<xs:attribute name="id" type="xs:string" />
+        <xs:attribute name="id" type="xs:string" />
 
     </xs:complexType>
 
@@ -312,20 +347,45 @@ elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns
 
     <xs:complexType name="vehicle">
         <xs:all>
-    		<xs:element name="modelPath" type="xs:string" maxOccurs="1" minOccurs="1"></xs:element>
-    		<xs:element name="mass" type="xs:float" maxOccurs="1" minOccurs="1"></xs:element>
-    		<xs:element name="acceleration" type="xs:float" maxOccurs="1" minOccurs="1"></xs:element>
-    		<xs:element name="decelerationBrake" type="xs:float" maxOccurs="1" minOccurs="1"></xs:element>
-    		<xs:element name="decelerationFreeWheel" type="xs:float" maxOccurs="1" minOccurs="1"></xs:element>
-    		<xs:element name="engineOn" type="xs:boolean" maxOccurs="1" minOccurs="1"></xs:element>
-    		<xs:element name="maxDistanceFromPath" type="xs:float" maxOccurs="1" minOccurs="1"></xs:element>
-    		<xs:element name="curveTension" type="xs:float" maxOccurs="1" minOccurs="1"></xs:element>
-    		<xs:element name="pathIsCycle" type="xs:boolean" maxOccurs="1" minOccurs="1"></xs:element>
-    		<xs:element name="pathIsVisible" type="xs:boolean" maxOccurs="1" minOccurs="1"></xs:element>
-    		<xs:element name="startWayPoint" type="xs:string" maxOccurs="1" minOccurs="1"></xs:element>
-    		<xs:element name="wayPoints" type="wayPoints" maxOccurs="1" minOccurs="1"></xs:element>
-    	</xs:all>
-    	<xs:attribute name="id" type="xs:string"></xs:attribute>
+        	<xs:element name="modelPath" type="xs:string" maxOccurs="1"
+        		minOccurs="1">
+        	</xs:element>
+        	<xs:element name="mass" type="xs:float" maxOccurs="1"
+        		minOccurs="1">
+        	</xs:element>
+        	<xs:element name="acceleration" type="xs:float"
+        		maxOccurs="1" minOccurs="1">
+        	</xs:element>
+        	<xs:element name="decelerationBrake" type="xs:float"
+        		maxOccurs="1" minOccurs="1">
+        	</xs:element>
+        	<xs:element name="decelerationFreeWheel" type="xs:float"
+        		maxOccurs="1" minOccurs="1">
+        	</xs:element>
+        	<xs:element name="engineOn" type="xs:boolean" maxOccurs="1"
+        		minOccurs="1">
+        	</xs:element>
+        	<xs:element name="minDistanceFromPath" type="xs:float" maxOccurs="1" minOccurs="0"></xs:element>
+        	<xs:element name="maxDistanceFromPath" type="xs:float"
+        		maxOccurs="1" minOccurs="1">
+        	</xs:element>
+        	<xs:element name="curveTension" type="xs:float"
+        		maxOccurs="1" minOccurs="1">
+        	</xs:element>
+        	<xs:element name="pathIsCycle" type="xs:boolean"
+        		maxOccurs="1" minOccurs="1">
+        	</xs:element>
+        	<xs:element name="pathIsVisible" type="xs:boolean"
+        		maxOccurs="1" minOccurs="1">
+        	</xs:element>
+        	<xs:element name="startWayPoint" type="xs:string"
+        		maxOccurs="1" minOccurs="1">
+        	</xs:element>
+        	<xs:element name="wayPoints" type="wayPoints" maxOccurs="1"
+        		minOccurs="1">
+        	</xs:element>
+        </xs:all>
+        <xs:attribute name="id" type="xs:string"></xs:attribute>
     </xs:complexType>
 
     <xs:complexType name="wayPoints">
