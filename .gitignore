@@ -7,6 +7,15 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+# NB project files
 /IDEs/netbeans/nbproject/private/
 /IDEs/netbeans/build/
 /IDEs/netbeans/dist/
+# errors, logs, etc
+analyzerData/
+distractionTaskDATA/
+error.log
+joystickDump.txt
+libjinput-linux64.so
+liblwjgl64.so
+libopenal64.so
