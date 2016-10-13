@@ -26,7 +26,7 @@ import eu.opends.main.Simulator;
  * the car.
  * 
  */
-public class BoxDistraction extends DistractionClass{
+public class BoxDistraction extends DistractionClass {
     
     private final Simulator sim;
     private final SteeringCar car;
@@ -99,10 +99,9 @@ public class BoxDistraction extends DistractionClass{
      * despawn in earlier call).
      */
     @Override
-         
-    public void update (float tpf, float probability){
+    public void update (float tpf){
         int n = (int)(Math.random() * 100) + 1;
-            if (n <= probability){ 
+            if (n <= 0.5f){ //FIXME
                 CollisionResults results = new CollisionResults();
                 Ray ray = new Ray(camera.getLocation(), camera.getDirection());
                 sim.getSceneNode().collideWith(ray, results);
@@ -141,8 +140,7 @@ public class BoxDistraction extends DistractionClass{
                     CognitiveFunction.activeDistNames[0] = 1;
                     DistractionSettings.distRunning++;
                 }
-             
-        
+      }
     }
     
     /**
@@ -150,7 +148,7 @@ public class BoxDistraction extends DistractionClass{
      * removed from the scene.
      */
     @Override
-    public void remove (){
+    public void remove(){
         if(boxOn){
             sim.getSceneNode().detachChild(droppingBox);
             bulletAppState.getPhysicsSpace().remove(box_phy); 
