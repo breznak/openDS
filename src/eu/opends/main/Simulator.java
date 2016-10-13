@@ -602,7 +602,7 @@ public class Simulator extends SimulationBasics
                         if(cogFunction != null && DistractionSettings.isDistScenario()){
                             cogTimer = cogTimer + tpf;
                             if (cogTimer>1){
-                                cogFunction.update(tpf);
+                                cogFunction.update();
                                 cogTimer = 0; 
                             }
                             
