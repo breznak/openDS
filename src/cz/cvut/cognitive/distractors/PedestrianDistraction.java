@@ -116,9 +116,7 @@ public class PedestrianDistraction extends DistractionClass{
      * 
      */
     @Override
-    public void update(float tpf, float propability) {
-        int n = (int)(Math.random() * 100) + 1;
-        if (n <= propability){
+    public void update(float tpf) {
             CollisionResults results = new CollisionResults();
             Ray ray = new Ray(camera.getLocation(), camera.getDirection());
             sim.getSceneNode().collideWith(ray, results);
@@ -167,7 +165,7 @@ public class PedestrianDistraction extends DistractionClass{
                     }
                 }
             }
-        } 
+         
     }
     
     private void createPath(){

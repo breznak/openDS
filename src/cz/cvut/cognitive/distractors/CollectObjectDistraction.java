@@ -4,6 +4,9 @@ package cz.cvut.cognitive.distractors;
 import cz.cvut.cognitive.load.CognitiveFunction;
 import com.jme3.asset.AssetManager;
 import com.jme3.asset.TextureKey;
+import com.jme3.audio.AudioNode;
+import com.jme3.bullet.BulletAppState;
+import com.jme3.bullet.collision.shapes.CapsuleCollisionShape;
 import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.control.GhostControl;
 import com.jme3.bullet.util.CollisionShapeFactory;
@@ -44,6 +47,7 @@ public class CollectObjectDistraction extends DistractionClass{
     public GhostControl redGhost;
     private Camera camera;
     private final int flatDamage = 5;
+    private BitmapText rewardText;
     private BitmapText greenText;
     private BitmapText redText;
     private boolean greenCorrect;
@@ -56,21 +60,33 @@ public class CollectObjectDistraction extends DistractionClass{
     public float distanceLeft;
     public float distanceRight;
     
+    private final AudioNode rewardSoundNode;
+    
     CollectObjectDistraction(Simulator sim, String texturePathGreen, String texturePathRed){
         COG_SCORE = 3;
-        
         
         this.sim = sim;
         this.car = sim.getCar();
         this.manager = sim.getAssetManager();
         this.camera = sim.getCamera();
-
+        
+        rewardSoundNode = new AudioNode(manager,"Sounds/FF_Victory.wav",false);
+        rewardSoundNode.setLooping(false);
+        rewardSoundNode.setPositional(false);
+        
+        rewardText = new BitmapText(manager.loadFont("Interface/Fonts/Default.fnt"), false);
+        rewardText.setSize(40);
+        rewardText.setColor(ColorRGBA.Black);
+        rewardText.setText("Well done! You did it!");
+        rewardText.setLocalTranslation(400, 700, 0);
+        sim.getRewardNode().attachChild(rewardText);
+        
         greenText = new BitmapText(manager.loadFont("Interface"+File.separator+"Fonts"+File.separator+"Default.fnt"), false);
         greenText.setSize(40);
         greenText.setColor(ColorRGBA.Green);
         greenText.setText("Pick up the GREEN ball");
         greenText.setLocalTranslation(500, 700, 0);
-        
+  
         redText = new BitmapText(manager.loadFont("Interface"+File.separator+"Fonts"+File.separator+"Default.fnt"), false);
         redText.setSize(40);
         redText.setColor(ColorRGBA.Red);
@@ -120,12 +136,11 @@ public class CollectObjectDistraction extends DistractionClass{
         redSpatial = redGeo;
         redSpatial.addControl(redGhost);
     }
+
     
     
     @Override
-    public void update(float tpf, float probability) {
-        int n = (int)(Math.random() * 100) + 1;
-        if (n <= probability){ 
+    public void update(float tpf) {
             CollisionResults results = new CollisionResults();
             Ray ray = new Ray(camera.getLocation(), camera.getDirection());
             sim.getSceneNode().collideWith(ray, results);
@@ -153,7 +168,7 @@ public class CollectObjectDistraction extends DistractionClass{
                     }
                 }   
             }
-        }       
+             
         
     }
     
@@ -233,7 +248,10 @@ public class CollectObjectDistraction extends DistractionClass{
             CollisionResults results_1 = new CollisionResults();
             car.getCarNode().collideWith(greenSpatial.getWorldBound(), results_1);
             if(results_1.size()>0 && results_1.getClosestCollision().getDistance() <= 1){
-                if(greenCorrect) correctScore[0]++; 
+                if(greenCorrect) {
+                    correctScore[0]++;
+                    rewardPlayer();
+                } 
                 else { 
                     correctScore[1]++;
                     Simulator.playerHealth = Simulator.playerHealth - (flatDamage);
@@ -245,7 +263,10 @@ public class CollectObjectDistraction extends DistractionClass{
             CollisionResults results_2 = new CollisionResults();
             car.getCarNode().collideWith(redSpatial.getWorldBound(), results_2);
             if(results_2.size()>0 && results_2.getClosestCollision().getDistance() <= 1){
-                if(redCorrect) correctScore[0]++; 
+                if(redCorrect) {
+                    correctScore[0]++;
+                    rewardPlayer();
+                } 
                 else { 
                     correctScore[1]++;
                     Simulator.playerHealth = Simulator.playerHealth - (flatDamage);
@@ -258,6 +279,11 @@ public class CollectObjectDistraction extends DistractionClass{
             
         }
         
+    }
+    
+    private void rewardPlayer(){
+        rewardSoundNode.playInstance();
+        sim.getGuiNode().attachChild(sim.getRewardNode());
     }
     
 }
