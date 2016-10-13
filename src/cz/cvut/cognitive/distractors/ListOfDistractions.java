@@ -77,12 +77,12 @@ public class ListOfDistractions {
     }
 */  
     public void update(float tpf){
-        if (DistractionSettings.isBox()) dropBox.update(tpf, DistractionSettings.getProbabilityBox());
-        if (DistractionSettings.isSound()) soundDis.update(tpf, DistractionSettings.getProbabilitySound());
-        if (DistractionSettings.isDark()) dark.update(tpf, DistractionSettings.getProbabilityDark());
-        if (DistractionSettings.isPedestrian()) pedestrian.update(tpf, DistractionSettings.getProbabilityPedestrian());
-        if (DistractionSettings.isText()) text.update(tpf, DistractionSettings.getProbabilityText());
-        if (DistractionSettings.isCollect()) collect.update(tpf, DistractionSettings.getProbabilityCollect());
+        if (DistractionSettings.isBox()) dropBox.update(tpf); //FIXME use DistractionSettings.getProbabilitySound() to set selected Prob
+        if (DistractionSettings.isSound()) soundDis.update(tpf);
+        if (DistractionSettings.isDark()) dark.update(tpf);
+        if (DistractionSettings.isPedestrian()) pedestrian.update(tpf);
+        if (DistractionSettings.isText()) text.update(tpf);
+        if (DistractionSettings.isCollect()) collect.update(tpf);
  /*
         int n = (int)(Math.random() * activeDistractors) + 1; //3
        

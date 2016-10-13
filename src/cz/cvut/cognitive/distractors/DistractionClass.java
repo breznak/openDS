@@ -24,7 +24,7 @@ public abstract class DistractionClass {
         this.REWARD=reward;
         this.COG_DIFFICULTY = difficulty;
     }
-    public abstract void update(float tpf, float probability);
+    public abstract void update(float tpf);
     public abstract void remove();
     
     // lets discuss

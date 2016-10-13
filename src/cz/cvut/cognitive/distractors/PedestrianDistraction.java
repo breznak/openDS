@@ -114,9 +114,9 @@ public class PedestrianDistraction extends DistractionClass{
      * 
      */
     @Override
-    public void update(float tpf, float propability) {
+    public void update(float tpf) {
         int n = (int)(Math.random() * 100) + 1;
-        if (n <= propability){
+        if (n <= this.PROBABILITY){
             CollisionResults results = new CollisionResults();
             Ray ray = new Ray(camera.getLocation(), camera.getDirection());
             sim.getSceneNode().collideWith(ray, results);

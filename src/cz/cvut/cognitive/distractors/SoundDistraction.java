@@ -39,9 +39,9 @@ public class SoundDistraction extends DistractionClass{
      * random generated number (1-100), sound will play. 
      */
     @Override
-    public void update(float tpf, float propability) {
+    public void update(float tpf) {
         int n = (int)(Math.random() * 100) + 1;
-        if (n <= propability){
+        if (n <= this.PROBABILITY){
             soundTest.play();
             soundOn = true;
             CognitiveFunction.distScore += this.COG_DIFFICULTY;

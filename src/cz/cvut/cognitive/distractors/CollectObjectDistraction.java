@@ -120,9 +120,9 @@ public class CollectObjectDistraction extends DistractionClass{
     
     
     @Override
-    public void update(float tpf, float probability) {
+    public void update(float tpf) {
         int n = (int)(Math.random() * 100) + 1;
-        if (n <= probability){ 
+        if (n <= this.PROBABILITY){ 
             CollisionResults results = new CollisionResults();
             Ray ray = new Ray(camera.getLocation(), camera.getDirection());
             sim.getSceneNode().collideWith(ray, results);

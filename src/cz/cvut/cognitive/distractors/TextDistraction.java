@@ -73,9 +73,9 @@ public class TextDistraction extends DistractionClass {
      * 
      */
     @Override
-    public void update(float tpf, float propability) {
+    public void update(float tpf) {
         int n = (int)(Math.random() * 100) + 1;
-        if (n <= propability){
+        if (n <= this.PROBABILITY){
             controller.sendToScreen(); 
             car.getCarControl().setLinearVelocity(Vector3f.ZERO);
             car.getCarControl().setAngularVelocity(Vector3f.ZERO);
