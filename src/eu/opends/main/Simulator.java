@@ -619,7 +619,9 @@ public class Simulator extends SimulationBasics
                                     Timer = 0;
                                 }
                             } else if (DistractionSettings.isQuestionAnswered()) {  
-                                LoD.collide(tpf);
+                                for(DistractionClass d: DistractionClass.getDistractors()) {
+                                    d.collision(tpf);
+                                }
                                 Timer = Timer + tpf;
                                 if(Timer > 15){
                                     LoD.removeDist();

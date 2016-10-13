@@ -59,5 +59,11 @@ public class DarkeningDistraction extends DistractionClass{
             DistractionSettings.distRunning--;
         }
     }
+
+    @Override
+    public void collision(float tpf) {
+        //FIXME can we detect crash during this active period?
+        return; //NOOP
+    }
     
 }

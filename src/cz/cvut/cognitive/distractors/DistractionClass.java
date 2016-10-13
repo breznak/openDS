@@ -28,6 +28,13 @@ public abstract class DistractionClass {
         this.COG_DIFFICULTY = difficulty;
         DistractionClass.activeDistractors.add(this); //append to available distractors
     }
+    
+    //abstract
+    /**
+     * compute if & handle situation on collision
+     * @param tpf 
+     */
+    public abstract void collision(float tpf);
     public abstract void update(float tpf);
     public abstract void remove();
     
@@ -44,7 +51,4 @@ public abstract class DistractionClass {
     //private
     private final static ArrayList<DistractionClass> activeDistractors = new ArrayList<>();
 
-    public void collide() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

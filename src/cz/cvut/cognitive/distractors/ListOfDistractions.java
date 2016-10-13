@@ -76,14 +76,7 @@ public class ListOfDistractions {
         if (DistractionSettings.isText()) activeDistractors++;   
     }
 */  
-    
-    public void collide(float tpf){
-        if(DistractionSettings.isBox()) dropBox.collision(tpf);
-        if (DistractionSettings.isPedestrian()) pedestrian.collision(tpf);
-        if (DistractionSettings.isCollect()) collect.collision(tpf);
-        
-    }
-    
+   
     public void removeDist(){
         if (DistractionSettings.isBox()) dropBox.remove();
         if (DistractionSettings.isSound()) soundDis.remove();

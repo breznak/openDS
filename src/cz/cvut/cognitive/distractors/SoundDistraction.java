@@ -68,4 +68,10 @@ public class SoundDistraction extends DistractionClass{
             DistractionSettings.distRunning--;
         }
     }
+
+    @Override
+    public void collision(float tpf) {
+        //FIXME can we detect if the user(car) crashed into anything during the sound playing?
+        return; //NOOP
+    }
 }

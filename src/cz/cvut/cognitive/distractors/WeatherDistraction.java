@@ -39,6 +39,11 @@ public class WeatherDistraction extends DistractionClass {
     public void remove() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public void collision(float tpf) {
+        return; //TODO can we detect crash during the duration?
+    }
     
 }
 

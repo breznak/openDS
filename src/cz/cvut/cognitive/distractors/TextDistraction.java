@@ -148,5 +148,10 @@ public class TextDistraction extends DistractionClass {
                     questionOnScreen = false;
 		}
 	}
+
+    @Override
+    public void collision(float tpf) {
+        return; //TODO return if answer is correct
+    }
     
 }
