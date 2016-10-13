@@ -3,14 +3,10 @@ package cz.cvut.cognitive.distractors;
 import com.jme3.asset.AssetManager;
 import com.jme3.asset.TextureKey;
 import com.jme3.bullet.BulletAppState;
-import com.jme3.bullet.control.BetterCharacterControl;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.collision.CollisionResults;
-import com.jme3.font.BitmapText;
 import com.jme3.material.Material;
-import com.jme3.math.ColorRGBA;
 import com.jme3.math.Matrix3f;
-import com.jme3.math.Quaternion;
 import com.jme3.math.Ray;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.Camera;
@@ -18,6 +14,7 @@ import com.jme3.scene.Geometry;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.shape.Box;
 import com.jme3.texture.Texture;
+import cz.cvut.cognitive.load.CognitiveFunction;
 import eu.opends.car.SteeringCar;
 import eu.opends.main.Simulator;
 /**
@@ -102,8 +99,10 @@ public class BoxDistraction extends DistractionClass{
      * despawn in earlier call).
      */
     @Override
-    public void update (float tpf){        
          
+    public void update (float tpf, float probability){
+        int n = (int)(Math.random() * 100) + 1;
+            if (n <= probability){ 
                 CollisionResults results = new CollisionResults();
                 Ray ray = new Ray(camera.getLocation(), camera.getDirection());
                 sim.getSceneNode().collideWith(ray, results);

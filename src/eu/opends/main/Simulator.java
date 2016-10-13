@@ -45,7 +45,7 @@ import de.lessvoid.nifty.Nifty;
 import cz.cvut.cognitive.distractors.DistractionSettings;
 import cz.cvut.cognitive.distractors.ListOfDistractions;
 
-import cz.cvut.cognitive.distractors.CognitiveFunction;
+import cz.cvut.cognitive.load.CognitiveFunction;
 
 import eu.opends.analyzer.DrivingTaskLogger;
 import eu.opends.analyzer.DataWriter;
@@ -97,6 +97,7 @@ public class Simulator extends SimulationBasics
     private int frameCounter = 0;
     private boolean drivingTaskGiven = false;
     private boolean initializationFinished = false;
+    // CognitiveLoad module related vars
     DistractionSettings distSet;
     private CognitiveFunction cogFunction;
     
@@ -278,6 +279,8 @@ public class Simulator extends SimulationBasics
 	{
 		return joystickSpringController;
 	}
+        
+        private boolean platformImplInitialized = false; //signals if PlatformImpl (JavFX) is used (=initialized OK)
 
 	
     @Override
@@ -325,7 +328,7 @@ public class Simulator extends SimulationBasics
     	SimulationDefaults.drivingTaskFileName = drivingTaskFileName;
     	
     	Util.makeDirectory("analyzerData");
-    	outputFolder = "analyzerData/" + Util.getDateTimeString();
+    	outputFolder = "analyzerData"+File.separator+ Util.getDateTimeString();
     	
     	initDrivingTaskLayers();
     	
@@ -497,8 +500,8 @@ public class Simulator extends SimulationBasics
                     Timer = 0;
                     cogTimer = 0;
                     DistractionSettings.setQuestionAnswered(true);
-                    healthText = new BitmapText(this.getAssetManager().loadFont("Interface/Fonts/Default.fnt"), false);
-                    healthText.setSize(this.getAssetManager().loadFont("Interface/Fonts/Default.fnt").getCharSet().getRenderedSize());
+                    healthText = new BitmapText(this.getAssetManager().loadFont("Interface"+File.separator+"Fonts"+File.separator+"Default.fnt"), false);
+                    healthText.setSize(this.getAssetManager().loadFont("Interface"+File.separator+"Fonts"+File.separator+"Default.fnt").getCharSet().getRenderedSize());
                     healthText.setText("Car Health: " + Simulator.playerHealth);
                     healthText.setLocalTranslation(1100, 250, 0);
                     rewardNode = new Node();
@@ -541,9 +544,8 @@ public class Simulator extends SimulationBasics
     {
     	if(initializationFinished)
     	{
-			
 			super.simpleUpdate(tpf);
-                        
+			
 			// updates camera
 			cameraFactory.updateCamera();
 		
@@ -760,8 +762,10 @@ public class Simulator extends SimulationBasics
 		super.destroy();
 		logger.info("finished destroy()");
 		
-		PlatformImpl.exit();
-		//System.exit(0);
+                if(this.platformImplInitialized) {
+    		   PlatformImpl.exit();
+                   //System.exit(0);
+                 }
     }
 	
 
@@ -789,7 +793,7 @@ public class Simulator extends SimulationBasics
     		 
     		
     		// load logger configuration file
-    		PropertyConfigurator.configure("assets/JasperReports/log4j/log4j.properties");
+    		PropertyConfigurator.configure("assets"+File.separator+"JasperReports"+File.separator+"log4j"+File.separator+"log4j.properties");
     		
     		/*
     		logger.debug("Sample debug message");
@@ -799,14 +803,24 @@ public class Simulator extends SimulationBasics
     		logger.fatal("Sample fatal message");
     		*/
     		
-    		oculusRiftAttached = OculusRift.initialize();
+                try { // OculusRift initialization may fail, it's ok to ignore, unless you actually are using the device!
+    		  oculusRiftAttached = OculusRift.initialize();
+                } catch (UnsatisfiedLinkError | Exception ex) {
+                    System.err.println("Oculus Rift: Initialization failed! OK to ignore, unless you need this device. Message was: \n"+ex.getLocalizedMessage());
+                }
     		
     		// only show severe jme3-logs
     		java.util.logging.Logger.getLogger("").setLevel(java.util.logging.Level.SEVERE);
     		
-    		PlatformImpl.startup(() -> {});
+                Simulator sim = new Simulator();
     		
-	    	Simulator sim = new Simulator();
+                try {
+    		  PlatformImpl.startup(() -> {});
+                  sim.platformImplInitialized = true;
+                  
+                } catch (RuntimeException re) {
+                    System.err.println("JavaFX: QuantumRenderer initialization failed! This is needed only for MoviePlayer, we can continue OK. Message: \n"+ re.getLocalizedMessage());
+                }
     		
 	    	StartPropertiesReader startPropertiesReader = new StartPropertiesReader();
 
