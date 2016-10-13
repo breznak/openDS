@@ -178,10 +178,6 @@ public class CollectObjectDistraction extends DistractionClass{
             collected = false;
 
             collectOn = true;
-            CognitiveFunction.distScore += this.COG_DIFFICULTY;
-            CognitiveFunction.activeDistCount++;
-            CognitiveFunction.activeDistNames[1] = 1;
-            DistractionSettings.distRunning++;
     }
 
     @Override
