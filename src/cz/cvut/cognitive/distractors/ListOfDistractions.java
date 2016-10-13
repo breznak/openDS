@@ -76,14 +76,5 @@ public class ListOfDistractions {
         if (DistractionSettings.isText()) activeDistractors++;   
     }
 */  
-   
-    public void removeDist(){
-        if (DistractionSettings.isBox()) dropBox.remove();
-        if (DistractionSettings.isSound()) soundDis.remove();
-        if (DistractionSettings.isDark()) dark.remove();
-        if (DistractionSettings.isPedestrian()) pedestrian.remove();
-        if (DistractionSettings.isCollect()) collect.remove();
-        //if (DistractionSettings.isText()) text.remove();
-    }
     
 }

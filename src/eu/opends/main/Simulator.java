@@ -611,7 +611,7 @@ public class Simulator extends SimulationBasics
                             
                             if(DistractionSettings.distRunning <= 0){
                                 Timer = Timer + tpf;
-                                if (Timer > 5)
+                                if (Timer > 5) //FIXME what is these magic numbers '5', '15'?
                                 {
                                     for(DistractionClass d : DistractionClass.getDistractors()) {
                                         d.update(tpf);
@@ -623,8 +623,10 @@ public class Simulator extends SimulationBasics
                                     d.collision(tpf);
                                 }
                                 Timer = Timer + tpf;
-                                if(Timer > 15){
-                                    LoD.removeDist();
+                                if(Timer > 15){ //FIXME magic 15?
+                                    for(DistractionClass d: DistractionClass.getDistractors()) {
+                                        d.remove();
+                                    }
                                     Timer = 0;
                                 }
                             } else {
