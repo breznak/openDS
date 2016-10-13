@@ -74,9 +74,8 @@ public class TextDistraction extends DistractionClass {
      * 
      */
     @Override
-    public void update(float tpf, float propability) {
-        int n = (int)(Math.random() * 100) + 1;
-        if (n <= propability){
+    public void update(float tpf) {
+
             controller.sendToScreen(); 
             car.getCarControl().setLinearVelocity(Vector3f.ZERO);
             car.getCarControl().setAngularVelocity(Vector3f.ZERO);
@@ -92,7 +91,7 @@ public class TextDistraction extends DistractionClass {
             CognitiveFunction.activeDistCount++;
             CognitiveFunction.activeDistNames[5] = 1;
             DistractionSettings.distRunning++;
-        }   
+        
     }
     
     /**

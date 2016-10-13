@@ -11,44 +11,42 @@ import eu.opends.main.Simulator;
  * Class for Sound-type distraction. When this option is selected in options
  * there is always (set) probability to play sound / recording
  * 
- * TODO: add diferent recording;
+ * TODO: add different recording;
  * 
  */
 public class SoundDistraction extends DistractionClass{
     
-    private final AudioNode soundTest;
+    private final AudioNode soundDistractionNode;
     private final AssetManager manager;
     private boolean soundOn = false;
     public float COG_SCORE;
   
     /**
      *Constructor for SoundDistraction
-     *@param: sim - simulator
+     * @param sim Simulator instance
      */
     public SoundDistraction(Simulator sim) {
         this.manager = sim.getAssetManager();
-        soundTest = new AudioNode(manager,"Sounds/TrafficDistraction.wav",false);
-        soundTest.setLooping(true);
-        soundTest.setPositional(false);
+        soundDistractionNode = new AudioNode(manager,"Sounds/TrafficDistraction.wav",false);
+        soundDistractionNode.setLooping(true);
+        soundDistractionNode.setPositional(false);
         COG_SCORE = 1;
     }
 
     /**
      * Update function: if preset probability of Sound playing is higher than
      * random generated number (1-100), sound will play. 
+     * @param tpf time per frame
      */
     @Override
-    public void update(float tpf, float propability) {
-        int n = (int)(Math.random() * 100) + 1;
-        if (n <= propability){
-            soundTest.play();
+    public void update(float tpf) {
+            soundDistractionNode.play();
             soundOn = true;
             CognitiveFunction.distScore += COG_SCORE;
             CognitiveFunction.activeDistCount++;
             CognitiveFunction.activeDistNames[4] = 1;
             DistractionSettings.distRunning++;
-        }
-        
+
     }
     
     /**
@@ -59,7 +57,7 @@ public class SoundDistraction extends DistractionClass{
     public void remove()
     {
         if(soundOn){
-            soundTest.pause();
+            soundDistractionNode.pause();
             CognitiveFunction.distScore -= COG_SCORE;
             CognitiveFunction.activeDistCount--;
             CognitiveFunction.activeDistNames[4] = 0;

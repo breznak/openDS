@@ -34,20 +34,17 @@ import org.apache.log4j.PropertyConfigurator;
 
 import com.jme3.app.StatsAppState;
 import com.jme3.app.state.VideoRecorderAppState;
-import com.jme3.asset.AssetManager;
-import com.jme3.bullet.PhysicsSpace;
 import com.jme3.font.BitmapText;
 import com.jme3.input.Joystick;
-import com.jme3.math.Ray;
 import com.jme3.math.Vector3f;
 import com.jme3.niftygui.NiftyJmeDisplay;
+import com.jme3.scene.Node;
 import com.sun.javafx.application.PlatformImpl;
 
 import de.lessvoid.nifty.Nifty;
 import cz.cvut.cognitive.distractors.DistractionSettings;
 import cz.cvut.cognitive.distractors.ListOfDistractions;
 
-import cz.cvut.cognitive.distractors.BoxDistraction;
 import cz.cvut.cognitive.distractors.CognitiveFunction;
 
 import eu.opends.analyzer.DrivingTaskLogger;
@@ -101,17 +98,24 @@ public class Simulator extends SimulationBasics
     private boolean drivingTaskGiven = false;
     private boolean initializationFinished = false;
     DistractionSettings distSet;
-    ListOfDistractions LoD;
     private CognitiveFunction cogFunction;
     
-
+    
     public static float Timer;
     public float cogTimer;
     public static int playerHealth = 100;
     private String lastWord;
     private BitmapText healthText;
-
     
+    private Node rewardNode;
+    public Node getRewardNode(){
+        return rewardNode;
+    }
+
+    private ListOfDistractions LoD;
+    public ListOfDistractions getListOfDistractions(){
+        return LoD;
+    }
     
     private static Float gravityConstant;
 	public static Float getGravityConstant()
@@ -487,7 +491,7 @@ public class Simulator extends SimulationBasics
                     distSet = new DistractionSettings();
                     LoD = new ListOfDistractions(this);
                     cogFunction = new CognitiveFunction(this);
-                    LoD.initialize();
+                    //LoD.initialize();
                     DistractionSettings.setDistScenario(false);
                     DistractionSettings.distRunning=0;
                     Timer = 0;
@@ -497,6 +501,7 @@ public class Simulator extends SimulationBasics
                     healthText.setSize(this.getAssetManager().loadFont("Interface/Fonts/Default.fnt").getCharSet().getRenderedSize());
                     healthText.setText("Car Health: " + Simulator.playerHealth);
                     healthText.setLocalTranslation(1100, 250, 0);
+                    rewardNode = new Node();
                     this.getGuiNode().attachChild(healthText);
                 }
                 
@@ -614,6 +619,7 @@ public class Simulator extends SimulationBasics
                                 Timer = Timer + tpf;
                                 if (Timer > 5)
                                 {
+                                    this.getGuiNode().detachChild(rewardNode);
                                     LoD.update(tpf);
                                     Timer = 0;
                                 }

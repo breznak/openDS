@@ -102,9 +102,8 @@ public class BoxDistraction extends DistractionClass{
      * despawn in earlier call).
      */
     @Override
-    public void update (float tpf, float probability){        
-        int n = (int)(Math.random() * 100) + 1;
-            if (n <= probability){ 
+    public void update (float tpf){        
+         
                 CollisionResults results = new CollisionResults();
                 Ray ray = new Ray(camera.getLocation(), camera.getDirection());
                 sim.getSceneNode().collideWith(ray, results);
@@ -143,7 +142,7 @@ public class BoxDistraction extends DistractionClass{
                     CognitiveFunction.activeDistNames[0] = 1;
                     DistractionSettings.distRunning++;
                 }
-             }
+             
         
     }
     

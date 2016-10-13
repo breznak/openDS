@@ -15,7 +15,6 @@ import eu.opends.main.Simulator;
 
 public class ListOfDistractions {
     
-    private int activeDistractors = 0;
     private final Simulator sim;
     private BoxDistraction dropBox;
     private SoundDistraction soundDis;
@@ -23,7 +22,8 @@ public class ListOfDistractions {
     private PedestrianDistraction pedestrian;
     private TextDistraction text;
     private CollectObjectDistraction collect;
-    private Object [] distractors;
+    private DistractionClass [] distractors;
+    private int [] dist_index;
     private int currentIndex = 0;
     
     
@@ -38,73 +38,66 @@ public class ListOfDistractions {
         pedestrian = new PedestrianDistraction(sim,"Textures/DistractionTask/default_pedestrian.jpg");
         text = new TextDistraction(sim);
         collect = new CollectObjectDistraction(sim, "Textures/DistractionTask/default_greenSphere.png", "Textures/DistractionTask/default_redSphere.png");
-/*      distractors = new Object[activeDistractors];
+               
+        distractors = new DistractionClass[6];
+        
         if (DistractionSettings.isBox()){
-            dropBox = new BoxDistraction(sim, 1, 1, 1, 2);
-            distractors[currentIndex] = dropBox;
+            dropBox.setDisProbability(DistractionSettings.probabilityBox);
+            dropBox.setDisProbability(100);
+            distractors[currentIndex] = dropBox; 
             currentIndex++;
+            System.out.println("box done");
         }
-        if (DistractionSettings.isBox()){
-            soundDis = new SoundDistraction(sim);
+        if (DistractionSettings.isSound()){
             distractors[currentIndex] = soundDis;
+            soundDis.setDisProbability(DistractionSettings.probabilitySound);
             currentIndex++;
         }
-        if (DistractionSettings.isBox()){
-            dark = new DarkeningDistraction(sim);
+        if (DistractionSettings.isDark()){
             distractors[currentIndex] = dark;
+            dark.setDisProbability(DistractionSettings.probabilityDark);
             currentIndex++;
         }
-        if (DistractionSettings.isBox()){
-            pedestrian = new PedestrianDistraction(sim);
+        if (DistractionSettings.isPedestrian()){
             distractors[currentIndex] = pedestrian;
+            pedestrian.setDisProbability(DistractionSettings.probabilityPedestrian);
             currentIndex++;
         }
-        if (DistractionSettings.isBox()){
-            text = new TextDistraction(sim);
+        if (DistractionSettings.isText()){
             distractors[currentIndex] = text;
+            text.setDisProbability(DistractionSettings.probabilityText);
             currentIndex++;
         }  
-*/
+        if (DistractionSettings.isCollect()){
+            distractors[currentIndex] = collect;
+            collect.setDisProbability(DistractionSettings.probabilityCollect);
+            currentIndex++;
+            System.out.println("Collect there");
+        }  
+        dist_index = new int [currentIndex + 1];
+        System.out.println(currentIndex);
+        
     }
     
-/*
-    public void countAllowedDistractions(){
-        if (DistractionSettings.isBox()) activeDistractors++;
-        if (DistractionSettings.isSound()) activeDistractors++;
-        if (DistractionSettings.isDark()) activeDistractors++;
-        if (DistractionSettings.isPedestrian()) activeDistractors++;
-        if (DistractionSettings.isText()) activeDistractors++;   
-    }
-*/  
+  
     public void update(float tpf){
-        if (DistractionSettings.isBox()) dropBox.update(tpf, DistractionSettings.getProbabilityBox());
-        if (DistractionSettings.isSound()) soundDis.update(tpf, DistractionSettings.getProbabilitySound());
-        if (DistractionSettings.isDark()) dark.update(tpf, DistractionSettings.getProbabilityDark());
-        if (DistractionSettings.isPedestrian()) pedestrian.update(tpf, DistractionSettings.getProbabilityPedestrian());
-        if (DistractionSettings.isText()) text.update(tpf, DistractionSettings.getProbabilityText());
-        if (DistractionSettings.isCollect()) collect.update(tpf, DistractionSettings.getProbabilityCollect());
- /*
-        int n = (int)(Math.random() * activeDistractors) + 1; //3
-       
-        switch(n){
-            case 1: dropBox.update(tpf, DistractionSettings.getPropabilityBox()); 
-                break;
-            case 2: soundDis.update(tpf, DistractionSettings.getPropabilitySound());
-                break;
-            case 3: dark.update(tpf, DistractionSettings.getPropabilityDark());
-                break;
-            case 4: pedestrian.update(tpf, DistractionSettings.getPropabilityPedestrian());
-                break;
-            case 5: text.update(tpf, DistractionSettings.getPropabilityText());
-                break;
-            default: System.out.println("Invalid distraction task number "+n);
-                break;
+        int k = 0;
+        for (int i = 0; i < currentIndex; i++) {
+            int n = (int)(Math.random() * 100) + 1;
+            System.out.println(distractors[i].getDisProbability()+ " vs " + n);
+            if (distractors[i].getDisProbability() > n) dist_index[k++]=i;
+            
         }
- */           
+        if (k != 0){
+            int n = (int)(Math.random() * k) + 1;
+            distractors[dist_index[n]].update(tpf);
+        }
+          
+           
     }
     
     public void collide(float tpf){
-        if(DistractionSettings.isBox()) dropBox.collision(tpf);
+        if (DistractionSettings.isBox()) dropBox.collision(tpf);
         if (DistractionSettings.isPedestrian()) pedestrian.collision(tpf);
         if (DistractionSettings.isCollect()) collect.collision(tpf);
         
