@@ -431,11 +431,14 @@ public class DistractionScreenGUIController implements ScreenController
         
 	public void clickStartButton()
 	{
+            System.out.println("button clicked");
                 WeatherDistraction.COG_SCORE =(float)((DistractionSettings.getIntensityFog() + 
                         DistractionSettings.getIntensityRain() + DistractionSettings.getIntensitySnow())*0.03);
                 CognitiveFunction.distScore += WeatherDistraction.COG_SCORE;
                 DistractionSettings.setDistScenario(true);
-		instructionScreenGUI.hideDialog();
+		sim.getListOfDistractions().initialize(); 
+                instructionScreenGUI.hideDialog();
+                   
                 
 	}
         

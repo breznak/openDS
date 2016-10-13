@@ -13,7 +13,26 @@ package cz.cvut.cognitive.distractors;
  *                                         distraction
  */
 public abstract class DistractionClass {
-    public abstract void update(float tpf, float probability);
+    private boolean isDIstractor = false;
+    private float disProbability = 0;
+
+    public boolean isIsDIstractor() {
+        return isDIstractor;
+    }
+
+    public void setIsDIstractor(boolean isDIstractor) {
+        this.isDIstractor = isDIstractor;
+    }
+
+    public float getDisProbability() {
+        return disProbability;
+    }
+
+    public void setDisProbability(float disProbability) {
+        this.disProbability = disProbability;
+    }
+   
+    public abstract void update(float tpf);
     public abstract void remove();
     
 }
