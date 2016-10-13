@@ -23,7 +23,7 @@ public class DistractionSettings {
     public static boolean Pedestrian;
     public static boolean Dark;
     public static boolean Collect;
-    public static float intensityRain;
+    public static float intensityRain; //TODO refactor to use DistractionCLass.settings<str,str> map(), remove this class
     public static float intensitySnow;
     public static float intensityFog;
     public static float probabilitySound;

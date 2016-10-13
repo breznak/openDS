@@ -34,6 +34,7 @@ public abstract class DistractionClass {
      * if the Distraction is currently active/used
      */
     private boolean isActive = false;
+    
     protected final Simulator sim;
     protected final SteeringCar car;
     protected final AssetManager manager;
@@ -78,7 +79,7 @@ public abstract class DistractionClass {
     
     public void update(float f) {
         int n = (int)(Math.random() * 100) + 1;
-        if (n >= this.PROBABILITY) { return; } 
+        if (n >= this.PROBABILITY || isActive) { return; } 
         
         spawn(f);
         
@@ -86,15 +87,29 @@ public abstract class DistractionClass {
         CognitiveFunction.activeDistCount++;
         CognitiveFunction.activeDistNames[0] = 1; //FIXME remove
         DistractionSettings.distRunning++;
+        
+        this.isActive = true;
+    }
+    
+    /**
+     * 
+     * @return whether this distraction is currently active/occuring 
+     */
+    public boolean isActive() {
+        return isActive;
     }
     
     public void remove() {
+        if(!isActive) return; //do nothing on inactive
+        
         remove_local();
         
         CognitiveFunction.distScore -= this.COG_DIFFICULTY;
         CognitiveFunction.activeDistCount--;
         CognitiveFunction.activeDistNames[0] = 0;
-        DistractionSettings.distRunning--;    
+        DistractionSettings.distRunning--;
+        
+        isActive=false;
     }
     
     public static void initialize(Simulator sim) {
@@ -105,6 +120,5 @@ public abstract class DistractionClass {
         new TextDistraction(sim);
         new CollectObjectDistraction(sim, "Textures/DistractionTask/default_greenSphere.png", "Textures/DistractionTask/default_redSphere.png");
         new WeatherDistraction(sim);           
-    }
-    
+    }   
 }

@@ -19,7 +19,6 @@
 package cz.cvut.cognitive.override;
 
 
-import cz.cvut.cognitive.load.CognitiveFunction;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.NiftyEventSubscriber;
 import de.lessvoid.nifty.controls.CheckBox;
