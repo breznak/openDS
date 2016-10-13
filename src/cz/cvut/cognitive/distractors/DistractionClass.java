@@ -68,13 +68,14 @@ public abstract class DistractionClass {
      */
     public abstract void collision(float tpf);
     protected abstract void spawn(float tpf);
-    public abstract void remove();
+    protected abstract void remove_local();
     
     //public abstract void showReward();
     //public
     public static List<DistractionClass> getDistractors() {
         return DistractionClass.activeDistractors;
     }
+    
     public void update(float f) {
         int n = (int)(Math.random() * 100) + 1;
         if (n >= this.PROBABILITY) { return; } 
@@ -85,8 +86,12 @@ public abstract class DistractionClass {
         CognitiveFunction.activeDistCount++;
         CognitiveFunction.activeDistNames[0] = 1; //FIXME remove
         DistractionSettings.distRunning++;
-
     }
+    
+    public void remove() {
+        remove_local();
+    }
+    
     public static void initialize(Simulator sim) {
         new BoxDistraction(sim, 1, 1, 1, 2, "Textures/DistractionTask/default_box.jpg");
         new SoundDistraction(sim);

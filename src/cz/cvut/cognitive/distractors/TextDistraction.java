@@ -88,7 +88,7 @@ public class TextDistraction extends DistractionClass {
      * removed from the scene.
      */
     @Override
-    public void remove() {
+    public void remove_local() {
         if (textOn){
             DistractionSettings.setQuestionAnswered(true);
             DistractionSettings.distRunning--;

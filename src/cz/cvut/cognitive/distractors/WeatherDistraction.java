@@ -39,7 +39,7 @@ public class WeatherDistraction extends DistractionClass {
     }
 
     @Override
-    public void remove() {
+    public void remove_local() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

@@ -179,7 +179,7 @@ public class PedestrianDistraction extends DistractionClass{
      * removed from the scene.
      */
     @Override
-    public void remove() {
+    public void remove_local() {
         if (pedestrianOn){
             motionControl.stop();
             path.clearWayPoints();

@@ -131,7 +131,7 @@ public class BoxDistraction extends DistractionClass{
      * removed from the scene.
      */
     @Override
-    public void remove (){
+    public void remove_local (){
         if(boxOn){
             sim.getSceneNode().detachChild(droppingBox);
             bulletAppState.getPhysicsSpace().remove(box_phy); 

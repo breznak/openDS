@@ -185,7 +185,7 @@ public class CollectObjectDistraction extends DistractionClass{
     }
 
     @Override
-    public void remove() {
+    public void remove_local() {
         if(collectOn){
             if(!collected) correctScore[1]++;
             outputFolder = CognitiveFunction.saveHere +File.separator+"Collectible.txt";
@@ -225,7 +225,7 @@ public class CollectObjectDistraction extends DistractionClass{
                     sim.updateHealth();
                 }
                 collected = true;
-                remove();
+                remove_local();
             }
             CollisionResults results_2 = new CollisionResults();
             car.getCarNode().collideWith(redSpatial.getWorldBound(), results_2);
@@ -237,7 +237,7 @@ public class CollectObjectDistraction extends DistractionClass{
                     sim.updateHealth();
                 }
                 collected = true;
-                remove();
+                remove_local();
                 
             }
             

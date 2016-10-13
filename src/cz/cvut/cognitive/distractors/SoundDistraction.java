@@ -47,7 +47,7 @@ public class SoundDistraction extends DistractionClass{
      * removed from the scene.
      */
     @Override
-    public void remove()
+    public void remove_local()
     {
         if(soundOn){
             soundTest.pause();
