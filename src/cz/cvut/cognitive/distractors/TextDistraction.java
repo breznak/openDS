@@ -70,8 +70,6 @@ public class TextDistraction extends DistractionClass {
      */
     @Override
     public void spawn(float tpf) {
-        int n = (int)(Math.random() * 100) + 1;
-        if (n <= this.PROBABILITY){
             controller.sendToScreen(); 
             car.getCarControl().setLinearVelocity(Vector3f.ZERO);
             car.getCarControl().setAngularVelocity(Vector3f.ZERO);
@@ -83,11 +81,6 @@ public class TextDistraction extends DistractionClass {
             DistractionSettings.setQuestionAnswered(false);
             showDialog();
             textOn = true;
-            CognitiveFunction.distScore += this.COG_DIFFICULTY;
-            CognitiveFunction.activeDistCount++;
-            CognitiveFunction.activeDistNames[5] = 1;
-            DistractionSettings.distRunning++;
-        }   
     }
     
     /**

@@ -5,6 +5,7 @@ package cz.cvut.cognitive.distractors;
 import com.jme3.asset.AssetManager;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.renderer.Camera;
+import cz.cvut.cognitive.load.CognitiveFunction;
 import eu.opends.car.SteeringCar;
 import eu.opends.main.Simulator;
 import java.util.ArrayList;
@@ -75,7 +76,16 @@ public abstract class DistractionClass {
         return DistractionClass.activeDistractors;
     }
     public void update(float f) {
+        int n = (int)(Math.random() * 100) + 1;
+        if (n >= this.PROBABILITY) { return; } 
+        
         spawn(f);
+        
+        CognitiveFunction.distScore += this.COG_DIFFICULTY;
+        CognitiveFunction.activeDistCount++;
+        CognitiveFunction.activeDistNames[0] = 1; //FIXME remove
+        DistractionSettings.distRunning++;
+
     }
     public static void initialize(Simulator sim) {
         new BoxDistraction(sim, 1, 1, 1, 2, "Textures/DistractionTask/default_box.jpg");

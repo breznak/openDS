@@ -33,15 +33,8 @@ public class DarkeningDistraction extends DistractionClass{
      */
     @Override
     public void spawn(float tpf) {
-        int n = (int)(Math.random() * 100) + 1;
-        if (n <= this.PROBABILITY){
             EffectCenter.setFogPercentage(50);
             darkOn = true;
-            CognitiveFunction.distScore += this.COG_DIFFICULTY;
-            CognitiveFunction.activeDistCount++;
-            CognitiveFunction.activeDistNames[2] = 1;
-            DistractionSettings.distRunning++;
-        }
     }
 
     /**

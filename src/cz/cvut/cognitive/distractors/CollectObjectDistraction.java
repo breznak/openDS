@@ -112,8 +112,6 @@ public class CollectObjectDistraction extends DistractionClass{
     
     @Override
     public void spawn(float tpf) {
-        int n = (int)(Math.random() * 100) + 1;
-        if (n <= this.PROBABILITY){ 
             CollisionResults results = new CollisionResults();
             Ray ray = new Ray(camera.getLocation(), camera.getDirection());
             sim.getSceneNode().collideWith(ray, results);
@@ -141,7 +139,6 @@ public class CollectObjectDistraction extends DistractionClass{
                     }
                 }   
             }
-        }       
         
     }
     

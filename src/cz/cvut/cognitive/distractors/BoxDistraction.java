@@ -89,15 +89,14 @@ public class BoxDistraction extends DistractionClass{
      */
     @Override
     public void spawn (float tpf){
-        int n = (int)(Math.random() * 100) + 1;
-            if (n <= this.PROBABILITY){ 
+        
                 CollisionResults results = new CollisionResults();
                 Ray ray = new Ray(camera.getLocation(), camera.getDirection());
                 sim.getSceneNode().collideWith(ray, results);
         
-                if (results.size() <= 0 || results.getClosestCollision().getDistance() > 30) {
+                if (results.size() <= 0 || results.getClosestCollision().getDistance() > 30) { //FIXME document constants
                     //generates offset for box spawn in front of the car
-                    int distance_offset = (int)(Math.random() * 5) + 1;
+                    int distance_offset = (int)(Math.random() * 5) + 1; //FIXME doc constants
 
                     //add node to scene
                     sim.getSceneNode().attachChild(droppingBox);
@@ -124,13 +123,7 @@ public class BoxDistraction extends DistractionClass{
                     /*box_phy.warp(spawn);
                     box_phy.setWalkDirection(new Vector3f(2,0,0));*/
                     boxOn = true;
-                    CognitiveFunction.distScore += this.COG_DIFFICULTY;
-                    CognitiveFunction.activeDistCount++;
-                    CognitiveFunction.activeDistNames[0] = 1;
-                    DistractionSettings.distRunning++;
-                }
-             }
-        
+                 }
     }
     
     /**

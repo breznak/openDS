@@ -104,8 +104,6 @@ public class PedestrianDistraction extends DistractionClass{
      */
     @Override
     public void spawn(float tpf) {
-        int n = (int)(Math.random() * 100) + 1;
-        if (n <= this.PROBABILITY){
             CollisionResults results = new CollisionResults();
             Ray ray = new Ray(camera.getLocation(), camera.getDirection());
             sim.getSceneNode().collideWith(ray, results);
@@ -155,7 +153,6 @@ public class PedestrianDistraction extends DistractionClass{
                 }
             }
         } 
-    }
     
     private void createPath(){
         sim.getSceneNode().attachChild(pedestrianSpatial);
@@ -175,10 +172,6 @@ public class PedestrianDistraction extends DistractionClass{
         motionControl.play();
         motionControl.setLoopMode(LoopMode.Loop);
         pedestrianOn = true;
-        CognitiveFunction.distScore += this.COG_DIFFICULTY;
-        CognitiveFunction.activeDistCount++;
-        CognitiveFunction.activeDistNames[3] = 1;
-        DistractionSettings.distRunning++; 
     }
 
     /**

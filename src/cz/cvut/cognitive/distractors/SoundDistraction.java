@@ -38,16 +38,8 @@ public class SoundDistraction extends DistractionClass{
      */
     @Override
     public void spawn(float tpf) {
-        int n = (int)(Math.random() * 100) + 1;
-        if (n <= this.PROBABILITY){
             soundTest.play();
-            soundOn = true;
-            CognitiveFunction.distScore += this.COG_DIFFICULTY;
-            CognitiveFunction.activeDistCount++;
-            CognitiveFunction.activeDistNames[4] = 1;
-            DistractionSettings.distRunning++;
-        }
-        
+            soundOn = true;  
     }
     
     /**
