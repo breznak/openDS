@@ -15,5 +15,6 @@ package cz.cvut.cognitive.distractors;
 public abstract class DistractionClass {
     public abstract void update(float tpf, float probability);
     public abstract void remove();
+    // lets discuss
     
 }
