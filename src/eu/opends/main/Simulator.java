@@ -104,7 +104,7 @@ public class Simulator extends SimulationBasics
 
     public static float Timer;
     public float cogTimer;
-    public static int playerHealth = 100;
+    public static int playerHealth = 100; //FIXME move to DistractionClass
     private String lastWord;
     private BitmapText healthText;
 

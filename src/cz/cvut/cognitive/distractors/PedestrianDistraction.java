@@ -47,8 +47,6 @@ public class PedestrianDistraction extends DistractionClass{
     private boolean pedestrianOn = false;
     private float Timer;
     private boolean pedestrianHit;
-    private final int flatDamage = 30;
-    public float COG_SCORE;
     public static int pedestrianHitCount;
     private Camera camera;
     private Vector3f spawn;
@@ -60,6 +58,7 @@ public class PedestrianDistraction extends DistractionClass{
      *@param sim - simulator.
      */
       public PedestrianDistraction(Simulator sim, String texturePath) {
+        super(30, 0.2f, 5);
         this.sim = sim;
         this.car = sim.getCar();
         this.manager = sim.getAssetManager();
@@ -81,7 +80,6 @@ public class PedestrianDistraction extends DistractionClass{
             System.err.println("Error loading texture file " + texturePath);
 	}
         pedestrianGeometry.setMaterial(mat);
-        COG_SCORE = 2;
         //pedestrianNode.attachChild(boxGeometry);
         
      
@@ -188,7 +186,7 @@ public class PedestrianDistraction extends DistractionClass{
         motionControl.play();
         motionControl.setLoopMode(LoopMode.Loop);
         pedestrianOn = true;
-        CognitiveFunction.distScore += COG_SCORE;
+        CognitiveFunction.distScore += this.COG_DIFFICULTY;
         CognitiveFunction.activeDistCount++;
         CognitiveFunction.activeDistNames[3] = 1;
         DistractionSettings.distRunning++; 
@@ -212,7 +210,7 @@ public class PedestrianDistraction extends DistractionClass{
             pedestrianSpatial.setLocalRotation(Matrix3f.IDENTITY);
             sim.getSceneNode().detachChild(pedestrianSpatial);
             pedestrianOn = false;
-            CognitiveFunction.distScore -= COG_SCORE;
+            CognitiveFunction.distScore -= this.COG_DIFFICULTY;
             CognitiveFunction.activeDistCount--;
             CognitiveFunction.activeDistNames[3] = 0;
             DistractionSettings.distRunning--;
@@ -237,7 +235,7 @@ public class PedestrianDistraction extends DistractionClass{
                         pedestrianPhysics.setPhysicsRotation(Matrix3f.IDENTITY);
                         pedestrianPhysics.setPhysicsLocation(new Vector3f (pedestrianSpatial.getLocalTranslation())); 
                         
-                        Simulator.playerHealth = Simulator.playerHealth - (flatDamage + (int)(car.getCurrentSpeedKmhRounded()*0.1));
+                        Simulator.playerHealth = Simulator.playerHealth - ((int)this.REWARD + (int)(car.getCurrentSpeedKmhRounded()*0.1));
                         sim.updateHealth();
                         pedestrianHitCount++;
                         pedestrianHit = true;

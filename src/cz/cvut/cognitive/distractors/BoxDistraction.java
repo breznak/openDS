@@ -42,7 +42,6 @@ public class BoxDistraction extends DistractionClass{
     private float Timer;
     private final int flatDamage = 10;
     //private BetterCharacterControl box_phy;
-    public float COG_SCORE;
     public static float boxHitCount;
 
     /**
@@ -55,12 +54,12 @@ public class BoxDistraction extends DistractionClass{
      *          
      */
     public BoxDistraction(Simulator sim, float x, float y, float z, float mass, String texturePath) {
+        super(5f, 0.6f, 2f); //FIXME how are these set?
         this.sim = sim;
         this.car = sim.getCar();
         this.manager = sim.getAssetManager();
         this.bulletAppState = sim.getBulletAppState();
         this.camera = sim.getCamera();
-        COG_SCORE = 2;
         //Creates an offset for placing box in world
         y_offSet = y;
         
@@ -135,7 +134,7 @@ public class BoxDistraction extends DistractionClass{
                     /*box_phy.warp(spawn);
                     box_phy.setWalkDirection(new Vector3f(2,0,0));*/
                     boxOn = true;
-                    CognitiveFunction.distScore += COG_SCORE;
+                    CognitiveFunction.distScore += this.COG_DIFFICULTY;
                     CognitiveFunction.activeDistCount++;
                     CognitiveFunction.activeDistNames[0] = 1;
                     DistractionSettings.distRunning++;
@@ -153,7 +152,7 @@ public class BoxDistraction extends DistractionClass{
         if(boxOn){
             sim.getSceneNode().detachChild(droppingBox);
             bulletAppState.getPhysicsSpace().remove(box_phy); 
-            CognitiveFunction.distScore -= COG_SCORE;
+            CognitiveFunction.distScore -= this.COG_DIFFICULTY;
             CognitiveFunction.activeDistCount--;
             CognitiveFunction.activeDistNames[0] = 0;
             boxOn = false;

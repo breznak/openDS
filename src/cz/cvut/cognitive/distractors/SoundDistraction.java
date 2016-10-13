@@ -20,19 +20,19 @@ public class SoundDistraction extends DistractionClass{
     private final AudioNode soundTest;
     private final AssetManager manager;
     private boolean soundOn = false;
-    public float COG_SCORE;
   
     /**
      *Constructor for SoundDistraction
      *@param: sim - simulator
      */
     public SoundDistraction(Simulator sim) {
+        super(2, 0.1f, 1);
+        
         this.manager = sim.getAssetManager();
         soundTest = new AudioNode(manager,"Sounds/TrafficDistraction.wav",false);
         soundTest.setLooping(true);
         soundTest.setPositional(false);
-        COG_SCORE = 1;
-    }
+        }
 
     /**
      * Update function: if preset probability of Sound playing is higher than
@@ -44,7 +44,7 @@ public class SoundDistraction extends DistractionClass{
         if (n <= propability){
             soundTest.play();
             soundOn = true;
-            CognitiveFunction.distScore += COG_SCORE;
+            CognitiveFunction.distScore += this.COG_DIFFICULTY;
             CognitiveFunction.activeDistCount++;
             CognitiveFunction.activeDistNames[4] = 1;
             DistractionSettings.distRunning++;
@@ -61,7 +61,7 @@ public class SoundDistraction extends DistractionClass{
     {
         if(soundOn){
             soundTest.pause();
-            CognitiveFunction.distScore -= COG_SCORE;
+            CognitiveFunction.distScore -= this.COG_DIFFICULTY;
             CognitiveFunction.activeDistCount--;
             CognitiveFunction.activeDistNames[4] = 0;
             soundOn = false;

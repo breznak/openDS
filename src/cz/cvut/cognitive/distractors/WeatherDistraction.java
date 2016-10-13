@@ -12,9 +12,7 @@ package cz.cvut.cognitive.distractors;
 import eu.opends.effects.EffectCenter;
 
 
-public class WeatherDistraction {
-    
-    public static float COG_SCORE;
+public class WeatherDistraction extends DistractionClass {
     
     public static void setWeather (){
         if (DistractionSettings.isRain()){
@@ -26,6 +24,20 @@ public class WeatherDistraction {
         if (DistractionSettings.isFog()){
             EffectCenter.setFogPercentage(DistractionSettings.getIntensityFog());
         }
+    }
+
+    public WeatherDistraction(float diff) {
+        super(1, 0.1f, diff);
+    }
+
+    @Override
+    public void update(float tpf, float probability) { //FIXME implement 
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void remove() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

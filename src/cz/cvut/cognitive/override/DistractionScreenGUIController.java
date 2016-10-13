@@ -357,9 +357,10 @@ public class DistractionScreenGUIController implements ScreenController
         
 	public void clickStartButton()
 	{
-                WeatherDistraction.COG_SCORE =(float)((DistractionSettings.getIntensityFog() + 
+                float diff =(float)((DistractionSettings.getIntensityFog() + 
                         DistractionSettings.getIntensityRain() + DistractionSettings.getIntensitySnow())*0.03);
-                CognitiveFunction.distScore += WeatherDistraction.COG_SCORE;
+                WeatherDistraction w = new WeatherDistraction(diff); //FIXME why here?
+                CognitiveFunction.distScore += w.COG_DIFFICULTY;
                 DistractionSettings.setDistScenario(true);
 		instructionScreenGUI.hideDialog();
                 

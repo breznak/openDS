@@ -33,13 +33,13 @@ public class TextDistraction extends DistractionClass {
     private final TextDistractionController controller;
     private boolean textOn = false;
     private SteeringCar car;
-    public float COG_SCORE;
     
     /**
      *Constructor for TextDistraction
      *@param: sim - simulator          
      */
     public TextDistraction(Simulator sim){
+        super(4, 0.2f, 3);
 
                 this.sim = sim;
                 this.car = sim.getCar();
@@ -58,7 +58,6 @@ public class TextDistraction extends DistractionClass {
                 controller = new TextDistractionController(this, sim);
 		// Read XML and initialize custom ScreenController
 		nifty.fromXml(xmlPath, "start",	controller);
-                COG_SCORE = 3;
                 inputManager.deleteMapping("toggle_cinematics"); //deletes contre error when Enter is pressed while answering question.
                 
     }
@@ -88,7 +87,7 @@ public class TextDistraction extends DistractionClass {
             DistractionSettings.setQuestionAnswered(false);
             showDialog();
             textOn = true;
-            CognitiveFunction.distScore += COG_SCORE;
+            CognitiveFunction.distScore += this.COG_DIFFICULTY;
             CognitiveFunction.activeDistCount++;
             CognitiveFunction.activeDistNames[5] = 1;
             DistractionSettings.distRunning++;
@@ -105,7 +104,7 @@ public class TextDistraction extends DistractionClass {
             DistractionSettings.setQuestionAnswered(true);
             DistractionSettings.distRunning--;
             hideDialog();
-            CognitiveFunction.distScore -= COG_SCORE;
+            CognitiveFunction.distScore -= this.COG_DIFFICULTY;
             CognitiveFunction.activeDistCount--;
             CognitiveFunction.activeDistNames[5] = 0;
             textOn = false;

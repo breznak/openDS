@@ -43,23 +43,20 @@ public class CollectObjectDistraction extends DistractionClass{
     public GhostControl greenGhost;
     public GhostControl redGhost;
     private Camera camera;
-    private final int flatDamage = 5;
     private BitmapText greenText;
     private BitmapText redText;
     private boolean greenCorrect;
     private boolean redCorrect;
     public static int [] correctScore = new int [2];
     private boolean collected = false;
-    public float COG_SCORE;
     private String outputFolder;
     public Vector3f spawn;
     public float distanceLeft;
     public float distanceRight;
     
     CollectObjectDistraction(Simulator sim, String texturePathGreen, String texturePathRed){
-        COG_SCORE = 3;
-        
-        
+        super(5f, 0.4f, 3f);
+
         this.sim = sim;
         this.car = sim.getCar();
         this.manager = sim.getAssetManager();
@@ -193,7 +190,7 @@ public class CollectObjectDistraction extends DistractionClass{
             collected = false;
 
             collectOn = true;
-            CognitiveFunction.distScore += COG_SCORE;
+            CognitiveFunction.distScore += this.COG_DIFFICULTY;
             CognitiveFunction.activeDistCount++;
             CognitiveFunction.activeDistNames[1] = 1;
             DistractionSettings.distRunning++;
@@ -221,7 +218,7 @@ public class CollectObjectDistraction extends DistractionClass{
             
             sim.getGuiNode().detachChild(greenText);
             sim.getGuiNode().detachChild(redText);
-            CognitiveFunction.distScore -= COG_SCORE;
+            CognitiveFunction.distScore -= this.COG_DIFFICULTY;
             collectOn = false;
             Simulator.Timer = 0;
             DistractionSettings.distRunning--;
@@ -236,7 +233,7 @@ public class CollectObjectDistraction extends DistractionClass{
                 if(greenCorrect) correctScore[0]++; 
                 else { 
                     correctScore[1]++;
-                    Simulator.playerHealth = Simulator.playerHealth - (flatDamage);
+                    Simulator.playerHealth = Simulator.playerHealth - (int)this.REWARD;
                     sim.updateHealth();
                 }
                 collected = true;
@@ -248,7 +245,7 @@ public class CollectObjectDistraction extends DistractionClass{
                 if(redCorrect) correctScore[0]++; 
                 else { 
                     correctScore[1]++;
-                    Simulator.playerHealth = Simulator.playerHealth - (flatDamage);
+                    Simulator.playerHealth = Simulator.playerHealth - (int)this.REWARD;
                     sim.updateHealth();
                 }
                 collected = true;

@@ -18,14 +18,13 @@ public class DarkeningDistraction extends DistractionClass{
 
     
     private boolean darkOn = false;
-    public float COG_SCORE;
     
     /**
      *Empty constructor for DarkeningDistraction
      * @param sim - Simulator
      */
     public DarkeningDistraction(Simulator sim){
-        COG_SCORE = 3;
+        super(1, 0.1f, 3f);
     }
 
     /**
@@ -38,7 +37,7 @@ public class DarkeningDistraction extends DistractionClass{
         if (n <= propability){
             EffectCenter.setFogPercentage(50);
             darkOn = true;
-            CognitiveFunction.distScore += COG_SCORE;
+            CognitiveFunction.distScore += this.COG_DIFFICULTY;
             CognitiveFunction.activeDistCount++;
             CognitiveFunction.activeDistNames[2] = 1;
             DistractionSettings.distRunning++;
@@ -54,7 +53,7 @@ public class DarkeningDistraction extends DistractionClass{
         if(darkOn){
             EffectCenter.setFogPercentage(DistractionSettings.getIntensityFog());
             darkOn = false;
-            CognitiveFunction.distScore -= COG_SCORE;
+            CognitiveFunction.distScore -= this.COG_DIFFICULTY;
             CognitiveFunction.activeDistCount--;
             CognitiveFunction.activeDistNames[2] = 0;
             DistractionSettings.distRunning--;
