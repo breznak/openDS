@@ -76,32 +76,6 @@ public class ListOfDistractions {
         if (DistractionSettings.isText()) activeDistractors++;   
     }
 */  
-    public void update(float tpf){
-        if (DistractionSettings.isBox()) dropBox.update(tpf); //FIXME use DistractionSettings.getProbabilitySound() to set selected Prob
-        if (DistractionSettings.isSound()) soundDis.update(tpf);
-        if (DistractionSettings.isDark()) dark.update(tpf);
-        if (DistractionSettings.isPedestrian()) pedestrian.update(tpf);
-        if (DistractionSettings.isText()) text.update(tpf);
-        if (DistractionSettings.isCollect()) collect.update(tpf);
- /*
-        int n = (int)(Math.random() * activeDistractors) + 1; //3
-       
-        switch(n){
-            case 1: dropBox.update(tpf, DistractionSettings.getPropabilityBox()); 
-                break;
-            case 2: soundDis.update(tpf, DistractionSettings.getPropabilitySound());
-                break;
-            case 3: dark.update(tpf, DistractionSettings.getPropabilityDark());
-                break;
-            case 4: pedestrian.update(tpf, DistractionSettings.getPropabilityPedestrian());
-                break;
-            case 5: text.update(tpf, DistractionSettings.getPropabilityText());
-                break;
-            default: System.out.println("Invalid distraction task number "+n);
-                break;
-        }
- */           
-    }
     
     public void collide(float tpf){
         if(DistractionSettings.isBox()) dropBox.collision(tpf);

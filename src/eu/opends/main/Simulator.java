@@ -39,6 +39,7 @@ import com.jme3.input.Joystick;
 import com.jme3.math.Vector3f;
 import com.jme3.niftygui.NiftyJmeDisplay;
 import com.sun.javafx.application.PlatformImpl;
+import cz.cvut.cognitive.distractors.DistractionClass;
 
 import de.lessvoid.nifty.Nifty;
 import cz.cvut.cognitive.distractors.DistractionSettings;
@@ -612,7 +613,9 @@ public class Simulator extends SimulationBasics
                                 Timer = Timer + tpf;
                                 if (Timer > 5)
                                 {
-                                    LoD.update(tpf);
+                                    for(DistractionClass d : DistractionClass.getDistractors()) {
+                                        d.update(tpf);
+                                    }
                                     Timer = 0;
                                 }
                             } else if (DistractionSettings.isQuestionAnswered()) {  

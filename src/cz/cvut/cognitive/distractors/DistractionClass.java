@@ -2,6 +2,9 @@
 
 package cz.cvut.cognitive.distractors;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Johnny
@@ -23,15 +26,25 @@ public abstract class DistractionClass {
         this.PROBABILITY=probability;
         this.REWARD=reward;
         this.COG_DIFFICULTY = difficulty;
+        DistractionClass.activeDistractors.add(this); //append to available distractors
     }
     public abstract void update(float tpf);
     public abstract void remove();
     
     // lets discuss
     //public abstract void showReward();
-    
-    //private
+    //public
+    public static List<DistractionClass> getDistractors() {
+        return DistractionClass.activeDistractors;
+    }
+    //protected
     protected final float PROBABILITY;
     protected final float REWARD;
     public final float COG_DIFFICULTY; //FIXME make protected too (WeatherD)
+    //private
+    private final static ArrayList<DistractionClass> activeDistractors = new ArrayList<>();
+
+    public void collide() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
