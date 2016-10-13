@@ -24,7 +24,7 @@ public class DarkeningDistraction extends DistractionClass{
      * @param sim - Simulator
      */
     public DarkeningDistraction(Simulator sim){
-        super(1, 0.1f, 3f);
+        super(sim, 1, 0.1f, 3f);
     }
 
     /**

@@ -28,17 +28,12 @@ import eu.opends.main.Simulator;
  */
 public class BoxDistraction extends DistractionClass{
     
-    private final Simulator sim;
-    private final SteeringCar car;
-    private final AssetManager manager;
     private final Geometry DropBox;
     private final Spatial droppingBox;
-    private final BulletAppState bulletAppState;
     private final RigidBodyControl box_phy;
     private final float y_offSet;
     public static boolean boxOn = false;
     private boolean boxHit = false;
-    private Camera camera;
     private float Timer;
     private final int flatDamage = 10;
     //private BetterCharacterControl box_phy;
@@ -54,12 +49,7 @@ public class BoxDistraction extends DistractionClass{
      *          
      */
     public BoxDistraction(Simulator sim, float x, float y, float z, float mass, String texturePath) {
-        super(5f, 0.6f, 2f); //FIXME how are these set?
-        this.sim = sim;
-        this.car = sim.getCar();
-        this.manager = sim.getAssetManager();
-        this.bulletAppState = sim.getBulletAppState();
-        this.camera = sim.getCamera();
+        super(sim, 5f, 0.6f, 2f); //FIXME how are these set?
         //Creates an offset for placing box in world
         y_offSet = y;
         

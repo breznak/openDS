@@ -43,7 +43,6 @@ import cz.cvut.cognitive.distractors.DistractionClass;
 
 import de.lessvoid.nifty.Nifty;
 import cz.cvut.cognitive.distractors.DistractionSettings;
-import cz.cvut.cognitive.distractors.ListOfDistractions;
 
 import cz.cvut.cognitive.load.CognitiveFunction;
 
@@ -99,7 +98,6 @@ public class Simulator extends SimulationBasics
     private boolean initializationFinished = false;
     // CognitiveLoad module related vars
     DistractionSettings distSet;
-    ListOfDistractions LoD;
     private CognitiveFunction cogFunction;
     
 
@@ -485,9 +483,8 @@ public class Simulator extends SimulationBasics
                 lastWord = SimulationDefaults.drivingTaskFileName.substring(SimulationDefaults.drivingTaskFileName.lastIndexOf(File.separator)+1);
                 if(lastWord.equalsIgnoreCase("A_DistractionTest.xml")){
                     distSet = new DistractionSettings();
-                    LoD = new ListOfDistractions(this);
                     cogFunction = new CognitiveFunction(this);
-                    LoD.initialize();
+                    DistractionClass.initialize(this);
                     DistractionSettings.setDistScenario(false);
                     DistractionSettings.distRunning=0;
                     Timer = 0;

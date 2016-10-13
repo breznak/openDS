@@ -27,23 +27,19 @@ public class TextDistraction extends DistractionClass {
     private final InputManager inputManager;
     private final Nifty nifty;
     private final NiftyJmeDisplay niftyDisplay;
-    private final Simulator sim;
     private boolean questionOnScreen = false;
     private final ViewPort guiViewPort;  
     private final TextDistractionController controller;
     private boolean textOn = false;
-    private SteeringCar car;
     
     /**
      *Constructor for TextDistraction
      *@param: sim - simulator          
      */
     public TextDistraction(Simulator sim){
-        super(4, 0.2f, 3);
+        super(sim, 4, 0.2f, 3);
 
-                this.sim = sim;
-                this.car = sim.getCar();
-		inputManager = sim.getInputManager();
+                inputManager = sim.getInputManager();
 		guiViewPort = sim.getGuiViewPort();
                                
                 //creates custom screen

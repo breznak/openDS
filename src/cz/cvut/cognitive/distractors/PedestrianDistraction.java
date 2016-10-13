@@ -38,17 +38,12 @@ public class PedestrianDistraction extends DistractionClass{
     private final Geometry pedestrianGeometry;
     private final MotionPath path;
     private MotionEvent motionControl;
-    private final Simulator sim;
     private final Spatial pedestrianSpatial;
-    private final SteeringCar car;
-    private final AssetManager manager;
-    private final BulletAppState bulletAppState;
-    private final RigidBodyControl pedestrianPhysics;
+     private final RigidBodyControl pedestrianPhysics;
     private boolean pedestrianOn = false;
     private float Timer;
     private boolean pedestrianHit;
     public static int pedestrianHitCount;
-    private Camera camera;
     private Vector3f spawn;
     private float distanceLeft;
     private float distanceRight;
@@ -58,13 +53,7 @@ public class PedestrianDistraction extends DistractionClass{
      *@param sim - simulator.
      */
       public PedestrianDistraction(Simulator sim, String texturePath) {
-        super(30, 0.2f, 5);
-        this.sim = sim;
-        this.car = sim.getCar();
-        this.manager = sim.getAssetManager();
-        this.bulletAppState = sim.getBulletAppState();
-        //results = new CollisionResults();
-        this.camera = sim.getCamera();
+        super(sim, 30, 0.2f, 5);
 
         //initialize box node
         Material mat = new Material(manager, "Common/MatDefs/Misc/Unshaded.j3md");

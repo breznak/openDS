@@ -31,9 +31,6 @@ import java.io.IOException;
  */
 public class CollectObjectDistraction extends DistractionClass{
     
-    private final Simulator sim;
-    private final SteeringCar car;
-    private final AssetManager manager;
     private final Geometry greenGeo;
     private final Spatial greenSpatial;
     private final Geometry redGeo;
@@ -42,7 +39,6 @@ public class CollectObjectDistraction extends DistractionClass{
     public static boolean collectOn = false;
     public GhostControl greenGhost;
     public GhostControl redGhost;
-    private Camera camera;
     private BitmapText greenText;
     private BitmapText redText;
     private boolean greenCorrect;
@@ -55,12 +51,7 @@ public class CollectObjectDistraction extends DistractionClass{
     public float distanceRight;
     
     CollectObjectDistraction(Simulator sim, String texturePathGreen, String texturePathRed){
-        super(5f, 0.4f, 3f);
-
-        this.sim = sim;
-        this.car = sim.getCar();
-        this.manager = sim.getAssetManager();
-        this.camera = sim.getCamera();
+        super(sim, 5f, 0.4f, 3f);
 
         greenText = new BitmapText(manager.loadFont("Interface"+File.separator+"Fonts"+File.separator+"Default.fnt"), false);
         greenText.setSize(40);

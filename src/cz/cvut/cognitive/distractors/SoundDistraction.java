@@ -18,17 +18,15 @@ import eu.opends.main.Simulator;
 public class SoundDistraction extends DistractionClass{
     
     private final AudioNode soundTest;
-    private final AssetManager manager;
-    private boolean soundOn = false;
+   private boolean soundOn = false;
   
     /**
      *Constructor for SoundDistraction
      *@param: sim - simulator
      */
     public SoundDistraction(Simulator sim) {
-        super(2, 0.1f, 1);
-        
-        this.manager = sim.getAssetManager();
+        super(sim, 2, 0.1f, 1);
+  
         soundTest = new AudioNode(manager,"Sounds/TrafficDistraction.wav",false);
         soundTest.setLooping(true);
         soundTest.setPositional(false);

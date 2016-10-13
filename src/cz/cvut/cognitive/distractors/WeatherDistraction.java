@@ -9,7 +9,9 @@ package cz.cvut.cognitive.distractors;
  * options.
  * 
  */
+import cz.cvut.cognitive.load.CognitiveFunction;
 import eu.opends.effects.EffectCenter;
+import eu.opends.main.Simulator;
 
 
 public class WeatherDistraction extends DistractionClass {
@@ -26,8 +28,9 @@ public class WeatherDistraction extends DistractionClass {
         }
     }
 
-    public WeatherDistraction(float diff) {
-        super(1, 0.1f, diff);
+    public WeatherDistraction(Simulator sim) {
+        super(sim, 1, 0.1f, (float)((DistractionSettings.getIntensityFog() + DistractionSettings.getIntensityRain() + DistractionSettings.getIntensitySnow())*0.03));
+        CognitiveFunction.distScore += this.COG_DIFFICULTY;
     }
 
     @Override
