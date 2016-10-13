@@ -245,6 +245,7 @@ public class SimulationBasics extends SimpleApplication
 	public void toggleDebugMode()
 	{
 		debugEnabled = !debugEnabled;
+                bulletAppState.setDebugEnabled(debugEnabled);
 	}
 	
 
@@ -279,7 +280,6 @@ public class SimulationBasics extends SimpleApplication
         //if (settings.getRenderer().startsWith("LWJGL")) 
         //	sceneNode.setShadowMode(ShadowMode.Receive);
         
-//        bulletAppState.setDebugEnabled(true);
         
         // setup light settings
         lightFactory = new LightFactory(this);
