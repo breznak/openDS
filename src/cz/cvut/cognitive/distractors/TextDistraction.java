@@ -91,11 +91,7 @@ public class TextDistraction extends DistractionClass {
     public void remove_local() {
         if (textOn){
             DistractionSettings.setQuestionAnswered(true);
-            DistractionSettings.distRunning--;
             hideDialog();
-            CognitiveFunction.distScore -= this.COG_DIFFICULTY;
-            CognitiveFunction.activeDistCount--;
-            CognitiveFunction.activeDistNames[5] = 0;
             textOn = false;
         }
     }

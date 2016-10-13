@@ -46,10 +46,6 @@ public class DarkeningDistraction extends DistractionClass{
         if(darkOn){
             EffectCenter.setFogPercentage(DistractionSettings.getIntensityFog());
             darkOn = false;
-            CognitiveFunction.distScore -= this.COG_DIFFICULTY;
-            CognitiveFunction.activeDistCount--;
-            CognitiveFunction.activeDistNames[2] = 0;
-            DistractionSettings.distRunning--;
         }
     }
 

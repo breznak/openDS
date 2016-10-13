@@ -196,8 +196,6 @@ public class CollectObjectDistraction extends DistractionClass{
             } catch (IOException e) {
                 e.printStackTrace();
             } 
-            CognitiveFunction.activeDistCount--;
-            CognitiveFunction.activeDistNames[1] = 0;
             sim.getSceneNode().detachChild(greenSpatial);
             sim.getSceneNode().detachChild(redSpatial);
 
@@ -206,10 +204,8 @@ public class CollectObjectDistraction extends DistractionClass{
             
             sim.getGuiNode().detachChild(greenText);
             sim.getGuiNode().detachChild(redText);
-            CognitiveFunction.distScore -= this.COG_DIFFICULTY;
             collectOn = false;
             Simulator.Timer = 0;
-            DistractionSettings.distRunning--;
         }
     }
     

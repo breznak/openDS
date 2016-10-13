@@ -51,11 +51,7 @@ public class SoundDistraction extends DistractionClass{
     {
         if(soundOn){
             soundTest.pause();
-            CognitiveFunction.distScore -= this.COG_DIFFICULTY;
-            CognitiveFunction.activeDistCount--;
-            CognitiveFunction.activeDistNames[4] = 0;
             soundOn = false;
-            DistractionSettings.distRunning--;
         }
     }
 

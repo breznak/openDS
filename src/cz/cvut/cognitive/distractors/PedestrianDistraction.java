@@ -192,10 +192,6 @@ public class PedestrianDistraction extends DistractionClass{
             pedestrianSpatial.setLocalRotation(Matrix3f.IDENTITY);
             sim.getSceneNode().detachChild(pedestrianSpatial);
             pedestrianOn = false;
-            CognitiveFunction.distScore -= this.COG_DIFFICULTY;
-            CognitiveFunction.activeDistCount--;
-            CognitiveFunction.activeDistNames[3] = 0;
-            DistractionSettings.distRunning--;
         } 
     }
     

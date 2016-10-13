@@ -135,12 +135,8 @@ public class BoxDistraction extends DistractionClass{
         if(boxOn){
             sim.getSceneNode().detachChild(droppingBox);
             bulletAppState.getPhysicsSpace().remove(box_phy); 
-            CognitiveFunction.distScore -= this.COG_DIFFICULTY;
-            CognitiveFunction.activeDistCount--;
-            CognitiveFunction.activeDistNames[0] = 0;
             boxOn = false;
-            DistractionSettings.distRunning--;
-        }
+       }
     }
 
     public void collision(float tpf){

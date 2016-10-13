@@ -90,6 +90,11 @@ public abstract class DistractionClass {
     
     public void remove() {
         remove_local();
+        
+        CognitiveFunction.distScore -= this.COG_DIFFICULTY;
+        CognitiveFunction.activeDistCount--;
+        CognitiveFunction.activeDistNames[0] = 0;
+        DistractionSettings.distRunning--;    
     }
     
     public static void initialize(Simulator sim) {
