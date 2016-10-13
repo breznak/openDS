@@ -32,7 +32,7 @@ public class DarkeningDistraction extends DistractionClass{
      * random generated number (1-100), screen will get dark (foggy). 
      */
     @Override
-    public void update(float tpf) {
+    public void spawn(float tpf) {
         int n = (int)(Math.random() * 100) + 1;
         if (n <= this.PROBABILITY){
             EffectCenter.setFogPercentage(50);

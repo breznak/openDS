@@ -36,7 +36,7 @@ public class DistractionSettings {
     public static boolean distScenario;
     public static boolean questionAnswered;
 
-    public static boolean isCollect() {
+    public static boolean isCollect() { //TODO refactor to remove these isX/setX : no checkbox, only slider (0=disabled)
         return Collect;
     }
 

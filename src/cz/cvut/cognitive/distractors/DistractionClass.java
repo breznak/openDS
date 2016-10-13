@@ -5,21 +5,21 @@ package cz.cvut.cognitive.distractors;
 import com.jme3.asset.AssetManager;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.renderer.Camera;
-import cz.cvut.cognitive.load.CognitiveFunction;
 import eu.opends.car.SteeringCar;
 import eu.opends.main.Simulator;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
  *
  * @author Johnny
- * 
- * Abstract class for different types of distractions.
- * Ensures that every distraction contains update (spawn) and remove method.
- * Update method parameters: tpf - time per frame of simulator
- *                           probability - preset value of every initialized
- *                                         distraction
+ 
+ Abstract class for different types of distractions.
+ Ensures that every distraction contains spawn (spawn) and remove method.
+ Update method parameters: tpf - time per frame of simulator
+                           probability - preset value of every initialized
+                                         distraction
  */
 public abstract class DistractionClass {
     
@@ -29,11 +29,19 @@ public abstract class DistractionClass {
     public final float COG_DIFFICULTY; //FIXME make protected too (WeatherD)
     //private
     private final static ArrayList<DistractionClass> activeDistractors = new ArrayList<>();
+    /**
+     * if the Distraction is currently active/used
+     */
+    private boolean isActive = false;
     protected final Simulator sim;
     protected final SteeringCar car;
     protected final AssetManager manager;
     protected final BulletAppState bulletAppState;
     protected final Camera camera;
+    /**
+     * settings from GUI
+     */
+    protected final HashMap<String, String> settings = new HashMap<>();
     /**
      * 
      * @param reward positive(>0) means it's good to collect this, added on "hit", substracted from score on "miss"
@@ -50,7 +58,6 @@ public abstract class DistractionClass {
         this.manager = sim.getAssetManager();
         this.bulletAppState = sim.getBulletAppState();
         this.camera = sim.getCamera();
-      
     }
     
     //abstract
@@ -59,7 +66,7 @@ public abstract class DistractionClass {
      * @param tpf 
      */
     public abstract void collision(float tpf);
-    public abstract void update(float tpf);
+    protected abstract void spawn(float tpf);
     public abstract void remove();
     
     //public abstract void showReward();
@@ -67,7 +74,9 @@ public abstract class DistractionClass {
     public static List<DistractionClass> getDistractors() {
         return DistractionClass.activeDistractors;
     }
-    
+    public void update(float f) {
+        spawn(f);
+    }
     public static void initialize(Simulator sim) {
         new BoxDistraction(sim, 1, 1, 1, 2, "Textures/DistractionTask/default_box.jpg");
         new SoundDistraction(sim);

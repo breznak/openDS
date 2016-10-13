@@ -34,7 +34,7 @@ public class WeatherDistraction extends DistractionClass {
     }
 
     @Override
-    public void update(float tpf) { //FIXME implement 
+    public void spawn(float tpf) { //FIXME implement 
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

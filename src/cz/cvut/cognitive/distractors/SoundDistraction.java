@@ -37,7 +37,7 @@ public class SoundDistraction extends DistractionClass{
      * random generated number (1-100), sound will play. 
      */
     @Override
-    public void update(float tpf) {
+    public void spawn(float tpf) {
         int n = (int)(Math.random() * 100) + 1;
         if (n <= this.PROBABILITY){
             soundTest.play();
