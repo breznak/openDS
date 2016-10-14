@@ -33,10 +33,8 @@ public class DarkeningDistraction extends DistractionClass{
      */
     @Override
     public void spawn(float tpf) {
-    public void update(float tpf) {
             EffectCenter.setFogPercentage(50);
             darkOn = true;
-
     }
 
     /**
