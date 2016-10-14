@@ -108,7 +108,7 @@ public class Simulator extends SimulationBasics
     private String lastWord;
     private BitmapText healthText;
     
-    private Node rewardNode;
+    private Node rewardNode = new Node();;
     public Node getRewardNode(){
         return rewardNode;
     }
@@ -499,7 +499,6 @@ public class Simulator extends SimulationBasics
                     healthText.setSize(this.getAssetManager().loadFont("Interface"+File.separator+"Fonts"+File.separator+"Default.fnt").getCharSet().getRenderedSize());
                     healthText.setText("Car Health: " + Simulator.playerHealth);
                     healthText.setLocalTranslation(1100, 250, 0);
-                    rewardNode = new Node();
                     this.getGuiNode().attachChild(healthText);
                 }
                 
