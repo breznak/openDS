@@ -1,8 +1,6 @@
 package cz.cvut.cognitive.distractors;
 
-import com.jme3.asset.AssetManager;
 import com.jme3.audio.AudioNode;
-import cz.cvut.cognitive.load.CognitiveFunction;
 import eu.opends.main.Simulator;
 
 /**
@@ -17,7 +15,7 @@ import eu.opends.main.Simulator;
  */
 public class SoundDistraction extends DistractionClass{
     
-    private final AudioNode soundDistractionNode;
+    private final AudioNode soundNode;
     private boolean soundOn = false;
   
     /**
@@ -27,9 +25,9 @@ public class SoundDistraction extends DistractionClass{
     public SoundDistraction(Simulator sim) {
         super(sim, 2, 0.1f, 1);
   
-        soundTest = new AudioNode(manager,"Sounds/TrafficDistraction.wav",false);
-        soundTest.setLooping(true);
-        soundTest.setPositional(false);
+        soundNode = new AudioNode(manager,"Sounds/TrafficDistraction.wav",false);
+        soundNode.setLooping(true);
+        soundNode.setPositional(false);
         }
 
     /**
@@ -39,7 +37,7 @@ public class SoundDistraction extends DistractionClass{
      */
     @Override
     public void spawn(float tpf) {
-            soundTest.play();
+            soundNode.play();
             soundOn = true;  
     }
     
@@ -51,7 +49,7 @@ public class SoundDistraction extends DistractionClass{
     public void remove_local()
     {
         if(soundOn){
-            soundTest.pause();
+            soundNode.pause();
             soundOn = false;
         }
     }

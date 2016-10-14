@@ -19,6 +19,7 @@
 package cz.cvut.cognitive.override;
 
 
+import cz.cvut.cognitive.distractors.DistractionClass;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.NiftyEventSubscriber;
 import de.lessvoid.nifty.controls.CheckBox;
@@ -431,7 +432,7 @@ public class DistractionScreenGUIController implements ScreenController
 	public void clickStartButton()
 	{
                 DistractionSettings.setDistScenario(true);
-		sim.getListOfDistractions().initialize(); 
+		DistractionClass.initialize(sim);
                 instructionScreenGUI.hideDialog();
                    
                 
