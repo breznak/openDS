@@ -27,23 +27,19 @@ public class TextDistraction extends DistractionClass {
     private final InputManager inputManager;
     private final Nifty nifty;
     private final NiftyJmeDisplay niftyDisplay;
-    private final Simulator sim;
     private boolean questionOnScreen = false;
     private final ViewPort guiViewPort;  
     private final TextDistractionController controller;
     private boolean textOn = false;
-    private SteeringCar car;
-    public float COG_SCORE;
     
     /**
      *Constructor for TextDistraction
      *@param: sim - simulator          
      */
     public TextDistraction(Simulator sim){
+        super(sim, 4, 0.2f, 3);
 
-                this.sim = sim;
-                this.car = sim.getCar();
-		inputManager = sim.getInputManager();
+                inputManager = sim.getInputManager();
 		guiViewPort = sim.getGuiViewPort();
                                
                 //creates custom screen
@@ -58,7 +54,6 @@ public class TextDistraction extends DistractionClass {
                 controller = new TextDistractionController(this, sim);
 		// Read XML and initialize custom ScreenController
 		nifty.fromXml(xmlPath, "start",	controller);
-                COG_SCORE = 3;
                 inputManager.deleteMapping("toggle_cinematics"); //deletes contre error when Enter is pressed while answering question.
                 
     }
@@ -74,9 +69,7 @@ public class TextDistraction extends DistractionClass {
      * 
      */
     @Override
-    public void update(float tpf, float propability) {
-        int n = (int)(Math.random() * 100) + 1;
-        if (n <= propability){
+    public void spawn(float tpf) {
             controller.sendToScreen(); 
             car.getCarControl().setLinearVelocity(Vector3f.ZERO);
             car.getCarControl().setAngularVelocity(Vector3f.ZERO);
@@ -88,11 +81,6 @@ public class TextDistraction extends DistractionClass {
             DistractionSettings.setQuestionAnswered(false);
             showDialog();
             textOn = true;
-            CognitiveFunction.distScore += COG_SCORE;
-            CognitiveFunction.activeDistCount++;
-            CognitiveFunction.activeDistNames[5] = 1;
-            DistractionSettings.distRunning++;
-        }   
     }
     
     /**
@@ -100,14 +88,10 @@ public class TextDistraction extends DistractionClass {
      * removed from the scene.
      */
     @Override
-    public void remove() {
+    public void remove_local() {
         if (textOn){
             DistractionSettings.setQuestionAnswered(true);
-            DistractionSettings.distRunning--;
             hideDialog();
-            CognitiveFunction.distScore -= COG_SCORE;
-            CognitiveFunction.activeDistCount--;
-            CognitiveFunction.activeDistNames[5] = 0;
             textOn = false;
         }
     }
@@ -149,5 +133,10 @@ public class TextDistraction extends DistractionClass {
                     questionOnScreen = false;
 		}
 	}
+
+    @Override
+    public void collision(float tpf) {
+        return; //TODO return if answer is correct
+    }
     
 }

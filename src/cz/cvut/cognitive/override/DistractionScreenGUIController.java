@@ -19,7 +19,6 @@
 package cz.cvut.cognitive.override;
 
 
-import cz.cvut.cognitive.load.CognitiveFunction;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.NiftyEventSubscriber;
 import de.lessvoid.nifty.controls.CheckBox;
@@ -357,9 +356,6 @@ public class DistractionScreenGUIController implements ScreenController
         
 	public void clickStartButton()
 	{
-                WeatherDistraction.COG_SCORE =(float)((DistractionSettings.getIntensityFog() + 
-                        DistractionSettings.getIntensityRain() + DistractionSettings.getIntensitySnow())*0.03);
-                CognitiveFunction.distScore += WeatherDistraction.COG_SCORE;
                 DistractionSettings.setDistScenario(true);
 		instructionScreenGUI.hideDialog();
                 

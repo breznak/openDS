@@ -38,19 +38,12 @@ public class PedestrianDistraction extends DistractionClass{
     private final Geometry pedestrianGeometry;
     private final MotionPath path;
     private MotionEvent motionControl;
-    private final Simulator sim;
     private final Spatial pedestrianSpatial;
-    private final SteeringCar car;
-    private final AssetManager manager;
-    private final BulletAppState bulletAppState;
-    private final RigidBodyControl pedestrianPhysics;
+     private final RigidBodyControl pedestrianPhysics;
     private boolean pedestrianOn = false;
     private float Timer;
     private boolean pedestrianHit;
-    private final int flatDamage = 30;
-    public float COG_SCORE;
     public static int pedestrianHitCount;
-    private Camera camera;
     private Vector3f spawn;
     private float distanceLeft;
     private float distanceRight;
@@ -60,12 +53,7 @@ public class PedestrianDistraction extends DistractionClass{
      *@param sim - simulator.
      */
       public PedestrianDistraction(Simulator sim, String texturePath) {
-        this.sim = sim;
-        this.car = sim.getCar();
-        this.manager = sim.getAssetManager();
-        this.bulletAppState = sim.getBulletAppState();
-        //results = new CollisionResults();
-        this.camera = sim.getCamera();
+        super(sim, 30, 0.2f, 5);
 
         //initialize box node
         Material mat = new Material(manager, "Common/MatDefs/Misc/Unshaded.j3md");
@@ -81,7 +69,6 @@ public class PedestrianDistraction extends DistractionClass{
             System.err.println("Error loading texture file " + texturePath);
 	}
         pedestrianGeometry.setMaterial(mat);
-        COG_SCORE = 2;
         //pedestrianNode.attachChild(boxGeometry);
         
      
@@ -116,9 +103,7 @@ public class PedestrianDistraction extends DistractionClass{
      * 
      */
     @Override
-    public void update(float tpf, float propability) {
-        int n = (int)(Math.random() * 100) + 1;
-        if (n <= propability){
+    public void spawn(float tpf) {
             CollisionResults results = new CollisionResults();
             Ray ray = new Ray(camera.getLocation(), camera.getDirection());
             sim.getSceneNode().collideWith(ray, results);
@@ -168,7 +153,6 @@ public class PedestrianDistraction extends DistractionClass{
                 }
             }
         } 
-    }
     
     private void createPath(){
         sim.getSceneNode().attachChild(pedestrianSpatial);
@@ -188,10 +172,6 @@ public class PedestrianDistraction extends DistractionClass{
         motionControl.play();
         motionControl.setLoopMode(LoopMode.Loop);
         pedestrianOn = true;
-        CognitiveFunction.distScore += COG_SCORE;
-        CognitiveFunction.activeDistCount++;
-        CognitiveFunction.activeDistNames[3] = 1;
-        DistractionSettings.distRunning++; 
     }
 
     /**
@@ -199,7 +179,7 @@ public class PedestrianDistraction extends DistractionClass{
      * removed from the scene.
      */
     @Override
-    public void remove() {
+    public void remove_local() {
         if (pedestrianOn){
             motionControl.stop();
             path.clearWayPoints();
@@ -212,10 +192,6 @@ public class PedestrianDistraction extends DistractionClass{
             pedestrianSpatial.setLocalRotation(Matrix3f.IDENTITY);
             sim.getSceneNode().detachChild(pedestrianSpatial);
             pedestrianOn = false;
-            CognitiveFunction.distScore -= COG_SCORE;
-            CognitiveFunction.activeDistCount--;
-            CognitiveFunction.activeDistNames[3] = 0;
-            DistractionSettings.distRunning--;
         } 
     }
     
@@ -237,7 +213,7 @@ public class PedestrianDistraction extends DistractionClass{
                         pedestrianPhysics.setPhysicsRotation(Matrix3f.IDENTITY);
                         pedestrianPhysics.setPhysicsLocation(new Vector3f (pedestrianSpatial.getLocalTranslation())); 
                         
-                        Simulator.playerHealth = Simulator.playerHealth - (flatDamage + (int)(car.getCurrentSpeedKmhRounded()*0.1));
+                        Simulator.playerHealth = Simulator.playerHealth - ((int)this.REWARD + (int)(car.getCurrentSpeedKmhRounded()*0.1));
                         sim.updateHealth();
                         pedestrianHitCount++;
                         pedestrianHit = true;

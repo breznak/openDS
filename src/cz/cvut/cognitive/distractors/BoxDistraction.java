@@ -28,21 +28,15 @@ import eu.opends.main.Simulator;
  */
 public class BoxDistraction extends DistractionClass{
     
-    private final Simulator sim;
-    private final SteeringCar car;
-    private final AssetManager manager;
     private final Geometry DropBox;
     private final Spatial droppingBox;
-    private final BulletAppState bulletAppState;
     private final RigidBodyControl box_phy;
     private final float y_offSet;
     public static boolean boxOn = false;
     private boolean boxHit = false;
-    private Camera camera;
     private float Timer;
     private final int flatDamage = 10;
     //private BetterCharacterControl box_phy;
-    public float COG_SCORE;
     public static float boxHitCount;
 
     /**
@@ -55,12 +49,7 @@ public class BoxDistraction extends DistractionClass{
      *          
      */
     public BoxDistraction(Simulator sim, float x, float y, float z, float mass, String texturePath) {
-        this.sim = sim;
-        this.car = sim.getCar();
-        this.manager = sim.getAssetManager();
-        this.bulletAppState = sim.getBulletAppState();
-        this.camera = sim.getCamera();
-        COG_SCORE = 2;
+        super(sim, 5f, 0.6f, 2f); //FIXME how are these set?
         //Creates an offset for placing box in world
         y_offSet = y;
         
@@ -99,16 +88,15 @@ public class BoxDistraction extends DistractionClass{
      * despawn in earlier call).
      */
     @Override
-    public void update (float tpf, float probability){
-        int n = (int)(Math.random() * 100) + 1;
-            if (n <= probability){ 
+    public void spawn (float tpf){
+        
                 CollisionResults results = new CollisionResults();
                 Ray ray = new Ray(camera.getLocation(), camera.getDirection());
                 sim.getSceneNode().collideWith(ray, results);
         
-                if (results.size() <= 0 || results.getClosestCollision().getDistance() > 30) {
+                if (results.size() <= 0 || results.getClosestCollision().getDistance() > 30) { //FIXME document constants
                     //generates offset for box spawn in front of the car
-                    int distance_offset = (int)(Math.random() * 5) + 1;
+                    int distance_offset = (int)(Math.random() * 5) + 1; //FIXME doc constants
 
                     //add node to scene
                     sim.getSceneNode().attachChild(droppingBox);
@@ -135,13 +123,7 @@ public class BoxDistraction extends DistractionClass{
                     /*box_phy.warp(spawn);
                     box_phy.setWalkDirection(new Vector3f(2,0,0));*/
                     boxOn = true;
-                    CognitiveFunction.distScore += COG_SCORE;
-                    CognitiveFunction.activeDistCount++;
-                    CognitiveFunction.activeDistNames[0] = 1;
-                    DistractionSettings.distRunning++;
-                }
-             }
-        
+                 }
     }
     
     /**
@@ -149,16 +131,12 @@ public class BoxDistraction extends DistractionClass{
      * removed from the scene.
      */
     @Override
-    public void remove (){
+    public void remove_local (){
         if(boxOn){
             sim.getSceneNode().detachChild(droppingBox);
             bulletAppState.getPhysicsSpace().remove(box_phy); 
-            CognitiveFunction.distScore -= COG_SCORE;
-            CognitiveFunction.activeDistCount--;
-            CognitiveFunction.activeDistNames[0] = 0;
             boxOn = false;
-            DistractionSettings.distRunning--;
-        }
+       }
     }
 
     public void collision(float tpf){

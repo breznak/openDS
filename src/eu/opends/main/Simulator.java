@@ -39,10 +39,10 @@ import com.jme3.input.Joystick;
 import com.jme3.math.Vector3f;
 import com.jme3.niftygui.NiftyJmeDisplay;
 import com.sun.javafx.application.PlatformImpl;
+import cz.cvut.cognitive.distractors.DistractionClass;
 
 import de.lessvoid.nifty.Nifty;
 import cz.cvut.cognitive.distractors.DistractionSettings;
-import cz.cvut.cognitive.distractors.ListOfDistractions;
 
 import cz.cvut.cognitive.load.CognitiveFunction;
 
@@ -98,13 +98,12 @@ public class Simulator extends SimulationBasics
     private boolean initializationFinished = false;
     // CognitiveLoad module related vars
     DistractionSettings distSet;
-    ListOfDistractions LoD;
     private CognitiveFunction cogFunction;
     
 
     public static float Timer;
     public float cogTimer;
-    public static int playerHealth = 100;
+    public static int playerHealth = 100; //FIXME move to DistractionClass
     private String lastWord;
     private BitmapText healthText;
 
@@ -484,9 +483,8 @@ public class Simulator extends SimulationBasics
                 lastWord = SimulationDefaults.drivingTaskFileName.substring(SimulationDefaults.drivingTaskFileName.lastIndexOf(File.separator)+1);
                 if(lastWord.equalsIgnoreCase("A_DistractionTest.xml")){
                     distSet = new DistractionSettings();
-                    LoD = new ListOfDistractions(this);
                     cogFunction = new CognitiveFunction(this);
-                    LoD.initialize();
+                    DistractionClass.initialize(this);
                     DistractionSettings.setDistScenario(false);
                     DistractionSettings.distRunning=0;
                     Timer = 0;
@@ -604,22 +602,28 @@ public class Simulator extends SimulationBasics
                         if(cogFunction != null && DistractionSettings.isDistScenario()){
                             cogTimer = cogTimer + tpf;
                             if (cogTimer>1){
-                                cogFunction.update(tpf);
+                                cogFunction.update();
                                 cogTimer = 0; 
                             }
                             
                             if(DistractionSettings.distRunning <= 0){
                                 Timer = Timer + tpf;
-                                if (Timer > 5)
+                                if (Timer > 5) //FIXME what is these magic numbers '5', '15'?
                                 {
-                                    LoD.update(tpf);
+                                    for(DistractionClass d : DistractionClass.getDistractors()) {
+                                        d.update(tpf);
+                                    }
                                     Timer = 0;
                                 }
                             } else if (DistractionSettings.isQuestionAnswered()) {  
-                                LoD.collide(tpf);
+                                for(DistractionClass d: DistractionClass.getDistractors()) {
+                                    d.collision(tpf);
+                                }
                                 Timer = Timer + tpf;
-                                if(Timer > 15){
-                                    LoD.removeDist();
+                                if(Timer > 15){ //FIXME magic 15?
+                                    for(DistractionClass d: DistractionClass.getDistractors()) {
+                                        d.remove();
+                                    }
                                     Timer = 0;
                                 }
                             } else {

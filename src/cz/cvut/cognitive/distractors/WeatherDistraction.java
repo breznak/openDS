@@ -9,12 +9,12 @@ package cz.cvut.cognitive.distractors;
  * options.
  * 
  */
+import cz.cvut.cognitive.load.CognitiveFunction;
 import eu.opends.effects.EffectCenter;
+import eu.opends.main.Simulator;
 
 
-public class WeatherDistraction {
-    
-    public static float COG_SCORE;
+public class WeatherDistraction extends DistractionClass {
     
     public static void setWeather (){
         if (DistractionSettings.isRain()){
@@ -26,6 +26,26 @@ public class WeatherDistraction {
         if (DistractionSettings.isFog()){
             EffectCenter.setFogPercentage(DistractionSettings.getIntensityFog());
         }
+    }
+
+    public WeatherDistraction(Simulator sim) {
+        super(sim, 1, 0.1f, (float)((DistractionSettings.getIntensityFog() + DistractionSettings.getIntensityRain() + DistractionSettings.getIntensitySnow())*0.03));
+        CognitiveFunction.distScore += this.COG_DIFFICULTY;
+    }
+
+    @Override
+    public void spawn(float tpf) { //TODO should do sth?
+        return; 
+    }
+
+    @Override
+    public void remove_local() {
+        return; //TODO sth?
+    }
+
+    @Override
+    public void collision(float tpf) {
+        return; //TODO can we detect crash during the duration?
     }
     
 }
