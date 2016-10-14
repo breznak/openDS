@@ -70,6 +70,8 @@ public class TextDistraction extends DistractionClass {
      */
     @Override
     public void spawn(float tpf) {
+    public void update(float tpf) {
+
             controller.sendToScreen(); 
             car.getCarControl().setLinearVelocity(Vector3f.ZERO);
             car.getCarControl().setAngularVelocity(Vector3f.ZERO);
@@ -81,6 +83,7 @@ public class TextDistraction extends DistractionClass {
             DistractionSettings.setQuestionAnswered(false);
             showDialog();
             textOn = true;
+
     }
     
     /**

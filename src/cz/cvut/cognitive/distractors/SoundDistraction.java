@@ -12,17 +12,17 @@ import eu.opends.main.Simulator;
  * Class for Sound-type distraction. When this option is selected in options
  * there is always (set) probability to play sound / recording
  * 
- * TODO: add diferent recording;
+ * TODO: add different recording;
  * 
  */
 public class SoundDistraction extends DistractionClass{
     
-    private final AudioNode soundTest;
-   private boolean soundOn = false;
+    private final AudioNode soundDistractionNode;
+    private boolean soundOn = false;
   
     /**
      *Constructor for SoundDistraction
-     *@param: sim - simulator
+     * @param sim Simulator instance
      */
     public SoundDistraction(Simulator sim) {
         super(sim, 2, 0.1f, 1);
@@ -35,6 +35,7 @@ public class SoundDistraction extends DistractionClass{
     /**
      * Update function: if preset probability of Sound playing is higher than
      * random generated number (1-100), sound will play. 
+     * @param tpf time per frame
      */
     @Override
     public void spawn(float tpf) {

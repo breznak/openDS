@@ -26,7 +26,7 @@ import eu.opends.main.Simulator;
  * the car.
  * 
  */
-public class BoxDistraction extends DistractionClass{
+public class BoxDistraction extends DistractionClass {
     
     private final Geometry DropBox;
     private final Spatial droppingBox;

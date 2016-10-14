@@ -23,7 +23,25 @@ import java.util.List;
                                          distraction
  */
 public abstract class DistractionClass {
-    
+    private boolean isDIstractor = false;
+    private float disProbability = 0;
+
+    public boolean isIsDIstractor() {
+        return isDIstractor;
+    }
+
+    public void setIsDIstractor(boolean isDIstractor) {
+        this.isDIstractor = isDIstractor;
+    }
+
+    public float getDisProbability() {
+        return disProbability;
+    }
+
+    public void setDisProbability(float disProbability) {
+        this.disProbability = disProbability;
+    }
+   
     //protected
     protected final float PROBABILITY;
     protected final float REWARD;
