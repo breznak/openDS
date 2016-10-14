@@ -18,38 +18,28 @@ import eu.opends.main.Simulator;
 public class SoundDistraction extends DistractionClass{
     
     private final AudioNode soundTest;
-    private final AssetManager manager;
-    private boolean soundOn = false;
-    public float COG_SCORE;
+   private boolean soundOn = false;
   
     /**
      *Constructor for SoundDistraction
      *@param: sim - simulator
      */
     public SoundDistraction(Simulator sim) {
-        this.manager = sim.getAssetManager();
+        super(sim, 2, 0.1f, 1);
+  
         soundTest = new AudioNode(manager,"Sounds/TrafficDistraction.wav",false);
         soundTest.setLooping(true);
         soundTest.setPositional(false);
-        COG_SCORE = 1;
-    }
+        }
 
     /**
      * Update function: if preset probability of Sound playing is higher than
      * random generated number (1-100), sound will play. 
      */
     @Override
-    public void update(float tpf, float propability) {
-        int n = (int)(Math.random() * 100) + 1;
-        if (n <= propability){
+    public void spawn(float tpf) {
             soundTest.play();
-            soundOn = true;
-            CognitiveFunction.distScore += COG_SCORE;
-            CognitiveFunction.activeDistCount++;
-            CognitiveFunction.activeDistNames[4] = 1;
-            DistractionSettings.distRunning++;
-        }
-        
+            soundOn = true;  
     }
     
     /**
@@ -57,15 +47,17 @@ public class SoundDistraction extends DistractionClass{
      * removed from the scene.
      */
     @Override
-    public void remove()
+    public void remove_local()
     {
         if(soundOn){
             soundTest.pause();
-            CognitiveFunction.distScore -= COG_SCORE;
-            CognitiveFunction.activeDistCount--;
-            CognitiveFunction.activeDistNames[4] = 0;
             soundOn = false;
-            DistractionSettings.distRunning--;
         }
+    }
+
+    @Override
+    public void collision(float tpf) {
+        //FIXME can we detect if the user(car) crashed into anything during the sound playing?
+        return; //NOOP
     }
 }

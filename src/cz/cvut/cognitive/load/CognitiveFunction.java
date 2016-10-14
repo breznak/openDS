@@ -29,22 +29,25 @@ public class CognitiveFunction {
     private final Simulator sim;
     private final SteeringCar car;
     private final BulletAppState bulletAppState;
-    private float Timer;
     private final GhostControl ghost;
-    private int overlappingCount;
-    private int nonSceneObjects = 0;
-    private float cogLoadScore = 0;
     public String outputFolder;
     public static String saveHere;
     private boolean firstWriting = true;
-    private Camera camera;
+    private final Camera camera;
     private Vector3f spawn;
-    private float roadDifficulty;
     
     
     public static int distScore = 0; //FIXME replace this with a better code
     public static int activeDistCount = 0;
     public static int [] activeDistNames = new int [6];
+    
+    public static final float COEF_NONSCENE = 0.5f; //TODO optimize coefs
+    public static final float COEF_DISTACTORS = 1.0f;
+    public static final float COEF_CARSPEED = 0.05f;
+    public static final float COEF_ROADDIFFICULTY = 1.0f;
+    
+    public static final float ROAD_LOOK_RANGE = 20;
+    
     
     public CognitiveFunction(Simulator sim){ //create ghostcontrol around car
     this.sim = sim;
@@ -56,41 +59,50 @@ public class CognitiveFunction {
     car.getCarNode().addControl(ghost);
     bulletAppState.getPhysicsSpace().add(ghost); 
     
-    Util.makeDirectory("distractionTaskDATA");
+    Util.makeDirectory("distractionTaskDATA"); //FIXME use OpenDS logging/visualization facilities
     outputFolder = "distractionTaskDATA"+File.separator+ Util.getDateTimeString();
     saveHere = outputFolder;
     Util.makeDirectory(outputFolder);
     outputFolder = outputFolder +File.separator+"distraction_log.txt";
-    
-    
-    
 }
     
-    public void update(float tpf){ //move control, track interactions, evaluate and score
-
-        overlappingCount = ghost.getOverlappingCount();
+    /**
+     * 
+     * @return number of active objects on scene
+     */
+    private int getNumObjectsOnScene() {
+        int overlappingCount = ghost.getOverlappingCount();
 //        ghost.getOverlappingObjects();
         //counts nonscene objects (3 are scene models (from XML) - grass platform, city model, car model)
-        if(overlappingCount > 3) nonSceneObjects = overlappingCount - 3;
-        
-        checkRoad();
-        cogLoadScore = (float)((nonSceneObjects * 0.5) + distScore + (car.getCurrentSpeedKmh() * 0.05) + roadDifficulty);
+        if(overlappingCount > 3) { overlappingCount -= 3; }
+        else overlappingCount = 0;
+        return overlappingCount;
+    }
+    
+    public float getCurrentDifficulty(){ //move control, track interactions, evaluate and score
+        float cogLoadScore = (float)(
+                getNumObjectsOnScene() * COEF_NONSCENE 
+                + distScore * COEF_DISTACTORS 
+                + car.getCurrentSpeedKmh() * COEF_CARSPEED 
+                + getRoadDifficulty(ROAD_LOOK_RANGE) * COEF_ROADDIFFICULTY);
         //System.out.println(car.getSlopeDegree());
         //checkCollision();
-        
+        return cogLoadScore;
+    }
+    
+    public void update() {
         writeToFile();
     }
     
-    private void checkRoad(){
+    private int getRoadDifficulty(float range){
+        int roadDifficulty =0;
         CollisionResults results = new CollisionResults();
             Ray ray = new Ray(camera.getLocation(), camera.getDirection());
             sim.getSceneNode().collideWith(ray, results);
             Vector3f carPosition = new Vector3f(car.getPosition().x,car.getPosition().y+1.3f,car.getPosition().z );
             Vector3f carHeading = new Vector3f(camera.getDirection());
             if (results.size() <= 0 || results.getClosestCollision().getDistance() > 5) {
-                
-                float distance = 20;
-                spawn = new Vector3f(carPosition.add(carHeading.mult(distance)));
+                spawn = new Vector3f(carPosition.add(carHeading.mult(range))); //FIXME is this "range"?, was 20
                // Vector3f spawnUp = new Vector3f(spawn.add(carHeading.mult(distance + 5)));
                 
                 CollisionResults resultsLava = new CollisionResults();
@@ -100,16 +112,16 @@ public class CognitiveFunction {
                 Ray ray3 = new Ray(spawn, camera.getLeft().negate());
                 sim.getSceneNode().collideWith(ray3, resultsPrava);
                 if (resultsLava.size() > 0) {
-                    if (resultsLava.getClosestCollision().getDistance() < 10){
+                    if (resultsLava.getClosestCollision().getDistance() < ROAD_LOOK_RANGE/2){
                         if (resultsPrava.size() > 0) {
-                            if(resultsPrava.getClosestCollision().getDistance() < 10){
+                            if(resultsPrava.getClosestCollision().getDistance() < ROAD_LOOK_RANGE/2){
                                 roadDifficulty=0; //System.out.println("ROVINKA LPr");
                             } else roadDifficulty=2; //System.out.println("DOPRAVA Lp");
                         } else roadDifficulty=0; //System.out.println("ROVINKA L");
                                     
                     } else { 
                         if (resultsPrava.size() > 0) {
-                            if(resultsPrava.getClosestCollision().getDistance() < 10){
+                            if(resultsPrava.getClosestCollision().getDistance() < ROAD_LOOK_RANGE/2){
                                 roadDifficulty=2; //System.out.println("DOLAVA Prl");
                             } else roadDifficulty=4; //System.out.println("KRIZOVATKA");
                         } else roadDifficulty=2; //System.out.println("DOLAVA l");
@@ -117,15 +129,17 @@ public class CognitiveFunction {
                     }
                 } else {
                     if (resultsPrava.size() > 0) {
-                        if(resultsPrava.getClosestCollision().getDistance() < 10){
+                        if(resultsPrava.getClosestCollision().getDistance() < ROAD_LOOK_RANGE/2){
                             roadDifficulty=0; //System.out.println("ROVINKA Pr");
                         } else roadDifficulty=2; //System.out.println("DOPRAVA p");
-                    } else roadDifficulty=1; //System.out.println("NIC"); 
+                    } else roadDifficulty=1; //System.out.println("NIC"); //FIXME what is "nic"? should be =0? 
                 }
             }
+            return roadDifficulty;
     }
     
-    public void checkCollision(){
+    /*
+    public void checkCollision(){ //TODO remove?
         CollisionResults results = new CollisionResults();
         Ray ray = new Ray(camera.getLocation(), camera.getDirection());
         sim.getSceneNode().collideWith(ray, results);
@@ -135,15 +149,14 @@ public class CognitiveFunction {
                 && results.getClosestCollision().getDistance() <= 10) {
             //System.out.println(results.getCollision(2).getGeometry().getName());
             String name = results.getClosestCollision().getGeometry().getName();
-            /*System.out.println(results.getFarthestCollision().getGeometry().getName());
-            System.out.println(name);
-            System.out.println("I SEE YOU");*/
+            //System.out.println(results.getFarthestCollision().getGeometry().getName());
+            //System.out.println(name);
+            //System.out.println("I SEE YOU");
     }
-    }   
+    } 
+*/
         
-    
-    
-    public void writeToFile(){ //store info into text (speed, obstacles, score, health, turnings)
+    private void writeToFile(){ //store info into text (speed, obstacles, score, health, turnings)
         Date curDate = new Date();
         if(firstWriting){
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(outputFolder))){ 
@@ -163,8 +176,8 @@ public class CognitiveFunction {
             }
         }
         try (BufferedWriter writer2 = new BufferedWriter(new FileWriter(outputFolder, true))) {
-            writer2.write(curDate.getTime() + "," + cogLoadScore + "," + roadDifficulty + "," + car.getCurrentSpeedKmh() + "," + Simulator.playerHealth + "," 
-                    + BoxDistraction.boxHitCount + "," + PedestrianDistraction.pedestrianHitCount + "," + nonSceneObjects  + "," + activeDistCount  
+            writer2.write(curDate.getTime() + "," + getCurrentDifficulty() + "," + getRoadDifficulty(ROAD_LOOK_RANGE) + "," + car.getCurrentSpeedKmh() + "," + Simulator.playerHealth + "," 
+                    + BoxDistraction.boxHitCount + "," + PedestrianDistraction.pedestrianHitCount + "," + getNumObjectsOnScene()  + "," + activeDistCount  
                     + "," + activeDistNames[0] + "," + activeDistNames[1] + "," + activeDistNames[2] + "," + activeDistNames[3] + "," + activeDistNames[4]
              + "," + activeDistNames[5]);
             writer2.newLine();
@@ -172,6 +185,5 @@ public class CognitiveFunction {
         } catch (IOException e) {
             e.printStackTrace();
         } 
-    }
-    
+    }    
 }

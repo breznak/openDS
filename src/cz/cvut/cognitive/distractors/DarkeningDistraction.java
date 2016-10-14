@@ -18,14 +18,13 @@ public class DarkeningDistraction extends DistractionClass{
 
     
     private boolean darkOn = false;
-    public float COG_SCORE;
     
     /**
      *Empty constructor for DarkeningDistraction
      * @param sim - Simulator
      */
     public DarkeningDistraction(Simulator sim){
-        COG_SCORE = 3;
+        super(sim, 1, 0.1f, 3f);
     }
 
     /**
@@ -33,16 +32,9 @@ public class DarkeningDistraction extends DistractionClass{
      * random generated number (1-100), screen will get dark (foggy). 
      */
     @Override
-    public void update(float tpf, float propability) {
-        int n = (int)(Math.random() * 100) + 1;
-        if (n <= propability){
+    public void spawn(float tpf) {
             EffectCenter.setFogPercentage(50);
             darkOn = true;
-            CognitiveFunction.distScore += COG_SCORE;
-            CognitiveFunction.activeDistCount++;
-            CognitiveFunction.activeDistNames[2] = 1;
-            DistractionSettings.distRunning++;
-        }
     }
 
     /**
@@ -50,15 +42,17 @@ public class DarkeningDistraction extends DistractionClass{
      * removed from the scene.
      */
     @Override
-    public void remove() {
+    public void remove_local() {
         if(darkOn){
             EffectCenter.setFogPercentage(DistractionSettings.getIntensityFog());
             darkOn = false;
-            CognitiveFunction.distScore -= COG_SCORE;
-            CognitiveFunction.activeDistCount--;
-            CognitiveFunction.activeDistNames[2] = 0;
-            DistractionSettings.distRunning--;
         }
+    }
+
+    @Override
+    public void collision(float tpf) {
+        //FIXME can we detect crash during this active period?
+        return; //NOOP
     }
     
 }
