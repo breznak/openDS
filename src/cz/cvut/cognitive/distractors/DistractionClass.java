@@ -25,7 +25,7 @@ import java.util.List;
  */
 public abstract class DistractionClass {
     //protected
-    protected final float PROBABILITY;
+    protected float probability;
     protected final float REWARD;
     public final float COG_DIFFICULTY; //FIXME make protected too (WeatherD)
     //private
@@ -51,7 +51,7 @@ public abstract class DistractionClass {
      * @param difficulty how "cognitively demanding" this stress factor is
      */
     protected DistractionClass(Simulator sim, float reward, float probability, float difficulty) {
-        this.PROBABILITY=DistractionSettings.probabilityCollect; //probability;
+        this.probability=probability;
         this.REWARD=reward;
         this.COG_DIFFICULTY = difficulty;
         DistractionClass.activeDistractors.add(this); //append to available distractors
@@ -79,8 +79,8 @@ public abstract class DistractionClass {
     
     public void update(float f) {
         float n = (float)Math.random();
-        System.out.println("PROB="+PROBABILITY+" n="+n+" active="+isActive+" "+this.getClass().getSimpleName());
-        if (n > this.PROBABILITY || isActive || PROBABILITY==0.0f) { return; } 
+        System.out.println("PROB="+probability+" n="+n+" active="+isActive+" "+this.getClass().getSimpleName());
+        if (n > this.probability || isActive || probability==0.0f) { return; } 
         
         spawn(f);
         
@@ -113,13 +113,4 @@ public abstract class DistractionClass {
         isActive=false;
     }
     
-    public static void initialize(Simulator sim) {
-        new BoxDistraction(sim, 1, 1, 1, 2, "Textures"+File.separator+"DistractionTask"+File.separator+"default_box.jpg");
-        new SoundDistraction(sim);
-        new DarkeningDistraction(sim);
-        new PedestrianDistraction(sim,"Textures"+File.separator+"DistractionTask"+File.separator+"default_pedestrian.jpg");
-        new TextDistraction(sim);
-        new CollectObjectDistraction(sim, "Textures"+File.separator+"DistractionTask"+File.separator+"default_greenSphere.png", "Textures"+File.separator+"DistractionTask"+File.separator+"default_redSphere.png");
-        new WeatherDistraction(sim);           
-    }   
 }

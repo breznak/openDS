@@ -28,8 +28,8 @@ public class WeatherDistraction extends DistractionClass {
         }
     }
 
-    public WeatherDistraction(Simulator sim) {
-        super(sim, 1, 0.1f, (float)((DistractionSettings.getIntensityFog() + DistractionSettings.getIntensityRain() + DistractionSettings.getIntensitySnow())*0.03));
+    public WeatherDistraction(Simulator sim, float reward, float probability) {
+        super(sim, reward, probability, (float)((DistractionSettings.getIntensityFog() + DistractionSettings.getIntensityRain() + DistractionSettings.getIntensitySnow())*0.03));
         CognitiveFunction.distScore += this.COG_DIFFICULTY;
     }
 

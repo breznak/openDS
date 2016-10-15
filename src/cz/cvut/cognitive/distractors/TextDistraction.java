@@ -36,8 +36,8 @@ public class TextDistraction extends DistractionClass {
      *Constructor for TextDistraction
      *@param: sim - simulator          
      */
-    public TextDistraction(Simulator sim){
-        super(sim, 4, 0.2f, 3);
+    public TextDistraction(Simulator sim, float reward, float probability, float cogDifficulty){
+        super(sim, reward, probability, cogDifficulty);
 
                 inputManager = sim.getInputManager();
 		guiViewPort = sim.getGuiViewPort();

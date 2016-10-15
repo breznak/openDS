@@ -52,8 +52,8 @@ public class PedestrianDistraction extends DistractionClass{
      *Constructor for PedestrianDistraction
      *@param sim - simulator.
      */
-      public PedestrianDistraction(Simulator sim, String texturePath) {
-        super(sim, 30, 0.2f, 5);
+      public PedestrianDistraction(Simulator sim, float reward, float probability, float cogDifficulty, String texturePath) {
+        super(sim, reward, probability, cogDifficulty);
 
         //initialize box node
         Material mat = new Material(manager, "Common/MatDefs/Misc/Unshaded.j3md");

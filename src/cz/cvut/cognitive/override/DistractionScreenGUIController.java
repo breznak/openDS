@@ -19,6 +19,9 @@
 package cz.cvut.cognitive.override;
 
 
+import cz.cvut.cognitive.distractors.BoxDistraction;
+import cz.cvut.cognitive.distractors.CollectObjectDistraction;
+import cz.cvut.cognitive.distractors.DarkeningDistraction;
 import cz.cvut.cognitive.distractors.DistractionClass;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.NiftyEventSubscriber;
@@ -32,11 +35,15 @@ import de.lessvoid.nifty.screen.ScreenController;
 
 
 import cz.cvut.cognitive.distractors.DistractionSettings;
+import cz.cvut.cognitive.distractors.PedestrianDistraction;
+import cz.cvut.cognitive.distractors.SoundDistraction;
+import cz.cvut.cognitive.distractors.TextDistraction;
 import cz.cvut.cognitive.distractors.WeatherDistraction;
 import de.lessvoid.nifty.controls.ListBox;
 import de.lessvoid.nifty.elements.Element;
 import eu.opends.main.Simulator;
 import eu.opends.niftyGui.InstructionScreenGUI;
+import java.io.File;
 
 
 /**
@@ -432,7 +439,15 @@ public class DistractionScreenGUIController implements ScreenController //FIXME 
 	public void clickStartButton()
 	{
                 DistractionSettings.setDistScenario(true);
-		DistractionClass.initialize(sim);
+		// Initialize all distractors here: 
+                new BoxDistraction(sim, 5f, Slider_box.getValue(), 2f, 1, 1, 1, 2, "Textures"+File.separator+"DistractionTask"+File.separator+"default_box.jpg");
+                new SoundDistraction(sim, 2f, Slider_sound.getValue(), 1f);
+                new DarkeningDistraction(sim, 1f, Slider_dark.getValue(), 3f);
+                new PedestrianDistraction(sim, 30f, Slider_pedestrian.getValue(), 5f, "Textures"+File.separator+"DistractionTask"+File.separator+"default_pedestrian.jpg");
+                new TextDistraction(sim, 4f, Slider_text.getValue(), 3f);
+                new CollectObjectDistraction(sim, 5f, Slider_collect.getValue(), 3f, "Textures"+File.separator+"DistractionTask"+File.separator+"default_greenSphere.png", "Textures"+File.separator+"DistractionTask"+File.separator+"default_redSphere.png");
+                new WeatherDistraction(sim, 1f, Slider_rain.getValue()); //FIXME separate into classes by single weather
+                
                 instructionScreenGUI.hideDialog();
 	}
         

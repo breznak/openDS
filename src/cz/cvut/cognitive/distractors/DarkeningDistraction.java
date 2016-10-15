@@ -23,8 +23,8 @@ public class DarkeningDistraction extends DistractionClass{
      *Empty constructor for DarkeningDistraction
      * @param sim - Simulator
      */
-    public DarkeningDistraction(Simulator sim){
-        super(sim, 1, 0.1f, 3f);
+    public DarkeningDistraction(Simulator sim, float reward, float probability, float cogDifficulty){
+        super(sim, reward, probability, cogDifficulty);
     }
 
     /**

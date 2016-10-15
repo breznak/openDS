@@ -489,7 +489,6 @@ public class Simulator extends SimulationBasics
                 if(lastWord.equalsIgnoreCase("A_DistractionTest.xml")){
                     distSet = new DistractionSettings();
                     cogFunction = new CognitiveFunction(this);
-                    DistractionClass.initialize(this);
                     DistractionSettings.setDistScenario(false);
                     DistractionSettings.distRunning=0;
                     Timer = 0;
