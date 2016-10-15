@@ -108,7 +108,7 @@ public class Simulator extends SimulationBasics
     private String lastWord;
     private BitmapText healthText;
     
-    private Node rewardNode = new Node();;
+    private Node rewardNode = new Node(); //FIXME do we need this extra node here? Can we auto create one?
     public Node getRewardNode(){
         return rewardNode;
     }

@@ -17,6 +17,7 @@ import com.jme3.scene.Geometry;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.shape.Sphere;
 import com.jme3.texture.Texture;
+import cz.cvut.utils.Display;
 import eu.opends.main.Simulator;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -48,15 +49,9 @@ public class CollectObjectDistraction extends DistractionClass{
     public Vector3f spawn;
     public float distanceLeft;
     public float distanceRight;
-    
-    private final AudioNode rewardSoundNode;
-    
+   
     CollectObjectDistraction(Simulator sim, String texturePathGreen, String texturePathRed){
         super(sim, 5f, 0.4f, 3f);
-        //TODO move to separate function (the audio)
-        rewardSoundNode = new AudioNode(manager,"Sounds"+File.separator+"FF_Victory.wav",false);
-        rewardSoundNode.setLooping(false);
-        rewardSoundNode.setPositional(false);
         //TODO move to sep fn (text display)
         rewardText = new BitmapText(manager.loadFont("Interface"+File.separator+"Fonts"+File.separator+"Default.fnt"), false);
         rewardText.setSize(40);
@@ -258,8 +253,7 @@ public class CollectObjectDistraction extends DistractionClass{
     
     //TODO move to global DistractorClass
     private void rewardPlayer(){
-        rewardSoundNode.playInstance();
-        sim.getGuiNode().attachChild(sim.getRewardNode());
+        Display.playSound(sim, "Sounds"+File.separator+"FF_Victory.wav", false);
     }
     
 }
