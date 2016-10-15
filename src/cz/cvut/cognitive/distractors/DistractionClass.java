@@ -24,27 +24,8 @@ import java.util.List;
                                          distraction
  */
 public abstract class DistractionClass {
-    private boolean isDIstractor = false;
-    private float disProbability = 0;
-
-    public boolean isIsDIstractor() {
-        return isDIstractor;
-    }
-
-    public void setIsDIstractor(boolean isDIstractor) {
-        this.isDIstractor = isDIstractor;
-    }
-
-    public float getDisProbability() {
-        return disProbability;
-    }
-
-    public void setDisProbability(float disProbability) {
-        this.disProbability = disProbability;
-    }
-   
     //protected
-    protected final float PROBABILITY;
+    protected float probability;
     protected final float REWARD;
     public final float COG_DIFFICULTY; //FIXME make protected too (WeatherD)
     //private
@@ -70,7 +51,7 @@ public abstract class DistractionClass {
      * @param difficulty how "cognitively demanding" this stress factor is
      */
     protected DistractionClass(Simulator sim, float reward, float probability, float difficulty) {
-        this.PROBABILITY=probability;
+        this.probability=probability;
         this.REWARD=reward;
         this.COG_DIFFICULTY = difficulty;
         DistractionClass.activeDistractors.add(this); //append to available distractors
@@ -97,18 +78,18 @@ public abstract class DistractionClass {
     }
     
     public void update(float f) {
-        int n = (int)(Math.random() * 100) + 1;
-        if (n >= this.PROBABILITY || isActive) { return; } 
+        float n = (float)Math.random();
+        System.out.println("PROB="+probability+" n="+n+" active="+isActive+" "+this.getClass().getSimpleName());
+        if (n > this.probability || isActive || probability==0.0f) { return; } 
         
         spawn(f);
         
         CognitiveFunction.distScore += this.COG_DIFFICULTY;
         CognitiveFunction.activeDistCount++;
         CognitiveFunction.activeDistNames[0] = 1; //FIXME remove
-        DistractionSettings.distRunning++;
         
         this.isActive = true;
-    }
+   }
     
     /**
      * 
@@ -126,18 +107,8 @@ public abstract class DistractionClass {
         CognitiveFunction.distScore -= this.COG_DIFFICULTY;
         CognitiveFunction.activeDistCount--;
         CognitiveFunction.activeDistNames[0] = 0;
-        DistractionSettings.distRunning--;
-        
+
         isActive=false;
     }
     
-    public static void initialize(Simulator sim) {
-        new BoxDistraction(sim, 1, 1, 1, 2, "Textures"+File.separator+"DistractionTask"+File.separator+"default_box.jpg");
-        new SoundDistraction(sim);
-        new DarkeningDistraction(sim);
-        new PedestrianDistraction(sim,"Textures"+File.separator+"DistractionTask"+File.separator+"default_pedestrian.jpg");
-        new TextDistraction(sim);
-        new CollectObjectDistraction(sim, "Textures"+File.separator+"DistractionTask"+File.separator+"default_greenSphere.png", "Textures"+File.separator+"DistractionTask"+File.separator+"default_redSphere.png");
-        new WeatherDistraction(sim);           
-    }   
 }

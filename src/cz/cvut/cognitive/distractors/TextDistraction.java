@@ -36,8 +36,8 @@ public class TextDistraction extends DistractionClass {
      *Constructor for TextDistraction
      *@param: sim - simulator          
      */
-    public TextDistraction(Simulator sim){
-        super(sim, 4, 0.2f, 3);
+    public TextDistraction(Simulator sim, float reward, float probability, float cogDifficulty){
+        super(sim, reward, probability, cogDifficulty);
 
                 inputManager = sim.getInputManager();
 		guiViewPort = sim.getGuiViewPort();
@@ -78,7 +78,6 @@ public class TextDistraction extends DistractionClass {
             inputManager.deleteMapping("steer_right");
             inputManager.deleteMapping("steer_left");
             sim.setPause(true);
-            DistractionSettings.setQuestionAnswered(false);
             showDialog();
             textOn = true;
     }
@@ -90,7 +89,6 @@ public class TextDistraction extends DistractionClass {
     @Override
     public void remove_local() {
         if (textOn){
-            DistractionSettings.setQuestionAnswered(true);
             hideDialog();
             textOn = false;
         }

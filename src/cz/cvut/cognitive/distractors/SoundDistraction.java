@@ -23,8 +23,8 @@ public class SoundDistraction extends DistractionClass{
      *Constructor for SoundDistraction
      * @param sim Simulator instance
      */
-    public SoundDistraction(Simulator sim) {
-        super(sim, 2, 0.1f, 1);
+    public SoundDistraction(Simulator sim, float reward, float probability, float cogDifficulty) {
+        super(sim, reward, probability, cogDifficulty);
   
         soundNode = new AudioNode(manager,"Sounds"+File.separator+"TrafficDistraction.wav",false);
         soundNode.setLooping(true);

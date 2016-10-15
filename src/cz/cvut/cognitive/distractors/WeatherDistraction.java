@@ -9,38 +9,25 @@ package cz.cvut.cognitive.distractors;
  * options.
  * 
  */
-import cz.cvut.cognitive.load.CognitiveFunction;
 import eu.opends.effects.EffectCenter;
 import eu.opends.main.Simulator;
 
 
 public class WeatherDistraction extends DistractionClass {
-    
-    public static void setWeather (){
-        if (DistractionSettings.isRain()){
-            EffectCenter.setRainingPercentage(DistractionSettings.getIntensityRain());
-        }
-        if (DistractionSettings.isSnow()){
-            EffectCenter.setSnowingPercentage(DistractionSettings.getIntensitySnow());
-        }
-        if (DistractionSettings.isFog()){
-            EffectCenter.setFogPercentage(DistractionSettings.getIntensityFog());
-        }
-    }
+    public enum Type {RAIN, SNOW, FOG};
 
-    public WeatherDistraction(Simulator sim) {
-        super(sim, 1, 0.1f, (float)((DistractionSettings.getIntensityFog() + DistractionSettings.getIntensityRain() + DistractionSettings.getIntensitySnow())*0.03));
-        CognitiveFunction.distScore += this.COG_DIFFICULTY;
+    public WeatherDistraction(Simulator sim, float reward, float probability, Type weatherType) {
+        super(sim, reward, probability, probability*0.03f);
     }
 
     @Override
-    public void spawn(float tpf) { //TODO should do sth?
+    public void spawn(float tpf) {
         return; 
     }
 
     @Override
     public void remove_local() {
-        return; //TODO sth?
+        return;
     }
 
     @Override

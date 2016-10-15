@@ -8,7 +8,6 @@ import com.jme3.math.Ray;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.Camera;
 import cz.cvut.cognitive.distractors.BoxDistraction;
-import cz.cvut.cognitive.distractors.DistractionSettings;
 import cz.cvut.cognitive.distractors.PedestrianDistraction;
 import eu.opends.car.SteeringCar;
 import eu.opends.main.SimulationDefaults;
@@ -164,8 +163,7 @@ public class CognitiveFunction {
                 writer.newLine();
                 writer.write("Driver: " + SimulationDefaults.driverName );
                 writer.newLine();
-                writer.write("Rain intensity: " + DistractionSettings.getIntensityRain() + " Snow intensity: " + DistractionSettings.getIntensitySnow() + 
-                        " Fog intensity: " + DistractionSettings.getIntensityFog());
+//                writer.write("Rain intensity: " + DistractionSettings.getIntensityRain() + " Snow intensity: " + DistractionSettings.getIntensitySnow() + " Fog intensity: " + DistractionSettings.getIntensityFog());
                 writer.newLine();
                 writer.write("Time (ms),   Cog.load Score, Road Score,  Current speed (Km/H),   Current car \"HealthPoints\",   Number of dropboxhit,"
                         + "   Number of pedestrian hits,   Number of nonScene objects,   Number of active distractors,   Names of active distractors ");

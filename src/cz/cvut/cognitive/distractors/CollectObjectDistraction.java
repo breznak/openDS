@@ -51,8 +51,8 @@ public class CollectObjectDistraction extends DistractionClass{
     
     private final AudioNode rewardSoundNode;
     
-    CollectObjectDistraction(Simulator sim, String texturePathGreen, String texturePathRed){
-        super(sim, 5f, 0.4f, 3f);
+    public CollectObjectDistraction(Simulator sim, float reward, float probability, float cogDifficulty, String texturePathGreen, String texturePathRed){
+        super(sim, reward, probability, cogDifficulty);
         //TODO move to separate function (the audio)
         rewardSoundNode = new AudioNode(manager,"Sounds"+File.separator+"FF_Victory.wav",false);
         rewardSoundNode.setLooping(false);
