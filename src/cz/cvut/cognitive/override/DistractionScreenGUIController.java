@@ -221,10 +221,11 @@ public class DistractionScreenGUIController extends InstructionScreenGUIControll
                 super.clickStartButton();
 	}
         
-          private void clickDefButton()
+        @NiftyEventSubscriber(id="DefaultButton")
+          private void clickDefButton() //FIXME I broke the default button - GUI is not reset
 	{
                 resetOptions();
-                
+                System.out.println("DEF");
                 Slider_collect.setValue(30);
                 DistractionSettings.setProbabilityCollect(30);
                 
@@ -233,6 +234,8 @@ public class DistractionScreenGUIController extends InstructionScreenGUIControll
                 
                 Slider_box.setValue(30);
                 DistractionSettings.setProbabilityBox(20);
+                
+                nifty.update();
  	}
           
           private void resetOptions(){
