@@ -55,15 +55,7 @@ public class DistractionScreenGUIController extends InstructionScreenGUIControll
     
         
 	private final Nifty nifty;
-        private CheckBox CheckBox_snow;
-        private CheckBox CheckBox_rain;
-        private CheckBox CheckBox_fog;
-        private CheckBox CheckBox_box;
-        private CheckBox CheckBox_pedestrian;
-        private CheckBox CheckBox_sound;
-        private CheckBox CheckBox_text;
-        private CheckBox CheckBox_dark;
-        private CheckBox CheckBox_collect;
+
         private Slider Slider_rain;
         private Slider Slider_snow;
         private Slider Slider_fog;
@@ -110,15 +102,7 @@ public class DistractionScreenGUIController extends InstructionScreenGUIControll
             super.onStartScreen();
             
             Screen screen = nifty.getCurrentScreen();
-            CheckBox_rain = screen.findNiftyControl("CheckBox_rain", CheckBox.class);
-            CheckBox_snow = screen.findNiftyControl("CheckBox_snow", CheckBox.class);
-            CheckBox_fog = screen.findNiftyControl("CheckBox_fog", CheckBox.class);
-            CheckBox_box = screen.findNiftyControl("CheckBox_box", CheckBox.class);
-            CheckBox_pedestrian = screen.findNiftyControl("CheckBox_pedestrian", CheckBox.class);
-            CheckBox_sound = screen.findNiftyControl("CheckBox_sound", CheckBox.class);
-            CheckBox_text = screen.findNiftyControl("CheckBox_text", CheckBox.class);
-            CheckBox_dark = screen.findNiftyControl("CheckBox_dark", CheckBox.class);
-            CheckBox_collect = screen.findNiftyControl("CheckBox_collect", CheckBox.class);
+//            CheckBox_rain = screen.findNiftyControl("CheckBox_rain", CheckBox.class); //example of checkbox use in GUI
             
             Slider_snow = screen.findNiftyControl("Slider_snow", Slider.class);
             Slider_rain = screen.findNiftyControl("Slider_rain", Slider.class);
@@ -130,33 +114,7 @@ public class DistractionScreenGUIController extends InstructionScreenGUIControll
             Slider_dark = screen.findNiftyControl("Slider_dark", Slider.class);
             Slider_collect = screen.findNiftyControl("Slider_collect", Slider.class);
             
-            Slider_rain.setMax(100);
-            Slider_rain.setStepSize(1);
-            Slider_rain.disable();
-            Slider_snow.setMax(100);
-            Slider_snow.setStepSize(1);
-            Slider_snow.disable();
-            Slider_fog.setStepSize(1);
-            Slider_fog.setMax(70);
-            Slider_fog.disable(); 
-            Slider_box.setMax(100);
-            Slider_box.setStepSize(1);
-            Slider_box.disable();
-            Slider_sound.setMax(100);
-            Slider_sound.setStepSize(1);
-            Slider_sound.disable();
-            Slider_pedestrian.setMax(100);
-            Slider_pedestrian.setStepSize(1);
-            Slider_pedestrian.disable();
-            Slider_text.setMax(100);
-            Slider_text.setStepSize(1);
-            Slider_text.disable();
-            Slider_dark.setMax(100);
-            Slider_dark.setStepSize(1);
-            Slider_dark.disable();
-            Slider_collect.setMax(100);
-            Slider_collect.setStepSize(1);
-            Slider_collect.disable();
+            Slider_fog.setMax(70); //different than default 100
             
             Value_rain = (ListBox) screen.findNiftyControl("Value_rain", ListBox.class);
             Value_snow = (ListBox) screen.findNiftyControl("Value_snow", ListBox.class);
@@ -167,197 +125,23 @@ public class DistractionScreenGUIController extends InstructionScreenGUIControll
             Value_dark = (ListBox) screen.findNiftyControl("Value_dark", ListBox.class);
             Value_text = (ListBox) screen.findNiftyControl("Value_text", ListBox.class);
             Value_sound = (ListBox) screen.findNiftyControl("Value_sound", ListBox.class);
-            setValueListBox (Value_rain);
-            setValueListBox (Value_snow);
-            setValueListBox (Value_fog);
-            setValueListBox (Value_box);
-            setValueListBox (Value_pedestrian);
-            setValueListBox (Value_collect);
-            setValueListBox (Value_dark);
-            setValueListBox (Value_text);
-            setValueListBox (Value_sound);
-            
+
             // set default values
             clickDefButton();
 	}
-        
-        private void setValueListBox (ListBox Value_box){
-            Value_box.changeSelectionMode(ListBox.SelectionMode.Disabled, false);	
-            Value_box.setFocusable(false);
-            Value_box.disable();
-        }
-        
-        @NiftyEventSubscriber(id="CheckBox_rain") 
-        public void toggleRain(final String id, final CheckBoxStateChangedEvent event) 
-        {  
-            if (CheckBox_rain.isChecked()) {
-                Slider_rain.enable();
-                Value_rain.enable();
-                DistractionSettings.setRain(true);          
-            }
-            else {
-                Slider_rain.setValue(0);
-                Slider_rain.disable();
-                Value_rain.disable();
-                DistractionSettings.setRain(false);
-            }
-            DistractionSettings.setIntensityRain(Slider_rain.getValue());
-            WeatherDistraction.setWeather();
-        }
-        
-        @NiftyEventSubscriber(id="CheckBox_snow") 
-        public void toggleSnow(final String id, final CheckBoxStateChangedEvent event) 
-        {  
-            if (CheckBox_snow.isChecked()) {
-                Slider_snow.enable();
-                Value_snow.enable();
-                DistractionSettings.setSnow(true);
-            }
-            else {
-                Slider_snow.setValue(0);
-                Slider_snow.disable();
-                Value_snow.disable();
-                DistractionSettings.setSnow(false);
-            }
-            DistractionSettings.setIntensitySnow(Slider_snow.getValue());
-            WeatherDistraction.setWeather();
-        }
-        
-        @NiftyEventSubscriber(id="CheckBox_fog") 
-        public void toggleFog(final String id, final CheckBoxStateChangedEvent event) 
-        {  
-            if (CheckBox_fog.isChecked()) {
-                Slider_fog.enable();
-                Value_fog.enable();
-                DistractionSettings.setFog(true);
-            }
-            else {
-                Slider_fog.setValue(0);
-                Slider_fog.disable();
-                Value_fog.disable();
-                DistractionSettings.setFog(false);
-            }
-            DistractionSettings.setIntensityFog(Slider_fog.getValue());
-            WeatherDistraction.setWeather();
-        }
-        
-        @NiftyEventSubscriber(id="CheckBox_box") 
-        public void toggleBox(final String id, final CheckBoxStateChangedEvent event) 
-        {  
-            if (CheckBox_box.isChecked()) {
-                Slider_box.enable();
-                Value_box.enable();
-                DistractionSettings.setBox(true);
-            }
-            else {
-                Slider_box.setValue(0);
-                Slider_box.disable();
-                Value_box.disable();
-                DistractionSettings.setBox(false);
-            }
-            DistractionSettings.setProbabilityBox(Slider_box.getValue());
-        }
-        
-        @NiftyEventSubscriber(id="CheckBox_sound") 
-        public void toggleSound(final String id, final CheckBoxStateChangedEvent event) 
-        {  
-            if (CheckBox_sound.isChecked()) {
-                Slider_sound.enable();
-                Value_sound.enable();
-                DistractionSettings.setSound(true);
-            }
-            else {
-                Slider_sound.setValue(0);
-                Slider_sound.disable();
-                Value_sound.disable();
-                DistractionSettings.setSound(false);
-            }
-            DistractionSettings.setProbabilitySound(Slider_sound.getValue());
-        }
-        
-        @NiftyEventSubscriber(id="CheckBox_pedestrian") 
-        public void togglePedestrian(final String id, final CheckBoxStateChangedEvent event) 
-        {  
-            if (CheckBox_pedestrian.isChecked()) {
-                Slider_pedestrian.enable();
-                Value_pedestrian.enable();
-                DistractionSettings.setPedestrian(true);
-            }
-            else {
-                Slider_pedestrian.setValue(0);
-                Slider_pedestrian.disable();
-                Value_pedestrian.disable();
-                DistractionSettings.setPedestrian(false);
-            }
-            DistractionSettings.setProbabilityPedestrian(Slider_pedestrian.getValue());
-        }
-        
-        @NiftyEventSubscriber(id="CheckBox_text") 
-        public void toggleText(final String id, final CheckBoxStateChangedEvent event) 
-        {  
-            if (CheckBox_text.isChecked()) {
-                Slider_text.enable();
-                Value_text.enable();
-                DistractionSettings.setText(true);
-            }
-            else {
-                Slider_text.setValue(0);
-                Slider_text.disable();
-                Value_text.disable();
-                DistractionSettings.setText(false);
-            }
-            DistractionSettings.setProbabilityText(Slider_text.getValue());
-        }
-        
-        @NiftyEventSubscriber(id="CheckBox_dark") 
-        public void toggleDark(final String id, final CheckBoxStateChangedEvent event) 
-        {  
-            if (CheckBox_dark.isChecked()) {
-                Slider_dark.enable();
-                Value_dark.enable();
-                DistractionSettings.setDark(true);
-            }
-            else {
-                Slider_dark.setValue(0);
-                Slider_dark.disable();
-                Value_dark.disable();
-                DistractionSettings.setDark(false);
-            }
-            DistractionSettings.setProbabilityDark(Slider_dark.getValue());
-        }
-        
-        @NiftyEventSubscriber(id="CheckBox_collect") 
-        public void toggleCollect(final String id, final CheckBoxStateChangedEvent event) 
-        {  
-            if (CheckBox_collect.isChecked()) {
-                Slider_collect.enable();
-                Value_collect.enable();
-                DistractionSettings.setCollect(true);
-            }
-            else {
-                Slider_collect.setValue(0);
-                Slider_collect.disable();
-                Value_collect.disable();
-                DistractionSettings.setCollect(false);
-            }
-            DistractionSettings.setProbabilityCollect(Slider_collect.getValue());          
-        }
         
         @NiftyEventSubscriber(id="Slider_rain") 
         public void intensityRain(final String id, final SliderChangedEvent event) 
         {   
                 DistractionSettings.setIntensityRain(Slider_rain.getValue());
-                WeatherDistraction.setWeather();
                 Value_rain.clear();
-                Value_rain.addItem(Slider_rain.getValue());
-                
+                Value_rain.addItem(Slider_rain.getValue());                
         }
         
         @NiftyEventSubscriber(id="Slider_snow") 
         public void intensitySnow(final String id, final SliderChangedEvent event) 
         {   
                 DistractionSettings.setIntensitySnow(Slider_snow.getValue());
-                WeatherDistraction.setWeather();
                 Value_snow.clear();
                 Value_snow.addItem(Slider_snow.getValue());
         }
@@ -366,7 +150,6 @@ public class DistractionScreenGUIController extends InstructionScreenGUIControll
         public void intensityFog(final String id, final SliderChangedEvent event) 
         {   
                 DistractionSettings.setIntensityFog(Slider_fog.getValue());
-                WeatherDistraction.setWeather();
                 Value_fog.clear();
                 Value_fog.addItem(Slider_fog.getValue());
         }
@@ -420,6 +203,7 @@ public class DistractionScreenGUIController extends InstructionScreenGUIControll
         }
         
         
+        @Override
 	public void clickStartButton()
 	{
                 DistractionSettings.setDistScenario(true);
@@ -441,58 +225,42 @@ public class DistractionScreenGUIController extends InstructionScreenGUIControll
 	{
                 resetOptions();
                 
-                CheckBox_collect.check();
                 Slider_collect.setValue(30);
                 DistractionSettings.setProbabilityCollect(30);
-                DistractionSettings.setCollect(true);
                 
-                CheckBox_rain.check();
                 Slider_rain.setValue(20);
                 DistractionSettings.setIntensityRain(20);
-                DistractionSettings.setRain(true);
                 
-                CheckBox_box.check();
                 Slider_box.setValue(30);
                 DistractionSettings.setProbabilityBox(20);
-                DistractionSettings.setBox(true);
-	}
+ 	}
           
           private void resetOptions(){
-                CheckBox_collect.uncheck();
                 Slider_collect.setValue(0);
                 DistractionSettings.setProbabilityCollect(0);
                 DistractionSettings.setCollect(false);
-                CheckBox_rain.uncheck();
                 Slider_rain.setValue(0);
                 DistractionSettings.setIntensityRain(0);
                 DistractionSettings.setRain(false);
-                CheckBox_box.uncheck();
                 Slider_box.setValue(0);
                 DistractionSettings.setProbabilityBox(0);
-                CheckBox_pedestrian.uncheck();
                 Slider_pedestrian.setValue(0);
                 DistractionSettings.setProbabilityPedestrian(0);
                 DistractionSettings.setPedestrian(false);
-                CheckBox_text.uncheck();
                 Slider_text.setValue(0);
                 DistractionSettings.setProbabilityText(0);
                 DistractionSettings.setText(false);
-                CheckBox_sound.uncheck();
                 Slider_sound.setValue(0);
                 DistractionSettings.setProbabilitySound(0);
                 DistractionSettings.setSound(false);
-                CheckBox_dark.uncheck();
                 Slider_dark.setValue(0);
                 DistractionSettings.setProbabilityDark(0);
                 DistractionSettings.setDark(false);
-                CheckBox_fog.uncheck();
                 Slider_fog.setValue(0);
                 DistractionSettings.setIntensityFog(0);
                 DistractionSettings.setFog(false);
-                CheckBox_snow.uncheck();
                 Slider_snow.setValue(0);
                 DistractionSettings.setIntensitySnow(0);
                 DistractionSettings.setSnow(false);
           }
-
 }

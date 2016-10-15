@@ -9,25 +9,12 @@ package cz.cvut.cognitive.distractors;
  * options.
  * 
  */
-import cz.cvut.cognitive.load.CognitiveFunction;
 import eu.opends.effects.EffectCenter;
 import eu.opends.main.Simulator;
 
 
 public class WeatherDistraction extends DistractionClass {
     public enum Type {RAIN, SNOW, FOG};
-    
-    public static void setWeather (){
-        if (DistractionSettings.isRain()){
-            EffectCenter.setRainingPercentage(DistractionSettings.getIntensityRain());
-        }
-        if (DistractionSettings.isSnow()){
-            EffectCenter.setSnowingPercentage(DistractionSettings.getIntensitySnow());
-        }
-        if (DistractionSettings.isFog()){
-            EffectCenter.setFogPercentage(DistractionSettings.getIntensityFog());
-        }
-    }
 
     public WeatherDistraction(Simulator sim, float reward, float probability, Type weatherType) {
         super(sim, reward, probability, probability*0.03f);
