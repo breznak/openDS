@@ -446,7 +446,9 @@ public class DistractionScreenGUIController implements ScreenController //FIXME 
                 new PedestrianDistraction(sim, 30f, Slider_pedestrian.getValue(), 5f, "Textures"+File.separator+"DistractionTask"+File.separator+"default_pedestrian.jpg");
                 new TextDistraction(sim, 4f, Slider_text.getValue(), 3f);
                 new CollectObjectDistraction(sim, 5f, Slider_collect.getValue(), 3f, "Textures"+File.separator+"DistractionTask"+File.separator+"default_greenSphere.png", "Textures"+File.separator+"DistractionTask"+File.separator+"default_redSphere.png");
-                new WeatherDistraction(sim, 1f, Slider_rain.getValue()); //FIXME separate into classes by single weather
+                new WeatherDistraction(sim, 1f, Slider_rain.getValue(), WeatherDistraction.Type.RAIN); 
+                new WeatherDistraction(sim, 1f, Slider_snow.getValue(), WeatherDistraction.Type.SNOW); 
+                new WeatherDistraction(sim, 1f, Slider_fog.getValue(), WeatherDistraction.Type.FOG); 
                 
                 instructionScreenGUI.hideDialog();
 	}
