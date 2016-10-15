@@ -8,6 +8,7 @@ import com.jme3.renderer.Camera;
 import cz.cvut.cognitive.load.CognitiveFunction;
 import eu.opends.car.SteeringCar;
 import eu.opends.main.Simulator;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -131,12 +132,12 @@ public abstract class DistractionClass {
     }
     
     public static void initialize(Simulator sim) {
-        new BoxDistraction(sim, 1, 1, 1, 2, "Textures/DistractionTask/default_box.jpg");
+        new BoxDistraction(sim, 1, 1, 1, 2, "Textures"+File.separator+"DistractionTask"+File.separator+"default_box.jpg");
         new SoundDistraction(sim);
         new DarkeningDistraction(sim);
-        new PedestrianDistraction(sim,"Textures/DistractionTask/default_pedestrian.jpg");
+        new PedestrianDistraction(sim,"Textures"+File.separator+"DistractionTask"+File.separator+"default_pedestrian.jpg");
         new TextDistraction(sim);
-        new CollectObjectDistraction(sim, "Textures/DistractionTask/default_greenSphere.png", "Textures/DistractionTask/default_redSphere.png");
+        new CollectObjectDistraction(sim, "Textures"+File.separator+"DistractionTask"+File.separator+"default_greenSphere.png", "Textures"+File.separator+"DistractionTask"+File.separator+"default_redSphere.png");
         new WeatherDistraction(sim);           
     }   
 }

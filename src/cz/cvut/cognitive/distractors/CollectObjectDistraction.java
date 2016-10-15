@@ -4,8 +4,6 @@ package cz.cvut.cognitive.distractors;
 import cz.cvut.cognitive.load.CognitiveFunction;
 import com.jme3.asset.TextureKey;
 import com.jme3.audio.AudioNode;
-import com.jme3.bullet.BulletAppState;
-import com.jme3.bullet.collision.shapes.CapsuleCollisionShape;
 import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.control.GhostControl;
 import com.jme3.bullet.util.CollisionShapeFactory;
@@ -56,11 +54,11 @@ public class CollectObjectDistraction extends DistractionClass{
     CollectObjectDistraction(Simulator sim, String texturePathGreen, String texturePathRed){
         super(sim, 5f, 0.4f, 3f);
         //TODO move to separate function (the audio)
-        rewardSoundNode = new AudioNode(manager,"Sounds/FF_Victory.wav",false);
+        rewardSoundNode = new AudioNode(manager,"Sounds"+File.separator+"FF_Victory.wav",false);
         rewardSoundNode.setLooping(false);
         rewardSoundNode.setPositional(false);
         //TODO move to sep fn (text display)
-        rewardText = new BitmapText(manager.loadFont("Interface/Fonts/Default.fnt"), false);
+        rewardText = new BitmapText(manager.loadFont("Interface"+File.separator+"Fonts"+File.separator+"Default.fnt"), false);
         rewardText.setSize(40);
         rewardText.setColor(ColorRGBA.Black);
         rewardText.setText("Well done! You did it!");
@@ -219,6 +217,7 @@ public class CollectObjectDistraction extends DistractionClass{
         }
     }
     
+    @Override
     public void collision(float tpf){
         if(collectOn){
             CollisionResults results_1 = new CollisionResults();

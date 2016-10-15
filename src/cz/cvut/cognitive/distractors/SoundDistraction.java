@@ -2,6 +2,7 @@ package cz.cvut.cognitive.distractors;
 
 import com.jme3.audio.AudioNode;
 import eu.opends.main.Simulator;
+import java.io.File;
 
 /**
  *
@@ -25,7 +26,7 @@ public class SoundDistraction extends DistractionClass{
     public SoundDistraction(Simulator sim) {
         super(sim, 2, 0.1f, 1);
   
-        soundNode = new AudioNode(manager,"Sounds/TrafficDistraction.wav",false);
+        soundNode = new AudioNode(manager,"Sounds"+File.separator+"TrafficDistraction.wav",false);
         soundNode.setLooping(true);
         soundNode.setPositional(false);
         }
