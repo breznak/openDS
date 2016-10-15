@@ -38,6 +38,7 @@ import com.jme3.font.BitmapText;
 import com.jme3.input.Joystick;
 import com.jme3.math.Vector3f;
 import com.jme3.niftygui.NiftyJmeDisplay;
+import com.jme3.scene.Node;
 import com.sun.javafx.application.PlatformImpl;
 import cz.cvut.cognitive.distractors.DistractionClass;
 
@@ -100,14 +101,18 @@ public class Simulator extends SimulationBasics
     DistractionSettings distSet;
     private CognitiveFunction cogFunction;
     
-
+    
     public static float Timer;
     public float cogTimer;
     public static int playerHealth = 100; //FIXME move to DistractionClass
     private String lastWord;
     private BitmapText healthText;
-
     
+    private Node rewardNode = new Node();;
+    public Node getRewardNode(){
+        return rewardNode;
+    }
+
     
     private static Float gravityConstant;
 	public static Float getGravityConstant()
@@ -613,6 +618,7 @@ public class Simulator extends SimulationBasics
                                     for(DistractionClass d : DistractionClass.getDistractors()) {
                                         d.update(tpf);
                                     }
+                                    this.getGuiNode().detachChild(rewardNode);
                                     Timer = 0;
                                 }
                             } else if (DistractionSettings.isQuestionAnswered()) {  
