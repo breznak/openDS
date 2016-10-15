@@ -87,7 +87,6 @@ public abstract class DistractionClass {
         CognitiveFunction.distScore += this.COG_DIFFICULTY;
         CognitiveFunction.activeDistCount++;
         CognitiveFunction.activeDistNames[0] = 1; //FIXME remove
-        DistractionSettings.distRunning++;
         
         this.isActive = true;
    }
@@ -108,8 +107,7 @@ public abstract class DistractionClass {
         CognitiveFunction.distScore -= this.COG_DIFFICULTY;
         CognitiveFunction.activeDistCount--;
         CognitiveFunction.activeDistNames[0] = 0;
-        DistractionSettings.distRunning--;
-        
+
         isActive=false;
     }
     

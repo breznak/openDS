@@ -490,7 +490,7 @@ public class Simulator extends SimulationBasics
                     distSet = new DistractionSettings();
                     cogFunction = new CognitiveFunction(this);
                     DistractionSettings.setDistScenario(false);
-                    DistractionSettings.distRunning=0;
+                    CognitiveFunction.activeDistCount=0;
                     Timer = 0;
                     cogTimer = 0;
                     DistractionSettings.setQuestionAnswered(true);
@@ -610,7 +610,7 @@ public class Simulator extends SimulationBasics
                                 cogTimer = 0; 
                             }
                             
-                            if(DistractionSettings.distRunning <= 0){
+                            if(CognitiveFunction.activeDistCount <= 0){
                                 Timer = Timer + tpf;
                                 if (Timer > 5) //FIXME what is these magic numbers '5', '15'?
                                 {
