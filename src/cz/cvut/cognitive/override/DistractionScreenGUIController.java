@@ -24,16 +24,12 @@ import cz.cvut.cognitive.distractors.CollectObjectDistraction;
 import cz.cvut.cognitive.distractors.DarkeningDistraction;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.NiftyEventSubscriber;
-import de.lessvoid.nifty.controls.CheckBox;
-import de.lessvoid.nifty.controls.CheckBoxStateChangedEvent;
 import de.lessvoid.nifty.controls.Slider;
 import de.lessvoid.nifty.controls.SliderChangedEvent;
 import de.lessvoid.nifty.screen.Screen;
-import de.lessvoid.nifty.screen.ScreenController;
 
 
 
-import cz.cvut.cognitive.distractors.DistractionSettings;
 import cz.cvut.cognitive.distractors.PedestrianDistraction;
 import cz.cvut.cognitive.distractors.SoundDistraction;
 import cz.cvut.cognitive.distractors.TextDistraction;
@@ -133,7 +129,6 @@ public class DistractionScreenGUIController extends InstructionScreenGUIControll
         @NiftyEventSubscriber(id="Slider_rain") 
         public void intensityRain(final String id, final SliderChangedEvent event) 
         {   
-                DistractionSettings.setIntensityRain(Slider_rain.getValue());
                 Value_rain.clear();
                 Value_rain.addItem(Slider_rain.getValue());                
         }
@@ -141,7 +136,6 @@ public class DistractionScreenGUIController extends InstructionScreenGUIControll
         @NiftyEventSubscriber(id="Slider_snow") 
         public void intensitySnow(final String id, final SliderChangedEvent event) 
         {   
-                DistractionSettings.setIntensitySnow(Slider_snow.getValue());
                 Value_snow.clear();
                 Value_snow.addItem(Slider_snow.getValue());
         }
@@ -149,7 +143,6 @@ public class DistractionScreenGUIController extends InstructionScreenGUIControll
         @NiftyEventSubscriber(id="Slider_fog") 
         public void intensityFog(final String id, final SliderChangedEvent event) 
         {   
-                DistractionSettings.setIntensityFog(Slider_fog.getValue());
                 Value_fog.clear();
                 Value_fog.addItem(Slider_fog.getValue());
         }
@@ -157,7 +150,6 @@ public class DistractionScreenGUIController extends InstructionScreenGUIControll
         @NiftyEventSubscriber(id="Slider_box") 
         public void propabilityBox(final String id, final SliderChangedEvent event) 
         {   
-                DistractionSettings.setProbabilityBox(Slider_box.getValue());
                 Value_box.clear();
                 Value_box.addItem(Slider_box.getValue());
         }
@@ -165,7 +157,6 @@ public class DistractionScreenGUIController extends InstructionScreenGUIControll
         @NiftyEventSubscriber(id="Slider_sound") 
         public void propabilitySound(final String id, final SliderChangedEvent event) 
         {   
-                DistractionSettings.setProbabilitySound(Slider_sound.getValue());
                 Value_sound.clear();
                 Value_sound.addItem(Slider_sound.getValue());
         }
@@ -173,7 +164,6 @@ public class DistractionScreenGUIController extends InstructionScreenGUIControll
         @NiftyEventSubscriber(id="Slider_pedestrian") 
         public void propabilityPedestrian(final String id, final SliderChangedEvent event) 
         {   
-                DistractionSettings.setProbabilityPedestrian(Slider_pedestrian.getValue());
                 Value_pedestrian.clear();
                 Value_pedestrian.addItem(Slider_pedestrian.getValue());
         }
@@ -181,7 +171,6 @@ public class DistractionScreenGUIController extends InstructionScreenGUIControll
         @NiftyEventSubscriber(id="Slider_text") 
         public void propabilityText(final String id, final SliderChangedEvent event) 
         {   
-                DistractionSettings.setProbabilityText(Slider_text.getValue());
                 Value_text.clear();
                 Value_text.addItem(Slider_text.getValue());
         }
@@ -189,7 +178,6 @@ public class DistractionScreenGUIController extends InstructionScreenGUIControll
         @NiftyEventSubscriber(id="Slider_dark") 
         public void propabilityDark(final String id, final SliderChangedEvent event) 
         {   
-                DistractionSettings.setProbabilityDark(Slider_dark.getValue());
                 Value_dark.clear();
                 Value_dark.addItem(Slider_dark.getValue());
         }
@@ -197,7 +185,6 @@ public class DistractionScreenGUIController extends InstructionScreenGUIControll
         @NiftyEventSubscriber(id="Slider_collect") 
         public void propabilityCollect(final String id, final SliderChangedEvent event) 
         {   
-                DistractionSettings.setProbabilityCollect(Slider_collect.getValue());
                 Value_collect.clear();
                 Value_collect.addItem(Slider_collect.getValue());
         }
@@ -206,7 +193,6 @@ public class DistractionScreenGUIController extends InstructionScreenGUIControll
         @Override
 	public void clickStartButton()
 	{
-                DistractionSettings.setDistScenario(true);
 		// Initialize all distractors here: 
                 new BoxDistraction(sim, 5f, Slider_box.getValue(), 2f, 1, 1, 1, 2, "Textures"+File.separator+"DistractionTask"+File.separator+"default_box.jpg");
                 new SoundDistraction(sim, 2f, Slider_sound.getValue(), 1f);
@@ -225,45 +211,23 @@ public class DistractionScreenGUIController extends InstructionScreenGUIControll
           private void clickDefButton() //FIXME I broke the default button - GUI is not reset
 	{
                 resetOptions();
-                System.out.println("DEF");
+                
                 Slider_collect.setValue(30);
-                DistractionSettings.setProbabilityCollect(30);
-                
                 Slider_rain.setValue(20);
-                DistractionSettings.setIntensityRain(20);
-                
                 Slider_box.setValue(30);
-                DistractionSettings.setProbabilityBox(20);
                 
                 nifty.update();
  	}
           
           private void resetOptions(){
                 Slider_collect.setValue(0);
-                DistractionSettings.setProbabilityCollect(0);
-                DistractionSettings.setCollect(false);
                 Slider_rain.setValue(0);
-                DistractionSettings.setIntensityRain(0);
-                DistractionSettings.setRain(false);
                 Slider_box.setValue(0);
-                DistractionSettings.setProbabilityBox(0);
                 Slider_pedestrian.setValue(0);
-                DistractionSettings.setProbabilityPedestrian(0);
-                DistractionSettings.setPedestrian(false);
                 Slider_text.setValue(0);
-                DistractionSettings.setProbabilityText(0);
-                DistractionSettings.setText(false);
                 Slider_sound.setValue(0);
-                DistractionSettings.setProbabilitySound(0);
-                DistractionSettings.setSound(false);
                 Slider_dark.setValue(0);
-                DistractionSettings.setProbabilityDark(0);
-                DistractionSettings.setDark(false);
                 Slider_fog.setValue(0);
-                DistractionSettings.setIntensityFog(0);
-                DistractionSettings.setFog(false);
                 Slider_snow.setValue(0);
-                DistractionSettings.setIntensitySnow(0);
-                DistractionSettings.setSnow(false);
           }
 }

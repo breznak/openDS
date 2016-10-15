@@ -43,7 +43,6 @@ import com.sun.javafx.application.PlatformImpl;
 import cz.cvut.cognitive.distractors.DistractionClass;
 
 import de.lessvoid.nifty.Nifty;
-import cz.cvut.cognitive.distractors.DistractionSettings;
 
 import cz.cvut.cognitive.load.CognitiveFunction;
 
@@ -98,7 +97,6 @@ public class Simulator extends SimulationBasics
     private boolean drivingTaskGiven = false;
     private boolean initializationFinished = false;
     // CognitiveLoad module related vars
-    DistractionSettings distSet;
     private CognitiveFunction cogFunction;
     
     
@@ -487,17 +485,14 @@ public class Simulator extends SimulationBasics
                 
                 lastWord = SimulationDefaults.drivingTaskFileName.substring(SimulationDefaults.drivingTaskFileName.lastIndexOf(File.separator)+1);
                 if(lastWord.equalsIgnoreCase("A_DistractionTest.xml")){
-                    distSet = new DistractionSettings();
                     cogFunction = new CognitiveFunction(this);
-                    DistractionSettings.setDistScenario(false);
                     CognitiveFunction.activeDistCount=0;
                     Timer = 0;
                     cogTimer = 0;
-                    DistractionSettings.setQuestionAnswered(true);
                     healthText = new BitmapText(this.getAssetManager().loadFont("Interface"+File.separator+"Fonts"+File.separator+"Default.fnt"), false);
                     healthText.setSize(this.getAssetManager().loadFont("Interface"+File.separator+"Fonts"+File.separator+"Default.fnt").getCharSet().getRenderedSize());
                     healthText.setText("Car Health: " + Simulator.playerHealth);
-                    healthText.setLocalTranslation(1100, 250, 0);
+                    healthText.setLocalTranslation(1100, 250, 0); //TODO replace with showText
                     this.getGuiNode().attachChild(healthText);
                 }
                 
@@ -603,7 +598,7 @@ public class Simulator extends SimulationBasics
 			if(eyetrackerCenter != null)
 				eyetrackerCenter.update();
                         
-                        if(cogFunction != null && DistractionSettings.isDistScenario()){
+                        if(cogFunction != null && lastWord.equalsIgnoreCase("A_DistractionTest.xml")){
                             cogTimer = cogTimer + tpf;
                             if (cogTimer>1){
                                 cogFunction.update();
@@ -620,7 +615,7 @@ public class Simulator extends SimulationBasics
                                     this.getGuiNode().detachChild(rewardNode);
                                     Timer = 0;
                                 }
-                            } else if (DistractionSettings.isQuestionAnswered()) {  
+                            } else if (!this.isPause()){  
                                 for(DistractionClass d: DistractionClass.getDistractors()) {
                                     d.collision(tpf);
                                 }

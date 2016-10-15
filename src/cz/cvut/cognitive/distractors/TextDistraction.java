@@ -78,7 +78,6 @@ public class TextDistraction extends DistractionClass {
             inputManager.deleteMapping("steer_right");
             inputManager.deleteMapping("steer_left");
             sim.setPause(true);
-            DistractionSettings.setQuestionAnswered(false);
             showDialog();
             textOn = true;
     }
@@ -90,7 +89,6 @@ public class TextDistraction extends DistractionClass {
     @Override
     public void remove_local() {
         if (textOn){
-            DistractionSettings.setQuestionAnswered(true);
             hideDialog();
             textOn = false;
         }
