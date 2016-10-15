@@ -43,7 +43,7 @@ import eu.opends.niftyGui.InstructionScreenGUI;
  * 
  * @author Johnny Marek
  */
-public class DistractionScreenGUIController implements ScreenController 
+public class DistractionScreenGUIController implements ScreenController //FIXME remove this class, just override sections from ScreenGUIController
 {
     
         
@@ -68,7 +68,7 @@ public class DistractionScreenGUIController implements ScreenController
         private Slider Slider_dark;
         private Slider Slider_collect;
         private Element infoRain;     
-        private Simulator sim;
+        private final Simulator sim;
         private ListBox Value_rain;
         private ListBox Value_snow;
         private ListBox Value_fog;
@@ -78,10 +78,7 @@ public class DistractionScreenGUIController implements ScreenController
         private ListBox Value_text;
         private ListBox Value_dark;
         private ListBox Value_collect;
-        private boolean defClick = false;
         
-        
-	
 	/**
 	 * Creates a new controller instance for the key mapping and graphic 
 	 * settings nifty-gui.
@@ -187,6 +184,9 @@ public class DistractionScreenGUIController implements ScreenController
             setValueListBox (Value_dark);
             setValueListBox (Value_text);
             setValueListBox (Value_sound);
+            
+            // set default values
+            clickDefButton();
             
 	}
         
@@ -434,14 +434,10 @@ public class DistractionScreenGUIController implements ScreenController
                 DistractionSettings.setDistScenario(true);
 		DistractionClass.initialize(sim);
                 instructionScreenGUI.hideDialog();
-                   
-                
 	}
         
           public void clickDefButton()
 	{
-            if (!defClick){
-                
                 resetOptions();
                 
                 CheckBox_collect.check();
@@ -458,17 +454,6 @@ public class DistractionScreenGUIController implements ScreenController
                 Slider_box.setValue(30);
                 DistractionSettings.setProbabilityBox(20);
                 DistractionSettings.setBox(true);
-                
-                
-                
-                defClick = !defClick;
-            }else {
-                
-                resetOptions();
-
-                defClick = !defClick;
-            }
-                
 	}
           
           private void resetOptions(){
