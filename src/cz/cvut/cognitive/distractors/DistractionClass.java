@@ -24,25 +24,6 @@ import java.util.List;
                                          distraction
  */
 public abstract class DistractionClass {
-    private boolean isDIstractor = false;
-    private float disProbability = 0;
-
-    public boolean isIsDIstractor() {
-        return isDIstractor;
-    }
-
-    public void setIsDIstractor(boolean isDIstractor) {
-        this.isDIstractor = isDIstractor;
-    }
-
-    public float getDisProbability() {
-        return disProbability;
-    }
-
-    public void setDisProbability(float disProbability) {
-        this.disProbability = disProbability;
-    }
-   
     //protected
     protected final float PROBABILITY;
     protected final float REWARD;
@@ -70,7 +51,7 @@ public abstract class DistractionClass {
      * @param difficulty how "cognitively demanding" this stress factor is
      */
     protected DistractionClass(Simulator sim, float reward, float probability, float difficulty) {
-        this.PROBABILITY=probability;
+        this.PROBABILITY=DistractionSettings.probabilityCollect; //probability;
         this.REWARD=reward;
         this.COG_DIFFICULTY = difficulty;
         DistractionClass.activeDistractors.add(this); //append to available distractors
@@ -97,8 +78,9 @@ public abstract class DistractionClass {
     }
     
     public void update(float f) {
-        int n = (int)(Math.random() * 100) + 1;
-        if (n >= this.PROBABILITY || isActive) { return; } 
+        float n = (float)Math.random();
+        System.out.println("PROB="+PROBABILITY+" n="+n+" active="+isActive+" "+this.getClass().getSimpleName());
+        if (n > this.PROBABILITY || isActive || PROBABILITY==0.0f) { return; } 
         
         spawn(f);
         
@@ -108,7 +90,7 @@ public abstract class DistractionClass {
         DistractionSettings.distRunning++;
         
         this.isActive = true;
-    }
+   }
     
     /**
      * 

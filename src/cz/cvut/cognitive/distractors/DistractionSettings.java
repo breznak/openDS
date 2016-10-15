@@ -186,6 +186,7 @@ public class DistractionSettings {
 
     public static void setProbabilityBox(float propabilityBox) {
         DistractionSettings.probabilityBox = propabilityBox;
+        System.out.println("Prob BOX= "+propabilityBox);
     }
 
     public static float getProbabilityText() {
