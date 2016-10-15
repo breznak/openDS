@@ -17,6 +17,7 @@ import com.jme3.scene.Geometry;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.shape.Sphere;
 import com.jme3.texture.Texture;
+import cz.cvut.cognitive.CogMain;
 import eu.opends.main.Simulator;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -63,7 +64,7 @@ public class CollectObjectDistraction extends DistractionClass{
         rewardText.setColor(ColorRGBA.Black);
         rewardText.setText("Well done! You did it!");
         rewardText.setLocalTranslation(400, 700, 0);
-        sim.getRewardNode().attachChild(rewardText);
+        sim.taskCogLoad.getRewardNode().attachChild(rewardText);
         
         greenText = new BitmapText(manager.loadFont("Interface"+File.separator+"Fonts"+File.separator+"Default.fnt"), false);
         greenText.setSize(40);
@@ -213,7 +214,7 @@ public class CollectObjectDistraction extends DistractionClass{
             sim.getGuiNode().detachChild(greenText);
             sim.getGuiNode().detachChild(redText);
             collectOn = false;
-            Simulator.Timer = 0;
+            CogMain.Timer = 0;
         }
     }
     
@@ -229,8 +230,8 @@ public class CollectObjectDistraction extends DistractionClass{
                 } 
                 else { 
                     correctScore[1]++;
-                    Simulator.playerHealth = Simulator.playerHealth - (int)this.REWARD;
-                    sim.updateHealth();
+                    CogMain.playerHealth -= (int)this.REWARD;
+                    sim.taskCogLoad.updateHealth();
                 }
                 collected = true;
                 remove_local();
@@ -244,8 +245,8 @@ public class CollectObjectDistraction extends DistractionClass{
                 } 
                 else { 
                     correctScore[1]++;
-                    Simulator.playerHealth = Simulator.playerHealth - (int)this.REWARD;
-                    sim.updateHealth();
+                    CogMain.playerHealth -= (int)this.REWARD;
+                    sim.taskCogLoad.updateHealth();
                 }
                 collected = true;
                 remove_local();
@@ -259,7 +260,7 @@ public class CollectObjectDistraction extends DistractionClass{
     //TODO move to global DistractorClass
     private void rewardPlayer(){
         rewardSoundNode.playInstance();
-        sim.getGuiNode().attachChild(sim.getRewardNode());
+        sim.getGuiNode().attachChild(sim.taskCogLoad.getRewardNode());
     }
     
 }

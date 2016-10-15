@@ -7,6 +7,7 @@ import com.jme3.collision.CollisionResults;
 import com.jme3.math.Ray;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.Camera;
+import cz.cvut.cognitive.CogMain;
 import cz.cvut.cognitive.distractors.BoxDistraction;
 import cz.cvut.cognitive.distractors.PedestrianDistraction;
 import eu.opends.car.SteeringCar;
@@ -174,7 +175,7 @@ public class CognitiveFunction {
             }
         }
         try (BufferedWriter writer2 = new BufferedWriter(new FileWriter(outputFolder, true))) {
-            writer2.write(curDate.getTime() + "," + getCurrentDifficulty() + "," + getRoadDifficulty(ROAD_LOOK_RANGE) + "," + car.getCurrentSpeedKmh() + "," + Simulator.playerHealth + "," 
+            writer2.write(curDate.getTime() + "," + getCurrentDifficulty() + "," + getRoadDifficulty(ROAD_LOOK_RANGE) + "," + car.getCurrentSpeedKmh() + "," + CogMain.playerHealth + "," 
                     + BoxDistraction.boxHitCount + "," + PedestrianDistraction.pedestrianHitCount + "," + getNumObjectsOnScene()  + "," + activeDistCount  
                     + "," + activeDistNames[0] + "," + activeDistNames[1] + "," + activeDistNames[2] + "," + activeDistNames[3] + "," + activeDistNames[4]
              + "," + activeDistNames[5]);

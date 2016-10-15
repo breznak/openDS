@@ -34,17 +34,14 @@ import org.apache.log4j.PropertyConfigurator;
 
 import com.jme3.app.StatsAppState;
 import com.jme3.app.state.VideoRecorderAppState;
-import com.jme3.font.BitmapText;
 import com.jme3.input.Joystick;
 import com.jme3.math.Vector3f;
 import com.jme3.niftygui.NiftyJmeDisplay;
-import com.jme3.scene.Node;
 import com.sun.javafx.application.PlatformImpl;
-import cz.cvut.cognitive.distractors.DistractionClass;
+import cz.cvut.cognitive.CogMain;
 
 import de.lessvoid.nifty.Nifty;
 
-import cz.cvut.cognitive.load.CognitiveFunction;
 
 import eu.opends.analyzer.DrivingTaskLogger;
 import eu.opends.analyzer.DataWriter;
@@ -97,20 +94,7 @@ public class Simulator extends SimulationBasics
     private boolean drivingTaskGiven = false;
     private boolean initializationFinished = false;
     // CognitiveLoad module related vars
-    private CognitiveFunction cogFunction;
-    
-    
-    public static float Timer;
-    public float cogTimer;
-    public static int playerHealth = 100; //FIXME move to DistractionClass
-    private String lastWord;
-    private BitmapText healthText;
-    
-    private Node rewardNode = new Node();;
-    public Node getRewardNode(){
-        return rewardNode;
-    }
-
+    public CogMain taskCogLoad;
     
     private static Float gravityConstant;
 	public static Float getGravityConstant()
@@ -483,18 +467,8 @@ public class Simulator extends SimulationBasics
 		
 		joystickSpringController = new ForceFeedbackJoystickController(this);
                 
-                lastWord = SimulationDefaults.drivingTaskFileName.substring(SimulationDefaults.drivingTaskFileName.lastIndexOf(File.separator)+1);
-                if(lastWord.equalsIgnoreCase("A_DistractionTest.xml")){
-                    cogFunction = new CognitiveFunction(this);
-                    CognitiveFunction.activeDistCount=0;
-                    Timer = 0;
-                    cogTimer = 0;
-                    healthText = new BitmapText(this.getAssetManager().loadFont("Interface"+File.separator+"Fonts"+File.separator+"Default.fnt"), false);
-                    healthText.setSize(this.getAssetManager().loadFont("Interface"+File.separator+"Fonts"+File.separator+"Default.fnt").getCharSet().getRenderedSize());
-                    healthText.setText("Car Health: " + Simulator.playerHealth);
-                    healthText.setLocalTranslation(1100, 250, 0); //TODO replace with showText
-                    this.getGuiNode().attachChild(healthText);
-                }
+                // call cz.cvut handle
+                taskCogLoad = new CogMain(this);
                 
 		initializationFinished = true;
     }
@@ -598,56 +572,9 @@ public class Simulator extends SimulationBasics
 			if(eyetrackerCenter != null)
 				eyetrackerCenter.update();
                         
-                        if(cogFunction != null && lastWord.equalsIgnoreCase("A_DistractionTest.xml")){
-                            cogTimer = cogTimer + tpf;
-                            if (cogTimer>1){
-                                cogFunction.update();
-                                cogTimer = 0; 
-                            }
-                            
-                            if(CognitiveFunction.activeDistCount <= 0){
-                                Timer = Timer + tpf;
-                                if (Timer > 5) //FIXME what is these magic numbers '5', '15'?
-                                {
-                                    for(DistractionClass d : DistractionClass.getDistractors()) {
-                                        d.update(tpf);
-                                    }
-                                    this.getGuiNode().detachChild(rewardNode);
-                                    Timer = 0;
-                                }
-                            } else if (!this.isPause()){  
-                                for(DistractionClass d: DistractionClass.getDistractors()) {
-                                    d.collision(tpf);
-                                }
-                                Timer = Timer + tpf;
-                                if(Timer > 15){ //FIXME magic 15?
-                                    for(DistractionClass d: DistractionClass.getDistractors()) {
-                                        d.remove();
-                                    }
-                                    Timer = 0;
-                                }
-                            } else {
-                                inputManager.setCursorVisible(true);
-                                
-                            }
-                        } 
-                                
-                                
-                                   
-                        
-                        
-                        //TODO: obalit car ghost controllom a detekovat to (naprava)
-                        //text
-                        //mapa
-                        //cesta detekcia
-                        //
-                            
-                            
-                        
-                        
-                        
-                        
-
+                        if(taskCogLoad.isActiveTask()) {
+                            taskCogLoad.update(tpf);
+                        }
     		if(frameCounter == 5)
     		{
     			if(settingsLoader.getSetting(Setting.General_pauseAfterStartup, SimulationDefaults.General_pauseAfterStartup))
@@ -658,13 +585,6 @@ public class Simulator extends SimulationBasics
     		joystickSpringController.update(tpf);
     	}
     }
-    
-    public void updateHealth(){
-        this.getGuiNode().detachChild(healthText);
-        healthText.setText("Car Health: " + Simulator.playerHealth);
-        this.getGuiNode().attachChild(healthText);
-    }
-
     
 	private void updateDataWriter() 
 	{

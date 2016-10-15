@@ -11,6 +11,7 @@ import com.jme3.scene.Geometry;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.shape.Box;
 import com.jme3.texture.Texture;
+import cz.cvut.cognitive.CogMain;
 import eu.opends.main.Simulator;
 /**
  *
@@ -134,14 +135,15 @@ public class BoxDistraction extends DistractionClass{
        }
     }
 
+    @Override
     public void collision(float tpf){
         if(boxOn){
             if(!boxHit){
                 CollisionResults results = new CollisionResults();
                 car.getCarNode().collideWith(droppingBox.getWorldBound(), results);
                 if(results.size()>0 && results.getClosestCollision().getDistance() <= 1){
-                    Simulator.playerHealth = Simulator.playerHealth - (flatDamage + (int)(car.getCurrentSpeedKmhRounded()*0.5));
-                    sim.updateHealth();
+                    CogMain.playerHealth -= (flatDamage + (int)(car.getCurrentSpeedKmhRounded()*0.5));
+                    sim.taskCogLoad.updateHealth();
                     
                     boxHitCount++; 
                     boxHit = true;
