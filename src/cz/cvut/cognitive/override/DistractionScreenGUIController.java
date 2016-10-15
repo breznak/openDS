@@ -22,7 +22,6 @@ package cz.cvut.cognitive.override;
 import cz.cvut.cognitive.distractors.BoxDistraction;
 import cz.cvut.cognitive.distractors.CollectObjectDistraction;
 import cz.cvut.cognitive.distractors.DarkeningDistraction;
-import cz.cvut.cognitive.distractors.DistractionClass;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.NiftyEventSubscriber;
 import de.lessvoid.nifty.controls.CheckBox;
@@ -43,6 +42,7 @@ import de.lessvoid.nifty.controls.ListBox;
 import de.lessvoid.nifty.elements.Element;
 import eu.opends.main.Simulator;
 import eu.opends.niftyGui.InstructionScreenGUI;
+import eu.opends.niftyGui.InstructionScreenGUIController;
 import java.io.File;
 
 
@@ -50,12 +50,11 @@ import java.io.File;
  * 
  * @author Johnny Marek
  */
-public class DistractionScreenGUIController implements ScreenController //FIXME remove this class, just override sections from ScreenGUIController
+public class DistractionScreenGUIController extends InstructionScreenGUIController //FIXME remove this class, just override sections from ScreenGUIController
 {
     
         
 	private final Nifty nifty;
-	private final InstructionScreenGUI instructionScreenGUI;
         private CheckBox CheckBox_snow;
         private CheckBox CheckBox_rain;
         private CheckBox CheckBox_fog;
@@ -96,26 +95,10 @@ public class DistractionScreenGUIController implements ScreenController //FIXME 
 	 */
 	public DistractionScreenGUIController(Simulator sim, InstructionScreenGUI instructionScreenGUI) 
 	{
-		this.instructionScreenGUI = instructionScreenGUI;
+            super(sim, instructionScreenGUI);
+            
 		this.nifty = instructionScreenGUI.getNifty();        
                 this.sim = sim;
-	}
-
-	
-	@Override
-	public void bind(Nifty arg0, Screen arg1) 
-	{
-		
-	}
-
-	
-	/**
-	 * Will be called when GUI is closed.
-	 */
-	@Override
-	public void onEndScreen() 
-	{
-
 	}
 
 	/**
@@ -124,6 +107,8 @@ public class DistractionScreenGUIController implements ScreenController //FIXME 
 	@Override
 	public void onStartScreen() 
 	{
+            super.onStartScreen();
+            
             Screen screen = nifty.getCurrentScreen();
             CheckBox_rain = screen.findNiftyControl("CheckBox_rain", CheckBox.class);
             CheckBox_snow = screen.findNiftyControl("CheckBox_snow", CheckBox.class);
@@ -194,7 +179,6 @@ public class DistractionScreenGUIController implements ScreenController //FIXME 
             
             // set default values
             clickDefButton();
-            
 	}
         
         private void setValueListBox (ListBox Value_box){
@@ -450,10 +434,10 @@ public class DistractionScreenGUIController implements ScreenController //FIXME 
                 new WeatherDistraction(sim, 1f, Slider_snow.getValue(), WeatherDistraction.Type.SNOW); 
                 new WeatherDistraction(sim, 1f, Slider_fog.getValue(), WeatherDistraction.Type.FOG); 
                 
-                instructionScreenGUI.hideDialog();
+                super.clickStartButton();
 	}
         
-          public void clickDefButton()
+          private void clickDefButton()
 	{
                 resetOptions();
                 
