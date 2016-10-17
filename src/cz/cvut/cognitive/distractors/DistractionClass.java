@@ -8,10 +8,13 @@ import com.jme3.renderer.Camera;
 import cz.cvut.cognitive.load.CognitiveFunction;
 import eu.opends.car.SteeringCar;
 import eu.opends.main.Simulator;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -23,17 +26,21 @@ import java.util.List;
                            probability - preset value of every initialized
                                          distraction
  */
-public abstract class DistractionClass {
+public abstract class DistractionClass implements Runnable {
+
+    private static ArrayList<DistractionClass> activeDistractors = new ArrayList<>();
     //protected
     protected float probability;
     protected final float REWARD;
     public final float COG_DIFFICULTY; //FIXME make protected too (WeatherD)
     //private
-    private final static ArrayList<DistractionClass> activeDistractors = new ArrayList<>();
+    private final AtomicInteger  tpf_atomic = new AtomicInteger();
+    private final int DURATION; //ms 
     /**
      * if the Distraction is currently active/used
      */
     private boolean isActive = false;
+    private Thread runner;
     
     protected final Simulator sim;
     protected final SteeringCar car;
@@ -60,6 +67,13 @@ public abstract class DistractionClass {
         this.manager = sim.getAssetManager();
         this.bulletAppState = sim.getBulletAppState();
         this.camera = sim.getCamera();
+        
+        if(this.getClass().equals(TextDistraction.class)) {
+            DURATION=20000; //20sec
+        }
+        else {
+            DURATION = 5000; //TODO random/param
+        }
     }
     
     //abstract
@@ -82,14 +96,14 @@ public abstract class DistractionClass {
         System.out.println("PROB="+probability+" n="+n+" active="+isActive+" "+this.getClass().getSimpleName());
         if (n > this.probability || isActive || probability==0.0f) { return; } 
         
-        spawn(f);
-        
         CognitiveFunction.distScore += this.COG_DIFFICULTY;
         CognitiveFunction.activeDistCount++;
-        CognitiveFunction.activeDistNames[0] = 1; //FIXME remove
+        CognitiveFunction.activeDistNames[0] = 1; //FIXME remove 
         
-        this.isActive = true;
-   }
+        tpf_atomic.set((int)f);
+        runner = new Thread(this);
+        runner.start();
+    }
     
     /**
      * 
@@ -99,7 +113,7 @@ public abstract class DistractionClass {
         return isActive;
     }
     
-    public void remove() {
+    private void remove() {
         if(!isActive) return; //do nothing on inactive
         
         remove_local();
@@ -111,4 +125,23 @@ public abstract class DistractionClass {
         isActive=false;
     }
     
+    @Override
+    public void run() {
+        // start
+        float step = (float)this.tpf_atomic.get();
+        spawn(step);
+        this.isActive = true;
+        System.out.println(this.getClass().getSimpleName()+" RUNNING "+step);
+        try {
+            //wait
+            System.out.println("SLEEP");
+            TimeUnit.MILLISECONDS.sleep(DURATION);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(DistractionClass.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //collisions?
+        collision(step);
+        //remove
+        remove();
+    }
 }

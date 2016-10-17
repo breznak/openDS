@@ -163,5 +163,5 @@ public class BoxDistraction extends DistractionClass{
 
         }
     }
-    
+
 }
