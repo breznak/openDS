@@ -40,6 +40,8 @@ import eu.opends.main.Simulator;
 import eu.opends.niftyGui.InstructionScreenGUI;
 import eu.opends.niftyGui.InstructionScreenGUIController;
 import java.io.File;
+import java.io.IOException;
+import java.util.Scanner;
 
 
 /**
@@ -72,6 +74,9 @@ public class DistractionScreenGUIController extends InstructionScreenGUIControll
         private ListBox Value_text;
         private ListBox Value_dark;
         private ListBox Value_collect;
+        private ListBox instructionBox_1;
+        private ListBox instructionBox_2;
+        private ListBox instructionBox_3;
         
 	/**
 	 * Creates a new controller instance for the key mapping and graphic 
@@ -121,6 +126,19 @@ public class DistractionScreenGUIController extends InstructionScreenGUIControll
             Value_dark = (ListBox) screen.findNiftyControl("Value_dark", ListBox.class);
             Value_text = (ListBox) screen.findNiftyControl("Value_text", ListBox.class);
             Value_sound = (ListBox) screen.findNiftyControl("Value_sound", ListBox.class);
+            
+            instructionBox_1 = (ListBox) screen.findNiftyControl("Instruction_box_1", ListBox.class);
+            instructionBox_1.changeSelectionMode(ListBox.SelectionMode.Disabled, false);	
+            instructionBox_1.setFocusable(false);
+            instructionBox_2 = (ListBox) screen.findNiftyControl("Instruction_box_2", ListBox.class);
+            instructionBox_2.changeSelectionMode(ListBox.SelectionMode.Disabled, false);	
+            instructionBox_2.setFocusable(false);
+            instructionBox_3 = (ListBox) screen.findNiftyControl("Instruction_box_3", ListBox.class);
+            instructionBox_3.changeSelectionMode(ListBox.SelectionMode.Disabled, false);	
+            instructionBox_3.setFocusable(false);
+            sendToScreen(instructionBox_1, "assets"+File.separator+"Interface"+File.separator+"Text_questions"+File.separator+"Instructions_1.txt");
+            sendToScreen(instructionBox_2, "assets"+File.separator+"Interface"+File.separator+"Text_questions"+File.separator+"Instructions_2.txt");
+            sendToScreen(instructionBox_3, "assets"+File.separator+"Interface"+File.separator+"Text_questions"+File.separator+"Instructions_3.txt");
 
             // set default values
             clickDefButton();
@@ -230,4 +248,70 @@ public class DistractionScreenGUIController extends InstructionScreenGUIControll
                 Slider_fog.setValue(0);
                 Slider_snow.setValue(0);
           }
+          
+         /**
+         * Fills listBox with text from a file
+         * @param instructionBox listBox which should be filled
+         * @param filePath path to the file .txt file
+         *
+         */
+        @SuppressWarnings("unchecked")
+        public void sendToScreen(ListBox instructionBox, String filePath){
+        
+            // clear list box
+            instructionBox.clear();		
+            int charactersPerLine = (int) (instructionBox.getWidth()/6.5f);
+             try (Scanner scan = new Scanner(new File(filePath)))
+            {
+                while (scan.hasNextLine()) {
+                    String[] words = scan.nextLine().trim().split(" ");;
+                    if (words[0].equals("\\n")){
+                        instructionBox.addItem('\n');
+                    }else{
+
+                        int indexOfCurrentWord = 0;
+                        while(true) {
+
+                            // initialize line
+                            String line = "";
+
+                            // try to get characters for one line
+                            try 
+                            {		
+                                // fill word by word into a line, until the maximum number of characters 
+                                // per line has been reached
+
+                                // length of first word in line
+                                int length = words[indexOfCurrentWord].length()+1;
+                                while(length <= charactersPerLine) 
+                                {
+
+                                    // add current word
+                                    line += words[indexOfCurrentWord] + " ";
+
+                                    // go to next word
+                                    indexOfCurrentWord++;
+
+                                    // add length of next word for next loop
+                                    length += words[indexOfCurrentWord].length()+1;
+                                }
+
+                            } catch(Exception e){
+                                // ArrayIndexOutOfBoundsException will be caught, if not all lines filled
+                            }
+                        
+                            // add line to message box
+                            line = line.trim();
+                            if(!line.isEmpty())
+                                instructionBox.addItem(line);
+                            else 
+                                break;
+                        }
+                    }
+                }
+            } 
+            catch (IOException e) {
+                e.printStackTrace();
+            } 
+        }   
 }
