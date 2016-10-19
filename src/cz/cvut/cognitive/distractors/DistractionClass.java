@@ -35,7 +35,7 @@ public abstract class DistractionClass {
      */
     private boolean isActive = false;
     private int itersAlive = 0; //how many iters is already shown/alive
-    protected final int MAX_ALIFE = 200; //iters //FIXME avoid hard coded const
+    protected final int MAX_ALIFE = 150; //iters //FIXME avoid hard coded const
     
     protected final Simulator sim;
     protected final SteeringCar car;
@@ -53,7 +53,7 @@ public abstract class DistractionClass {
      * @param difficulty how "cognitively demanding" this stress factor is
      */
     protected DistractionClass(Simulator sim, float reward, float probability, float difficulty) {
-        this.probability=probability;
+        this.probability=probability/100; //to 0.0..1.0
         this.REWARD=reward;
         this.COG_DIFFICULTY = difficulty;
         DistractionClass.activeDistractors.add(this); //append to available distractors
@@ -94,10 +94,10 @@ public abstract class DistractionClass {
         this.isActive = true;
         } else if (itersAlive >= MAX_ALIFE) { //time to disappear
             remove();
-        } else {
+        } else if(isActive){
             collision(f);
+            itersAlive++;
         }
-        itersAlive++;
    }
     
     /**
