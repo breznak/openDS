@@ -49,6 +49,7 @@ public class CollectObjectDistraction extends DistractionClass{
     public float distanceRight;
     
     private final AudioNode rewardSoundNode;
+    private int rewardAlive =0;
     
     public CollectObjectDistraction(Simulator sim, float reward, float probability, float cogDifficulty, String texturePathGreen, String texturePathRed){
         super(sim, reward, probability, cogDifficulty);
@@ -65,6 +66,7 @@ public class CollectObjectDistraction extends DistractionClass{
         rewardText.setText("Well done! You did it!");
         rewardText.setLocalTranslation(sim.getSettings().getWidth()/2 - 120, sim.getSettings().getHeight()-35, 0);
         sim.taskCogLoad.getRewardNode().attachChild(rewardText);
+
         
         greenText = new BitmapText(manager.loadFont("Interface"+File.separator+"Fonts"+File.separator+"Default.fnt"), false);
         greenText.setSize(40);
@@ -198,7 +200,6 @@ public class CollectObjectDistraction extends DistractionClass{
             
             sim.getGuiNode().detachChild(greenText);
             sim.getGuiNode().detachChild(redText);
-            CogMain.Timer = 0;
     }
     
     @Override
@@ -231,12 +232,21 @@ public class CollectObjectDistraction extends DistractionClass{
                 remove_local();                
             }
         sim.taskCogLoad.updateHealth();
+        if(rewardAlive>0) ++rewardAlive;
     }
     
     //TODO move to global DistractorClass
     private void rewardPlayer(){
-        rewardSoundNode.playInstance();
-        sim.getGuiNode().attachChild(sim.taskCogLoad.getRewardNode()); //FIXME when removed again? 
+        sim.getGuiNode().detachChild(rewardText);
+        ++rewardAlive;
+        if(rewardAlive> 20) {
+            rewardAlive=0;
+            rewardText.setText("");
+        } else {
+            rewardSoundNode.playInstance();
+            rewardText.setText("Well done, keep it up! :)");
+        }
+        sim.getGuiNode().attachChild(rewardText);
     }
     
 }

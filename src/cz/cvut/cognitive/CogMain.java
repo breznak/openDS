@@ -17,7 +17,6 @@ public class CogMain {
 
     private CognitiveFunction cogFunction;
     private BitmapText healthText;
-    public static float Timer = 0;
     public static int playerHealth = 100;
     private Simulator sim;
     private Node rewardNode = new Node();
