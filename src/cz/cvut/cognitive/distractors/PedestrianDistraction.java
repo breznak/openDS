@@ -3,9 +3,7 @@ package cz.cvut.cognitive.distractors;
 import com.jme3.animation.LoopMode;
 import com.jme3.cinematic.MotionPath;
 import com.jme3.cinematic.events.MotionEvent;
-import com.jme3.asset.AssetManager;
 import com.jme3.asset.TextureKey;
-import com.jme3.bullet.BulletAppState;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.cinematic.MotionPathListener;
 import com.jme3.collision.CollisionResults;
@@ -13,13 +11,11 @@ import com.jme3.material.Material;
 import com.jme3.math.Matrix3f;
 import com.jme3.math.Ray;
 import com.jme3.math.Vector3f;
-import com.jme3.renderer.Camera;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.shape.Box;
 import com.jme3.texture.Texture;
-import cz.cvut.cognitive.load.CognitiveFunction;
-import eu.opends.car.SteeringCar;
+import cz.cvut.cognitive.CogMain;
 import eu.opends.main.Simulator;
 
 /**
@@ -52,8 +48,8 @@ public class PedestrianDistraction extends DistractionClass{
      *Constructor for PedestrianDistraction
      *@param sim - simulator.
      */
-      public PedestrianDistraction(Simulator sim, String texturePath) {
-        super(sim, 30, 0.2f, 5);
+      public PedestrianDistraction(Simulator sim, float reward, float probability, float cogDifficulty, String texturePath) {
+        super(sim, reward, probability, cogDifficulty);
 
         //initialize box node
         Material mat = new Material(manager, "Common/MatDefs/Misc/Unshaded.j3md");
@@ -213,8 +209,8 @@ public class PedestrianDistraction extends DistractionClass{
                         pedestrianPhysics.setPhysicsRotation(Matrix3f.IDENTITY);
                         pedestrianPhysics.setPhysicsLocation(new Vector3f (pedestrianSpatial.getLocalTranslation())); 
                         
-                        Simulator.playerHealth = Simulator.playerHealth - ((int)this.REWARD + (int)(car.getCurrentSpeedKmhRounded()*0.1));
-                        sim.updateHealth();
+                        CogMain.playerHealth -= ((int)this.REWARD + (int)(car.getCurrentSpeedKmhRounded()*0.1));
+                        sim.taskCogLoad.updateHealth();
                         pedestrianHitCount++;
                         pedestrianHit = true;
                     }

@@ -16,15 +16,12 @@ import eu.opends.effects.EffectCenter;
  
 public class DarkeningDistraction extends DistractionClass{
 
-    
-    private boolean darkOn = false;
-    
     /**
      *Empty constructor for DarkeningDistraction
      * @param sim - Simulator
      */
-    public DarkeningDistraction(Simulator sim){
-        super(sim, 1, 0.1f, 3f);
+    public DarkeningDistraction(Simulator sim, float reward, float probability, float cogDifficulty){
+        super(sim, reward, probability, cogDifficulty);
     }
 
     /**
@@ -34,7 +31,6 @@ public class DarkeningDistraction extends DistractionClass{
     @Override
     public void spawn(float tpf) {
             EffectCenter.setFogPercentage(50);
-            darkOn = true;
     }
 
     /**
@@ -43,10 +39,7 @@ public class DarkeningDistraction extends DistractionClass{
      */
     @Override
     public void remove_local() {
-        if(darkOn){
-            EffectCenter.setFogPercentage(DistractionSettings.getIntensityFog());
-            darkOn = false;
-        }
+            EffectCenter.setFogPercentage(0f);
     }
 
     @Override

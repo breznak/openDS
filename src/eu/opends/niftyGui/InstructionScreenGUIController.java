@@ -34,7 +34,7 @@ public class InstructionScreenGUIController implements ScreenController
 {
 	//private SimulationBasics sim;
 	//private Nifty nifty;
-	private InstructionScreenGUI instructionScreenGUI;
+	protected InstructionScreenGUI instructionScreenGUI;
 	
 	
 	/**

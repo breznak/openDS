@@ -1,0 +1,11 @@
+     ___________________________________________________________
+    |         Welcome to the Distraction Task!                  | 
+    |___________________________________________________________| 
+
+On the start of the program you can see options, where you can choose from different settings for your scenario.
+\n
+These settings create distracting elements affecting your driving and create controled stress environment.
+
+Your task is to follow the instructions on your screen and avoid distractors which are supposed to make your driving harder.
+\n
+You can control the car with attached steering wheel with pedals or with Keyboard arrows. To switch between manual and automatic press FIXME

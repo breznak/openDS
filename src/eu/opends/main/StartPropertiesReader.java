@@ -72,7 +72,7 @@ public class StartPropertiesReader
 	        settings.setBitsPerPixel(getIntegerProperty("colordepth", 24));
 	        settings.setVSync(getBooleanProperty("vsync", false));
 	        settings.setFrequency(getIntegerProperty("refreshrate", 60));
-	        
+	       
 	        showSettingsScreen = getBooleanProperty("showsettingsscreen", true);
 	        
 	        drivingTaskPath = getStringProperty("drivingtask", "");

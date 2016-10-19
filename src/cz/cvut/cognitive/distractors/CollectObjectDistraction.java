@@ -3,6 +3,7 @@ package cz.cvut.cognitive.distractors;
 
 import cz.cvut.cognitive.load.CognitiveFunction;
 import com.jme3.asset.TextureKey;
+import com.jme3.audio.AudioNode;
 import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.control.GhostControl;
 import com.jme3.bullet.util.CollisionShapeFactory;
@@ -16,6 +17,7 @@ import com.jme3.scene.Geometry;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.shape.Sphere;
 import com.jme3.texture.Texture;
+import cz.cvut.cognitive.CogMain;
 import eu.opends.main.Simulator;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -36,6 +38,7 @@ public class CollectObjectDistraction extends DistractionClass{
     public static boolean collectOn = false;
     public GhostControl greenGhost;
     public GhostControl redGhost;
+    private BitmapText rewardText;
     private BitmapText greenText;
     private BitmapText redText;
     private boolean greenCorrect;
@@ -47,15 +50,28 @@ public class CollectObjectDistraction extends DistractionClass{
     public float distanceLeft;
     public float distanceRight;
     
-    CollectObjectDistraction(Simulator sim, String texturePathGreen, String texturePathRed){
-        super(sim, 5f, 0.4f, 3f);
-
+    private final AudioNode rewardSoundNode;
+    
+    public CollectObjectDistraction(Simulator sim, float reward, float probability, float cogDifficulty, String texturePathGreen, String texturePathRed){
+        super(sim, reward, probability, cogDifficulty);
+        //TODO move to separate function (the audio)
+        rewardSoundNode = new AudioNode(manager,"Sounds"+File.separator+"FF_Victory.wav",false);
+        rewardSoundNode.setLooping(false);
+        rewardSoundNode.setPositional(false);
+        //TODO move to sep fn (text display)
+        rewardText = new BitmapText(manager.loadFont("Interface"+File.separator+"Fonts"+File.separator+"Default.fnt"), false);
+        rewardText.setSize(40);
+        rewardText.setColor(ColorRGBA.Black);
+        rewardText.setText("Well done! You did it!");
+        rewardText.setLocalTranslation(400, 700, 0);
+        sim.taskCogLoad.getRewardNode().attachChild(rewardText);
+        
         greenText = new BitmapText(manager.loadFont("Interface"+File.separator+"Fonts"+File.separator+"Default.fnt"), false);
         greenText.setSize(40);
         greenText.setColor(ColorRGBA.Green);
         greenText.setText("Pick up the GREEN ball");
         greenText.setLocalTranslation(500, 700, 0);
-        
+  
         redText = new BitmapText(manager.loadFont("Interface"+File.separator+"Fonts"+File.separator+"Default.fnt"), false);
         redText.setSize(40);
         redText.setColor(ColorRGBA.Red);
@@ -105,7 +121,7 @@ public class CollectObjectDistraction extends DistractionClass{
         redSpatial = redGeo;
         redSpatial.addControl(redGhost);
     }
-    
+
     
     @Override
     public void spawn(float tpf) {
@@ -198,20 +214,24 @@ public class CollectObjectDistraction extends DistractionClass{
             sim.getGuiNode().detachChild(greenText);
             sim.getGuiNode().detachChild(redText);
             collectOn = false;
-            Simulator.Timer = 0;
+            CogMain.Timer = 0;
         }
     }
     
+    @Override
     public void collision(float tpf){
         if(collectOn){
             CollisionResults results_1 = new CollisionResults();
             car.getCarNode().collideWith(greenSpatial.getWorldBound(), results_1);
             if(results_1.size()>0 && results_1.getClosestCollision().getDistance() <= 1){
-                if(greenCorrect) correctScore[0]++; 
+                if(greenCorrect) {
+                    correctScore[0]++;
+                    rewardPlayer();
+                } 
                 else { 
                     correctScore[1]++;
-                    Simulator.playerHealth = Simulator.playerHealth - (int)this.REWARD;
-                    sim.updateHealth();
+                    CogMain.playerHealth -= (int)this.REWARD;
+                    sim.taskCogLoad.updateHealth();
                 }
                 collected = true;
                 remove_local();
@@ -219,11 +239,14 @@ public class CollectObjectDistraction extends DistractionClass{
             CollisionResults results_2 = new CollisionResults();
             car.getCarNode().collideWith(redSpatial.getWorldBound(), results_2);
             if(results_2.size()>0 && results_2.getClosestCollision().getDistance() <= 1){
-                if(redCorrect) correctScore[0]++; 
+                if(redCorrect) {
+                    correctScore[0]++;
+                    rewardPlayer();
+                } 
                 else { 
                     correctScore[1]++;
-                    Simulator.playerHealth = Simulator.playerHealth - (int)this.REWARD;
-                    sim.updateHealth();
+                    CogMain.playerHealth -= (int)this.REWARD;
+                    sim.taskCogLoad.updateHealth();
                 }
                 collected = true;
                 remove_local();
@@ -232,6 +255,12 @@ public class CollectObjectDistraction extends DistractionClass{
             
         }
         
+    }
+    
+    //TODO move to global DistractorClass
+    private void rewardPlayer(){
+        rewardSoundNode.playInstance();
+        sim.getGuiNode().attachChild(sim.taskCogLoad.getRewardNode());
     }
     
 }
