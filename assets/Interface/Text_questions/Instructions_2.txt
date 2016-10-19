@@ -1,0 +1,5 @@
+WEATHER DISTRACTORS
+\n
+Weather distractors act as environmental distractions. User can choose between RAIN, SNOW and FOG.
+\n
+All weather distractions can be set on the same time and they act like permanent weather change during the driving.

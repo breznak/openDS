@@ -36,6 +36,9 @@ import cz.cvut.cognitive.distractors.WeatherDistraction;
 import de.lessvoid.nifty.controls.ListBox;
 import de.lessvoid.nifty.elements.Element;
 import eu.opends.main.Simulator;
+import java.io.File;
+import java.io.IOException;
+import java.util.Scanner;
 
 
 /**
@@ -77,8 +80,11 @@ public class DistractionScreenGUIController implements ScreenController
         private ListBox Value_text;
         private ListBox Value_dark;
         private ListBox Value_collect;
+        private ListBox instructionBox_1;
+        private ListBox instructionBox_2;
+        private ListBox instructionBox_3;
         private boolean defClick = false;
-        
+        private Screen screen;
         
 	
 	/**
@@ -119,7 +125,7 @@ public class DistractionScreenGUIController implements ScreenController
 	@Override
 	public void onStartScreen() 
 	{
-            Screen screen = nifty.getCurrentScreen();
+            screen = nifty.getCurrentScreen();
             CheckBox_rain = screen.findNiftyControl("CheckBox_rain", CheckBox.class);
             CheckBox_snow = screen.findNiftyControl("CheckBox_snow", CheckBox.class);
             CheckBox_fog = screen.findNiftyControl("CheckBox_fog", CheckBox.class);
@@ -186,8 +192,86 @@ public class DistractionScreenGUIController implements ScreenController
             setValueListBox (Value_dark);
             setValueListBox (Value_text);
             setValueListBox (Value_sound);
+            instructionBox_1 = (ListBox) screen.findNiftyControl("Instruction_box_1", ListBox.class);
+            instructionBox_1.changeSelectionMode(ListBox.SelectionMode.Disabled, false);	
+            instructionBox_1.setFocusable(false);
+            instructionBox_2 = (ListBox) screen.findNiftyControl("Instruction_box_2", ListBox.class);
+            instructionBox_2.changeSelectionMode(ListBox.SelectionMode.Disabled, false);	
+            instructionBox_2.setFocusable(false);
+            instructionBox_3 = (ListBox) screen.findNiftyControl("Instruction_box_3", ListBox.class);
+            instructionBox_3.changeSelectionMode(ListBox.SelectionMode.Disabled, false);	
+            instructionBox_3.setFocusable(false);
+            sendToScreen(instructionBox_1, "assets/Interface/Text_questions/Instructions_1.txt");
+            sendToScreen(instructionBox_2, "assets/Interface/Text_questions/Instructions_2.txt");
+            sendToScreen(instructionBox_3, "assets/Interface/Text_questions/Instructions_3.txt");
             
 	}
+        
+        /**
+         * Fills listBox with text from a file
+         * @param instructionBox listBox which should be filled
+         * @param filePath path to the file .txt file
+         *
+         */
+        @SuppressWarnings("unchecked")
+        public void sendToScreen(ListBox instructionBox, String filePath){
+        
+	// clear list box
+	instructionBox.clear();		
+	int charactersPerLine = (int) (instructionBox.getWidth()/6.5f);
+         try (Scanner scan = new Scanner(new File(filePath)))
+        {
+            while (scan.hasNextLine()) {
+                String[] words = scan.nextLine().trim().split(" ");;
+                if (words[0].equals("\\n")){
+                    instructionBox.addItem('\n');
+                }else{
+                
+                    int indexOfCurrentWord = 0;
+                    while(true) {
+            
+                        // initialize line
+                        String line = "";
+			
+                        // try to get characters for one line
+                        try 
+                        {		
+                            // fill word by word into a line, until the maximum number of characters 
+                            // per line has been reached
+					
+                            // length of first word in line
+                            int length = words[indexOfCurrentWord].length()+1;
+                            while(length <= charactersPerLine) 
+                            {
+                    
+                                // add current word
+                                line += words[indexOfCurrentWord] + " ";
+						
+                                // go to next word
+                                indexOfCurrentWord++;
+						
+                                // add length of next word for next loop
+                                length += words[indexOfCurrentWord].length()+1;
+                            }
+				
+                        } catch(Exception e){
+                            // ArrayIndexOutOfBoundsException will be caught, if not all lines filled
+                        }
+				
+                        // add line to message box
+                        line = line.trim();
+                        if(!line.isEmpty())
+                            instructionBox.addItem(line);
+                        else 
+                            break;
+                    }
+                }
+            }
+        } 
+        catch (IOException e) {
+            e.printStackTrace();
+        } 
+    }
         
         private void setValueListBox (ListBox Value_box){
             Value_box.changeSelectionMode(ListBox.SelectionMode.Disabled, false);	
@@ -430,7 +514,6 @@ public class DistractionScreenGUIController implements ScreenController
         
 	public void clickStartButton()
 	{
-            System.out.println("button clicked");
                 WeatherDistraction.COG_SCORE =(float)((DistractionSettings.getIntensityFog() + 
                         DistractionSettings.getIntensityRain() + DistractionSettings.getIntensitySnow())*0.03);
                 CognitiveFunction.distScore += WeatherDistraction.COG_SCORE;
@@ -441,6 +524,7 @@ public class DistractionScreenGUIController implements ScreenController
                 
 	}
         
+
           public void clickDefButton()
 	{
             if (!defClick){
@@ -461,17 +545,14 @@ public class DistractionScreenGUIController implements ScreenController
                 Slider_box.setValue(30);
                 DistractionSettings.setProbabilityBox(20);
                 DistractionSettings.setBox(true);
-                
-                
-                
+   
                 defClick = !defClick;
             }else {
                 
                 resetOptions();
 
                 defClick = !defClick;
-            }
-                
+            }  
 	}
           
           private void resetOptions(){

@@ -1,0 +1,16 @@
+OTHER DISTRACTORS:
+\n
+BOX DISTRACTION
+During the driving a box falls in front of the users car. Objective is to avoid it to prenent Health loss.
+\n
+PEDESTRIAN DISTRACTION
+There is a walking box acting as a pedestrian appearing in front of the car. Objective is to avoid colision.
+\n
+COLLECT DISTRACTION
+User is asked to collect floating ball of either red or green color. The ball is collected by driving through it. If the user makes mistake, some Health is lost
+\n
+DARK DISTRACTION
+Users screen is sometimes fogged for a short amount of time.
+\n
+TEXT DISTRACTION
+User is asked to answer a question as best as he can. Driving is paused when the question is being answered.

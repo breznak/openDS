@@ -45,19 +45,25 @@
 	
 	<controllers>
 		<joystick>
-			<!-- Logitech G27 -->
+			<!-- Logitech GT for now -->
 			<dumpJoystickList>true</dumpJoystickList>
-			<steering controllerID="0" axisID="3" invert="false" sensitivity="1.0"/>
-			<combinedPedals controllerID="0" axisID="4" invert="false" sensitivity="1.0"/>
-			<accelerator controllerID="0" axisID="6" invert="true" sensitivity="1.0"/>
-			<brake controllerID="0" axisID="5" invert="true" sensitivity="1.0"/>
-			<clutch controllerID="0" axisID="7" invert="true" sensitivity="1.0"/>
+			<steering controllerID="0" axisID="0" invert="false" sensitivity="1.0"/>
+			<combinedPedals controllerID="0" axisID="1" invert="false" sensitivity="1.0"/>
+			<accelerator controllerID="0" axisID="3" invert="true" sensitivity="1.0"/>
+			<brake controllerID="0" axisID="3" invert="true" sensitivity="1.0"/>
+			<clutch controllerID="0" axisID="3" invert="true" sensitivity="1.0"/>		
 			<keyAssignments>
+				<keyAssignment function="stop_engine" key="BUTTON_3"/>
+				<keyAssignment function="stop_engine" key="BUTTON_4"/>
+				<keyAssignment function="stop_engine" key="BUTTON_5"/>
+				<keyAssignment function="stop_engine" key="BUTTON_6"/>
+				<keyAssignment function="stop_engine" key="BUTTON_2"/>
 				<keyAssignment function="start_engine" key="BUTTON_1"/>
 				<keyAssignment function="stop_engine" key="BUTTON_2"/>
 				<keyAssignment function="close_instruction_screen" key="BUTTON_15"/>
 			</keyAssignments>
 		</joystick>
+		
 		<keyboard>
 			<keyAssignments>
 				<keyAssignment function="toggle_cam" key="KEY_V"/>

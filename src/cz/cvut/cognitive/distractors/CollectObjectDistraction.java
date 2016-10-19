@@ -12,6 +12,8 @@ import com.jme3.bullet.control.GhostControl;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.bullet.util.CollisionShapeFactory;
 import com.jme3.collision.CollisionResults;
+import com.jme3.font.BitmapFont;
+import com.jme3.font.BitmapFont.Align;
 import com.jme3.font.BitmapText;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
@@ -76,25 +78,26 @@ public class CollectObjectDistraction extends DistractionClass{
         rewardSoundNode = new AudioNode(manager,"Sounds/FF_Victory.wav",false);
         rewardSoundNode.setLooping(false);
         rewardSoundNode.setPositional(false);
+        rewardSoundNode.setVolume(0.15f);
         
         rewardText = new BitmapText(manager.loadFont("Interface/Fonts/Default.fnt"), false);
         rewardText.setSize(40);
         rewardText.setColor(ColorRGBA.Black);
         rewardText.setText("Well done! You did it!");
-        rewardText.setLocalTranslation(400, 700, 0);
+        rewardText.setLocalTranslation(sim.getSettings().getWidth()/2 - 120, sim.getSettings().getHeight()-35, 0);
         sim.getRewardNode().attachChild(rewardText);
         
         greenText = new BitmapText(manager.loadFont("Interface/Fonts/Default.fnt"), false);
         greenText.setSize(40);
         greenText.setColor(ColorRGBA.Green);
         greenText.setText("Pick up the GREEN ball");
-        greenText.setLocalTranslation(500, 700, 0);
-  
+        greenText.setLocalTranslation(sim.getSettings().getWidth()/2 - 120, sim.getSettings().getHeight()-35, 0);
+        
         redText = new BitmapText(manager.loadFont("Interface/Fonts/Default.fnt"), false);
         redText.setSize(40);
         redText.setColor(ColorRGBA.Red);
         redText.setText("Pick up the RED ball");
-        redText.setLocalTranslation(500, 700, 0);
+        redText.setLocalTranslation(sim.getSettings().getWidth()/2 - 120, sim.getSettings().getHeight()-35, 0);
         
         //Creates an offset for placing objects in world
         y_offSet = 0.5f;

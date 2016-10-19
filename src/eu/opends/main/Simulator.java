@@ -99,8 +99,8 @@ public class Simulator extends SimulationBasics
     private boolean initializationFinished = false;
     DistractionSettings distSet;
     private CognitiveFunction cogFunction;
-    
-    
+     
+   
     public static float Timer;
     public float cogTimer;
     public static int playerHealth = 100;

@@ -17,7 +17,6 @@
                     <control name="horizontalSlider" id="Slider_rain" width="150px" x="6" y="119"/>
                     <control name="checkbox" id="CheckBox_rain" x="37" y="84"/>
 					<control name="listBox" id="Value_rain" width="35px" x="117" y="84" height="25px" vertical="optional" horizontal="optional" displayItems="1" selection="Disabled"/>
-					
                     <control name="label" id="GLabel16" width="100px" x="19" y="10" text="Weather" align="center" height="50px" font="aurulent-sans-16.fnt"/>
 					<!--
 					<image filename="Interface\Distraction_Menu_Images\Infobox.png" visibleToMouse="false" width="30px" x="94" y="81" height="29px" id="Info_rain" >
@@ -35,15 +34,6 @@
                 <control name="label" id="GLabel17" width="60px" x="15" y="248" text="Snow" height="25px" font="aurulent-sans-16.fnt"/>
                 <control name="label" id="GLabel18" width="60px" x="15" y="158" text="Rain" height="25px" font="aurulent-sans-16.fnt"/>
 				
-                <control name="button" id="StartButton" childLayout="center" x="529" width="120px" y="560" label="Start" height="31px">
-					<interact onClick="clickStartButton()" />
-				</control>
-				<control name="button" id="InstructionButton" childLayout="center" x="529" width="120px" y="480" label="Instruction" height="31px">
-					<interact onClick="clickInstButton()" />
-				</control>
-				<control name="button" id="DefaultButton" childLayout="center" x="529" width="120px" y="445" label="Default settings" height="31px">
-					<interact onClick="clickDefButton()" />
-				</control>
 				
 				<panel id="GPanel0" childLayout="absolute" backgroundColor="#333333ff" width="269px" x="202" y="65" style="nifty-panel-simple" height="525px">
 					
@@ -78,12 +68,99 @@
 					<control name="listBox" id="Value_collect" width="35px" x="203" y="74" height="25px" vertical="optional" horizontal="optional" displayItems="1" selection="Disabled"/>
 					
 					<control name="label" id="Label_distract" width="120px" x="77" y="-9" text="Other distractions" height="50px" font="aurulent-sans-16.fnt"/>
+					
+					
+					
+					
 				</panel>
+				
+				<control name="button" id="StartButton" childLayout="center" x="529" width="120px" y="560" label="Start" height="31px">
+						<interact onClick="clickStartButton()" />
+					</control>
+
+					<control name="button" id="DefaultButton" childLayout="center" x="529" width="120px" y="445" label="Default settings" height="31px">
+						<interact onClick="clickDefButton()" />
+					</control>
+				
+					<control name="button" id="InstButton" childLayout="center" x="529" width="120px" y="480" label="Instructions" height="31px">
+						<effect>
+							<onClick name="show" targetElement="distractionScreen_1_2" />
+							<onClick name="hide" targetElement="distractionScreen_1" />
+						</effect>
+					</control>
                 
             </panel>
 		</layer>
 		
+		<layer id="distractionScreen_1_2" childLayout="vertical" backgroundColor="#0008" visible="false">
+			<panel id="instruction_panel" childLayout="absolute" width="1088px" x="41" y="51" style="nifty-panel" height="726px">
+				<control name="listBox" id="Instruction_box_1" width="850px" x="45" y="53" height="720px" vertical="optional" horizontal="optional" displayItems="20" selection="Disabled"/>
+				
+				<control name="button" id="BackToSettingsButton" childLayout="center" x="129" width="120px" y="590" label="Back to settings" height="31px">
+					<effect>
+								<onClick name="show" targetElement="distractionScreen_1" />
+								<onClick name="hide" targetElement="distractionScreen_1_2" />
+					</effect>
+				</control>
+				
+				<control name="button" id="NextButton" childLayout="center" x="529" width="120px" y="590" label="Next" height="31px">
+					<effect>
+								<onClick name="show" targetElement="distractionScreen_1_3" />
+								<onClick name="hide" targetElement="distractionScreen_1_2" />
+					</effect>
+				</control>
+				
+
+			</panel>
+		</layer>
 		
+		<layer id="distractionScreen_1_3" childLayout="vertical" backgroundColor="#0008" visible="false">
+			<panel id="instruction_panel" childLayout="absolute" width="1088px" x="41" y="51" style="nifty-panel" height="826px">
+				<control name="listBox" id="Instruction_box_2" width="850px" x="45" y="53" height="720px" vertical="optional" horizontal="optional" displayItems="20" selection="Disabled"/>
+				
+				<control name="button" id="BackToSettingsButton" childLayout="center" x="129" width="120px" y="590" label="Back to settings" height="31px">
+					<effect>
+								<onClick name="show" targetElement="distractionScreen_1" />
+								<onClick name="hide" targetElement="distractionScreen_1_3" />
+					</effect>
+				</control>
+				
+				<control name="button" id="NextButton" childLayout="center" x="529" width="120px" y="590" label="Next" height="31px">
+					<effect>
+								<onClick name="show" targetElement="distractionScreen_1_4" />
+								<onClick name="hide" targetElement="distractionScreen_1_3" />
+					</effect>
+				</control>
+				
+				<control name="button" id="BackButton" childLayout="center" x="329" width="120px" y="590" label="Back" height="31px">
+					<effect>
+								<onClick name="show" targetElement="distractionScreen_1_2" />
+								<onClick name="hide" targetElement="distractionScreen_1_3" />
+					</effect>
+				</control>
+			</panel>
+		</layer>
+		
+		<layer id="distractionScreen_1_4" childLayout="vertical" backgroundColor="#0008" visible="false">
+			<panel id="instruction_panel" childLayout="absolute" width="1088px" x="41" y="51" style="nifty-panel" height="826px">
+				<control name="listBox" id="Instruction_box_3" width="850px" x="45" y="53" height="720px" vertical="optional" horizontal="optional" displayItems="20" selection="Disabled"/>
+				
+				<control name="button" id="BackToSettingsButton" childLayout="center" x="129" width="120px" y="590" label="Back to settings" height="31px">
+					<effect>
+								<onClick name="show" targetElement="distractionScreen_1" />
+								<onClick name="hide" targetElement="distractionScreen_1_4" />
+					</effect>
+				</control>
+				
+				
+				<control name="button" id="BackButton" childLayout="center" x="329" width="120px" y="590" label="Back" height="31px">
+					<effect>
+								<onClick name="show" targetElement="distractionScreen_1_3" />
+								<onClick name="hide" targetElement="distractionScreen_1_4" />
+					</effect>
+				</control>
+			</panel>
+		</layer>
     </screen>
 	
 	
