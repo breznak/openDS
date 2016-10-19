@@ -242,7 +242,7 @@ public class TextDistractionController implements ScreenController  {
         } else {
             userAnswers[questionIndex] = answerField.getRealText();
             answersToFile(answerField.getRealText(),userAnswersFilePath); 
-            textDistraction.remove(); 
+            textDistraction.notify(); 
             
         }
     }
@@ -254,7 +254,7 @@ public class TextDistractionController implements ScreenController  {
     public void clickCancelButton()
     {
         answersToFile("User clicked Cancel Button - no answer",userAnswersFilePath);
-	textDistraction.remove();   
+	textDistraction.notify();   
     }
     
     /**
