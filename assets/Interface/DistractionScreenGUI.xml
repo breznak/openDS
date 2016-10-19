@@ -2,7 +2,7 @@
 <nifty>
     <useControls filename="nifty-default-controls.xml"/>
     <useStyles filename="nifty-default-styles.xml"/>
-    <screen id="start" controller="eu.opends.niftyGui.DistractionScreenGUIController">
+    <screen id="start" controller="cz.cvut.cognitive.override.DistractionScreenGUIController">
         <layer id="distractionScreen_1" childLayout="horizontal" visible="true">
             <panel id="options_panel" childLayout="absolute" width="688px" x="41" y="51" style="nifty-panel" height="626px">
                 <panel id="weather_panel" childLayout="absolute" backgroundColor="#333333ff" width="177px" x="13" y="66" style="nifty-panel" height="334px">
