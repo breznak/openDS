@@ -162,7 +162,7 @@ public class CollectObjectDistraction extends DistractionClass{
     
     private void createObjects(){
         //add node to scene
-            sim.getSceneNode().attachChild(greenSpatial);
+            sim.getSceneNode().attachChild(greenSpatial); //FIXME? Collect + GUI close + Def. btn + Start btn 
             sim.getSceneNode().attachChild(redSpatial);
 //            sim.getBulletAppState().getPhysicsSpace().add(greenGhost);
 //            sim.getBulletAppState().getPhysicsSpace().add(redGhost);
