@@ -1,4 +1,0 @@
-Driver: TestDriver
-Driving Task: A_DistractionTest.xml
-Start Time: 2016-06-09 18:45:34.073
-

@@ -1,8 +1,8 @@
 package cz.cvut.cognitive.distractors;
 
-import com.jme3.asset.AssetManager;
 import com.jme3.audio.AudioNode;
 import eu.opends.main.Simulator;
+import java.io.File;
 
 /**
  *
@@ -16,22 +16,20 @@ import eu.opends.main.Simulator;
  */
 public class SoundDistraction extends DistractionClass{
     
-    private final AudioNode soundDistractionNode;
-    private final AssetManager manager;
+    private final AudioNode soundNode;
     private boolean soundOn = false;
-    public float COG_SCORE;
   
     /**
      *Constructor for SoundDistraction
      * @param sim Simulator instance
      */
-    public SoundDistraction(Simulator sim) {
-        this.manager = sim.getAssetManager();
-        soundDistractionNode = new AudioNode(manager,"Sounds/TrafficDistraction.wav",false);
-        soundDistractionNode.setLooping(true);
-        soundDistractionNode.setPositional(false);
-        COG_SCORE = 1;
-    }
+    public SoundDistraction(Simulator sim, float reward, float probability, float cogDifficulty) {
+        super(sim, reward, probability, cogDifficulty);
+  
+        soundNode = new AudioNode(manager,"Sounds"+File.separator+"TrafficDistraction.wav",false);
+        soundNode.setLooping(true);
+        soundNode.setPositional(false);
+        }
 
     /**
      * Update function: if preset probability of Sound playing is higher than
@@ -39,14 +37,9 @@ public class SoundDistraction extends DistractionClass{
      * @param tpf time per frame
      */
     @Override
-    public void update(float tpf) {
-            soundDistractionNode.play();
-            soundOn = true;
-            CognitiveFunction.distScore += COG_SCORE;
-            CognitiveFunction.activeDistCount++;
-            CognitiveFunction.activeDistNames[4] = 1;
-            DistractionSettings.distRunning++;
-
+    public void spawn(float tpf) {
+            soundNode.play();
+            soundOn = true;  
     }
     
     /**
@@ -54,15 +47,17 @@ public class SoundDistraction extends DistractionClass{
      * removed from the scene.
      */
     @Override
-    public void remove()
+    public void remove_local()
     {
         if(soundOn){
-            soundDistractionNode.pause();
-            CognitiveFunction.distScore -= COG_SCORE;
-            CognitiveFunction.activeDistCount--;
-            CognitiveFunction.activeDistNames[4] = 0;
+            soundNode.pause();
             soundOn = false;
-            DistractionSettings.distRunning--;
         }
+    }
+
+    @Override
+    public void collision(float tpf) {
+        //FIXME can we detect if the user(car) crashed into anything during the sound playing?
+        return; //NOOP
     }
 }

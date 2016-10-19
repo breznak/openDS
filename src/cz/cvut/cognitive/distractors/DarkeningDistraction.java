@@ -1,5 +1,6 @@
  package cz.cvut.cognitive.distractors;
 
+import cz.cvut.cognitive.load.CognitiveFunction;
 import eu.opends.main.Simulator;
 
 /**
@@ -15,16 +16,12 @@ import eu.opends.effects.EffectCenter;
  
 public class DarkeningDistraction extends DistractionClass{
 
-    
-    private boolean darkOn = false;
-    public float COG_SCORE;
-    
     /**
      *Empty constructor for DarkeningDistraction
      * @param sim - Simulator
      */
-    public DarkeningDistraction(Simulator sim){
-        COG_SCORE = 3;
+    public DarkeningDistraction(Simulator sim, float reward, float probability, float cogDifficulty){
+        super(sim, reward, probability, cogDifficulty);
     }
 
     /**
@@ -32,14 +29,8 @@ public class DarkeningDistraction extends DistractionClass{
      * random generated number (1-100), screen will get dark (foggy). 
      */
     @Override
-    public void update(float tpf) {
+    public void spawn(float tpf) {
             EffectCenter.setFogPercentage(50);
-            darkOn = true;
-            CognitiveFunction.distScore += COG_SCORE;
-            CognitiveFunction.activeDistCount++;
-            CognitiveFunction.activeDistNames[2] = 1;
-            DistractionSettings.distRunning++;
-        
     }
 
     /**
@@ -47,15 +38,14 @@ public class DarkeningDistraction extends DistractionClass{
      * removed from the scene.
      */
     @Override
-    public void remove() {
-        if(darkOn){
-            EffectCenter.setFogPercentage(DistractionSettings.getIntensityFog());
-            darkOn = false;
-            CognitiveFunction.distScore -= COG_SCORE;
-            CognitiveFunction.activeDistCount--;
-            CognitiveFunction.activeDistNames[2] = 0;
-            DistractionSettings.distRunning--;
-        }
+    public void remove_local() {
+            EffectCenter.setFogPercentage(0f);
+    }
+
+    @Override
+    public void collision(float tpf) {
+        //FIXME can we detect crash during this active period?
+        return; //NOOP
     }
     
 }

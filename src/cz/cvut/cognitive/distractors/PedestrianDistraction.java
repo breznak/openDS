@@ -3,26 +3,19 @@ package cz.cvut.cognitive.distractors;
 import com.jme3.animation.LoopMode;
 import com.jme3.cinematic.MotionPath;
 import com.jme3.cinematic.events.MotionEvent;
-import com.jme3.asset.AssetManager;
 import com.jme3.asset.TextureKey;
-import com.jme3.bullet.BulletAppState;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.cinematic.MotionPathListener;
 import com.jme3.collision.CollisionResults;
 import com.jme3.material.Material;
-import com.jme3.math.ColorRGBA;
-import com.jme3.math.FastMath;
 import com.jme3.math.Matrix3f;
-import com.jme3.math.Quaternion;
 import com.jme3.math.Ray;
 import com.jme3.math.Vector3f;
-import com.jme3.renderer.Camera;
 import com.jme3.scene.Geometry;
-import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.shape.Box;
 import com.jme3.texture.Texture;
-import eu.opends.car.SteeringCar;
+import cz.cvut.cognitive.CogMain;
 import eu.opends.main.Simulator;
 
 /**
@@ -41,19 +34,12 @@ public class PedestrianDistraction extends DistractionClass{
     private final Geometry pedestrianGeometry;
     private final MotionPath path;
     private MotionEvent motionControl;
-    private final Simulator sim;
     private final Spatial pedestrianSpatial;
-    private final SteeringCar car;
-    private final AssetManager manager;
-    private final BulletAppState bulletAppState;
-    private final RigidBodyControl pedestrianPhysics;
+     private final RigidBodyControl pedestrianPhysics;
     private boolean pedestrianOn = false;
     private float Timer;
     private boolean pedestrianHit;
-    private final int flatDamage = 30;
-    public float COG_SCORE;
     public static int pedestrianHitCount;
-    private Camera camera;
     private Vector3f spawn;
     private float distanceLeft;
     private float distanceRight;
@@ -62,13 +48,8 @@ public class PedestrianDistraction extends DistractionClass{
      *Constructor for PedestrianDistraction
      *@param sim - simulator.
      */
-      public PedestrianDistraction(Simulator sim, String texturePath) {
-        this.sim = sim;
-        this.car = sim.getCar();
-        this.manager = sim.getAssetManager();
-        this.bulletAppState = sim.getBulletAppState();
-        //results = new CollisionResults();
-        this.camera = sim.getCamera();
+      public PedestrianDistraction(Simulator sim, float reward, float probability, float cogDifficulty, String texturePath) {
+        super(sim, reward, probability, cogDifficulty);
 
         //initialize box node
         Material mat = new Material(manager, "Common/MatDefs/Misc/Unshaded.j3md");
@@ -84,7 +65,6 @@ public class PedestrianDistraction extends DistractionClass{
             System.err.println("Error loading texture file " + texturePath);
 	}
         pedestrianGeometry.setMaterial(mat);
-        COG_SCORE = 2;
         //pedestrianNode.attachChild(boxGeometry);
         
      
@@ -119,7 +99,7 @@ public class PedestrianDistraction extends DistractionClass{
      * 
      */
     @Override
-    public void update(float tpf) {
+    public void spawn(float tpf) {
             CollisionResults results = new CollisionResults();
             Ray ray = new Ray(camera.getLocation(), camera.getDirection());
             sim.getSceneNode().collideWith(ray, results);
@@ -168,8 +148,7 @@ public class PedestrianDistraction extends DistractionClass{
                     }
                 }
             }
-         
-    }
+        } 
     
     private void createPath(){
         sim.getSceneNode().attachChild(pedestrianSpatial);
@@ -189,10 +168,6 @@ public class PedestrianDistraction extends DistractionClass{
         motionControl.play();
         motionControl.setLoopMode(LoopMode.Loop);
         pedestrianOn = true;
-        CognitiveFunction.distScore += COG_SCORE;
-        CognitiveFunction.activeDistCount++;
-        CognitiveFunction.activeDistNames[3] = 1;
-        DistractionSettings.distRunning++; 
     }
 
     /**
@@ -200,7 +175,7 @@ public class PedestrianDistraction extends DistractionClass{
      * removed from the scene.
      */
     @Override
-    public void remove() {
+    public void remove_local() {
         if (pedestrianOn){
             motionControl.stop();
             path.clearWayPoints();
@@ -213,10 +188,6 @@ public class PedestrianDistraction extends DistractionClass{
             pedestrianSpatial.setLocalRotation(Matrix3f.IDENTITY);
             sim.getSceneNode().detachChild(pedestrianSpatial);
             pedestrianOn = false;
-            CognitiveFunction.distScore -= COG_SCORE;
-            CognitiveFunction.activeDistCount--;
-            CognitiveFunction.activeDistNames[3] = 0;
-            DistractionSettings.distRunning--;
         } 
     }
     
@@ -238,8 +209,8 @@ public class PedestrianDistraction extends DistractionClass{
                         pedestrianPhysics.setPhysicsRotation(Matrix3f.IDENTITY);
                         pedestrianPhysics.setPhysicsLocation(new Vector3f (pedestrianSpatial.getLocalTranslation())); 
                         
-                        Simulator.playerHealth = Simulator.playerHealth - (flatDamage + (int)(car.getCurrentSpeedKmhRounded()*0.1));
-                        sim.updateHealth();
+                        CogMain.playerHealth -= ((int)this.REWARD + (int)(car.getCurrentSpeedKmhRounded()*0.1));
+                        sim.taskCogLoad.updateHealth();
                         pedestrianHitCount++;
                         pedestrianHit = true;
                     }

@@ -1,5 +1,6 @@
 package cz.cvut.cognitive.distractors;
 
+import cz.cvut.cognitive.load.CognitiveFunction;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.controls.ListBox;
 import de.lessvoid.nifty.controls.TextField;
