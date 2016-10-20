@@ -28,7 +28,6 @@ public class BoxDistraction extends DistractionClass{
     private final Spatial droppingBox;
     private final RigidBodyControl box_phy;
     private final float y_offSet;
-    public static boolean boxOn = false;
     private boolean boxHit = false;
     private float Timer;
     private final int flatDamage = 10;
@@ -53,8 +52,7 @@ public class BoxDistraction extends DistractionClass{
         box_phy = new RigidBodyControl(mass);
         //box_phy = new BetterCharacterControl(1f, 4f, 50f);
         DropBox = new Geometry("DropBox", new Box(x, y, z));
-        Material box_mat = new Material(manager,
-        "Common/MatDefs/Misc/Unshaded.j3md");
+        Material box_mat = new Material(manager, "Common/MatDefs/Misc/Unshaded.j3md");
         //box_mat.setColor("Color", ColorRGBA.Red);
         try{
             TextureKey textureKey = new TextureKey(texturePath, false);
@@ -66,13 +64,9 @@ public class BoxDistraction extends DistractionClass{
             e.printStackTrace();
             System.err.println("Error loading texture file " + texturePath);
 	}
-
-
         DropBox.setMaterial(box_mat);
         DropBox.addControl(box_phy);
         droppingBox = DropBox;
-        
-        
     }
 
     /**
@@ -118,7 +112,6 @@ public class BoxDistraction extends DistractionClass{
 
                     /*box_phy.warp(spawn);
                     box_phy.setWalkDirection(new Vector3f(2,0,0));*/
-                    boxOn = true;
                  }
     }
     
@@ -128,16 +121,12 @@ public class BoxDistraction extends DistractionClass{
      */
     @Override
     public void remove_local (){
-        if(boxOn){
             sim.getSceneNode().detachChild(droppingBox);
             bulletAppState.getPhysicsSpace().remove(box_phy); 
-            boxOn = false;
-       }
     }
 
     @Override
     public void collision(float tpf){
-        if(boxOn){
             if(!boxHit){
                 CollisionResults results = new CollisionResults();
                 car.getCarNode().collideWith(droppingBox.getWorldBound(), results);
@@ -156,12 +145,9 @@ public class BoxDistraction extends DistractionClass{
                     if (Timer > 2) {
                     Timer = 0;
                     boxHit=false;
-                }
+                    }
                 } else Timer = 0;
-
             }
-
-        }
     }
     
 }
