@@ -17,8 +17,7 @@ public class CogMain {
 
     private CognitiveFunction cogFunction;
     private BitmapText healthText;
-    public static float Timer = 0;
-    public static int playerHealth;
+    public static int playerHealth = 100;
     private Simulator sim;
     private Node rewardNode = new Node();
 
@@ -44,11 +43,14 @@ public class CogMain {
     }
 
     public void update(float tpf) {
+        if(!isActiveTask()) { return; }
         cogFunction.update();
 
         for (DistractionClass d : DistractionClass.getDistractors()) {
             d.update(tpf);
         }
+        
+        updateHealth();
     }
 
     public void updateHealth() {

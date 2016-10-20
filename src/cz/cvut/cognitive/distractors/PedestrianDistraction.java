@@ -36,7 +36,6 @@ public class PedestrianDistraction extends DistractionClass{
     private MotionEvent motionControl;
     private final Spatial pedestrianSpatial;
      private final RigidBodyControl pedestrianPhysics;
-    private boolean pedestrianOn = false;
     private float Timer;
     private boolean pedestrianHit;
     public static int pedestrianHitCount;
@@ -167,7 +166,6 @@ public class PedestrianDistraction extends DistractionClass{
         motionControl.setSpeed(0.3f); 
         motionControl.play();
         motionControl.setLoopMode(LoopMode.Loop);
-        pedestrianOn = true;
     }
 
     /**
@@ -176,7 +174,6 @@ public class PedestrianDistraction extends DistractionClass{
      */
     @Override
     public void remove_local() {
-        if (pedestrianOn){
             motionControl.stop();
             path.clearWayPoints();
            
@@ -187,12 +184,9 @@ public class PedestrianDistraction extends DistractionClass{
             bulletAppState.getPhysicsSpace().removeAll(pedestrianSpatial);
             pedestrianSpatial.setLocalRotation(Matrix3f.IDENTITY);
             sim.getSceneNode().detachChild(pedestrianSpatial);
-            pedestrianOn = false;
-        } 
     }
     
     public void collision(float tpf){
-        if(pedestrianOn){
             if(!pedestrianHit){
                 //pedestrianPhysics.setPhysicsLocation(pedestrianSpatial.getLocalTranslation());
                 CollisionResults results = new CollisionResults();
@@ -226,7 +220,6 @@ public class PedestrianDistraction extends DistractionClass{
                     }
                 } else Timer = 0;
             }    
-        }
     }
      
 }

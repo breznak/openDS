@@ -34,6 +34,8 @@ public abstract class DistractionClass {
      * if the Distraction is currently active/used
      */
     private boolean isActive = false;
+    private int itersAlive = 0; //how many iters is already shown/alive
+    protected final int MAX_ALIFE = 150; //iters //FIXME avoid hard coded const
     
     protected final Simulator sim;
     protected final SteeringCar car;
@@ -51,7 +53,7 @@ public abstract class DistractionClass {
      * @param difficulty how "cognitively demanding" this stress factor is
      */
     protected DistractionClass(Simulator sim, float reward, float probability, float difficulty) {
-        this.probability=probability;
+        this.probability=probability/100; //to 0.0..1.0
         this.REWARD=reward;
         this.COG_DIFFICULTY = difficulty;
         DistractionClass.activeDistractors.add(this); //append to available distractors
@@ -80,8 +82,9 @@ public abstract class DistractionClass {
     public void update(float f) {
         float n = (float)Math.random();
         System.out.println("PROB="+probability+" n="+n+" active="+isActive+" "+this.getClass().getSimpleName());
-        if (n > this.probability || isActive || probability==0.0f) { return; } 
+        if (probability==0.0f) { return; } 
         
+        if(!isActive && n< probability) {
         spawn(f);
         
         CognitiveFunction.distScore += this.COG_DIFFICULTY;
@@ -89,6 +92,12 @@ public abstract class DistractionClass {
         CognitiveFunction.activeDistNames[0] = 1; //FIXME remove
         
         this.isActive = true;
+        } else if (itersAlive >= MAX_ALIFE) { //time to disappear
+            remove();
+        } else if(isActive){
+            collision(f);
+            itersAlive++;
+        }
    }
     
     /**
@@ -108,6 +117,7 @@ public abstract class DistractionClass {
         CognitiveFunction.activeDistCount--;
         CognitiveFunction.activeDistNames[0] = 0;
 
+        itersAlive=0;
         isActive=false;
     }
     

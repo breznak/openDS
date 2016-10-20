@@ -51,8 +51,13 @@
 			<combinedPedals controllerID="0" axisID="1" invert="false" sensitivity="1.0"/>
 			<accelerator controllerID="0" axisID="3" invert="true" sensitivity="1.0"/>
 			<brake controllerID="0" axisID="3" invert="true" sensitivity="1.0"/>
-			<clutch controllerID="0" axisID="3" invert="true" sensitivity="1.0"/>
+			<clutch controllerID="0" axisID="3" invert="true" sensitivity="1.0"/>		
 			<keyAssignments>
+				<keyAssignment function="stop_engine" key="BUTTON_3"/>
+				<keyAssignment function="stop_engine" key="BUTTON_4"/>
+				<keyAssignment function="stop_engine" key="BUTTON_5"/>
+				<keyAssignment function="stop_engine" key="BUTTON_6"/>
+				<keyAssignment function="stop_engine" key="BUTTON_2"/>
 				<keyAssignment function="start_engine" key="BUTTON_1"/>
 				<keyAssignment function="stop_engine" key="BUTTON_2"/>
 				<keyAssignment function="close_instruction_screen" key="BUTTON_15"/>
