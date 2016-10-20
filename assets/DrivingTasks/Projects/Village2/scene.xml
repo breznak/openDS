@@ -96,14 +96,15 @@
 					<entry>0</entry>
 				</vector>
 			</translation>
+			<shadowMode>Receive</shadowMode>
 		</model>
 		
 		
 		<model id="TrafficLight_1" key="Models/TrafficLight/trafficlight.scene" ref=""><mass>0</mass><visible>true</visible><collisionShape>meshShape</collisionShape><scale><vector jtype="java_lang_Float" size="3"><entry>0.7</entry><entry>0.7</entry><entry>0.7</entry></vector></scale><rotation quaternion="false"><vector jtype="java_lang_Float" size="3"><entry>0</entry><entry>-16.567112</entry><entry>0</entry></vector></rotation><translation><vector jtype="java_lang_Float" size="3"><entry>-3.2904391</entry><entry>-0.3</entry><entry>-728.98285</entry></vector></translation></model>
 		<model id="TrafficLight_2" key="Models/TrafficLight/trafficlight.scene" ref=""><mass>0</mass><visible>true</visible><collisionShape>meshShape</collisionShape><scale><vector jtype="java_lang_Float" size="3"><entry>0.7</entry><entry>0.7</entry><entry>0.7</entry></vector></scale><rotation quaternion="false"><vector jtype="java_lang_Float" size="3"><entry>0</entry><entry>95.67416</entry><entry>0</entry></vector></rotation><translation><vector jtype="java_lang_Float" size="3"><entry>0.43212485</entry><entry>-0.3</entry><entry>-741.1419</entry></vector></translation></model>
 		<model id="TrafficLight_3" key="Models/TrafficLight/trafficlight.scene" ref=""><mass>0</mass><visible>true</visible><collisionShape>meshShape</collisionShape><scale><vector jtype="java_lang_Float" size="3"><entry>0.7</entry><entry>0.7</entry><entry>0.7</entry></vector></scale><rotation quaternion="false"><vector jtype="java_lang_Float" size="3"><entry>0</entry><entry>-174.07028</entry><entry>0</entry></vector></rotation><translation><vector jtype="java_lang_Float" size="3"><entry>-10.194225</entry><entry>-0.3</entry><entry>-742.9375</entry></vector></translation></model>
-		
-		
+
+
 		<model id="redBox" key="" ref="box">
 			<mass>0</mass>
 
@@ -310,6 +311,26 @@
 		</model>
 	</models>
 	
+	<resetPoints>
+		<resetPoint id="reset1">
+			<translation>
+				<vector>
+					<entry>-10.18159</entry>
+					<entry>0.0</entry>
+					<entry>-708.206</entry>
+				</vector>
+			</translation>
+			<rotation quaternion="true">
+				<vector jtype="java_lang_Float" size="4">
+					<entry>-0.015870064</entry>
+					<entry>0.019761475</entry>
+					<entry>0.0006448222</entry>
+					<entry>0.99967855</entry>
+				</vector>
+			</rotation>
+		</resetPoint>
+	</resetPoints>
+	
 	<geometries>
 		<box id="box">
 			<width>3</width>
@@ -394,5 +415,5 @@
 			</color>
 		</directionalLight>
 	</lights>
-	<skyTexture>Textures/Sky/Bright/hills.dds</skyTexture>
+	<skyTexture>Textures/Sky/Clouds/clouds.properties</skyTexture>
 </scene>

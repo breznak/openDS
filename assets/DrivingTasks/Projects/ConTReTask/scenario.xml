@@ -20,6 +20,8 @@
         			<point ref="startPoint" />
         			<point ref="startPointSecondaryTask" />
         			<point ref="startPointPrimaryTask" />
+        			<point ref="triggerPos1" />
+        			<point ref="triggerPos2" />
         			<point ref="endTasks" />
         			<point ref="endPoint" />
         		</track>

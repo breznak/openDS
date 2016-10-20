@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2015 Rafael Math
+*  Copyright (C) 2016 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -27,6 +27,7 @@ import java.util.List;
 public class FollowBoxSettings 
 {
 	private List<Waypoint> wayPoints;
+	private float minDistance;
 	private float maxDistance;
 	private float curveTension;
 	private boolean pathCyclic;
@@ -34,10 +35,11 @@ public class FollowBoxSettings
 	private String startWayPointID;
 	
 	
-	public FollowBoxSettings(List<Waypoint> wayPoints, float maxDistance, float curveTension,
+	public FollowBoxSettings(List<Waypoint> wayPoints, float minDistance, float maxDistance, float curveTension,
 			boolean pathCyclic, boolean pathVisible, String startWayPointID) 
 	{
 		this.wayPoints = wayPoints;
+		this.minDistance = minDistance;
 		this.maxDistance = maxDistance;
 		this.curveTension = curveTension;
 		this.pathCyclic = pathCyclic;
@@ -97,6 +99,12 @@ public class FollowBoxSettings
 		return -1;
 	}
 
+
+	public float getMinDistance() 
+	{
+		return minDistance;
+	}
+	
 
 	public float getMaxDistance()
 	{

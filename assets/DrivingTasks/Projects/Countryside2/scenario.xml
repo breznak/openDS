@@ -472,6 +472,8 @@
 					<wayPoint id="WayPoint_78"><translation><vector jtype="java_lang_Float" size="3"><entry>-345.2811</entry><entry>41.999603</entry><entry>610.31506</entry></vector></translation><speed>50</speed></wayPoint>
 				</wayPoints>
         	</vehicle> 
+        	
+        	<!-- 
 			<vehicle id="carSR2">
 				<modelPath>Models/Cars/drivingCars/AudiS6/Car.j3o</modelPath>
 				<mass>800</mass>
@@ -565,6 +567,8 @@
 					<wayPoint id="WayPoint_78"><translation><vector jtype="java_lang_Float" size="3"><entry>-345.2811</entry><entry>41.999603</entry><entry>610.31506</entry></vector></translation><speed>50</speed></wayPoint>
 				</wayPoints>
         	</vehicle> 
+        	 -->
+        	
 			<vehicle id="carSR3">
 				<modelPath>Models/Cars/drivingCars/Ferrari/Car.scene</modelPath>
 				<mass>800</mass>
@@ -658,6 +662,8 @@
 					<wayPoint id="WayPoint_78"><translation><vector jtype="java_lang_Float" size="3"><entry>-345.2811</entry><entry>41.999603</entry><entry>610.31506</entry></vector></translation><speed>50</speed></wayPoint>
 				</wayPoints>
         	</vehicle> 
+        	
+        	<!-- 
 			<vehicle id="carSR4">
 				<modelPath>Models/Cars/drivingCars/bmw1/Car.j3o</modelPath>
 				<mass>800</mass>
@@ -751,6 +757,8 @@
 					<wayPoint id="WayPoint_78"><translation><vector jtype="java_lang_Float" size="3"><entry>-345.2811</entry><entry>41.999603</entry><entry>610.31506</entry></vector></translation><speed>50</speed></wayPoint>
 				</wayPoints>
         	</vehicle>
+        	-->
+        	
 			<vehicle id="carSR5">
 				<modelPath>Models/Cars/drivingCars/Polizei/Car.j3o</modelPath>
 				<mass>800</mass>
@@ -844,6 +852,8 @@
 					<wayPoint id="WayPoint_78"><translation><vector jtype="java_lang_Float" size="3"><entry>-345.2811</entry><entry>41.999603</entry><entry>610.31506</entry></vector></translation><speed>50</speed></wayPoint>
 				</wayPoints>
         	</vehicle> 
+        	
+        	<!-- 
 			<vehicle id="carSR6">
 				<modelPath>Models/Cars/drivingCars/Polizei/Car.j3o</modelPath>
 				<mass>800</mass>
@@ -937,6 +947,8 @@
 					<wayPoint id="WayPoint_78"><translation><vector jtype="java_lang_Float" size="3"><entry>-345.2811</entry><entry>41.999603</entry><entry>610.31506</entry></vector></translation><speed>50</speed></wayPoint>
 				</wayPoints>
         	</vehicle>
+        	-->
+        	
 				<vehicle id="carSR7">
 				<modelPath>Models/Cars/drivingCars/Polizei/Car.j3o</modelPath>
 				<mass>800</mass>
@@ -1029,7 +1041,9 @@
 					<wayPoint id="WayPoint_77"><translation><vector jtype="java_lang_Float" size="3"><entry>-320.39618</entry><entry>41.92946</entry><entry>618.0305</entry></vector></translation><speed>50</speed></wayPoint>
 					<wayPoint id="WayPoint_78"><translation><vector jtype="java_lang_Float" size="3"><entry>-345.2811</entry><entry>41.999603</entry><entry>610.31506</entry></vector></translation><speed>50</speed></wayPoint>
 				</wayPoints>
-        	</vehicle> 			
+        	</vehicle> 		
+        	
+        	<!-- 	
 			<vehicle id="carSR8">
 				<modelPath>Models/Cars/drivingCars/Polizei/Car.j3o</modelPath>
 				<mass>800</mass>
@@ -1123,6 +1137,8 @@
 					<wayPoint id="WayPoint_78"><translation><vector jtype="java_lang_Float" size="3"><entry>-345.2811</entry><entry>41.999603</entry><entry>610.31506</entry></vector></translation><speed>50</speed></wayPoint>
 				</wayPoints>
         	</vehicle> 
+        	-->
+        	
 			<vehicle id="carSR9">
 				<modelPath>Models/Cars/drivingCars/CitroenC4/Car.j3o</modelPath>
 				<mass>800</mass>
@@ -1309,6 +1325,8 @@
 					<wayPoint id="WayPoint_78"><translation><vector jtype="java_lang_Float" size="3"><entry>-345.2811</entry><entry>41.999603</entry><entry>610.31506</entry></vector></translation><speed>50</speed></wayPoint>
 				</wayPoints>
         	</vehicle> 
+        	
+        	<!-- 
 			<vehicle id="carSR12">
 				<modelPath>Models/Cars/drivingCars/AudiS6/Car.j3o</modelPath>
 				<mass>800</mass>
@@ -1402,6 +1420,8 @@
 					<wayPoint id="WayPoint_78"><translation><vector jtype="java_lang_Float" size="3"><entry>-345.2811</entry><entry>41.999603</entry><entry>610.31506</entry></vector></translation><speed>50</speed></wayPoint>
 				</wayPoints>
         	</vehicle> 
+        	-->
+        	
 			<vehicle id="carSR13">
 				<modelPath>Models/Cars/drivingCars/Ferrari/Car.scene</modelPath>
 				<mass>800</mass>
@@ -1495,6 +1515,8 @@
 					<wayPoint id="WayPoint_78"><translation><vector jtype="java_lang_Float" size="3"><entry>-345.2811</entry><entry>41.999603</entry><entry>610.31506</entry></vector></translation><speed>50</speed></wayPoint>
 				</wayPoints>
         	</vehicle> 
+        	
+        	<!-- 
 			<vehicle id="carSR14">
 				<modelPath>Models/Cars/drivingCars/Ferrari/Car.scene</modelPath>
 				<mass>800</mass>
@@ -1588,6 +1610,8 @@
 					<wayPoint id="WayPoint_78"><translation><vector jtype="java_lang_Float" size="3"><entry>-345.2811</entry><entry>41.999603</entry><entry>610.31506</entry></vector></translation><speed>50</speed></wayPoint>
 				</wayPoints>
         	</vehicle> 
+        	-->
+        	
 			<vehicle id="carRL1">
 				<modelPath>Models/Cars/drivingCars/CitroenC4/Car.j3o</modelPath>
 				<mass>800</mass>
@@ -1678,6 +1702,8 @@
 					<wayPoint id="WayPoint_75"><translation><vector jtype="java_lang_Float" size="3"><entry>269.76068</entry><entry>40.786747</entry><entry>346.98242</entry></vector></translation><speed>50</speed></wayPoint>
 				</wayPoints>
         	</vehicle> 
+        	
+        	<!-- 
 			<vehicle id="carRL2">
 				<modelPath>Models/Cars/drivingCars/AudiS6/Car.j3o</modelPath>
 				<mass>800</mass>
@@ -1768,6 +1794,8 @@
 					<wayPoint id="WayPoint_75"><translation><vector jtype="java_lang_Float" size="3"><entry>269.76068</entry><entry>40.786747</entry><entry>346.98242</entry></vector></translation><speed>50</speed></wayPoint>
 				</wayPoints>
         	</vehicle> 
+        	-->
+        	
 			<vehicle id="carRL3">
 				<modelPath>Models/Cars/drivingCars/CitroenC4/Car.j3o</modelPath>
 				<mass>800</mass>
@@ -1858,6 +1886,8 @@
 					<wayPoint id="WayPoint_75"><translation><vector jtype="java_lang_Float" size="3"><entry>269.76068</entry><entry>40.786747</entry><entry>346.98242</entry></vector></translation><speed>50</speed></wayPoint>
 				</wayPoints>
         	</vehicle> 
+        	
+        	<!-- 
 			<vehicle id="carRL4">
 				<modelPath>Models/Cars/drivingCars/Polizei/Car.j3o</modelPath>
 				<mass>800</mass>
@@ -1948,6 +1978,8 @@
 					<wayPoint id="WayPoint_75"><translation><vector jtype="java_lang_Float" size="3"><entry>269.76068</entry><entry>40.786747</entry><entry>346.98242</entry></vector></translation><speed>50</speed></wayPoint>
 				</wayPoints>
         	</vehicle> 
+        	-->
+        	
 			<vehicle id="carRL5">
 				<modelPath>Models/Cars/drivingCars/CitroenC4/Car.j3o</modelPath>
 				<mass>800</mass>
@@ -2038,6 +2070,8 @@
 					<wayPoint id="WayPoint_75"><translation><vector jtype="java_lang_Float" size="3"><entry>269.76068</entry><entry>40.786747</entry><entry>346.98242</entry></vector></translation><speed>50</speed></wayPoint>
 				</wayPoints>
         	</vehicle> 
+        	
+        	<!-- 
 			<vehicle id="carRL6">
 				<modelPath>Models/Cars/drivingCars/Ferrari/Car.scene</modelPath>
 				<mass>800</mass>
@@ -2128,6 +2162,8 @@
 					<wayPoint id="WayPoint_75"><translation><vector jtype="java_lang_Float" size="3"><entry>269.76068</entry><entry>40.786747</entry><entry>346.98242</entry></vector></translation><speed>50</speed></wayPoint>
 				</wayPoints>
         	</vehicle> 
+        	-->
+        	
 			<vehicle id="carRL7">
 				<modelPath>Models/Cars/drivingCars/CitroenC4/Car.j3o</modelPath>
 				<mass>800</mass>
@@ -2218,6 +2254,8 @@
 					<wayPoint id="WayPoint_75"><translation><vector jtype="java_lang_Float" size="3"><entry>269.76068</entry><entry>40.786747</entry><entry>346.98242</entry></vector></translation><speed>50</speed></wayPoint>
 				</wayPoints>
         	</vehicle> 
+        	
+        	<!-- 
 			<vehicle id="carRL8">
 				<modelPath>Models/Cars/drivingCars/Ferrari/Car.scene</modelPath>
 				<mass>800</mass>
@@ -2308,6 +2346,8 @@
 					<wayPoint id="WayPoint_75"><translation><vector jtype="java_lang_Float" size="3"><entry>269.76068</entry><entry>40.786747</entry><entry>346.98242</entry></vector></translation><speed>50</speed></wayPoint>
 				</wayPoints>
         	</vehicle> 
+        	-->
+        	
 			<vehicle id="carRL9">
 				<modelPath>Models/Cars/drivingCars/CitroenC4/Car.j3o</modelPath>
 				<mass>800</mass>
@@ -2398,6 +2438,8 @@
 					<wayPoint id="WayPoint_75"><translation><vector jtype="java_lang_Float" size="3"><entry>269.76068</entry><entry>40.786747</entry><entry>346.98242</entry></vector></translation><speed>50</speed></wayPoint>
 				</wayPoints>
         	</vehicle> 
+        	
+        	<!-- 
 			<vehicle id="carRL10">
 				<modelPath>Models/Cars/drivingCars/AudiS6/Car.j3o</modelPath>
 				<mass>800</mass>
@@ -2488,6 +2530,8 @@
 					<wayPoint id="WayPoint_75"><translation><vector jtype="java_lang_Float" size="3"><entry>269.76068</entry><entry>40.786747</entry><entry>346.98242</entry></vector></translation><speed>50</speed></wayPoint>
 				</wayPoints>
         	</vehicle> 
+        	-->
+        	
 			<vehicle id="carRL11">
 				<modelPath>Models/Cars/drivingCars/bmw1/Car.j3o</modelPath>
 				<mass>800</mass>
@@ -2578,6 +2622,8 @@
 					<wayPoint id="WayPoint_75"><translation><vector jtype="java_lang_Float" size="3"><entry>269.76068</entry><entry>40.786747</entry><entry>346.98242</entry></vector></translation><speed>50</speed></wayPoint>
 				</wayPoints>
         	</vehicle> 
+        	
+        	<!-- 
 			<vehicle id="carRL12">
 				<modelPath>Models/Cars/drivingCars/CitroenC4/Car.j3o</modelPath>
 				<mass>800</mass>
@@ -2668,6 +2714,8 @@
 					<wayPoint id="WayPoint_75"><translation><vector jtype="java_lang_Float" size="3"><entry>269.76068</entry><entry>40.786747</entry><entry>346.98242</entry></vector></translation><speed>50</speed></wayPoint>
 				</wayPoints>
         	</vehicle> 
+        	-->
+        	
 			<vehicle id="carRL13">
 				<modelPath>Models/Cars/drivingCars/CitroenC4/Car.j3o</modelPath>
 				<mass>800</mass>
@@ -2883,6 +2931,8 @@
 					<wayPoint id="WayPoint_110"><translation><vector jtype="java_lang_Float" size="3"><entry>-758.4153</entry><entry>40.71317</entry><entry>-838.948</entry></vector></translation><speed>70</speed></wayPoint>
 				</wayPoints>
         	</vehicle> 
+        	
+        	<!-- 
 			<vehicle id="carLS2">
 				<modelPath>Models/Cars/drivingCars/bmw1/Car.j3o</modelPath>
 				<mass>800</mass>
@@ -3008,6 +3058,8 @@
 					<wayPoint id="WayPoint_110"><translation><vector jtype="java_lang_Float" size="3"><entry>-758.4153</entry><entry>40.71317</entry><entry>-838.948</entry></vector></translation><speed>70</speed></wayPoint>
 				</wayPoints>
         	</vehicle> 
+        	-->
+        	
 			<vehicle id="carLS3">
 				<modelPath>Models/Cars/drivingCars/AudiS6/Car.j3o</modelPath>
 				<mass>800</mass>
@@ -3133,6 +3185,8 @@
 					<wayPoint id="WayPoint_110"><translation><vector jtype="java_lang_Float" size="3"><entry>-758.4153</entry><entry>40.71317</entry><entry>-838.948</entry></vector></translation><speed>70</speed></wayPoint>
 				</wayPoints>
         	</vehicle> 
+        	
+        	<!-- 
 			<vehicle id="carLS4">
 				<modelPath>Models/Cars/drivingCars/CitroenC4/Car.j3o</modelPath>
 				<mass>800</mass>
@@ -3258,6 +3312,8 @@
 					<wayPoint id="WayPoint_110"><translation><vector jtype="java_lang_Float" size="3"><entry>-758.4153</entry><entry>40.71317</entry><entry>-838.948</entry></vector></translation><speed>70</speed></wayPoint>
 				</wayPoints>
         	</vehicle> 
+        	-->
+        	
 			<vehicle id="carLS5">
 				<modelPath>Models/Cars/drivingCars/Ferrari/Car.scene</modelPath>
 				<mass>800</mass>
@@ -3383,6 +3439,8 @@
 					<wayPoint id="WayPoint_110"><translation><vector jtype="java_lang_Float" size="3"><entry>-758.4153</entry><entry>40.71317</entry><entry>-838.948</entry></vector></translation><speed>70</speed></wayPoint>
 				</wayPoints>
         	</vehicle> 
+        	
+        	<!-- 
 			<vehicle id="carLS6">
 				<modelPath>Models/Cars/drivingCars/CitroenC4/Car.j3o</modelPath>
 				<mass>800</mass>
@@ -3508,6 +3566,8 @@
 					<wayPoint id="WayPoint_110"><translation><vector jtype="java_lang_Float" size="3"><entry>-758.4153</entry><entry>40.71317</entry><entry>-838.948</entry></vector></translation><speed>70</speed></wayPoint>
 				</wayPoints>
         	</vehicle> 
+        	-->
+        	
 			<vehicle id="carLS7">
 				<modelPath>Models/Cars/drivingCars/AudiS6/Car.j3o</modelPath>
 				<mass>800</mass>
@@ -3633,6 +3693,8 @@
 					<wayPoint id="WayPoint_110"><translation><vector jtype="java_lang_Float" size="3"><entry>-758.4153</entry><entry>40.71317</entry><entry>-838.948</entry></vector></translation><speed>70</speed></wayPoint>
 				</wayPoints>
         	</vehicle> 
+        	
+        	<!-- 
 			<vehicle id="carLS8">
 				<modelPath>Models/Cars/drivingCars/AudiS6/Car.j3o</modelPath>
 				<mass>800</mass>
@@ -3758,6 +3820,8 @@
 					<wayPoint id="WayPoint_110"><translation><vector jtype="java_lang_Float" size="3"><entry>-758.4153</entry><entry>40.71317</entry><entry>-838.948</entry></vector></translation><speed>70</speed></wayPoint>
 				</wayPoints>
         	</vehicle> 
+        	-->
+        	
 			<vehicle id="carLS9">
 				<modelPath>Models/Cars/drivingCars/CitroenC4/Car.j3o</modelPath>
 				<mass>800</mass>
@@ -3883,6 +3947,8 @@
 					<wayPoint id="WayPoint_110"><translation><vector jtype="java_lang_Float" size="3"><entry>-758.4153</entry><entry>40.71317</entry><entry>-838.948</entry></vector></translation><speed>70</speed></wayPoint>
 				</wayPoints>
         	</vehicle>
+        	
+        	<!-- 
 			<vehicle id="carLS10">
 				<modelPath>Models/Cars/drivingCars/bmw1/Car.j3o</modelPath>
 				<mass>800</mass>
@@ -4008,6 +4074,8 @@
 					<wayPoint id="WayPoint_110"><translation><vector jtype="java_lang_Float" size="3"><entry>-758.4153</entry><entry>40.71317</entry><entry>-838.948</entry></vector></translation><speed>70</speed></wayPoint>
 				</wayPoints>
         	</vehicle> 
+        	-->
+        	
 			<vehicle id="carLS11">
 				<modelPath>Models/Cars/drivingCars/Polizei/Car.j3o</modelPath>
 				<mass>800</mass>
@@ -4133,6 +4201,8 @@
 					<wayPoint id="WayPoint_110"><translation><vector jtype="java_lang_Float" size="3"><entry>-758.4153</entry><entry>40.71317</entry><entry>-838.948</entry></vector></translation><speed>70</speed></wayPoint>
 				</wayPoints>
         	</vehicle> 
+        	
+        	<!-- 
 			<vehicle id="carLS12">
 				<modelPath>Models/Cars/drivingCars/CitroenC4/Car.j3o</modelPath>
 				<mass>800</mass>
@@ -4258,6 +4328,7 @@
 					<wayPoint id="WayPoint_110"><translation><vector jtype="java_lang_Float" size="3"><entry>-758.4153</entry><entry>40.71317</entry><entry>-838.948</entry></vector></translation><speed>70</speed></wayPoint>
 				</wayPoints>
         	</vehicle> 
+        	-->
         </traffic>
         <road>
         </road>

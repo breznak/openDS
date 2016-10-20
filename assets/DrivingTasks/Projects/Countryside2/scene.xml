@@ -203,13 +203,14 @@
 			</direction>
 			<color>
 				<vector jtype="java_lang_Float" size="4">
-					<entry>0.7</entry>
-					<entry>0.7</entry>
-					<entry>0.7</entry>
-					<entry>0.7</entry>
+					<entry>0.5</entry>
+					<entry>0.5</entry>
+					<entry>0.5</entry>
+					<entry>0.5</entry>
 				</vector>
 			</color>
 		</directionalLight>
+		
 		<directionalLight>
 			<direction>
 				<vector jtype="java_lang_Float" size="3">
@@ -220,10 +221,10 @@
 			</direction>
 			<color>
 				<vector jtype="java_lang_Float" size="4">
-					<entry>0.7</entry>
-					<entry>0.7</entry>
-					<entry>0.7</entry>
-					<entry>0.7</entry>
+					<entry>0.5</entry>
+					<entry>0.5</entry>
+					<entry>0.5</entry>
+					<entry>0.5</entry>
 				</vector>
 			</color>
 		</directionalLight>
@@ -237,10 +238,10 @@
 			</direction>
 			<color>
 				<vector jtype="java_lang_Float" size="4">
-					<entry>0.7</entry>
-					<entry>0.7</entry>
-					<entry>0.7</entry>
-					<entry>0.7</entry>
+					<entry>0.5</entry>
+					<entry>0.5</entry>
+					<entry>0.5</entry>
+					<entry>0.5</entry>
 				</vector>
 			</color>
 		</directionalLight>
@@ -254,13 +255,13 @@
 			</direction>
 			<color>
 				<vector jtype="java_lang_Float" size="4">
-					<entry>0.7</entry>
-					<entry>0.7</entry>
-					<entry>0.7</entry>
-					<entry>0.7</entry>
+					<entry>0.5</entry>
+					<entry>0.5</entry>
+					<entry>0.5</entry>
+					<entry>0.5</entry>
 				</vector>
 			</color>
 		</directionalLight>
 	</lights>
-	<skyTexture>Textures/Sky/Bright/hills.dds</skyTexture>
+	<skyTexture>Textures/Sky/Clouds/clouds.properties</skyTexture>
 </scene>

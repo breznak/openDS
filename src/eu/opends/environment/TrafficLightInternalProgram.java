@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2015 Rafael Math
+*  Copyright (C) 2016 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -52,6 +52,8 @@ public class TrafficLightInternalProgram extends Thread
 	private TrafficLightPhase phase;
 	private ListIterator<TrafficLightPhase> iterator;
 	private boolean allTrafficLightsOff;
+	private long timeOfLastBlink = 0;
+	private int blinkingIntervall = 1000;
 
 	
 	/**
@@ -260,7 +262,7 @@ public class TrafficLightInternalProgram extends Thread
 		return (int) (remainingGreen/1000);
 	}
 	
-	
+
 	/**
 	 * This method contains a loop with the basic rules to switch the traffic lights
 	 * of a certain intersection. Instructions will only be carried out in TRIGGER,
@@ -276,13 +278,18 @@ public class TrafficLightInternalProgram extends Thread
 			if(!sim.isPause())
 			{
 				if(currentMode == TrafficLightMode.TRIGGER)
+				{
 					runTriggerMode();
-	
-				else if(currentMode == TrafficLightMode.BLINKING)
+				}	
+				else if(currentMode == TrafficLightMode.BLINKING && (timeOfLastBlink + blinkingIntervall <= System.currentTimeMillis()))
+				{
 					runBlinkingMode();
-				
+					timeOfLastBlink = System.currentTimeMillis();
+				}
 				else if(currentMode == TrafficLightMode.PROGRAM)
+				{
 					runProgramMode();
+				}
 			}
 
 			previousMode = currentMode;
@@ -291,7 +298,7 @@ public class TrafficLightInternalProgram extends Thread
 				// halt thread for 1 second to provide a clock for BLINKING mode; 
 				// otherwise prevent loop from repeating 
 				// to fast in OFF or EXTERNAL mode 
-				Thread.sleep(1000);
+				Thread.sleep(10);
 				
 			} catch (InterruptedException e){}
 		}

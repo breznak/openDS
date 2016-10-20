@@ -1,6 +1,6 @@
 /*
 *  This file is part of OpenDS (Open Source Driving Simulator).
-*  Copyright (C) 2015 Rafael Math
+*  Copyright (C) 2016 Rafael Math
 *
 *  OpenDS is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
@@ -174,7 +174,7 @@ public class InstructionScreenGUI
 			if(layer.getId().equals(layerID))
 			{
 				layer.show();
-				for(Element elem : layer.getElements())
+				for(Element elem : layer.getChildren())
 					elem.disableFocus();
 			}
 			else
