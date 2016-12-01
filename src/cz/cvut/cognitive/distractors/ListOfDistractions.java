@@ -43,7 +43,7 @@ public class ListOfDistractions {
         
         if (DistractionSettings.isBox()){
             dropBox.setDisProbability(DistractionSettings.probabilityBox);
-            dropBox.setDisProbability(100);
+            //dropBox.setDisProbability(100);
             distractors[currentIndex] = dropBox; 
             currentIndex++;
             System.out.println("box done");

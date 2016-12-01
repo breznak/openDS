@@ -103,7 +103,7 @@ public class Simulator extends SimulationBasics
    
     public static float Timer;
     public float cogTimer;
-    public static int playerHealth = 100;
+    public static int playerHealth = 0;
     private String lastWord;
     private BitmapText healthText;
     
@@ -499,8 +499,8 @@ public class Simulator extends SimulationBasics
                     DistractionSettings.setQuestionAnswered(true);
                     healthText = new BitmapText(this.getAssetManager().loadFont("Interface/Fonts/Default.fnt"), false);
                     healthText.setSize(this.getAssetManager().loadFont("Interface/Fonts/Default.fnt").getCharSet().getRenderedSize());
-                    healthText.setText("Car Health: " + Simulator.playerHealth);
-                    healthText.setLocalTranslation(1100, 250, 0);
+                    healthText.setText("Score: " + Simulator.playerHealth);
+                    healthText.setLocalTranslation(this.getSettings().getWidth() - 120, this.getSettings().getHeight()/2, 0);
                     rewardNode = new Node();
                     this.getGuiNode().attachChild(healthText);
                 }
@@ -665,7 +665,7 @@ public class Simulator extends SimulationBasics
     
     public void updateHealth(){
         this.getGuiNode().detachChild(healthText);
-        healthText.setText("Car Health: " + Simulator.playerHealth);
+        healthText.setText("Score: " + Simulator.playerHealth);
         this.getGuiNode().attachChild(healthText);
     }
 

@@ -290,6 +290,8 @@ public class CollectObjectDistraction extends DistractionClass{
     private void rewardPlayer(){
         rewardSoundNode.playInstance();
         sim.getGuiNode().attachChild(sim.getRewardNode());
+        Simulator.playerHealth = Simulator.playerHealth + (25);
+        sim.updateHealth();
     }
     
 }

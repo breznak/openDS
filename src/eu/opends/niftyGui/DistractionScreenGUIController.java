@@ -543,7 +543,7 @@ public class DistractionScreenGUIController implements ScreenController
                 
                 CheckBox_box.check();
                 Slider_box.setValue(30);
-                DistractionSettings.setProbabilityBox(20);
+                DistractionSettings.setProbabilityBox(30);
                 DistractionSettings.setBox(true);
    
                 defClick = !defClick;

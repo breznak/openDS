@@ -47,19 +47,39 @@
 		<joystick>
 			<!-- Logitech GT for now -->
 			<dumpJoystickList>true</dumpJoystickList>
-			<steering controllerID="0" axisID="0" invert="false" sensitivity="1.0"/>
-			<combinedPedals controllerID="0" axisID="1" invert="false" sensitivity="1.0"/>
+			<steering controllerID="0" axisID="0" invert="false" sensitivity="0.48"/>
+			<combinedPedals controllerID="0" axisID="1" invert="false" sensitivity="3.0"/>
 			<accelerator controllerID="0" axisID="3" invert="true" sensitivity="1.0"/>
 			<brake controllerID="0" axisID="3" invert="true" sensitivity="1.0"/>
 			<clutch controllerID="0" axisID="3" invert="true" sensitivity="1.0"/>		
 			<keyAssignments>
-				<keyAssignment function="stop_engine" key="BUTTON_3"/>
-				<keyAssignment function="stop_engine" key="BUTTON_4"/>
-				<keyAssignment function="stop_engine" key="BUTTON_5"/>
-				<keyAssignment function="stop_engine" key="BUTTON_6"/>
-				<keyAssignment function="stop_engine" key="BUTTON_2"/>
-				<keyAssignment function="start_engine" key="BUTTON_1"/>
-				<keyAssignment function="stop_engine" key="BUTTON_2"/>
+				<keyAssignment function="toggle_engine" key="BUTTON_0"/>
+
+				
+				
+				<!--	12 +
+						13 -
+						axis 4 up down
+						axis 3- left 3+right
+						11 L3
+						10 R3
+						15 Big +
+						18 Big -
+						14 Enter
+						8 Select
+						9 start
+						3 trojuholnik
+						2 Kolecko
+						0 krizik
+						1 stvorcek
+						6 R2
+						7 L2
+						20 PS
+						19 Middle
+						EASY AS FUCK! POUZI REAL FUNKCIE + BUTTON_no) PODLA NAVODU TU ^ no caps, holding SHIFT (you know, took me just like an hour to make it work. what a piece of shit)
+						
+						
+				-->
 				<keyAssignment function="close_instruction_screen" key="BUTTON_15"/>
 			</keyAssignments>
 		</joystick>
